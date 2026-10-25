@@ -57,7 +57,20 @@
   nav.links a { color: var(--on-ink-2); text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 15px; }
   nav.links a:hover { color: var(--on-ink); background: var(--surface-2); }
   .top .btn { margin-left: 8px; }
-  @media (max-width: 900px) { nav.links { display: none; } .top .btn { margin-left: auto; } }
+  .menu-toggle { display: none; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: 4px; padding: 0; border: 1px solid #4b5566; border-radius: 8px; background: transparent; color: var(--on-ink); cursor: pointer; }
+  .menu-toggle:hover { border-color: var(--on-ink-2); }
+  .menu-toggle svg { width: 22px; height: 22px; }
+  .menu-toggle .icon-close, .top.open .menu-toggle .icon-open { display: none; }
+  .top.open .menu-toggle .icon-close { display: block; }
+  /* Narrow screens: the section links move into a panel under the bar, opened by the menu button. */
+  @media (max-width: 900px) {
+    .top .btn { margin-left: auto; }
+    .menu-toggle { display: inline-flex; }
+    nav.links { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; padding: 8px 20px 16px; flex-direction: column; flex-wrap: nowrap; gap: 2px; background: var(--ink); border-bottom: 1px solid var(--line); box-shadow: 0 16px 32px rgba(0,0,0,.4); max-height: calc(100vh - 65px); overflow-y: auto; }
+    .top.open nav.links { display: flex; }
+    nav.links a { padding: 12px 12px; font-size: 17px; color: var(--on-ink); border-radius: 8px; }
+  }
+  @media (max-width: 360px) { .brand { font-size: 16px; } .top .btn-sm { padding: 8px 12px; } }
 
   /* Buttons */
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 20px; border-radius: 8px; font-weight: 600; font-size: 16px; text-decoration: none; border: 2px solid transparent; line-height: 1.2; }
@@ -194,10 +207,11 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAD9ElEQVR42u2bQUhUQRjH/xOFXUXCk9GiewxFYl2xDq1SQpBoIoh7q63oEiFuFIR4MVAkulSydQlDCEsKOgS1EbS1LiJK3dZlJQ+1Bwk8JQnTYXbWN8N7b/ftvnUf+H2X55uZ9723/n/zzTfz5gFkB9tYqQ055+7emDFufAa3/DPGHLU/dNAJOFyxh4+nldO+0WXl/M3MKVWhngQHgDvnjwAA7r//x/PKCRI+dJn6eTggjie68v66v7jyDzhEMcDlGNDXdlQlYPWv0uelwmi+BQDYeD4CAPCN7yjPdLG1ztR/gSgLAigG1JoAq+guy6Wysk/ffC2Ob9dUAiQpMmbo5USA1wiQChuiO+xIeHTlEgDgxtNXVs9Skj8iwGsEGPquLQGRUAAAEIunbAko5o8IqHkmqFt+fAcSipJSGdmnJ8fEMbdVJ0cBXqI/V40IqJbj7ESdmrtrikbP3RaZ3WNRv5FYNm9fZSMC3JrXF6K1b1BrofZdnhUEtDY0KOV7c4GE6fVWmSER4JkYoEVrnl1gZkQw3yA3xgjWs1MsJ+HVHA0oE6w0EzRkXrwUJffygICy8qPPBi1JoEzQu3kAsyPHqTJWcwDKA2odA150dgAARr4tWa0E2dr29jYAIHzmGABgZuEHAMDv95f6HMysz5dLGsUApxdI5XXFx/zNttdNpzMqCfWd5ulE/1ipa44KxU6VJwLKJUAqIBVvrT8OAFj789NUaSsLBAKm5ZnFaVsyAhNzAICt1TXZvqK5ARHgVPm5wFmlPJz6BC0WMCMJc0GhdDiZ4gCQy+WU9pubm7rSzIIMLo5QSGhoE8fUeLgsEogAtxxJ5aVJ5XVrbGwUiqXEanBvb69SP/Hrs+l143kyDH2eMsGaEtCyKwRPtocAAMGVuKpMOsPsSJDW1NRkWy9jByCIaZ9NAgB25Q/4vU4E7MtcQJ+XS+U7WnxK5dJ6VhJh6yQajQIAIpGI7VxAKt5yskMpX/8uMtKVa0E5KrD8aEAEVDUGyNmYzAuSyJNwb1QcZbt5czKkBaemFAJ0xQuxpojy7bNJQXGZsYBigAtrgkoFH7os/hgesHc4L7aGsJfPlOKhr9xWcQMpyrPr9URAtQiwmnfzxXeivv+Co0wtHhejRSgUsm2nK16p8kRABaOAozU7PVak02kAQCwWs8oEne0dvsrpvYAn9weUavp6wH4bEQCXd4u7ZsX80m5xjxBwdzqlnMu3vlY5h9/v5xbjP3Nyv8luigHeIGDyybxQ5vpwVR+0oHz+fjQKeGavsMNRQO7ysooBhe8BYLEHKfOAvhfwFAH6N0LQvu3RRwnDvn/TNzn6HiLLr9Hy3yIRAWRkZGQV2H9nK5gEEG13DwAAAABJRU5ErkJggg==" alt="" width="32" height="32">Tibia Foundry</a>
-    <nav class="links" aria-label="Sections">
+    <nav class="links" id="sectionMenu" aria-label="Sections">
       <a href="#about">About</a><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#safety">Safety</a><a href="#start">Get started</a><a href="#requirements">Requirements</a><a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn-primary btn-sm" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="download" data-place="header">Download</a>
+    <button type="button" class="menu-toggle" id="menuToggle" aria-controls="sectionMenu" aria-expanded="false" aria-label="Menu"><svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
 </header>
 
@@ -415,6 +429,25 @@
       app_version: APP_VERSION
     });
   });
+
+  // Menu button (narrow screens): opens the section links under the bar. A link, Esc, a tap
+  // outside the menu or widening the window closes it again.
+  (function () {
+    var header = document.querySelector('header.top'), toggle = document.getElementById('menuToggle');
+    var menu = document.getElementById('sectionMenu');
+    function setOpen(open) {
+      header.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+    }
+    toggle.addEventListener('click', function () { setOpen(!header.classList.contains('open')); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('click', function (e) { if (header.classList.contains('open') && !header.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && header.classList.contains('open')) { setOpen(false); toggle.focus(); }
+    });
+    window.matchMedia('(min-width: 901px)').addEventListener('change', function (m) { if (m.matches) setOpen(false); });
+  })();
 
   // Back to top: shown once the page has scrolled a screen or so. In-page links are plain
   // #anchors (CSS scroll-margin keeps headings clear of the sticky menu).
