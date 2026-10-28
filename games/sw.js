@@ -1,7 +1,7 @@
 /* WriteQuest service worker – generated at build time (see vite.config.ts). */
-const VERSION = "mvrcsw2p";
+const VERSION = "mvrn6xei";
 const CACHE = `writequest-${VERSION}`;
-const PRECACHE = ["./","./assets/nunito-latin-500-normal-EugFkASW.woff2","./assets/baloo-2-latin-700-normal-CqTg7A15.woff2","./assets/baloo-2-latin-600-normal-tIfxVoAe.woff2","./assets/baloo-2-latin-800-normal-BbF3Etk1.woff2","./assets/nunito-latin-800-normal-Dz8SOQK_.woff2","./assets/baloo-2-latin-600-normal-B4tNaogw.woff","./assets/nunito-latin-700-normal-Dort48En.woff2","./assets/nunito-latin-500-normal-B5klmw3Q.woff","./assets/baloo-2-latin-700-normal-Ld3Zm3l2.woff","./assets/baloo-2-latin-800-normal-B8BXfZF7.woff","./assets/nunito-latin-800-normal-D-J0wlBY.woff","./assets/nunito-latin-700-normal-OcDqTBcA.woff","./assets/index-DF_fftXQ.css","./assets/index-CTTizXaq.js","./manifest.webmanifest","./icon.svg","./icon-192.png","./icon-512.png","./icon-maskable.png"];
+const PRECACHE = ["./","./assets/baloo-2-latin-600-normal-tIfxVoAe.woff2","./assets/baloo-2-latin-700-normal-CqTg7A15.woff2","./assets/nunito-latin-500-normal-EugFkASW.woff2","./assets/baloo-2-latin-800-normal-BbF3Etk1.woff2","./assets/nunito-latin-800-normal-Dz8SOQK_.woff2","./assets/nunito-latin-700-normal-Dort48En.woff2","./assets/nunito-latin-500-normal-B5klmw3Q.woff","./assets/baloo-2-latin-700-normal-Ld3Zm3l2.woff","./assets/baloo-2-latin-600-normal-B4tNaogw.woff","./assets/baloo-2-latin-800-normal-B8BXfZF7.woff","./assets/nunito-latin-800-normal-D-J0wlBY.woff","./assets/nunito-latin-700-normal-OcDqTBcA.woff","./assets/index-dCCqWI-U.css","./assets/index-DOfpNwPO.js","./manifest.webmanifest","./icon.svg","./icon-192.png","./icon-512.png","./icon-maskable.png"];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
