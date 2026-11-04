@@ -1,0 +1,61 @@
+{
+  "gameMasterVersion": "1787902550208",
+  "gameMasterDate": "2026-08-28T07:35:50.208Z",
+  "processedAt": "2026-11-04T15:29:04.981Z",
+  "species": 1024,
+  "forms": 1448,
+  "tempEvolutions": 61,
+  "recordsWithUnknownFields": 1024,
+  "assetVersion": "a7ab8fb37566",
+  "publishedFiles": 10406,
+  "publishedBytes": 240765001,
+  "totals": {
+    "model": {
+      "files": 1066,
+      "bytes": 199993948
+    },
+    "image": {
+      "files": 3737,
+      "bytes": 18540118
+    },
+    "thumbnail": {
+      "files": 3280,
+      "bytes": 6855198
+    },
+    "sound": {
+      "files": 1072,
+      "bytes": 8493931
+    },
+    "portrait": {
+      "files": 126,
+      "bytes": 2876212
+    },
+    "interface": {
+      "files": 82,
+      "bytes": 600452
+    },
+    "background": {
+      "files": 19,
+      "bytes": 37582
+    },
+    "data": {
+      "files": 1024,
+      "bytes": 3367560
+    }
+  },
+  "mapping": {
+    "species": 1024,
+    "variants": 1751,
+    "withModel": 958,
+    "withIcon": 1647,
+    "withShiny": 1633,
+    "withCry": 1072,
+    "confidence": {
+      "confirmed": 921,
+      "probable": 23,
+      "uncertain": 14
+    }
+  },
+  "uncertainMappings": 14,
+  "generatedAt": "2026-11-04T16:41:58.647Z"
+}

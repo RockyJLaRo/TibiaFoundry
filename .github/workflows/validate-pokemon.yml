@@ -1,0 +1,38 @@
+# Add to the GitHub Pages repository (RockyJLaRo/TibiaFoundry) at .github/workflows/validate-pokemon.yml
+#
+# The site is published by GitHub Pages straight from branch `main` (no build step). This workflow does NOT
+# deploy and does not change that setup: it only checks every push/PR that touches /pokemon/ so a broken
+# Pokémon build can't silently replace a working one. The Tibia Foundry pages, CNAME and Pages settings are untouched.
+name: Validate Pokémon Learning Adventure
+
+on:
+  push:
+    branches: [main]
+    paths: ['pokemon/**', 'tools/validate-pokemon.mjs', '.github/workflows/validate-pokemon.yml']
+  pull_request:
+    paths: ['pokemon/**', 'tools/validate-pokemon.mjs', '.github/workflows/validate-pokemon.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false # assets must be real files: GitHub Pages does not serve Git LFS objects
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Site root still present
+        run: |
+          test -f index.html || (echo "Root index.html missing – the Tibia Foundry site would be lost" && exit 1)
+          test -f CNAME && grep -qi 'tibiafoundry.com' CNAME
+      - name: No Git LFS pointer files under /pokemon/
+        run: |
+          if grep -rl --include='*.glb' --include='*.webp' --include='*.mp3' '^version https://git-lfs' pokemon/ ; then echo "LFS pointers found"; exit 1; fi
+      - name: Validate /pokemon/ (paths, PWA scope, manifest checksums, size limits)
+        run: node tools/validate-pokemon.mjs pokemon .
