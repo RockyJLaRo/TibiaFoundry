@@ -6,21 +6,21 @@
   "forms": 1448,
   "tempEvolutions": 61,
   "recordsWithUnknownFields": 1024,
-  "assetVersion": "a7ab8fb37566",
+  "assetVersion": "07c1b51cd9e5",
   "publishedFiles": 10406,
-  "publishedBytes": 240765001,
+  "publishedBytes": 285774493,
   "totals": {
     "model": {
       "files": 1066,
-      "bytes": 199993948
+      "bytes": 199100524
     },
     "image": {
       "files": 3737,
-      "bytes": 18540118
+      "bytes": 50740572
     },
     "thumbnail": {
       "files": 3280,
-      "bytes": 6855198
+      "bytes": 20554228
     },
     "sound": {
       "files": 1072,
@@ -40,7 +40,7 @@
     },
     "data": {
       "files": 1024,
-      "bytes": 3367560
+      "bytes": 3370992
     }
   },
   "mapping": {
@@ -57,5 +57,5 @@
     }
   },
   "uncertainMappings": 14,
-  "generatedAt": "2026-11-04T16:41:58.647Z"
+  "generatedAt": "2026-11-04T18:27:49.978Z"
 }
