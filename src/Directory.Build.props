@@ -24,6 +24,8 @@
     <FileVersion>$(Version).0.0</FileVersion>
     <AssemblyVersion>$(Version).0.0</AssemblyVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
+    <!-- Keep the product version "9.0": the SDK would append "+<commit>" when building from a git checkout. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <Company>RockyLaRo</Company>
     <Authors>RockyLaRo</Authors>
     <Copyright>Tibia Foundry © 2026 RockyLaRo (TibiaWiki Admin). Tibia game graphics © CipSoft GmbH.</Copyright>
