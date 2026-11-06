@@ -1,0 +1,139 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.RccEditorPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <GridView x:Key="EntryColumns" x:Shared="False">
+            <GridViewColumn Header="" Width="26">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="&#xE70F;" Style="{StaticResource Icon}" FontSize="11" Foreground="{DynamicResource App.Accent}" ToolTip="{loc:Tr RccEditor.ChangedInThisSession}"
+                                   Visibility="{Binding IsModified, Converter={StaticResource BoolToVisibility}}" />
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="{loc:Tr Common.Name}" Width="230" DisplayMemberBinding="{Binding Name}" />
+            <GridViewColumn Header="{loc:Tr Common.Folder}" Width="200" DisplayMemberBinding="{Binding Folder}" />
+            <GridViewColumn Header="{loc:Tr Common.Type}" Width="56" DisplayMemberBinding="{Binding Type}" />
+            <GridViewColumn Header="{loc:Tr Common.Size}" Width="84">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate><TextBlock Text="{Binding SizeText}" TextAlignment="Right" MinWidth="64" /></DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="{loc:Tr RccEditor.Stored}" Width="80" DisplayMemberBinding="{Binding CompressionText}" />
+        </GridView>
+    </UserControl.Resources>
+
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- File -->
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,10">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock Text="{loc:Tr Common.File}" Style="{StaticResource FieldLabel}" Width="60" />
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="8,0,0,0">
+                        <Button Content="{loc:Tr Common.Open2}" Command="{Binding OpenCommand}" Margin="0,0,6,0" ToolTip="{loc:Tr RccEditor.OpenAQtResourceFileRcc}" />
+                        <Button Content="{loc:Tr RccEditor.ClientFile}" Command="{Binding OpenClientFileCommand}" Margin="0,0,6,0"
+                                ToolTip="{loc:Tr RccEditor.OpenTheInstalledClientSGraphics}" />
+                        <Button Content="{loc:Tr RccEditor.NewFromFolder}" Command="{Binding NewFromFolderCommand}" Margin="0,0,6,0"
+                                ToolTip="{loc:Tr RccEditor.BuildANewResourceFileFrom}" />
+                        <Button Content="{loc:Tr Common.Save}" Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" Margin="0,0,6,0" IsEnabled="{Binding HasFile}"
+                                ToolTip="{loc:Tr RccEditor.SaveTheChangesIntoThisFile}" />
+                        <Button Content="{loc:Tr Common.SaveAs}" Command="{Binding SaveAsCommand}" Margin="0,0,6,0" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.SaveTheResourceFileUnderAnother}" />
+                        <Button Style="{StaticResource SubtleButton}" Command="{Binding OpenFolderCommand}" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.ShowTheFileInExplorer}" AutomationProperties.Name="{loc:Tr RccEditor.ShowInExplorer}">
+                            <TextBlock Text="&#xE838;" Style="{StaticResource Icon}" FontSize="13" />
+                        </Button>
+                    </StackPanel>
+                    <TextBox Style="{StaticResource PathBox}" Text="{Binding FilePath, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=RccEditor.NoFileOpenPlaceholder}" AutomationProperties.Name="{loc:Tr RccEditor.ResourceFile}" />
+                </DockPanel>
+                <DockPanel Margin="60,8,0,0">
+                    <TextBlock DockPanel.Dock="Left" Text="{Binding Summary}" FontWeight="SemiBold" Margin="0,0,14,0" />
+                    <!-- Validation result of the open file (nothing while no file is open). -->
+                    <DockPanel Visibility="{Binding HasFile, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="&#xE73E;" Style="{StaticResource Icon}" FontSize="12" Foreground="{DynamicResource App.Success}" Margin="0,2,6,0"
+                                   Visibility="{Binding ValidationOk, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="&#xE7BA;" Style="{StaticResource Icon}" FontSize="12" Foreground="{DynamicResource App.Danger}" Margin="0,2,6,0"
+                                   Visibility="{Binding ValidationOk, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                        <TextBlock Text="{Binding Validation}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" />
+                    </DockPanel>
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Edit actions -->
+        <WrapPanel Grid.Row="1" Margin="0,0,0,10">
+            <Button Content="{loc:Tr RccEditor.Replace}" Command="{Binding ReplaceCommand}" Margin="0,0,6,6" IsEnabled="{Binding HasFile}"
+                    ToolTip="{loc:Tr RccEditor.ReplaceTheSelectedResourceWithA}" />
+            <Button Content="{loc:Tr RccEditor.Add}" Command="{Binding AddCommand}" Margin="0,0,6,6" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.AddFilesAsNewResources}" />
+            <Button Content="{loc:Tr Common.Rename}" Command="{Binding RenameCommand}" Margin="0,0,6,6" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.GiveTheSelectedResourceANew}" />
+            <Button Content="{loc:Tr Common.Remove}" Command="{Binding RemoveCommand}" Margin="0,0,14,6" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.RemoveTheSelectedResourcesYouAre}" />
+            <Button Content="{loc:Tr RccEditor.ExtractSelected}" Command="{Binding ExtractSelectedCommand}" Margin="0,0,6,6" IsEnabled="{Binding HasFile}" ToolTip="{loc:Tr RccEditor.SaveTheSelectedResourcesAsFiles}" />
+            <Button Content="{loc:Tr RccEditor.ExtractAll}" Command="{Binding ExtractAllCommand}" Margin="0,0,6,6" IsEnabled="{Binding HasFile}"
+                    ToolTip="{loc:Tr RccEditor.SaveEveryResourceAsAFile}" />
+            <Button Content="{loc:Tr RccEditor.UpdateFromFolder}" Command="{Binding ImportFolderCommand}" Margin="0,0,14,6" IsEnabled="{Binding HasFile}"
+                    ToolTip="{loc:Tr RccEditor.ReplaceResourcesWithTheEditedFiles}" />
+            <TextBlock Text="{loc:Tr RccEditor.NewContent}" Style="{StaticResource FieldLabel}" VerticalAlignment="Center" Margin="0,0,6,6" />
+            <ComboBox ItemsSource="{Binding CompressionChoices}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Compression}" Width="230" Margin="0,0,0,6"
+                      ToolTip="{loc:Tr RccEditor.HowReplacedAndAddedResourcesAre}" AutomationProperties.Name="{loc:Tr RccEditor.CompressionOfNewContent}" />
+        </WrapPanel>
+
+        <!-- Resources | preview -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" MinWidth="320" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" MinWidth="260" />
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="{loc:Tr RccEditor.Resources}">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="140" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, Delay=200}" controls:Input.Placeholder="{loc:Tr RccEditor.SearchPaths}" Margin="0,0,8,0"
+                                 AutomationProperties.Name="{loc:Tr RccEditor.SearchResources}" />
+                        <ComboBox Grid.Column="1" SelectedValuePath="Tag" SelectedValue="{Binding TypeFilter}" AutomationProperties.Name="{loc:Tr RccEditor.ResourceTypeFilter}">
+                            <ComboBoxItem Content="{loc:Tr RccEditor.AllResources}" Tag="all" IsSelected="True" />
+                            <ComboBoxItem Content="{loc:Tr Common.Images}" Tag="images" />
+                            <ComboBoxItem Content="{loc:Tr RccEditor.TextFiles}" Tag="text" />
+                            <ComboBoxItem Content="{loc:Tr RccEditor.Changed}" Tag="changed" />
+                        </ComboBox>
+                    </Grid>
+                    <TextBlock DockPanel.Dock="Bottom" Margin="0,8,0,0" Style="{StaticResource Muted}" FontSize="12">
+                        <Run Text="{Binding Entries.Count, Mode=OneWay, Converter={StaticResource Number}}" /> <Run Text="{loc:Tr RccEditor.ShownDropAFileOnAn}" />
+                    </TextBlock>
+                    <Grid>
+                        <ListView x:Name="EntryList" ItemsSource="{Binding Entries}" SelectedItem="{Binding Selected}" View="{StaticResource EntryColumns}" SelectionMode="Extended"
+                                  SelectionChanged="OnSelectionChanged" AllowDrop="True" Drop="OnListDrop" DragOver="OnDragOver"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" AutomationProperties.Name="{loc:Tr RccEditor.Resources}" />
+                        <TextBlock Style="{StaticResource EmptyState}" Text="{loc:Tr RccEditor.OpenARccFileOrThe}"
+                                   Visibility="{Binding HasFile, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                    </Grid>
+                </DockPanel>
+            </GroupBox>
+            <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Center" Background="Transparent" />
+            <GroupBox Grid.Column="2" Header="{loc:Tr Common.Preview}">
+                <DockPanel>
+                    <TextBox DockPanel.Dock="Bottom" Style="{StaticResource ValueText}" Text="{Binding PreviewInfo, Mode=OneWay}" FontSize="12" Margin="0,8,0,0" AutomationProperties.Name="{loc:Tr RccEditor.ResourceDetails}" />
+                    <Border x:Name="PreviewArea" Style="{StaticResource PreviewSurface}" Cursor="Arrow" ToolTip="{loc:Tr RccEditor.DropAFileHereToReplace}" AllowDrop="True" Drop="OnPreviewDrop" DragOver="OnDragOver">
+                        <Grid>
+                            <Image Source="{Binding PreviewImage}" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   AutomationProperties.Name="{loc:Tr RccEditor.ResourcePreview}" />
+                            <ScrollViewer Visibility="{Binding PreviewText, Converter={StaticResource NullToVisibility}}" Background="{DynamicResource App.Surface}">
+                                <TextBox Style="{StaticResource ValueText}" Text="{Binding PreviewText, Mode=OneWay}" FontFamily="{StaticResource App.MonoFont}" FontSize="12" Margin="8"
+                                         AutomationProperties.Name="{loc:Tr RccEditor.TextPreview}" />
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </DockPanel>
+            </GroupBox>
+        </Grid>
+    </Grid>
+</UserControl>

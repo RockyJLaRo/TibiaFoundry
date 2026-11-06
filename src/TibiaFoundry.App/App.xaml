@@ -1,0 +1,16 @@
+<Application x:Class="TibiaFoundry.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- The color palette (Colors.Light/Dark.xaml) is inserted at index 0 by ThemeManager. -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Styles.xaml" />
+                <ResourceDictionary Source="Themes/Shared.xaml" />
+                <ResourceDictionary Source="Themes/BrandIcons.xaml" />
+                <ResourceDictionary Source="Themes/Flags.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

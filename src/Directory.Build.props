@@ -1,0 +1,28 @@
+<Project>
+  <!-- Settings shared by every project in the solution. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <!-- Symbols inside each assembly: single-file/portable builds stay one file, logs keep line numbers. -->
+    <DebugType>embedded</DebugType>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+
+    <!-- Application identity (also in TibiaFoundry.Core/Common/AppIdentity.cs). -->
+    <Product>Tibia Foundry</Product>
+    <Version>8.8.2</Version>
+    <FileVersion>8.8.2.0</FileVersion>
+    <InformationalVersion>8.8.2</InformationalVersion>
+    <Company>RockyLaRo</Company>
+    <Authors>RockyLaRo</Authors>
+    <Copyright>Tibia Foundry © 2026 RockyLaRo (TibiaWiki Admin). Tibia game graphics © CipSoft GmbH.</Copyright>
+    <Description>Tibia Foundry is an independent desktop toolkit for Tibia fansite administrators, wiki editors, artists and content creators: it turns the official files of the installed Tibia client into graphics, maps, sounds and data for TibiaWiki (https://tibia.fandom.com/) and Tibia community websites.</Description>
+
+    <!-- CA1416 (platform compatibility) is noise: the whole solution is Windows-only by design. -->
+    <NoWarn>$(NoWarn);CA1416;CA1848;CA1305;CA1307;CA1309;CA1310;CA1311;CA1304;CA2201;CA1031;CA1062;CA1716;CA1002;CA2227;CA1819;CA1720;CA1711;CA1707;CA1805;CA1852;CA1822;CA1859;CA1861;CA1865;CA1866;CA1847;CA1869;CA1510</NoWarn>
+  </PropertyGroup>
+</Project>

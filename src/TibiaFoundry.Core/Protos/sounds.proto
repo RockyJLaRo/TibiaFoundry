@@ -1,0 +1,51 @@
+// Recovered from the descriptor embedded in the original 1.8.0 build
+// (decompiled SoundsReflection.cs). Field names, numbers and types are exact.
+syntax = "proto3";
+
+package tibia.protobuf.sound;
+
+import "sounds-common.proto";
+
+
+message Sounds {
+  repeated .tibia.protobuf.sound.Sound sound = 1;
+  repeated .tibia.protobuf.sound.NumericSoundEffect numeric_sound_effect = 2;
+  repeated .tibia.protobuf.sound.AmbienceStream ambience_stream = 3;
+  repeated .tibia.protobuf.sound.AmbienceObjectStream ambience_object_stream = 4;
+  repeated .tibia.protobuf.sound.MusicTemplate music_template = 5;
+}
+
+message Sound {
+  uint32 id = 1;
+  string filename = 2;
+  string original_filename = 3;
+  bool is_stream = 4;
+}
+
+message NumericSoundEffect {
+  uint32 id = 1;
+  .tibia.protobuf.sound.ENumericSoundType numeric_sound_type = 2;
+  .tibia.protobuf.sound.MinMaxFloat random_pitch = 3;
+  .tibia.protobuf.sound.MinMaxFloat random_volume = 4;
+  .tibia.protobuf.sound.SimpleSoundEffect simple_sound_effect = 5;
+  .tibia.protobuf.sound.RandomSoundEffect random_sound_effect = 6;
+}
+
+message AmbienceStream {
+  uint32 id = 1;
+  uint32 looping_sound_id = 2;
+  repeated .tibia.protobuf.sound.DelayedSoundEffect delayed_effects = 3;
+}
+
+message AmbienceObjectStream {
+  uint32 id = 1;
+  repeated uint32 counted_appearance_types = 2;
+  repeated .tibia.protobuf.sound.AppearanceTypesCountSoundEffect sound_effects = 3;
+  uint32 max_sound_distance = 4;
+}
+
+message MusicTemplate {
+  uint32 id = 1;
+  uint32 sound_id = 2;
+  .tibia.protobuf.sound.EMusicType music_type = 3;
+}

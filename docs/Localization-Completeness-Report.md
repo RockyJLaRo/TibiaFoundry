@@ -1,0 +1,320 @@
+# Tibia Foundry translation completeness report
+
+English keys: 5,717. English is the authoritative text and the fallback: a missing translation shows the English text, never an empty element.
+
+| Language | Code | Translated | Coverage | Missing | Empty | Placeholder problems | Missing plural forms | Same as English (review) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| English | en | 5,717 / 5,717 | 100.0% | 0 | 0 | 0 | 0 | 0 |
+| Brazilian Portuguese | pt-BR | 5,717 / 5,717 | 100.0% | 0 | 0 | 0 | 0 | 81 |
+| Polish | pl | 5,794 / 5,794 | 100.0% | 0 | 0 | 0 | 0 | 43 |
+| Spanish | es | 5,717 / 5,717 | 100.0% | 0 | 0 | 0 | 0 | 66 |
+| German | de | 5,717 / 5,717 | 100.0% | 0 | 0 | 0 | 0 | 101 |
+
+Data-driven texts (tool manifests) without an entry in the English table: 0.
+
+## Brazilian Portuguese (pt-BR)
+
+### Same as English (fine for names and formats; review the rest) (81)
+- `Common.Zoom`: Zoom
+- `Common.Status`: Status
+- `Common.Sprites`: Sprites
+- `Common.Outfits`: Outfits
+- `Common.Assets`: Assets
+- `Common.Addon1`: Addon 1
+- `Common.Addon2`: Addon 2
+- `Common.Scripts`: Scripts
+- `SpriteGallery.Magenta`: Magenta
+- `About.RocKy`: Roc ky
+- `AdvancedTools.Layout`: Layout
+- `AdvancedTools.Outfits864Px`: Outfits (8 × 64 px)
+- `AppearanceExport.Outfit0Png`: Outfit {0}.png
+- `AppearanceExport.Log0Log`:  (log: {0}.log).
+- `AppearanceFilter.Flags`: Flags
+- `AppearanceFilter.Slots`: slots
+- `AppearanceFilter.Hook0`: hook {0}
+- `AppearanceFilter.Bank0`: bank {0}
+- `AppearanceFilter.Slots012`:  slots {0}{1}{2}
+- `AppearanceFilter.FG0IsOpaque`: FG{0} isOpaque
+- `AppearanceFilter.FG0Sprites12`: FG{0} sprites {1} {2}
+- `Appearances.Sprite`: Sprite
+- `Appearances.Outfitter`: Outfitter
+- `AssetLibrary.Tags`: Tags
+- `AssetsEditor.Sprite012`: Sprite {0}{1} · {2} 
+- `AssetsEditor.Sprite01`: Sprite {0} ({1}) — 
+- `ClientConverter.TibiaDat`: Tibia.dat
+- `ClientConverter.TibiaSpr`: Tibia.spr
+- `ClientConverter.Layout01`: Layout: {0}{1}
+- `ContentStudio.Outfit0`: Outfit {0}
+- `Diagnostics.Bytes`: Bytes
+- `Diagnostics.0N0Threads1N0Handles`: {0:N0} threads, {1:N0} handles
+- `ItemCatalog.Tibia0`: Tibia {0}
+- `MapTools.NPCs`: NPCs
+- `Metadata.Original0`: Original: {0}
+- `Metadata.CSVCsvCsv`: CSV (*.csv)|*.csv
+- `Metadata.JSONJsonJson`: JSON (*.json)|*.json
+- `Metadata.Backups`: Backups
+- `Outfitter.Pose`: Pose
+- `Outfitter.Addons`: Addons
+- `Outfitter.Outfit`: Outfit
+- `Outfitter.Outfit0`: Outfit {0}
+- `Scripts.Script`: Script
+- `Settings.Cache`: Cache
+- `Settings.Backups`: Backups
+- `Sounds.Volume`: Volume
+- `SpriteExtractor.Sprites01`: Sprites {0}-{1}
+- `StaticData.Quests`: Quests
+- `StaticData.Outfitter`: Outfitter
+- `Dependency.tibiamaps.Name`: tibiamaps.io
+- `Dependency.tibiawiki.Name`: TibiaWiki (tibia.fandom.com)
+- `Tool.client-converter.Setting.profile.Choice.1098`: Tibia 10.98
+- `Tool.scripts.Name`: Scripts
+- `SpriteGalleryWindow.Sprite0`: Sprite {0}
+- `Choice.HouseBackground.Magenta`: Magenta
+- `Choice.SettingsCategory.Scripts`: Scripts
+- `DataValidation.Sprite01`: sprite {0} ({1})
+- `MetadataEngine.Backup0`:  (backup: {0})
+- `MetadataFields.AltitudeM`: Altitude (m)
+- `LegacyFormat.Tibia1098`: Tibia 10.98
+- `LegacyFormat.Tibia860`: Tibia 8.60
+- `LegacyFormat.Tibia0100`: Tibia {0}.{1:00}
+- `ContentProjects.DragonDragonLordDemon`: Dragon Dragon Lord Demon
+- `ExportProfiles.TibiaWikiTibiaFandomCom`: TibiaWiki (tibia.fandom.com)
+- `ExportProfiles.IdName`: {id} {name}
+- `ExportProfiles.DragonLord`: Dragon Lord
+- `GalleryGenerator.HeadMetaCharsetUtf8`: > <head> <meta charset="utf-8"> 
+- `WorkflowRunner.Outfit0`: Outfit {0}
+- `WorkflowRunner.Sprite0`: Sprite {0}
+- `WorkflowRunner.SegoeUI`: Segoe UI
+- `FileManagementScripts.GitThumbsDbDesktopIni`: .git; Thumbs.db; desktop.ini
+- `FileManagementScripts.SystemVolumeInformation`: System Volume Information
+- `FileManagementScripts.GitNodeModules`: .git; node_modules
+- `ImageConverterScript.NearestNeighborPixelArt`: Nearest neighbor (pixel art)
+- `AppearanceKind.Outfit`: Outfit
+- `HealthArea.Logs`: Logs
+- `Label.Backup`: Backup
+- `Label.Bilinear`: Bilinear
+- `Label.Latitude`: Latitude
+- `Label.Longitude`: Longitude
+- `Label.Codecs`: Codecs
+
+## Polish (pl)
+
+### Same as English (fine for names and formats; review the rest) (43)
+- `Common.Format`: Format
+- `Common.Folder`: Folder
+- `About.RocKy`: Roc ky
+- `AppearanceExport.Minimum`: Minimum
+- `AppearanceFilter.Hook0`: hook {0}
+- `AppearanceFilter.Bank0`: bank {0}
+- `AppearanceFilter.FG0IsOpaque`: FG{0} isOpaque
+- `Appearances.Sprite`: Sprite
+- `Appearances.Outfitter`: Outfitter
+- `AssetsEditor.Sprite012`: Sprite {0}{1} · {2} 
+- `AssetsEditor.Sprite01`: Sprite {0} ({1}) — 
+- `ClientConverter.TibiaDat`: Tibia.dat
+- `ClientConverter.TibiaSpr`: Tibia.spr
+- `ItemCatalog.Tibia0`: Tibia {0}
+- `Metadata.CSVCsvCsv`: CSV (*.csv)|*.csv
+- `Metadata.JSONJsonJson`: JSON (*.json)|*.json
+- `Rebuilder.3Start`: 3. Start
+- `Scripts.Folder`: Folder…
+- `StaticData.Outfitter`: Outfitter
+- `Dependency.tibiamaps.Name`: tibiamaps.io
+- `Dependency.tibiawiki.Name`: TibiaWiki (tibia.fandom.com)
+- `Group.Start`: Start
+- `Tool.client-converter.Setting.profile.Choice.1098`: Tibia 10.98
+- `SpriteGalleryWindow.Sprite0`: Sprite {0}
+- `InstallationFinder.ProgramFiles`: Program Files
+- `DataValidation.Sprite01`: sprite {0} ({1})
+- `LegacyFormat.Tibia1098`: Tibia 10.98
+- `LegacyFormat.Tibia860`: Tibia 8.60
+- `LegacyFormat.Tibia0100`: Tibia {0}.{1:00}
+- `AssetIndexer.Folder0`: Folder {0}
+- `ContentProjects.DragonDragonLordDemon`: Dragon Dragon Lord Demon
+- `ExportProfiles.TibiaWikiTibiaFandomCom`: TibiaWiki (tibia.fandom.com)
+- `ExportProfiles.IdName`: {id} {name}
+- `ExportProfiles.DragonLord`: Dragon Lord
+- `GalleryGenerator.HeadMetaCharsetUtf8`: > <head> <meta charset="utf-8"> 
+- `WorkflowRunner.Sprite0`: Sprite {0}
+- `WorkflowRunner.SegoeUI`: Segoe UI
+- `FileManagementScripts.GitThumbsDbDesktopIni`: .git; Thumbs.db; desktop.ini
+- `FileManagementScripts.SystemVolumeInformation`: System Volume Information
+- `FileManagementScripts.GitNodeModules`: .git; node_modules
+- `Label.Problem`: Problem
+- `Label.Album`: Album
+- `MetadataGroup.Program`: Program
+
+## Spanish (es)
+
+### Same as English (fine for names and formats; review the rest) (66)
+- `Common.Zoom`: Zoom
+- `Common.Sprites`: Sprites
+- `Common.Outfits`: Outfits
+- `Common.Addon1`: Addon 1
+- `Common.Addon2`: Addon 2
+- `Common.Scripts`: Scripts
+- `SpriteGallery.Magenta`: Magenta
+- `Dialog.Error`: Error
+- `About.RocKy`: Roc ky
+- `AdvancedTools.Outfits864Px`: Outfits (8 × 64 px)
+- `AppearanceExport.Outfit0Png`: Outfit {0}.png
+- `AppearanceFilter.Flags`: Flags
+- `AppearanceFilter.Color`: color
+- `AppearanceFilter.Hook0`: hook {0}
+- `AppearanceFilter.Bank0`: bank {0}
+- `AppearanceFilter.FG0IsOpaque`: FG{0} isOpaque
+- `AppearanceFilter.FG0Sprites12`: FG{0} sprites {1} {2}
+- `Appearances.Sprite`: Sprite
+- `Appearances.Outfitter`: Outfitter
+- `AssetsEditor.Sprite012`: Sprite {0}{1} · {2} 
+- `AssetsEditor.Sprite01`: Sprite {0} ({1}) — 
+- `ClientConverter.TibiaDat`: Tibia.dat
+- `ClientConverter.TibiaSpr`: Tibia.spr
+- `ContentStudio.Outfit0`: Outfit {0}
+- `ContentStudio.Error`: Error
+- `Diagnostics.Bytes`: Bytes
+- `ItemCatalog.Tibia0`: Tibia {0}
+- `Metadata.Original0`: Original: {0}
+- `Metadata.CSVCsvCsv`: CSV (*.csv)|*.csv
+- `Metadata.JSONJsonJson`: JSON (*.json)|*.json
+- `Outfitter.Pose`: Pose
+- `Outfitter.Addons`: Addons
+- `Outfitter.Outfit`: Outfit
+- `Outfitter.Outfit0`: Outfit {0}
+- `Scripts.Script`: Script
+- `Settings.General`: General
+- `Settings.Error`: Error
+- `SpriteExtractor.Sprites01`: Sprites {0}-{1}
+- `StaticData.Outfitter`: Outfitter
+- `Dependency.tibiamaps.Name`: tibiamaps.io
+- `Dependency.tibiawiki.Name`: TibiaWiki (tibia.fandom.com)
+- `Tool.client-converter.Setting.profile.Choice.1098`: Tibia 10.98
+- `Tool.scripts.Name`: Scripts
+- `ProtoPropertyEditor.Field.Color`: Color
+- `SpriteGalleryWindow.Sprite0`: Sprite {0}
+- `Choice.LogLevel.Error`: Error
+- `Choice.HouseBackground.Magenta`: Magenta
+- `Choice.SettingsCategory.General`: General
+- `Choice.SettingsCategory.Scripts`: Scripts
+- `DataValidation.Sprite01`: sprite {0} ({1})
+- `LegacyFormat.Tibia1098`: Tibia 10.98
+- `LegacyFormat.Tibia860`: Tibia 8.60
+- `LegacyFormat.Tibia0100`: Tibia {0}.{1:00}
+- `ContentProjects.DragonDragonLordDemon`: Dragon Dragon Lord Demon
+- `ExportProfiles.TibiaWikiTibiaFandomCom`: TibiaWiki (tibia.fandom.com)
+- `ExportProfiles.IdName`: {id} {name}
+- `ExportProfiles.DragonLord`: Dragon Lord
+- `GalleryGenerator.HeadMetaCharsetUtf8`: > <head> <meta charset="utf-8"> 
+- `WorkflowRunner.Outfit0`: Outfit {0}
+- `WorkflowRunner.Sprite0`: Sprite {0}
+- `WorkflowRunner.SegoeUI`: Segoe UI
+- `Workflows.VariablesNameIdCategoryVersionAnimation`: Variables: {name} {id} {category} {version} {animation} {direction} {scale} {index3}…
+- `FileManagementScripts.GitThumbsDbDesktopIni`: .git; Thumbs.db; desktop.ini
+- `FileManagementScripts.SystemVolumeInformation`: System Volume Information
+- `FileManagementScripts.GitNodeModules`: .git; node_modules
+- `AppearanceKind.Outfit`: Outfit
+
+## German (de)
+
+### Same as English (fine for names and formats; review the rest) (101)
+- `Common.Zoom`: Zoom
+- `Common.Status`: Status
+- `Common.Version`: Version
+- `Common.Sprites`: Sprites
+- `Common.Outfits`: Outfits
+- `Common.Name`: Name
+- `Common.Format`: Format
+- `Common.Assets`: Assets
+- `Common.Addon1`: Addon 1
+- `Common.Addon2`: Addon 2
+- `Common.Details`: Details
+- `Common.Website`: Website
+- `Common.Filter`: Filter
+- `Common.Server`: Server
+- `Main.Navigation`: Navigation
+- `Main.Details`: Details…
+- `SpriteGallery.Magenta`: Magenta
+- `About.RocKy`: Roc ky
+- `AdvancedTools.Layout`: Layout
+- `AdvancedTools.Outfits864Px`: Outfits (8 × 64 px)
+- `AdvancedTools.Optional`: optional
+- `AppearanceExport.Minimum`: Minimum
+- `AppearanceExport.Maximum`: Maximum
+- `AppearanceExport.Outfit0Png`: Outfit {0}.png
+- `AppearanceFilter.Flags`: Flags
+- `AppearanceFilter.Hook0`: hook {0}
+- `AppearanceFilter.Bank0`: bank {0}
+- `AppearanceFilter.FG0IsOpaque`: FG{0} isOpaque
+- `Appearances.Sprite`: Sprite
+- `Appearances.Outfitter`: Outfitter
+- `AssetLibrary.Animation`: Animation
+- `AssetLibrary.Tags`: Tags
+- `AssetLibrary.Copyright`: Copyright
+- `AssetsEditor.Sprite012`: Sprite {0}{1} · {2} 
+- `AssetsEditor.Sprite01`: Sprite {0} ({1}) — 
+- `ClientConverter.TibiaDat`: Tibia.dat
+- `ClientConverter.TibiaSpr`: Tibia.spr
+- `ClientConverter.Layout01`: Layout: {0}{1}
+- `Clients.VersionPackageJson0`: Version (package.json): {0}
+- `ContentStudio.Workflow`: Workflow
+- `ContentStudio.Outfit0`: Outfit {0}
+- `Diagnostics.Rate`: Rate: 
+- `Diagnostics.Bytes`: Bytes
+- `Home.Workflows`: Workflows
+- `ItemCatalog.Tibia0`: Tibia {0}
+- `MapTools.NPCs`: NPCs
+- `MapTools.Minimap`: Minimap
+- `Metadata.Original0`: Original: {0}
+- `Metadata.CSVCsvCsv`: CSV (*.csv)|*.csv
+- `Metadata.JSONJsonJson`: JSON (*.json)|*.json
+- `Outfitter.Addons`: Addons
+- `Outfitter.Outfit`: Outfit
+- `Outfitter.Detail`: Detail
+- `Outfitter.Outfit0`: Outfit {0}
+- `Rebuilder.Revision`: Revision
+- `Scripts.CSVExcelCsvJSONJsonText`: CSV (Excel)|*.csv|JSON|*.json|Text|*.txt
+- `Settings.Clients`: Clients…
+- `Settings.Cache`: Cache
+- `Sounds.Player`: Player
+- `Sounds.Sounds`: Sounds
+- `SpriteExtractor.Sprites01`: Sprites {0}-{1}
+- `SpriteExtractor.Sheet01`: Sheet {0}–{1}
+- `StaticData.Quests`: Quests
+- `StaticData.Outfitter`: Outfitter
+- `Dependency.tibiamaps.Name`: tibiamaps.io
+- `Dependency.tibiawiki.Name`: TibiaWiki (tibia.fandom.com)
+- `Group.Start`: Start
+- `Tool.client-converter.Setting.profile.Choice.1098`: Tibia 10.98
+- `Tool.clients.Name`: Clients
+- `Tool.sounds.Name`: Sounds
+- `ClientStartup.Client`: Client
+- `ClientStartup.Installation`: Installation
+- `ThemeEditor.System0`: System ({0})
+- `SpriteGalleryWindow.Sprite0`: Sprite {0}
+- `Choice.Sort.Name`: Name
+- `Choice.LogLevel.Debug`: Debug
+- `Choice.LogLevel.Info`: Info
+- `Choice.HouseBackground.Magenta`: Magenta
+- `Choice.HouseBackground.Transparent`: Transparent
+- `DatComparer.Dimension01`: Dimension: {0} != {1}
+- `OtherProviders.Subsystem`: Subsystem
+- `LegacyFormat.Tibia1098`: Tibia 10.98
+- `LegacyFormat.Tibia860`: Tibia 8.60
+- `LegacyFormat.Tibia0100`: Tibia {0}.{1:00}
+- `ContentProjects.DragonDragonLordDemon`: Dragon Dragon Lord Demon
+- `ExportProfiles.TibiaWikiTibiaFandomCom`: TibiaWiki (tibia.fandom.com)
+- `ExportProfiles.IdName`: {id} {name}
+- `ExportProfiles.DragonLord`: Dragon Lord
+- `GalleryGenerator.HeadMetaCharsetUtf8`: > <head> <meta charset="utf-8"> 
+- `WorkflowRunner.Outfit0`: Outfit {0}
+- `WorkflowRunner.Sprite0`: Sprite {0}
+- `WorkflowRunner.SegoeUI`: Segoe UI
+- `BatchRenamerScript.0YyyyMMDdHHMm`: {0:yyyy-MM-dd HH:mm} — {1} in {2}
+- `FileManagementScripts.GitThumbsDbDesktopIni`: .git; Thumbs.db; desktop.ini
+- `FileManagementScripts.SystemVolumeInformation`: System Volume Information
+- `FileManagementScripts.GitNodeModules`: .git; node_modules
+- `AppearanceKind.Outfit`: Outfit
+- `Label.Problem`: Problem
+- `Label.Bilinear`: Bilinear
+- `Label.Album`: Album
+- `Label.Codecs`: Codecs

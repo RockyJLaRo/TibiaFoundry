@@ -1,0 +1,488 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AssetLibraryPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:lib="clr-namespace:TibiaFoundry.Core.Library;assembly=TibiaFoundry.Core"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <!-- A side-list entry: name and count. -->
+        <DataTemplate x:Key="ListEntry" DataType="{x:Type vm:LibraryListEntry}">
+            <DockPanel Margin="2,1">
+                <TextBlock DockPanel.Dock="Right" Text="{Binding CountText}" Foreground="{DynamicResource App.TextSecondary}" FontSize="12" Margin="8,0,0,0" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" />
+            </DockPanel>
+        </DataTemplate>
+        <Style x:Key="SideHeader" TargetType="TextBlock" BasedOn="{StaticResource SectionTitle}">
+            <Setter Property="Margin" Value="0,0,0,6" />
+        </Style>
+        <Style x:Key="IconButton" TargetType="Button" BasedOn="{StaticResource SubtleButton}">
+            <Setter Property="Padding" Value="6,3" />
+            <Setter Property="Margin" Value="0,0,2,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Toolbar: search, add, rescan, statistics -->
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="220" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=250}" controls:Input.Placeholder="{loc:Tr AssetLibrary.SearchNamesIDsTagsDescriptionsAnd}"
+                             AutomationProperties.Name="{loc:Tr AssetLibrary.SearchTheLibrary}" ToolTip="{loc:Tr AssetLibrary.EveryWordMustMatchNameFile}" />
+                    <TextBlock Text="{Binding Statistics}" Style="{StaticResource Muted}" FontSize="12" Margin="2,6,0,0" TextTrimming="CharacterEllipsis" />
+                </StackPanel>
+                <WrapPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Right">
+                    <Button Content="{loc:Tr Common.AddFolder}" Style="{StaticResource PrimaryButton}" Command="{Binding AddFolderCommand}" Margin="0,0,8,0"
+                            ToolTip="{loc:Tr AssetLibrary.IndexAFolderWhereItIs}" />
+                    <Button Content="{loc:Tr Common.AddFiles}" Command="{Binding AddFilesCommand}" Margin="0,0,8,0" ToolTip="{loc:Tr AssetLibrary.AddSingleFilesKeptWhereThey}" />
+                    <Button Content="{loc:Tr AssetLibrary.Rescan}" Command="{Binding RescanAllCommand}" Margin="0,0,8,0" ToolTip="{loc:Tr AssetLibrary.LookForNewChangedAndMissing}" />
+                    <Button Content="{loc:Tr AssetLibrary.CreateAProject}" Command="{Binding CreateProjectCommand}" ToolTip="{loc:Tr AssetLibrary.ContentStudioMakeAGalleryOr}" />
+                </WrapPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Background="{DynamicResource App.WarningSoft}" CornerRadius="6" Padding="12,8" Margin="0,0,0,10"
+                Visibility="{Binding Problem, Converter={StaticResource NullToVisibility}}">
+            <TextBlock Text="{Binding Problem}" TextWrapping="Wrap" />
+        </Border>
+
+        <TabControl Grid.Row="2" SelectedIndex="{Binding Tab}">
+            <!-- ===================================================== Browse -->
+            <TabItem Header="{loc:Tr AssetLibrary.Browse}">
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="230" MinWidth="190" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" MinWidth="320" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="340" MinWidth="280" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Categories, collections, filters -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False">
+                        <StackPanel>
+                            <Border Style="{StaticResource Panel}" Padding="10" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                            <Button Style="{StaticResource IconButton}" Command="{Binding NewCategoryCommand}" ToolTip="{loc:Tr AssetLibrary.NewCategory}" AutomationProperties.Name="{loc:Tr AssetLibrary.NewCategory}">
+                                                <TextBlock Text="&#xE710;" Style="{StaticResource Icon}" FontSize="12" />
+                                            </Button>
+                                            <Button Style="{StaticResource IconButton}" Command="{Binding RenameCategoryCommand}" ToolTip="{loc:Tr AssetLibrary.RenameTheSelectedCategoryYoursOnly}" AutomationProperties.Name="{loc:Tr AssetLibrary.RenameCategory}">
+                                                <TextBlock Text="&#xE8AC;" Style="{StaticResource Icon}" FontSize="12" />
+                                            </Button>
+                                            <Button Style="{StaticResource IconButton}" Command="{Binding DeleteCategoryCommand}" ToolTip="{loc:Tr AssetLibrary.DeleteTheSelectedCategoryYoursOnly}" AutomationProperties.Name="{loc:Tr AssetLibrary.DeleteCategory}">
+                                                <TextBlock Text="&#xE74D;" Style="{StaticResource Icon}" FontSize="12" />
+                                            </Button>
+                                        </StackPanel>
+                                        <TextBlock Text="{loc:Tr Common.Categories}" Style="{StaticResource SideHeader}" VerticalAlignment="Center" />
+                                    </DockPanel>
+                                    <ListBox ItemsSource="{Binding CategoryList}" SelectedItem="{Binding SelectedCategory}" ItemTemplate="{StaticResource ListEntry}" MaxHeight="300"
+                                             BorderThickness="0" AutomationProperties.Name="{loc:Tr Common.Categories}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource Panel}" Padding="10" Margin="0,0,0,10">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                            <Button Style="{StaticResource IconButton}" Command="{Binding NewCollectionCommand}" ToolTip="{loc:Tr AssetLibrary.NewCollection}" AutomationProperties.Name="{loc:Tr AssetLibrary.NewCollection}">
+                                                <TextBlock Text="&#xE710;" Style="{StaticResource Icon}" FontSize="12" />
+                                            </Button>
+                                            <Button Style="{StaticResource IconButton}" Command="{Binding ImportCollectionCommand}" ToolTip="{loc:Tr AssetLibrary.ImportACollectionFileTfcollectionJson}" AutomationProperties.Name="{loc:Tr AssetLibrary.ImportCollection}">
+                                                <TextBlock Text="&#xE8B5;" Style="{StaticResource Icon}" FontSize="12" />
+                                            </Button>
+                                        </StackPanel>
+                                        <TextBlock Text="{loc:Tr AssetLibrary.Collections}" Style="{StaticResource SideHeader}" VerticalAlignment="Center" />
+                                    </DockPanel>
+                                    <ListBox ItemsSource="{Binding CollectionList}" SelectedItem="{Binding SelectedCollection}" ItemTemplate="{StaticResource ListEntry}" MaxHeight="260"
+                                             BorderThickness="0" AutomationProperties.Name="{loc:Tr AssetLibrary.Collections}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" />
+                                    <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="2,4,0,0" Text="{loc:Tr AssetLibrary.NoCollectionsYetGroupAssetsFor}"
+                                               Visibility="{Binding CollectionList.Count, Converter={StaticResource NullToVisibility}, ConverterParameter=Invert}" />
+                                    <WrapPanel Margin="0,6,0,0" Visibility="{Binding HasCollection, Converter={StaticResource BoolToVisibility}}">
+                                        <Button Content="{loc:Tr Common.Rename}" Command="{Binding RenameCollectionCommand}" Margin="0,0,6,6" />
+                                        <Button Content="{loc:Tr AssetLibrary.Describe}" Command="{Binding DescribeCollectionCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.DescriptionAndThumbnailTheSelectedAsset}" />
+                                        <Button Content="{loc:Tr AssetLibrary.Duplicate}" Command="{Binding DuplicateCollectionCommand}" Margin="0,0,6,6" />
+                                        <Button Content="{loc:Tr Common.Export2}" Command="{Binding ExportCollectionCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.SaveTheCollectionAsAFile}" />
+                                        <Button Content="{loc:Tr Common.Delete}" Command="{Binding DeleteCollectionCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.DeleteTheCollectionItsAssetsStay}" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+
+                            <Expander Header="{loc:Tr Common.Filters}">
+                                <StackPanel Margin="10">
+                                    <TextBlock Text="{loc:Tr Common.Format}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding Formats}" SelectedItem="{Binding FormatFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.FormatFilter}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.ClientVersion}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding Versions}" SelectedItem="{Binding VersionFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.ClientVersionFilter}" />
+                                    <TextBlock Text="{loc:Tr Common.Source}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding Sources}" SelectedItem="{Binding SourceFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.SourceFilter}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.Tag}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding TagChoices}" SelectedItem="{Binding TagFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.TagFilter}" />
+                                    <TextBlock Text="{loc:Tr Common.Creator}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <TextBox Text="{Binding CreatorFilter, UpdateSourceTrigger=PropertyChanged, Delay=300}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.CreatorFilter}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.Animation}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding AnimationChoices}" loc:Choice.Prefix="Choice.Animation" SelectedItem="{Binding AnimationFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.AnimationFilter}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.ExportStatus}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding StatusChoices}" loc:Choice.Prefix="Choice.ExportStatus" SelectedItem="{Binding StatusFilter}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.ExportStatusFilter}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.Added}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <ComboBox ItemsSource="{Binding DateChoices}" loc:Choice.Prefix="Choice.Date" SelectedItem="{Binding AddedWithin}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.AddedWithin}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.WidthPixels}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Text="{Binding MinWidth, UpdateSourceTrigger=PropertyChanged, Delay=400}" controls:Input.Placeholder="{loc:Tr AssetLibrary.From}" AutomationProperties.Name="{loc:Tr AssetLibrary.MinimumWidth}" />
+                                        <TextBlock Grid.Column="1" Text="–" Margin="6,0" VerticalAlignment="Center" />
+                                        <TextBox Grid.Column="2" Text="{Binding MaxWidth, UpdateSourceTrigger=PropertyChanged, Delay=400}" controls:Input.Placeholder="{loc:Tr Common.To}" AutomationProperties.Name="{loc:Tr AssetLibrary.MaximumWidth}" />
+                                    </Grid>
+                                    <CheckBox Content="{loc:Tr AssetLibrary.HideMissingFiles}" IsChecked="{Binding HideMissing}" Margin="0,0,0,8" />
+                                    <Button Content="{loc:Tr Common.ClearFilters}" Command="{Binding ClearFiltersCommand}" HorizontalAlignment="Left" />
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <!-- Thumbnail grid -->
+                    <Border Grid.Column="2" Style="{StaticResource Panel}" Padding="0">
+                        <DockPanel>
+                            <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,1,0,0" Padding="10,6">
+                                <DockPanel>
+                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                        <TextBlock Text="{loc:Tr Common.Sort}" Style="{StaticResource FieldLabel}" />
+                                        <ComboBox ItemsSource="{Binding SortChoices}" loc:Choice.Prefix="Choice.Sort" SelectedItem="{Binding Sort}" Width="110" Margin="0,0,10,0" AutomationProperties.Name="{loc:Tr Common.SortBy}" />
+                                        <Button Style="{StaticResource IconButton}" Command="{Binding PreviousPageCommand}" IsEnabled="{Binding CanPrevious}" ToolTip="{loc:Tr AssetLibrary.PreviousPage}" AutomationProperties.Name="{loc:Tr AssetLibrary.PreviousPage}">
+                                            <TextBlock Text="&#xE76B;" Style="{StaticResource Icon}" FontSize="12" />
+                                        </Button>
+                                        <Button Style="{StaticResource IconButton}" Command="{Binding NextPageCommand}" IsEnabled="{Binding CanNext}" ToolTip="{loc:Tr AssetLibrary.NextPage}" AutomationProperties.Name="{loc:Tr AssetLibrary.NextPage}">
+                                            <TextBlock Text="&#xE76C;" Style="{StaticResource Icon}" FontSize="12" />
+                                        </Button>
+                                    </StackPanel>
+                                    <TextBlock VerticalAlignment="Center" Foreground="{DynamicResource App.TextSecondary}" FontSize="12" TextTrimming="CharacterEllipsis">
+                                        <Run Text="{Binding PageText, Mode=OneWay}" /> <Run Text="{Binding SelectionText, Mode=OneWay}" />
+                                    </TextBlock>
+                                </DockPanel>
+                            </Border>
+                            <Grid>
+                                <ListBox x:Name="AssetGrid" ItemsSource="{Binding Tiles}" SelectedItem="{Binding SelectedTile}" SelectionMode="Extended" BorderThickness="0" Padding="6"
+                                         Background="Transparent" ScrollViewer.HorizontalScrollBarVisibility="Disabled" SelectionChanged="OnSelectionChanged"
+                                         MouseDoubleClick="OnDoubleClick" AutomationProperties.Name="{loc:Tr Common.Assets}" VirtualizingPanel.ScrollUnit="Pixel">
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemContainerStyle>
+                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                                            <Setter Property="Padding" Value="4" />
+                                            <Setter Property="Margin" Value="2" />
+                                            <Setter Property="AutomationProperties.Name" Value="{Binding Name}" />
+                                        </Style>
+                                    </ListBox.ItemContainerStyle>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type vm:AssetTile}">
+                                            <StackPanel Width="112" ToolTip="{Binding ToolTip}">
+                                                <Border Width="104" Height="104" CornerRadius="6" Background="{DynamicResource App.Checkerboard}" HorizontalAlignment="Center">
+                                                    <Grid>
+                                                        <TextBlock Text="{Binding Glyph}" Style="{StaticResource Icon}" FontSize="28" Foreground="{DynamicResource App.TextSecondary}" Opacity="0.6"
+                                                                   Visibility="{Binding Thumbnail, Converter={StaticResource NullToVisibility}, ConverterParameter=Invert}" />
+                                                        <Image Source="{Binding Thumbnail}" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" />
+                                                        <Border Background="{DynamicResource App.WarningSoft}" CornerRadius="4" Padding="4,1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="4"
+                                                                Visibility="{Binding IsMissing, Converter={StaticResource BoolToVisibility}}">
+                                                            <TextBlock Text="{loc:Tr AssetLibrary.Missing}" FontSize="10" />
+                                                        </Border>
+                                                    </Grid>
+                                                </Border>
+                                                <TextBlock Text="{Binding Name}" FontSize="12" Margin="2,4,2,0" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                                <TextBlock Text="{Binding Detail}" FontSize="10.5" Foreground="{DynamicResource App.TextSecondary}" TextTrimming="CharacterEllipsis" TextAlignment="Center" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="440" Margin="24"
+                                            Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibility}}">
+                                    <TextBlock Text="&#xE8F1;" Style="{StaticResource Icon}" FontSize="40" Foreground="{DynamicResource App.TextSecondary}" Opacity="0.7" Margin="0,0,0,10" />
+                                    <TextBlock Text="{Binding EmptyText}" Style="{StaticResource Muted}" TextAlignment="Center" />
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,14,0,0"
+                                                Visibility="{Binding LibraryIsEmpty, Converter={StaticResource BoolToVisibility}}">
+                                        <Button Content="{loc:Tr Common.AddFolder}" Style="{StaticResource PrimaryButton}" Command="{Binding AddFolderCommand}" Margin="0,0,8,0" />
+                                        <Button Content="{loc:Tr Common.AddFiles}" Command="{Binding AddFilesCommand}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- Details -->
+                    <Border Grid.Column="4" Style="{StaticResource Panel}" Padding="0">
+                        <Grid>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Focusable="False"
+                                          Visibility="{Binding HasSelection, Converter={StaticResource BoolToVisibility}}">
+                                <StackPanel Margin="12">
+                                    <Border Height="190" CornerRadius="6" Background="{DynamicResource App.Checkerboard}" Margin="0,0,0,10" ClipToBounds="True">
+                                        <Grid>
+                                            <controls:AnimatedSprite Frames="{Binding PreviewFrames}" Delays="{Binding PreviewDelays}" Fit="True" Margin="8"
+                                                                     AutomationProperties.Name="{loc:Tr Common.Preview}" />
+                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsAudio, Converter={StaticResource BoolToVisibility}}">
+                                                <TextBlock Text="&#xE8D6;" Style="{StaticResource Icon}" FontSize="36" Margin="0,0,0,8" />
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Content="{loc:Tr Common.Play}" Command="{Binding PlaySoundCommand}" Margin="0,0,6,0" />
+                                                    <Button Content="{loc:Tr Common.Stop}" Command="{Binding StopSoundCommand}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                    <TextBlock Text="{Binding SelectionText}" Foreground="{DynamicResource App.Accent}" FontSize="12" Margin="0,0,0,6"
+                                               Visibility="{Binding SelectionText, Converter={StaticResource NullToVisibility}}" />
+
+                                    <TextBlock Text="{loc:Tr Common.Name}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <TextBox Text="{Binding EditName, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr Common.Name}" />
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="{loc:Tr Common.Category}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <ComboBox ItemsSource="{Binding AllCategories}" Text="{Binding EditCategory, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" AutomationProperties.Name="{loc:Tr Common.Category}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="{loc:Tr AssetLibrary.ExportStatus}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <ComboBox ItemsSource="{Binding ExportStatusChoices}" loc:Choice.Prefix="Choice.ExportStatus" SelectedItem="{Binding EditStatus}" AutomationProperties.Name="{loc:Tr AssetLibrary.ExportStatus}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <TextBlock Text="{loc:Tr Common.Description}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <TextBox Text="{Binding EditDescription, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="54" MaxHeight="120"
+                                             VerticalScrollBarVisibility="Auto" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr Common.Description}" />
+                                    <TextBlock Text="{loc:Tr AssetLibrary.TagsAndKeywordsCommaSeparated}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                    <TextBox Text="{Binding EditTags, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr AssetLibrary.Tags}" />
+                                    <Grid Margin="0,0,0,8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="8" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel>
+                                            <TextBlock Text="{loc:Tr AssetLibrary.ClientVersion}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <TextBox Text="{Binding EditVersion, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:Tr AssetLibrary.ClientVersion}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="{loc:Tr AssetLibrary.GameID}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <TextBox Text="{Binding EditOriginalId, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:Tr AssetLibrary.GameID}" />
+                                        </StackPanel>
+                                    </Grid>
+                                    <Expander Header="{loc:Tr AssetLibrary.AttributionAndCopyright}" Margin="0,0,0,8">
+                                        <StackPanel Margin="10">
+                                            <TextBlock Text="{loc:Tr Common.Creator}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <TextBox Text="{Binding EditCreator, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr Common.Creator}" />
+                                            <TextBlock Text="{loc:Tr Common.Attribution}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <TextBox Text="{Binding EditAttribution, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr Common.Attribution}" />
+                                            <TextBlock Text="{loc:Tr AssetLibrary.Copyright}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                            <TextBox Text="{Binding EditCopyright, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" AutomationProperties.Name="{loc:Tr AssetLibrary.Copyright}" />
+                                            <TextBlock Style="{StaticResource Muted}" FontSize="11.5" Margin="0,6,0,0"
+                                                       Text="{loc:Tr AssetLibrary.StoredInTheLibraryOnlyThe}" />
+                                        </StackPanel>
+                                    </Expander>
+                                    <Expander Header="{loc:Tr AssetLibrary.CustomFields}" Margin="0,0,0,8">
+                                        <StackPanel Margin="10">
+                                            <ItemsControl ItemsSource="{Binding Fields}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="{x:Type vm:FieldRow}">
+                                                        <Grid Margin="0,0,0,6">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.8*" />
+                                                                <ColumnDefinition Width="6" />
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <TextBox Text="{Binding Key, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:Tr AssetLibrary.FieldName}" />
+                                                            <TextBox Grid.Column="2" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}" AutomationProperties.Name="{loc:Tr AssetLibrary.FieldValue}" />
+                                                            <Button Grid.Column="3" Style="{StaticResource IconButton}" Margin="4,0,0,0" ToolTip="{loc:Tr AssetLibrary.RemoveThisField}" AutomationProperties.Name="{loc:Tr AssetLibrary.RemoveField}"
+                                                                    Command="{Binding DataContext.RemoveFieldCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                                                                <TextBlock Text="&#xE711;" Style="{StaticResource Icon}" FontSize="11" />
+                                                            </Button>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                            <Button Content="{loc:Tr AssetLibrary.AddField}" Command="{Binding AddFieldCommand}" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                    </Expander>
+                                    <Button Content="{loc:Tr AssetLibrary.SaveDetails}" Style="{StaticResource PrimaryButton}" Command="{Binding SaveDetailsCommand}" HorizontalAlignment="Left" Margin="0,0,0,12"
+                                            ToolTip="{loc:Tr AssetLibrary.StoresTheDetailsInTheLibrary}" />
+
+                                    <TextBlock Text="{loc:Tr Common.File}" Style="{StaticResource SectionTitle}" Margin="0,4,0,4" />
+                                    <TextBox Text="{Binding Facts, Mode=OneWay}" Style="{StaticResource ValueText}" FontSize="12" Foreground="{DynamicResource App.TextSecondary}" AutomationProperties.Name="{loc:Tr AssetLibrary.FileFacts}" />
+                                    <TextBlock Text="{Binding Memberships}" Style="{StaticResource Muted}" FontSize="12" Margin="0,6,0,0" />
+                                    <TextBlock Text="{Binding VersionHistory}" Style="{StaticResource Muted}" FontSize="12" Margin="0,4,0,0"
+                                               Visibility="{Binding VersionHistory, Converter={StaticResource NullToVisibility}}" />
+                                    <ItemsControl ItemsSource="{Binding Related}" Margin="0,6,0,0">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate DataType="{x:Type lib:AssetRecord}">
+                                                <Button Style="{StaticResource SubtleButton}" HorizontalAlignment="Left" Padding="4,2" ToolTip="{Binding Path}"
+                                                        Command="{Binding DataContext.OpenRelatedCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                                                    <TextBlock><Run Text="{loc:Tr AssetLibrary.Related}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding Name, Mode=OneWay}" /></TextBlock>
+                                                </Button>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    <WrapPanel Margin="0,10,0,0">
+                                        <Button Content="{loc:Tr Common.Open}" Command="{Binding OpenFileCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.OpenWithTheProgramWindowsUses}" />
+                                        <Button Content="{loc:Tr AssetLibrary.ShowInFolder}" Command="{Binding ShowInExplorerCommand}" Margin="0,0,6,6" />
+                                        <Button Content="{loc:Tr AssetLibrary.CopyPath}" Command="{Binding CopyPathCommand}" Margin="0,0,6,6" />
+                                        <Button Content="{loc:Tr AssetLibrary.AddToCollection}" Command="{Binding AddToCollectionCommand}" Margin="0,0,6,6" />
+                                        <Button Content="{loc:Tr AssetLibrary.RemoveFromCollection}" Command="{Binding RemoveFromCollectionCommand}" Margin="0,0,6,6"
+                                                Visibility="{Binding HasCollection, Converter={StaticResource BoolToVisibility}}" />
+                                        <Button Content="{loc:Tr AssetLibrary.MarkAsRelated}" Command="{Binding RelateSelectedCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.SelectTwoOrMoreAssetsThat}" />
+                                        <Button Content="{loc:Tr AssetLibrary.RemoveFromLibrary}" Command="{Binding RemoveFromLibraryCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr AssetLibrary.ForgetTheSelectedAssetsTheFiles}" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <TextBlock Style="{StaticResource EmptyState}" Visibility="{Binding HasSelection, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}"
+                                       Text="{loc:Tr AssetLibrary.SelectAnAssetToSeeIts}" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- ===================================================== Duplicates -->
+            <TabItem Header="{loc:Tr AssetLibrary.Duplicates}">
+                <DockPanel Margin="0,10,0,0">
+                    <Border DockPanel.Dock="Top" Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,10">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right" Content="{loc:Tr AssetLibrary.FindDuplicates}" Style="{StaticResource PrimaryButton}" Command="{Binding FindDuplicatesCommand}" Margin="12,0,0,0" VerticalAlignment="Top" />
+                            <TextBlock Text="{Binding DuplicateSummary}" TextWrapping="Wrap" />
+                        </DockPanel>
+                    </Border>
+                    <Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding Duplicates}" AutomationProperties.Name="{loc:Tr AssetLibrary.DuplicateGroups}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type vm:DuplicateRow}">
+                                        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,8">
+                                            <StackPanel>
+                                                <DockPanel>
+                                                    <TextBlock DockPanel.Dock="Right" Text="{Binding Wasted}" Style="{StaticResource Muted}" FontSize="12" />
+                                                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                                </DockPanel>
+                                                <ItemsControl ItemsSource="{Binding Assets}" Margin="0,6,0,0">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate DataType="{x:Type lib:AssetRecord}">
+                                                            <Grid Margin="0,2">
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                    <ColumnDefinition Width="Auto" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <TextBlock VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Path}">
+                                                                    <Run Text="{Binding FileName, Mode=OneWay}" FontWeight="SemiBold" />
+                                                                    <Run Text="{Binding Dimensions, Mode=OneWay}" Foreground="{DynamicResource App.TextSecondary}" />
+                                                                    <Run Text="{Binding ClientVersion, Mode=OneWay}" Foreground="{DynamicResource App.TextSecondary}" />
+                                                                    <Run Text="{Binding Path, Mode=OneWay}" Foreground="{DynamicResource App.TextSecondary}" FontSize="11.5" />
+                                                                </TextBlock>
+                                                                <Button Grid.Column="1" Content="{loc:Tr AssetLibrary.Show}" Style="{StaticResource SubtleButton}" Margin="8,0,0,0"
+                                                                        Command="{Binding DataContext.ShowAssetInBrowserCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" />
+                                                                <Button Grid.Column="2" Content="{loc:Tr AssetLibrary.ShowInFolder}" Style="{StaticResource SubtleButton}" Margin="4,0,0,0"
+                                                                        Command="{Binding DataContext.RevealAssetCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" />
+                                                            </Grid>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                        <TextBlock Style="{StaticResource EmptyState}" Visibility="{Binding Duplicates.Count, Converter={StaticResource NullToVisibility}, ConverterParameter=Invert}"
+                                   Text="{loc:Tr AssetLibrary.NoDuplicateGroupsToShowClick}" />
+                    </Grid>
+                </DockPanel>
+            </TabItem>
+
+            <!-- ===================================================== Folders and storage -->
+            <TabItem Header="{loc:Tr AssetLibrary.FoldersAndStorage}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,0">
+                    <StackPanel MaxWidth="1000" HorizontalAlignment="Left">
+                        <GroupBox Header="{loc:Tr AssetLibrary.IndexedFolders}">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,8"
+                                           Text="{loc:Tr AssetLibrary.FoldersAreIndexedWhereTheyAre}" />
+                                <ItemsControl ItemsSource="{Binding Roots}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type lib:LibraryRoot}">
+                                            <Border BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,0,1" Padding="0,6">
+                                                <DockPanel>
+                                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                                                        <Button Content="{loc:Tr AssetLibrary.Rescan}" Margin="8,0,6,0" Command="{Binding DataContext.RescanRootCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" />
+                                                        <Button Content="{loc:Tr AssetLibrary.StopIndexing}" Command="{Binding DataContext.RemoveRootCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" />
+                                                    </StackPanel>
+                                                    <StackPanel>
+                                                        <TextBlock Text="{Binding Path}" FontFamily="{StaticResource App.MonoFont}" FontSize="12" TextTrimming="CharacterEllipsis" ToolTip="{Binding Path}" />
+                                                        <TextBlock Style="{StaticResource Muted}" FontSize="11.5">
+                                                            <Run Text="{loc:Tr AssetLibrary.Added}" /> <Run Text="{Binding AddedUtc, Mode=OneWay, StringFormat=yyyy-MM-dd}" /> <Run Text="{loc:Tr AssetLibrary.LastScan}" />
+                                                            <Run Text="{Binding LastScanUtc, Mode=OneWay, StringFormat=yyyy-MM-dd HH:mm, Converter={StaticResource LocOr}, ConverterParameter=AssetLibrary.Never}" />
+                                                        </TextBlock>
+                                                    </StackPanel>
+                                                </DockPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <TextBlock Style="{StaticResource Muted}" FontSize="12" Text="{loc:Tr AssetLibrary.NoFolderIsIndexedYet}" Visibility="{Binding Roots.Count, Converter={StaticResource NullToVisibility}, ConverterParameter=Invert}" />
+                                <Button Content="{loc:Tr Common.AddFolder}" Command="{Binding AddFolderCommand}" HorizontalAlignment="Left" Margin="0,10,0,0" />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="{loc:Tr AssetLibrary.LibrarySettings}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AssetLibrary.AddEveryFileIExportTo}" IsChecked="{Binding AddExportsAutomatically}" Margin="0,0,0,4" />
+                                <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="22,0,0,10" TextWrapping="Wrap"
+                                           Text="{loc:Tr AssetLibrary.SpritesGIFsOutfitsCreatureImagesMaps}" />
+                                <TextBlock Text="{loc:Tr AssetLibrary.AlsoPutNewExportsIntoThis}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                <TextBox Text="{Binding AutoExportCollection, UpdateSourceTrigger=LostFocus}" MaxWidth="360" HorizontalAlignment="Left" MinWidth="260" Margin="0,0,0,12"
+                                         AutomationProperties.Name="{loc:Tr AssetLibrary.CollectionForNewExports}" ToolTip="{loc:Tr AssetLibrary.ForExampleSummerUpdateResourcesWhile}" />
+                                <TextBlock Text="{loc:Tr AssetLibrary.LibraryFolder}" Style="{StaticResource FieldLabel}" Margin="0,0,0,2" />
+                                <DockPanel Margin="0,0,0,4">
+                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="8,0,0,0">
+                                        <Button Content="{loc:Tr Common.Change}" Command="{Binding ChangeLibraryFolderCommand}" Margin="0,0,6,0" />
+                                        <Button Content="{loc:Tr Common.Open}" Command="{Binding OpenLibraryFolderCommand}" />
+                                    </StackPanel>
+                                    <TextBox Style="{StaticResource PathBox}" Text="{Binding LibraryFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr AssetLibrary.LibraryFolder}" />
+                                </DockPanel>
+                                <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"
+                                           Text="{loc:Tr AssetLibrary.TheIndexSQLiteThumbnailsCopiedFiles}" />
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="{loc:Tr AssetLibrary.IntegrityBackupAndRestore}">
+                            <StackPanel>
+                                <WrapPanel>
+                                    <Button Content="{loc:Tr AssetLibrary.VerifyTheLibrary}" Command="{Binding VerifyLibraryCommand}" Margin="0,0,8,6"
+                                            ToolTip="{loc:Tr AssetLibrary.CheckTheIndexAndReadEvery}" />
+                                    <Button Content="{loc:Tr AssetLibrary.BackUp}" Command="{Binding BackupLibraryCommand}" Margin="0,0,8,6" ToolTip="{loc:Tr AssetLibrary.SaveTheIndexCollectionsProfilesProjects}" />
+                                    <Button Content="{loc:Tr AssetLibrary.Restore}" Command="{Binding RestoreLibraryCommand}" Margin="0,0,8,6" ToolTip="{loc:Tr AssetLibrary.ReplaceThemWithABackupChecked}" />
+                                    <Button Content="{loc:Tr AssetLibrary.ClearThumbnails}" Command="{Binding ClearThumbnailsCommand}" Margin="0,0,8,6" ToolTip="{loc:Tr AssetLibrary.DeleteTheThumbnailCacheItIs}" />
+                                </WrapPanel>
+                                <TextBlock Text="{Binding StorageReport}" Style="{StaticResource Muted}" FontSize="12" Visibility="{Binding StorageReport, Converter={StaticResource NullToVisibility}}" />
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>TibiaFoundry</AssemblyName>
+    <!-- Shown by Windows as the file description (Task Manager, Explorer, the taskbar). -->
+    <AssemblyTitle>Tibia Foundry</AssemblyTitle>
+    <RootNamespace>TibiaFoundry.App</RootNamespace>
+    <ApplicationIcon>Assets\Branding\tibia-foundry.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- x64 only: the original ran as a 32-bit process and could run out of memory on large maps. -->
+    <PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="System.IO" />
+    <Using Include="System.Net.Http" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TibiaFoundry.Core\TibiaFoundry.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="NAudio.Core" />
+    <PackageReference Include="NAudio.WinMM" />
+    <PackageReference Include="NAudio.Vorbis" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Official logo (32×32 master) and the icon generated from it by tools/branding/make_branding.py. -->
+    <Resource Include="Assets\Branding\tibia-foundry-logo.png" />
+    <Resource Include="Assets\Branding\tibia-foundry.ico" />
+    <!-- Logos of Tibia, CipSoft and TibiaWiki for About > Credits (see Assets\Credits\README.md). -->
+    <Resource Include="Assets\Credits\*.png" />
+    <!-- Site icons of TibiaWiki and tibia.com for the creator links on the About page (see Assets\Links\README.md). -->
+    <Resource Include="Assets\Links\*.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TibiaFoundry.Tests" />
+  </ItemGroup>
+
+  <!-- Portable build (publish profile "Portable"): settings and logs are kept next to the program. -->
+  <ItemGroup Condition="'$(PortableBuild)' == 'true'">
+    <AssemblyMetadata Include="PortableBuild" Value="true" />
+  </ItemGroup>
+</Project>

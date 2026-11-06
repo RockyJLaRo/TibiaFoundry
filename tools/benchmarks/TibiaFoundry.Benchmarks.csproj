@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Workload benchmarks for the performance audit (8.8.1). Not part of the product.
+       Builds against the Core library of this source tree, or of another tree with -p:TfSrc=<folder>\src
+       (used to measure the 8.8.0 baseline with exactly the same harness). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    <ServerGarbageCollection>false</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <TieredPGO>true</TieredPGO>
+    <TfSrc Condition="'$(TfSrc)' == ''">$(MSBuildThisFileDirectory)..\..\src</TfSrc>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(TfSrc)\TibiaFoundry.Core\TibiaFoundry.Core.csproj" />
+  </ItemGroup>
+</Project>

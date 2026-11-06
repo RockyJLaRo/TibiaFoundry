@@ -1,0 +1,242 @@
+<Window x:Class="TibiaFoundry.App.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+        xmlns:svc="clr-namespace:TibiaFoundry.App.Services"
+        xmlns:settings="clr-namespace:TibiaFoundry.Core.Settings;assembly=TibiaFoundry.Core"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization"
+        Style="{StaticResource AppWindow}"
+        Title="Tibia Foundry" Icon="/Assets/Branding/tibia-foundry.ico"
+        Width="1280" Height="820" MinWidth="860" MinHeight="560"
+        ResizeMode="CanResize" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <CollectionViewSource x:Key="GroupedPages" Source="{Binding Pages}">
+            <CollectionViewSource.GroupDescriptions>
+                <PropertyGroupDescription PropertyName="Group" />
+            </CollectionViewSource.GroupDescriptions>
+        </CollectionViewSource>
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Key="F6" Command="{Binding ToggleThemeCommand}" />
+        <KeyBinding Key="Escape" Command="{Binding CancelOperationCommand}" />
+    </Window.InputBindings>
+
+    <Window.TaskbarItemInfo>
+        <TaskbarItemInfo x:Name="Taskbar" />
+    </Window.TaskbarItemInfo>
+
+    <Grid x:Name="RootGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="NavColumn" Width="224" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- ============================================================ navigation rail -->
+        <Border Background="{DynamicResource App.NavBackground}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,1,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="16,16,12,14">
+                    <!-- Official logo at its native 32×32 size (pixel art: no smoothing). -->
+                    <Image Source="/Assets/Branding/tibia-foundry-logo.png" Width="32" Height="32" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           SnapsToDevicePixels="True" AutomationProperties.Name="Tibia Foundry"
+                           ToolTip="Tibia Foundry - All your Tibia-Tools for TibiaWiki" />
+                    <StackPanel x:Name="BrandText" Margin="10,0,0,0" VerticalAlignment="Center" Width="150">
+                        <TextBlock Text="Tibia Foundry" FontWeight="SemiBold" FontSize="15" />
+                        <!-- Tagline (exact wording); "TibiaWiki" links to the wiki's main page. -->
+                        <TextBlock x:Name="Tagline" FontSize="11" Foreground="{DynamicResource App.TextSecondary}" TextWrapping="Wrap"
+                                   AutomationProperties.Name="Tibia Foundry - All your Tibia-Tools for TibiaWiki"><Run Text="Tibia Foundry - All your " /><LineBreak /><Run Text="Tibia-Tools for " /><Hyperlink
+                                Command="{Binding OpenTibiaWikiCommand}" ToolTip="https://tibia.fandom.com/wiki/Main_Page" AutomationProperties.Name="TibiaWiki (opens tibia.fandom.com)"><Run Text="TibiaWiki" /></Hyperlink></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Bottom" Margin="10,8,10,14">
+                    <Separator Margin="4,0,4,10" />
+                    <ToggleButton x:Name="TestServerToggle" IsChecked="{Binding UseTestServer}" HorizontalContentAlignment="Left" Margin="0,0,0,6"
+                                  ToolTip="{loc:Tr Main.ReadTheFilesOfTheTest}"
+                                  AutomationProperties.Name="{loc:Tr Main.UseTestServer}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE7EF;" Style="{StaticResource Icon}" FontSize="14" />
+                            <TextBlock x:Name="TestServerLabel" Text="{loc:Tr Common.TestServer}" Margin="8,0,0,0" />
+                        </StackPanel>
+                    </ToggleButton>
+                    <Button x:Name="ClientInUseButton" Style="{StaticResource SubtleButton}" HorizontalContentAlignment="Left" Command="{Binding OpenClientsCommand}" Margin="0,0,0,6"
+                            ToolTip="{loc:Tr Main.TheClientEveryPageReadsClick}"
+                            AutomationProperties.Name="{loc:Tr Common.ClientInUse}">
+                        <TextBlock Text="{Binding ClientInUse}" FontSize="11" TextTrimming="CharacterEllipsis" Foreground="{DynamicResource App.TextSecondary}" />
+                    </Button>
+                    <DockPanel x:Name="ThemeAndLanguage" LastChildFill="True">
+                        <!-- Language (9.0): next to the theme switch; the menu lists every language by its own name, with its flag. -->
+                        <Button x:Name="LanguageButton" DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" Margin="4,0,0,0" Padding="8,4"
+                                Click="OnLanguageButtonClick" ToolTip="{Binding LanguageToolTip}" AutomationProperties.Name="{loc:Tr Main.Language}"
+                                AutomationProperties.HelpText="{Binding LanguageToolTip}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE774;" Style="{StaticResource Icon}" FontSize="14" />
+                                <TextBlock Text="{Binding CurrentLanguage.ShortLabel}" FontSize="11" FontWeight="SemiBold" Margin="6,0,0,0" VerticalAlignment="Center" />
+                            </StackPanel>
+                            <Button.ContextMenu>
+                                <ContextMenu x:Name="LanguageMenu" Placement="Top" ItemsSource="{Binding LanguageOptions}" AutomationProperties.Name="{loc:Tr Main.Language}">
+                                    <ContextMenu.ItemContainerStyle>
+                                        <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                                            <Setter Property="Command" Value="{Binding SelectCommand}" />
+                                            <Setter Property="AutomationProperties.Name" Value="{Binding Definition.NativeName}" />
+                                            <Setter Property="FontWeight" Value="Normal" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                                                    <Setter Property="FontWeight" Value="SemiBold" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContextMenu.ItemContainerStyle>
+                                    <ContextMenu.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel MinWidth="190">
+                                                <TextBlock DockPanel.Dock="Right" Text="&#xE73E;" Style="{StaticResource Icon}" FontSize="12" Margin="16,0,0,0"
+                                                           Foreground="{DynamicResource App.Accent}" VerticalAlignment="Center"
+                                                           Visibility="{Binding IsSelected, Converter={StaticResource BoolToVisibility}}" />
+                                                <Image DockPanel.Dock="Left" Source="{Binding FlagKey, Converter={StaticResource ResourceKey}}" Width="21" Height="14"
+                                                       Margin="0,0,10,0" VerticalAlignment="Center" AutomationProperties.Name="{Binding Definition.EnglishName}" />
+                                                <TextBlock Text="{Binding Definition.NativeName}" VerticalAlignment="Center" />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ContextMenu.ItemTemplate>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                        </Button>
+                        <Button Style="{StaticResource SubtleButton}" HorizontalContentAlignment="Left" Command="{Binding ToggleThemeCommand}"
+                                ToolTip="{loc:Tr Main.SwitchBetweenTheLightAndDark}" AutomationProperties.Name="{loc:Tr Main.ToggleTheme}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE793;" Style="{StaticResource Icon}" FontSize="14" />
+                                <TextBlock x:Name="ThemeLabel" Text="{loc:Tr Main.LightDark}" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+
+                <ListBox x:Name="Nav" ItemsSource="{Binding Source={StaticResource GroupedPages}}" SelectedItem="{Binding SelectedPage}"
+                         Background="Transparent" BorderThickness="0" Padding="0" ItemContainerStyle="{StaticResource NavItem}"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutomationProperties.Name="{loc:Tr Main.Navigation}">
+                    <ListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}" FontSize="11" FontWeight="SemiBold" Margin="18,12,8,4"
+                                               Foreground="{DynamicResource App.TextSecondary}" Typography.Capitals="AllSmallCaps"
+                                               Visibility="{Binding DataContext.IsNavExpanded, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVisibility}}" />
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:PageViewModel}">
+                            <DockPanel ToolTip="{Binding Title}">
+                                <TextBlock DockPanel.Dock="Left" Text="{Binding Glyph}" Style="{StaticResource Icon}" Width="22" FontSize="16" />
+                                <TextBlock Text="{Binding Title}" Margin="10,0,0,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                                           Visibility="{Binding DataContext.IsNavExpanded, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BoolToVisibility}}" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <!-- ============================================================ content -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Page header -->
+            <Border Background="{DynamicResource App.HeaderBackground}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,0,1" Padding="22,12,18,12">
+                <DockPanel>
+                    <Border DockPanel.Dock="Right" Style="{StaticResource InfoBanner}" Padding="10,4" VerticalAlignment="Center"
+                            ToolTip="{Binding Data.AssetsDirectory}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE7F8;" Style="{StaticResource Icon}" FontSize="13" Margin="0,0,8,0" />
+                            <TextBlock Text="{Binding Data.PackageDisplayName}" FontSize="12" />
+                        </StackPanel>
+                    </Border>
+                    <StackPanel>
+                        <TextBlock Text="{Binding SelectedPage.Title}" Style="{StaticResource PageTitle}" />
+                        <TextBlock Text="{Binding SelectedPage.Subtitle}" Style="{StaticResource Muted}" Margin="0,2,0,0" />
+                        <!-- Dependency banner: something this tool needs is missing (operations that need it do not start). -->
+                        <Border Margin="0,10,0,0" Padding="10,6" CornerRadius="{StaticResource App.Radius}" Background="{DynamicResource App.WarningSoft}"
+                                BorderBrush="{DynamicResource App.Warning}" BorderThickness="1"
+                                Visibility="{Binding SelectedPage.DependencyNotice, Converter={StaticResource NullToVisibility}}"
+                                AutomationProperties.Name="{loc:Tr Main.MissingDependency}">
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Main.Details}" Command="{Binding OpenDiagnosticsCommand}" Margin="10,0,0,0" VerticalAlignment="Center"
+                                        ToolTip="{loc:Tr Main.OpenDiagnosticsTools}" />
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Main.Locate}" Command="{Binding LocateForPageCommand}" CommandParameter="{Binding SelectedPage.DependencyLocation}" Margin="10,0,0,0"
+                                        VerticalAlignment="Center" Visibility="{Binding SelectedPage.DependencyLocation, Converter={StaticResource NullToVisibility}}"
+                                        AutomationProperties.Name="{loc:Tr Main.LocateTheClientFiles}" ToolTip="{loc:Tr Main.ChooseTheClientSAssetsFolder}" />
+                                <TextBlock DockPanel.Dock="Left" Text="&#xE7BA;" Style="{StaticResource Icon}" FontSize="14" Foreground="{DynamicResource App.Warning}" Margin="0,1,8,0" VerticalAlignment="Top" />
+                                <TextBlock Text="{Binding SelectedPage.DependencyNotice}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Border>
+                        <!-- Compatibility banner: the data this page needs is not fully understood. -->
+                        <Border Margin="0,10,0,0" Padding="10,6" CornerRadius="{StaticResource App.Radius}" Background="{DynamicResource App.WarningSoft}"
+                                BorderBrush="{DynamicResource App.Warning}" BorderThickness="1"
+                                Visibility="{Binding SelectedPage.CompatibilityNotice, Converter={StaticResource NullToVisibility}}"
+                                AutomationProperties.Name="{loc:Tr Main.CompatibilityWarning}">
+                            <DockPanel>
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Main.Details}" Command="{Binding OpenCompatibilityCommand}" Margin="10,0,0,0" VerticalAlignment="Center"
+                                        ToolTip="{loc:Tr Main.OpenTheCompatibilityPageWithThe}" />
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Main.Locate}" Command="{Binding LocateForPageCommand}" CommandParameter="{Binding SelectedPage.CompatibilityLocation}" Margin="10,0,0,0"
+                                        VerticalAlignment="Center" Visibility="{Binding SelectedPage.CompatibilityLocation, Converter={StaticResource NullToVisibility}}"
+                                        AutomationProperties.Name="{loc:Tr Main.LocateTheMissingClientFile}" ToolTip="{loc:Tr Main.ChooseTheMissingOrUnreadableFile}" />
+                                <TextBlock DockPanel.Dock="Left" Text="&#xE7BA;" Style="{StaticResource Icon}" FontSize="14" Foreground="{DynamicResource App.Warning}" Margin="0,1,8,0" VerticalAlignment="Top" />
+                                <TextBlock Text="{Binding SelectedPage.CompatibilityNotice}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Border>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <ContentControl Grid.Row="1" Content="{Binding SelectedPage}" Focusable="False" Margin="0" />
+
+            <!-- Launch check (8.0): the installed client changed or is not archived yet. Non-modal; Later asks again at the next start. -->
+            <Border Grid.Row="2" Padding="14,8" Background="{DynamicResource App.AccentSoft}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,1,0,0"
+                    Visibility="{Binding ClientChange, Converter={StaticResource NullToVisibility}}" AutomationProperties.Name="{loc:Tr Main.InstalledClientNotArchived}">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Common.DonTAskForThisVersion}" Command="{Binding DontAskClientChangeCommand}" Margin="8,0,0,0" VerticalAlignment="Center"
+                            ToolTip="{loc:Tr Main.ThisContentIsNotOfferedAgain}" />
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Main.Later}" Command="{Binding LaterClientChangeCommand}" Margin="8,0,0,0" VerticalAlignment="Center"
+                            ToolTip="{loc:Tr Main.AskAgainAtTheNextStart}" />
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Archive}" Command="{Binding ArchiveClientChangeCommand}" Style="{StaticResource PrimaryButton}" Margin="12,0,0,0" VerticalAlignment="Center"
+                            ToolTip="{loc:Tr Main.ArchiveTheInstalledClientInThe}" />
+                    <TextBlock DockPanel.Dock="Left" Text="&#xE946;" Style="{StaticResource Icon}" FontSize="14" Margin="0,1,8,0" VerticalAlignment="Top" />
+                    <TextBlock Text="{Binding ClientChange.Text}" TextWrapping="Wrap" VerticalAlignment="Center" />
+                </DockPanel>
+            </Border>
+
+            <!-- Status bar -->
+            <Border Grid.Row="3" Background="{DynamicResource App.HeaderBackground}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,1,0,0" Padding="14,6">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Visibility="{Binding Status.IsBusy, Converter={StaticResource BoolToVisibility}}">
+                        <ProgressBar Width="180" Value="{Binding Status.Progress, Mode=OneWay}" IsIndeterminate="{Binding Status.IsIndeterminate}" VerticalAlignment="Center" />
+                        <TextBlock Text="{Binding Status.ProgressText}" Margin="10,0,10,0" FontSize="12" VerticalAlignment="Center" Foreground="{DynamicResource App.TextSecondary}" MinWidth="70" />
+                        <Button Content="{loc:Tr Common.Cancel}" MinHeight="24" Padding="10,1" Command="{Binding CancelOperationCommand}" ToolTip="{loc:Tr Main.StopTheRunningOperationEsc}"
+                                Visibility="{Binding Status.CanCancel, Converter={StaticResource BoolToVisibility}}" />
+                    </StackPanel>
+                    <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" MinHeight="22" Padding="6,0" Margin="0,0,10,0"
+                            Command="{Binding OpenLogCommand}" ToolTip="{loc:Tr Common.OpenTheFolderWithTheProgram}" AutomationProperties.Name="{loc:Tr Common.OpenLogFolder}">
+                        <TextBlock Text="&#xE9D9;" Style="{StaticResource Icon}" FontSize="12" Foreground="{DynamicResource App.TextSecondary}" />
+                    </Button>
+                    <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" MinHeight="22" Padding="6,0" Margin="0,0,4,0"
+                            Command="{Binding OpenDiagnosticsCommand}" ToolTip="{loc:Tr Main.DiagnosticsRunningOperationsLogsAndReports}" AutomationProperties.Name="{loc:Tr Common.OpenDiagnostics}">
+                        <TextBlock Text="&#xE9D2;" Style="{StaticResource Icon}" FontSize="12" Foreground="{DynamicResource App.TextSecondary}" />
+                    </Button>
+                    <DockPanel>
+                        <TextBlock x:Name="StatusIcon" DockPanel.Dock="Left" Style="{StaticResource Icon}" FontSize="13" Margin="0,0,8,0" Text="&#xE946;" Foreground="{DynamicResource App.TextSecondary}" />
+                        <!-- The message; a saved file or folder in it is a link that opens File Explorer there. -->
+                        <TextBlock x:Name="StatusText" TextTrimming="CharacterEllipsis" VerticalAlignment="Center" FontSize="12.5"
+                                   ToolTip="{Binding Status.FullText}" AutomationProperties.LiveSetting="Polite" AutomationProperties.Name="{Binding Status.FullText}"><Run Text="{Binding Status.Message, Mode=OneWay}" /><Hyperlink x:Name="StatusLink" Command="{Binding RevealStatusLinkCommand}"
+                                   ToolTip="{Binding Status.Link.ToolTip}" AutomationProperties.Name="{Binding Status.Link.ToolTip}"><Hyperlink.Style><Style TargetType="Hyperlink" BasedOn="{StaticResource {x:Type Hyperlink}}"><Setter Property="TextDecorations" Value="Underline" /><Style.Triggers><Trigger Property="IsMouseOver" Value="True"><Setter Property="Foreground" Value="{DynamicResource App.AccentHover}" /></Trigger></Style.Triggers></Style></Hyperlink.Style><Run Text="{Binding Status.Link.Label, Mode=OneWay}" /></Hyperlink><Run Text="{Binding Status.MessageAfterLink, Mode=OneWay}" /></TextBlock>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

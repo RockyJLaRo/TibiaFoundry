@@ -1,0 +1,80 @@
+// Recovered from the descriptor embedded in the original 1.8.0 build
+// (decompiled StaticdataAdaptedReflection.cs). Field names, numbers and types are exact.
+syntax = "proto3";
+
+package tibia.protobuf.staticdata;
+
+import "shared.proto";
+
+
+message StaticData {
+  repeated .tibia.protobuf.staticdata.Monster monster = 1;
+  // Named bestiary_types (descriptor: monster_types): the original's generated C# was hand-edited
+  // to BestiaryType/BestiaryTypes, and that property name appears in its JSON exports.
+  repeated .tibia.protobuf.staticdata.BestiaryType bestiary_types = 2;
+  repeated .tibia.protobuf.staticdata.Achievement achievements = 3;
+  repeated .tibia.protobuf.staticdata.House houses = 4;
+  repeated .tibia.protobuf.staticdata.Boss bosses = 5;
+  repeated .tibia.protobuf.staticdata.Quest quests = 6;
+}
+
+message BestiaryType {
+  uint32 id = 1;
+  string name = 2;
+}
+
+message Outfit {
+  uint32 outfit_id = 1;
+  .tibia.protobuf.staticdata.OutfitColors outfitcolors = 2;
+  uint32 addons = 3;
+  uint32 object_appearance_type_id = 4;
+}
+
+message OutfitColors {
+  uint32 head_color = 1;
+  uint32 torso_color = 2;
+  uint32 legs_color = 3;
+  uint32 detail_color = 4;
+}
+
+message Monster {
+  uint32 race = 1;
+  string name = 2;
+  .tibia.protobuf.staticdata.Outfit outfit = 3;
+  uint32 field_4 = 4;
+  uint32 field_5 = 5;
+  uint32 field_6 = 6;
+  uint32 field_7 = 7;
+}
+
+message Achievement {
+  uint32 achievement_id = 1;
+  string name = 2;
+  string description = 3;
+  uint32 grade = 4;
+}
+
+message House {
+  uint32 house_id = 1;
+  string name = 2;
+  string comment = 3;
+  uint32 rent = 4;
+  uint32 maxbeds = 5;
+  .tibia.protobuf.shared.Coordinate coordinate = 6;
+  uint32 size = 7;
+  bool isGuildhall = 8;
+  string city = 9;
+  bool shop = 10;
+}
+
+message Boss {
+  uint32 race = 1;
+  string name = 2;
+  .tibia.protobuf.staticdata.Outfit outfit = 3;
+  uint32 field_4 = 4;
+}
+
+message Quest {
+  uint32 quest_id = 1;
+  string name = 2;
+}

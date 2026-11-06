@@ -1,0 +1,102 @@
+group,setting,type,default,description,file
+AppSettings,Version,int,CurrentVersion,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,LoadedVersion,int,CurrentVersion,Format the settings had when they were read (before `Migrate`); not saved.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,UnknownSettings,"Dictionary<string,",,"Settings this build does not know (written by a newer version). They are kept and written back unchanged, so switching between versions never loses options.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Theme,ThemePreference,ThemePreference.System,"The built-in theme, used when no custom theme is active (`Themes`).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,MainWindow,WindowPlacement,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,LastPage,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ShowDefaultValues,bool,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,UseTestServer,bool,,"Use the test-server package instead of the live client (original ""Switch to TS"").",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,TestServerPackage,string,TibiaClientPaths.DefaultTestPackageName,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,AssetsFolderOverride,string?,,Assets folder chosen for the live client (empty = the package's assets folder). Versions before 7.0 used it for the test server too; since settings format 5 the test server has its own (`ClientLocatio,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,LoadDataAutomatically,bool,true,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ActiveClientLive,string?,,"The live client in use: null = the installed client (automatic, as before 7.3); a version key such as ""Live_Server/Client_15.33.9d148f"" = an imported version; any other value = the ID of a registered ",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ActiveClientTest,string?,,The test-server client in use (same values as `ActiveClientLive`).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientStoreFolder,string?,,Folder edition: where the client store is kept (null = %LOCALAPPDATA%\TibiaFoundry\Clients). The portable edition always uses TibiaFoundry-Data\Clients.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientImportReminders,bool,true,"Remind me when the installed client's version is not imported yet (it is lost when the launcher updates). 8.0 keeps it in step with `ClientChangeHandling` (false = ""ask quietly""), so 7.3 reads the sam",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientStorageMode,string,"""shared""","How future archives are kept: ""shared"" (space-efficient, each content once) or ""independent"" (a physical copy of every file per revision). Existing revisions keep theirs.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ArchivePersonalData,bool,,"Include hotkeys, character data, the explored minimap, screenshots, logs and caches in archives (left out, visibly, by default).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientChangeHandling,ClientChangeHandling,ClientChangeHandling.Ask,What happens when the launch check finds that a monitored installation changed.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientLaunchCheck,ClientLaunchCheck,ClientLaunchCheck.Full,How the launch check reads a monitored installation: every file (Full) or only files whose size or time changed (Quick).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,MonitorInstalledLive,bool,true,Check the installed live client at every start (8.0).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,MonitorInstalledTest,bool,true,Check the installed test-server client at every start (8.0).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,StartupClientMode,StartupClientMode,StartupClientMode.Remembered,"At startup: use the remembered client (the active server and its client), or ask every time.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientSetupCompleted,bool,,"First-run setup was completed or skipped. False only for a new installation (settings written by 7.x or earlier count as set up, so upgrading changes nothing at the first start).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SpritesFolder,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SpritesFolderTestServer,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SpriteSource,SpriteSourceMode,SpriteSourceMode.FolderThenClient,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SaveDecodedSheets,bool,,"Write sheets decoded on demand into the sprites folder (original ""Extract on the fly"").",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,OutputFolder,string,DefaultOutputFolder,Root of all output folders (default `Documents\Tibia_Foundry`); each kind of output has a subfolder here unless a folder of its own is set (`ExplicitFolder`).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SoundsFolder,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifFolder,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,MapTilesFolder,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SpriteExtractionFolder,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,CreatorName,string,Attribution.DefaultCreator,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,LegacyGifAuthor,string?,,The GIF comment author of settings format 1 (version 2.x). Read once and moved into `CreatorName` by `Migrate`; never written again.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifAutoName,bool,true,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifDelayMode,GifDelayMode,GifDelayMode.Average,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifNoAnimationDelay,int,1000,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifExtraDelay,int,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,GifExtraFrame,bool,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SoundAutoplay,bool,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,SoundVolume,double,0.8,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,General,GeneralSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Interface,InterfaceSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Locations,FileLocationSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Safety,SafetySettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Performance,PerformanceSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Notifications,NotificationSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Scripts,ScriptSettings,new(),,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ToolState,"Dictionary<string,",new(StringComparer.Ordinal),"Options each tool remembers between sessions and the settings tools declare in their manifests (""tool.key"" → value, see `Tools.ToolSettingsStore`), for example the last conversion profile.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Themes,ThemeSettings,new(),Custom themes and the active one (Settings → Appearance &amp; Themes).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,Diagnostics,DiagnosticsSettings,new(),"Monitoring, operation history and diagnostics reports (Diagnostics page).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,OutputFolders,"Dictionary<string,",new(StringComparer.OrdinalIgnoreCase),Folders chosen for the kinds of output that have no older setting of their own (kind name → folder); the other kinds keep their 5.0 settings (`ExplicitFolder`).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+AppSettings,ClientLocations,"Dictionary<string,",new(StringComparer.OrdinalIgnoreCase),"Client files and folders the user chose (Settings → Client and data locations, or ""Locate…"" on the Compatibility page): `""live:&lt;location&gt;""`, `""test:&lt;location&gt;""`, or the plain location ID f",src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,StartupPage,StartupPageMode,StartupPageMode.LastUsed,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,StartupPageName,string?,,Page opened at start-up when `StartupPage` is `StartupPageMode.Specific` (view-model type name).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,RememberLastFolders,bool,true,File and folder pickers start in the folder last used with each tool.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,LastFolders,"Dictionary<string,",new(StringComparer.OrdinalIgnoreCase),"Folders last used (""tool.input""/""tool.output"" → folder).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,ReopenLastFiles,bool,,The editors reopen the file or folder they had open when they are next shown.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+GeneralSettings,LastFiles,"Dictionary<string,",new(StringComparer.OrdinalIgnoreCase),Files last opened in the editors (tool → path).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+InterfaceSettings,Scale,double,1.0,Zoom of the whole interface (1 = 100 %).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+InterfaceSettings,Navigation,NavigationLayout,NavigationLayout.Automatic,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+InterfaceSettings,RememberWindowPlacement,bool,true,"Restore the window's size, position and maximized state at start-up.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+InterfaceSettings,AnimatePreviews,bool,true,"Play animations in previews (sprites, outfits, editor previews).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+InterfaceSettings,ThumbnailSize,int,32,"Size of the thumbnails in the editors' lists, in pixels.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+ToolFolderSettings,Input,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ToolFolderSettings,Output,string?,,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+FileLocationSettings,BackupFolder,string?,,Backups of replaced and removed files (empty = the default folder next to the logs).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+FileLocationSettings,TempFolder,string?,,Temporary working files (empty = the default temporary folder).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+FileLocationSettings,LogFolder,string?,,Log files (empty = the default log folder).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+FileLocationSettings,Tools,"Dictionary<string,",new(StringComparer.OrdinalIgnoreCase),Per-tool folders (tool key → folders); they take precedence over the defaults.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,WhenOutputExists,ExistingFilePolicy,ExistingFilePolicy.Ask,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,BackupBeforeChanges,bool,true,Copy a file to the backup folder before a tool replaces or changes it.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,BackupRetentionDays,int,30,Backups older than this are removed at start-up (0 = keep them).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,BackupMaxSizeMegabytes,int,4096,The oldest backups are removed when all backups together are larger than this (0 = no limit).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,ValidateOutputs,bool,true,Read generated files back and check them before they replace anything.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,WarnUnsupportedFormats,bool,true,Warn when a file's content does not match its extension or its format is not supported.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+SafetySettings,CleanTemporaryFiles,bool,true,Remove left-over temporary files at start-up and exit.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,MaxConcurrentOperations,int,2,"Long operations (conversions, scripts, editor saves) that may run at the same time; more wait in a queue.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,WorkerThreads,int,,Threads used inside one operation for parallel work (0 = one per processor core).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,SpriteSheetCache,int,96,Decoded sprite sheets kept in memory (each about 0.6 MB).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,StopBatchOnError,bool,,Stop a batch at the first failed file instead of continuing with the rest.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,ShowTaskbarProgress,bool,true,Show the progress of long operations on the taskbar button.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+PerformanceSettings,PreviewSizeLimitMegabytes,int,32,"Files larger than this are not previewed (images, text) to keep the interface responsive.",src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,FlashTaskbarWhenDone,bool,true,Flash the taskbar button when a long operation finishes while the window is in the background.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,PlaySoundWhenDone,bool,,Play the Windows notification sound when a long operation finishes.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,NoticeAfterSeconds,int,10,Only operations that ran at least this long trigger the notices above.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,ShowErrorDialogs,bool,true,Show a dialog when an operation fails (otherwise the status bar and the log only).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,LogLevel,LogLevel,LogLevel.Info,Lowest level written to the log file.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,LogRetentionDays,int,14,Log files older than this are removed at start-up.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+NotificationSettings,LogMaxMegabytesPerDay,int,20,A day's log stops growing at this size.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+DiagnosticsSettings,PerformanceMonitoring,bool,true,"Measure CPU, memory and disk space while the Diagnostics page is open (never while it is closed).",src/TibiaFoundry.Core/Settings/AppSettings.cs
+DiagnosticsSettings,SampleIntervalSeconds,int,2,Seconds between two measurements.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+DiagnosticsSettings,OperationHistoryEntries,int,200,Finished operations kept in the history (also across sessions).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+DiagnosticsSettings,LogMaxTotalMegabytes,int,200,All log files together are kept below this size (oldest removed first).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+DiagnosticsSettings,ReportLogDays,int,3,Days of log files put into a diagnostics report.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,PreviewFirst,bool,true,Scripts that change files start in preview mode: nothing changes until you apply the previewed changes.,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,Backups,ScriptBackupMode,ScriptBackupMode.FollowGlobal,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,KeepHistory,bool,true,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,MaxHistoryEntries,int,200,,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,MaxConcurrentScripts,int,1,Scripts that may run at the same time (never more than the general limit).,src/TibiaFoundry.Core/Settings/AppSettings.cs
+ScriptSettings,ShowAdvancedOptions,bool,,Show every script's advanced options without expanding them first.,src/TibiaFoundry.Core/Settings/AppSettings.cs

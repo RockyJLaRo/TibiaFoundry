@@ -1,0 +1,158 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <!-- A tool tile: icon, name and what the tool is for; opens the tool. -->
+        <DataTemplate x:Key="ToolTile" DataType="{x:Type vm:HomeTool}">
+            <Button Style="{StaticResource SubtleButton}" Width="250" Margin="0,0,8,8" Padding="10,8" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                    Command="{Binding DataContext.OpenToolCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Page}"
+                    ToolTip="{Binding Description}" AutomationProperties.Name="{Binding AccessibleName}">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Left" Text="{Binding Glyph}" Style="{StaticResource Icon}" FontSize="18" Width="26" Margin="0,1,8,0" VerticalAlignment="Top"
+                               Foreground="{DynamicResource App.Accent}" />
+                    <StackPanel>
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                        <TextBlock Text="{Binding Description}" FontSize="12" Foreground="{DynamicResource App.TextSecondary}" TextWrapping="Wrap" MaxHeight="48" TextTrimming="CharacterEllipsis" />
+                    </StackPanel>
+                </DockPanel>
+            </Button>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="Tiles">
+            <WrapPanel />
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="16,14,16,20" MaxWidth="1320" HorizontalAlignment="Left">
+
+            <!-- Identity -->
+            <Border Style="{StaticResource Panel}" Padding="18" Margin="0,0,0,14">
+                <DockPanel>
+                    <!-- The official 32×32 pixel-art logo, enlarged 2× with nearest-neighbor scaling. -->
+                    <Image DockPanel.Dock="Left" Source="/Assets/Branding/tibia-foundry-logo.png" Width="64" Height="64" Margin="0,0,18,0" VerticalAlignment="Top"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True" AutomationProperties.Name="{loc:Tr Common.TibiaFoundryLogo}" />
+                    <StackPanel>
+                        <TextBlock FontSize="20" FontWeight="SemiBold"><Run Text="{loc:Tr Home.WelcomeToTibiaFoundry}" /> <Run Text="{Binding Version, Mode=OneWay}" FontSize="13" FontWeight="Normal" Foreground="{DynamicResource App.TextSecondary}" /></TextBlock>
+                        <TextBlock Text="{Binding IntroductionText}" TextWrapping="Wrap" Margin="0,6,0,8" />
+                        <TextBlock Style="{StaticResource Muted}" FontSize="12"
+                                   Text="{loc:Tr Home.AnIndependentCommunityProjectTibiaIts}" />
+                        <WrapPanel Margin="0,10,0,0">
+                            <Button Content="{loc:Tr Common.Website}" Command="{Binding OpenWebsiteCommand}" Margin="0,0,8,0" ToolTip="https://tibiafoundry.com/ (documentation and downloads)" />
+                            <Button Content="TibiaWiki" Command="{Binding OpenTibiaWikiCommand}" Margin="0,0,8,0" ToolTip="https://tibia.fandom.com/wiki/Main_Page" />
+                            <Button Content="{loc:Tr Home.OfficialFansites}" Command="{Binding OpenFansitesCommand}" Margin="0,0,8,0"
+                                    ToolTip="{loc:Tr Home.TheOfficialTibiaFansitesAndCipSoft}" />
+                            <Button Content="{loc:Tr Common.OpenOutputFolder}" Command="{Binding OpenOutputFolderCommand}" ToolTip="{loc:Tr Home.OpenTheFolderAllExportsAre}" />
+                        </WrapPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Client library, recent tools, recent exports: three equal cards that share one height (the tallest), filled or empty. -->
+            <Grid Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" MinWidth="240" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" MinWidth="240" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="*" MinWidth="240" />
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="{loc:Tr Home.OfficialClientLibrary}" Margin="0" MinHeight="170">
+                    <DockPanel>
+                        <Button DockPanel.Dock="Bottom" Content="{loc:Tr Home.ManageClients}" Command="{Binding OpenClientsCommand}" HorizontalAlignment="Left" Margin="0,10,0,0" />
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,6" Text="{loc:Tr Home.TheClientEveryPageReads}" />
+                            <TextBlock Text="{Binding ClientInUse}" FontWeight="SemiBold" TextWrapping="Wrap" AutomationProperties.Name="{loc:Tr Common.ClientInUse}" />
+                            <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="0,8,0,0"
+                                       Text="{loc:Tr Home.ArchiveEachOfficialClientVersionTo}" />
+                        </StackPanel>
+                    </DockPanel>
+                </GroupBox>
+
+                <GroupBox Grid.Column="2" Header="{loc:Tr Home.RecentlyUsedTools}" Margin="0" MinHeight="170">
+                    <Grid>
+                        <ItemsControl ItemsSource="{Binding RecentTools}" AutomationProperties.Name="{loc:Tr Home.RecentlyUsedTools}" VerticalAlignment="Top">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:HomeTool}">
+                                    <Button Style="{StaticResource SubtleButton}" HorizontalContentAlignment="Left" Padding="6,4" Margin="0,0,0,2"
+                                            Command="{Binding DataContext.OpenToolCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Page}"
+                                            AutomationProperties.Name="{Binding Title}" ToolTip="{Binding Description}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Glyph}" Style="{StaticResource Icon}" FontSize="14" Width="22" Foreground="{DynamicResource App.Accent}" />
+                                            <TextBlock Text="{Binding Title}" Margin="6,0,0,0" TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <!-- Empty state: centered in the card, so the card keeps the row's height and shape. -->
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="260"
+                                    Visibility="{Binding HasRecentTools, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
+                            <TextBlock Text="&#xE81C;" Style="{StaticResource Icon}" FontSize="26" Foreground="{DynamicResource App.TextSecondary}" Opacity="0.7" Margin="0,0,0,8" />
+                            <TextBlock Style="{StaticResource Muted}" FontSize="12" TextAlignment="Center" Text="{loc:Tr Home.TheToolsYouOpenAppearHere}" />
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Grid.Column="4" Header="{loc:Tr Home.RecentExports}" Margin="0" MinHeight="170">
+                    <Grid>
+                        <ItemsControl ItemsSource="{Binding RecentExports}" AutomationProperties.Name="{loc:Tr Home.RecentExports}" VerticalAlignment="Top">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:HomeExport}">
+                                    <Button Style="{StaticResource SubtleButton}" HorizontalContentAlignment="Stretch" Padding="6,4" Margin="0,0,0,2"
+                                            Command="{Binding DataContext.RevealExportCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}"
+                                            ToolTip="{Binding Path}" AutomationProperties.Name="{Binding Name}">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" />
+                                            <TextBlock Text="{Binding Detail}" FontSize="11" Foreground="{DynamicResource App.TextSecondary}" TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="260"
+                                    Visibility="{Binding HasRecentExports, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
+                            <TextBlock Text="&#xE896;" Style="{StaticResource Icon}" FontSize="26" Foreground="{DynamicResource App.TextSecondary}" Opacity="0.7" Margin="0,0,0,8" />
+                            <TextBlock Style="{StaticResource Muted}" FontSize="12" TextAlignment="Center"
+                                       Text="{loc:Tr Home.FilesAndFoldersYouSaveAppear}" />
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+
+            <!-- Fansite workflows -->
+            <GroupBox Header="{loc:Tr Home.GraphicsAndContentWorkflows}" Margin="0,0,0,14">
+                <ItemsControl ItemsSource="{Binding Workflows}" AutomationProperties.Name="{loc:Tr Home.Workflows}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:HomeWorkflow}">
+                            <Border BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,0,1" Padding="0,6,0,8">
+                                <DockPanel>
+                                    <Button DockPanel.Dock="Right" Content="{Binding StartLabel}" Margin="12,0,0,0" VerticalAlignment="Center"
+                                            Command="{Binding DataContext.OpenToolCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding Start}" />
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Steps}" FontSize="12" Foreground="{DynamicResource App.TextSecondary}" TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </DockPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </GroupBox>
+
+            <!-- Every tool, by category -->
+            <ItemsControl ItemsSource="{Binding Sections}" AutomationProperties.Name="{loc:Tr Home.AllTools}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type vm:HomeSection}">
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource SectionTitle}" />
+                            <TextBlock Text="{Binding Summary}" Style="{StaticResource Muted}" FontSize="12" Margin="0,2,0,8" />
+                            <ItemsControl ItemsSource="{Binding Tools}" ItemTemplate="{StaticResource ToolTile}" ItemsPanel="{StaticResource Tiles}" Focusable="False" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

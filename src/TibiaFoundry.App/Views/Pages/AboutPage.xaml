@@ -1,0 +1,192 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AboutPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="16,14,16,20" MaxWidth="860" HorizontalAlignment="Left">
+
+            <!-- Identity -->
+            <Border Style="{StaticResource Panel}" Padding="20" Margin="0,0,0,14">
+                <DockPanel>
+                    <!-- The official 32×32 pixel-art logo, enlarged 4× with nearest-neighbor scaling. -->
+                    <Image DockPanel.Dock="Left" Source="/Assets/Branding/tibia-foundry-logo.png" Width="128" Height="128" Margin="0,0,22,0"
+                           VerticalAlignment="Top" RenderOptions.BitmapScalingMode="NearestNeighbor" SnapsToDevicePixels="True"
+                           AutomationProperties.Name="{loc:Tr Common.TibiaFoundryLogo}" />
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="{Binding AppName}" FontSize="26" FontWeight="SemiBold" />
+                        <TextBlock Margin="0,0,0,2" Foreground="{DynamicResource App.TextSecondary}" AutomationProperties.Name="{loc:Tr About.Tagline}">
+                            <Run Text="Tibia Foundry - All your Tibia-Tools for" />
+                            <Hyperlink Command="{Binding OpenLinkCommand}" CommandParameter="{Binding TaglineUrl}" ToolTip="{Binding TaglineUrl}"
+                                       AutomationProperties.Name="TibiaWiki (opens tibia.fandom.com)"><Run Text="TibiaWiki" /></Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="0,2,0,10" Foreground="{DynamicResource App.TextSecondary}">
+                            <Run Text="{loc:Tr Common.Version}" /> <Run Text="{Binding Version, Mode=OneWay}" />
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,8"
+                                   Text="{loc:Tr About.TibiaFoundryIsAnIndependentDesktop}" />
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,8" Foreground="{DynamicResource App.TextSecondary}"
+                                   Text="{loc:Tr About.ItReadsTheOfficialFilesOf}" />
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="{loc:Tr About.CreatedBy}" /> <Run Text="{Binding Creator, Mode=OneWay}" FontWeight="SemiBold" /><Run Text="," />
+                            <Run Text="{Binding CreatorRole, Mode=OneWay}" /><Run Text="{loc:Tr About.For}" />
+                            <Hyperlink Command="{Binding OpenWebsiteCommand}" ToolTip="{Binding Website}"><Run Text="TibiaWiki" /></Hyperlink><Run Text="{loc:Tr About.AndTheTibiaFansiteCommunity}" />
+                        </TextBlock>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Creator profile -->
+            <GroupBox Header="{loc:Tr Common.Creator}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock Margin="0,0,0,10">
+                        <Run Text="{Binding Creator, Mode=OneWay}" FontSize="15" FontWeight="SemiBold" />
+                        <Run Text=" · " Foreground="{DynamicResource App.TextSecondary}" />
+                        <Run Text="{Binding CreatorRole, Mode=OneWay}" Foreground="{DynamicResource App.TextSecondary}" />
+                    </TextBlock>
+                    <ItemsControl ItemsSource="{Binding CreatorLinks}" AutomationProperties.Name="{loc:Tr About.CreatorLinks}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:CreatorLink}">
+                                <Button Style="{StaticResource SubtleButton}" Margin="0,0,8,8" Padding="8,6" Width="256" HorizontalContentAlignment="Left"
+                                        Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding Url}" ToolTip="{Binding Url}" AutomationProperties.Name="{Binding Label}">
+                                    <DockPanel>
+                                        <!-- The site's own icon; the badge from BrandIcons.xaml if it is missing. -->
+                                        <Grid DockPanel.Dock="Left" Width="22" Height="22" Margin="0,0,10,0" VerticalAlignment="Center">
+                                            <Image Source="{Binding Favicon}" RenderOptions.BitmapScalingMode="HighQuality"
+                                                   Visibility="{Binding HasFavicon, Converter={StaticResource BoolToVisibility}}" />
+                                            <Image Source="{Binding IconKey, Converter={StaticResource ResourceKey}}"
+                                                   Visibility="{Binding HasFavicon, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                                        </Grid>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Label}" FontWeight="SemiBold" />
+                                            <TextBlock Text="{Binding Detail}" FontSize="12" Foreground="{DynamicResource App.Link}" TextTrimming="CharacterEllipsis" />
+                                        </StackPanel>
+                                    </DockPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Attribution of this installation -->
+            <GroupBox Header="{loc:Tr About.AttributionInYourExports}" Margin="0,0,0,14">
+                <DockPanel>
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr About.ChangeName}" Command="{Binding ChangeCreatorCommand}" VerticalAlignment="Top" Margin="12,0,0,0"
+                            ToolTip="{loc:Tr About.OpenSettingsToSetTheCreator}" AutomationProperties.Name="{loc:Tr Common.ChangeCreatorName}" />
+                    <StackPanel>
+                        <TextBox Style="{StaticResource ValueText}" Text="{Binding AttributionPreview, Mode=OneWay}" FontFamily="{StaticResource App.MonoFont}"
+                                 AutomationProperties.Name="{loc:Tr About.AttributionText}" />
+                        <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,6,0,0"
+                                   Text="{loc:Tr About.TibiaFoundryWritesThisLineInto}" />
+                    </StackPanel>
+                </DockPanel>
+            </GroupBox>
+
+            <!-- Credits: exactly Tibia, CipSoft and TibiaWiki -->
+            <GroupBox Header="{loc:Tr About.Credits}" Margin="0,0,0,14">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Credits}" AutomationProperties.Name="{loc:Tr About.Credits}" Focusable="False">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:CreditEntry}">
+                                <Button Style="{StaticResource SubtleButton}" Width="256" Margin="0,0,10,10" Padding="10,14,10,12"
+                                        HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                                        Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                        CommandParameter="{Binding Url}" ToolTip="{Binding Url}"
+                                        AutomationProperties.Name="{Binding AccessibleName}" AutomationProperties.HelpText="{Binding Description}">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="64" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" MinHeight="48" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <!-- Every logo fits the same 216×64 box, keeping its own proportions. -->
+                                        <Image Grid.Row="0" Source="{Binding Logo}" MaxWidth="216" MaxHeight="64" Stretch="Uniform"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"
+                                               AutomationProperties.Name="{Binding LogoDescription}"
+                                               Visibility="{Binding HasLogo, Converter={StaticResource BoolToVisibility}}" />
+                                        <!-- Shown instead of the logo if its file is missing or damaged. -->
+                                        <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="26" FontWeight="SemiBold"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Visibility="{Binding HasLogo, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                                        <TextBlock Grid.Row="1" Text="{Binding Name}" FontWeight="SemiBold" HorizontalAlignment="Center" Margin="0,10,0,2" />
+                                        <TextBlock Grid.Row="2" Text="{Binding Description}" TextWrapping="Wrap" TextAlignment="Center" FontSize="12"
+                                                   Foreground="{DynamicResource App.TextSecondary}" />
+                                        <TextBlock Grid.Row="3" Text="{Binding Url}" HorizontalAlignment="Center" FontSize="12" Margin="0,4,0,0"
+                                                   Foreground="{DynamicResource App.Link}" TextTrimming="CharacterEllipsis" />
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,2,0,0"
+                               Text="{loc:Tr About.TibiaItsGameGraphicsAndData}" />
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Open-source acknowledgments: separate from the credits above -->
+            <GroupBox Header="{loc:Tr About.OpenSourceAcknowledgments}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBlock TextWrapping="Wrap" Margin="0,0,0,10"
+                               Text="{loc:Tr About.TheseOpenSourceProjectsInspiredOr}" />
+                    <ItemsControl ItemsSource="{Binding Acknowledgments}" AutomationProperties.Name="{loc:Tr About.OpenSourceAcknowledgments}" Focusable="False">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:Acknowledgment}">
+                                <Border BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,0,1" Padding="0,0,0,8" Margin="0,0,0,8">
+                                    <StackPanel>
+                                        <TextBlock TextWrapping="Wrap">
+                                            <Hyperlink Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                       CommandParameter="{Binding ProjectUrl}" ToolTip="{Binding ProjectUrl}" AutomationProperties.Name="{Binding AccessibleName}"><Run Text="{Binding Project, Mode=OneWay}" FontWeight="SemiBold" /></Hyperlink>
+                                            <Run Text="{loc:Tr About.By}" Foreground="{DynamicResource App.TextSecondary}" />
+                                            <Hyperlink Command="{Binding DataContext.OpenLinkCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                       CommandParameter="{Binding AuthorUrl}" ToolTip="{Binding AuthorUrl}"><Run Text="{Binding Author, Mode=OneWay}" /></Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Relation}" TextWrapping="Wrap" FontSize="12" Margin="0,3,0,0" />
+                                        <TextBlock FontSize="12" Margin="0,2,0,0" TextWrapping="Wrap" Foreground="{DynamicResource App.TextSecondary}">
+                                            <Run Text="{Binding ProjectUrl, Mode=OneWay}" /><Run Text="{loc:Tr About.License}" /><Run Text="{Binding License, Mode=OneWay}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap"
+                               Text="{loc:Tr About.ListedToAcknowledgeTheirAuthorsWork}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{loc:Tr About.OpenSourceComponents}" Margin="0,0,0,14">
+                <StackPanel>
+                    <ItemsControl ItemsSource="{Binding Components}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel Margin="0,0,0,6">
+                                    <TextBlock Text="&#xE73E;" Style="{StaticResource Icon}" FontSize="11" Foreground="{DynamicResource App.Accent}" Margin="0,3,10,0" VerticalAlignment="Top" />
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,4,0,0"
+                               Text="{loc:Tr About.TheFullLicenseTextsAndNotices}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{loc:Tr About.RuntimeEnvironment}">
+                <TextBox Style="{StaticResource ValueText}" Text="{Binding Runtime, Mode=OneWay}" AutomationProperties.Name="{loc:Tr About.RuntimeEnvironment}" />
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

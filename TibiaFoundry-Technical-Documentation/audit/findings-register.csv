@@ -1,0 +1,19 @@
+id,area,severity,status,finding,location,suggestion
+F-01,Security,Medium,Inferred,"Client-folder write protection knows only the default packages folder plus store and registered folders; a custom install location (Steam, Program Files, custom packages or assets override) is not recognized.",AssetsProject.IsInsideClientInstallation; RebuilderViewModel.ForbiddenRoots,Detect the actual client folder from the active location settings and include it.
+F-02,Reliability,Medium,Verified,"Sprite extraction (unless Skip existing), sound extraction and map tile extraction write without OutputSession, so existing files are overwritten without asking and without backup.",SpriteExtractorViewModel; SoundsViewModel; MapToolsViewModel,Route these batches through OutputSession.
+F-03,Performance,Low/Medium,Inferred,Synchronous I/O on the UI thread: Clients page refresh reads every manifest twice and enumerates store objects; Rebuilder plan; start-up source inspection and hashing in Ask mode.,ClientsViewModel.Refresh; RebuilderViewModel.UpdatePlan; ClientStartup.UsableSources,Move to Task.Run and cache usage figures.
+F-04,Reliability,Low,Verified,ItemCatalogStore.Commit validates mapping source IDs after the snapshot is written.,ItemCatalogStore.Commit,Validate before writing.
+F-05,Reliability,Low,Verified,BackupSet.Add(move: true) across volumes deletes the original before checking the copy hash.,BackupSet.Add,Verify the copy before deleting.
+F-06,Code quality,Low,Verified,Orphaned XML doc comments.,ClientStore.cs; ClientRegistry.cs,Attach or remove the comments.
+F-07,Build,Low,Verified,app.manifest assemblyIdentity version is 5.0.0.0; Portable.pubxml hard-codes 8.0.0 in PublishDir.,app.manifest; Portable.pubxml,Derive from the version property.
+F-08,Code quality,Info,Verified,"Six commands have no UI binding (OpenClientFolder, OpenSettings in Diagnostics, RefreshCatalogs, RotateLeft/Right, ThemeColorRow.Select).",ViewModels,Bind or remove.
+F-09,Reliability,Info,Verified,Three async void methods; AppearancesViewModel.UpdateDetails has no try/catch (falls back to the global handler).,App.OnStartup; AppearancesViewModel.UpdateDetails; OutfitterViewModel.Render,Add a try/catch in UpdateDetails.
+F-10,Security,Low,Verified,Plain HTTP endpoints: test-server asset base (mitigated by hash check on download) and a credit link.,TestServerAssetsBase; CreditTibia,Use HTTPS where the server supports it.
+F-11,Code quality,Info,Verified,ClientStorageMode is a string instead of an enum.,AppSettings.ClientStorageMode,Optional.
+F-12,Reliability,Info,Verified,"AppLog keeps at most 1000 pending lines; DiagnosticsCollector MaxLogBytes counts characters, not bytes.",AppLog; DiagnosticsCollector,Document or rename.
+F-13,Code quality,Low,Verified,NumericUpDown adds button Click handlers again when its template is reapplied.,Controls/NumericUpDown.cs,Unsubscribe in OnApplyTemplate.
+F-14,Code quality,Info,Verified,Two types named CatalogEntry (Core.Editing and Core.Items).,Core,Optional rename.
+F-15,Correctness,Low,Inferred,AppearanceGifBuilder ping-pong frames may not form grids for grid effects.,AppearanceGifBuilder,Add a test with a grid effect.
+F-16,Documentation,Info,Verified,"Several existing docs carry old version numbers in their titles (6.0, 7.0, 7.0.1, 7.1).","docs/08, 10, 11, 13, 15, 16, 17, 18",Update the titles.
+F-17,Distribution,Info,Verified,The unpacked portable release folder contains runtime data created after the zip; the zip has only the program.,dist/TibiaFoundry-8.0.0-portable-win-x64,Remove the data folder or re-extract.
+F-18,Reliability,Info,Verified,AtomicFile does not flush to disk before replacing; StoreFiles.CopyIn does.,Core/FileOps/AtomicFile.cs,Flush with FileStream.Flush(true) for settings and catalogs.

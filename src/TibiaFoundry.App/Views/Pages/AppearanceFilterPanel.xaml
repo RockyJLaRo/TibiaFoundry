@@ -1,0 +1,415 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AppearanceFilterPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <!-- One criterion: a tinted card that wraps with the available width. -->
+        <Style x:Key="Criterion" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource App.SurfaceAlt}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource App.GridLine}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="10,8" />
+            <Setter Property="Margin" Value="0,0,8,8" />
+            <Setter Property="Width" Value="262" />
+        </Style>
+        <Style x:Key="Params" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal" />
+            <Setter Property="Margin" Value="24,6,0,0" />
+        </Style>
+        <Style x:Key="Cmp" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Width" Value="64" />
+            <Setter Property="Margin" Value="0,0,6,0" />
+            <Setter Property="DisplayMemberPath" Value="Value" />
+            <Setter Property="SelectedValuePath" Value="Key" />
+            <Setter Property="ItemsSource" Value="{Binding DataContext.ComparisonOptions, RelativeSource={RelativeSource AncestorType=UserControl}}" />
+        </Style>
+        <Style x:Key="Lbl" TargetType="TextBlock" BasedOn="{StaticResource FieldLabel}">
+            <Setter Property="Margin" Value="0,0,6,0" />
+        </Style>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <!-- mode + actions stay visible while scrolling the criteria -->
+        <Border DockPanel.Dock="Top" Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,10">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="{loc:Tr AppearanceFilter.UncheckAll}" Command="{Binding UncheckAllCommand}" Margin="0,0,6,0" ToolTip="{loc:Tr AppearanceFilter.ClearEveryCheckboxBelowTheList}" />
+                    <Button Content="{loc:Tr Common.ClearFilters}" Command="{Binding ClearCommand}" Margin="0,0,6,0" ToolTip="{loc:Tr AppearanceFilter.ClearEveryCheckboxAndShowThe}" />
+                    <Button Content="{loc:Tr AppearanceFilter.ApplyFilters}" Style="{StaticResource PrimaryButton}" Command="{Binding ApplyCommand}" ToolTip="{loc:Tr AppearanceFilter.FilterTheCurrentListByThe}" />
+                </StackPanel>
+                <WrapPanel VerticalAlignment="Center">
+                    <TextBlock Text="{loc:Tr AppearanceFilter.Mode}" Style="{StaticResource FieldLabel}" />
+                    <Border Style="{StaticResource SegmentHost}" Margin="0,0,12,0">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr AppearanceFilter.IncludeAND}" GroupName="FilterMode" ToolTip="{loc:Tr AppearanceFilter.KeepTheAppearancesThatMatchEvery}"
+                                         IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=IncludeAll}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr AppearanceFilter.IncludeOR}" GroupName="FilterMode" ToolTip="{loc:Tr AppearanceFilter.KeepTheAppearancesThatMatchAt}"
+                                         IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=IncludeAny}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr AppearanceFilter.ExcludeAND}" GroupName="FilterMode" ToolTip="{loc:Tr AppearanceFilter.RemoveTheAppearancesThatMatchEvery}"
+                                         IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=ExcludeAll}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr AppearanceFilter.ExcludeOR}" GroupName="FilterMode" ToolTip="{loc:Tr AppearanceFilter.RemoveTheAppearancesThatMatchAt}"
+                                         IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=ExcludeAny}" />
+                        </StackPanel>
+                    </Border>
+                    <CheckBox Content="{loc:Tr AppearanceFilter.KeepCriteriaAfterApplying}" IsChecked="{Binding KeepCriteria}" VerticalAlignment="Center"
+                              ToolTip="{loc:Tr AppearanceFilter.LeaveTheCriteriaCheckedAfterApply}" />
+                </WrapPanel>
+            </DockPanel>
+        </Border>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <!-- ===================================== flags -->
+                <Expander Header="{loc:Tr AppearanceFilter.Flags}" IsExpanded="True">
+                    <DockPanel>
+                        <TextBox DockPanel.Dock="Top" Text="{Binding FlagSearch, UpdateSourceTrigger=PropertyChanged}" controls:Input.Placeholder="{loc:Tr AppearanceFilter.FindFlag}" Width="240" HorizontalAlignment="Left" Margin="0,0,0,8"
+                                 ToolTip="{loc:Tr AppearanceFilter.FindAFlagByName}" AutomationProperties.Name="{loc:Tr AppearanceFilter.FindFlag}" />
+                        <ItemsControl ItemsSource="{Binding Flags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><WrapPanel /></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:FlagOption}">
+                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding IsChecked}" Width="178" Margin="0,0,4,2"
+                                              Visibility="{Binding IsVisible, Converter={StaticResource BoolToVisibility}}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DockPanel>
+                </Expander>
+
+                <!-- ===================================== advanced flags -->
+                <Expander Header="{loc:Tr AppearanceFilter.AdvancedFlags}">
+                    <WrapPanel>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.WriteTextLength}" IsChecked="{Binding UseWrite}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding WriteMin}" Minimum="0" Maximum="100000" Width="88" AutomationProperties.Name="{loc:Tr AppearanceFilter.WriteMinimum}" />
+                                    <TextBlock Text="{loc:Tr Common.To}" Style="{StaticResource Lbl}" Margin="6,0" />
+                                    <controls:NumericUpDown Value="{Binding WriteMax}" Minimum="0" Maximum="100000" Width="88" AutomationProperties.Name="{loc:Tr AppearanceFilter.WriteMaximum}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.WriteOnceTextLength}" IsChecked="{Binding UseWriteOnce}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding WriteOnceMin}" Minimum="0" Maximum="100000" Width="88" AutomationProperties.Name="{loc:Tr AppearanceFilter.WriteOnceMinimum}" />
+                                    <TextBlock Text="{loc:Tr Common.To}" Style="{StaticResource Lbl}" Margin="6,0" />
+                                    <controls:NumericUpDown Value="{Binding WriteOnceMax}" Minimum="0" Maximum="100000" Width="88" AutomationProperties.Name="{loc:Tr AppearanceFilter.WriteOnceMaximum}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.Hook}" IsChecked="{Binding UseHook}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <RadioButton Content="{loc:Tr AppearanceFilter.South}" GroupName="Hook" IsChecked="{Binding HookEast, Converter={StaticResource InverseBool}}" Margin="0,0,14,0" />
+                                    <RadioButton Content="{loc:Tr AppearanceFilter.East}" GroupName="Hook" IsChecked="{Binding HookEast}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.Light1Any}" IsChecked="{Binding UseLight}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <TextBlock Text="{loc:Tr AppearanceFilter.Brightness}" Style="{StaticResource Lbl}" />
+                                    <controls:NumericUpDown Value="{Binding LightBrightness}" Minimum="-1" Maximum="255" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.LightBrightness}" />
+                                    <TextBlock Text="{loc:Tr AppearanceFilter.Color}" Style="{StaticResource Lbl}" Margin="8,0,6,0" />
+                                    <controls:NumericUpDown Value="{Binding LightColor}" Minimum="-1" Maximum="255" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.LightColor}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.BankGroundSpeed1Any}" IsChecked="{Binding UseBank}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding BankComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.BankComparison}" />
+                                    <controls:NumericUpDown Value="{Binding BankSpeed}" Minimum="-1" Maximum="1500" Width="80" AutomationProperties.Name="{loc:Tr AppearanceFilter.BankSpeed}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.ShiftDisplacement1Any}" IsChecked="{Binding UseShift}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <TextBlock Text="x" Style="{StaticResource Lbl}" />
+                                    <controls:NumericUpDown Value="{Binding ShiftX}" Minimum="-1" Maximum="255" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.ShiftX}" />
+                                    <TextBlock Text="y" Style="{StaticResource Lbl}" Margin="8,0,6,0" />
+                                    <controls:NumericUpDown Value="{Binding ShiftY}" Minimum="-1" Maximum="255" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.ShiftY}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.HeightElevation}" IsChecked="{Binding UseHeight}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding HeightElevation}" Minimum="0" Maximum="64" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.HeightElevation2}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.AutomapColor1Any}" IsChecked="{Binding UseAutomap}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding AutomapColor}" Minimum="-1" Maximum="215" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.AutomapColor}" />
+                                    <Border Width="22" Height="22" CornerRadius="4" Margin="8,0,0,0" Background="{Binding AutomapSwatch}" BorderBrush="{DynamicResource App.BorderStrong}" BorderThickness="1" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.LenshelpId1Any}" IsChecked="{Binding UseLensHelp}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding LensHelpId}" Minimum="-1" Maximum="5000" Width="80" AutomationProperties.Name="{loc:Tr AppearanceFilter.LenshelpId}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.ClothSlot}" IsChecked="{Binding UseCloth}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding ClothSlots}" SelectedIndex="{Binding ClothSlot}" Width="170" AutomationProperties.Name="{loc:Tr AppearanceFilter.ClothSlot2}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.DefaultAction}" IsChecked="{Binding UseDefaultAction}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding PlayerActions}" SelectedIndex="{Binding DefaultActionIndex}" Width="170" AutomationProperties.Name="{loc:Tr AppearanceFilter.DefaultAction2}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.MarketCategory}" IsChecked="{Binding UseMarket}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding MarketCategories}" SelectedIndex="{Binding MarketCategoryIndex}" Width="200" MaxDropDownHeight="320" AutomationProperties.Name="{loc:Tr AppearanceFilter.MarketCategory2}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.NPCCurrencyEmptyAny}" IsChecked="{Binding UseCurrency}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding CurrencyNames}" Text="{Binding Currency, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" Width="200" AutomationProperties.Name="{loc:Tr AppearanceFilter.Currency}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.DescriptionContains}" IsChecked="{Binding UseDescription}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <TextBox Text="{Binding DescriptionText, UpdateSourceTrigger=PropertyChanged}" Width="200" AutomationProperties.Name="{loc:Tr AppearanceFilter.DescriptionText}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.UpgradeClassification}" IsChecked="{Binding UseClassification}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding Classifications}" loc:Choice.Prefix="Choice.Common" SelectedIndex="{Binding ClassificationIndex}" Width="100" AutomationProperties.Name="{loc:Tr AppearanceFilter.Classification}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.ImbueableNoSlotTickedAny}" IsChecked="{Binding UseImbueable}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <TextBlock Text="{loc:Tr AppearanceFilter.Slots}" Style="{StaticResource Lbl}" />
+                                    <CheckBox Content="1" IsChecked="{Binding ImbueSlot1}" Margin="0,0,10,0" />
+                                    <CheckBox Content="2" IsChecked="{Binding ImbueSlot2}" Margin="0,0,10,0" />
+                                    <CheckBox Content="3" IsChecked="{Binding ImbueSlot3}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.ProficiencyId1Any}" IsChecked="{Binding UseProficiency}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding ProficiencyId}" Minimum="-1" Maximum="9999" Width="80" AutomationProperties.Name="{loc:Tr AppearanceFilter.ProficiencyId}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.RestrictedToVocation}" IsChecked="{Binding UseVocation}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding Vocations}" SelectedIndex="{Binding VocationIndex}" Width="150" AutomationProperties.Name="{loc:Tr AppearanceFilter.Vocation}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.WeaponType}" IsChecked="{Binding UseWeaponType}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox ItemsSource="{Binding WeaponTypes}" SelectedIndex="{Binding WeaponTypeIndex}" Width="150" AutomationProperties.Name="{loc:Tr AppearanceFilter.WeaponType2}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.MinimumLevel1Any}" IsChecked="{Binding UseMinLevel}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding MinLevelComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.LevelComparison}" />
+                                    <controls:NumericUpDown Value="{Binding MinLevel}" Minimum="-1" Maximum="5000" Width="80" AutomationProperties.Name="{loc:Tr AppearanceFilter.MinimumLevel}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </Expander>
+
+                <!-- ===================================== frame group / sprite info -->
+                <Expander Header="{loc:Tr AppearanceFilter.FrameGroupsSpritesAndAnimation}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="{loc:Tr AppearanceFilter.FrameGroupToInspect}" Style="{StaticResource FieldLabel}" />
+                            <controls:NumericUpDown Value="{Binding TargetFrameGroup}" Minimum="0" Maximum="2" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.FrameGroupToInspect}"
+                                                    ToolTip="{loc:Tr AppearanceFilter.0IdleInitial1MovingOutfits}" />
+                        </StackPanel>
+                        <WrapPanel>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.NumberOfFrameGroups}" IsChecked="{Binding UseFrameGroups}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding FrameGroupComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.FrameGroupsComparison}" />
+                                        <controls:NumericUpDown Value="{Binding FrameGroupCount}" Minimum="0" Maximum="10" Width="70" AutomationProperties.Name="{loc:Tr AppearanceFilter.FrameGroups}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.Layers}" IsChecked="{Binding UseLayers}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding LayersComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.LayersComparison}" />
+                                        <controls:NumericUpDown Value="{Binding Layers}" Minimum="0" Maximum="16" Width="70" AutomationProperties.Name="{loc:Tr Common.Layers}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.NumberOfSprites}" IsChecked="{Binding UseSprites}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding SpritesComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.SpritesComparison}" />
+                                        <controls:NumericUpDown Value="{Binding SpriteCount}" Minimum="0" Maximum="5000" Width="80" AutomationProperties.Name="{loc:Tr Common.Sprites}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.PatternWidth}" IsChecked="{Binding UsePatternWidth}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding PatternWidthComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.PatternWidthComparison}" />
+                                        <controls:NumericUpDown Value="{Binding PatternWidth}" Minimum="0" Maximum="64" Width="70" AutomationProperties.Name="{loc:Tr Common.PatternWidth}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.PatternHeight}" IsChecked="{Binding UsePatternHeight}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding PatternHeightComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.PatternHeightComparison}" />
+                                        <controls:NumericUpDown Value="{Binding PatternHeight}" Minimum="0" Maximum="64" Width="70" AutomationProperties.Name="{loc:Tr Common.PatternHeight}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.PatternDepth}" IsChecked="{Binding UsePatternDepth}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding PatternDepthComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.PatternDepthComparison}" />
+                                        <controls:NumericUpDown Value="{Binding PatternDepth}" Minimum="0" Maximum="64" Width="70" AutomationProperties.Name="{loc:Tr Common.PatternDepth}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.BoundingBoxWidth}" IsChecked="{Binding UseBoundingWidth}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <RadioButton Content="{loc:Tr AppearanceFilter.UpTo32Px}" GroupName="BW" IsChecked="{Binding BoundingWidthLarge, Converter={StaticResource InverseBool}}" Margin="0,0,12,0" />
+                                        <RadioButton Content="{loc:Tr AppearanceFilter.Wider}" GroupName="BW" IsChecked="{Binding BoundingWidthLarge}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.BoundingBoxHeight}" IsChecked="{Binding UseBoundingHeight}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <RadioButton Content="{loc:Tr AppearanceFilter.UpTo32Px}" GroupName="BH" IsChecked="{Binding BoundingHeightLarge, Converter={StaticResource InverseBool}}" Margin="0,0,12,0" />
+                                        <RadioButton Content="{loc:Tr AppearanceFilter.Taller}" GroupName="BH" IsChecked="{Binding BoundingHeightLarge}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.IsOpaque}" IsChecked="{Binding UseOpaque}" />
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.Animated}" IsChecked="{Binding UseAnimated}" />
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.SynchronizedAnimation}" IsChecked="{Binding UseSynced}" />
+                                    <TextBlock Style="{StaticResource Muted}" FontSize="11" TextWrapping="Wrap" MaxWidth="230" Margin="0,4,0,0"
+                                               Text="{loc:Tr AppearanceFilter.ThereAreNoStartPhaseFilters}" />
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.LoopType}" IsChecked="{Binding UseLoopType}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox ItemsSource="{Binding LoopTypes}" SelectedIndex="{Binding LoopTypeIndex}" Width="140" AutomationProperties.Name="{loc:Tr AppearanceFilter.LoopType2}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.ShortestPhaseMinDurationMs}" IsChecked="{Binding UseMinDuration}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding MinDurationComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.MinDurationComparison}" />
+                                        <controls:NumericUpDown Value="{Binding MinDuration}" Minimum="0" Maximum="100000" Increment="10" Width="90" AutomationProperties.Name="{loc:Tr AppearanceFilter.MinDuration}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                            <Border Style="{StaticResource Criterion}">
+                                <StackPanel>
+                                    <CheckBox Content="{loc:Tr AppearanceFilter.LongestPhaseMaxDurationMs}" IsChecked="{Binding UseMaxDuration}" />
+                                    <StackPanel Style="{StaticResource Params}">
+                                        <ComboBox Style="{StaticResource Cmp}" SelectedValue="{Binding MaxDurationComparison}" AutomationProperties.Name="{loc:Tr AppearanceFilter.MaxDurationComparison}" />
+                                        <controls:NumericUpDown Value="{Binding MaxDuration}" Minimum="0" Maximum="100000" Increment="10" Width="90" AutomationProperties.Name="{loc:Tr AppearanceFilter.MaxDuration}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </WrapPanel>
+                    </StackPanel>
+                </Expander>
+
+                <!-- ===================================== IDs -->
+                <Expander Header="IDs">
+                    <WrapPanel>
+                        <Border Style="{StaticResource Criterion}">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.IDAtLeast}" IsChecked="{Binding UseIdMin}" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding IdMin}" Minimum="0" Maximum="10000000" Width="110" AutomationProperties.Name="{loc:Tr AppearanceFilter.MinimumID}" />
+                                </StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.IDAtMost}" IsChecked="{Binding UseIdMax}" Margin="0,8,0,0" />
+                                <StackPanel Style="{StaticResource Params}">
+                                    <controls:NumericUpDown Value="{Binding IdMax}" Minimum="0" Maximum="10000000" Width="110" AutomationProperties.Name="{loc:Tr AppearanceFilter.MaximumID}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource Criterion}" Width="360">
+                            <StackPanel>
+                                <CheckBox Content="{loc:Tr AppearanceFilter.ListOfIDs}" IsChecked="{Binding UseIdList}" />
+                                <TextBox Text="{Binding IdListText, UpdateSourceTrigger=PropertyChanged}" controls:Input.Placeholder="{loc:Tr AppearanceFilter.IDsSeparatedByCommasOrSpaces}" AcceptsReturn="True" TextWrapping="Wrap" Height="90" Margin="24,6,0,0"
+                                         VerticalScrollBarVisibility="Auto" AutomationProperties.Name="{loc:Tr AppearanceFilter.ListOfIDs2}" />
+                                <TextBlock Text="{loc:Tr AppearanceFilter.TypeOrPasteIDsSeparatedBy}" Style="{StaticResource Muted}" FontSize="11.5" Margin="24,4,0,0" />
+                            </StackPanel>
+                        </Border>
+                    </WrapPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>
