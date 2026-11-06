@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.0.1 – 2026-11-06 (infobox flavortext)
+
+### Fixed
+
+* **Appearances → Wiki infobox** now fills `flavortext` with the object's look text from the client (`Appearance.Description`), e.g. item 54631 (moonstone excavator soul core): *Offers a soul to the Soulpit. Combine with another soul core to create a random new soul core*. Before, the parameter was left out even when the client had the text.
+* Version numbering: patch releases have three parts (**9.0.1**, tag `v9.0.1`); the Windows file version is padded to 9.0.1.0.
+
 ## 9.0 – 2026-11-06 (TibiaWiki infoboxes, safer saving, one version source)
 
 Versions are two-part from now on (**9.0**, tag `v9.0`). Settings, item catalogs, client archives, Asset Libraries and exports of 8.8.2 and earlier are used as they are; the MSI upgrades 8.x in place and never touches user data. Audit, measurements and decisions: [TibiaFoundry-9.0-Audit.md](TibiaFoundry-9.0-Audit.md).

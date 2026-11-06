@@ -33,6 +33,7 @@ Checked on 2026-11-06 against the template's source and the item pages Magic Pla
 | `actualname` | object name | as the client shows it |
 | `itemid` | object ID | other objects with the same name are reported (TibiaWiki lists all IDs of one item) |
 | `objectclass`, `primarytype`, `secondarytype` | market category | only categories whose wiki classification is consistent (Armors → Body Equipment / Armors, Swords → Weapons / Sword Weapons, Potions → Plants, Animal Products, Food and Drink / Liquids / Potions…); Wands and Rods by vocation, spellbooks by vocation, bows, crossbows and throwing weapons by weapon type |
+| `flavortext` | look text (`Appearance.Description`) | as the client writes it (9.0.1); left out when the object has none |
 | `slot` | clothes slot | Head, Neck, Container, Body, Shield Hand, Weapon Hand, Legs, Feet, Finger, Extra Slot, Both Hands |
 | `hands`, `weapontype` | weapon type + slot | One/Two; Sword, Axe, Club, Distance (bow, crossbow, throwing) |
 | `levelrequired`, `vocrequired` | minimum level, vocation restriction | "knights and paladins" style; promoted-only items are reported |
@@ -44,7 +45,7 @@ Checked on 2026-11-06 against the template's source and the item pages Magic Pla
 | `npcvalue`, `npcprice`, `buyfrom`, `sellto` | NPC sale data | highest price an NPC pays / lowest price an NPC asks; other NPCs listed with their price when it differs ("H.L.: 720"); `--` and `0` when nobody trades; trades in other currencies are left out and reported |
 | `droppedby` | – | `{{Dropped By|}}` (filled by the wiki from creature pages) |
 
-**Never filled in** (not in the client's files): `implemented`, `weight`, `value`, `attack`, `defense`, `armor`, `attrib`, `resist`, `plural`, `article`, `flavortext`, `notes`, `history` and the other combat and lore parameters. Required ones are listed empty and marked *Needs your input*.
+**Never filled in** (not in the client's files): `implemented`, `weight`, `value`, `attack`, `defense`, `armor`, `attrib`, `resist`, `plural`, `article`, `notes`, `history` and the other combat and lore parameters. Required ones are listed empty and marked *Needs your input*.
 
 ## Markup rules
 

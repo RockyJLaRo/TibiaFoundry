@@ -23,10 +23,10 @@ public static class AppIdentity
     /// <summary>Canonical website the application works for (TibiaWiki).</summary>
     public const string Website = "https://tibia.fandom.com/";
 
-    /// <summary>Version shown to users, e.g. "9.0" (src/Directory.Build.props is the single source).</summary>
+    /// <summary>Version shown to users, e.g. "9.0" or "9.0.1" (src/Directory.Build.props is the single source).</summary>
     public static string Version { get; } =
         typeof(AppIdentity).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+', ' ')[0]
-        ?? typeof(AppIdentity).Assembly.GetName().Version?.ToString(2) ?? "0.0";
+        ?? (typeof(AppIdentity).Assembly.GetName().Version is { } v ? v.ToString(v.Build > 0 ? 3 : 2) : "0.0");
 
     /// <summary>"Tibia Foundry 9.0".</summary>
     public static string NameAndVersion => $"{Name} {Version}";

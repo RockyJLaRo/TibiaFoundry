@@ -189,9 +189,9 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         Assert.Equal("RockyLaRo", AppIdentity.Creator);
         Assert.Equal("TibiaWiki Admin", AppIdentity.CreatorRole);
         Assert.Equal("https://tibia.fandom.com/", AppIdentity.Website);
-        // 9.0: public versions have two parts ("9.0", never "9.0.0"); the padded form is only the Windows file version.
+        // Public versions are "9.0" or "9.0.1", never "9.0.0"; the padded form is only the Windows file version.
         Assert.Equal(PropsVersion(), AppIdentity.Version);
-        Assert.Matches(@"^\d+\.\d+$", AppIdentity.Version);
+        Assert.Matches(@"^\d+\.\d+(\.[1-9]\d*)?$", AppIdentity.Version);
 
         var app = typeof(AppServices).Assembly;
         Assert.Equal("TibiaFoundry", app.GetName().Name);                                                      // TibiaFoundry.exe
@@ -201,11 +201,13 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         Assert.Contains("RockyLaRo", app.GetCustomAttribute<AssemblyCopyrightAttribute>()!.Copyright);
         foreach (var text in new[] { app.GetCustomAttribute<AssemblyCopyrightAttribute>()!.Copyright, app.GetCustomAttribute<AssemblyDescriptionAttribute>()!.Description })
             Assert.DoesNotMatch(ObsoleteName(), text);
-        Assert.Equal(new Version(PropsVersion() + ".0.0"), app.GetName().Version);
+        var props = new Version(PropsVersion());
+        var padded = new Version(props.Major, props.Minor, Math.Max(0, props.Build), 0);
+        Assert.Equal(padded, app.GetName().Version);
 
         string manifest = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "app.manifest"));
         Assert.Contains("name=\"TibiaFoundry.app\"", manifest);
-        Assert.Contains($"<assemblyIdentity version=\"{PropsVersion()}.0.0\"", manifest);
+        Assert.Contains($"<assemblyIdentity version=\"{padded}\"", manifest);
         string window = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "Views", "MainWindow.xaml"));
         Assert.Contains("Title=\"Tibia Foundry\"", window);
         Assert.Contains("Icon=\"/Assets/Branding/tibia-foundry.ico\"", window);

@@ -210,7 +210,7 @@ public sealed class NetworkTests
         using var services = new TibiaFoundry.App.Services.AppServices(new TibiaFoundry.Core.Settings.SettingsStore(Path.Combine(dir, "settings.json")), settings);
         string version = TibiaFoundry.Core.Common.AppIdentity.Version;
         Assert.Equal($"TibiaFoundry/{version} (+{ExternalEndpoints.TibiaWikiHome})", services.Http.DefaultRequestHeaders.UserAgent.ToString());
-        Assert.Matches(@"^\d+\.\d+$", version);   // "9.0", not "9.0.0"
+        Assert.Matches(@"^\d+\.\d+(\.[1-9]\d*)?$", version);   // "9.0" or "9.0.1", never "9.0.0"
     }
 
     [Fact]

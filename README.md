@@ -32,9 +32,9 @@ It reads the official files of your installed Tibia client — it never changes 
 
 ### New in 9.0: TibiaWiki infoboxes, safer saving, one version source
 
-* the **TibiaWiki Infobox Exporter** ([docs/26_TibiaWiki_Infobox_Exporter.md](docs/26_TibiaWiki_Infobox_Exporter.md)), Appearances → *Wiki infobox*: select an object and get `{{Infobox Object}}` markup filled from the client's own data – ID, names, slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, every object flag, light and map colour, stackable/marketable and the complete NPC trade (`npcvalue`, `npcprice`, `buyfrom`, `sellto`). Each value shows where it came from; values the client does not contain (implemented, weight, attack, armor…) are never guessed and are listed for you to fill in. Edit, copy, save as `.txt`, or save one file per selected object;
+* the **TibiaWiki Infobox Exporter** ([docs/26_TibiaWiki_Infobox_Exporter.md](docs/26_TibiaWiki_Infobox_Exporter.md)), Appearances → *Wiki infobox*: select an object and get `{{Infobox Object}}` markup filled from the client's own data – ID, names, flavortext (9.0.1), slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, every object flag, light and map colour, stackable/marketable and the complete NPC trade (`npcvalue`, `npcprice`, `buyfrom`, `sellto`). Each value shows where it came from; values the client does not contain (implemented, weight, attack, armor…) are never guessed and are listed for you to fill in. Edit, copy, save as `.txt`, or save one file per selected object;
 * **safer saving**: settings, catalogs, manifests and other documents are flushed to the disk before they replace the old file; a backup "move" to another drive keeps the original until the copy is verified;
-* **one version source** (`src/Directory.Build.props`): the program, installer, packages and website all say **9.0**;
+* **one version source** (`src/Directory.Build.props`): the program, installer, packages and website all say the same version (**9.0.1** now);
 * fixes: a numeric field could step more than once per click after a theme switch; a test assumed one particular client build.
 
 ### New in 8.8: the Asset Library and Content Studio

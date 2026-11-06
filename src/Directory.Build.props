@@ -15,16 +15,18 @@
     <!-- Application identity (also in TibiaFoundry.Core/Common/AppIdentity.cs). -->
     <Product>Tibia Foundry</Product>
     <!--
-      THE version, and the only place to change it. Public releases use two parts ("9.0", tag v9.0); the
-      packaging scripts, the installer, the About page, the User-Agent and the file names all read it from here.
-      Windows needs four numbers for the file and assembly versions, so they are padded (9.0 -> 9.0.0.0);
+      THE version, and the only place to change it. Releases are "major.minor" ("9.0", tag v9.0), patch
+      releases add a third part ("9.0.1", tag v9.0.1); a ".0" patch is never written. The packaging scripts,
+      the installer, the About page, the User-Agent and the file names all read it from here.
+      Windows needs four numbers for the file and assembly versions, so they are padded (9.0.1 -> 9.0.1.0);
       that internal form is never shown. app.manifest repeats it (BrandingTests checks that they agree).
     -->
-    <Version>9.0</Version>
-    <FileVersion>$(Version).0.0</FileVersion>
-    <AssemblyVersion>$(Version).0.0</AssemblyVersion>
+    <Version>9.0.1</Version>
+    <_PaddedVersion>$([System.Version]::Parse('$(Version)').Major).$([System.Version]::Parse('$(Version)').Minor).$([System.Math]::Max(0, $([System.Version]::Parse('$(Version)').Build))).0</_PaddedVersion>
+    <FileVersion>$(_PaddedVersion)</FileVersion>
+    <AssemblyVersion>$(_PaddedVersion)</AssemblyVersion>
     <InformationalVersion>$(Version)</InformationalVersion>
-    <!-- Keep the product version "9.0": the SDK would append "+<commit>" when building from a git checkout. -->
+    <!-- Keep the product version "9.0.1": the SDK would append "+<commit>" when building from a git checkout. -->
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <Company>RockyLaRo</Company>
     <Authors>RockyLaRo</Authors>

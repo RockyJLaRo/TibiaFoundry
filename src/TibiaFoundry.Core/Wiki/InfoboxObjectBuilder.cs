@@ -113,6 +113,9 @@ public static class InfoboxObjectBuilder
                 warnings.Add(L.F("Infobox.WarnSameName", clientName, string.Join(", ", sameName.Take(20)) + (sameName.Count > 20 ? "…" : "")));
         }
 
+        // The client's look text (Appearance.Description) is what TibiaWiki calls "flavortext".
+        Set("flavortext", obj.Description, WikiFieldSource.Client);
+
         // Classification (from the market category)
         if (flags.Market is { } market && Classification.TryGetValue(market.Category, out var cls))
         {

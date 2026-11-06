@@ -115,6 +115,24 @@ public class InfoboxExportTests
     }
 
     [Fact]
+    public void TheClientDescriptionBecomesTheFlavortext()
+    {
+        var core = Obj(54631, "soul core");
+        core.Description = "Offers a soul to the Soulpit. Combine with another soul core to create a random new soul core";
+        var t = InfoboxObjectBuilder.Build(core);
+        var field = t.Field("flavortext");
+        Assert.NotNull(field);
+        Assert.Equal(core.Description, field!.Value);
+        Assert.Equal(WikiFieldSource.Client, field.Source);
+        // Written after slot/types and before implemented, like TibiaWiki's item pages.
+        var names = t.Fields.Select(f => f.Name).ToList();
+        Assert.True(names.IndexOf("flavortext") < names.IndexOf("implemented"));
+        Assert.Contains("| flavortext    = Offers a soul to the Soulpit.", WikiTemplateWriter.Write(t));
+
+        Assert.Null(InfoboxObjectBuilder.Build(Obj(1, "stone")).Field("flavortext"));
+    }
+
+    [Fact]
     public void ImmobileFurnitureGetsItsFieldProperties()
     {
         var lamp = Obj(2900, "street lamp", f =>
@@ -291,6 +309,12 @@ public class InfoboxExportTests
 
         var backpack = InfoboxObjectBuilder.Build(db.Find(AppearanceKind.Object, 2854)!, db);
         Assert.Equal(("Container", "Household Items", "Containers"), (Value(backpack, "slot"), Value(backpack, "objectclass"), Value(backpack, "primarytype")));
+
+        // The client's look text is the wiki's flavortext (soul core, reported by the user).
+        var soulCore = db.Find(AppearanceKind.Object, 54631)!;
+        var core = InfoboxObjectBuilder.Build(soulCore, db);
+        Assert.StartsWith("Offers a soul to the Soulpit.", Value(core, "flavortext"));
+        Assert.Equal(soulCore.Description.Trim(), Value(core, "flavortext"));
 
         // Every object of the client gives balanced markup.
         foreach (var obj in db.List(AppearanceKind.Object))
