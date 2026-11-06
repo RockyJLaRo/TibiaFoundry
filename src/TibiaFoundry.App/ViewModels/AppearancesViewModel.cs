@@ -36,6 +36,7 @@ public sealed partial class AppearancesViewModel : PageViewModel
         Filters = new AppearanceFilterViewModel(this, services);
         Export = new AppearanceExportViewModel(this, services);
         Outfitter = new OutfitterViewModel(this, services);
+        Infobox = new InfoboxViewModel(this, services);
         _showDefaultValues = services.Settings.ShowDefaultValues;
         services.Data.PropertyChanged += (_, e) =>
         {
@@ -56,6 +57,7 @@ public sealed partial class AppearancesViewModel : PageViewModel
     public AppearanceFilterViewModel Filters { get; }
     public AppearanceExportViewModel Export { get; }
     public OutfitterViewModel Outfitter { get; }
+    public InfoboxViewModel Infobox { get; }
 
     public AppearanceDatabase? Database => _loadedDb;
 
@@ -189,6 +191,15 @@ public sealed partial class AppearancesViewModel : PageViewModel
         UpdateDetails();
         Outfitter.OnSelectionChanged();
         Export.OnSelectionChanged();
+        if (SelectedDetailTab == InfoboxTab) Infobox.OnSelectionChanged();
+    }
+
+    /// <summary>Index of the "Wiki infobox" tab; the infobox is built only while it is shown.</summary>
+    public const int InfoboxTab = 5;
+
+    partial void OnSelectedDetailTabChanged(int value)
+    {
+        if (value == InfoboxTab) Infobox.OnSelectionChanged();
     }
 
     partial void OnSelectedItemsChanged(IReadOnlyList<AppearanceItem> value) => OnPropertyChanged(nameof(SelectedCount));

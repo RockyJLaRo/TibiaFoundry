@@ -511,7 +511,9 @@ public sealed class ItemCatalogTests(ITestOutputHelper output)
         Assert.All(import.Observations, o => Assert.Equal(o.HasName ? ObservationStatus.Verified : ObservationStatus.Unresolved, o.Status));
         int named = import.Observations.Count(o => o.HasName);
         output.WriteLine($"client {import.Source.Version}: {import.Observations.Count} objects, {named} named, {import.Observations.Count - named} unnamed");
-        if (TestData.ReferenceMismatch == null)
+        // Only the pinned reference client has these exact figures; a live client changes them with every update
+        // (9.0: without a reference folder the check ran against any installed client and failed after an update).
+        if (TestData.ReferenceClient != null && TestData.ReferenceMismatch == null)
         {
             // The pinned client 15.33 (and 15.33.9d148f, which has the same data): measured in the 7.0 research.
             Assert.Equal(43_516, import.Observations.Count);

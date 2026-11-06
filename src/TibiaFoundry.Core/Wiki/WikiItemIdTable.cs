@@ -234,6 +234,10 @@ public static partial class WikiItemIdTable
 
     private sealed record CacheFile(DateTime FetchedAtUtc, WikiTableSource Source, Dictionary<uint, string> Names, List<string> Log);
 
+    /// <summary>The cached table in <paramref name="cacheDirectory"/>, whatever its age (null when there is none); never goes online.</summary>
+    public static WikiItemIds? TryReadCache(string? cacheDirectory) =>
+        cacheDirectory == null ? null : ReadCache(Path.Combine(cacheDirectory, CacheFileName));
+
     private static WikiItemIds? ReadCache(string path)
     {
         if (!File.Exists(path)) return null;

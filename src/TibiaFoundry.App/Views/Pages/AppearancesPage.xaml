@@ -244,6 +244,9 @@
                     <TabItem Header="{loc:Tr Appearances.Outfitter}">
                         <pages:OutfitterPanel DataContext="{Binding Outfitter}" />
                     </TabItem>
+                    <TabItem Header="{loc:Tr Infobox.Tab}" ToolTip="{loc:Tr Infobox.TabTip}">
+                        <pages:InfoboxPanel DataContext="{Binding Infobox}" />
+                    </TabItem>
                 </TabControl>
             </DockPanel>
         </Grid>

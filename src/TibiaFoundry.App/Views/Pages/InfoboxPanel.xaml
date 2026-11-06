@@ -1,0 +1,102 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.InfoboxPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <Grid>
+        <TextBlock Style="{StaticResource EmptyState}" Text="{Binding EmptyMessage}"
+                   Visibility="{Binding HasObject, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+        <Grid Visibility="{Binding HasObject, Converter={StaticResource BoolToVisibility}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" MinWidth="260" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="2*" MinWidth="220" />
+            </Grid.ColumnDefinitions>
+
+            <!-- header: what this is, where values come from -->
+            <StackPanel Grid.ColumnSpan="3" Margin="0,0,0,8">
+                <TextBlock Style="{StaticResource Muted}" Text="{loc:Tr Infobox.Intro}" />
+                <DockPanel Margin="0,6,0,0">
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Infobox.GetWikiNames}" Command="{Binding GetWikiNamesCommand}" ToolTip="{loc:Tr Infobox.GetWikiNamesTip}" />
+                    <TextBlock Text="{Binding WikiNamesInfo}" Style="{StaticResource Muted}" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="12" />
+                </DockPanel>
+                <Border Style="{StaticResource InfoBanner}" Margin="0,8,0,0" Background="{DynamicResource App.WarningSoft}"
+                        Visibility="{Binding Warnings, Converter={StaticResource NullToVisibility}}">
+                    <TextBlock Text="{Binding Warnings}" TextWrapping="Wrap" FontSize="12" />
+                </Border>
+            </StackPanel>
+
+            <!-- editable parameters -->
+            <DockPanel Grid.Row="1">
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Infobox.Add}" Command="{Binding AddParameterCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Infobox.AddTip}" />
+                    <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding AddableParameters}" SelectedItem="{Binding ParameterToAdd}" Width="170"
+                              AutomationProperties.Name="{loc:Tr Infobox.ParameterToAdd}" ToolTip="{loc:Tr Infobox.AddTip}" />
+                    <TextBlock Text="{Binding Summary}" FontWeight="SemiBold" VerticalAlignment="Center" />
+                </DockPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" AutomationProperties.Name="{loc:Tr Infobox.Parameters}">
+                    <ItemsControl ItemsSource="{Binding Fields}" KeyboardNavigation.TabNavigation="Continue">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:InfoboxFieldRow}">
+                                <Grid Margin="0,0,4,6" ToolTip="{Binding Hint}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="118" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="130" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,5,6,0">
+                                        <TextBlock Text="{Binding Name}" FontFamily="{StaticResource App.MonoFont}" FontSize="12" />
+                                        <TextBlock Text=" *" Foreground="{DynamicResource App.Danger}" FontWeight="Bold"
+                                                   Visibility="{Binding Required, Converter={StaticResource BoolToVisibility}}" ToolTip="{loc:Tr Infobox.RequiredTip}" />
+                                    </StackPanel>
+                                    <TextBox Grid.Column="1" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="12"
+                                             AcceptsReturn="{Binding Multiline}" TextWrapping="Wrap" MaxHeight="120" VerticalScrollBarVisibility="Auto"
+                                             AutomationProperties.Name="{Binding Name}" />
+                                    <TextBlock Grid.Column="2" Text="{Binding SourceText}" Margin="8,5,0,0" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Top">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Muted}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding NeedsInput}" Value="True">
+                                                        <Setter Property="Foreground" Value="{DynamicResource App.Danger}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NeedsReview}" Value="True">
+                                                        <Setter Property="Foreground" Value="{DynamicResource App.Warning}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- generated markup -->
+            <DockPanel Grid.Row="1" Grid.Column="2">
+                <TextBlock DockPanel.Dock="Top" Text="{loc:Tr Infobox.Preview}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                <TextBox Text="{Binding Markup, Mode=OneWay}" IsReadOnly="True" FontFamily="{StaticResource App.MonoFont}" FontSize="12"
+                         VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" AcceptsReturn="True"
+                         AutomationProperties.Name="{loc:Tr Infobox.Preview}" />
+            </DockPanel>
+
+            <!-- actions -->
+            <WrapPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="0,10,0,0">
+                <CheckBox Content="{loc:Tr Infobox.IncludeEmptyRequired}" IsChecked="{Binding IncludeEmptyRequired}" Margin="0,0,14,6" VerticalAlignment="Center"
+                          ToolTip="{loc:Tr Infobox.IncludeEmptyRequiredTip}" />
+                <CheckBox Content="{loc:Tr Infobox.UseQuestionMark}" IsChecked="{Binding UseQuestionMark}" Margin="0,0,14,6" VerticalAlignment="Center"
+                          IsEnabled="{Binding IncludeEmptyRequired}" ToolTip="{loc:Tr Infobox.UseQuestionMarkTip}" />
+                <Button Content="{loc:Tr Infobox.Copy}" Style="{StaticResource PrimaryButton}" Command="{Binding CopyCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Infobox.CopyTip}" />
+                <Button Content="{loc:Tr Infobox.Save}" Command="{Binding SaveCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Infobox.SaveTip}" />
+                <Button Content="{loc:Tr Infobox.ExportSelected}" Command="{Binding ExportSelectedCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Infobox.ExportSelectedTip}" />
+                <Button Content="{loc:Tr Infobox.Reset}" Style="{StaticResource SubtleButton}" Command="{Binding ResetCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Infobox.ResetTip}" />
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -102,7 +102,7 @@ public static class BuiltInTools
     public static ToolManifest Appearances { get; } = new()
     {
         Id = "appearances", Name = "Appearances", Type = ToolType.Viewer, Version = "7.0", Category = GraphicsGroup, Glyph = "",
-        Description = "Browse the official objects, outfits, effects and missiles; render outfits and save animated GIFs with fansite presets for articles and galleries",
+        Description = "Browse the official objects, outfits, effects and missiles; render outfits, save animated GIFs with fansite presets and generate TibiaWiki item infoboxes",
         Capabilities = LongRunning | ToolCapabilities.Batch,
         Operations =
         [
@@ -110,9 +110,12 @@ public static class BuiltInTools
             new("export-gif", "Save as GIF", LongRunning | ToolCapabilities.Batch),
             new("export-json", "Export JSON", LongRunning),
             new("npc-trades", "Generate NPC trade data", LongRunning),
+            new("infobox-export", "Save TibiaWiki infoboxes", LongRunning | ToolCapabilities.Batch),
+            new("wiki-item-ids", "Get TibiaWiki article names", LongRunning),
         ],
         Inputs = [new("Appearances", ["appearances-*.dat"], "protobuf, from the client"), new("Sprite sheets", SpriteSheet, "CIP LZMA"), new("Extracted sprites", [".png"])],
-        Outputs = [new("Animated GIF", [".gif"]), new("PNG image", [".png"]), new("JSON", [".json"]), new("ID table", [".txt"]), new("Lua module", [".lua"])],
+        Outputs = [new("Animated GIF", [".gif"]), new("PNG image", [".png"]), new("JSON", [".json"]), new("ID table", [".txt"]), new("Lua module", [".lua"]),
+            new("TibiaWiki infobox", [".txt"], "{{Infobox Object}} markup")],
         DefaultOutput = OutputKind.GifExports,
         Dependencies = [ClientOptional, ImageMagick("export-gif"), TibiaWiki with { RequiredFor = ["npc-trades"] }],
         License = Own, Documentation = ["docs/02_Functional_Specification.md (Appearances)", "docs/15_Themes_Outputs_Tools_and_Diagnostics.md §4 (export messages)", "docs/23_Fansite_Toolkit.md §4 (export presets)"],
