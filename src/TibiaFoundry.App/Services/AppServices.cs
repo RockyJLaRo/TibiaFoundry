@@ -26,7 +26,7 @@ public sealed class AppServices : IDisposable
         // client-wide limit would silently cut longer ones such as the TibiaWiki page (120 s).
         Http = new HttpClient { Timeout = Timeout.InfiniteTimeSpan };
         // Identify the tool to the wiki (MediaWiki etiquette); the version comes from the build.
-        Http.DefaultRequestHeaders.UserAgent.ParseAdd($"TibiaFoundry/{typeof(AppServices).Assembly.GetName().Version?.ToString(3)} (+{TibiaFoundry.Core.Net.ExternalEndpoints.TibiaWikiHome})");
+        Http.DefaultRequestHeaders.UserAgent.ParseAdd($"TibiaFoundry/{AppIdentity.Version} (+{TibiaFoundry.Core.Net.ExternalEndpoints.TibiaWikiHome})");
         Audio.Volume = (float)settings.SoundVolume;
         Operations = new OperationGate(() => Settings.Performance.MaxConcurrentOperations);
         ScriptOperations = new OperationGate(() => Math.Min(Settings.Scripts.MaxConcurrentScripts, Settings.Performance.MaxConcurrentOperations));

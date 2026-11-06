@@ -27,6 +27,10 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         return "";
     }
 
+    /// <summary>The version in src/Directory.Build.props, the single source of the version.</summary>
+    private static string PropsVersion() =>
+        System.Text.RegularExpressions.Regex.Match(File.ReadAllText(Path.Combine(SourceRoot(), "Directory.Build.props")), "<Version>([^<]+)</Version>").Groups[1].Value;
+
     private static string BrandingFolder => Path.Combine(SourceRoot(), "TibiaFoundry.App", "Assets", "Branding");
 
     /// <summary>Earlier product names and the former credits (application code and XAML).</summary>
@@ -185,7 +189,9 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         Assert.Equal("RockyLaRo", AppIdentity.Creator);
         Assert.Equal("TibiaWiki Admin", AppIdentity.CreatorRole);
         Assert.Equal("https://tibia.fandom.com/", AppIdentity.Website);
-        Assert.StartsWith("8.", AppIdentity.Version);
+        // 9.0: public versions have two parts ("9.0", never "9.0.0"); the padded form is only the Windows file version.
+        Assert.Equal(PropsVersion(), AppIdentity.Version);
+        Assert.Matches(@"^\d+\.\d+$", AppIdentity.Version);
 
         var app = typeof(AppServices).Assembly;
         Assert.Equal("TibiaFoundry", app.GetName().Name);                                                      // TibiaFoundry.exe
@@ -195,10 +201,11 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         Assert.Contains("RockyLaRo", app.GetCustomAttribute<AssemblyCopyrightAttribute>()!.Copyright);
         foreach (var text in new[] { app.GetCustomAttribute<AssemblyCopyrightAttribute>()!.Copyright, app.GetCustomAttribute<AssemblyDescriptionAttribute>()!.Description })
             Assert.DoesNotMatch(ObsoleteName(), text);
-        Assert.Equal(8, app.GetName().Version!.Major);
+        Assert.Equal(new Version(PropsVersion() + ".0.0"), app.GetName().Version);
 
         string manifest = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "app.manifest"));
         Assert.Contains("name=\"TibiaFoundry.app\"", manifest);
+        Assert.Contains($"<assemblyIdentity version=\"{PropsVersion()}.0.0\"", manifest);
         string window = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "Views", "MainWindow.xaml"));
         Assert.Contains("Title=\"Tibia Foundry\"", window);
         Assert.Contains("Icon=\"/Assets/Branding/tibia-foundry.ico\"", window);

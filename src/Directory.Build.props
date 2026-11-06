@@ -14,9 +14,16 @@
 
     <!-- Application identity (also in TibiaFoundry.Core/Common/AppIdentity.cs). -->
     <Product>Tibia Foundry</Product>
-    <Version>8.8.2</Version>
-    <FileVersion>8.8.2.0</FileVersion>
-    <InformationalVersion>8.8.2</InformationalVersion>
+    <!--
+      THE version, and the only place to change it. Public releases use two parts ("9.0", tag v9.0); the
+      packaging scripts, the installer, the About page, the User-Agent and the file names all read it from here.
+      Windows needs four numbers for the file and assembly versions, so they are padded (9.0 -> 9.0.0.0);
+      that internal form is never shown. app.manifest repeats it (BrandingTests checks that they agree).
+    -->
+    <Version>9.0</Version>
+    <FileVersion>$(Version).0.0</FileVersion>
+    <AssemblyVersion>$(Version).0.0</AssemblyVersion>
+    <InformationalVersion>$(Version)</InformationalVersion>
     <Company>RockyLaRo</Company>
     <Authors>RockyLaRo</Authors>
     <Copyright>Tibia Foundry © 2026 RockyLaRo (TibiaWiki Admin). Tibia game graphics © CipSoft GmbH.</Copyright>

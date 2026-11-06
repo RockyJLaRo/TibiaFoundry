@@ -208,9 +208,9 @@ public sealed class NetworkTests
         var settings = new TibiaFoundry.Core.Settings.AppSettings { LoadDataAutomatically = false };
         settings.Normalize();
         using var services = new TibiaFoundry.App.Services.AppServices(new TibiaFoundry.Core.Settings.SettingsStore(Path.Combine(dir, "settings.json")), settings);
-        string version = typeof(TibiaFoundry.App.Services.AppServices).Assembly.GetName().Version!.ToString(3);
+        string version = TibiaFoundry.Core.Common.AppIdentity.Version;
         Assert.Equal($"TibiaFoundry/{version} (+{ExternalEndpoints.TibiaWikiHome})", services.Http.DefaultRequestHeaders.UserAgent.ToString());
-        Assert.StartsWith("8.", version);
+        Assert.Matches(@"^\d+\.\d+$", version);   // "9.0", not "9.0.0"
     }
 
     [Fact]
