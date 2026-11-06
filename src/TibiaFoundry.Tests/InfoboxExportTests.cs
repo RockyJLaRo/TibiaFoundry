@@ -122,8 +122,12 @@ public class InfoboxExportTests
         var t = InfoboxObjectBuilder.Build(core);
         var field = t.Field("flavortext");
         Assert.NotNull(field);
-        Assert.Equal(core.Description, field!.Value);
+        // TibiaWiki writes the closing full stop the client leaves out (as on the article "Moonstone Excavator Soul Core").
+        Assert.Equal(core.Description + ".", field!.Value);
         Assert.Equal(WikiFieldSource.Client, field.Source);
+        Assert.Equal("Sounds good, but what now.", InfoboxObjectBuilder.FlavorText(" Sounds good, but what now. "));
+        Assert.Equal("Really?", InfoboxObjectBuilder.FlavorText("Really?"));
+        Assert.Null(InfoboxObjectBuilder.FlavorText("  "));
         // Written after slot/types and before implemented, like TibiaWiki's item pages.
         var names = t.Fields.Select(f => f.Name).ToList();
         Assert.True(names.IndexOf("flavortext") < names.IndexOf("implemented"));
@@ -314,7 +318,8 @@ public class InfoboxExportTests
         var soulCore = db.Find(AppearanceKind.Object, 54631)!;
         var core = InfoboxObjectBuilder.Build(soulCore, db);
         Assert.StartsWith("Offers a soul to the Soulpit.", Value(core, "flavortext"));
-        Assert.Equal(soulCore.Description.Trim(), Value(core, "flavortext"));
+        // Matches the article exactly: "Offers a soul to the Soulpit. Combine with another soul core to create a random new soul core."
+        Assert.Equal("Offers a soul to the Soulpit. Combine with another soul core to create a random new soul core.", Value(core, "flavortext"));
 
         // Every object of the client gives balanced markup.
         foreach (var obj in db.List(AppearanceKind.Object))

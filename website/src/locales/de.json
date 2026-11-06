@@ -352,6 +352,8 @@
   "new": {
     "kicker": "Versionshinweise",
     "title": "Neu in {version}",
+    "fix2": "<b>9.0.2 – Punkt im flavortext</b>: Der flavortext der Infobox endet jetzt mit dem Punkt, den das Spiel beim Ansehen (Look) ergänzt – genau wie bei TibiaWiki.",
+    "fix1": "<b>9.0.1 – flavortext</b>: Der Beschreibungstext des Objekts aus dem Client füllt den flavortext der Infobox.",
     "item1": "<b>TibiaWiki-Infobox-Export</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> für jedes Objekt, aus den Daten des Clients (Appearances → Wiki-Infobox).",
     "item2": "<b>NPC-Handel in der Infobox</b>: npcvalue, npcprice, buyfrom und sellto aus den Handelsdaten des Clients.",
     "item3": "<b>Jeder Wert gekennzeichnet</b>: Client-Daten, abgeleitet (prüfen), TibiaWiki oder Eingabe nötig – nichts wird geraten.",
@@ -477,7 +479,7 @@
     "kicker": "Neu in {version} · TibiaWiki-Infoboxen",
     "title": "Die Infobox eines Gegenstandsartikels, gefüllt aus dem Client",
     "lead": "Wähle in Appearances ein Objekt und öffne <b>Wiki-Infobox</b>: Tibia Foundry schreibt die <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> von TibiaWiki aus den offiziellen Client-Daten, nach den Parametern der Vorlage und den Konventionen des Wikis. Prüfen, ergänzen, was nur du weißt, und in den Artikel einfügen.",
-    "point1": "<b>Aus dem Client</b>: ID, Namen, Slot, Stufe und Berufe, Hände und Waffenart, Imbuement-Slots, Upgrade-Klasse, Objekteigenschaften, Licht und Kartenfarbe, stapelbar und handelbar.",
+    "point1": "<b>Aus dem Client</b>: ID, Namen, Beschreibungstext (flavortext), Slot, Stufe und Berufe, Hände und Waffenart, Imbuement-Slots, Upgrade-Klasse, Objekteigenschaften, Licht und Kartenfarbe, stapelbar und handelbar.",
     "point2": "<b>NPC-Handel</b>: die besten Ankaufs- und Verkaufspreise und jeder Händler, mit eigenem Preis, wenn er abweicht.",
     "point3": "<b>Nichts erfunden</b>: Jeder Wert zeigt seine Herkunft; implemented, weight, attack, armor und andere Werte, die der Client nicht enthält, stehen zum Ausfüllen bereit.",
     "point4": "<b>Bearbeiten, kopieren, speichern</b>: jeden Wert ändern, weitere Parameter hinzufügen, das Markup kopieren, als .txt speichern oder eine Datei pro ausgewähltem Objekt.",

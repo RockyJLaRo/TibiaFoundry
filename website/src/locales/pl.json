@@ -342,6 +342,8 @@
   "new": {
     "kicker": "Informacje o wydaniu",
     "title": "Co nowego w {version}",
+    "fix2": "<b>9.0.2 – kropka w flavortext</b>: flavortext w infoboksie kończy się teraz kropką, którą gra dodaje przy oglądaniu (Look) – dokładnie tak, jak pisze TibiaWiki.",
+    "fix1": "<b>9.0.1 – flavortext</b>: opis obiektu z klienta wypełnia flavortext w infoboksie.",
     "item1": "<b>Eksport infoboxów TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> dla każdego obiektu, z danych samego klienta (Appearances → Wiki infobox).",
     "item2": "<b>Handel z NPC w infoboxie</b>: npcvalue, npcprice, buyfrom i sellto z danych handlowych klienta.",
     "item3": "<b>Każda wartość opisana</b>: dane klienta, wywnioskowane (sprawdź), TibiaWiki lub do uzupełnienia – nic nie jest zgadywane.",
@@ -471,7 +473,7 @@
     "kicker": "Nowość w {version} · infoboxy TibiaWiki",
     "title": "Infobox artykułu o przedmiocie, wypełniony danymi klienta",
     "lead": "Wybierz obiekt w Appearances i otwórz <b>Wiki infobox</b>: Tibia Foundry tworzy <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> TibiaWiki z oficjalnych danych klienta, zgodnie z parametrami szablonu i konwencjami wiki. Sprawdź go, dopisz to, co wiesz tylko ty, i wklej do artykułu.",
-    "point1": "<b>Z klienta</b>: ID, nazwy, slot, poziom i profesje, ręce i rodzaj broni, sloty imbuementów, klasa ulepszenia, właściwości obiektu, światło i kolor na mapie, czy się stackuje i czy jest na rynku.",
+    "point1": "<b>Z klienta</b>: ID, nazwy, opis przedmiotu (flavortext), slot, poziom i profesje, ręce i rodzaj broni, sloty imbuementów, klasa ulepszenia, właściwości obiektu, światło i kolor na mapie, czy się stackuje i czy jest na rynku.",
     "point2": "<b>Handel z NPC</b>: najlepsze ceny skupu i sprzedaży oraz wszyscy handlarze, z własną ceną, gdy jest inna.",
     "point3": "<b>Nic nie jest zmyślone</b>: każda wartość pokazuje swoje źródło; implemented, weight, attack, armor i inne wartości, których klient nie zawiera, czekają na uzupełnienie.",
     "point4": "<b>Edytuj, kopiuj, zapisuj</b>: zmień dowolną wartość, dodaj parametry, skopiuj kod, zapisz jako .txt albo zapisz osobny plik dla każdego zaznaczonego obiektu.",

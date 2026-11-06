@@ -311,6 +311,8 @@
   "new": {
     "kicker": "Release notes",
     "title": "What's new in {version}",
+    "fix2": "<b>9.0.2 – flavortext full stop</b>: the infobox's flavortext now ends with the full stop the game adds on Look, exactly as TibiaWiki writes it.",
+    "fix1": "<b>9.0.1 – flavortext</b>: the object's look text from the client fills the infobox's flavortext.",
     "item1": "<b>TibiaWiki infobox exporter</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> for any object, from the client's own data (Appearances → Wiki infobox).",
     "item2": "<b>NPC trade in the infobox</b>: npcvalue, npcprice, buyfrom and sellto from the client's trade data.",
     "item3": "<b>Every value labelled</b>: client data, derived (review), TibiaWiki, or needs your input – nothing is guessed.",
@@ -436,7 +438,7 @@
     "kicker": "New in {version} · TibiaWiki infoboxes",
     "title": "An item article's infobox, filled from the client",
     "lead": "Select an object in Appearances and open <b>Wiki infobox</b>: Tibia Foundry writes TibiaWiki's <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> from the official client data, following the template's own parameters and the wiki's conventions. Review it, add what only you know, and paste it into the article.",
-    "point1": "<b>From the client</b>: ID, names, slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, object flags, light and map colour, stackable and marketable.",
+    "point1": "<b>From the client</b>: ID, names, look text (flavortext), slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, object flags, light and map colour, stackable and marketable.",
     "point2": "<b>NPC trade</b>: the best NPC buy and sell prices and every trader, with their own price where it differs.",
     "point3": "<b>Nothing invented</b>: every value shows where it came from; implemented, weight, attack, armor and the other values the client does not hold are listed for you to fill in.",
     "point4": "<b>Edit, copy, save</b>: change any value, add more parameters, copy the markup, save it as .txt, or save one file for every selected object.",

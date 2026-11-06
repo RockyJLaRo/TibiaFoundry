@@ -346,6 +346,8 @@
   "new": {
     "kicker": "Notas da versão",
     "title": "Novidades da {version}",
+    "fix2": "<b>9.0.2 – ponto final no flavortext</b>: o flavortext da infobox agora termina com o ponto que o jogo adiciona ao olhar (Look), exatamente como o TibiaWiki escreve.",
+    "fix1": "<b>9.0.1 – flavortext</b>: o texto de descrição do objeto no cliente preenche o flavortext da infobox.",
     "item1": "<b>Exportador de infobox do TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> para qualquer objeto, com os dados do próprio cliente (Appearances → Wiki infobox).",
     "item2": "<b>Comércio com NPCs no infobox</b>: npcvalue, npcprice, buyfrom e sellto a partir dos dados de comércio do cliente.",
     "item3": "<b>Cada valor identificado</b>: dados do cliente, derivado (revisar), TibiaWiki ou a preencher – nada é adivinhado.",
@@ -471,7 +473,7 @@
     "kicker": "Novo na {version} · infobox do TibiaWiki",
     "title": "O infobox de um artigo de item, preenchido pelo cliente",
     "lead": "Selecione um objeto em Appearances e abra <b>Wiki infobox</b>: o Tibia Foundry escreve o <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> do TibiaWiki a partir dos dados oficiais do cliente, seguindo os parâmetros do próprio modelo e as convenções da wiki. Revise, acrescente o que só você sabe e cole no artigo.",
-    "point1": "<b>Do cliente</b>: ID, nomes, slot, nível e vocações, mãos e tipo de arma, slots de imbuement, classe de upgrade, propriedades do objeto, luz e cor no mapa, empilhável e negociável.",
+    "point1": "<b>Do cliente</b>: ID, nomes, texto de descrição (flavortext), slot, nível e vocações, mãos e tipo de arma, slots de imbuement, classe de upgrade, propriedades do objeto, luz e cor no mapa, empilhável e negociável.",
     "point2": "<b>Comércio com NPCs</b>: os melhores preços de compra e venda e todos os comerciantes, com o próprio preço quando ele difere.",
     "point3": "<b>Nada inventado</b>: cada valor mostra de onde veio; implemented, weight, attack, armor e os outros valores que o cliente não tem ficam listados para você preencher.",
     "point4": "<b>Edite, copie, salve</b>: altere qualquer valor, adicione parâmetros, copie o código, salve como .txt ou salve um arquivo para cada objeto selecionado.",

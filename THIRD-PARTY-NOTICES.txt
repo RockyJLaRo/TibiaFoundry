@@ -1,4 +1,4 @@
-Tibia Foundry 9.0.1 - third-party notices
+Tibia Foundry 9.0.2 - third-party notices
 ============================================================
 
 Tibia Foundry includes the third-party software listed below. Each entry gives the component, its

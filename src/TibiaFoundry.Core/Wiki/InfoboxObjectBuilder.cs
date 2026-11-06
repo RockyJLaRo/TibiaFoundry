@@ -113,8 +113,9 @@ public static class InfoboxObjectBuilder
                 warnings.Add(L.F("Infobox.WarnSameName", clientName, string.Join(", ", sameName.Take(20)) + (sameName.Count > 20 ? "…" : "")));
         }
 
-        // The client's look text (Appearance.Description) is what TibiaWiki calls "flavortext".
-        Set("flavortext", obj.Description, WikiFieldSource.Client);
+        // The client's look text (Appearance.Description) is what TibiaWiki calls "flavortext". The client stores it
+        // without the closing full stop the game adds on Look; TibiaWiki writes it (checked 2026-11-06 on 107 item pages).
+        Set("flavortext", FlavorText(obj.Description), WikiFieldSource.Client);
 
         // Classification (from the market category)
         if (flags.Market is { } market && Classification.TryGetValue(market.Category, out var cls))
@@ -229,6 +230,14 @@ public static class InfoboxObjectBuilder
         for (int n = 2; taken.Contains(path) || File.Exists(path); n++) path = Path.Combine(folder, $"{stem} {n}{ext}");
         taken.Add(path);
         return path;
+    }
+
+    /// <summary>The client's look text as TibiaWiki writes it: trimmed, ending with a full stop unless it already ends a sentence.</summary>
+    public static string? FlavorText(string? description)
+    {
+        string text = description?.Trim() ?? "";
+        if (text.Length == 0) return null;
+        return text[^1] is '.' or '!' or '?' ? text : text + ".";
     }
 
     private static string? VocationText(IReadOnlyCollection<VOCATION> restriction, List<string> warnings)

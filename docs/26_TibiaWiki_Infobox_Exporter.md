@@ -33,7 +33,7 @@ Checked on 2026-11-06 against the template's source and the item pages Magic Pla
 | `actualname` | object name | as the client shows it |
 | `itemid` | object ID | other objects with the same name are reported (TibiaWiki lists all IDs of one item) |
 | `objectclass`, `primarytype`, `secondarytype` | market category | only categories whose wiki classification is consistent (Armors → Body Equipment / Armors, Swords → Weapons / Sword Weapons, Potions → Plants, Animal Products, Food and Drink / Liquids / Potions…); Wands and Rods by vocation, spellbooks by vocation, bows, crossbows and throwing weapons by weapon type |
-| `flavortext` | look text (`Appearance.Description`) | as the client writes it (9.0.1); left out when the object has none |
+| `flavortext` | look text (`Appearance.Description`) | as the client writes it, with the closing full stop the game adds on Look and TibiaWiki writes (9.0.2); left out when the object has none |
 | `slot` | clothes slot | Head, Neck, Container, Body, Shield Hand, Weapon Hand, Legs, Feet, Finger, Extra Slot, Both Hands |
 | `hands`, `weapontype` | weapon type + slot | One/Two; Sword, Axe, Club, Distance (bow, crossbow, throwing) |
 | `levelrequired`, `vocrequired` | minimum level, vocation restriction | "knights and paladins" style; promoted-only items are reported |

@@ -1,5 +1,12 @@
 # Changelog
 
+## 9.0.2 – 2026-11-06 (flavortext full stop)
+
+### Fixed
+
+* **Wiki infobox:** `flavortext` ends with the full stop the game adds on Look and TibiaWiki writes (the client stores the text without it), unless the text already ends a sentence. Item 54631 now matches its article exactly.
+* Version **9.0.2** (tag `v9.0.2`); the Windows file version is 9.0.2.0.
+
 ## 9.0.1 – 2026-11-06 (infobox flavortext)
 
 ### Fixed

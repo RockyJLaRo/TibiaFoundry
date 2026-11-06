@@ -345,6 +345,8 @@
   "new": {
     "kicker": "Notas de la versión",
     "title": "Novedades de la {version}",
+    "fix2": "<b>9.0.2 – punto final en flavortext</b>: el flavortext de la infobox ahora termina con el punto que el juego añade al mirar (Look), igual que en TibiaWiki.",
+    "fix1": "<b>9.0.1 – flavortext</b>: el texto de descripción del objeto en el cliente rellena el flavortext de la infobox.",
     "item1": "<b>Exportador de infobox de TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> para cualquier objeto, con los datos del propio cliente (Appearances → Infobox wiki).",
     "item2": "<b>Comercio con NPC en el infobox</b>: npcvalue, npcprice, buyfrom y sellto desde los datos de comercio del cliente.",
     "item3": "<b>Cada valor etiquetado</b>: datos del cliente, derivado (revisar), TibiaWiki o requiere tu dato – nada se adivina.",
@@ -470,7 +472,7 @@
     "kicker": "Nuevo en {version} · infobox de TibiaWiki",
     "title": "El infobox de un artículo de ítem, completado desde el cliente",
     "lead": "Selecciona un objeto en Appearances y abre <b>Wiki infobox</b>: Tibia Foundry escribe el <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> de TibiaWiki a partir de los datos oficiales del cliente, con los parámetros de la propia plantilla y las convenciones de la wiki. Revísalo, añade lo que solo tú sabes y pégalo en el artículo.",
-    "point1": "<b>Desde el cliente</b>: ID, nombres, ranura, nivel y vocaciones, manos y tipo de arma, ranuras de imbuement, clase de mejora, propiedades del objeto, luz y color en el mapa, apilable y comerciable.",
+    "point1": "<b>Desde el cliente</b>: ID, nombres, texto de descripción (flavortext), ranura, nivel y vocaciones, manos y tipo de arma, ranuras de imbuement, clase de mejora, propiedades del objeto, luz y color en el mapa, apilable y comerciable.",
     "point2": "<b>Comercio con NPC</b>: los mejores precios de compra y venta y cada comerciante, con su propio precio cuando difiere.",
     "point3": "<b>Nada inventado</b>: cada valor muestra de dónde viene; implemented, weight, attack, armor y los demás valores que el cliente no contiene quedan listados para que los completes.",
     "point4": "<b>Edita, copia, guarda</b>: cambia cualquier valor, agrega parámetros, copia el marcado, guárdalo como .txt o guarda un archivo por cada objeto seleccionado.",
