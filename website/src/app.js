@@ -1,4 +1,4 @@
-// Tibia Foundry website (8.8.0; 9.0 adds the infobox section): language selector, theme toggle, menu, screenshot tabs, lightbox, reveal-on-scroll and
+// Tibia Foundry website: language selector, theme toggle, menu, screenshot tabs, lightbox, reveal-on-scroll and
 // the analytics click events. No external scripts besides the Google tag; nothing here sends personal data.
 // Texts come from window.TF_I18N, written into each page by build_site.py from src/locales/<lang>.json.
 (function () {
