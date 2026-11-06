@@ -100,7 +100,23 @@ Why this and not a bigger feature set: it removes the most repetitive part of cr
 
 ## F. Testing
 
-<!--TEST-RESULTS-->
+| Check | 8.8.2 (baseline) | 9.0 |
+|---|---|---|
+| Release build (`dotnet build -c Release`) | 0 warnings, 0 errors | 0 warnings, 0 errors |
+| Automated tests (`dotnet test`, installed client 15.33.d96497) | 659 passed, **1 failed**, 32 skipped (692) | **685 passed, 0 failed**, 32 skipped (717) |
+| UI snapshot (`--ui-snapshot`: every page in both themes, dialogs, reports, 35+ scripted window checks) | – | all checks PASS, including the new *wiki infobox tab* check; **0 binding errors, 0 logged warnings** |
+| Self-test of the portable edition (`--self-test`, from the extracted ZIP) | – | 14 checks, 0 failures |
+| Self-test of the installer payload (MSI admin-extracted, run portable) | – | 0 failures |
+| Source package: extracted, built and tested on its own | – | builds with 0 warnings; Infobox, Branding and Localization tests 78/78 |
+| Start-up, portable, fresh data folder, 3 interleaved runs | window 1,301–1,460 ms, 269–285 MB working set | window 1,328–1,352 ms, 283–284 MB |
+
+*Skipped tests* need the pinned reference outputs (`04_reference/`) or optional third-party data; they skip in both versions.
+
+**New tests:** `InfoboxExportTests` (21: complete data, missing data, incomplete metadata, special characters and Unicode, `|`/`}}`/unclosed `{{`/`[[` escaping, multiline notes, several vocations and trades, other currencies, same-name objects, file names and never-replacing batch names, template parameter consistency, and every object of the installed client with values checked against TibiaWiki for Magic Plate Armor, Sword, Gold Coin and Backpack); `DataIntegrityTests` (4: move within a volume, move across two real volumes, durable and bulk writes, interrupted write keeps the old file). Changed: `BrandingTests` and `NetworkTests` assert the two-part version and that props, assembly and manifest agree.
+
+**Upgrade compatibility.** No settings key, file format or folder changed, so 8.8.2 data is read as before (covered by the existing settings/catalog/library tests that load older files). The MSI keeps the 8.x upgrade code, so Windows Installer performs a major upgrade in place; user data lives outside the install folder and is never part of the package.
+
+**Not performed:** an actual per-machine MSI install/uninstall (the session had no administrator rights; the package was validated by its properties, an administrative extraction with the same 261 files as the published folder, and a self-test of that payload). A clean-VM install, long-running sessions, and screen-reader testing were not done.
 
 ## G. Website
 
@@ -108,7 +124,15 @@ Why this and not a bigger feature set: it removes the most repetitive part of cr
 
 ## H. Release packages
 
-<!--PACKAGES-->
+Built from commit-tagged 9.0 source with `dotnet publish` (self-contained, ReadyToRun, win-x64), `tools/release/package_release.py`, `build_installer.py` (WiX 5.0.2) and `assemble_release.py` into `Release/9.0/` of the source tree:
+
+| File | Size | Content |
+|---|---|---|
+| `TibiaFoundry-9.0-Installer.msi` | 67.8 MB | folder edition → `Program Files\Tibia Foundry`, Start-menu shortcut, Apps & features entry; ProductVersion 9.0 |
+| `TibiaFoundry-9.0-Portable.zip` | 84.4 MB | `TibiaFoundry.exe` (single file, no .NET needed), `README-Portable.txt`, `THIRD-PARTY-NOTICES.txt` |
+| `TibiaFoundry-9.0-Source.zip` | 42.8 MB | solution, all projects and tests, docs, tools, website source; no bin/obj/dist/.git, logs, user files, `games`/`pokemon` |
+
+SHA-256 checksums: `Release/9.0/SHA256SUMS.txt` and the GitHub release description (they cannot be written into the source package that they describe). Archives pass `zipfile.testzip`; the executables report product version 9.0, file version 9.0.0.0.
 
 ## I. Publication
 
