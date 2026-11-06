@@ -3207,7 +3207,7 @@
     <sys:String x:Key="Tool.appearances.Dependency.imagemagick.Resolution">ImageMagick ist Teil von Tibia Foundry; installieren oder entpacken Sie das Programm erneut, wenn seine Dateien beschädigt sind.</sys:String>
     <sys:String x:Key="Tool.appearances.Dependency.tibia-client.Resolution">Installieren Sie den Tibia-Client, wählen Sie seinen Assets-Ordner unter Einstellungen → Tibia-Client oder öffnen Sie eine Datei mit „Datei ändern“.</sys:String>
     <sys:String x:Key="Tool.appearances.Dependency.tibiawiki.Resolution">Prüfen Sie Ihre Internetverbindung; ist die Website nicht erreichbar, wird eine zwischengespeicherte Kopie der Item-Liste des TibiaWiki verwendet.</sys:String>
-    <sys:String x:Key="Tool.appearances.Description">Offizielle Objekte, Outfits, Effekte und Geschosse durchsuchen; Outfits rendern und animierte GIFs mit Fansite-Voreinstellungen für Artikel und Galerien speichern</sys:String>
+    <sys:String x:Key="Tool.appearances.Description">Offizielle Objekte, Outfits, Effekte und Geschosse durchsuchen; Outfits rendern, animierte GIFs mit Fansite-Voreinstellungen speichern und TibiaWiki-Infoboxen für Gegenstände erzeugen</sys:String>
     <sys:String x:Key="Tool.appearances.Name">Erscheinungsbilder</sys:String>
     <sys:String x:Key="Tool.appearances.Op.export-gif">Als GIF speichern</sys:String>
     <sys:String x:Key="Tool.appearances.Op.export-json">JSON exportieren</sys:String>
@@ -5943,4 +5943,8 @@
     <sys:String x:Key="Infobox.HintObjectClass">Zum Beispiel Body Equipment, Weapons, Household Items, Other Items.</sys:String>
     <sys:String x:Key="Infobox.HintPrimaryType">Zum Beispiel Armors, Sword Weapons, Containers, Valuables.</sys:String>
     <sys:String x:Key="Infobox.HintRequired">Von der Vorlage verlangt.</sys:String>
+
+    <!-- 9.0: Appearances tool operations -->
+    <sys:String x:Key="Tool.appearances.Op.infobox-export">TibiaWiki-Infoboxen speichern</sys:String>
+    <sys:String x:Key="Tool.appearances.Op.wiki-item-ids">Artikelnamen von TibiaWiki laden</sys:String>
 </ResourceDictionary>

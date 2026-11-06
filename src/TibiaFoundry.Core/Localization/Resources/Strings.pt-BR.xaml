@@ -3207,7 +3207,7 @@
     <sys:String x:Key="Tool.appearances.Dependency.imagemagick.Resolution">O ImageMagick faz parte do Tibia Foundry; reinstale ou extraia o programa novamente se os arquivos dele estiverem danificados.</sys:String>
     <sys:String x:Key="Tool.appearances.Dependency.tibia-client.Resolution">Instale o cliente Tibia, escolha a pasta de assets dele em Configurações → Cliente Tibia ou abra um arquivo com "Alterar arquivo".</sys:String>
     <sys:String x:Key="Tool.appearances.Dependency.tibiawiki.Resolution">Verifique sua conexão com a internet; uma cópia em cache da lista de itens do TibiaWiki é usada quando o site não pode ser acessado.</sys:String>
-    <sys:String x:Key="Tool.appearances.Description">Navegue pelos objetos, outfits, efeitos e projéteis oficiais; renderize outfits e salve GIFs animados com predefinições para fansites, artigos e galerias</sys:String>
+    <sys:String x:Key="Tool.appearances.Description">Navegue pelos objetos, outfits, efeitos e projéteis oficiais; renderize outfits, salve GIFs animados com predefinições para fansites e gere infobox de itens para o TibiaWiki</sys:String>
     <sys:String x:Key="Tool.appearances.Name">Aparências</sys:String>
     <sys:String x:Key="Tool.appearances.Op.export-gif">Salvar como GIF</sys:String>
     <sys:String x:Key="Tool.appearances.Op.export-json">Exportar JSON</sys:String>
@@ -5943,4 +5943,8 @@
     <sys:String x:Key="Infobox.HintObjectClass">Por exemplo Body Equipment, Weapons, Household Items, Other Items.</sys:String>
     <sys:String x:Key="Infobox.HintPrimaryType">Por exemplo Armors, Sword Weapons, Containers, Valuables.</sys:String>
     <sys:String x:Key="Infobox.HintRequired">Exigido pelo modelo.</sys:String>
+
+    <!-- 9.0: Appearances tool operations -->
+    <sys:String x:Key="Tool.appearances.Op.infobox-export">Salvar infobox do TibiaWiki</sys:String>
+    <sys:String x:Key="Tool.appearances.Op.wiki-item-ids">Obter nomes de artigos do TibiaWiki</sys:String>
 </ResourceDictionary>

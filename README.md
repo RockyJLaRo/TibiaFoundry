@@ -10,7 +10,7 @@ It reads the official files of your installed Tibia client — it never changes 
 
 ### Who it is for
 
-* **Wiki editors**: images, animated GIFs, item IDs, creature and NPC data, NPC trade tables and house images for articles.
+* **Wiki editors**: ready-to-paste `{{Infobox Object}}` markup, images, animated GIFs, item IDs, creature and NPC data, NPC trade tables and house images for articles.
 * **Fansite administrators**: consistent galleries, item databases, map references and update articles ("what changed in this client version").
 * **Artists and graphic designers**: transparent sprites, pixel-exact enlargements, sprite sheets and the client's interface artwork as references.
 * **Guide writers and content creators**: map images, location references, sounds, and correctly credited media.
@@ -21,7 +21,7 @@ It reads the official files of your installed Tibia client — it never changes 
 |---|---|---|
 | **Start** | Home | What Tibia Foundry does, every tool by category, recent tools and exports, common workflows |
 | **Content Production** | Asset Library, Content Studio | A searchable library of every resource (collections, tags, duplicates, versions); reusable projects that render creature, outfit and item galleries and publish them for any website |
-| **Graphics & Sprites** | Appearances (with the Outfitter), Extract Sprites, Advanced Tools | Item, creature, outfit and effect GIFs with fansite export presets; transparent sprites; sprite sheets for galleries |
+| **Graphics & Sprites** | Appearances (with the Outfitter and the Wiki infobox), Extract Sprites, Advanced Tools | Item, creature, outfit and effect GIFs with fansite export presets; TibiaWiki item infoboxes; transparent sprites; sprite sheets for galleries |
 | **Game Data** | Static Data, Item Catalog, Compare Files | Creature, boss, achievement, house and quest data; item names and IDs; what changed between client versions |
 | **Maps & Houses** | Map Tools, House Images | Map images, areas and NPC positions for guides; a picture of every house for house articles |
 | **Sound & Media** | Sounds, File Metadata | The client's sounds and music; creator, copyright and keywords of published files |
@@ -29,6 +29,13 @@ It reads the official files of your installed Tibia client — it never changes 
 | **Client Library** | Clients, Client Installation Rebuilder | Keeping every official client version for historical reference and asset access |
 | **Utilities** | Scripts | Batch renaming, image conversion and resizing (nearest-neighbor), checksums, backups, audits |
 | **Application** | Settings, Compatibility, Diagnostics, About | Preferences, compatibility after a Tibia update, logs, credits |
+
+### New in 9.0: TibiaWiki infoboxes, safer saving, one version source
+
+* the **TibiaWiki Infobox Exporter** ([docs/26_TibiaWiki_Infobox_Exporter.md](docs/26_TibiaWiki_Infobox_Exporter.md)), Appearances → *Wiki infobox*: select an object and get `{{Infobox Object}}` markup filled from the client's own data – ID, names, slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, every object flag, light and map colour, stackable/marketable and the complete NPC trade (`npcvalue`, `npcprice`, `buyfrom`, `sellto`). Each value shows where it came from; values the client does not contain (implemented, weight, attack, armor…) are never guessed and are listed for you to fill in. Edit, copy, save as `.txt`, or save one file per selected object;
+* **safer saving**: settings, catalogs, manifests and other documents are flushed to the disk before they replace the old file; a backup "move" to another drive keeps the original until the copy is verified;
+* **one version source** (`src/Directory.Build.props`): the program, installer, packages and website all say **9.0**;
+* fixes: a numeric field could step more than once per click after a theme switch; a test assumed one particular client build.
 
 ### New in 8.8: the Asset Library and Content Studio
 
@@ -184,7 +191,11 @@ Created by <your name> using TibiaFoundry for TibiaWiki @ https://tibia.fandom.c
 20. [Client archiving and the Rebuilder](docs/21_Client_Archiving_and_Rebuilder.md) *(8.0)*: complete archives, storage modes, loading folders from anywhere, the Rebuilder, the check at every start, setup and the client at start, compatibility with 7.3.
 21. [File Metadata](docs/22_File_Metadata.md) *(8.6)*
 22. [The Fansite Toolkit](docs/23_Fansite_Toolkit.md) *(8.7)*: who it is for, the navigation groups, the Home dashboard, export presets and pixel-exact enlargement, every tool's fansite use, workflows.
-23. [Changelog](CHANGELOG.md)
+23. [Asset Library and Content Studio](docs/24_Asset_Library_and_Content_Studio.md) *(8.8)*
+24. [Localization](docs/25_Localization.md) *(8.8)*
+25. [TibiaWiki Infobox Exporter](docs/26_TibiaWiki_Infobox_Exporter.md) *(9.0)*
+26. [9.0 audit and release report](TibiaFoundry-9.0-Audit.md)
+27. [Changelog](CHANGELOG.md)
 
 ## Results at a glance (8.0.0)
 

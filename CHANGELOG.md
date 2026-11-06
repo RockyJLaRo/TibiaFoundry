@@ -1,5 +1,29 @@
 # Changelog
 
+## 9.0 – 2026-11-06 (TibiaWiki infoboxes, safer saving, one version source)
+
+Versions are two-part from now on (**9.0**, tag `v9.0`). Settings, item catalogs, client archives, Asset Libraries and exports of 8.8.2 and earlier are used as they are; the MSI upgrades 8.x in place and never touches user data. Audit, measurements and decisions: [TibiaFoundry-9.0-Audit.md](TibiaFoundry-9.0-Audit.md).
+
+### Added
+
+* **Appearances → Wiki infobox** ([docs/26_TibiaWiki_Infobox_Exporter.md](docs/26_TibiaWiki_Infobox_Exporter.md)): TibiaWiki's `{{Infobox Object}}` for the selected object, built from the client's data and the template's own parameter list (checked against `Template:Infobox Object` and real item pages). Filled from the client: `name` (TibiaWiki article name when the wiki's item list is cached, otherwise article casing), `actualname`, `itemid`, classification from the market category (where the wiki's classification is consistent), `slot`, `hands`, `weapontype`, `levelrequired`, `vocrequired`, `imbueslots`, `upgradeclass`, `immobile`, `walkable`, `pickupable`, `usable`, `rotatable`, `hangable`, `holdsliquid`, `writable`/`rewritable`/`writechars`, `wrappable`, `unshootable`, `lightradius`/`lightcolor`, `mapcolor`, `stackable`, `marketable` and the NPC trade (`npcvalue`, `npcprice`, `buyfrom`, `sellto`). Every value shows its source (client data, derived – review, TibiaWiki, needs your input, entered by you); values the client does not contain are never guessed and required ones are listed empty (optionally `?`). Values are editable, further template parameters can be added in the template's order, the markup updates as you type and is escaped for template arguments (`{{!}}`, stray braces). **Copy markup**, **Save as .txt…**, **Save all selected…** (one file per object, never replacing a file) and **Use TibiaWiki article names**.
+* Core: `WikiTemplate`, `WikiTemplateWriter`, `InfoboxObjectBuilder` (reusable for further templates); `WikiItemIdTable.TryReadCache`; tool manifest operations `infobox-export` and `wiki-item-ids`.
+* Tests: `InfoboxExportTests` (20, including every object of the installed client and values checked against TibiaWiki), `DataIntegrityTests` (4).
+* `docs/26_TibiaWiki_Infobox_Exporter.md`, `TibiaFoundry-9.0-Audit.md`, `TibiaFoundry-9.0-ReleaseNotes.md`.
+
+### Changed
+
+* **One version source**: `src/Directory.Build.props` `<Version>9.0</Version>`; file and assembly versions are derived (9.0.0.0, Windows needs four numbers), `app.manifest` follows (it said 5.0.0.0), the portable publish folder and the User-Agent (`TibiaFoundry/9.0`) use it. Tests check that the public version has two parts.
+* **Durable saving** (audit F-18): `AtomicFile.WriteAllText`/`WriteAllBytes` flush the data to the disk before the new file replaces the old one (settings, item catalogs, manifests, collections, workflow files, history). Thumbnails and extracted sounds, which are rebuilt on demand and written by the thousand, skip the flush.
+* Release packages are named `TibiaFoundry-9.0-Installer.msi`, `TibiaFoundry-9.0-Portable.zip` and `TibiaFoundry-9.0-Source.zip`; the source package also leaves out `TestResults`, benchmark artifacts and `*.user`/`*.suo`/`*.log` files.
+* The Appearances tool description mentions the infobox (all five languages).
+
+### Fixed
+
+* **A backup "move" to another drive** (removing a catalog source, clean-ups) deleted the original before the copy was verified (audit F-05); it now copies, verifies and only then deletes.
+* **Numeric fields** stepped two or more times per click after their template was applied again, for example after switching the theme (audit F-13).
+* `ItemCatalogTests.TheClientsOwnNamesAreVerifiedAndEveryObjectIsListed` compared the installed client with the figures of the pinned reference client when no reference folder was present, and failed after every client update.
+
 ## 8.8.2 – 2026-11-02 (Static Data: batch creature GIFs)
 
 ### Added
