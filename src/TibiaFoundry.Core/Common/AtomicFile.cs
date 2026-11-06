@@ -45,7 +45,22 @@ public static class AtomicFile
         }
     }
 
-    public static void WriteAllBytes(string path, byte[] bytes) => Write(path, temp => File.WriteAllBytes(temp, bytes));
+    /// <summary>Writes <paramref name="bytes"/> atomically; durably (flushed to the disk before the file is replaced) unless
+    /// <paramref name="durable"/> is false, for bulk or regenerable files (thumbnails, extracted sounds) where the flush only costs time.</summary>
+    public static void WriteAllBytes(string path, byte[] bytes, bool durable = true) =>
+        Write(path, temp => { if (durable) WriteDurable(temp, bytes); else File.WriteAllBytes(temp, bytes); });
+
+    /// <summary>
+    /// 9.0 (audit F-18): settings, catalogs, manifests and other documents are flushed to the disk before they
+    /// replace the old file, so a power failure right after a save leaves the old or the new file, never an empty
+    /// one (NTFS journals the rename, not the data). Bulk image exports keep <see cref="WriteVerified"/>.
+    /// </summary>
+    private static void WriteDurable(string temp, ReadOnlySpan<byte> bytes)
+    {
+        using var stream = new FileStream(temp, FileMode.CreateNew, FileAccess.Write, FileShare.None, 1, FileOptions.None);
+        stream.Write(bytes);
+        stream.Flush(flushToDisk: true);
+    }
 
     /// <summary>
     /// Writes <paramref name="bytes"/> atomically and reads them back before the file is moved into
@@ -86,7 +101,8 @@ public static class AtomicFile
         }
     }
 
-    public static void WriteAllText(string path, string text) => Write(path, temp => File.WriteAllText(temp, text, new UTF8Encoding(false)));
+    /// <summary>Writes UTF-8 text (no BOM) atomically and durably.</summary>
+    public static void WriteAllText(string path, string text) => Write(path, temp => WriteDurable(temp, new UTF8Encoding(false).GetBytes(text)));
 
     public static Task WriteAllTextAsync(string path, string text, CancellationToken ct = default) =>
         WriteAsync(path, temp => File.WriteAllTextAsync(temp, text, new UTF8Encoding(false), ct));

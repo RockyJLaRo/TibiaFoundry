@@ -97,7 +97,7 @@ public sealed class SoundDatabase
             // Cache by the content-hashed client file name, not by sound ID: after a client update the
             // same ID can refer to a different sound, and an ID-keyed cache would replay the old one.
             string temp = Path.Combine(Path.GetTempPath(), AppIdentity.Id, "sounds", safeName);
-            if (!File.Exists(temp)) AtomicFile.WriteAllBytes(temp, CipLzma.DecompressFile(compressed));
+            if (!File.Exists(temp)) AtomicFile.WriteAllBytes(temp, CipLzma.DecompressFile(compressed), durable: false);
             return temp;
         }
         return null;
@@ -233,7 +233,7 @@ public sealed class SoundDatabase
                 try
                 {
                     if (ext == ".wav" && packed != null)
-                        AtomicFile.WriteAllBytes(target, CipLzma.DecompressFile(packed));
+                        AtomicFile.WriteAllBytes(target, CipLzma.DecompressFile(packed), durable: false);
                     else if (source != null)
                         AtomicFile.Copy(source, target);
                     else

@@ -27,7 +27,7 @@ public static class ThumbnailCache
             var thumb = Fit(image, size);
             Directory.CreateDirectory(folder);
             // Pixels only: thumbnails are a private cache, never published, so no attribution is embedded.
-            AtomicFile.WriteAllBytes(path, ImageIO.EncodePngPixels(thumb));
+            AtomicFile.WriteAllBytes(path, ImageIO.EncodePngPixels(thumb), durable: false);
             return path;
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or ArgumentException or InvalidDataException or ImageMagick.MagickException or OutOfMemoryException)

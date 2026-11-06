@@ -332,20 +332,18 @@ public sealed class BackupSet : IDisposable
         {
             Original = info.FullName, Relative = relative, Stored = stored, Size = info.Length, Sha256 = hash, ModifiedUtc = info.LastWriteTimeUtc,
         };
-        if (move)
-        {
-            File.Move(info.FullName, target);
-        }
-        else
-        {
-            File.Copy(info.FullName, target);
-        }
+        // 9.0 (audit F-05): a "move" to another volume is a copy that is verified before the original is
+        // deleted; File.Move across volumes deleted the original first, so a bad copy lost the file.
+        bool rename = move && SameVolume(info.FullName, target);
+        if (rename) File.Move(info.FullName, target);
+        else File.Copy(info.FullName, target);
         if (FileHashing.HashFile(target, ct: ct) != hash)
         {
-            // A move within one volume cannot change content; a failed copy is removed again.
-            if (!move) File.Delete(target);
+            // A rename within one volume cannot change content; a failed copy is removed again.
+            if (!rename) File.Delete(target);
             throw new IOException($"The backup copy of {info.Name} did not match the original.");
         }
+        if (move && !rename) File.Delete(info.FullName);
         Manifest.Entries.Add(entry);
         if (Manifest.Entries.Count % 200 == 0) SaveManifest();
         return target;
@@ -362,6 +360,9 @@ public sealed class BackupSet : IDisposable
     }
 
     internal void SaveManifest() => BackupStore.WriteManifest(Folder, Manifest);
+
+    private static bool SameVolume(string a, string b) =>
+        string.Equals(Path.GetPathRoot(Path.GetFullPath(a)), Path.GetPathRoot(Path.GetFullPath(b)), StringComparison.OrdinalIgnoreCase);
 
     public void Complete()
     {

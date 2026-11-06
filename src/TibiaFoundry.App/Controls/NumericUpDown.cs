@@ -39,6 +39,10 @@ public sealed class NumericUpDown : Control
         return Math.Clamp((int)value, c.Minimum, Math.Max(c.Minimum, c.Maximum));
     }
 
+    private RepeatButton? _up, _down;
+    private void OnUpClick(object sender, RoutedEventArgs e) => Step(1);
+    private void OnDownClick(object sender, RoutedEventArgs e) => Step(-1);
+
     public override void OnApplyTemplate()
     {
         base.OnApplyTemplate();
@@ -54,8 +58,14 @@ public sealed class NumericUpDown : Control
             _text.PreviewKeyDown += OnTextKeyDown;
             System.Windows.Automation.AutomationProperties.SetName(_text, System.Windows.Automation.AutomationProperties.GetName(this));
         }
-        if (GetTemplateChild("PART_Up") is RepeatButton up) up.Click += (_, _) => Step(1);
-        if (GetTemplateChild("PART_Down") is RepeatButton down) down.Click += (_, _) => Step(-1);
+        // 9.0 (audit F-13): handlers are removed from the previous template's buttons, so a re-applied
+        // template (theme switch) does not step two or more times per click.
+        if (_up != null) _up.Click -= OnUpClick;
+        if (_down != null) _down.Click -= OnDownClick;
+        _up = GetTemplateChild("PART_Up") as RepeatButton;
+        _down = GetTemplateChild("PART_Down") as RepeatButton;
+        if (_up != null) { _up.Click -= OnUpClick; _up.Click += OnUpClick; }
+        if (_down != null) { _down.Click -= OnDownClick; _down.Click += OnDownClick; }
         SyncText();
     }
 
