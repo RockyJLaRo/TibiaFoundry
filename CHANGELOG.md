@@ -17,11 +17,15 @@ Versions are two-part from now on (**9.0**, tag `v9.0`). Settings, item catalogs
 * **Durable saving** (audit F-18): `AtomicFile.WriteAllText`/`WriteAllBytes` flush the data to the disk before the new file replaces the old one (settings, item catalogs, manifests, collections, workflow files, history). Thumbnails and extracted sounds, which are rebuilt on demand and written by the thousand, skip the flush.
 * Release packages are named `TibiaFoundry-9.0-Installer.msi`, `TibiaFoundry-9.0-Portable.zip` and `TibiaFoundry-9.0-Source.zip`; the source package also leaves out `TestResults`, benchmark artifacts and `*.user`/`*.suo`/`*.log` files.
 * The Appearances tool description mentions the infobox (all five languages).
+* System.Drawing.Common 10.0.12 → 10.0.14 (patch release, matches the .NET runtime). No vulnerable packages (`dotnet list package --vulnerable --include-transitive`).
+* UI snapshot (`--ui-snapshot`): a scripted check opens Appearances → Wiki infobox for object 3366 and renders it.
+* Website (`website/`, tibiafoundry.com): 9.0 in five languages, a TibiaWiki infobox section with real generated markup, release notes of 9.0, download buttons that point directly to the `v9.0` release files (they pointed to `releases/latest`, which had no release).
 
 ### Fixed
 
 * **A backup "move" to another drive** (removing a catalog source, clean-ups) deleted the original before the copy was verified (audit F-05); it now copies, verifies and only then deletes.
 * **Numeric fields** stepped two or more times per click after their template was applied again, for example after switching the theme (audit F-13).
+* **Appearances preview**: a damaged or locked sprite sheet reached the global error dialog (an `async void` without a handler, audit F-09); it now empties the preview with a message and a log entry.
 * `ItemCatalogTests.TheClientsOwnNamesAreVerifiedAndEveryObjectIsListed` compared the installed client with the figures of the pinned reference client when no reference folder was present, and failed after every client update.
 
 ## 8.8.2 – 2026-11-02 (Static Data: batch creature GIFs)
