@@ -120,7 +120,15 @@ Why this and not a bigger feature set: it removes the most repetitive part of cr
 
 ## G. Website
 
-<!--WEBSITE-->
+**Hosting.** GitHub Pages, legacy build from branch `main`, folder `/`, custom domain `tibiafoundry.com` (`CNAME`). No build step on the server: `website/build_site.py` builds `website/site/` locally and its contents are copied to the repository root. `games/`, `pokemon/`, `tools/`, `.github/` and `.gitignore` in that repository belong to other projects and are left untouched.
+
+**Changes (all five languages: English, Português (Brasil), Polski, Español, Deutsch):**
+
+* version 9.0 everywhere the page shows it (title bar of the screenshots, hero, download heading, structured data, footer), taken from `src/Directory.Build.props`;
+* new section **TibiaWiki infoboxes** (`#infobox`) with the real generated markup for Magic Plate Armor and what is and is not filled in;
+* hero line, wiki-editor audience text, *What's new in 9.0* (ten items, only implemented and verified changes); Asset Library and Content Studio are no longer labelled "new";
+* **download buttons point directly to the release files** `releases/download/v9.0/TibiaFoundry-9.0-Installer.msi`, `-Portable.zip`, `-Source.zip` (before: `releases/latest`, which had no release); structured-data `downloadUrl` to the `v9.0` release page;
+* preserved: theme toggle, language selector and remembered language, screenshots and lightbox, analytics tag and events, FAQ, navigation, responsive layout; `build_site.py --strict` passes (no missing translations, no external resources, one analytics tag).
 
 ## H. Release packages
 
@@ -136,7 +144,9 @@ SHA-256 checksums: `Release/9.0/SHA256SUMS.txt` and the GitHub release descripti
 
 ## I. Publication
 
-<!--PUBLICATION-->
+* **Source:** the 9.0 history (8.8.2 baseline commit, then every 9.0 change) is pushed to branch **`source`** of `RockyJLaRo/TibiaFoundry` – a new branch, so the website on `main` and its history are untouched and nothing is force-pushed. `main` only receives the website commit. The repository has no branch protection or pull-request workflow.
+* **Release:** tag **`v9.0`** on the `source` branch, release title **TibiaFoundry 9.0**, assets `TibiaFoundry-9.0-Installer.msi`, `TibiaFoundry-9.0-Portable.zip`, `TibiaFoundry-9.0-Source.zip`, description with features, fixes, compatibility, installation and SHA-256 checksums.
+* **Website:** deployed after the release assets were reachable, so the download buttons never point to missing files.
 
 ## J. Remaining issues and postponed work
 
