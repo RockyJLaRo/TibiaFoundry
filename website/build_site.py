@@ -1,5 +1,5 @@
 """
-Builds tibiafoundry.com (8.8.0) into website/site/ from website/src/, in every language of LANGUAGES:
+Builds tibiafoundry.com (version from src/Directory.Build.props) into website/site/ from website/src/, in every language of LANGUAGES:
 
     python -I website/build_site.py            (from the repository root)
     python -I website/build_site.py --strict   (fail when a translation is missing)

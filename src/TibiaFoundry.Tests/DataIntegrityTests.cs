@@ -14,7 +14,7 @@ public class DataIntegrityTests
         File.WriteAllBytes(file, [1, 2, 3, 4]);
         var store = new BackupStore(Path.Combine(dir, "_backups"));
         string stored;
-        using (var set = store.Begin("test", BackupKind.Automatic, dir)) stored = set.Add(file, move: true);
+        using (var set = store.Begin("test", BackupKind.Automatic, dir)) stored = set.Add(file, move: true, ct: TestContext.Current.CancellationToken);
         Assert.False(File.Exists(file));
         Assert.Equal(new byte[] { 1, 2, 3, 4 }, File.ReadAllBytes(stored));
     }
@@ -36,7 +36,7 @@ public class DataIntegrityTests
             File.WriteAllBytes(file, data);
             var store = new BackupStore(backupDir);
             string stored;
-            using (var set = store.Begin("test", BackupKind.Automatic)) stored = set.Add(file, move: true);
+            using (var set = store.Begin("test", BackupKind.Automatic)) stored = set.Add(file, move: true, ct: TestContext.Current.CancellationToken);
             Assert.False(File.Exists(file));
             Assert.Equal(data, File.ReadAllBytes(stored));
         }

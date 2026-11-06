@@ -262,6 +262,10 @@ details[open] summary::after { content: "−"; }
 details p { color: var(--text-2); padding-bottom: 16px; font-size: 15px; }
 
 /* ------------------------------------------------------------------ what's new, CTA band, footer */
+.wiki-code { margin: 0; padding: 16px 18px; max-height: 470px; overflow: auto; font-family: "Cascadia Mono", Consolas, ui-monospace, monospace; font-size: 12.5px; line-height: 1.55; color: var(--text); background: var(--surface); white-space: pre; tab-size: 2; }
+.wiki-code .k { color: var(--accent); }
+.wiki-code .m { color: var(--text-3); }
+.wiki-caption { margin-top: 10px; font-size: 13.5px; color: var(--text-3); }
 .new-list { columns: 2; column-gap: 32px; color: var(--text-2); font-size: 15px; padding-left: 18px; }
 .new-list li { break-inside: avoid; margin-bottom: 10px; }
 .new-list b { color: var(--text); }

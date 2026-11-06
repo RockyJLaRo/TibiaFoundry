@@ -384,6 +384,20 @@ public static class UiSnapshot
         await Settle();
         Check("dependency banner hides again", dependencyBanner is { IsVisible: false });
 
+        // 9.0: Appearances → Wiki infobox builds TibiaWiki's {{Infobox Object}} for the selected object.
+        if (appearances is AppearancesViewModel appearancesVm && await vm.Services.Data.EnsureAppearancesAsync() is not null)
+        {
+            await appearancesVm.RevealAsync(Core.Appearances.AppearanceKind.Object, 3366);
+            appearancesVm.SelectedDetailTab = AppearancesViewModel.InfoboxTab;
+            await Settle();
+            var infobox = appearancesVm.Infobox;
+            if (_folder != null) Render(window, Path.Combine(_folder, "Appearances_wiki_infobox.png"));
+            Check("wiki infobox tab builds the Infobox Object markup", infobox.HasObject && infobox.Markup.StartsWith("{{Infobox Object|", StringComparison.Ordinal)
+                  && infobox.Fields.Count > 10, $"{infobox.Fields.Count} parameters");
+            appearancesVm.SelectedDetailTab = 0;
+            await Settle();
+        }
+
         // Item Catalog: a catalog of the client's own data (in a temporary folder, removed afterwards) is listed,
         // searched and explained record by record.
         if (vm.Pages.OfType<ItemCatalogViewModel>().FirstOrDefault() is { } catalogVm && await vm.Services.Data.EnsureAppearancesAsync() is { } db)

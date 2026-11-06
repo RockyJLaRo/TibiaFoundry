@@ -94,14 +94,14 @@ public static class WikiTemplateWriter
         if (string.IsNullOrWhiteSpace(value)) return "";
         string v = value.Replace("\r\n", "\n").Replace('\r', '\n').Trim();
         if (!multiline) v = string.Join(" ", v.Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries));
-        return EscapePipes(v, allowTemplates: true);
+        return EscapePipes(v, allowTemplates: true, allowLinks: true);
     }
 
     /// <summary>
     /// Escapes "|" that would end the argument and "}}" that would end the template, but leaves
     /// <c>[[link|text]]</c> and complete nested templates (<c>{{Dropped By|A|B}}</c>) intact.
     /// </summary>
-    private static string EscapePipes(string v, bool allowTemplates)
+    private static string EscapePipes(string v, bool allowTemplates, bool allowLinks)
     {
         var sb = new StringBuilder(v.Length + 8);
         int links = 0, templates = 0;
@@ -109,7 +109,7 @@ public static class WikiTemplateWriter
         {
             char c = v[i];
             char next = i + 1 < v.Length ? v[i + 1] : '\0';
-            if (c == '[' && next == '[') { links++; sb.Append("[["); i++; continue; }
+            if (c == '[' && next == '[' && allowLinks) { links++; sb.Append("[["); i++; continue; }
             if (c == ']' && next == ']' && links > 0) { links--; sb.Append("]]"); i++; continue; }
             if (c == '{' && next == '{')
             {
@@ -128,7 +128,10 @@ public static class WikiTemplateWriter
             if (c == '|' && links == 0 && templates == 0) { sb.Append("{{!}}"); continue; }
             sb.Append(c);
         }
-        // An unclosed "{{" would swallow the rest of the infobox: write every brace pair literally instead.
-        return templates > 0 && allowTemplates ? EscapePipes(v, allowTemplates: false) : sb.ToString();
+        // An unclosed "{{" would swallow the rest of the infobox: write every brace pair literally instead. An unclosed
+        // "[[" would let its "|" end the argument: escape every pipe outside templates.
+        if (templates > 0 && allowTemplates) return EscapePipes(v, allowTemplates: false, allowLinks);
+        if (links > 0 && allowLinks) return EscapePipes(v, allowTemplates, allowLinks: false);
+        return sb.ToString();
     }
 }

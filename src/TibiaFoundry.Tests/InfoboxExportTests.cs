@@ -223,6 +223,7 @@ public class InfoboxExportTests
     [InlineData("broken }} end", "broken &#125;&#125; end")]
     [InlineData("open {{ never closed | x", "open &#123;&#123; never closed {{!}} x")]
     [InlineData("x = y", "x = y")]
+    [InlineData("[[unclosed | link", "[[unclosed {{!}} link")]
     [InlineData("Äëö 'Ñ' “quoted” ★", "Äëö 'Ñ' “quoted” ★")]
     [InlineData("  padded  ", "padded")]
     public void ValuesAreMadeSafeForATemplateArgument(string input, string expected) =>

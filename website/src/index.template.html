@@ -40,7 +40,7 @@
 <meta name="twitter:image" content="{{OG_IMAGE}}">
 <script type="application/ld+json">
 [{"@context":"https://schema.org","@type":"WebSite","name":"Tibia Foundry","alternateName":"TibiaFoundry","url":"https://tibiafoundry.com/","inLanguage":["en","pt-BR","pl","es","de"]},
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"{{j:meta.description}}","inLanguage":"{{LANG}}","softwareVersion":"{{VERSION}}","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"{{OG_IMAGE}}","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"{{URL}}","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/latest","author":{"@type":"Person","name":"RockyLaRo"}}]
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"{{j:meta.description}}","inLanguage":"{{LANG}}","softwareVersion":"{{VERSION}}","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"{{OG_IMAGE}}","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"{{URL}}","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v{{VERSION}}","author":{"@type":"Person","name":"RockyLaRo"}}]
 </script>
 <script>
   // Apply the stored theme before the page paints (no flash of the other theme).
@@ -146,6 +146,54 @@
   </div>
 </section>
 
+<!-- ===================================================================== TibiaWiki infobox (9.0) -->
+<section class="section alt" id="infobox">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">{{t:infobox.kicker}}</div>
+      <h2>{{t:infobox.title}}</h2>
+      <p>{{t:infobox.lead}}</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point1}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point2}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point3}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point4}}</span></li>
+      </ul>
+    </div>
+    <figure class="reveal">
+      <div class="window">
+        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry {{VERSION}} — {{t:infobox.window}}</span></div>
+        <pre class="wiki-code" tabindex="0" aria-label="{{a:infobox.label}}"><code><!--INFOBOX-START--><span class="m">&#123;&#123;Infobox Object|List=&#123;&#123;&#123;1|&#125;&#125;&#125;|GetValue=&#123;&#123;&#123;GetValue|&#125;&#125;&#125;</span>
+| <span class="k">name</span>          = Magic Plate Armor
+| <span class="k">actualname</span>    = magic plate armor
+| <span class="k">itemid</span>        = 3366
+| <span class="k">objectclass</span>   = Body Equipment
+| <span class="k">primarytype</span>   = Armors
+| <span class="k">slot</span>          = Body
+| <span class="k">implemented</span>   =
+| <span class="k">immobile</span>      = no
+| <span class="k">walkable</span>      = yes
+| <span class="k">pickupable</span>    = yes
+| <span class="k">vocrequired</span>   = knights and paladins
+| <span class="k">imbueslots</span>    = 2
+| <span class="k">upgradeclass</span>  = 2
+| <span class="k">weight</span>        =
+| <span class="k">stackable</span>     = no
+| <span class="k">marketable</span>    = yes
+| <span class="k">droppedby</span>     = &#123;&#123;Dropped By|&#125;&#125;
+| <span class="k">value</span>         =
+| <span class="k">npcvalue</span>      = 90000
+| <span class="k">npcprice</span>      = 0
+| <span class="k">buyfrom</span>       = --
+| <span class="k">sellto</span>        = H.L.: 720, Rashid
+| <span class="k">notes</span>         =
+<span class="m">&#125;&#125;</span><!--INFOBOX-END--></code></pre>
+      </div>
+      <figcaption class="wiki-caption">{{t:infobox.caption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
 <!-- ===================================================================== audience -->
 <section class="section" id="audience">
   <div class="wrap">
@@ -179,10 +227,10 @@
       <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>{{t:features.graphics.title}}</h3><p>{{t:features.graphics.text}}</p><p class="tools">{{t:features.graphics.tools}}</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>{{t:features.editing.title}}</h3><p>{{t:features.editing.text}}</p><p class="tools">{{t:features.editing.tools}}</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>{{t:features.maps.title}}</h3><p>{{t:features.maps.text}}</p><p class="tools">{{t:features.maps.tools}}</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>{{t:features.library.title}} <span class="badge">{{t:common.new}}</span></h3><p>{{t:features.library.text}}</p><p class="tools">{{t:features.library.tools}}</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>{{t:features.workflows.title}} <span class="badge">{{t:common.new}}</span></h3><p>{{t:features.workflows.text}}</p><p class="tools">{{t:features.workflows.tools}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>{{t:features.library.title}}</h3><p>{{t:features.library.text}}</p><p class="tools">{{t:features.library.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>{{t:features.workflows.title}}</h3><p>{{t:features.workflows.text}}</p><p class="tools">{{t:features.workflows.tools}}</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>{{t:features.batch.title}}</h3><p>{{t:features.batch.text}}</p><p class="tools">{{t:features.batch.tools}}</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>{{t:features.publishing.title}} <span class="badge">{{t:common.new}}</span></h3><p>{{t:features.publishing.text}}</p><p class="tools">{{t:features.publishing.tools}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>{{t:features.publishing.title}}</h3><p>{{t:features.publishing.text}}</p><p class="tools">{{t:features.publishing.tools}}</p></article>
     </div>
   </div>
 </section>
@@ -349,19 +397,19 @@
         <h3>{{t:download.installer.title}}</h3>
         <p>{{t:download.installer.tagline}}</p>
         <ul><li>{{t:download.installer.point1}}</li><li>{{t:download.installer.point2}}</li><li>{{t:download.installer.point3}}</li></ul>
-        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.installer.button}}</a>
+        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Installer.msi" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.installer.button}}</a>
       </article>
       <article class="card dl reveal">
         <h3>{{t:download.portable.title}}</h3>
         <p>{{t:download.portable.tagline}}</p>
         <ul><li>{{t:download.portable.point1}}</li><li>{{t:download.portable.point2}}</li><li>{{t:download.portable.point3}}</li></ul>
-        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.portable.button}}</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Portable.zip" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.portable.button}}</a>
       </article>
       <article class="card dl reveal">
         <h3>{{t:download.source.title}}</h3>
         <p>{{t:download.source.tagline}}</p>
         <ul><li>{{t:download.source.point1}}</li><li>{{t:download.source.point2}}</li><li>{{t:download.source.point3}}</li></ul>
-        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="releases" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> {{t:download.source.button}}</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Source.zip" data-track="download" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> {{t:download.source.button}}</a>
       </article>
     </div>
     <div class="req reveal">

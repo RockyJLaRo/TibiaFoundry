@@ -13,9 +13,9 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" MinWidth="260" />
-                <ColumnDefinition Width="10" />
-                <ColumnDefinition Width="2*" MinWidth="220" />
+                <ColumnDefinition Width="*" MinWidth="280" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" MinWidth="220" />
             </Grid.ColumnDefinitions>
 
             <!-- header: what this is, where values come from -->
@@ -33,11 +33,11 @@
 
             <!-- editable parameters -->
             <DockPanel Grid.Row="1">
-                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+                <TextBlock DockPanel.Dock="Top" Text="{Binding Summary}" FontWeight="SemiBold" TextWrapping="Wrap" Margin="0,0,0,6" />
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
                     <Button DockPanel.Dock="Right" Content="{loc:Tr Infobox.Add}" Command="{Binding AddParameterCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Infobox.AddTip}" />
-                    <ComboBox DockPanel.Dock="Right" ItemsSource="{Binding AddableParameters}" SelectedItem="{Binding ParameterToAdd}" Width="170"
+                    <ComboBox ItemsSource="{Binding AddableParameters}" SelectedItem="{Binding ParameterToAdd}" MaxWidth="240" HorizontalAlignment="Left" MinWidth="150"
                               AutomationProperties.Name="{loc:Tr Infobox.ParameterToAdd}" ToolTip="{loc:Tr Infobox.AddTip}" />
-                    <TextBlock Text="{Binding Summary}" FontWeight="SemiBold" VerticalAlignment="Center" />
                 </DockPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" AutomationProperties.Name="{loc:Tr Infobox.Parameters}">
                     <ItemsControl ItemsSource="{Binding Fields}" KeyboardNavigation.TabNavigation="Continue">
@@ -45,11 +45,10 @@
                             <DataTemplate DataType="{x:Type vm:InfoboxFieldRow}">
                                 <Grid Margin="0,0,4,6" ToolTip="{Binding Hint}">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="118" />
+                                        <ColumnDefinition Width="124" />
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="130" />
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,5,6,0">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,4,6,0">
                                         <TextBlock Text="{Binding Name}" FontFamily="{StaticResource App.MonoFont}" FontSize="12" />
                                         <TextBlock Text=" *" Foreground="{DynamicResource App.Danger}" FontWeight="Bold"
                                                    Visibility="{Binding Required, Converter={StaticResource BoolToVisibility}}" ToolTip="{loc:Tr Infobox.RequiredTip}" />
@@ -57,7 +56,7 @@
                                     <TextBox Grid.Column="1" Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, Delay=250}" FontSize="12"
                                              AcceptsReturn="{Binding Multiline}" TextWrapping="Wrap" MaxHeight="120" VerticalScrollBarVisibility="Auto"
                                              AutomationProperties.Name="{Binding Name}" />
-                                    <TextBlock Grid.Column="2" Text="{Binding SourceText}" Margin="8,5,0,0" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Top">
+                                    <TextBlock Text="{Binding SourceText}" Margin="0,22,6,0" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Top">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock" BasedOn="{StaticResource Muted}">
                                                 <Style.Triggers>

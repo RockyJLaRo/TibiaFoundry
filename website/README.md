@@ -1,4 +1,4 @@
-# tibiafoundry.com – website for 8.8.0
+# tibiafoundry.com – website (9.0)
 
 A redesigned, single-page product site for Tibia Foundry in **five languages** (English, Português (Brasil), Polski, Español, Deutsch), built for **GitHub Pages** (static hosting, no backend, no build step on the server). Translation guide: [TRANSLATING.md](TRANSLATING.md); completeness report: [i18n-report.md](i18n-report.md).
 

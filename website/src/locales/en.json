@@ -42,11 +42,8 @@
     "download": "Download",
     "faq": "FAQ"
   },
-  "common": {
-    "new": "New"
-  },
   "hero": {
-    "eyebrow": "Version {version} · free for Windows · new: Asset Library and Content Studio",
+    "eyebrow": "Version {version} · free for Windows · new: TibiaWiki infobox exporter",
     "title": "Every Tibia resource your fansite needs, <span class=\"accent\">from one desktop app</span>",
     "lead": "Tibia Foundry reads the official files of your installed Tibia client and turns them into sprites, animated outfit and creature GIFs, item images, maps, sounds and data – then keeps everything in a searchable library and publishes complete galleries for TibiaWiki or any community website.",
     "download": "Download Tibia Foundry {version}",
@@ -69,7 +66,7 @@
     },
     "wiki": {
       "title": "Wiki editors",
-      "text": "Correctly named images, animated GIFs, item IDs, creature and house data, and a file-link snippet for every image you upload."
+      "text": "Ready-to-paste <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> markup, correctly named images, animated GIFs, item IDs, creature and house data, and a file-link snippet for every image you upload."
     },
     "artists": {
       "title": "Artists and designers",
@@ -139,7 +136,7 @@
     }
   },
   "library": {
-    "kicker": "New in {version} · Asset Library",
+    "kicker": "Asset Library",
     "title": "Find any resource in seconds, never lose one again",
     "lead": "Your sprites, GIFs, renders, maps, sounds and artwork in one searchable place. Files stay where they are; the library only reads them.",
     "point1": "<b>Automatic</b>: every file any tool exports is added in the background, with the tool and client version it came from.",
@@ -152,7 +149,7 @@
     "altLight": "Close-up of the Asset Library in the light theme"
   },
   "studio": {
-    "kicker": "New in {version} · Content Studio",
+    "kicker": "Content Studio",
     "title": "A whole gallery in one click – and again after every update",
     "lead": "Choose what to make, adjust the steps, pick your site's profile and run it. Tibia Foundry renders, sizes, names, sorts, describes and packages everything in the background.",
     "point1": "<b>Project templates</b>: creature gallery, outfit gallery, item image collection, map references, update resources, wiki image preparation, custom export.",
@@ -314,16 +311,16 @@
   "new": {
     "kicker": "Release notes",
     "title": "What's new in {version}",
-    "item1": "<b>Asset Library</b>: a local, searchable library of images, animations and sounds with thumbnails, filters, categories, tags, custom fields, collections, versions and related assets.",
-    "item2": "<b>Automatic library</b>: every export of every tool is added in the background, optionally into a collection.",
-    "item3": "<b>Duplicate detection</b>: identical files, the same graphic at another size and look-alike images, reported – never deleted.",
-    "item4": "<b>Content Studio</b>: seven project templates, a workflow builder, workflow templates and shareable workflow files.",
-    "item5": "<b>Processing queue</b>: background jobs with progress, cancellation, retry, error details and history.",
-    "item6": "<b>Publishing profiles</b>: for any website, with name and folder templates, manifests, credits and snippets.",
-    "item7": "<b>Ready-to-publish output</b>: HTML galleries, contact and comparison sheets, JSON/CSV/Markdown manifests and ZIP packages.",
-    "item8": "<b>Update resources</b>: everything new or changed since an older client, rendered for articles.",
-    "item9": "<b>Cleaner interface</b>: a tidier Home page, a reorganized Clients page, and clearer item-import and first-run setup screens.",
-    "item10": "<b>Seamless upgrade</b>: your 8.7.0 settings, client archives and item catalogs carry over unchanged."
+    "item1": "<b>TibiaWiki infobox exporter</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> for any object, from the client's own data (Appearances → Wiki infobox).",
+    "item2": "<b>NPC trade in the infobox</b>: npcvalue, npcprice, buyfrom and sellto from the client's trade data.",
+    "item3": "<b>Every value labelled</b>: client data, derived (review), TibiaWiki, or needs your input – nothing is guessed.",
+    "item4": "<b>Batch infoboxes</b>: one .txt file for every selected object, never replacing an existing file.",
+    "item5": "<b>Article names from TibiaWiki</b>: with the wiki's item list cached, \"name\" is the article title.",
+    "item6": "<b>Safer saving</b>: settings, catalogs and other documents are flushed to the disk before they replace the old file.",
+    "item7": "<b>Backups across drives</b>: a file moved into a backup on another drive is deleted only after its copy is verified.",
+    "item8": "<b>Steadier controls</b>: number fields no longer step twice per click after a theme switch.",
+    "item9": "<b>One version everywhere</b>: the program, installer, packages and this site all say {version}.",
+    "item10": "<b>Seamless upgrade</b>: your 8.8 settings, library, client archives and item catalogs carry over unchanged."
   },
   "download": {
     "kicker": "Get started",
@@ -434,5 +431,17 @@
       "one": "{count} variable",
       "other": "{count} variables"
     }
+  },
+  "infobox": {
+    "kicker": "New in {version} · TibiaWiki infoboxes",
+    "title": "An item article's infobox, filled from the client",
+    "lead": "Select an object in Appearances and open <b>Wiki infobox</b>: Tibia Foundry writes TibiaWiki's <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> from the official client data, following the template's own parameters and the wiki's conventions. Review it, add what only you know, and paste it into the article.",
+    "point1": "<b>From the client</b>: ID, names, slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, object flags, light and map colour, stackable and marketable.",
+    "point2": "<b>NPC trade</b>: the best NPC buy and sell prices and every trader, with their own price where it differs.",
+    "point3": "<b>Nothing invented</b>: every value shows where it came from; implemented, weight, attack, armor and the other values the client does not hold are listed for you to fill in.",
+    "point4": "<b>Edit, copy, save</b>: change any value, add more parameters, copy the markup, save it as .txt, or save one file for every selected object.",
+    "window": "Appearances → Wiki infobox",
+    "caption": "Real output for Magic Plate Armor from the installed client – the empty lines are what the client cannot know.",
+    "label": "Generated infobox markup"
   }
 }

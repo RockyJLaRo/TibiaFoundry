@@ -1,3 +1,4 @@
+using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Metadata;
 using TibiaFoundry.Core.Compatibility;
 using System.Windows.Media.Imaging;
@@ -386,7 +387,21 @@ public sealed partial class AppearancesViewModel : PageViewModel
 
         var animation = AppearanceAnimation.ForPreview(a, item.Kind);
         var sprites = Services.Data.Sprites;
-        var frames = await Task.Run(() => animation.SpriteIds.Select(id => sprites?.GetSprite(id)).ToList());
+        List<Core.Imaging.RgbaImage?> frames;
+        try
+        {
+            frames = await Task.Run(() => animation.SpriteIds.Select(id => sprites?.GetSprite(id)).ToList());
+        }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or DataFileException)
+        {
+            // 9.0 (audit F-09): a damaged or locked sprite sheet only empties this preview; it reached the global
+            // error handler before (async void without a handler).
+            if (version != _detailsVersion) return;
+            AppLog.Warn($"Preview of {item.Kind} {a.Id}: {ex.Message}");
+            PreviewFrames = Array.Empty<BitmapSource>();
+            PreviewMessage = L.T("Appearances.SomeSpritesCouldNotBeFound");
+            return;
+        }
         if (version != _detailsVersion) return;
         if (frames.Count == 0 || frames.Any(f => f == null))
         {

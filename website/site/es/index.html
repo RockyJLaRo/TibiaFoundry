@@ -35,7 +35,7 @@
 <meta property="og:locale:alternate" content="pt_BR">
 <meta property="og:locale:alternate" content="pl_PL">
 <meta property="og:locale:alternate" content="de_DE">
-<meta property="og:title" content="Tibia Foundry 8.8.0 – todas tus herramientas de Tibia en un solo programa">
+<meta property="og:title" content="Tibia Foundry 9.0 – todas tus herramientas de Tibia en un solo programa">
 <meta property="og:description" content="Extrae, renderiza, organiza y publica los recursos oficiales de Tibia: una Asset Library con búsqueda y galerías automáticas para cualquier fansite o wiki. Gratis, local, para Windows.">
 <meta property="og:url" content="https://tibiafoundry.com/es/">
 <meta property="og:image" content="https://tibiafoundry.com/og-image-es.png">
@@ -43,12 +43,12 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Tibia Foundry: la Asset Library con miniaturas de criaturas">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tibia Foundry 8.8.0 – todas tus herramientas de Tibia en un solo programa">
+<meta name="twitter:title" content="Tibia Foundry 9.0 – todas tus herramientas de Tibia en un solo programa">
 <meta name="twitter:description" content="Extrae, renderiza, organiza y publica los recursos oficiales de Tibia. Gratis, local, para Windows.">
 <meta name="twitter:image" content="https://tibiafoundry.com/og-image-es.png">
 <script type="application/ld+json">
 [{"@context":"https://schema.org","@type":"WebSite","name":"Tibia Foundry","alternateName":"TibiaFoundry","url":"https://tibiafoundry.com/","inLanguage":["en","pt-BR","pl","es","de"]},
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"Kit gratuito para Windows para fansites, wikis y creadores de Tibia: extrae sprites, genera GIF de outfits y criaturas, organiza recursos y publica galerías listas.","inLanguage":"es","softwareVersion":"8.8.0","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"https://tibiafoundry.com/og-image-es.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://tibiafoundry.com/es/","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/latest","author":{"@type":"Person","name":"RockyLaRo"}}]
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"Kit gratuito para Windows para fansites, wikis y creadores de Tibia: extrae sprites, genera GIF de outfits y criaturas, organiza recursos y publica galerías listas.","inLanguage":"es","softwareVersion":"9.0","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"https://tibiafoundry.com/og-image-es.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://tibiafoundry.com/es/","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0","author":{"@type":"Person","name":"RockyLaRo"}}]
 </script>
 <script>
   // Apply the stored theme before the page paints (no flash of the other theme).
@@ -289,6 +289,10 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: "+"; color: var(--text-3); font-size: 20px; line-height: 1; }
 details[open] summary::after { content: "−"; }
 details p { color: var(--text-2); padding-bottom: 16px; font-size: 15px; }
+.wiki-code { margin: 0; padding: 16px 18px; max-height: 470px; overflow: auto; font-family: "Cascadia Mono", Consolas, ui-monospace, monospace; font-size: 12.5px; line-height: 1.55; color: var(--text); background: var(--surface); white-space: pre; tab-size: 2; }
+.wiki-code .k { color: var(--accent); }
+.wiki-code .m { color: var(--text-3); }
+.wiki-caption { margin-top: 10px; font-size: 13.5px; color: var(--text-3); }
 .new-list { columns: 2; column-gap: 32px; color: var(--text-2); font-size: 15px; padding-left: 18px; }
 .new-list li { break-inside: avoid; margin-bottom: 10px; }
 .new-list b { color: var(--text); }
@@ -385,7 +389,7 @@ html { scroll-behavior: auto; }
 
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Inicio de Tibia Foundry"><img class="pixel" src="../img/logo.png" alt="" width="32" height="32"> Tibia Foundry <small>8.8.0</small></a>
+    <a class="brand" href="#top" aria-label="Inicio de Tibia Foundry"><img class="pixel" src="../img/logo.png" alt="" width="32" height="32"> Tibia Foundry <small>9.0</small></a>
     <nav class="nav" id="nav" aria-label="Secciones">
       <a href="#features">Funciones</a>
       <a href="#library">Asset Library</a>
@@ -427,11 +431,11 @@ html { scroll-behavior: auto; }
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><span class="dot"></span> Versión 8.8.0 · gratis para Windows · nuevo: Asset Library y Content Studio</span>
+      <span class="eyebrow"><span class="dot"></span> Versión 9.0 · gratis para Windows · nuevo: exportador de infobox de TibiaWiki</span>
       <h1>Todos los recursos de Tibia que necesita tu fansite, <span class="accent">en un solo programa</span></h1>
       <p class="lead">Tibia Foundry lee los archivos oficiales del cliente de Tibia que tienes instalado y los convierte en sprites, GIF animados de outfits y criaturas, imágenes de objetos, mapas, sonidos y datos; luego guarda todo en una biblioteca con búsqueda y publica galerías completas para TibiaWiki o cualquier sitio de la comunidad.</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> Descargar Tibia Foundry 8.8.0</a>
+        <a class="btn btn-primary" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> Descargar Tibia Foundry 9.0</a>
         <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="hero"><svg aria-hidden="true"><use href="#i-github"/></svg> Ver en GitHub</a>
       </div>
       <div class="trust">
@@ -444,12 +448,60 @@ html { scroll-behavior: auto; }
     <div class="hero-shot">
       <button class="shot-btn themed" type="button" data-zoom="La Asset Library: recursos reales del cliente, miniaturas, colecciones y detalles">
         <div class="window">
-          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 8.8.0 — Asset Library</span></div>
+          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0 — Asset Library</span></div>
           <img class="shot-dark" src="../img/es/asset-library-dark.webp" alt="La página Asset Library en el tema oscuro: categorías, colecciones, una cuadrícula de miniaturas de objetos y criaturas, y los detalles del recurso seleccionado" width="1586" height="893" decoding="async">
           <img class="shot-light" src="../img/es/asset-library-light.webp" alt="La página Asset Library en el tema claro" width="1586" height="893" decoding="async">
         </div>
       </button>
     </div>
+  </div>
+</section>
+
+<!-- ===================================================================== TibiaWiki infobox (9.0) -->
+<section class="section alt" id="infobox">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">Nuevo en 9.0 · infobox de TibiaWiki</div>
+      <h2>El infobox de un artículo de ítem, completado desde el cliente</h2>
+      <p>Selecciona un objeto en Appearances y abre <b>Wiki infobox</b>: Tibia Foundry escribe el <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> de TibiaWiki a partir de los datos oficiales del cliente, con los parámetros de la propia plantilla y las convenciones de la wiki. Revísalo, añade lo que solo tú sabes y pégalo en el artículo.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Desde el cliente</b>: ID, nombres, ranura, nivel y vocaciones, manos y tipo de arma, ranuras de imbuement, clase de mejora, propiedades del objeto, luz y color en el mapa, apilable y comerciable.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Comercio con NPC</b>: los mejores precios de compra y venta y cada comerciante, con su propio precio cuando difiere.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Nada inventado</b>: cada valor muestra de dónde viene; implemented, weight, attack, armor y los demás valores que el cliente no contiene quedan listados para que los completes.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Edita, copia, guarda</b>: cambia cualquier valor, agrega parámetros, copia el marcado, guárdalo como .txt o guarda un archivo por cada objeto seleccionado.</span></li>
+      </ul>
+    </div>
+    <figure class="reveal">
+      <div class="window">
+        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0 — Appearances → Infobox wiki</span></div>
+        <pre class="wiki-code" tabindex="0" aria-label="Marcado del infobox generado"><code><!--INFOBOX-START--><span class="m">&#123;&#123;Infobox Object|List=&#123;&#123;&#123;1|&#125;&#125;&#125;|GetValue=&#123;&#123;&#123;GetValue|&#125;&#125;&#125;</span>
+| <span class="k">name</span>          = Magic Plate Armor
+| <span class="k">actualname</span>    = magic plate armor
+| <span class="k">itemid</span>        = 3366
+| <span class="k">objectclass</span>   = Body Equipment
+| <span class="k">primarytype</span>   = Armors
+| <span class="k">slot</span>          = Body
+| <span class="k">implemented</span>   =
+| <span class="k">immobile</span>      = no
+| <span class="k">walkable</span>      = yes
+| <span class="k">pickupable</span>    = yes
+| <span class="k">vocrequired</span>   = knights and paladins
+| <span class="k">imbueslots</span>    = 2
+| <span class="k">upgradeclass</span>  = 2
+| <span class="k">weight</span>        =
+| <span class="k">stackable</span>     = no
+| <span class="k">marketable</span>    = yes
+| <span class="k">droppedby</span>     = &#123;&#123;Dropped By|&#125;&#125;
+| <span class="k">value</span>         =
+| <span class="k">npcvalue</span>      = 90000
+| <span class="k">npcprice</span>      = 0
+| <span class="k">buyfrom</span>       = --
+| <span class="k">sellto</span>        = H.L.: 720, Rashid
+| <span class="k">notes</span>         =
+<span class="m">&#125;&#125;</span><!--INFOBOX-END--></code></pre>
+      </div>
+      <figcaption class="wiki-caption">Resultado real para Magic Plate Armor con el cliente instalado: las líneas vacías son lo que el cliente no puede saber.</figcaption>
+    </figure>
   </div>
 </section>
 
@@ -463,7 +515,7 @@ html { scroll-behavior: auto; }
     </div>
     <div class="grid grid-3">
       <article class="card reveal"><div class="ico"><svg><use href="#i-globe"/></svg></div><h3>Administradores de fansites</h3><p>Galerías uniformes de criaturas, outfits y objetos, páginas de actualización y paquetes de recursos descargables, generados en el formato que usa tu sitio.</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-book"/></svg></div><h3>Editores de wikis</h3><p>Imágenes con el nombre correcto, GIF animados, ID de objetos, datos de criaturas y casas, y un fragmento con el enlace al archivo para cada imagen que subas.</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-book"/></svg></div><h3>Editores de wikis</h3><p>Marcado <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> listo para pegar, imágenes con el nombre correcto, GIF animados, ID de ítems, datos de criaturas y casas, y un enlace de archivo para cada imagen que subas.</p></article>
       <article class="card reveal"><div class="ico gold"><svg><use href="#i-palette"/></svg></div><h3>Artistas y diseñadores</h3><p>Sprites transparentes, hojas de sprites, arte de la interfaz y ampliaciones exactas al píxel (vecino más cercano: sin desenfoque, sin colores nuevos).</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-compass"/></svg></div><h3>Creadores de mapas</h3><p>Imágenes de mapas, áreas y posiciones de NPC a partir de los datos de mapa del cliente, mapas en alta resolución para guías y una imagen de cada casa.</p></article>
       <article class="card reveal"><div class="ico gold"><svg><use href="#i-video"/></svg></div><h3>Creadores de contenido</h3><p>Sonidos y música del cliente, hojas comparativas para videos y artículos, y los metadatos y créditos de todo lo que publicas.</p></article>
@@ -486,10 +538,10 @@ html { scroll-behavior: auto; }
       <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>Creación de gráficos</h3><p>GIF animados con ajustes predefinidos para fansites, outfits con colores, addons y monturas, animaciones de criaturas y ampliación exacta al píxel de 1× a 8×.</p><p class="tools">Appearances (Outfitter) · Advanced Tools</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>Edición de recursos</h3><p>Inspecciona y edita una copia de los recursos oficiales, extrae y reconstruye archivos de recursos de Qt, escribe copias clásicas de Tibia.dat/.spr y edita los metadatos de los archivos.</p><p class="tools">Assets Editor · RCC Editor · Client Converter · File Metadata</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>Mapas y casas</h3><p>Imágenes de mapas, áreas y posiciones de NPC, mapas en alta resolución para guías e imágenes de casas para cada artículo de casa.</p><p class="tools">Map Tools · House Images</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>Gestión de recursos <span class="badge">Nuevo</span></h3><p>Una biblioteca con búsqueda de todas las imágenes, animaciones y sonidos (colecciones, etiquetas, versiones, detección de duplicados) en la que cada exportación se agrega automáticamente.</p><p class="tools">Asset Library</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>Flujos de contenido <span class="badge">Nuevo</span></h3><p>Proyectos reutilizables que generan galerías de criaturas, outfits y objetos, recursos de actualización e imágenes para la wiki: se configuran una vez y se vuelven a ejecutar con cada actualización.</p><p class="tools">Content Studio</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>Gestión de recursos</h3><p>Una biblioteca con búsqueda de todas las imágenes, animaciones y sonidos (colecciones, etiquetas, versiones, detección de duplicados) en la que cada exportación se agrega automáticamente.</p><p class="tools">Asset Library</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>Flujos de contenido</h3><p>Proyectos reutilizables que generan galerías de criaturas, outfits y objetos, recursos de actualización e imágenes para la wiki: se configuran una vez y se vuelven a ejecutar con cada actualización.</p><p class="tools">Content Studio</p></article>
       <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>Generación por lotes</h3><p>Cientos de imágenes de una sola vez, en una cola en segundo plano con progreso, cancelación y reintento; scripts para renombrar, redimensionar y convertir por lotes.</p><p class="tools">Cola de Content Studio · Scripts</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>Publicación para cualquier sitio <span class="badge">Nuevo</span></h3><p>Perfiles para TibiaWiki, tu fansite, galerías, artículos o un archivo personal: tamaños, formatos, nombres, carpetas, manifiestos, créditos y fragmentos de código.</p><p class="tools">Perfiles de publicación · Galerías HTML</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>Publicación para cualquier sitio</h3><p>Perfiles para TibiaWiki, tu fansite, galerías, artículos o un archivo personal: tamaños, formatos, nombres, carpetas, manifiestos, créditos y fragmentos de código.</p><p class="tools">Perfiles de publicación · Galerías HTML</p></article>
     </div>
   </div>
 </section>
@@ -498,7 +550,7 @@ html { scroll-behavior: auto; }
 <section class="section" id="library">
   <div class="wrap spotlight">
     <div class="spot-text reveal">
-      <div class="kicker">Nuevo en 8.8.0 · Asset Library</div>
+      <div class="kicker">Biblioteca de recursos</div>
       <h2>Encuentra cualquier recurso en segundos y no vuelvas a perder ninguno</h2>
       <p>Tus sprites, GIF, renders, mapas, sonidos y arte en un solo lugar con búsqueda. Los archivos se quedan donde están; la biblioteca solo los lee.</p>
       <ul class="checks">
@@ -522,7 +574,7 @@ html { scroll-behavior: auto; }
   <div class="wrap">
     <div class="spotlight reverse">
       <div class="spot-text reveal">
-        <div class="kicker">Nuevo en 8.8.0 · Content Studio</div>
+        <div class="kicker">Content Studio</div>
         <h2>Una galería completa con un clic, y otra vez después de cada actualización</h2>
         <p>Elige qué crear, ajusta los pasos, selecciona el perfil de tu sitio y ejecútalo. Tibia Foundry renderiza, dimensiona, nombra, ordena, describe y empaqueta todo en segundo plano.</p>
         <ul class="checks">
@@ -599,7 +651,7 @@ html { scroll-behavior: auto; }
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Un vistazo por dentro</div>
-      <h2>Capturas reales de Tibia Foundry 8.8.0</h2>
+      <h2>Capturas reales de Tibia Foundry 9.0</h2>
       <p>Tomadas del programa con el cliente oficial instalado y mostradas en el tema con el que ves esta página. Haz clic en cualquier captura para ampliarla.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Capturas de pantalla">
@@ -717,19 +769,19 @@ html { scroll-behavior: auto; }
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Notas de la versión</div>
-      <h2>Novedades de la 8.8.0</h2>
+      <h2>Novedades de la 9.0</h2>
     </div>
     <ul class="new-list reveal">
-      <li><b>Asset Library</b>: una biblioteca local con búsqueda de imágenes, animaciones y sonidos, con miniaturas, filtros, categorías, etiquetas, campos personalizados, colecciones, versiones y recursos relacionados.</li>
-      <li><b>Biblioteca automática</b>: cada exportación de cada herramienta se agrega en segundo plano, opcionalmente a una colección.</li>
-      <li><b>Detección de duplicados</b>: archivos idénticos, el mismo gráfico en otro tamaño e imágenes parecidas, señalados y nunca borrados.</li>
-      <li><b>Content Studio</b>: siete plantillas de proyecto, un creador de flujos, plantillas de flujo y archivos de flujo para compartir.</li>
-      <li><b>Cola de procesamiento</b>: tareas en segundo plano con progreso, cancelación, reintento, detalles de errores e historial.</li>
-      <li><b>Perfiles de publicación</b>: para cualquier sitio, con plantillas de nombres y carpetas, manifiestos, créditos y fragmentos de código.</li>
-      <li><b>Resultados listos para publicar</b>: galerías HTML, hojas de contacto y comparativas, manifiestos JSON/CSV/Markdown y paquetes ZIP.</li>
-      <li><b>Recursos de actualización</b>: todo lo nuevo o modificado desde un cliente anterior, renderizado para artículos.</li>
-      <li><b>Interfaz más limpia</b>: una página Home más ordenada, una página Clients reorganizada y pantallas más claras para importar objetos y para la configuración inicial.</li>
-      <li><b>Actualización sin complicaciones</b>: tus ajustes, archivos de clientes y catálogos de objetos de la 8.7.0 se mantienen sin cambios.</li>
+      <li><b>Exportador de infobox de TibiaWiki</b>: <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> para cualquier objeto, con los datos del propio cliente (Appearances → Infobox wiki).</li>
+      <li><b>Comercio con NPC en el infobox</b>: npcvalue, npcprice, buyfrom y sellto desde los datos de comercio del cliente.</li>
+      <li><b>Cada valor etiquetado</b>: datos del cliente, derivado (revisar), TibiaWiki o requiere tu dato – nada se adivina.</li>
+      <li><b>Infobox por lotes</b>: un archivo .txt por cada objeto seleccionado, sin reemplazar nunca un archivo existente.</li>
+      <li><b>Nombres de artículos de TibiaWiki</b>: con la lista de ítems de la wiki en caché, "name" es el título del artículo.</li>
+      <li><b>Guardado más seguro</b>: la configuración, los catálogos y otros documentos se escriben en el disco antes de reemplazar el archivo anterior.</li>
+      <li><b>Copias de seguridad entre unidades</b>: un archivo movido a una copia en otra unidad solo se elimina después de verificar la copia.</li>
+      <li><b>Controles más estables</b>: los campos numéricos ya no avanzan dos veces por clic después de cambiar el tema.</li>
+      <li><b>Una versión en todas partes</b>: el programa, el instalador, los paquetes y este sitio dicen 9.0.</li>
+      <li><b>Actualización sin problemas</b>: tu configuración, biblioteca, archivos de clientes y catálogos de ítems de la 8.8 se mantienen sin cambios.</li>
     </ul>
   </div>
 </section>
@@ -739,7 +791,7 @@ html { scroll-behavior: auto; }
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Empieza ya</div>
-      <h2>Descarga Tibia Foundry 8.8.0</h2>
+      <h2>Descarga Tibia Foundry 9.0</h2>
       <p>Gratis para Windows 10 y 11 (64 bits). Elige la edición que más te convenga: el instalador y la edición portátil contienen el mismo programa.</p>
     </div>
     <div class="download-grid">
@@ -747,19 +799,19 @@ html { scroll-behavior: auto; }
         <h3>Instalador</h3>
         <p>Recomendado para la mayoría.</p>
         <ul><li>Acceso directo en el menú Inicio y desinstalación normal</li><li>Las actualizaciones conservan tus ajustes, tu biblioteca y tus archivos</li><li>Tus datos se quedan en tu perfil de usuario</li></ul>
-        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> Instalador (.msi)</a>
+        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0/TibiaFoundry-9.0-Installer.msi" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> Instalador (.msi)</a>
       </article>
       <article class="card dl reveal">
         <h3>Portátil</h3>
         <p>Un archivo, sin instalación.</p>
         <ul><li>Funciona desde cualquier carpeta o una memoria USB</li><li>Guarda sus datos junto a sí mismo</li><li>No necesita instalar .NET</li></ul>
-        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> Portátil (.zip)</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0/TibiaFoundry-9.0-Portable.zip" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> Portátil (.zip)</a>
       </article>
       <article class="card dl reveal">
         <h3>Código fuente</h3>
         <p>Para desarrolladores y colaboradores.</p>
         <ul><li>Solución .NET 10 / WPF con pruebas</li><li>Scripts de compilación y empaquetado</li><li>Documentación de cada herramienta</li></ul>
-        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/latest" data-track="releases" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> Código fuente (.zip)</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0/TibiaFoundry-9.0-Source.zip" data-track="download" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> Código fuente (.zip)</a>
       </article>
     </div>
     <div class="req reveal">
@@ -801,7 +853,7 @@ html { scroll-behavior: auto; }
       <h2>Haz tu próximo artículo de actualización en minutos</h2>
       <p>Descarga Tibia Foundry, indícale tu cliente y ejecuta tu primer proyecto de galería.</p>
       <div class="cta-row">
-        <a class="btn" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> Descargar 8.8.0</a>
+        <a class="btn" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> Descargar 9.0</a>
         <a class="btn ghost" href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="band"><svg aria-hidden="true"><use href="#i-github"/></svg> Informar un problema o una idea</a>
       </div>
     </div>
@@ -846,7 +898,7 @@ html { scroll-behavior: auto; }
     <div class="legal">
       Tibia Foundry es un proyecto comunitario independiente. Tibia es una marca registrada de CipSoft GmbH; Tibia, sus gráficos y sus datos son © CipSoft GmbH. Tibia Foundry no está afiliado a CipSoft GmbH ni a Fandom, ni cuenta con su respaldo.
       Componentes de código abierto (licencias en THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw y SQLite.
-      Versión 8.8.0 · 2 de noviembre de 2026
+      Versión 9.0 · 6 de noviembre de 2026
     </div>
   </div>
 </footer>
@@ -859,7 +911,7 @@ html { scroll-behavior: auto; }
 
 <script>
 window.TF_I18N = {"lang":"es","default":"en","strings":{"suggestClose":"Mantener el idioma actual","suggestGo":"Ver en español","suggestText":"Tibia Foundry también está disponible en español.","themeToDark":"Cambiar al modo oscuro","themeToLight":"Cambiar al modo claro"},"fallback":{"suggestClose":"Keep the current language","suggestGo":"Show in English","suggestText":"Tibia Foundry is also available in English.","themeToDark":"Switch to dark mode","themeToLight":"Switch to light mode"},"languages":[{"code":"en","path":"../","name":"English","offer":{"text":"Tibia Foundry is also available in English.","go":"Show in English","close":"Keep the current language"}},{"code":"pt-BR","path":"../pt-br/","name":"Português (Brasil)","offer":{"text":"O Tibia Foundry também está disponível em português.","go":"Ver em português","close":"Manter o idioma atual"}},{"code":"pl","path":"../pl/","name":"Polski","offer":{"text":"Tibia Foundry jest dostępny także po polsku.","go":"Pokaż po polsku","close":"Zostaw obecny język"}},{"code":"es","path":"../es/","name":"Español","offer":{"text":"Tibia Foundry también está disponible en español.","go":"Ver en español","close":"Mantener el idioma actual"}},{"code":"de","path":"../de/","name":"Deutsch","offer":{"text":"Tibia Foundry gibt es auch auf Deutsch.","go":"Auf Deutsch anzeigen","close":"Aktuelle Sprache behalten"}}]};
-// Tibia Foundry website (8.8.0): language selector, theme toggle, menu, screenshot tabs, lightbox, reveal-on-scroll and
+// Tibia Foundry website (8.8.0; 9.0 adds the infobox section): language selector, theme toggle, menu, screenshot tabs, lightbox, reveal-on-scroll and
 // the analytics click events. No external scripts besides the Google tag; nothing here sends personal data.
 // Texts come from window.TF_I18N, written into each page by build_site.py from src/locales/<lang>.json.
 (function () {
@@ -1100,7 +1152,7 @@ window.TF_I18N = {"lang":"es","default":"en","strings":{"suggestClose":"Mantener
   restore();
 
   // ---------------------------------------------------------------- analytics: one event per download, releases, repository or issues link
-  var APP_VERSION = '8.8.0';
+  var APP_VERSION = '9.0';
   var EVENTS = { download: 'download_click', releases: 'releases_click', repository: 'repository_click', issues: 'issues_click' };
   document.addEventListener('click', function (e) {
     var link = e.target.closest && e.target.closest('a[data-track]');
