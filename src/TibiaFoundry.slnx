@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TibiaFoundry.App/TibiaFoundry.App.csproj" />
+  <Project Path="TibiaFoundry.Core/TibiaFoundry.Core.csproj" />
+  <Project Path="TibiaFoundry.Tests/TibiaFoundry.Tests.csproj" />
+</Solution>

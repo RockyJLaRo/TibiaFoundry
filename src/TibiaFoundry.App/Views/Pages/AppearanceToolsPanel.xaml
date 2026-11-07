@@ -1,0 +1,52 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AppearanceToolsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="clr-namespace:TibiaFoundry.App.Views.Pages"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <WrapPanel>
+            <GroupBox Header="{loc:Tr AppearanceTools.NPCTradeListsLuaForTibiaWiki}" Width="470" Margin="0,0,12,12">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,10"
+                               Text="{loc:Tr AppearanceTools.BuildsTheListOfItemsOne}" TextWrapping="Wrap" />
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBlock Text="NPC" Style="{StaticResource FieldLabel}" Width="60" />
+                        <ComboBox ItemsSource="{Binding NpcNames}" Text="{Binding NpcName, UpdateSourceTrigger=PropertyChanged}" IsEditable="True" IsTextSearchEnabled="True"
+                                  MaxDropDownHeight="360" AutomationProperties.Name="{loc:Tr AppearanceTools.NPCName}" />
+                    </DockPanel>
+                    <StackPanel Orientation="Horizontal" Margin="60,0,0,10">
+                        <TextBlock Text="{loc:Tr Common.SortBy}" Style="{StaticResource FieldLabel}" />
+                        <RadioButton Content="{loc:Tr AppearanceTools.ObjectName}" GroupName="NpcSort" Margin="0,0,14,0" IsChecked="{Binding NpcSort, Converter={StaticResource EnumEquals}, ConverterParameter=ByName}" />
+                        <RadioButton Content="{loc:Tr AppearanceTools.ObjectID}" GroupName="NpcSort" IsChecked="{Binding NpcSort, Converter={StaticResource EnumEquals}, ConverterParameter=ById}" />
+                    </StackPanel>
+                    <Button Content="{loc:Tr AppearanceTools.CopyTradeListLua}" Style="{StaticResource PrimaryButton}" Command="{Binding CreateNpcTradeListCommand}" HorizontalAlignment="Right"
+                            ToolTip="{loc:Tr AppearanceTools.CopyTheTradeListOfThe}" />
+                    <Separator Margin="0,14" />
+                    <TextBlock Text="{loc:Tr AppearanceTools.AllNPCs}" Style="{StaticResource SectionTitle}" Margin="0,0,0,4" />
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,8"
+                               Text="{loc:Tr AppearanceTools.SavesOneLuaModuleWithThe}" TextWrapping="Wrap" />
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBlock Text="{loc:Tr AppearanceTools.ItemIDsPage}" Style="{StaticResource FieldLabel}" />
+                        <TextBox Text="{Binding WikiItemsUrl, UpdateSourceTrigger=PropertyChanged}" FontSize="12" AutomationProperties.Name="{loc:Tr AppearanceTools.ItemIDsPageURL}"
+                                 ToolTip="{loc:Tr AppearanceTools.AddressOfTheTibiaWikiPageThat}" />
+                    </DockPanel>
+                    <Button Content="{loc:Tr AppearanceTools.SaveLuaForAllNPCs}" Command="{Binding GenerateAllNpcTradesCommand}" HorizontalAlignment="Right" ToolTip="{loc:Tr AppearanceTools.ChooseWhereToSaveTheLua}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{loc:Tr AppearanceTools.CurrenciesUsedByNPCs}" Width="300">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,8" Text="{loc:Tr AppearanceTools.CurrenciesThatAppearInTheNPC}" TextWrapping="Wrap" />
+                    <ListBox ItemsSource="{Binding Currencies}" MaxHeight="300" AutomationProperties.Name="{loc:Tr AppearanceTools.Currencies}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="{loc:Tr AppearanceTools.CompareClientFiles}" Width="300" Margin="12,0,0,12" VerticalAlignment="Top">
+                <StackPanel>
+                    <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,10" TextWrapping="Wrap"
+                               Text="{loc:Tr AppearanceTools.FindWhatChangedBetweenTwoVersions}" />
+                    <Button Content="{loc:Tr AppearanceTools.OpenCompareFiles}" HorizontalAlignment="Left"
+                            Command="{Binding DataContext.OpenCompareCommand, RelativeSource={RelativeSource AncestorType=pages:AppearancesPage}}" />
+                </StackPanel>
+            </GroupBox>
+        </WrapPanel>
+    </ScrollViewer>
+</UserControl>

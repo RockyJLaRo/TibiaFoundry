@@ -1,0 +1,53 @@
+<Window x:Class="TibiaFoundry.App.Views.Dialogs.ChoiceDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization"
+        Style="{StaticResource AppWindow}"
+        Width="640" MinWidth="420" SizeToContent="Height" MinHeight="220" MaxHeight="760"
+        ResizeMode="CanResizeWithGrip" ShowInTaskbar="False" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Optional summary card (8.8): labeled facts and badges, kept apart from the question below. -->
+        <Border x:Name="FactsCard" Margin="22,18,22,4" Padding="16,12" CornerRadius="{StaticResource App.CardRadius}" BorderThickness="1"
+                Background="{DynamicResource App.SurfaceAlt}" BorderBrush="{DynamicResource App.Border}" Visibility="Collapsed">
+            <StackPanel>
+                <TextBlock x:Name="FactsHeading" Style="{StaticResource SectionTitle}" Margin="0,0,0,8" AutomationProperties.HeadingLevel="Level2" />
+                <Grid x:Name="FactsGrid" AutomationProperties.Name="{loc:Tr Common.Summary}" />
+                <TextBlock x:Name="TagsLabel" Foreground="{DynamicResource App.TextSecondary}" Margin="0,10,0,6" Visibility="Collapsed" />
+                <WrapPanel x:Name="Tags" Visibility="Collapsed" />
+            </StackPanel>
+        </Border>
+
+        <TextBox x:Name="MessageText" Grid.Row="1" Style="{StaticResource ValueText}" FontSize="13.5" Margin="22,18,22,10" AutomationProperties.Name="{loc:Tr Common.Message}" />
+        <ListBox x:Name="Items" Grid.Row="2" Margin="22,0,22,10" MinHeight="90" MaxHeight="420" AutomationProperties.Name="{loc:Tr Dialog.Choices}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" MouseDoubleClick="OnDoubleClick" SelectionChanged="OnSelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="2,4" Opacity="{Binding Opacity}">
+                        <TextBlock Text="{Binding Group}" Style="{StaticResource Muted}" FontSize="11.5" FontWeight="SemiBold" Margin="0,4,0,2"
+                                   Visibility="{Binding ShowGroup, Converter={StaticResource BoolToVisibility}}" />
+                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                        <TextBlock Text="{Binding Detail}" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Visibility="{Binding Detail, Converter={StaticResource NullToVisibility}}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <CheckBox x:Name="Option" Grid.Row="3" Margin="22,0,22,12" Visibility="Collapsed" />
+        <Border Grid.Row="4" Background="{DynamicResource App.HeaderBackground}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,1,0,0" Padding="16,12">
+            <DockPanel>
+                <StackPanel x:Name="ExtraButtons" Orientation="Horizontal" DockPanel.Dock="Left" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CancelButton" MinWidth="90" Margin="0,0,8,0" IsCancel="True" Click="OnCancel" />
+                    <Button x:Name="OkButton" MinWidth="90" Style="{StaticResource PrimaryButton}" IsDefault="True" Click="OnOk" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </Grid>
+</Window>

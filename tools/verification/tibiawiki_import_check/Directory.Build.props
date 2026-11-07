@@ -1,0 +1,6 @@
+<Project>
+  <!-- The check's build files stay out of the repository (in %TEMP%\TibiaFoundry-wikicheck). -->
+  <PropertyGroup>
+    <ArtifactsPath>$([System.IO.Path]::Combine($([System.IO.Path]::GetTempPath()), 'TibiaFoundry-wikicheck'))</ArtifactsPath>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,162 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.SpriteExtractorPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:sprites="clr-namespace:TibiaFoundry.Core.Assets;assembly=TibiaFoundry.Core"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <GridView x:Key="SheetColumns" x:Shared="False">
+            <GridViewColumn Header="{loc:Tr SpriteExtractor.FirstID}" Width="80">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate><TextBlock Text="{Binding FirstId}" TextAlignment="Right" MinWidth="60" /></DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="{loc:Tr SpriteExtractor.LastID}" Width="80">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate><TextBlock Text="{Binding LastId}" TextAlignment="Right" MinWidth="60" /></DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="{loc:Tr Common.Size}" Width="70" DisplayMemberBinding="{Binding Size}" />
+            <GridViewColumn Header="{loc:Tr Common.Sprites}" Width="70" DisplayMemberBinding="{Binding Count}" />
+        </GridView>
+    </UserControl.Resources>
+
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Source and statistics -->
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,12">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock Text="{loc:Tr Common.ClientAssets}" Style="{StaticResource FieldLabel}" Width="100" />
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Change}" Command="{Binding ChangeAssetsFolderCommand}" Margin="8,0,0,0"
+                            ToolTip="{loc:Tr SpriteExtractor.ChooseTheClientSAssetsFolder}" />
+                    <TextBox Style="{StaticResource PathBox}" Text="{Binding AssetsFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Common.ClientAssetsFolder}" />
+                </DockPanel>
+                <TextBlock Text="{Binding Stats}" Margin="100,8,0,0" FontWeight="SemiBold" />
+                <TextBlock Text="{Binding Newest}" Margin="100,2,0,0" Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" />
+            </StackPanel>
+        </Border>
+
+        <!-- Available sheets | buttons | queue -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="300" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" MinWidth="300" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="{loc:Tr SpriteExtractor.AvailableSheets}">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="130" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding SheetFilter, UpdateSourceTrigger=PropertyChanged, Delay=200}" Margin="0,0,8,0" controls:Input.Placeholder="{loc:Tr SpriteExtractor.FindSpriteID}"
+                                 ToolTip="{loc:Tr SpriteExtractor.ShowOnlyTheSheetThatContains}" AutomationProperties.Name="{loc:Tr SpriteExtractor.FindSpriteID}" />
+                        <ComboBox Grid.Column="1" SelectedValuePath="Tag" SelectedValue="{Binding TypeFilter}" AutomationProperties.Name="{loc:Tr SpriteExtractor.SheetSizeFilter}">
+                            <ComboBoxItem Content="{loc:Tr SpriteExtractor.AllSizes}" Tag="{x:Null}" IsSelected="True" />
+                            <ComboBoxItem Content="32×32" Tag="{x:Static sprites:SpriteSheetType.Small}" />
+                            <ComboBoxItem Content="32×64" Tag="{x:Static sprites:SpriteSheetType.Tall}" />
+                            <ComboBoxItem Content="64×32" Tag="{x:Static sprites:SpriteSheetType.Wide}" />
+                            <ComboBoxItem Content="64×64" Tag="{x:Static sprites:SpriteSheetType.Large}" />
+                        </ComboBox>
+                    </Grid>
+                    <TextBlock DockPanel.Dock="Bottom" Margin="0,8,0,0" Style="{StaticResource Muted}" FontSize="12">
+                        <Run Text="{Binding VisibleSheets.Count, Mode=OneWay, Converter={StaticResource Number}}" /> <Run Text="{loc:Tr SpriteExtractor.SheetsShownDoubleClickASheet}" />
+                    </TextBlock>
+                    <ListView x:Name="AvailableList" ItemsSource="{Binding VisibleSheets}" View="{StaticResource SheetColumns}" SelectionMode="Extended"
+                              SelectionChanged="OnAvailableSelectionChanged" MouseDoubleClick="OnAvailableDoubleClick"
+                              VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" AutomationProperties.Name="{loc:Tr SpriteExtractor.AvailableSheets}" />
+                </DockPanel>
+            </GroupBox>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,0">
+                <Button Command="{Binding AddSelectedCommand}" ToolTip="{loc:Tr SpriteExtractor.AddTheSelectedSheetsToThe}" Margin="0,0,0,6" AutomationProperties.Name="{loc:Tr SpriteExtractor.AddSelected}">
+                    <StackPanel Orientation="Horizontal"><TextBlock Text="{loc:Tr Common.Add}" /><TextBlock Text="&#xE76C;" Style="{StaticResource Icon}" FontSize="11" Margin="6,0,0,0" /></StackPanel>
+                </Button>
+                <Button Content="{loc:Tr SpriteExtractor.AddShown}" Command="{Binding AddVisibleCommand}" ToolTip="{loc:Tr SpriteExtractor.AddEverySheetCurrentlyShownIn}" Margin="0,0,0,6" />
+                <Button Content="{loc:Tr SpriteExtractor.AddAll}" Command="{Binding AddAllCommand}" ToolTip="{loc:Tr SpriteExtractor.AddEverySheetOfTheClient}" Margin="0,0,0,6" />
+                <Button Content="{loc:Tr SpriteExtractor.AddByID}" Command="{Binding AddBySpriteIdCommand}" ToolTip="{loc:Tr SpriteExtractor.TypeSpriteIDsAndAddThe}" Margin="0,0,0,16" />
+                <TextBlock Text="{loc:Tr SpriteExtractor.AddBySize}" Style="{StaticResource Muted}" FontSize="12" Margin="0,0,0,4" HorizontalAlignment="Center" />
+                <UniformGrid Columns="2" Margin="0,0,0,16">
+                    <Button Content="32×32" Command="{Binding AddTypeCommand}" CommandParameter="{x:Static sprites:SpriteSheetType.Small}" Margin="0,0,3,3" MinWidth="0" />
+                    <Button Content="32×64" Command="{Binding AddTypeCommand}" CommandParameter="{x:Static sprites:SpriteSheetType.Tall}" Margin="3,0,0,3" MinWidth="0" />
+                    <Button Content="64×32" Command="{Binding AddTypeCommand}" CommandParameter="{x:Static sprites:SpriteSheetType.Wide}" Margin="0,3,3,0" MinWidth="0" />
+                    <Button Content="64×64" Command="{Binding AddTypeCommand}" CommandParameter="{x:Static sprites:SpriteSheetType.Large}" Margin="3,3,0,0" MinWidth="0" />
+                </UniformGrid>
+                <Button Command="{Binding RemoveSelectedCommand}" ToolTip="{loc:Tr SpriteExtractor.RemoveTheSelectedSheetsFromThe}" Margin="0,0,0,6" AutomationProperties.Name="{loc:Tr SpriteExtractor.RemoveSelected}">
+                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE76B;" Style="{StaticResource Icon}" FontSize="11" Margin="0,0,6,0" /><TextBlock Text="{loc:Tr Common.Remove}" /></StackPanel>
+                </Button>
+                <Button Content="{loc:Tr SpriteExtractor.ClearQueue}" Command="{Binding RemoveAllCommand}" ToolTip="{loc:Tr SpriteExtractor.RemoveEverySheetFromTheQueue}" />
+            </StackPanel>
+
+            <GroupBox Grid.Column="2" Header="{loc:Tr Common.Queue}">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Bottom" Margin="0,8,0,0" Style="{StaticResource Muted}" FontSize="12" Text="{Binding QueueSummary}" />
+                    <Grid>
+                        <ListView x:Name="QueueList" ItemsSource="{Binding Queue}" View="{StaticResource SheetColumns}" SelectionMode="Extended"
+                                  SelectionChanged="OnQueueSelectionChanged" MouseDoubleClick="OnQueueDoubleClick" KeyDown="OnQueueKeyDown"
+                                  AutomationProperties.Name="{loc:Tr SpriteExtractor.QueuedSheets}" />
+                        <TextBlock Style="{StaticResource EmptyState}" Text="{loc:Tr SpriteExtractor.TheQueueIsEmptyAddSheets}"
+                                   Visibility="{Binding Queue.Count, Converter={StaticResource NullToVisibility}, ConverterParameter=Invert}" IsHitTestVisible="False" />
+                    </Grid>
+                </DockPanel>
+            </GroupBox>
+        </Grid>
+
+        <!-- Output options -->
+        <Border Grid.Row="2" Style="{StaticResource Panel}" Padding="12,10" Margin="0,12,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,10">
+                        <TextBlock Text="{loc:Tr Common.OutputFolder}" Style="{StaticResource FieldLabel}" Width="100" />
+                        <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" Command="{Binding OpenOutputFolderCommand}" ToolTip="{loc:Tr Common.OpenTheOutputFolder}" AutomationProperties.Name="{loc:Tr Common.OpenOutputFolder}">
+                            <TextBlock Text="&#xE838;" Style="{StaticResource Icon}" FontSize="13" />
+                        </Button>
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Change}" Command="{Binding ChangeOutputFolderCommand}" Margin="8,0,2,0" ToolTip="{loc:Tr SpriteExtractor.ChooseTheFolderThatSpritesAre}" />
+                        <TextBox Style="{StaticResource PathBox}" Text="{Binding OutputFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Common.OutputFolder}" />
+                    </DockPanel>
+                    <WrapPanel>
+                        <TextBlock Text="{loc:Tr Common.Export}" Style="{StaticResource FieldLabel}" Width="100" />
+                        <Border Style="{StaticResource SegmentHost}" Margin="0,0,16,4">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr SpriteExtractor.IndividualSprites}" GroupName="XMode"
+                                             IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=IndividualSprites}" />
+                                <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr SpriteExtractor.WholeSheets}" GroupName="XMode"
+                                             IsChecked="{Binding Mode, Converter={StaticResource EnumEquals}, ConverterParameter=WholeSheets}" />
+                            </StackPanel>
+                        </Border>
+                        <Border Style="{StaticResource SegmentHost}" Margin="0,0,16,4">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Style="{StaticResource SegmentRadio}" Content="PNG" GroupName="XFmt"
+                                             IsChecked="{Binding Format, Converter={StaticResource EnumEquals}, ConverterParameter=Png}" />
+                                <RadioButton Style="{StaticResource SegmentRadio}" Content="GIF" GroupName="XFmt"
+                                             IsChecked="{Binding Format, Converter={StaticResource EnumEquals}, ConverterParameter=Gif}" />
+                            </StackPanel>
+                        </Border>
+                        <CheckBox Content="{loc:Tr SpriteExtractor.OneFolderPerSheet}" IsChecked="{Binding SplitFolders}" Margin="0,0,16,4" VerticalAlignment="Center"
+                                  ToolTip="{loc:Tr SpriteExtractor.PutTheSpritesOfEachSheet}" />
+                        <CheckBox Content="{loc:Tr SpriteExtractor.ClientFileNames}" IsChecked="{Binding OriginalNames}" Margin="0,0,16,4" VerticalAlignment="Center"
+                                  ToolTip="{loc:Tr SpriteExtractor.NameWholeSheetsAfterTheirFile}" />
+                        <CheckBox Content="{loc:Tr SpriteExtractor.SkipExistingFiles}" IsChecked="{Binding SkipExisting}" Margin="0,0,0,4" VerticalAlignment="Center"
+                                  ToolTip="{loc:Tr SpriteExtractor.KeepFilesThatAlreadyExistIn}" />
+                    </WrapPanel>
+                </StackPanel>
+                <Button Grid.Column="1" Style="{StaticResource PrimaryButton}" Command="{Binding StartExtractionCommand}" VerticalAlignment="Bottom" Margin="16,0,0,4"
+                        MinWidth="130" MinHeight="36" AutomationProperties.Name="{loc:Tr SpriteExtractor.StartExtraction}">
+                    <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE896;" Style="{StaticResource Icon}" FontSize="13" Margin="0,0,8,0" Foreground="{DynamicResource App.AccentText}" /><TextBlock Text="{loc:Tr Common.Extract}" /></StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

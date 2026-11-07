@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="{{LANG}}" class="no-js">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J3EX3FB3PB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{a:meta.title}}</title>
+<meta name="description" content="{{a:meta.description}}">
+<meta name="keywords" content="{{a:meta.keywords}}">
+<meta name="author" content="RockyLaRo">
+<meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7fa" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="{{URL}}">
+{{HREFLANG}}
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tibia Foundry">
+<meta property="og:locale" content="{{OG_LOCALE}}">
+{{OG_LOCALE_ALTERNATES}}
+<meta property="og:title" content="{{a:meta.ogTitle}}">
+<meta property="og:description" content="{{a:meta.ogDescription}}">
+<meta property="og:url" content="{{URL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{a:meta.ogImageAlt}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{a:meta.ogTitle}}">
+<meta name="twitter:description" content="{{a:meta.twitterDescription}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebSite","name":"Tibia Foundry","alternateName":"TibiaFoundry","url":"https://tibiafoundry.com/","inLanguage":["en","pt-BR","pl","es","de"]},
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"{{j:meta.description}}","inLanguage":"{{LANG}}","softwareVersion":"{{VERSION}}","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"{{OG_IMAGE}}","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"{{URL}}","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v{{VERSION}}","author":{"@type":"Person","name":"RockyLaRo"}}]
+</script>
+<script>
+  // Apply the stored theme before the page paints (no flash of the other theme).
+  try { var t = localStorage.getItem('tf-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+{{LANG_REDIRECT}}
+</script>
+<style>
+{{CSS}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">{{t:a11y.skip}}</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-client" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-extract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L11 15.8 8.2 13Z"/><path d="M7.5 14.5c-1.9 0-3.5 1.6-3.5 3.5 0 1.3-1 2-2 2 1 1.3 2.7 2 4 2a4 4 0 0 0 4-4c0-1.9-1.6-3.5-2.5-3.5Z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-library" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h3v16H4zM10 4h3v16h-3z"/><path d="m16 5 3-1 3 15-3 1z"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></symbol>
+  <symbol id="i-batch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M3 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1 0 1.6-.8 1.6-1.6 0-.5-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4.2-4-7.6-9-7.6Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+  <symbol id="i-sword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="{{a:a11y.home}}"><img class="pixel" src="{{IMG:logo}}" alt="" width="32" height="32"> Tibia Foundry <small>{{VERSION}}</small></a>
+    <nav class="nav" id="nav" aria-label="{{a:a11y.sections}}">
+      <a href="#features">{{t:nav.features}}</a>
+      <a href="#library">{{t:nav.library}}</a>
+      <a href="#studio">{{t:nav.studio}}</a>
+      <a href="#publishing">{{t:nav.publishing}}</a>
+      <a href="#screens">{{t:nav.screens}}</a>
+      <a href="#download">{{t:nav.download}}</a>
+      <a href="#faq">{{t:nav.faq}}</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" id="lang">
+        <button class="icon-btn lang-btn" id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="{{a:lang.button}}" title="{{a:lang.label}}">
+          <svg aria-hidden="true"><use href="#i-globe"/></svg><span class="lang-code" aria-hidden="true">{{LANG_CODE}}</span><svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <ul class="lang-menu" id="lang-menu" aria-label="{{a:lang.label}}" hidden>
+{{LANG_MENU}}
+        </ul>
+      </div>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="{{a:a11y.themeToggle}}" title="{{a:a11y.themeTitle}}">
+        <svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <a class="icon-btn gh-btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="header" aria-label="{{a:a11y.github}}" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <a class="btn btn-primary btn-sm" href="#download">{{t:nav.download}}</a>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="{{a:a11y.menu}}"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="lang-suggest" id="lang-suggest" role="region" aria-label="{{a:lang.label}}" hidden>
+  <div class="wrap"><span class="lang-suggest-text"></span> <a class="btn btn-sm btn-primary lang-suggest-go" href="#"></a> <button class="icon-btn lang-suggest-close" type="button"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+</div>
+
+<main id="main">
+<!-- ===================================================================== hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> {{t:hero.eyebrow}}</span>
+      <h1>{{t:hero.title}}</h1>
+      <p class="lead">{{t:hero.lead}}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:hero.download}}</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="hero"><svg aria-hidden="true"><use href="#i-github"/></svg> {{t:hero.github}}</a>
+      </div>
+      <div class="trust">
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> {{t:hero.trust1}}</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> {{t:hero.trust2}}</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> {{t:hero.trust3}}</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> {{t:hero.trust4}}</span>
+      </div>
+    </div>
+    <div class="hero-shot">
+      <button class="shot-btn themed" type="button" data-zoom="{{a:hero.zoom}}">
+        <div class="window">
+          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry {{VERSION}} — Asset Library</span></div>
+          <img class="shot-dark" src="{{IMG:asset-library-dark}}" alt="{{a:hero.altDark}}" width="1586" height="893" decoding="async">
+          <img class="shot-light" src="{{IMG:asset-library-light}}" alt="{{a:hero.altLight}}" width="1586" height="893" decoding="async">
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== TibiaWiki infobox (9.0) -->
+<section class="section alt" id="infobox">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">{{t:infobox.kicker}}</div>
+      <h2>{{t:infobox.title}}</h2>
+      <p>{{t:infobox.lead}}</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point1}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point2}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point3}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:infobox.point4}}</span></li>
+      </ul>
+    </div>
+    <figure class="reveal">
+      <div class="window">
+        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry {{VERSION}} — {{t:infobox.window}}</span></div>
+        <pre class="wiki-code" tabindex="0" aria-label="{{a:infobox.label}}"><code><!--INFOBOX-START--><span class="m">&#123;&#123;Infobox Object|List=&#123;&#123;&#123;1|&#125;&#125;&#125;|GetValue=&#123;&#123;&#123;GetValue|&#125;&#125;&#125;</span>
+| <span class="k">name</span>          = Magic Plate Armor
+| <span class="k">actualname</span>    = magic plate armor
+| <span class="k">itemid</span>        = 3366
+| <span class="k">objectclass</span>   = Body Equipment
+| <span class="k">primarytype</span>   = Armors
+| <span class="k">slot</span>          = Body
+| <span class="k">implemented</span>   =
+| <span class="k">immobile</span>      = no
+| <span class="k">walkable</span>      = yes
+| <span class="k">pickupable</span>    = yes
+| <span class="k">vocrequired</span>   = knights and paladins
+| <span class="k">imbueslots</span>    = 2
+| <span class="k">upgradeclass</span>  = 2
+| <span class="k">weight</span>        =
+| <span class="k">stackable</span>     = no
+| <span class="k">marketable</span>    = yes
+| <span class="k">droppedby</span>     = &#123;&#123;Dropped By|&#125;&#125;
+| <span class="k">value</span>         =
+| <span class="k">npcvalue</span>      = 90000
+| <span class="k">npcprice</span>      = 0
+| <span class="k">buyfrom</span>       = --
+| <span class="k">sellto</span>        = H.L.: 720, Rashid
+| <span class="k">notes</span>         =
+<span class="m">&#125;&#125;</span><!--INFOBOX-END--></code></pre>
+      </div>
+      <figcaption class="wiki-caption">{{t:infobox.caption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================================================================== audience -->
+<section class="section" id="audience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:audience.kicker}}</div>
+      <h2>{{t:audience.title}}</h2>
+      <p>{{t:audience.lead}}</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-globe"/></svg></div><h3>{{t:audience.fansites.title}}</h3><p>{{t:audience.fansites.text}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-book"/></svg></div><h3>{{t:audience.wiki.title}}</h3><p>{{t:audience.wiki.text}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-palette"/></svg></div><h3>{{t:audience.artists.title}}</h3><p>{{t:audience.artists.text}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-compass"/></svg></div><h3>{{t:audience.maps.title}}</h3><p>{{t:audience.maps.text}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-video"/></svg></div><h3>{{t:audience.creators.title}}</h3><p>{{t:audience.creators.text}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-sword"/></svg></div><h3>{{t:audience.players.title}}</h3><p>{{t:audience.players.text}}</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== features -->
+<section class="section alt" id="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:features.kicker}}</div>
+      <h2>{{t:features.title}}</h2>
+      <p>{{t:features.lead}}</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-client"/></svg></div><h3>{{t:features.clients.title}}</h3><p>{{t:features.clients.text}}</p><p class="tools">{{t:features.clients.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-extract"/></svg></div><h3>{{t:features.extraction.title}}</h3><p>{{t:features.extraction.text}}</p><p class="tools">{{t:features.extraction.tools}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>{{t:features.graphics.title}}</h3><p>{{t:features.graphics.text}}</p><p class="tools">{{t:features.graphics.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>{{t:features.editing.title}}</h3><p>{{t:features.editing.text}}</p><p class="tools">{{t:features.editing.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>{{t:features.maps.title}}</h3><p>{{t:features.maps.text}}</p><p class="tools">{{t:features.maps.tools}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>{{t:features.library.title}}</h3><p>{{t:features.library.text}}</p><p class="tools">{{t:features.library.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>{{t:features.workflows.title}}</h3><p>{{t:features.workflows.text}}</p><p class="tools">{{t:features.workflows.tools}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>{{t:features.batch.title}}</h3><p>{{t:features.batch.text}}</p><p class="tools">{{t:features.batch.tools}}</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>{{t:features.publishing.title}}</h3><p>{{t:features.publishing.text}}</p><p class="tools">{{t:features.publishing.tools}}</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== asset library -->
+<section class="section" id="library">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">{{t:library.kicker}}</div>
+      <h2>{{t:library.title}}</h2>
+      <p>{{t:library.lead}}</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span>{{t:library.point1}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:library.point2}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:library.point3}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:library.point4}}</span></li>
+        <li><svg><use href="#i-check"/></svg><span>{{t:library.point5}}</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <button class="shot-btn themed" type="button" data-zoom="{{a:library.zoom}}">
+        <div class="window"><img class="shot-dark" src="{{IMG:asset-library-detail-dark}}" alt="{{a:library.altDark}}" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="{{IMG:asset-library-detail-light}}" alt="{{a:library.altLight}}" width="1092" height="595" loading="lazy" decoding="async"></div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== content studio -->
+<section class="section alt" id="studio">
+  <div class="wrap">
+    <div class="spotlight reverse">
+      <div class="spot-text reveal">
+        <div class="kicker">{{t:studio.kicker}}</div>
+        <h2>{{t:studio.title}}</h2>
+        <p>{{t:studio.lead}}</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span>{{t:studio.point1}}</span></li>
+          <li><svg><use href="#i-check"/></svg><span>{{t:studio.point2}}</span></li>
+          <li><svg><use href="#i-check"/></svg><span>{{t:studio.point3}}</span></li>
+          <li><svg><use href="#i-check"/></svg><span>{{t:studio.point4}}</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <button class="shot-btn themed" type="button" data-zoom="{{a:studio.zoom}}">
+          <div class="window"><img class="shot-dark" src="{{IMG:content-studio-dark}}" alt="{{a:studio.altDark}}" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="{{IMG:content-studio-light}}" alt="{{a:studio.altLight}}" width="1586" height="893" loading="lazy" decoding="async"></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:56px">
+      <div class="step reveal"><h3>{{t:studio.step1.title}}</h3><p>{{t:studio.step1.text}}</p></div>
+      <div class="step reveal"><h3>{{t:studio.step2.title}}</h3><p>{{t:studio.step2.text}}</p></div>
+      <div class="step reveal"><h3>{{t:studio.step3.title}}</h3><p>{{t:studio.step3.text}}</p></div>
+      <div class="step reveal"><h3>{{t:studio.step4.title}}</h3><p>{{t:studio.step4.text}}</p></div>
+    </div>
+
+    <div class="outputs">
+      <figure class="sample reveal">
+        <div class="canvas"><img src="{{IMG:output-creatures}}" alt="{{a:studio.output.creatures.alt}}" width="816" height="616" loading="lazy"></div>
+        <figcaption>{{t:studio.output.creatures.caption}}</figcaption>
+      </figure>
+      <div class="stack">
+        <figure class="sample reveal">
+          <div class="canvas"><img src="{{IMG:output-outfit-129}}" alt="{{a:studio.output.outfit.alt}}" width="544" height="154" loading="lazy"></div>
+          <figcaption>{{t:studio.output.outfit.caption}}</figcaption>
+        </figure>
+        <figure class="sample reveal">
+          <div class="canvas"><img src="{{IMG:output-items}}" alt="{{a:studio.output.items.alt}}" width="480" height="450" loading="lazy"></div>
+          <figcaption>{{t:studio.output.items.caption}}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== publishing -->
+<section class="section" id="publishing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:publishing.kicker}}</div>
+      <h2>{{t:publishing.title}}</h2>
+      <p>{{t:publishing.lead}}</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>{{t:publishing.th.profile}}</th><th>{{t:publishing.th.images}}</th><th>{{t:publishing.th.names}}</th><th>{{t:publishing.th.extras}}</th></tr></thead>
+        <tbody>
+          <tr><td><b>TibiaWiki</b></td><td>{{t:publishing.wiki.images}}</td><td>{{t:publishing.wiki.names}}</td><td>{{t:publishing.wiki.extras}}</td></tr>
+          <tr><td><b>{{t:publishing.fansite.name}}</b></td><td>2×</td><td>{{t:publishing.fansite.names}}</td><td>{{t:publishing.fansite.extras}}</td></tr>
+          <tr><td><b>{{t:publishing.gallery.name}}</b></td><td>{{t:publishing.gallery.images}}</td><td>{{t:publishing.gallery.names}}</td><td>{{t:publishing.gallery.extras}}</td></tr>
+          <tr><td><b>{{t:publishing.article.name}}</b></td><td>3×</td><td><code>{name}_{scale}x</code></td><td>{{t:publishing.article.extras}}</td></tr>
+          <tr><td><b>{{t:publishing.archive.name}}</b></td><td>{{t:publishing.archive.images}}</td><td><code>{version}/{category}/{id} {name}</code></td><td>{{t:publishing.archive.extras}}</td></tr>
+          <tr><td><b>{{t:publishing.own.name}}</b></td><td>{{t:publishing.own.images}}</td><td>{{t:publishing.own.names}}</td><td>{{t:publishing.own.extras}}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-3" style="margin-top:22px">
+      <article class="card reveal"><h3>{{t:publishing.card1.title}}</h3><p>{{t:publishing.card1.text}}</p></article>
+      <article class="card reveal"><h3>{{t:publishing.card2.title}}</h3><p>{{t:publishing.card2.text}}</p></article>
+      <article class="card reveal"><h3>{{t:publishing.card3.title}}</h3><p>{{t:publishing.card3.text}}</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== screenshots -->
+<section class="section alt" id="screens">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:screens.kicker}}</div>
+      <h2>{{t:screens.title}}</h2>
+      <p>{{t:screens.lead}}</p>
+    </div>
+{{SCREENS}}
+  </div>
+</section>
+
+<!-- ===================================================================== safety -->
+<section class="section" id="safety">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:safety.kicker}}</div>
+      <h2>{{t:safety.title}}</h2>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-shield"/></svg></div><h3>{{t:safety.readonly.title}}</h3><p>{{t:safety.readonly.text}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-check"/></svg></div><h3>{{t:safety.atomic.title}}</h3><p>{{t:safety.atomic.text}}</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-users"/></svg></div><h3>{{t:safety.private.title}}</h3><p>{{t:safety.private.text}}</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== what's new -->
+<section class="section alt" id="new">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:new.kicker}}</div>
+      <h2>{{t:new.title}}</h2>
+    </div>
+    <ul class="new-list reveal">
+      <li>{{t:new.fix2}}</li>
+      <li>{{t:new.fix1}}</li>
+      <li>{{t:new.item1}}</li>
+      <li>{{t:new.item2}}</li>
+      <li>{{t:new.item3}}</li>
+      <li>{{t:new.item4}}</li>
+      <li>{{t:new.item5}}</li>
+      <li>{{t:new.item6}}</li>
+      <li>{{t:new.item7}}</li>
+      <li>{{t:new.item8}}</li>
+      <li>{{t:new.item9}}</li>
+      <li>{{t:new.item10}}</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================================================================== download -->
+<section class="section" id="download">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">{{t:download.kicker}}</div>
+      <h2>{{t:download.title}}</h2>
+      <p>{{t:download.lead}}</p>
+    </div>
+    <div class="download-grid">
+      <article class="card dl featured reveal">
+        <h3>{{t:download.installer.title}}</h3>
+        <p>{{t:download.installer.tagline}}</p>
+        <ul><li>{{t:download.installer.point1}}</li><li>{{t:download.installer.point2}}</li><li>{{t:download.installer.point3}}</li></ul>
+        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Installer.msi" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.installer.button}}</a>
+      </article>
+      <article class="card dl reveal">
+        <h3>{{t:download.portable.title}}</h3>
+        <p>{{t:download.portable.tagline}}</p>
+        <ul><li>{{t:download.portable.point1}}</li><li>{{t:download.portable.point2}}</li><li>{{t:download.portable.point3}}</li></ul>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Portable.zip" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:download.portable.button}}</a>
+      </article>
+      <article class="card dl reveal">
+        <h3>{{t:download.source.title}}</h3>
+        <p>{{t:download.source.tagline}}</p>
+        <ul><li>{{t:download.source.point1}}</li><li>{{t:download.source.point2}}</li><li>{{t:download.source.point3}}</li></ul>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{{VERSION}}/TibiaFoundry-{{VERSION}}-Source.zip" data-track="download" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> {{t:download.source.button}}</a>
+      </article>
+    </div>
+    <div class="req reveal">
+      <span>{{t:download.req1}}</span>
+      <span>{{t:download.req2}}</span>
+      <span>{{t:download.req3}}</span>
+    </div>
+    <div class="steps" style="margin-top:40px">
+      <div class="step reveal"><h3>{{t:download.step1.title}}</h3><p>{{t:download.step1.text}}</p></div>
+      <div class="step reveal"><h3>{{t:download.step2.title}}</h3><p>{{t:download.step2.text}}</p></div>
+      <div class="step reveal"><h3>{{t:download.step3.title}}</h3><p>{{t:download.step3.text}}</p></div>
+      <div class="step reveal"><h3>{{t:download.step4.title}}</h3><p>{{t:download.step4.text}}</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== FAQ -->
+<section class="section alt" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal"><div class="kicker">{{t:faq.kicker}}</div><h2>{{t:faq.title}}</h2></div>
+    <div class="faq">
+      <details><summary>{{t:faq.q1}}</summary><p>{{t:faq.a1}}</p></details>
+      <details><summary>{{t:faq.q2}}</summary><p>{{t:faq.a2}}</p></details>
+      <details><summary>{{t:faq.q3}}</summary><p>{{t:faq.a3}}</p></details>
+      <details><summary>{{t:faq.q4}}</summary><p>{{t:faq.a4}}</p></details>
+      <details><summary>{{t:faq.q5}}</summary><p>{{t:faq.a5}}</p></details>
+      <details><summary>{{t:faq.q6}}</summary><p>{{t:faq.a6}}</p></details>
+      <details><summary>{{t:faq.q7}}</summary><p>{{t:faq.a7}}</p></details>
+      <details><summary>{{t:faq.q8}}</summary><p>{{t:faq.a8}}</p></details>
+      <details><summary>{{t:faq.q9}}</summary><p>{{t:faq.a9}}</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== support band -->
+<section class="section" id="support">
+  <div class="wrap">
+    <div class="band reveal">
+      <h2>{{t:band.title}}</h2>
+      <p>{{t:band.text}}</p>
+      <div class="cta-row">
+        <a class="btn" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> {{t:band.download}}</a>
+        <a class="btn ghost" href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="band"><svg aria-hidden="true"><use href="#i-github"/></svg> {{t:band.issues}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><img class="pixel" src="{{IMG:logo}}" alt="" width="32" height="32"> Tibia Foundry</a>
+        <p style="margin-top:10px">{{t:footer.tagline}}</p>
+      </div>
+      <div>
+        <h3>{{t:footer.product}}</h3>
+        <ul><li><a href="#features">{{t:nav.features}}</a></li><li><a href="#library">{{t:nav.library}}</a></li><li><a href="#studio">{{t:nav.studio}}</a></li><li><a href="#download">{{t:nav.download}}</a></li></ul>
+      </div>
+      <div>
+        <h3>{{t:footer.project}}</h3>
+        <ul>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">{{t:footer.repository}}</a></li>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases" data-track="releases" data-place="footer">{{t:footer.releases}}</a></li>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">{{t:footer.issues}}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>{{t:footer.community}}</h3>
+        <ul><li><a href="https://tibia.fandom.com/wiki/Main_Page">TibiaWiki</a></li><li><a href="https://www.tibia.com/community/?subtopic=fansites">{{t:footer.fansites}}</a></li><li><a href="https://www.tibia.com/">Tibia</a></li></ul>
+      </div>
+      <div>
+        <h3 id="footer-lang">{{t:lang.label}}</h3>
+        <ul class="lang-list" aria-labelledby="footer-lang">
+{{LANG_FOOTER}}
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      {{t:footer.legal}}
+      {{t:footer.components}}
+      {{t:footer.version}}
+    </div>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="{{a:lightbox.label}}">
+  <button class="icon-btn close" type="button" aria-label="{{a:lightbox.close}}"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+
+<script>
+{{I18N}}
+{{JS}}
+</script>
+</body>
+</html>

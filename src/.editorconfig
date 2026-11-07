@@ -1,0 +1,10 @@
+# TibiaFoundry source conventions. Line endings are CRLF everywhere (2.0.0 mixed LF and
+# CRLF; normalised in 2.1.0). Test fixtures under Fixtures/ are kept byte-for-byte as captured.
+root = true
+
+[*]
+end_of_line = crlf
+indent_style = space
+
+[*.{cs,xaml}]
+indent_size = 4

@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    UI-free core: Tibia file formats, image processing and export logic.
+    The client-data readers were reconstructed from the original 1.8.0 program (see docs/); the editors,
+    converters and scripts added in 5.0 are documented in docs/14_Tools_Settings_and_Scripts.md, the
+    themes, output locations, tool registry and diagnostics added in 6.0 in docs/15 and docs/16.
+  -->
+  <PropertyGroup>
+    <RootNamespace>TibiaFoundry.Core</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Schemas recovered byte-exact from the descriptors embedded in the original build. -->
+    <Protobuf Include="Protos\*.proto" ProtoRoot="Protos" GrpcServices="None" Access="Public" />
+    <!-- Editable (proto2) form of the appearances file for the Assets Editor: writes unchanged files back byte for byte. -->
+    <Protobuf Include="Protos\Editing\*.proto" ProtoRoot="Protos" GrpcServices="None" Access="Public" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" />
+    <PackageReference Include="Grpc.Tools" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" />
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="TagLibSharp" />
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="TibiaFoundry.Tests" />
+    <EmbeddedResource Include="Resources\tibiawiki_watermark.png" LogicalName="TibiaFoundry.Core.Resources.tibiawiki_watermark.png" />
+    <!-- Interface text (9.0): one string table per language, read by Localization.L and merged into the WPF resources.
+         WithCulture=false: the culture in the file name must not turn them into satellite assemblies. -->
+    <EmbeddedResource Include="Localization\Resources\Strings.*.xaml" LogicalName="TibiaFoundry.Core.Localization.%(Filename).xaml" WithCulture="false" />
+  </ItemGroup>
+</Project>

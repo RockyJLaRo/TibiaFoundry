@@ -1,0 +1,10 @@
+bin/
+obj/
+dist/
+/Release/
+/Release_Artifacts/
+/Release_Artifacts.previous-*/
+*.user
+.vs/
+TestResults/
+tools/benchmarks/BenchmarkDotNet.Artifacts/

@@ -1,0 +1,484 @@
+{
+  "_meta": {
+    "language": "Português (Brasil)",
+    "translator": "Claude (AI), for review by a native speaker",
+    "notes": "Português do Brasil. Termos usados pela comunidade brasileira de Tibia: outfit, addon, sprite, NPC, fansite. Nomes das ferramentas e páginas do programa ficam em inglês, como no programa.",
+    "sameAsEnglish": [
+      "nav.library",
+      "nav.studio",
+      "nav.faq",
+      "faq.kicker",
+      "library.zoom",
+      "features.library.tools",
+      "features.workflows.tools",
+      "features.clients.tools",
+      "features.extraction.tools",
+      "features.editing.tools",
+      "features.maps.tools",
+      "screens.tab.home",
+      "screens.tab.asset-library",
+      "screens.tab.content-studio",
+      "screens.tab.appearances",
+      "screens.tab.extract-sprites",
+      "screens.tab.item-catalog",
+      "screens.tab.compare",
+      "screens.tab.map-tools",
+      "screens.tab.house-images",
+      "screens.tab.sounds",
+      "screens.tab.assets-editor",
+      "screens.tab.rcc-editor",
+      "screens.tab.clients",
+      "screens.tab.settings",
+      "footer.components",
+      "a11y.menu",
+      "nav.download",
+      "features.graphics.tools",
+      "studio.step2.title",
+      "publishing.th.extras",
+      "studio.kicker",
+      "infobox.window"
+    ]
+  },
+  "meta": {
+    "title": "Tibia Foundry – o kit gratuito de conteúdo para fansites, wikis e criadores de Tibia",
+    "description": "Kit gratuito para Windows para fansites, wikis e criadores de Tibia: extraia sprites, gere GIFs de outfits e criaturas, organize assets e publique galerias prontas.",
+    "keywords": "Tibia, TibiaWiki, fansite, sprites, outfits, criaturas, GIF, biblioteca de assets, gerador de galerias, cliente do Tibia",
+    "ogTitle": "Tibia Foundry {version} – todas as suas ferramentas de Tibia em um só programa",
+    "ogDescription": "Extraia, renderize, organize e publique os assets oficiais do Tibia: uma Asset Library pesquisável e galerias automáticas para qualquer fansite ou wiki. Grátis, local, para Windows.",
+    "ogImageAlt": "Tibia Foundry: a Asset Library com miniaturas de criaturas",
+    "twitterDescription": "Extraia, renderize, organize e publique os assets oficiais do Tibia. Grátis, local, para Windows."
+  },
+  "ogImage": {
+    "version": "Versão {version} · grátis para Windows",
+    "line1": "Extraia sprites e dados",
+    "line2": "Gere GIFs de outfits e criaturas",
+    "line3": "Organize todos os seus assets",
+    "line4": "Publique galerias para qualquer site"
+  },
+  "a11y": {
+    "skip": "Pular para o conteúdo",
+    "home": "Página inicial do Tibia Foundry",
+    "sections": "Seções",
+    "themeToggle": "Alternar entre modo claro e escuro",
+    "themeTitle": "Claro / escuro",
+    "github": "Tibia Foundry no GitHub",
+    "menu": "Menu"
+  },
+  "lang": {
+    "label": "Idioma",
+    "button": "Idioma: Português (Brasil). Escolher outro idioma"
+  },
+  "nav": {
+    "features": "Recursos",
+    "library": "Asset Library",
+    "studio": "Content Studio",
+    "publishing": "Publicação",
+    "screens": "Capturas de tela",
+    "download": "Download",
+    "faq": "FAQ"
+  },
+  "hero": {
+    "eyebrow": "Versão {version} · grátis para Windows · novo: exportador de infobox do TibiaWiki",
+    "title": "Todos os recursos de Tibia que o seu fansite precisa, <span class=\"accent\">em um só programa</span>",
+    "lead": "O Tibia Foundry lê os arquivos oficiais do cliente do Tibia instalado no seu computador e os transforma em sprites, GIFs animados de outfits e criaturas, imagens de itens, mapas, sons e dados – depois guarda tudo em uma biblioteca pesquisável e publica galerias completas para o TibiaWiki ou qualquer site da comunidade.",
+    "download": "Baixar o Tibia Foundry {version}",
+    "github": "Ver no GitHub",
+    "trust1": "Grátis, sem cadastro",
+    "trust2": "Funciona offline – nada é enviado",
+    "trust3": "Nunca altera o seu cliente do Tibia",
+    "trust4": "Seu nome creditado em cada imagem",
+    "zoom": "A Asset Library: assets reais do cliente, miniaturas, coleções e detalhes",
+    "altDark": "A página Asset Library no tema escuro: categorias, coleções, uma grade de miniaturas de itens e criaturas e os detalhes do asset selecionado",
+    "altLight": "A página Asset Library no tema claro"
+  },
+  "audience": {
+    "kicker": "Para quem é",
+    "title": "Feito para quem mantém a comunidade de Tibia informada",
+    "lead": "Seja você responsável por uma wiki, um fansite, a página de uma guild ou um canal no YouTube, as mesmas tarefas voltam a cada atualização do cliente. O Tibia Foundry faz isso por você.",
+    "fansites": {
+      "title": "Administradores de fansites",
+      "text": "Galerias padronizadas de criaturas, outfits e itens, páginas de atualização e pacotes de recursos para download – gerados no formato que o seu site usa."
+    },
+    "wiki": {
+      "title": "Editores de wiki",
+      "text": "Código <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> pronto para colar, imagens com o nome certo, GIFs animados, IDs de itens, dados de criaturas e casas, e um link de arquivo para cada imagem que você enviar."
+    },
+    "artists": {
+      "title": "Artistas e designers",
+      "text": "Sprites transparentes, sprite sheets, arte da interface e ampliações pixel a pixel (vizinho mais próximo: sem desfoque, sem cores novas)."
+    },
+    "maps": {
+      "title": "Criadores de mapas",
+      "text": "Imagens de mapa, áreas e posições de NPCs a partir dos dados de mapa do cliente, mapas em alta resolução para guias e uma imagem de cada casa."
+    },
+    "creators": {
+      "title": "Criadores de conteúdo",
+      "text": "Sons e músicas do cliente, folhas de comparação para vídeos e artigos, e os metadados e créditos de tudo o que você publica."
+    },
+    "players": {
+      "title": "Jogadores curiosos",
+      "text": "Explore todos os objetos, outfits, efeitos, criaturas e quests do cliente oficial e guarde cada versão do cliente como histórico."
+    }
+  },
+  "features": {
+    "kicker": "Um programa no lugar de uma dúzia de ferramentas",
+    "title": "Tudo, do cliente até a página publicada",
+    "lead": "{plural:tools:23}, agrupadas por tarefa, que compartilham um cliente, uma biblioteca e um conjunto de regras de exportação.",
+    "clients": {
+      "title": "Gerenciamento de clientes",
+      "text": "Encontra os clientes instalados do servidor oficial e do servidor de testes, carrega pastas de cliente de qualquer lugar e arquiva cada versão economizando espaço – verificado arquivo por arquivo e recriável depois.",
+      "tools": "Clients · Client Installation Rebuilder · Compatibility"
+    },
+    "extraction": {
+      "title": "Extração de assets",
+      "text": "Sprites transparentes ou sprite sheets inteiras, todos os objetos, outfits, efeitos e projéteis, dados de criaturas e quests, e os sons e músicas do cliente.",
+      "tools": "Extract Sprites · Appearances · Static Data · Sounds"
+    },
+    "graphics": {
+      "title": "Criação de gráficos",
+      "text": "GIFs animados com predefinições para fansites, outfits coloridos com addons e montarias, animações de criaturas e ampliação pixel a pixel de 1× a 8×.",
+      "tools": "Appearances (Outfitter) · Advanced Tools"
+    },
+    "editing": {
+      "title": "Edição de recursos",
+      "text": "Inspecione e edite uma cópia dos assets oficiais, extraia e recrie arquivos de recursos Qt, grave cópias clássicas de Tibia.dat/.spr e edite metadados de arquivos.",
+      "tools": "Assets Editor · RCC Editor · Client Converter · File Metadata"
+    },
+    "maps": {
+      "title": "Mapas e casas",
+      "text": "Imagens de mapa, áreas e posições de NPCs, mapas em alta resolução para guias e imagens de casas para cada artigo de casa.",
+      "tools": "Map Tools · House Images"
+    },
+    "library": {
+      "title": "Gerenciamento de assets",
+      "text": "Uma biblioteca pesquisável com todas as imagens, animações e sons – coleções, tags, versões, detecção de duplicatas – com cada exportação adicionada automaticamente.",
+      "tools": "Asset Library"
+    },
+    "workflows": {
+      "title": "Fluxos de conteúdo",
+      "text": "Projetos reutilizáveis que geram galerias de criaturas, outfits e itens, recursos de atualização e imagens para a wiki – configurados uma vez, executados de novo a cada atualização.",
+      "tools": "Content Studio"
+    },
+    "batch": {
+      "title": "Geração em lote",
+      "text": "Centenas de imagens de uma só vez, em uma fila em segundo plano com progresso, cancelamento e nova tentativa; scripts para renomear, redimensionar e converter em lote.",
+      "tools": "Fila do Content Studio · Scripts"
+    },
+    "publishing": {
+      "title": "Publicação para qualquer site",
+      "text": "Perfis para o TibiaWiki, o seu fansite, galerias, artigos ou um arquivo pessoal: tamanhos, formatos, nomes, pastas, manifestos, créditos e trechos de código.",
+      "tools": "Perfis de publicação · Galerias HTML"
+    }
+  },
+  "library": {
+    "kicker": "Biblioteca de recursos",
+    "title": "Encontre qualquer recurso em segundos e nunca mais perca nenhum",
+    "lead": "Seus sprites, GIFs, renderizações, mapas, sons e artes em um só lugar pesquisável. Os arquivos ficam onde estão; a biblioteca apenas os lê.",
+    "point1": "<b>Automática</b>: cada arquivo exportado por qualquer ferramenta é adicionado em segundo plano, com a ferramenta e a versão do cliente de origem.",
+    "point2": "<b>Busca e filtros</b>: por nome, ID no jogo, categoria, versão do cliente, tag, formato, tamanho, data e muito mais.",
+    "point3": "<b>Organização</b>: suas próprias categorias, tags, campos personalizados, assets relacionados e coleções compartilháveis.",
+    "point4": "<b>Duplicatas</b>: arquivos idênticos, o mesmo gráfico em outro tamanho e imagens parecidas são apontados – nada é apagado por você.",
+    "point5": "<b>Segura</b>: novas varreduras rápidas, versões anteriores de arquivos alterados, verificação de integridade, backup e restauração – tudo guardado localmente e totalmente offline.",
+    "zoom": "Asset Library",
+    "altDark": "Detalhe da Asset Library: miniaturas de itens e criaturas e os detalhes do asset selecionado",
+    "altLight": "Detalhe da Asset Library no tema claro"
+  },
+  "studio": {
+    "kicker": "Content Studio",
+    "title": "Uma galeria inteira em um clique – e de novo após cada atualização",
+    "lead": "Escolha o que criar, ajuste as etapas, selecione o perfil do seu site e execute. O Tibia Foundry renderiza, dimensiona, nomeia, organiza, descreve e empacota tudo em segundo plano.",
+    "point1": "<b>Modelos de projeto</b>: galeria de criaturas, galeria de outfits, coleção de imagens de itens, referências de mapa, recursos de atualização, preparação de imagens para a wiki, exportação personalizada.",
+    "point2": "<b>Criador de fluxos</b>: sem programação – renderizar, recortar, redimensionar, tela padronizada, formato, nomes, pastas, folhas, manifestos, galeria, ZIP.",
+    "point3": "<b>O que mudou?</b>: renderiza todos os objetos e outfits novos ou alterados desde um cliente anterior – pronto para artigos de atualização.",
+    "point4": "<b>Tudo ou nada</b>: uma execução cancelada ou com falha não deixa exportação pela metade; os originais nunca são modificados.",
+    "zoom": "Content Studio: um projeto de galeria de criaturas e o seu fluxo",
+    "altDark": "Content Studio com um projeto de galeria de criaturas, as etapas do fluxo e a lista de criaturas",
+    "altLight": "Content Studio no tema claro",
+    "step1": {
+      "title": "Escolha",
+      "text": "Selecione criaturas, outfits, itens, uma coleção da biblioteca ou uma pasta – com uma lista pesquisável do conteúdo do cliente."
+    },
+    "step2": {
+      "title": "Configure",
+      "text": "Escala, tela, alinhamento, animação, addons, cores, nomes e pastas – ou mantenha os padrões do modelo."
+    },
+    "step3": {
+      "title": "Execute",
+      "text": "A fila trabalha em segundo plano enquanto você continua usando o programa; cancele ou repita qualquer tarefa."
+    },
+    "step4": {
+      "title": "Publique",
+      "text": "Imagens com o seu crédito incorporado, folhas de contato, JSON/CSV/Markdown, uma galeria HTML e um ZIP."
+    },
+    "output": {
+      "creatures": {
+        "alt": "Folha de contato de uma galeria de criaturas gerada: dragões, demon, behemoth, hydra e outras, 2× pixel a pixel",
+        "caption": "<b>Galeria de criaturas</b> – gerada a partir do cliente de uma só vez: 2× com vizinho mais próximo, uma tela de 128×128 para cada criatura, GIFs animados e esta folha de contato."
+      },
+      "outfit": {
+        "alt": "Folha de comparação de um outfit sem addons, com o primeiro addon, com o segundo addon e com os dois addons",
+        "caption": "<b>Folha de comparação de outfit</b> – todas as variações de addon lado a lado."
+      },
+      "items": {
+        "alt": "Folha de contato de imagens de itens geradas: moedas, armadura, capacete, botas e espadas",
+        "caption": "<b>Coleção de imagens de itens</b> – ícones padronizados, nomes organizados e um manifesto."
+      }
+    }
+  },
+  "publishing": {
+    "kicker": "Publicação independente de plataforma",
+    "title": "As regras do seu site, não as nossas",
+    "lead": "Cada fansite, wiki e CMS quer as imagens de um jeito. Cada perfil descreve um site, então nada é forçado no formato de outro. Os perfis incluídos são pontos de partida que você pode editar.",
+    "th": {
+      "profile": "Perfil",
+      "images": "Imagens",
+      "names": "Nomes e pastas",
+      "extras": "Extras"
+    },
+    "wiki": {
+      "images": "Tamanho do cliente; PNG, animações em GIF",
+      "names": "Nomes do jogo com espaços · <code>{category}</code>",
+      "extras": "Um link <code>[[File:…]]</code> por imagem, JSON e CSV"
+    },
+    "fansite": {
+      "name": "Fansite próprio",
+      "names": "<code>dragon-lord.gif</code> · minúsculas, hifens",
+      "extras": "Um trecho HTML <code>&lt;img&gt;</code> por imagem, JSON e CSV"
+    },
+    "gallery": {
+      "name": "Site de galeria",
+      "images": "2× em uma tela fixa de 128×128",
+      "names": "Minúsculas, sublinhados",
+      "extras": "Uma galeria HTML independente, JSON e CSV"
+    },
+    "article": {
+      "name": "Publicação de artigos",
+      "extras": "Markdown com uma linha de crédito sob cada imagem"
+    },
+    "archive": {
+      "name": "Arquivo pessoal",
+      "images": "Tamanho original",
+      "extras": "Todos os formatos de manifesto"
+    },
+    "own": {
+      "name": "O seu próprio",
+      "images": "Qualquer escala, tela, margem, fundo e formato",
+      "names": "Modelos com {plural:variables:22}",
+      "extras": "Sua linha de crédito e seu trecho (wiki, HTML, BBCode…)"
+    },
+    "card1": {
+      "title": "Galerias HTML independentes",
+      "text": "Miniaturas, visualização em tamanho real, categorias, busca, metadados e créditos, claro e escuro – um único <code class=\"code\">index.html</code> que funciona direto do disco ou em qualquer hospedagem, sem servidor nem banco de dados."
+    },
+    "card2": {
+      "title": "Manifestos para os seus scripts",
+      "text": "Listas em JSON, CSV (seguro para planilhas) e Markdown de todas as imagens com nome, ID, categoria, tamanho, versão do cliente e crédito – prontas para importar em um CMS."
+    },
+    "card3": {
+      "title": "Créditos confiáveis",
+      "text": "Cada PNG e GIF leva o seu nome como criador e o copyright da CipSoft sobre a arte. Arquivos feitos a partir de imagens de outras pessoas mantêm os criadores originais."
+    }
+  },
+  "screens": {
+    "kicker": "Por dentro do programa",
+    "title": "Capturas de tela reais do Tibia Foundry {version}",
+    "lead": "Feitas no programa com o cliente oficial instalado – exibidas no tema em que você está vendo esta página. Clique em qualquer captura para ampliá-la.",
+    "tablist": "Capturas de tela",
+    "altDark": "Página {page} do Tibia Foundry no tema escuro",
+    "altLight": "Página {page} do Tibia Foundry no tema claro",
+    "tab": {
+      "home": "Home",
+      "asset-library": "Asset Library",
+      "duplicates": "Duplicatas",
+      "content-studio": "Content Studio",
+      "profiles": "Perfis de publicação",
+      "appearances": "Appearances",
+      "extract-sprites": "Extract Sprites",
+      "static-data": "Criaturas",
+      "item-catalog": "Item Catalog",
+      "compare": "Compare",
+      "map-tools": "Map Tools",
+      "house-images": "House Images",
+      "sounds": "Sounds",
+      "assets-editor": "Assets Editor",
+      "rcc-editor": "RCC Editor",
+      "clients": "Clients",
+      "settings": "Settings",
+      "settings-attribution": "Seu crédito"
+    },
+    "caption": {
+      "home": "Home: o cliente em uso, ferramentas e exportações recentes e fluxos passo a passo para fansites que abrem a ferramenta certa.",
+      "asset-library": "Asset Library: assets reais do cliente com miniaturas, categorias, coleções e detalhes editáveis – aqui com uma busca por “dragon”.",
+      "duplicates": "Localizador de duplicatas: arquivos idênticos, o mesmo gráfico em outros arquivos e imagens parecidas são apontados – nada é apagado por você.",
+      "content-studio": "Content Studio: um projeto de galeria de criaturas – renderização, redimensionamento, tela, descrições, pastas, folha de contato e manifestos.",
+      "profiles": "Perfis de publicação: escala, tela, formato e modelos de nome de arquivo com exemplo ao vivo, para cada site em que você publica.",
+      "appearances": "Appearances: mais de {num:43000} objetos, outfits, efeitos e projéteis; o Outfitter renderiza um outfit com os dois addons e a montaria.",
+      "extract-sprites": "Extract Sprites: todas as sprite sheets do cliente, enfileiradas por tamanho e salvas como PNGs transparentes ou folhas inteiras.",
+      "static-data": "Static Data: criaturas, bosses, conquistas, casas e quests, com prévias animadas e uma galeria da lista em um clique.",
+      "item-catalog": "Item Catalog: nomes e IDs de itens do cliente, do TibiaWiki e de outras fontes, separados por fonte, com exportações.",
+      "compare": "Compare Files: o que mudou entre duas versões do cliente, objeto por objeto – o ponto de partida para artigos de atualização.",
+      "map-tools": "Map Tools: áreas, NPCs e arquivos de mapa, mapas em alta resolução e blocos do minimapa.",
+      "house-images": "House Images: qualquer casa desenhada a partir dos dados de mapa do cliente, andar por andar, pronta para artigos de casas.",
+      "sounds": "Sounds: ouça e extraia os sons, efeitos, ambientes e músicas do cliente.",
+      "assets-editor": "Assets Editor: objetos, flags, layout de sprites e sprites – edite uma cópia e salve com validação; o cliente nunca é alterado.",
+      "rcc-editor": "RCC Editor: visualize, extraia e substitua a arte da interface do arquivo de recursos do cliente, salva como cópia.",
+      "clients": "Clients: pastas de cliente, revisões arquivadas de cada versão e armazenamento. (Caminhos locais estão desfocados.)",
+      "settings": "Settings: temas claro e escuro incluídos ou o seu próprio, pastas, segurança de arquivos, desempenho, notificações e mais.",
+      "settings-attribution": "Seu crédito: o nome do criador gravado nos metadados de cada PNG e GIF que você exporta."
+    }
+  },
+  "safety": {
+    "kicker": "Seguro por design",
+    "title": "O seu cliente e os seus arquivos continuam seus",
+    "readonly": {
+      "title": "Somente leitura no Tibia",
+      "text": "As pastas do cliente são apenas lidas. Os editores salvam cópias em outro lugar, e nenhuma ferramenta grava em uma pasta de cliente ou de arquivo."
+    },
+    "atomic": {
+      "title": "Nada pela metade",
+      "text": "As exportações são gravadas em um local temporário e só são movidas para o destino quando terminam; arquivos substituídos podem ter backup e ser restaurados."
+    },
+    "private": {
+      "title": "Local e privado",
+      "text": "Sem cadastro, sem nuvem. O TibiaWiki só é acessado pelos recursos que precisam dele. Os relatórios de diagnóstico omitem caminhos pessoais, então podem ser compartilhados com segurança."
+    }
+  },
+  "new": {
+    "kicker": "Notas da versão",
+    "title": "Novidades da {version}",
+    "fix2": "<b>9.0.2 – ponto final no flavortext</b>: o flavortext da infobox agora termina com o ponto que o jogo adiciona ao olhar (Look), exatamente como o TibiaWiki escreve.",
+    "fix1": "<b>9.0.1 – flavortext</b>: o texto de descrição do objeto no cliente preenche o flavortext da infobox.",
+    "item1": "<b>Exportador de infobox do TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> para qualquer objeto, com os dados do próprio cliente (Appearances → Wiki infobox).",
+    "item2": "<b>Comércio com NPCs no infobox</b>: npcvalue, npcprice, buyfrom e sellto a partir dos dados de comércio do cliente.",
+    "item3": "<b>Cada valor identificado</b>: dados do cliente, derivado (revisar), TibiaWiki ou a preencher – nada é adivinhado.",
+    "item4": "<b>Infobox em lote</b>: um arquivo .txt para cada objeto selecionado, sem nunca substituir um arquivo existente.",
+    "item5": "<b>Nomes de artigos do TibiaWiki</b>: com a lista de itens da wiki em cache, \"name\" é o título do artigo.",
+    "item6": "<b>Salvamento mais seguro</b>: configurações, catálogos e outros documentos são gravados no disco antes de substituir o arquivo antigo.",
+    "item7": "<b>Backups entre unidades</b>: um arquivo movido para um backup em outra unidade só é apagado depois que a cópia é verificada.",
+    "item8": "<b>Controles mais estáveis</b>: campos numéricos não avançam mais duas vezes por clique depois de trocar o tema.",
+    "item9": "<b>Uma versão em todo lugar</b>: o programa, o instalador, os pacotes e este site dizem {version}.",
+    "item10": "<b>Atualização sem complicação</b>: suas configurações, biblioteca, arquivos de clientes e catálogos de itens da 8.8 continuam como estão."
+  },
+  "download": {
+    "kicker": "Comece agora",
+    "title": "Baixe o Tibia Foundry {version}",
+    "lead": "Grátis para Windows 10 e 11 (64 bits). Escolha a edição que combina com você – o instalador e a edição portátil contêm o mesmo programa.",
+    "installer": {
+      "title": "Instalador",
+      "tagline": "Recomendado para a maioria das pessoas.",
+      "point1": "Atalho no menu Iniciar e desinstalação normal",
+      "point2": "Atualizações mantêm as suas configurações, biblioteca e arquivos",
+      "point3": "Os seus dados ficam no seu perfil de usuário",
+      "button": "Instalador (.msi)"
+    },
+    "portable": {
+      "title": "Portátil",
+      "tagline": "Um arquivo, sem instalação.",
+      "point1": "Roda de qualquer pasta ou de um pendrive",
+      "point2": "Guarda os dados ao lado de si mesmo",
+      "point3": "Não precisa instalar o .NET",
+      "button": "Portátil (.zip)"
+    },
+    "source": {
+      "title": "Código-fonte",
+      "tagline": "Para desenvolvedores e colaboradores.",
+      "point1": "Solução .NET 10 / WPF com testes",
+      "point2": "Scripts de compilação e empacotamento",
+      "point3": "Documentação de todas as ferramentas",
+      "button": "Código-fonte (.zip)"
+    },
+    "req1": "<b>Requisitos</b> Windows 10 ou 11, 64 bits",
+    "req2": "Um cliente do Tibia instalado (ou uma pasta com os arquivos dele)",
+    "req3": "Internet só para os recursos do TibiaWiki (opcional)",
+    "step1": {
+      "title": "Instale ou descompacte",
+      "text": "Execute o instalador ou descompacte a edição portátil em qualquer lugar."
+    },
+    "step2": {
+      "title": "Configure",
+      "text": "Na primeira execução, o programa encontra o seu cliente do Tibia e pergunta como guardar as versões do cliente."
+    },
+    "step3": {
+      "title": "Defina o seu nome",
+      "text": "Settings → Attribution: o criador gravado em cada imagem que você exporta."
+    },
+    "step4": {
+      "title": "Crie",
+      "text": "Abra a Home para ver os fluxos, ou Content Studio → New project para uma galeria inteira."
+    }
+  },
+  "faq": {
+    "kicker": "FAQ",
+    "title": "Perguntas e respostas",
+    "q1": "O Tibia Foundry é gratuito?",
+    "a1": "Sim. É um projeto independente e gratuito da comunidade, sem cadastro, sem anúncios e sem recursos pagos.",
+    "q2": "Ele altera o meu cliente do Tibia ou os meus personagens?",
+    "a2": "Não. O Tibia Foundry apenas lê os arquivos do cliente. Ele nunca grava em uma pasta de cliente, nunca mexe no seu personagem, hotkeys ou conta, e não interage com o jogo enquanto está aberto.",
+    "q3": "De onde vêm as imagens e posso publicá-las?",
+    "a3": "Do cliente oficial instalado no seu computador. Os gráficos e dados do Tibia são © CipSoft GmbH; o Tibia Foundry grava esse aviso e o seu nome como criador em cada imagem exportada. Siga as regras da CipSoft para fansites e a política de imagens do seu próprio site.",
+    "q4": "A Asset Library é enviada para algum lugar?",
+    "a4": "Não. A biblioteca é um banco de dados SQLite no seu computador; os seus arquivos ficam onde estão e são apenas lidos. Remover um asset da biblioteca nunca apaga um arquivo. Faça backup ou restaure pela aba Folders and storage da biblioteca.",
+    "q5": "Ele vai apagar as minhas imagens duplicadas?",
+    "a5": "Não. O localizador de duplicatas lista arquivos idênticos, o mesmo gráfico em outro tamanho e imagens parecidas para você decidir o que manter. O programa não apaga, move nem mescla nada.",
+    "q6": "Posso usar no meu próprio fansite em vez do TibiaWiki?",
+    "a6": "Sim – é para isso que existem os perfis de publicação. Crie um perfil com os seus tamanhos, formatos, nomes de arquivo, pastas, linha de crédito e trecho HTML ou BBCode; o perfil do TibiaWiki é só um exemplo.",
+    "q7": "O que acontece depois de uma atualização do Tibia?",
+    "a7": "Ao iniciar, o Tibia Foundry verifica o cliente instalado em segundo plano e oferece arquivar a nova versão. A página Compatibility mostra o quanto os novos arquivos são compreendidos, e um projeto de recursos de atualização renderiza tudo o que é novo ou mudou desde a versão anterior.",
+    "q8": "Qual edição devo escolher?",
+    "a8": "O instalador, para uma instalação normal com entrada no menu Iniciar e desinstalação; a edição portátil, para rodar de qualquer pasta ou pendrive sem instalar. As duas são o mesmo programa.",
+    "q9": "O Tibia Foundry tem vínculo com a CipSoft ou com a Fandom?",
+    "a9": "Não. É um projeto independente da comunidade, sem vínculo com a CipSoft GmbH ou com a Fandom e sem endosso delas. Ele não faz parte do Fansite Programme da CipSoft."
+  },
+  "band": {
+    "title": "Faça o seu próximo artigo de atualização em minutos",
+    "text": "Baixe o Tibia Foundry, aponte para o seu cliente e execute o seu primeiro projeto de galeria.",
+    "download": "Baixar a {version}",
+    "issues": "Relatar um problema ou ideia"
+  },
+  "footer": {
+    "tagline": "Todas as suas ferramentas de Tibia para o TibiaWiki e a comunidade de fansites. Criado por RockyLaRo, administrador do TibiaWiki.",
+    "product": "Produto",
+    "project": "Projeto",
+    "community": "Comunidade",
+    "repository": "Repositório no GitHub",
+    "releases": "Todas as versões",
+    "issues": "Problemas e suporte",
+    "fansites": "Fansites oficiais",
+    "legal": "O Tibia Foundry é um projeto independente da comunidade. Tibia é uma marca registrada da CipSoft GmbH; o Tibia, os seus gráficos e dados são © CipSoft GmbH. O Tibia Foundry não tem vínculo com a CipSoft GmbH ou com a Fandom, nem é endossado por elas.",
+    "components": "Componentes de código aberto (licenças em THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw e SQLite.",
+    "version": "Versão {version} · {date}"
+  },
+  "lightbox": {
+    "label": "Captura de tela ampliada",
+    "close": "Fechar"
+  },
+  "js": {
+    "themeToLight": "Mudar para o modo claro",
+    "themeToDark": "Mudar para o modo escuro",
+    "suggestText": "O Tibia Foundry também está disponível em português.",
+    "suggestGo": "Ver em português",
+    "suggestClose": "Manter o idioma atual"
+  },
+  "plural": {
+    "tools": {
+      "one": "{count} ferramenta",
+      "other": "{count} ferramentas"
+    },
+    "variables": {
+      "one": "{count} variável",
+      "other": "{count} variáveis"
+    }
+  },
+  "infobox": {
+    "kicker": "Novo na {version} · infobox do TibiaWiki",
+    "title": "O infobox de um artigo de item, preenchido pelo cliente",
+    "lead": "Selecione um objeto em Appearances e abra <b>Wiki infobox</b>: o Tibia Foundry escreve o <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> do TibiaWiki a partir dos dados oficiais do cliente, seguindo os parâmetros do próprio modelo e as convenções da wiki. Revise, acrescente o que só você sabe e cole no artigo.",
+    "point1": "<b>Do cliente</b>: ID, nomes, texto de descrição (flavortext), slot, nível e vocações, mãos e tipo de arma, slots de imbuement, classe de upgrade, propriedades do objeto, luz e cor no mapa, empilhável e negociável.",
+    "point2": "<b>Comércio com NPCs</b>: os melhores preços de compra e venda e todos os comerciantes, com o próprio preço quando ele difere.",
+    "point3": "<b>Nada inventado</b>: cada valor mostra de onde veio; implemented, weight, attack, armor e os outros valores que o cliente não tem ficam listados para você preencher.",
+    "point4": "<b>Edite, copie, salve</b>: altere qualquer valor, adicione parâmetros, copie o código, salve como .txt ou salve um arquivo para cada objeto selecionado.",
+    "window": "Appearances → Wiki infobox",
+    "caption": "Resultado real para Magic Plate Armor com o cliente instalado – as linhas vazias são o que o cliente não tem como saber.",
+    "label": "Código do infobox gerado"
+  }
+}

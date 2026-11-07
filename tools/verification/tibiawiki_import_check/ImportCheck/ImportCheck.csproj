@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Repeats the TibiaWiki import that failed in 7.0.0 on a portable copy of Tibia Foundry, through UI
+       Automation, against the live TibiaWiki. Uses Tibia Foundry's Core only to prepare settings and read results. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\TibiaFoundry.Core\TibiaFoundry.Core.csproj" />
+  </ItemGroup>
+</Project>

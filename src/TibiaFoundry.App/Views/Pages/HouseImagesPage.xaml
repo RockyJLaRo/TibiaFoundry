@@ -1,0 +1,96 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.HouseImagesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,12">
+            <DockPanel>
+                <TextBlock Text="{loc:Tr HouseImages.HouseMaps}" Style="{StaticResource FieldLabel}" />
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="8,0,0,0">
+                    <Button Content="{loc:Tr Common.Load}" Style="{StaticResource PrimaryButton}" Command="{Binding LoadCommand}" MinWidth="70" ToolTip="{loc:Tr HouseImages.ReadTheHouseMapsStaticmapdataFile}" />
+                    <Button Content="{loc:Tr Common.ChangeFile}" Command="{Binding ChangeFileCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr HouseImages.ChooseADifferentStaticmapdataDatFile}" />
+                    <Button Content="{loc:Tr Common.ExportJSON}" Command="{Binding ExportJsonCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr HouseImages.SaveTheHouseMapsAsJSON}" />
+                </StackPanel>
+                <TextBox Style="{StaticResource PathBox}" Text="{Binding DatPath, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=HouseImages.NoStaticMapDataFileFound}" AutomationProperties.Name="{loc:Tr HouseImages.StaticMapDataFile}" />
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" MinWidth="220" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" MinWidth="420" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource Panel}" Padding="10">
+                <DockPanel>
+                    <TextBox DockPanel.Dock="Top" Margin="0,0,0,8" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged, Delay=150}" ToolTip="{loc:Tr HouseImages.TypePartOfAHouseID}" controls:Input.Placeholder="{loc:Tr HouseImages.FindHouseIDNameOrCity}" AutomationProperties.Name="{loc:Tr HouseImages.FindHouse}" />
+                    <TextBlock DockPanel.Dock="Bottom" Margin="0,8,0,0" Foreground="{DynamicResource App.TextSecondary}" FontSize="12">
+                        <Run Text="{Binding VisibleCount, Mode=OneWay, Converter={StaticResource Number}}" /> <Run Text="{loc:Tr HouseImages.Houses}" />
+                    </TextBlock>
+                    <Grid>
+                        <ListView ItemsSource="{Binding VisibleItems}" SelectedItem="{Binding SelectedItem}" AutomationProperties.Name="{loc:Tr Common.Houses}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="64" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="{loc:Tr Common.Name}" Width="190">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type vm:ListItem}">
+                                                <StackPanel>
+                                                    <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}" />
+                                                    <TextBlock Text="{Binding Detail}" FontSize="11" Foreground="{DynamicResource App.TextSecondary}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Style="{StaticResource EmptyState}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}"
+                                   Text="{loc:Tr HouseImages.NoHouseMapsLoadedYetClick}" />
+                    </Grid>
+                </DockPanel>
+            </Border>
+
+            <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" ResizeBehavior="PreviousAndNext" />
+
+            <DockPanel Grid.Column="2">
+                <Border DockPanel.Dock="Top" Style="{StaticResource Panel}" Padding="12,8" Margin="0,0,0,10">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Content="{loc:Tr Common.Copy}" Command="{Binding CopyCommand}" Margin="0,0,6,0" ToolTip="{loc:Tr HouseImages.CopyTheHouseImageIncludingTransparency}" />
+                            <Button Content="{loc:Tr HouseImages.Save}" Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" ToolTip="{loc:Tr HouseImages.SaveTheHouseImageAsA}" />
+                        </StackPanel>
+                        <WrapPanel VerticalAlignment="Center">
+                            <TextBlock Text="{loc:Tr HouseImages.Floor}" Style="{StaticResource FieldLabel}" />
+                            <controls:NumericUpDown Value="{Binding Floor}" Minimum="{Binding MinFloor}" Maximum="{Binding MaxFloor}" Width="70" Margin="0,0,14,4" AutomationProperties.Name="{loc:Tr HouseImages.Floor}" />
+                            <CheckBox Content="{loc:Tr HouseImages.AllFloorsUpToThisOne}" IsChecked="{Binding AllFloors}" Margin="0,0,14,4" VerticalAlignment="Center" ToolTip="{loc:Tr HouseImages.DrawTheLowerFloorsOfThe}" />
+                            <CheckBox Content="{loc:Tr HouseImages.Crop}" IsChecked="{Binding Crop}" Margin="0,0,14,4" VerticalAlignment="Center" ToolTip="{loc:Tr HouseImages.RemoveTheEmptyMarginAroundThe}" />
+                            <TextBlock Text="{loc:Tr Common.Background}" Style="{StaticResource FieldLabel}" />
+                            <ComboBox ItemsSource="{Binding Backgrounds}" loc:Choice.Prefix="Choice.HouseBackground" SelectedItem="{Binding Background}" Width="120" Margin="0,0,14,4" AutomationProperties.Name="{loc:Tr Common.Background}" />
+                            <CheckBox Content="{loc:Tr HouseImages.FitToWindow}" IsChecked="{Binding FitToWindow}" VerticalAlignment="Center" Margin="0,0,0,4" ToolTip="{loc:Tr HouseImages.ScaleThePreviewToFitSaved}" />
+                        </WrapPanel>
+                    </DockPanel>
+                </Border>
+                <TextBlock DockPanel.Dock="Bottom" Text="{Binding RenderInfo}" Style="{StaticResource Muted}" Margin="2,8,0,0" FontSize="12" />
+                <Border Style="{StaticResource Panel}" Padding="0" Background="{DynamicResource App.Checkerboard}" ClipToBounds="True">
+                    <Grid>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                                      Visibility="{Binding FitToWindow, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}">
+                            <Image Source="{Binding HouseImage}" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="8" />
+                        </ScrollViewer>
+                        <Image Source="{Binding HouseImage}" Stretch="Uniform" StretchDirection="DownOnly" RenderOptions.BitmapScalingMode="HighQuality" Margin="8"
+                               Visibility="{Binding FitToWindow, Converter={StaticResource BoolToVisibility}}" AutomationProperties.Name="{loc:Tr HouseImages.HouseImage}" />
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

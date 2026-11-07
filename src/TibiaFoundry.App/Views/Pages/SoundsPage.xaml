@@ -1,0 +1,109 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.SoundsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,12">
+            <StackPanel>
+                <DockPanel>
+                    <TextBlock Text="{loc:Tr Sounds.SoundsFile}" Style="{StaticResource FieldLabel}" Width="96" />
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="8,0,0,0">
+                        <Button Content="{loc:Tr Common.Load}" Style="{StaticResource PrimaryButton}" Command="{Binding LoadCommand}" MinWidth="70" ToolTip="{loc:Tr Sounds.ReadTheSoundsFileShownBelow}" />
+                        <Button Content="{loc:Tr Common.ChangeFile}" Command="{Binding ChangeFileCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Sounds.ChooseADifferentSoundsDatFile}" />
+                        <Button Content="{loc:Tr Common.ExportJSON}" Command="{Binding ExportJsonCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Sounds.SaveTheSoundListAsJSON}" />
+                    </StackPanel>
+                    <TextBox Style="{StaticResource PathBox}" Text="{Binding DatPath, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=Sounds.NoSoundsFileFound}" AutomationProperties.Name="{loc:Tr Sounds.SoundsFile}" />
+                </DockPanel>
+                <DockPanel Margin="0,8,0,0">
+                    <TextBlock Text="{loc:Tr Sounds.Player}" Style="{StaticResource FieldLabel}" Width="96" />
+                    <Button Command="{Binding PlaySelectedCommand}" MinWidth="80" ToolTip="{loc:Tr Sounds.PlayTheSoundOfTheSelected}" AutomationProperties.Name="{loc:Tr Common.Play}">
+                        <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE768;" Style="{StaticResource Icon}" FontSize="12" Margin="0,0,6,0" /><TextBlock Text="{loc:Tr Common.Play}" /></StackPanel>
+                    </Button>
+                    <Button Command="{Binding StopCommand}" MinWidth="80" Margin="6,0,0,0" AutomationProperties.Name="{loc:Tr Common.Stop}">
+                        <StackPanel Orientation="Horizontal"><TextBlock Text="&#xE71A;" Style="{StaticResource Icon}" FontSize="12" Margin="0,0,6,0" /><TextBlock Text="{loc:Tr Common.Stop}" /></StackPanel>
+                    </Button>
+                    <CheckBox Content="{loc:Tr Sounds.Autoplay}" IsChecked="{Binding Autoplay}" Margin="14,0,14,0" VerticalAlignment="Center" ToolTip="{loc:Tr Sounds.PlayEachEntryAsSoonAs}" />
+                    <TextBlock Text="&#xE767;" Style="{StaticResource Icon}" FontSize="13" Margin="0,0,6,0" />
+                    <Slider Value="{Binding Volume}" Minimum="0" Maximum="100" Width="120" VerticalAlignment="Center" AutomationProperties.Name="{loc:Tr Sounds.Volume}" />
+                    <TextBlock Text="{Binding NowPlaying}" Style="{StaticResource Muted}" Margin="14,0,0,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+                </DockPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="372" MinWidth="230" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" MinWidth="400" />
+            </Grid.ColumnDefinitions>
+
+            <Border Style="{StaticResource Panel}" Padding="10">
+                <DockPanel>
+                    <Border DockPanel.Dock="Top" Style="{StaticResource SegmentHost}" HorizontalAlignment="Left" Margin="0,0,0,8">
+                        <WrapPanel>
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr Sounds.Sounds}" GroupName="SndK" IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Sounds}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr Common.Effects}" GroupName="SndK" IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=SoundEffects}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr Sounds.Ambience}" GroupName="SndK" IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Ambiences}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr Sounds.AmbienceObjects}" GroupName="SndK" IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=AmbienceObjects}" />
+                            <RadioButton Style="{StaticResource SegmentRadio}" Content="{loc:Tr Sounds.Music}" GroupName="SndK" IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=MusicTemplates}" />
+                        </WrapPanel>
+                    </Border>
+                    <TextBox DockPanel.Dock="Top" Margin="0,0,0,8" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged, Delay=150}" ToolTip="{loc:Tr Sounds.FilterByIDOrText}" controls:Input.Placeholder="{loc:Tr Sounds.FilterByIDOrText}" AutomationProperties.Name="{loc:Tr Common.Filter}" />
+                    <TextBlock DockPanel.Dock="Bottom" Margin="0,8,0,0" Foreground="{DynamicResource App.TextSecondary}" FontSize="12">
+                        <Run Text="{Binding VisibleCount, Mode=OneWay, Converter={StaticResource Number}}" /> <Run Text="{loc:Tr Sounds.Entries}" />
+                    </TextBlock>
+                    <Grid>
+                        <ListView ItemsSource="{Binding VisibleItems}" SelectedItem="{Binding SelectedItem}" AutomationProperties.Name="{loc:Tr Sounds.SoundEntries}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="ID" Width="64" DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="{loc:Tr Common.Details}" Width="210">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type vm:ListItem}">
+                                                <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Style="{StaticResource EmptyState}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}"
+                                   Text="{loc:Tr Sounds.NoSoundsLoadedYetClickLoad}" />
+                    </Grid>
+                </DockPanel>
+            </Border>
+
+            <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" ResizeBehavior="PreviousAndNext" />
+
+            <TabControl Grid.Column="2" Padding="0,10,0,0">
+                <TabItem Header="{loc:Tr Common.Data}">
+                    <ItemsControl Style="{StaticResource PropertyList}" ItemsSource="{Binding Properties}" Tag="200" AutomationProperties.Name="{loc:Tr Common.Properties}" />
+                </TabItem>
+                <TabItem Header="{loc:Tr Common.Extract}">
+                    <GroupBox Header="{loc:Tr Sounds.ExtractAllSoundFiles}" MaxWidth="720" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource Muted}" Margin="0,0,0,10"
+                                       Text="{loc:Tr Sounds.SavesEverySoundFileToThe}" TextWrapping="Wrap" />
+                            <DockPanel Margin="0,0,0,10">
+                                <TextBlock Text="{loc:Tr Common.OutputFolder}" Style="{StaticResource FieldLabel}" Width="100" />
+                                <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" Command="{Binding OpenExtractFolderCommand}" ToolTip="{loc:Tr Common.OpenTheOutputFolder}" AutomationProperties.Name="{loc:Tr Common.OpenOutputFolder}">
+                                    <TextBlock Text="&#xE838;" Style="{StaticResource Icon}" FontSize="13" />
+                                </Button>
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Change}" Command="{Binding ChangeExtractFolderCommand}" Margin="6,0,2,0" ToolTip="{loc:Tr Sounds.ChooseTheFolderThatSoundFiles}" />
+                                <TextBox Style="{StaticResource PathBox}" Text="{Binding ExtractFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Sounds.SoundsOutputFolder}" />
+                            </DockPanel>
+                            <Button Content="{loc:Tr Sounds.ExtractSoundFiles}" Style="{StaticResource PrimaryButton}" Command="{Binding ExtractCommand}" HorizontalAlignment="Right" ToolTip="{loc:Tr Sounds.SaveEverySoundFileToThe}" />
+                        </StackPanel>
+                    </GroupBox>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

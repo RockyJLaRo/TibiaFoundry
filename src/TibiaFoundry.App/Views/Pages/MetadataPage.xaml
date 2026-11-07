@@ -1,0 +1,265 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.MetadataPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization"
+             AllowDrop="True" DragOver="OnDragOver" Drop="OnDrop">
+    <UserControl.Resources>
+        <!-- One field of the inspector: label, editor (text, check box or list), and its actions. -->
+        <DataTemplate x:Key="FieldRowTemplate">
+            <Grid Margin="0,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4" />
+                    <ColumnDefinition Width="170" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!-- Unsaved change marker. -->
+                <Border Background="{DynamicResource App.Accent}" CornerRadius="2" Margin="0,2"
+                        Visibility="{Binding IsModified, Converter={StaticResource BoolToVisibility}}" ToolTip="{loc:Tr Metadata.ChangedNotSavedYet}" />
+                <StackPanel Grid.Column="1" Margin="8,4,10,0" VerticalAlignment="Top">
+                    <TextBlock Text="{Binding Label}" TextWrapping="Wrap" Foreground="{DynamicResource App.TextSecondary}" ToolTip="{Binding Tooltip}" />
+                    <TextBlock Text="{loc:Tr Metadata.ReadOnly}" FontSize="11" Foreground="{DynamicResource App.TextDisabled}"
+                               Visibility="{Binding IsReadOnly, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
+                <Grid Grid.Column="2">
+                    <TextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged, Delay=250}" IsReadOnly="{Binding IsReadOnly}" TextWrapping="Wrap"
+                             AcceptsReturn="{Binding IsMultiline}" MaxHeight="160" VerticalScrollBarVisibility="Auto"
+                             controls:Input.Placeholder="{Binding Placeholder}" ToolTip="{Binding Tooltip}" AutomationProperties.Name="{Binding Label}"
+                             Visibility="{Binding IsText, Converter={StaticResource BoolToVisibility}}">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsReadOnly}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource App.SurfaceReadOnly}" />
+                                        <Setter Property="Foreground" Value="{DynamicResource App.TextSecondary}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <CheckBox IsChecked="{Binding BoolValue}" IsEnabled="{Binding IsEditable}" VerticalAlignment="Center" Content="{loc:Tr Metadata.Yes}" AutomationProperties.Name="{Binding Label}"
+                              ToolTip="{Binding Tooltip}" Visibility="{Binding IsBoolean, Converter={StaticResource BoolToVisibility}}" />
+                    <ComboBox ItemsSource="{Binding Choices}" SelectedItem="{Binding Value}" IsEnabled="{Binding IsEditable}" HorizontalAlignment="Left" MinWidth="120"
+                              AutomationProperties.Name="{Binding Label}" ToolTip="{Binding Tooltip}" Visibility="{Binding IsChoice, Converter={StaticResource BoolToVisibility}}" />
+                </Grid>
+                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Top" Margin="6,0,0,0">
+                    <Button Style="{StaticResource SubtleButton}" Command="{Binding RevertCommand}" ToolTip="{loc:Tr Metadata.UndoThisChange}" AutomationProperties.Name="{loc:Tr Metadata.UndoTheChange}"
+                            Visibility="{Binding IsModified, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="&#xE7A7;" Style="{StaticResource Icon}" FontSize="12" />
+                    </Button>
+                    <Button Style="{StaticResource SubtleButton}" Command="{Binding RemoveCommand}" ToolTip="{loc:Tr Metadata.RemoveThisFieldFromTheFile}" AutomationProperties.Name="{loc:Tr Metadata.RemoveTheField}"
+                            Visibility="{Binding IsRemovable, Converter={StaticResource BoolToVisibility}}">
+                        <TextBlock Text="&#xE74D;" Style="{StaticResource Icon}" FontSize="12" />
+                    </Button>
+                </StackPanel>
+                <TextBlock Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Error}" Foreground="{DynamicResource App.Danger}" FontSize="12" TextWrapping="Wrap" Margin="0,2,0,0"
+                           Visibility="{Binding Error, Converter={StaticResource NullToVisibility}}" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="{loc:Tr Metadata.RemovedWhenYouSave}" Foreground="{DynamicResource App.Warning}" FontSize="12" Margin="0,2,0,0"
+                           Visibility="{Binding PendingRemoval, Converter={StaticResource BoolToVisibility}}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- Files and options. -->
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,10">
+            <StackPanel>
+                <WrapPanel>
+                    <Button Content="{loc:Tr Common.AddFiles}" Style="{StaticResource PrimaryButton}" Command="{Binding AddFilesCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.AddFilesToInspectOrEdit}" />
+                    <Button Content="{loc:Tr Common.AddFolder}" Command="{Binding AddFolderCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.AddEveryFileOfAFolder}" />
+                    <CheckBox Content="{loc:Tr Metadata.IncludeSubfolders}" IsChecked="{Binding IncludeSubfolders}" VerticalAlignment="Center" Margin="2,0,16,6" />
+                    <Button Content="{loc:Tr Metadata.ReadAgain}" Command="{Binding ReloadCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.ReadTheSelectedFilesOrAll}" />
+                    <Button Content="{loc:Tr Common.Remove}" Command="{Binding RemoveSelectedCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.RemoveTheSelectedFilesFromThe}" />
+                    <Button Content="{loc:Tr Common.Clear}" Command="{Binding ClearCommand}" Margin="0,0,16,6" ToolTip="{loc:Tr Metadata.EmptyTheListTheFilesAre}" />
+                    <Button Content="{loc:Tr Metadata.ExportCSV}" Command="{Binding ExportCsvCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.AReportOfTheSelectedFiles}" />
+                    <Button Content="{loc:Tr Common.ExportJSON}" Command="{Binding ExportJsonCommand}" Margin="0,0,16,6" ToolTip="{loc:Tr Metadata.TheSameReportAsJSON}" />
+                </WrapPanel>
+                <WrapPanel Margin="0,2,0,0">
+                    <CheckBox Content="{loc:Tr Metadata.BackUpFilesBeforeSaving}" IsChecked="{Binding Backups}" Margin="0,0,16,0"
+                              ToolTip="{loc:Tr Metadata.AVerifiedCopyOfEachFile}" />
+                    <CheckBox Content="{loc:Tr Metadata.KeepTheModifiedTime}" IsChecked="{Binding KeepModifiedTime}" Margin="0,0,16,0" ToolTip="{loc:Tr Metadata.SavedFilesKeepTheirModifiedDate}" />
+                    <TextBlock Text="{Binding Summary}" Style="{StaticResource Muted}" />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="11*" MinWidth="320" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10*" MinWidth="380" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="{loc:Tr Common.Files}">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="190" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged, Delay=250}" controls:Input.Placeholder="{loc:Tr Metadata.SearchNamesFoldersAndValues}" Margin="0,0,8,0"
+                                 AutomationProperties.Name="{loc:Tr Metadata.SearchFiles}" />
+                        <ComboBox Grid.Column="1" ItemsSource="{Binding Formats}" SelectedItem="{Binding FormatFilter}" loc:Choice.Prefix="Choice.MetadataFilter" AutomationProperties.Name="{loc:Tr Metadata.ShowFilesOf}" />
+                    </Grid>
+                    <Grid>
+                        <DataGrid x:Name="FileList" ItemsSource="{Binding FilesView}" AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Extended" SelectionUnit="FullRow"
+                                  CanUserSortColumns="True" CanUserResizeColumns="True" HeadersVisibility="Column" SelectionChanged="OnSelectionChanged"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" EnableRowVirtualization="True"
+                                  AutomationProperties.Name="{loc:Tr Common.Files}">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="" Width="30" SortMemberPath="StatusText">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding StatusGlyph}" Style="{StaticResource Icon}" FontSize="13" ToolTip="{Binding StatusText}"
+                                                       Foreground="{Binding StatusBrush, Converter={StaticResource ResourceKey}}" AutomationProperties.Name="{Binding StatusText}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Header="{loc:Tr Common.Name}" Binding="{Binding Name}" Width="190" />
+                                <DataGridTextColumn Header="{loc:Tr Common.Format}" Binding="{Binding Format}" Width="130" />
+                                <DataGridTextColumn Header="{loc:Tr Metadata.Access}" Binding="{Binding Access}" Width="82" />
+                                <DataGridTextColumn Header="{loc:Tr Common.Size}" Binding="{Binding SizeText}" SortMemberPath="Size" Width="76" />
+                                <DataGridTextColumn Header="{loc:Tr Common.Folder}" Binding="{Binding Folder}" Width="*" MinWidth="120" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBlock Style="{StaticResource EmptyState}" TextWrapping="Wrap" Margin="24"
+                                   Text="{loc:Tr Metadata.AddFilesOrAFolderOr}"
+                                   Visibility="{Binding IsEmpty, Converter={StaticResource BoolToVisibility}}" />
+                    </Grid>
+                </DockPanel>
+            </GroupBox>
+
+            <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Center" Background="Transparent" />
+
+            <TabControl Grid.Column="2">
+                <!-- The inspector: one file, or several edited together. -->
+                <TabItem Header="{loc:Tr Metadata.Metadata}">
+                    <DockPanel Margin="0,8,0,0">
+                        <StackPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                            <TextBlock Text="{Binding SelectionTitle}" FontSize="15" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" ToolTip="{Binding SelectionTitle}" />
+                            <TextBlock Text="{Binding SelectionDetails}" Style="{StaticResource Muted}" FontSize="12" Margin="0,2,0,0" />
+                            <ItemsControl ItemsSource="{Binding SelectionWarnings}" Margin="0,6,0,0" Focusable="False">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource InfoBanner}" Background="{DynamicResource App.WarningSoft}" Margin="0,0,0,4" Padding="8,5">
+                                            <TextBox Style="{StaticResource ValueText}" Text="{Binding Mode=OneWay}" FontSize="12" />
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                            <WrapPanel Margin="0,4,0,0">
+                                <Button Content="{loc:Tr Metadata.SaveChanges}" Style="{StaticResource PrimaryButton}" Command="{Binding SaveCommand}" Margin="0,0,6,6"
+                                        ToolTip="{loc:Tr Metadata.WriteTheUnsavedChangesOfThe}" />
+                                <Button Content="{loc:Tr Metadata.UndoChanges}" Command="{Binding RevertCommand}" Margin="0,0,14,6" ToolTip="{loc:Tr Metadata.ForgetTheUnsavedChangesOfThe}" />
+                                <CheckBox Content="{loc:Tr Metadata.ShowEmptyFields}" IsChecked="{Binding ShowEmptyFields}" VerticalAlignment="Center" Margin="0,0,0,6"
+                                          ToolTip="{loc:Tr Metadata.AlsoListFieldsThatHaveNo}" />
+                            </WrapPanel>
+                        </StackPanel>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsControl ItemsSource="{Binding Groups}" Focusable="False" AutomationProperties.Name="{loc:Tr Metadata.MetadataFields}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Margin="0,0,8,12">
+                                            <TextBlock Text="{Binding Category, Converter={StaticResource LocChoice}, ConverterParameter=MetadataGroup}" Style="{StaticResource SectionTitle}" Margin="0,0,0,4" AutomationProperties.HeadingLevel="Level2" />
+                                            <Border BorderBrush="{DynamicResource App.Border}" BorderThickness="0,1,0,0" Margin="0,0,0,4" />
+                                            <ItemsControl ItemsSource="{Binding Rows}" ItemTemplate="{StaticResource FieldRowTemplate}" Focusable="False" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </DockPanel>
+                </TabItem>
+
+                <!-- Batch operations with a preview. -->
+                <TabItem Header="{loc:Tr Metadata.BatchEdit}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <StackPanel Margin="0,10,8,0">
+                            <TextBlock Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                       Text="{loc:Tr Metadata.BuildAListOfOperationsPreview}" />
+                            <TextBlock Text="{loc:Tr Metadata.1Operations}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                            <WrapPanel>
+                                <ComboBox ItemsSource="{Binding BatchActions}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding BatchAction}" Width="170" Margin="0,0,6,6"
+                                          AutomationProperties.Name="{loc:Tr Common.Operation}" />
+                                <ComboBox ItemsSource="{Binding BatchFields}" DisplayMemberPath="Label" SelectedItem="{Binding BatchField}" Width="180" Margin="0,0,6,6" AutomationProperties.Name="{loc:Tr Metadata.Field}" />
+                                <TextBox Text="{Binding BatchValue, UpdateSourceTrigger=PropertyChanged}" Width="220" Margin="0,0,6,6" controls:Input.Placeholder="{loc:Tr Metadata.ValueListsABC}"
+                                         Visibility="{Binding NeedsValue, Converter={StaticResource BoolToVisibility}}" AutomationProperties.Name="{loc:Tr Common.Value}" />
+                                <TextBox Text="{Binding BatchReplacement, UpdateSourceTrigger=PropertyChanged}" Width="160" Margin="0,0,6,6" controls:Input.Placeholder="{loc:Tr Metadata.ReplaceWith}"
+                                         Visibility="{Binding NeedsReplacement, Converter={StaticResource BoolToVisibility}}" AutomationProperties.Name="{loc:Tr Metadata.Replacement}" />
+                                <Button Content="{loc:Tr Common.Add}" Command="{Binding AddOperationCommand}" Margin="0,0,6,6" />
+                            </WrapPanel>
+                            <Border Style="{StaticResource Panel}" Padding="4" Margin="0,0,0,6" MinHeight="40">
+                                <ItemsControl ItemsSource="{Binding Operations}" Focusable="False" AutomationProperties.Name="{loc:Tr Common.Operations}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <DockPanel Margin="6,2">
+                                                <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" ToolTip="{loc:Tr Metadata.RemoveThisOperation}" AutomationProperties.Name="{loc:Tr Metadata.RemoveOperation}"
+                                                        Command="{Binding DataContext.RemoveOperationCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
+                                                    <TextBlock Text="&#xE711;" Style="{StaticResource Icon}" FontSize="11" />
+                                                </Button>
+                                                <TextBlock Text="{Binding Text}" VerticalAlignment="Center" TextWrapping="Wrap" />
+                                            </DockPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Border>
+                            <WrapPanel Margin="0,0,0,10">
+                                <Button Content="{loc:Tr Metadata.ClearOperations}" Command="{Binding ClearOperationsCommand}" Margin="0,0,6,6" />
+                                <Button Content="{loc:Tr Metadata.UseTheSelectedFileAsReference}" Command="{Binding UseAsReferenceCommand}" Margin="0,0,10,6"
+                                        ToolTip="{loc:Tr Metadata.CopyFromReferenceCopiesTheField}" />
+                                <TextBlock Text="{Binding ReferenceText}" Style="{StaticResource Muted}" FontSize="12" VerticalAlignment="Center" Margin="0,0,0,6" TextTrimming="CharacterEllipsis" MaxWidth="420" />
+                            </WrapPanel>
+
+                            <TextBlock Text="{loc:Tr Common.Presets}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                            <WrapPanel Margin="0,0,0,10">
+                                <ComboBox ItemsSource="{Binding Presets}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedPreset}" Width="220" Margin="0,0,6,6" AutomationProperties.Name="{loc:Tr Common.Preset}" />
+                                <Button Content="{loc:Tr Metadata.AddToOperations}" Command="{Binding UsePresetCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.AddsThePresetSValuesIt}" />
+                                <Button Content="{loc:Tr Metadata.SaveOperationsAsPreset}" Command="{Binding SavePresetCommand}" Margin="0,0,6,6" ToolTip="{loc:Tr Metadata.KeepsTheSetToOperationsAnd}" />
+                                <Button Content="{loc:Tr Metadata.DeletePreset}" Command="{Binding DeletePresetCommand}" Margin="0,0,6,6" />
+                            </WrapPanel>
+
+                            <TextBlock Text="{loc:Tr Metadata.2PreviewAndApply}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                            <WrapPanel>
+                                <Button Content="{loc:Tr Metadata.PreviewForTheSelectedFiles}" Command="{Binding PreviewBatchCommand}" Margin="0,0,6,6" />
+                                <Button Content="{loc:Tr Metadata.Apply}" Style="{StaticResource PrimaryButton}" Command="{Binding ApplyBatchCommand}" Margin="0,0,10,6" ToolTip="{loc:Tr Metadata.AsksFirstThenSavesFileBy}" />
+                            </WrapPanel>
+                            <TextBlock Text="{Binding PlanSummary}" Style="{StaticResource Muted}" TextWrapping="Wrap" Margin="0,0,0,6" />
+                            <DataGrid ItemsSource="{Binding PlanRows}" AutoGenerateColumns="False" IsReadOnly="True" MaxHeight="360" HeadersVisibility="Column" AutomationProperties.Name="{loc:Tr Common.Preview}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="{loc:Tr Common.File}" Binding="{Binding File}" Width="160" />
+                                    <DataGridTextColumn Header="{loc:Tr Common.Format}" Binding="{Binding Format}" Width="100" />
+                                    <DataGridTextColumn Header="{loc:Tr Common.Changes}" Binding="{Binding Changes}" Width="2*" />
+                                    <DataGridTextColumn Header="{loc:Tr Metadata.NotApplied}" Binding="{Binding Skipped}" Width="2*" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </ScrollViewer>
+                </TabItem>
+
+                <!-- Comparison of the selected files. -->
+                <TabItem Header="{loc:Tr Common.Compare}">
+                    <DockPanel Margin="0,10,0,0">
+                        <WrapPanel DockPanel.Dock="Top" Margin="0,0,0,6">
+                            <Button Content="{loc:Tr Metadata.CompareTheSelectedFiles}" Command="{Binding CompareCommand}" Margin="0,0,10,6" />
+                            <CheckBox Content="{loc:Tr Metadata.OnlyDifferences}" IsChecked="{Binding OnlyDifferences}" VerticalAlignment="Center" Margin="0,0,14,6" />
+                            <CheckBox Content="{loc:Tr Metadata.IncludeFileSystemProperties}" IsChecked="{Binding CompareFileSystem}" VerticalAlignment="Center" Margin="0,0,0,6" />
+                        </WrapPanel>
+                        <TextBlock DockPanel.Dock="Top" Text="{Binding ComparisonSummary}" Style="{StaticResource Muted}" Margin="0,0,0,6" />
+                        <DataGrid ItemsSource="{Binding Comparison}" AutoGenerateColumns="True" IsReadOnly="True" HeadersVisibility="Column" AutomationProperties.Name="{loc:Tr Metadata.Comparison}"
+                                  ColumnWidth="SizeToCells" MinColumnWidth="90" />
+                    </DockPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</UserControl>

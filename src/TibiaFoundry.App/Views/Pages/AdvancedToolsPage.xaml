@@ -1,0 +1,196 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AdvancedToolsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <Style x:Key="RowLabel" TargetType="TextBlock" BasedOn="{StaticResource FieldLabel}">
+            <Setter Property="Width" Value="130" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <!-- Shows the element only for the sheet source given in Tag. -->
+        <Style x:Key="ForSource" TargetType="FrameworkElement">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Margin" Value="0,0,0,10" />
+            <Style.Triggers>
+                <DataTrigger Value="True">
+                    <DataTrigger.Binding>
+                        <MultiBinding Converter="{StaticResource ValuesEqual}">
+                            <Binding Path="Source" />
+                            <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                        </MultiBinding>
+                    </DataTrigger.Binding>
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <TabControl Margin="16,14,16,14">
+        <TabItem Header="{loc:Tr Common.OutfiterSheet}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel MaxWidth="860" HorizontalAlignment="Left" Margin="0,4,0,0">
+                    <Border Style="{StaticResource InfoBanner}" Margin="0,0,0,14">
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="{loc:Tr AdvancedTools.ArrangesSpritesInAGridIn}" />
+                    </Border>
+
+                    <GroupBox Header="{loc:Tr Common.Sprites}" Margin="0,0,0,14">
+                        <StackPanel>
+                            <DockPanel Margin="0,0,0,12">
+                                <TextBlock Text="{loc:Tr Common.Source}" Style="{StaticResource RowLabel}" />
+                                <Border Style="{StaticResource SegmentHost}" HorizontalAlignment="Left">
+                                    <WrapPanel>
+                                        <RadioButton Style="{StaticResource SegmentRadio}" GroupName="SheetSrc" Content="{loc:Tr AdvancedTools.ImageFiles}"
+                                                     IsChecked="{Binding Source, Converter={StaticResource EnumEquals}, ConverterParameter=Files}" />
+                                        <RadioButton Style="{StaticResource SegmentRadio}" GroupName="SheetSrc" Content="{loc:Tr AdvancedTools.SpriteIDList}"
+                                                     IsChecked="{Binding Source, Converter={StaticResource EnumEquals}, ConverterParameter=IdList}" />
+                                        <RadioButton Style="{StaticResource SegmentRadio}" GroupName="SheetSrc" Content="{loc:Tr AdvancedTools.AppearancesJSON}" ToolTip="{loc:Tr AdvancedTools.AnAppearancesJSONFileSavedWith}"
+                                                     IsChecked="{Binding Source, Converter={StaticResource EnumEquals}, ConverterParameter=LegacyJson}" />
+                                        <RadioButton Style="{StaticResource SegmentRadio}" GroupName="SheetSrc" Content="{loc:Tr AdvancedTools.LoadedOutfit}" ToolTip="{loc:Tr AdvancedTools.AnOutfitFromTheAppearancesLoaded}"
+                                                     IsChecked="{Binding Source, Converter={StaticResource EnumEquals}, ConverterParameter=Appearances}" />
+                                    </WrapPanel>
+                                </Border>
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource ForSource}" Tag="{x:Static vm:SheetSource.Files}">
+                                <TextBlock Text="{loc:Tr Common.Images}" Style="{StaticResource RowLabel}" />
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr AdvancedTools.SelectFiles}" Command="{Binding SelectFilesCommand}" Margin="8,0,0,0" ToolTip="{loc:Tr AdvancedTools.ChoosePNGGIFOrBMPImages}" />
+                                <TextBox Style="{StaticResource PathBox}" FontFamily="{StaticResource App.Font}" Text="{Binding FilesSummary, Mode=OneWay}" AutomationProperties.Name="{loc:Tr AdvancedTools.SelectedImages}" />
+                            </DockPanel>
+
+                            <DockPanel Style="{StaticResource ForSource}" Tag="{x:Static vm:SheetSource.IdList}">
+                                <TextBlock Text="{loc:Tr Common.SpriteIDs}" Style="{StaticResource RowLabel}" VerticalAlignment="Top" Margin="0,6,0,0" />
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr AdvancedTools.Edit}" Command="{Binding InsertIdListCommand}" Margin="8,0,0,0" VerticalAlignment="Top" ToolTip="{loc:Tr AdvancedTools.EditTheListOfSpriteIDs}" />
+                                <TextBox Text="{Binding IdList, UpdateSourceTrigger=PropertyChanged}" controls:Input.Placeholder="e.g. 1201, 1202, 1203" AcceptsReturn="True" TextWrapping="Wrap" Height="70"
+                                         VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" FontFamily="{StaticResource App.MonoFont}" FontSize="12"
+                                         ToolTip="{loc:Tr AdvancedTools.SpriteIDsSeparatedByCommasSpaces}" AutomationProperties.Name="{loc:Tr Common.SpriteIDs}" />
+                            </DockPanel>
+
+                            <StackPanel Style="{StaticResource ForSource}" Tag="{x:Static vm:SheetSource.LegacyJson}">
+                                <DockPanel Margin="0,0,0,10">
+                                    <TextBlock Text="{loc:Tr AdvancedTools.JSONFile}" Style="{StaticResource RowLabel}" />
+                                    <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Browse}" Command="{Binding SelectJsonCommand}" Margin="8,0,0,0" />
+                                    <TextBox Style="{StaticResource PathBox}" Text="{Binding JsonFile, Mode=OneWay}" AutomationProperties.Name="{loc:Tr AdvancedTools.LegacyJSONFile}" />
+                                </DockPanel>
+                                <DockPanel>
+                                    <TextBlock Text="{loc:Tr AdvancedTools.OutfitID}" Style="{StaticResource RowLabel}" />
+                                    <TextBox Text="{Binding SourceId, UpdateSourceTrigger=PropertyChanged}" Width="120" HorizontalAlignment="Left" AutomationProperties.Name="{loc:Tr AdvancedTools.OutfitID}" />
+                                </DockPanel>
+                            </StackPanel>
+
+                            <DockPanel Style="{StaticResource ForSource}" Tag="{x:Static vm:SheetSource.Appearances}">
+                                <TextBlock Text="{loc:Tr AdvancedTools.OutfitID}" Style="{StaticResource RowLabel}" />
+                                <TextBox Text="{Binding SourceId, UpdateSourceTrigger=PropertyChanged}" Width="120" AutomationProperties.Name="{loc:Tr AdvancedTools.OutfitID}" />
+                                <TextBlock Text="{loc:Tr AdvancedTools.UsesTheAppearancesLoadedOnThe}" Style="{StaticResource Muted}" FontSize="12" Margin="12,0,0,0" VerticalAlignment="Center" />
+                            </DockPanel>
+
+                            <DockPanel Margin="0">
+                                <DockPanel.Style>
+                                    <Style TargetType="DockPanel">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Source}" Value="{x:Static vm:SheetSource.Files}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DockPanel.Style>
+                                <TextBlock Text="{loc:Tr Common.SpritesFolder}" Style="{StaticResource RowLabel}" />
+                                <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Browse}" Command="{Binding SelectSpriteFolderCommand}" Margin="8,0,0,0" />
+                                <TextBox Style="{StaticResource PathBox}" Text="{Binding SpriteFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Common.SpritesFolder}"
+                                         ToolTip="{loc:Tr AdvancedTools.OptionalFolderOfExtractedSpritesId}" />
+                            </DockPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="{loc:Tr AdvancedTools.Layout}" Margin="0,0,0,14">
+                        <StackPanel>
+                            <WrapPanel Margin="0,0,0,10">
+                                <TextBlock Text="{loc:Tr Common.Columns}" Style="{StaticResource RowLabel}" />
+                                <controls:NumericUpDown Value="{Binding Columns}" Minimum="1" Maximum="64" Width="80" Margin="0,0,20,0" AutomationProperties.Name="{loc:Tr Common.Columns}" />
+                                <TextBlock Text="{loc:Tr AdvancedTools.Cell}" Style="{StaticResource FieldLabel}" VerticalAlignment="Center" />
+                                <controls:NumericUpDown Value="{Binding CellWidth}" Minimum="1" Maximum="1024" Width="80" AutomationProperties.Name="{loc:Tr AdvancedTools.CellWidth}" />
+                                <TextBlock Text="×" Margin="6,0" VerticalAlignment="Center" />
+                                <controls:NumericUpDown Value="{Binding CellHeight}" Minimum="1" Maximum="1024" Width="80" AutomationProperties.Name="{loc:Tr AdvancedTools.CellHeight}" />
+                                <TextBlock Text="{loc:Tr AdvancedTools.Px}" Style="{StaticResource Muted}" Margin="6,0,0,0" VerticalAlignment="Center" />
+                            </WrapPanel>
+                            <WrapPanel>
+                                <TextBlock Text="{loc:Tr Common.Presets}" Style="{StaticResource RowLabel}" />
+                                <Button Content="{loc:Tr AdvancedTools.Outfits864Px}" Command="{Binding PresetOutfitsCommand}" Margin="0,0,8,0" ToolTip="{loc:Tr AdvancedTools.8ColumnsOf6464Px}" />
+                                <Button Content="{loc:Tr AdvancedTools.Mounts464Px}" Command="{Binding PresetMountsCommand}" Margin="0,0,20,0" ToolTip="{loc:Tr AdvancedTools.4ColumnsOf6464Px}" />
+                                <CheckBox Content="{loc:Tr Common.MagentaBackground}" IsChecked="{Binding Magenta}" VerticalAlignment="Center" ToolTip="{loc:Tr AdvancedTools.FillTransparentAreasWithMagentaInstead}" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <Button Content="{loc:Tr AdvancedTools.CreateSheet}" Style="{StaticResource PrimaryButton}" Command="{Binding CreateSheetCommand}" HorizontalAlignment="Right" MinWidth="130" ToolTip="{loc:Tr AdvancedTools.ChooseWhereToSaveTheSheet}" />
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <TabItem Header="{loc:Tr AdvancedTools.SliceSheet}">
+            <StackPanel MaxWidth="860" HorizontalAlignment="Left" Margin="0,4,0,0">
+                <Border Style="{StaticResource InfoBanner}" Margin="0,0,0,14">
+                    <TextBlock TextWrapping="Wrap"
+                               Text="{loc:Tr AdvancedTools.CutsASheetImageIntoOne}" />
+                </Border>
+                <GroupBox Header="{loc:Tr AdvancedTools.Slice}">
+                    <StackPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <TextBlock Text="{loc:Tr AdvancedTools.SheetImage}" Style="{StaticResource RowLabel}" />
+                            <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Browse}" Command="{Binding SelectSliceFileCommand}" Margin="8,0,0,0" ToolTip="{loc:Tr AdvancedTools.ChooseThePNGSheetToCut}" />
+                            <TextBox Style="{StaticResource PathBox}" Text="{Binding SliceFile, Mode=OneWay}" AutomationProperties.Name="{loc:Tr AdvancedTools.SheetImage}" />
+                        </DockPanel>
+                        <WrapPanel Margin="0,0,0,10">
+                            <TextBlock Text="{loc:Tr AdvancedTools.CellSize}" Style="{StaticResource RowLabel}" />
+                            <controls:NumericUpDown Value="{Binding SliceWidth}" Minimum="1" Maximum="4096" Width="80" AutomationProperties.Name="{loc:Tr AdvancedTools.CellWidth}" />
+                            <TextBlock Text="×" Margin="6,0" VerticalAlignment="Center" />
+                            <controls:NumericUpDown Value="{Binding SliceHeight}" Minimum="1" Maximum="4096" Width="80" AutomationProperties.Name="{loc:Tr AdvancedTools.CellHeight}" />
+                            <TextBlock Text="{loc:Tr AdvancedTools.Px}" Style="{StaticResource Muted}" Margin="6,0,0,0" VerticalAlignment="Center" />
+                        </WrapPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <TextBlock Text="{loc:Tr AdvancedTools.FileNamePrefix}" Style="{StaticResource RowLabel}" />
+                            <TextBox Text="{Binding SlicePrefix, UpdateSourceTrigger=PropertyChanged}" controls:Input.Placeholder="{loc:Tr AdvancedTools.Optional}" Width="200" HorizontalAlignment="Left" AutomationProperties.Name="{loc:Tr AdvancedTools.FileNamePrefix}" />
+                        </DockPanel>
+                        <DockPanel Margin="0,0,0,10">
+                            <TextBlock Text="{loc:Tr Common.OutputFolder}" Style="{StaticResource RowLabel}" />
+                            <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Browse}" Command="{Binding SelectSliceOutputCommand}" Margin="8,0,0,0" ToolTip="{loc:Tr AdvancedTools.ChooseTheFolderForTheCut}" />
+                            <TextBox Style="{StaticResource PathBox}" Text="{Binding SliceOutput, Mode=OneWay}" AutomationProperties.Name="{loc:Tr AdvancedTools.SliceOutputFolder}" />
+                        </DockPanel>
+                        <TextBlock Style="{StaticResource Muted}" FontSize="12" Margin="130,0,0,10" TextWrapping="Wrap"
+                                   Text="{loc:Tr AdvancedTools.ImagesAreSavedInASubfolder}" />
+                        <Button Content="{loc:Tr AdvancedTools.SliceSheet}" Style="{StaticResource PrimaryButton}" Command="{Binding SliceCommand}" HorizontalAlignment="Right" />
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+
+        <TabItem Header="LZMA">
+            <StackPanel MaxWidth="860" HorizontalAlignment="Left" Margin="0,4,0,0">
+                <Border Style="{StaticResource InfoBanner}" Margin="0,0,0,14">
+                    <TextBlock TextWrapping="Wrap"
+                               Text="{loc:Tr AdvancedTools.ToolsForTheLZMACompressedAsset}" />
+                </Border>
+                <GroupBox Header="{loc:Tr AdvancedTools.DecodeFiles}" Margin="0,0,0,14">
+                    <DockPanel>
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr AdvancedTools.DecodeFiles2}" Style="{StaticResource PrimaryButton}" Command="{Binding DecodeFilesCommand}" VerticalAlignment="Center" Margin="12,0,0,0" />
+                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center"
+                                   Text="{loc:Tr AdvancedTools.DecompressesLzmaFilesOfTheClient}" />
+                    </DockPanel>
+                </GroupBox>
+                <GroupBox Header="{loc:Tr AdvancedTools.DownloadAssetFiles}">
+                    <StackPanel>
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="{loc:Tr AdvancedTools.DownloadsEveryFileNamedInA}" />
+                        <DockPanel>
+                            <TextBlock Text="{loc:Tr AdvancedTools.BaseAddress}" Style="{StaticResource RowLabel}" />
+                            <Button DockPanel.Dock="Right" Content="{loc:Tr AdvancedTools.DownloadList}" Command="{Binding DownloadListCommand}" Margin="12,0,0,0" ToolTip="{loc:Tr AdvancedTools.ChooseTheTextFileWithThe}" />
+                            <TextBox Text="{Binding DownloadBaseUrl, UpdateSourceTrigger=PropertyChanged}" FontFamily="{StaticResource App.MonoFont}" FontSize="12" AutomationProperties.Name="{loc:Tr AdvancedTools.BaseAddress}" />
+                        </DockPanel>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

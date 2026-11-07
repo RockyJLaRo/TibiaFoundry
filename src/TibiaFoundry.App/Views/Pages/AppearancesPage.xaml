@@ -1,0 +1,254 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.AppearancesPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:core="clr-namespace:TibiaFoundry.Core.Appearances;assembly=TibiaFoundry.Core"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:pages="clr-namespace:TibiaFoundry.App.Views.Pages"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <Grid Margin="16,14,16,14">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <!-- ================================================= files toolbar -->
+        <Border Style="{StaticResource Panel}" Padding="12,10" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="6" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="{loc:Tr Appearances.Appearances}" Style="{StaticResource FieldLabel}" />
+                <TextBox Grid.Column="1" Style="{StaticResource PathBox}" Text="{Binding DatPath, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=Appearances.NoAppearancesFileFound}" AutomationProperties.Name="{loc:Tr Appearances.AppearancesFile}" />
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="8,0,0,0">
+                    <Button Content="{loc:Tr Common.Load}" Style="{StaticResource PrimaryButton}" Command="{Binding LoadCommand}" MinWidth="70" ToolTip="{loc:Tr Appearances.ReadTheAppearancesFileShownHere}" />
+                    <Button Content="{loc:Tr Common.ChangeFile}" Command="{Binding ChangeFileCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Appearances.ChooseADifferentAppearancesDatFile}" />
+                    <Button Content="{loc:Tr Common.ExportJSON}" Command="{Binding ExportJsonCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Appearances.SaveEveryAppearanceInOneJSON}" />
+                </StackPanel>
+                <TextBlock Grid.Row="2" Text="{loc:Tr Common.Sprites}" Style="{StaticResource FieldLabel}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource PathBox}" Text="{Binding SpritesFolder, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=Appearances.NoSpritesFolderSet}" AutomationProperties.Name="{loc:Tr Common.SpritesFolder}" />
+                <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Margin="8,0,0,0">
+                    <Button Content="{loc:Tr Appearances.SpritesFolder}" Command="{Binding ChangeSpritesFolderCommand}" ToolTip="{loc:Tr Appearances.ChooseAFolderOfPreviouslyExtracted}" />
+                    <TextBlock Text="&#xE946;" Style="{StaticResource Icon}" Margin="10,0,0,0" FontSize="13" Foreground="{DynamicResource App.TextSecondary}" ToolTip="{Binding SpriteSourceDescription}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- ================================================= list + details -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="372" MinWidth="250" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*" MinWidth="440" />
+            </Grid.ColumnDefinitions>
+
+            <!-- list -->
+            <Border Style="{StaticResource Panel}" Padding="10">
+                <DockPanel>
+                    <!-- Kind selector: name over count in four equal columns so it never wraps. -->
+                    <Border DockPanel.Dock="Top" Style="{StaticResource SegmentHost}" Margin="0,0,0,8">
+                        <UniformGrid Rows="1">
+                            <RadioButton Style="{StaticResource SegmentRadio}" GroupName="Kind" Padding="4,3" AutomationProperties.Name="{loc:Tr Common.Objects}"
+                                         IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Object}">
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Tr Common.Objects}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding ObjectCount, Mode=OneWay, Converter={StaticResource Number}}" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource App.TextSecondary}" FontWeight="Normal" FontSize="11" />
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource SegmentRadio}" GroupName="Kind" Padding="4,3" AutomationProperties.Name="{loc:Tr Common.Outfits}"
+                                         IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Outfit}">
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Tr Common.Outfits}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding OutfitCount, Mode=OneWay, Converter={StaticResource Number}}" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource App.TextSecondary}" FontWeight="Normal" FontSize="11" />
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource SegmentRadio}" GroupName="Kind" Padding="4,3" AutomationProperties.Name="{loc:Tr Common.Effects}"
+                                         IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Effect}">
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Tr Common.Effects}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding EffectCount, Mode=OneWay, Converter={StaticResource Number}}" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource App.TextSecondary}" FontWeight="Normal" FontSize="11" />
+                                </StackPanel>
+                            </RadioButton>
+                            <RadioButton Style="{StaticResource SegmentRadio}" GroupName="Kind" Padding="4,3" AutomationProperties.Name="{loc:Tr Common.Missiles}"
+                                         IsChecked="{Binding Kind, Converter={StaticResource EnumEquals}, ConverterParameter=Missile}">
+                                <StackPanel>
+                                    <TextBlock Text="{loc:Tr Common.Missiles}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding MissileCount, Mode=OneWay, Converter={StaticResource Number}}" HorizontalAlignment="Center"
+                                               Foreground="{DynamicResource App.TextSecondary}" FontWeight="Normal" FontSize="11" />
+                                </StackPanel>
+                            </RadioButton>
+                        </UniformGrid>
+                    </Border>
+
+                    <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox SelectedValue="{Binding SearchMode}" SelectedValuePath="Tag" MinWidth="104" AutomationProperties.Name="{loc:Tr Appearances.SearchMode}" ToolTip="{loc:Tr Appearances.WhatTheSearchBoxLooksFor}">
+                            <ComboBoxItem Content="{loc:Tr Appearances.GoToID}" Tag="{x:Static vm:SearchMode.GoToId}" />
+                            <ComboBoxItem Content="{loc:Tr Common.Name}" Tag="{x:Static vm:SearchMode.NameContains}" />
+                            <ComboBoxItem Content="{loc:Tr Common.SpriteID}" Tag="{x:Static vm:SearchMode.UsesSprite}" />
+                        </ComboBox>
+                        <TextBox x:Name="SearchBox" Grid.Column="1" Margin="6,0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding SearchHint}" controls:Input.Placeholder="{Binding SearchHint}"
+                                 AutomationProperties.Name="{loc:Tr Common.Search}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Enter" Command="{Binding SearchCommand}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Grid.Column="2" Command="{Binding SearchCommand}" ToolTip="{loc:Tr Common.Search}" AutomationProperties.Name="{loc:Tr Common.Search}" Padding="9,4">
+                            <TextBlock Text="&#xE721;" Style="{StaticResource Icon}" FontSize="13" />
+                        </Button>
+                    </Grid>
+
+                    <Border DockPanel.Dock="Top" Style="{StaticResource InfoBanner}" Margin="0,0,0,8" Visibility="{Binding IsFiltered, Converter={StaticResource BoolToVisibility}}">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Clear}" Command="{Binding ClearFiltersCommand}" MinHeight="24" Padding="10,1" VerticalAlignment="Top" ToolTip="{loc:Tr Appearances.RemoveTheSearchAndFiltersAnd}" />
+                            <StackPanel Margin="0,0,8,0">
+                                <TextBlock FontWeight="SemiBold"><Run Text="{loc:Tr Appearances.Showing}" /> <Run Text="{Binding VisibleCount, Mode=OneWay, Converter={StaticResource Number}}" /> <Run Text="{loc:Tr Common.Of}" /> <Run Text="{Binding TotalCount, Mode=OneWay, Converter={StaticResource Number}}" /></TextBlock>
+                                <TextBlock Text="{Binding FilterSummary}" TextWrapping="Wrap" FontSize="11.5" Foreground="{DynamicResource App.TextSecondary}" />
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+
+                    <DockPanel DockPanel.Dock="Bottom" Margin="0,8,0,0" LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" Foreground="{DynamicResource App.TextSecondary}" FontSize="12">
+                            <Run Text="{Binding SelectedCount, Mode=OneWay}" /> <Run Text="{loc:Tr Appearances.Selected}" />
+                        </TextBlock>
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr Appearances.KeepSelected}" Command="{Binding KeepSelectedCommand}" MinHeight="26" Padding="10,2"
+                                ToolTip="{loc:Tr Appearances.ShowOnlyTheSelectedRowsHold}" />
+                    </DockPanel>
+
+                    <Grid>
+                        <ListView x:Name="List" ItemsSource="{Binding VisibleItems}" SelectedItem="{Binding SelectedItem}" SelectionMode="Extended"
+                                  VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling" VirtualizingPanel.ScrollUnit="Pixel"
+                                  SelectionChanged="OnListSelectionChanged" AutomationProperties.Name="{loc:Tr Appearances.Appearances}">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="{loc:Tr Appearances.Sprite}" Width="78">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type vm:AppearanceItem}">
+                                                <Border Width="64" Height="64" Background="{DynamicResource App.Checkerboard}" CornerRadius="3">
+                                                    <Image Source="{Binding Thumbnail}" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                           HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="ID" Width="66">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type vm:AppearanceItem}">
+                                                <TextBlock Text="{Binding Id}" FontFamily="{StaticResource App.MonoFont}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn Header="{loc:Tr Common.Name}" Width="170">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate DataType="{x:Type vm:AppearanceItem}">
+                                                <TextBlock Text="{Binding Name}" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <TextBlock Style="{StaticResource EmptyState}" Visibility="{Binding IsLoaded, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}"
+                                   Text="{loc:Tr Appearances.NoAppearancesLoadedYetClickLoad}" />
+                    </Grid>
+                </DockPanel>
+            </Border>
+
+            <GridSplitter Grid.Column="1" Width="10" HorizontalAlignment="Stretch" ResizeBehavior="PreviousAndNext" Cursor="SizeWE" />
+
+            <!-- details -->
+            <DockPanel Grid.Column="2">
+                <Border DockPanel.Dock="Top" Style="{StaticResource Panel}" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource PreviewSurface}" Tag="{Binding PreviewBackground}" Width="140" Height="140"
+                                MouseLeftButtonUp="OnPreviewClicked" AutomationProperties.Name="{loc:Tr Common.Preview}">
+                            <Grid>
+                                <controls:AnimatedSprite Frames="{Binding PreviewFrames}" Delays="{Binding PreviewDelays}" IsAnimating="{Binding Animate}"
+                                                         Zoom="2" Fit="True" Margin="6"
+                                                         ForcedDelay="{Binding EffectiveDelay}" x:Name="Preview" />
+                                <TextBlock Text="{Binding PreviewMessage}" Style="{StaticResource EmptyState}" Margin="6" FontSize="11" />
+                            </Grid>
+                        </Border>
+                        <StackPanel Grid.Column="1" Margin="16,0,0,0">
+                            <TextBlock Text="{Binding DetailName}" FontSize="18" FontWeight="SemiBold" TextTrimming="CharacterEllipsis" />
+                            <TextBlock Text="{Binding DetailId}" Foreground="{DynamicResource App.TextSecondary}" Margin="0,2,0,8" />
+                            <DockPanel Margin="0,0,0,8">
+                                <TextBlock Text="{loc:Tr Common.SpriteIDs}" Style="{StaticResource FieldLabel}" VerticalAlignment="Top" Margin="0,7,8,0" />
+                                <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" Command="{Binding CopySpriteIdsCommand}" ToolTip="{loc:Tr Appearances.CopySpriteIDs}" AutomationProperties.Name="{loc:Tr Appearances.CopySpriteIDs}" VerticalAlignment="Top">
+                                    <TextBlock Text="&#xE8C8;" Style="{StaticResource Icon}" FontSize="12" />
+                                </Button>
+                                <TextBox Text="{Binding SpriteIdsText, Mode=OneWay}" IsReadOnly="True" TextWrapping="Wrap" MaxHeight="58"
+                                         VerticalScrollBarVisibility="Auto" FontFamily="{StaticResource App.MonoFont}" FontSize="12" AcceptsReturn="True"
+                                         AutomationProperties.Name="{loc:Tr Common.SpriteIDs}" />
+                            </DockPanel>
+                            <WrapPanel>
+                                <CheckBox Content="{loc:Tr Common.Animate}" IsChecked="{Binding Animate}" IsEnabled="{Binding IsPreviewAnimated}" Margin="0,0,14,4" ToolTip="{loc:Tr Common.PlayTheAnimationInThePreview}" />
+                                <CheckBox Content="{loc:Tr Common.FixedFrameDelay}" IsChecked="{Binding ForceDelay}" x:Name="ForceDelayBox" Margin="0,0,6,4" VerticalAlignment="Center"
+                                          ToolTip="{loc:Tr Appearances.PlayThePreviewWithThisDelay}" />
+                                <controls:NumericUpDown Value="{Binding ForcedDelayMs}" Minimum="10" Maximum="5000" Increment="10" Width="86" Margin="0,0,4,4"
+                                                        IsEnabled="{Binding ForceDelay}" AutomationProperties.Name="{loc:Tr Common.FixedFrameDelayInMilliseconds}" />
+                                <TextBlock Text="{loc:Tr Common.Ms}" VerticalAlignment="Center" Margin="0,0,16,4" Foreground="{DynamicResource App.TextSecondary}" />
+                                <Button Content="{loc:Tr Appearances.ViewAllSprites}" Command="{Binding ViewAllSpritesCommand}" Margin="0,0,0,4" MinHeight="28" Padding="10,2"
+                                        ToolTip="{loc:Tr Appearances.OpenAWindowThatShowsEach}" />
+                            </WrapPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <TabControl SelectedIndex="{Binding SelectedDetailTab}" Padding="0,10,0,0">
+                    <TabItem Header="{loc:Tr Common.Data}">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox Text="{Binding PropertyFilter, UpdateSourceTrigger=PropertyChanged, Delay=200}" ToolTip="{loc:Tr Appearances.FilterPropertiesByNameOrValue}" controls:Input.Placeholder="{loc:Tr Appearances.FilterProperties}"
+                                         AutomationProperties.Name="{loc:Tr Appearances.FilterProperties}" MaxWidth="320" HorizontalAlignment="Left" MinWidth="200" />
+                                <CheckBox Grid.Column="1" Content="{loc:Tr Appearances.ShowUnsetValues}" IsChecked="{Binding ShowDefaultValues}" Margin="12,0" VerticalAlignment="Center"
+                                          ToolTip="{loc:Tr Appearances.AlsoListFieldsThatHaveTheir}" />
+                                <Button Grid.Column="2" Content="{loc:Tr Appearances.CopyAll}" Command="{Binding CopyPropertiesCommand}" ToolTip="{loc:Tr Appearances.CopyTheListedPropertiesToThe}" />
+                            </Grid>
+                            <ItemsControl Style="{StaticResource PropertyList}" ItemsSource="{Binding Properties}" Tag="280" AutomationProperties.Name="{loc:Tr Common.Properties}" />
+                        </DockPanel>
+                    </TabItem>
+                    <TabItem Header="{loc:Tr Common.Filters}">
+                        <pages:AppearanceFilterPanel DataContext="{Binding Filters}" />
+                    </TabItem>
+                    <TabItem Header="{loc:Tr Common.Export}">
+                        <pages:AppearanceExportPanel DataContext="{Binding Export}" />
+                    </TabItem>
+                    <TabItem Header="{loc:Tr Common.Tools}">
+                        <pages:AppearanceToolsPanel DataContext="{Binding Export}" />
+                    </TabItem>
+                    <TabItem Header="{loc:Tr Appearances.Outfitter}">
+                        <pages:OutfitterPanel DataContext="{Binding Outfitter}" />
+                    </TabItem>
+                    <TabItem Header="{loc:Tr Infobox.Tab}" ToolTip="{loc:Tr Infobox.TabTip}">
+                        <pages:InfoboxPanel DataContext="{Binding Infobox}" />
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

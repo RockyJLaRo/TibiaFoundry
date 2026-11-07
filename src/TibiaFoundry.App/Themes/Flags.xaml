@@ -1,0 +1,75 @@
+<!--
+    Flags of the interface languages (9.0), simplified vector drawings for the language menu.
+    Windows does not draw flag emoji, so the menu uses these images; each is shown next to the
+    language's own name, never alone. Keys: Flag.{language code}.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- English: United Kingdom -->
+    <DrawingImage x:Key="Flag.en">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 H60 V40 H0 Z">
+                <GeometryDrawing Brush="#012169" Geometry="M0,0 H60 V40 H0 Z" />
+                <GeometryDrawing Geometry="M0,0 L60,40 M60,0 L0,40">
+                    <GeometryDrawing.Pen><Pen Brush="#FFFFFF" Thickness="8" /></GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="M0,0 L60,40 M60,0 L0,40">
+                    <GeometryDrawing.Pen><Pen Brush="#C8102E" Thickness="2.6" /></GeometryDrawing.Pen>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="#FFFFFF" Geometry="M24,0 H36 V40 H24 Z M0,14 H60 V26 H0 Z" />
+                <GeometryDrawing Brush="#C8102E" Geometry="M26.5,0 H33.5 V40 H26.5 Z M0,16.5 H60 V23.5 H0 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Brazilian Portuguese: Brazil -->
+    <DrawingImage x:Key="Flag.pt-BR">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 H60 V40 H0 Z">
+                <GeometryDrawing Brush="#009C3B" Geometry="M0,0 H60 V40 H0 Z" />
+                <GeometryDrawing Brush="#FFDF00" Geometry="M6,20 L30,4.5 L54,20 L30,35.5 Z" />
+                <GeometryDrawing Brush="#002776">
+                    <GeometryDrawing.Geometry><EllipseGeometry Center="30,20" RadiusX="10" RadiusY="10" /></GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Geometry="M20.6,17.2 Q30,15.5 39.4,22.6">
+                    <GeometryDrawing.Pen><Pen Brush="#FFFFFF" Thickness="1.8" /></GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Polish: Poland (with an outline, so the white half is visible on light menus) -->
+    <DrawingImage x:Key="Flag.pl">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 H60 V40 H0 Z">
+                <GeometryDrawing Brush="#FFFFFF" Geometry="M0,0 H60 V20 H0 Z" />
+                <GeometryDrawing Brush="#DC143C" Geometry="M0,20 H60 V40 H0 Z" />
+                <GeometryDrawing Geometry="M0.75,0.75 H59.25 V39.25 H0.75 Z">
+                    <GeometryDrawing.Pen><Pen Brush="#55000000" Thickness="1.5" /></GeometryDrawing.Pen>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- Spanish: Spain -->
+    <DrawingImage x:Key="Flag.es">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 H60 V40 H0 Z">
+                <GeometryDrawing Brush="#AA151B" Geometry="M0,0 H60 V40 H0 Z" />
+                <GeometryDrawing Brush="#F1BF00" Geometry="M0,10 H60 V30 H0 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <!-- German: Germany -->
+    <DrawingImage x:Key="Flag.de">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 H60 V40 H0 Z">
+                <GeometryDrawing Brush="#000000" Geometry="M0,0 H60 V13.34 H0 Z" />
+                <GeometryDrawing Brush="#DD0000" Geometry="M0,13.33 H60 V26.67 H0 Z" />
+                <GeometryDrawing Brush="#FFCE00" Geometry="M0,26.66 H60 V40 H0 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+</ResourceDictionary>

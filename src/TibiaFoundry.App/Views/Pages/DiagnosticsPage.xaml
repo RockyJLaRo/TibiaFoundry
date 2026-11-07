@@ -1,0 +1,305 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.DiagnosticsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
+             xmlns:controls="clr-namespace:TibiaFoundry.App.Controls"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <Style x:Key="Note" TargetType="TextBlock" BasedOn="{StaticResource Muted}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </UserControl.Resources>
+
+    <TabControl Margin="16,14,16,14" SelectedIndex="{Binding SelectedTab}">
+        <!-- ============================================================ operations -->
+        <TabItem Header="{loc:Tr Common.Operations}" AutomationProperties.Name="{loc:Tr Common.Operations}">
+            <DockPanel Margin="10">
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <TextBlock Text="{Binding OperationsSummary}" Style="{StaticResource Note}" VerticalAlignment="Center" />
+                </DockPanel>
+                <TextBlock DockPanel.Dock="Top" Text="{loc:Tr Diagnostics.RunningAndWaiting}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource Note}" Margin="0,0,0,8"
+                           Visibility="{Binding HasActiveOperations, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}"
+                           Text="{loc:Tr Diagnostics.NoOperationIsRunningExportsConversions}" />
+                <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding ActiveOperations}" Margin="0,0,0,12" AutomationProperties.Name="{loc:Tr Diagnostics.RunningOperations}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type vm:OperationRow}">
+                            <Border Style="{StaticResource Panel}" Padding="12,8" Margin="0,0,0,8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontWeight="SemiBold" TextTrimming="CharacterEllipsis"><Run Text="{Binding Title, Mode=OneWay}" /><Run Text="  ·  " Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding Tool, Mode=OneWay}" Foreground="{DynamicResource App.TextSecondary}" /></TextBlock>
+                                        <TextBlock Text="{Binding Stage}" Style="{StaticResource Note}" TextTrimming="CharacterEllipsis" Margin="0,2,0,4" />
+                                        <ProgressBar Height="8" Value="{Binding Percent, Mode=OneWay}" IsIndeterminate="{Binding IsIndeterminate, Mode=OneWay}" Margin="0,0,0,4"
+                                                     AutomationProperties.Name="{loc:Tr Common.Progress}" />
+                                        <WrapPanel>
+                                            <TextBlock Margin="0,0,16,0"><Run Text="{loc:Tr Diagnostics.State}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding State, Mode=OneWay}" /></TextBlock>
+                                            <TextBlock Margin="0,0,16,0"><Run Text="{loc:Tr Diagnostics.Progress}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding ProgressText, Mode=OneWay}" /></TextBlock>
+                                            <TextBlock Margin="0,0,16,0"><Run Text="{loc:Tr Diagnostics.Elapsed}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding ElapsedText, Mode=OneWay}" /></TextBlock>
+                                            <TextBlock Margin="0,0,16,0"><Run Text="{loc:Tr Diagnostics.Remaining}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding RemainingText, Mode=OneWay}" /></TextBlock>
+                                            <TextBlock Margin="0,0,16,0"><Run Text="{loc:Tr Diagnostics.Rate}" Foreground="{DynamicResource App.TextSecondary}" /><Run Text="{Binding ThroughputText, Mode=OneWay}" /></TextBlock>
+                                            <TextBlock Text="{Binding Problems}" Foreground="{DynamicResource App.Warning}" />
+                                        </WrapPanel>
+                                        <TextBlock Style="{StaticResource Note}" TextTrimming="CharacterEllipsis" Visibility="{Binding HasOutput, Converter={StaticResource BoolToVisibility}}">
+                                            <Run Text="{loc:Tr Diagnostics.Output}" /><Run Text="{Binding Output, Mode=OneWay}" />
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="12,0,0,0" VerticalAlignment="Center">
+                                        <Button Content="{loc:Tr Diagnostics.Cancel}" Command="{Binding CancelCommand}" Margin="0,0,0,6" ToolTip="{Binding CancelHint}"
+                                                Visibility="{Binding CanCancel, Converter={StaticResource BoolToVisibility}}" />
+                                        <TextBlock Text="{loc:Tr Diagnostics.CannotBeCancelled}" Style="{StaticResource Note}" ToolTip="{Binding CancelHint}" Margin="0,0,0,6"
+                                                   Visibility="{Binding CanCancel, Converter={StaticResource BoolToVisibility}, ConverterParameter=Invert}" />
+                                        <Button Content="{loc:Tr Diagnostics.Log}" Command="{Binding ShowLogCommand}" ToolTip="{loc:Tr Diagnostics.ShowTheLogLinesOfThis}" />
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <DockPanel DockPanel.Dock="Top" Margin="0,4,0,6">
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Common.ClearHistory}" Command="{Binding ClearHistoryCommand}" ToolTip="{loc:Tr Diagnostics.ForgetTheListBelowFilesThe}" />
+                    <TextBlock Text="{loc:Tr Diagnostics.RecentOperations}" Style="{StaticResource SectionTitle}" VerticalAlignment="Center" />
+                </DockPanel>
+                <ListView ItemsSource="{Binding History}" AutomationProperties.Name="{loc:Tr Diagnostics.RecentOperations}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Started}" Width="140" DisplayMemberBinding="{Binding Started}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Tool}" Width="130" DisplayMemberBinding="{Binding Tool}" />
+                            <GridViewColumn Header="{loc:Tr Common.Operation}" Width="200" DisplayMemberBinding="{Binding Title}" />
+                            <GridViewColumn Header="{loc:Tr Common.Result}" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type vm:HistoryRow}">
+                                        <TextBlock x:Name="State" Text="{Binding State}" />
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Failed}" Value="True">
+                                                <Setter TargetName="State" Property="Foreground" Value="{DynamicResource App.Danger}" />
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Duration}" Width="120" DisplayMemberBinding="{Binding Duration}" />
+                            <GridViewColumn Header="{loc:Tr Common.Items}" Width="110" DisplayMemberBinding="{Binding Counts}" />
+                            <GridViewColumn Header="{loc:Tr Common.Details}" Width="360" DisplayMemberBinding="{Binding Result}" />
+                            <GridViewColumn Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type vm:HistoryRow}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="{loc:Tr Diagnostics.Output2}" Command="{Binding OpenOutputCommand}" MinHeight="22" Padding="8,0" Margin="0,0,6,0"
+                                                    Visibility="{Binding HasOutput, Converter={StaticResource BoolToVisibility}}" ToolTip="{loc:Tr Diagnostics.ShowTheResultInFileExplorer}" />
+                                            <Button Content="{loc:Tr Diagnostics.Log}" Command="{Binding ShowLogCommand}" MinHeight="22" Padding="8,0" ToolTip="{loc:Tr Diagnostics.ShowTheLogLinesOfThis}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+
+        <!-- ============================================================ performance -->
+        <TabItem Header="{loc:Tr Common.Performance}" AutomationProperties.Name="{loc:Tr Common.Performance}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="10" MaxWidth="900" HorizontalAlignment="Left">
+                    <DockPanel Margin="0,0,0,10">
+                        <CheckBox Content="{loc:Tr Diagnostics.MeasureWhileThisPageIsOpen}" IsChecked="{Binding MonitoringEnabled}" VerticalAlignment="Center" Margin="0,0,6,0"
+                                  ToolTip="{loc:Tr Diagnostics.MeasurementsAreTakenOnlyWhileThe}" />
+                        <ComboBox ItemsSource="{Binding SampleIntervals}" SelectedItem="{Binding SampleIntervalSeconds}" Width="64" Margin="0,0,6,0"
+                                  IsEnabled="{Binding MonitoringEnabled}" AutomationProperties.Name="{loc:Tr Common.MeasurementIntervalInSeconds}" />
+                        <TextBlock Text="{loc:Tr Common.Seconds}" VerticalAlignment="Center" />
+                    </DockPanel>
+                    <TextBlock Style="{StaticResource Note}" Margin="0,0,0,10"
+                               Text="{loc:Tr Diagnostics.EveryValueBelowIsMeasuredBy}" />
+                    <ListView ItemsSource="{Binding Metrics}" AutomationProperties.Name="{loc:Tr Diagnostics.Measurements}" Margin="0,0,0,14">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{loc:Tr Diagnostics.Measurement}" Width="250" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="{loc:Tr Common.Value}" Width="250" DisplayMemberBinding="{Binding Value}" />
+                                <GridViewColumn Header="{loc:Tr Common.Kind}" Width="100" DisplayMemberBinding="{Binding Kind}" />
+                                <GridViewColumn Header="{loc:Tr Common.Note}" Width="300" DisplayMemberBinding="{Binding Note}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Text="{loc:Tr Diagnostics.FreeDiskSpaceWhereTibiaFoundry}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                    <ListView ItemsSource="{Binding Disks}" AutomationProperties.Name="{loc:Tr Diagnostics.FreeDiskSpace}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{loc:Tr Diagnostics.Drive}" Width="70" DisplayMemberBinding="{Binding Drive}" />
+                                <GridViewColumn Header="{loc:Tr Diagnostics.Space}" Width="230" DisplayMemberBinding="{Binding Text}" />
+                                <GridViewColumn Header="{loc:Tr Diagnostics.UsedFor}" Width="560" DisplayMemberBinding="{Binding Folders}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+        </TabItem>
+
+        <!-- ============================================================ log -->
+        <TabItem Header="{loc:Tr Diagnostics.Log}" AutomationProperties.Name="{loc:Tr Diagnostics.Log}">
+            <DockPanel Margin="10">
+                <WrapPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <TextBlock Text="{loc:Tr Diagnostics.Period}" VerticalAlignment="Center" Margin="0,0,6,6" />
+                    <ComboBox ItemsSource="{Binding LogPeriods}" DisplayMemberPath="Label" SelectedValuePath="Value" SelectedValue="{Binding LogPeriodDays}" Width="150" Margin="0,0,12,6"
+                              AutomationProperties.Name="{loc:Tr Diagnostics.Period}" />
+                    <TextBlock Text="{loc:Tr Diagnostics.AtLeast}" VerticalAlignment="Center" Margin="0,0,6,6" />
+                    <ComboBox ItemsSource="{Binding LogLevels}" loc:Choice.Prefix="Choice.LogLevel" SelectedItem="{Binding LogMinimumLevel}" Width="100" Margin="0,0,12,6" AutomationProperties.Name="{loc:Tr Diagnostics.MinimumSeverity}" />
+                    <TextBlock Text="{loc:Tr Diagnostics.Tool}" VerticalAlignment="Center" Margin="0,0,6,6" />
+                    <ComboBox ItemsSource="{Binding LogSources}" Text="{Binding LogSource, UpdateSourceTrigger=LostFocus}" IsEditable="True" Width="150" Margin="0,0,12,6" AutomationProperties.Name="{loc:Tr Diagnostics.ToolOrComponent}" />
+                    <TextBlock Text="{loc:Tr Common.Operation}" VerticalAlignment="Center" Margin="0,0,6,6" />
+                    <TextBox Text="{Binding LogOperation, UpdateSourceTrigger=PropertyChanged}" Width="110" Margin="0,0,12,6" AutomationProperties.Name="{loc:Tr Diagnostics.OperationId}" />
+                    <TextBox Text="{Binding LogText, UpdateSourceTrigger=PropertyChanged}" controls:Input.Placeholder="{loc:Tr Diagnostics.SearchText}" Width="200" Margin="0,0,8,6" AutomationProperties.Name="{loc:Tr Diagnostics.SearchText}" />
+                    <Button Content="{loc:Tr Common.Search}" Style="{StaticResource PrimaryButton}" Command="{Binding SearchLogCommand}" Margin="0,0,6,6" IsDefault="True" />
+                    <Button Content="{loc:Tr Diagnostics.ClearFilter}" Command="{Binding ClearLogFilterCommand}" Margin="0,0,6,6" />
+                    <Button Content="{loc:Tr Common.OpenLogFolder}" Command="{Binding OpenLogFolderCommand}" Margin="0,0,6,6" />
+                </WrapPanel>
+                <TextBlock DockPanel.Dock="Top" Text="{Binding LogSummary}" Style="{StaticResource Note}" Margin="0,0,0,6" />
+                <TextBox DockPanel.Dock="Bottom" Style="{StaticResource ValueText}" Height="110" Margin="0,8,0,0" FontFamily="{StaticResource App.MonoFont}" FontSize="12"
+                         VerticalScrollBarVisibility="Auto" AutomationProperties.Name="{loc:Tr Diagnostics.EntryDetails}">
+                    <TextBox.Text>
+                        <PriorityBinding>
+                            <Binding Path="SelectedLogEntry.Details" Mode="OneWay" />
+                            <Binding Source="{x:Static loc:LocalizedStrings.Instance}" Path="[Diagnostics.SelectAnEntryToSeeDetails]" Mode="OneWay" />
+                        </PriorityBinding>
+                    </TextBox.Text>
+                </TextBox>
+                <ListView ItemsSource="{Binding LogEntries}" SelectedItem="{Binding SelectedLogEntry}" AutomationProperties.Name="{loc:Tr Diagnostics.LogEntries}"
+                          VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Time}" Width="150" DisplayMemberBinding="{Binding Time, StringFormat={}{0:yyyy-MM-dd HH:mm:ss}, ConverterCulture=en-US}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Level}" Width="80" DisplayMemberBinding="{Binding LevelName}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Tool}" Width="130" DisplayMemberBinding="{Binding Source}" />
+                            <GridViewColumn Header="{loc:Tr Common.Operation}" Width="100" DisplayMemberBinding="{Binding Operation}" />
+                            <GridViewColumn Header="{loc:Tr Common.Message}" Width="700" DisplayMemberBinding="{Binding Message}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+
+        <!-- ============================================================ self-check -->
+        <TabItem Header="{loc:Tr Diagnostics.SelfCheck}" AutomationProperties.Name="{loc:Tr Diagnostics.SelfCheck}">
+            <DockPanel Margin="10">
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <Button DockPanel.Dock="Right" Content="{loc:Tr Diagnostics.RunSelfCheck}" Style="{StaticResource PrimaryButton}" Command="{Binding RunSelfCheckCommand}" />
+                    <TextBlock Text="{Binding HealthSummary}" FontWeight="SemiBold" VerticalAlignment="Center" TextWrapping="Wrap" />
+                </DockPanel>
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource Note}" Margin="0,0,0,8"
+                           Text="{loc:Tr Diagnostics.ChecksTheSettingsEveryOutputFolder}" />
+                <ListView ItemsSource="{Binding HealthResults}" AutomationProperties.Name="{loc:Tr Diagnostics.SelfCheckResults}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{loc:Tr Common.Result}" Width="80">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type vm:HealthRow}">
+                                        <TextBlock x:Name="Sev" Text="{Binding Severity}" FontWeight="SemiBold" />
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding Severity}" Value="Error"><Setter TargetName="Sev" Property="Foreground" Value="{DynamicResource App.Danger}" /></DataTrigger>
+                                            <DataTrigger Binding="{Binding Severity}" Value="Warning"><Setter TargetName="Sev" Property="Foreground" Value="{DynamicResource App.Warning}" /></DataTrigger>
+                                            <DataTrigger Binding="{Binding Severity}" Value="OK"><Setter TargetName="Sev" Property="Foreground" Value="{DynamicResource App.Success}" /></DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Area}" Width="110" DisplayMemberBinding="{Binding Area, Converter={StaticResource LocChoice}, ConverterParameter=HealthArea}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Check}" Width="190" DisplayMemberBinding="{Binding Check}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Finding}" Width="440" DisplayMemberBinding="{Binding Message}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.WhatToDo}" Width="300" DisplayMemberBinding="{Binding Remedy}" />
+                            <GridViewColumn Width="170">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate DataType="{x:Type vm:HealthRow}">
+                                        <Button Content="{Binding FixLabel}" Command="{Binding FixCommand}" MinHeight="22" Padding="8,0"
+                                                Visibility="{Binding HasFix, Converter={StaticResource BoolToVisibility}}" ToolTip="{loc:Tr Diagnostics.AsksForConfirmationFirst}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+
+        <!-- ============================================================ tools -->
+        <TabItem Header="{loc:Tr Common.Tools}" AutomationProperties.Name="{loc:Tr Common.Tools}">
+            <DockPanel Margin="10">
+                <TextBlock DockPanel.Dock="Top" Style="{StaticResource Note}" Margin="0,0,0,8"
+                           Text="{loc:Tr Diagnostics.EveryPageAndScriptIsRegistered}" />
+                <ListView ItemsSource="{Binding ToolRows}" AutomationProperties.Name="{loc:Tr Diagnostics.RegisteredTools}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Tool}" Width="190" DisplayMemberBinding="{Binding Name}" />
+                            <GridViewColumn Header="{loc:Tr Common.Type}" Width="80" DisplayMemberBinding="{Binding Type}" />
+                            <GridViewColumn Header="{loc:Tr Common.Version}" Width="60" DisplayMemberBinding="{Binding Version}" />
+                            <GridViewColumn Header="{loc:Tr Common.Status}" Width="200" DisplayMemberBinding="{Binding Status}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Supports}" Width="230" DisplayMemberBinding="{Binding Capabilities}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Dependencies}" Width="320" DisplayMemberBinding="{Binding Dependencies}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.Formats}" Width="360" DisplayMemberBinding="{Binding Formats}" />
+                            <GridViewColumn Header="{loc:Tr Diagnostics.License}" Width="110" DisplayMemberBinding="{Binding License}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </DockPanel>
+        </TabItem>
+
+        <!-- ============================================================ report -->
+        <TabItem Header="{loc:Tr Diagnostics.Report}" AutomationProperties.Name="{loc:Tr Diagnostics.DiagnosticsReport}">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="360" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <StackPanel Margin="0,0,14,0">
+                        <TextBlock Text="{loc:Tr Diagnostics.GenerateADiagnosticsReport}" Style="{StaticResource SectionTitle}" Margin="0,0,0,6" />
+                        <TextBlock Style="{StaticResource Note}" Margin="0,0,0,10"
+                                   Text="{loc:Tr Diagnostics.AZIPFileYouCanAttach}" />
+                        <ItemsControl ItemsSource="{Binding ReportCategories}" Margin="0,0,0,8" AutomationProperties.Name="{loc:Tr Diagnostics.ReportContents}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:ReportCategoryOption}">
+                                    <StackPanel Margin="0,0,0,6">
+                                        <CheckBox Content="{Binding Name}" IsChecked="{Binding IsIncluded}" IsEnabled="{Binding CanChange}" FontWeight="SemiBold" />
+                                        <TextBlock Text="{Binding Description}" Style="{StaticResource Note}" Margin="24,0,0,0" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <Border Background="{DynamicResource App.WarningSoft}" BorderBrush="{DynamicResource App.Warning}" BorderThickness="1" CornerRadius="{StaticResource App.Radius}" Padding="8,6" Margin="0,0,0,10">
+                            <StackPanel>
+                                <CheckBox IsChecked="{Binding IncludeFullPaths}" AutomationProperties.Name="{loc:Tr Diagnostics.IncludeFullFolderPathsUserName}">
+                                    <TextBlock Text="{loc:Tr Diagnostics.IncludeFullFolderPathsUserName}" FontWeight="SemiBold" TextWrapping="Wrap" />
+                                </CheckBox>
+                                <TextBlock Style="{StaticResource Note}" Margin="24,2,0,0"
+                                           Text="{loc:Tr Diagnostics.OnlyIfAProblemCannotBe}" />
+                            </StackPanel>
+                        </Border>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button Content="{loc:Tr Diagnostics.PreviewContents}" Style="{StaticResource PrimaryButton}" Command="{Binding PreviewReportCommand}" Margin="0,0,8,0" />
+                            <Button Content="{loc:Tr Common.SaveReport}" Command="{Binding SaveReportCommand}" Margin="0,0,8,0" ToolTip="{loc:Tr Diagnostics.SavesExactlyThePreviewedFilesAs}" />
+                        </StackPanel>
+                        <Button Content="{loc:Tr Diagnostics.OpenReportsFolder}" Command="{Binding OpenReportsFolderCommand}" HorizontalAlignment="Left" Margin="0,0,0,8" />
+                        <TextBlock Text="{Binding ReportStatus}" Style="{StaticResource Note}" />
+                    </StackPanel>
+                </ScrollViewer>
+                <DockPanel Grid.Column="1">
+                    <ListView DockPanel.Dock="Top" ItemsSource="{Binding PreviewEntries}" SelectedItem="{Binding SelectedPreviewEntry}" MaxHeight="210" Margin="0,0,0,8"
+                              AutomationProperties.Name="{loc:Tr Diagnostics.FilesInTheReport}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{loc:Tr Common.File}" Width="220" DisplayMemberBinding="{Binding Name}" />
+                                <GridViewColumn Header="{loc:Tr Diagnostics.Contents}" Width="330" DisplayMemberBinding="{Binding Description}" />
+                                <GridViewColumn Header="{loc:Tr Diagnostics.Bytes}" Width="90" DisplayMemberBinding="{Binding Size, StringFormat={}{0:N0}, ConverterCulture=en-US}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBox Style="{StaticResource ValueText}" Text="{Binding PreviewText, Mode=OneWay}" FontFamily="{StaticResource App.MonoFont}" FontSize="12"
+                             VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" AutomationProperties.Name="{loc:Tr Diagnostics.SelectedFileOfTheReport}" />
+                </DockPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</UserControl>

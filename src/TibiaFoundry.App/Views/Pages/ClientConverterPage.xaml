@@ -1,0 +1,128 @@
+<UserControl x:Class="TibiaFoundry.App.Views.Pages.ClientConverterPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization">
+    <UserControl.Resources>
+        <Style x:Key="RowLabel" TargetType="TextBlock" BasedOn="{StaticResource FieldLabel}">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="Hint" TargetType="TextBlock" BasedOn="{StaticResource Muted}">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="150,2,0,10" />
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="16,14,16,20" MaxWidth="980" HorizontalAlignment="Left">
+
+            <Border Style="{StaticResource InfoBanner}" Margin="0,0,0,14" AutomationProperties.Name="{loc:Tr ClientConverter.WhatTheClientConverterIsFor}">
+                <TextBlock TextWrapping="Wrap"
+                           Text="{loc:Tr ClientConverter.WritesTheOfficialClientSModern}" />
+            </Border>
+
+            <GroupBox Header="{loc:Tr ClientConverter.SourceAndDestination}" Margin="0,0,0,14">
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,8">
+                        <TextBlock Text="{loc:Tr Common.ClientAssets}" Style="{StaticResource RowLabel}" />
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr Common.InstalledClient}" Command="{Binding UseInstalledClientCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr ClientConverter.UseTheAssetsOfTheInstalled}" />
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Change}" Command="{Binding ChooseAssetsCommand}" Margin="8,0,0,0" ToolTip="{loc:Tr ClientConverter.ChooseAModernAssetsFolderWith}" />
+                        <TextBox Style="{StaticResource PathBox}" Text="{Binding AssetsFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Common.ClientAssetsFolder}" />
+                    </DockPanel>
+                    <DockPanel Margin="0,0,0,4">
+                        <TextBlock Text="{loc:Tr Common.OutputFolder}" Style="{StaticResource RowLabel}" />
+                        <Button DockPanel.Dock="Right" Style="{StaticResource SubtleButton}" Command="{Binding OpenOutputCommand}" Margin="6,0,0,0" ToolTip="{loc:Tr Common.OpenTheOutputFolder}" AutomationProperties.Name="{loc:Tr Common.OpenOutputFolder}">
+                            <TextBlock Text="&#xE838;" Style="{StaticResource Icon}" FontSize="13" />
+                        </Button>
+                        <Button DockPanel.Dock="Right" Content="{loc:Tr Common.Change}" Command="{Binding ChooseOutputCommand}" Margin="8,0,0,0" ToolTip="{loc:Tr ClientConverter.FolderForTibiaDatAndTibia}" />
+                        <TextBox Style="{StaticResource PathBox}" Text="{Binding OutputFolder, Mode=OneWay}" AutomationProperties.Name="{loc:Tr Common.OutputFolder}" />
+                    </DockPanel>
+                    <TextBlock Style="{StaticResource Hint}" Text="{loc:Tr ClientConverter.TibiaDatAndTibiaSprAre}" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="{loc:Tr ClientConverter.TargetClient}" Margin="0,0,0,14">
+                <StackPanel>
+                    <DockPanel Margin="0,0,0,4">
+                        <TextBlock Text="{loc:Tr Common.Format}" Style="{StaticResource RowLabel}" />
+                        <ComboBox ItemsSource="{Binding Profiles}" DisplayMemberPath="Name" SelectedValuePath="Id" SelectedValue="{Binding ProfileId}" Width="300" HorizontalAlignment="Left"
+                                  AutomationProperties.Name="{loc:Tr ClientConverter.TargetClientFormat}" />
+                    </DockPanel>
+                    <TextBlock Style="{StaticResource Hint}" Text="{Binding ProfileDescription}" />
+                    <DockPanel Margin="0,0,0,4">
+                        <TextBlock Text="{loc:Tr ClientConverter.OwnSignatures}" Style="{StaticResource RowLabel}" />
+                        <TextBlock Text="{loc:Tr ClientConverter.TibiaDat}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                        <TextBox Text="{Binding DatSignature, UpdateSourceTrigger=PropertyChanged}" Width="110" Margin="0,0,14,0" FontFamily="{StaticResource App.MonoFont}"
+                                 ToolTip="{loc:Tr ClientConverter.HexadecimalSignatureForTibiaDatEmpty}" AutomationProperties.Name="{loc:Tr ClientConverter.TibiaDatSignature}" />
+                        <TextBlock Text="{loc:Tr ClientConverter.TibiaSpr}" VerticalAlignment="Center" Margin="0,0,6,0" />
+                        <TextBox Text="{Binding SprSignature, UpdateSourceTrigger=PropertyChanged}" Width="110" HorizontalAlignment="Left" FontFamily="{StaticResource App.MonoFont}"
+                                 ToolTip="{loc:Tr ClientConverter.HexadecimalSignatureForTibiaSprEmpty}" AutomationProperties.Name="{loc:Tr ClientConverter.TibiaSprSignature}" />
+                    </DockPanel>
+                    <TextBlock Style="{StaticResource Hint}" Text="{loc:Tr ClientConverter.OnlyForLegacyFormatToolsThat}" />
+                    <DockPanel Margin="0,0,0,6">
+                        <TextBlock Text="{loc:Tr Common.Sprites}" Style="{StaticResource RowLabel}" VerticalAlignment="Top" />
+                        <StackPanel>
+                            <CheckBox Content="{loc:Tr ClientConverter.KeepTransparencyRGBASprites}" IsChecked="{Binding Transparency}" Margin="0,0,0,6"
+                                      ToolTip="{loc:Tr ClientConverter.StoreAnAlphaChannelWithEvery}" />
+                            <CheckBox Content="{loc:Tr ClientConverter.DoNotStoreEmptySprites}" IsChecked="{Binding SkipEmpty}" Margin="0,0,0,6"
+                                      ToolTip="{loc:Tr ClientConverter.FullyTransparent3232TilesGet}" />
+                            <CheckBox Content="{loc:Tr ClientConverter.ShortenMarketNamesForClient11}" IsChecked="{Binding ShortenNames}" Margin="0,0,0,6"
+                                      ToolTip="{loc:Tr ClientConverter.Client11IsReportedToRefuse}" />
+                            <CheckBox Content="{loc:Tr ClientConverter.ListNewerMarketCategoriesUnderOthers}" IsChecked="{Binding MapNewMarketCategories}"
+                                      ToolTip="{loc:Tr ClientConverter.TibiaCoinsCreatureProductsQuiversSoul}" />
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </GroupBox>
+
+            <Expander Header="{loc:Tr ClientConverter.ExtendedAttributesThirdPartyLegacyFormat}" Margin="0,0,0,14">
+                <StackPanel Margin="0,8,0,0">
+                    <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,0,0,8"
+                               Text="{loc:Tr ClientConverter.TheseModernItemPropertiesAreNot}" />
+                    <ItemsControl ItemsSource="{Binding Extensions}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate><UniformGrid Columns="3" /></ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Label}" IsChecked="{Binding IsChecked}" Margin="0,0,12,6" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Expander>
+
+            <GroupBox Header="{loc:Tr ClientConverter.ExtraOutput}" Margin="0,0,0,14">
+                <StackPanel>
+                    <CheckBox Content="{loc:Tr ClientConverter.AlsoSaveEvery3232Slice}" IsChecked="{Binding WriteSlices}"
+                              ToolTip="{loc:Tr ClientConverter.OneFilePerTileSpritePng}" />
+                    <TextBlock Style="{StaticResource Muted}" FontSize="12" TextWrapping="Wrap" Margin="0,4,0,0">
+                        <Run Text="{loc:Tr ClientConverter.Into}" /> <Run Text="{Binding SlicesFolder, Mode=OneWay}" FontFamily="{StaticResource App.MonoFont}" /><Run Text="{loc:Tr ClientConverter.WholeSpritesAndSpriteSheetsAs}" />
+                    </TextBlock>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                <Button Content="{loc:Tr ClientConverter.Convert}" Style="{StaticResource PrimaryButton}" Command="{Binding ConvertCommand}" MinWidth="120" Margin="0,0,10,0"
+                        ToolTip="{loc:Tr ClientConverter.WriteTibiaDatAndTibiaSpr}" />
+                <Button Content="{loc:Tr ClientConverter.IdentifyALegacyTibiaDat}" Command="{Binding InspectCommand}"
+                        ToolTip="{loc:Tr ClientConverter.FindOutWhichClientVersionA}" />
+            </StackPanel>
+
+            <GroupBox Header="{loc:Tr Common.Result}" Margin="0,0,0,14">
+                <StackPanel>
+                    <TextBox Style="{StaticResource ValueText}" Text="{Binding ResultSummary, Mode=OneWay, Converter={StaticResource LocOr}, ConverterParameter=ClientConverter.NoConversionYet}" FontWeight="SemiBold" AutomationProperties.Name="{loc:Tr Common.Result}" />
+                    <TextBox Style="{StaticResource ValueText}" Text="{Binding Validation, Mode=OneWay}" Margin="0,6,0,0" Foreground="{DynamicResource App.Success}" AutomationProperties.Name="{loc:Tr Common.Validation}" />
+                    <ItemsControl ItemsSource="{Binding ResultDetails}" Margin="0,8,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" TextWrapping="Wrap" FontSize="12" Margin="0,0,0,3" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBox Style="{StaticResource ValueText}" Text="{Binding Inspection, Mode=OneWay}" Margin="0,8,0,0" FontFamily="{StaticResource App.MonoFont}" FontSize="12" AutomationProperties.Name="{loc:Tr ClientConverter.LegacyFileIdentification}" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

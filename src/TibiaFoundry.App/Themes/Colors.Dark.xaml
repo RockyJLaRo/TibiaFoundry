@@ -1,0 +1,78 @@
+<!--
+    Dark palette ("graphite"). Same keys as Colors.Light.xaml (and Core/Theming/ThemeTokens.cs). Avoids pure black: the darkest
+    surface is #16181C, text is off-white, and contrast of text on surfaces is above 7:1.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Surfaces -->
+    <SolidColorBrush x:Key="App.WindowBackground" Color="#1B1E23" />
+    <SolidColorBrush x:Key="App.NavBackground" Color="#16181C" />
+    <SolidColorBrush x:Key="App.HeaderBackground" Color="#202329" />
+    <SolidColorBrush x:Key="App.Surface" Color="#24282E" />
+    <SolidColorBrush x:Key="App.SurfaceAlt" Color="#2A2E35" />
+    <SolidColorBrush x:Key="App.SurfaceSunken" Color="#1E2126" />
+    <SolidColorBrush x:Key="App.SurfaceReadOnly" Color="#22252B" />
+    <SolidColorBrush x:Key="App.CardHeader" Color="#2B3038" />
+
+    <!-- Lines -->
+    <SolidColorBrush x:Key="App.Border" Color="#383E47" />
+    <SolidColorBrush x:Key="App.BorderStrong" Color="#4C5460" />
+    <SolidColorBrush x:Key="App.GridLine" Color="#30353D" />
+    <SolidColorBrush x:Key="App.InputBorder" Color="#454C57" />
+    <SolidColorBrush x:Key="App.InputBorderHover" Color="#66707D" />
+
+    <!-- Inputs -->
+    <SolidColorBrush x:Key="App.InputBackground" Color="#1E2126" />
+    <SolidColorBrush x:Key="App.InputText" Color="#E4E8ED" />
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="App.Text" Color="#E4E8ED" />
+    <SolidColorBrush x:Key="App.TextSecondary" Color="#A5AFBB" />
+    <SolidColorBrush x:Key="App.TextDisabled" Color="#68727E" />
+    <SolidColorBrush x:Key="App.Link" Color="#7FB2FF" />
+
+    <!-- Accent -->
+    <SolidColorBrush x:Key="App.Accent" Color="#2D71E1" />
+    <SolidColorBrush x:Key="App.AccentHover" Color="#2867D2" />
+    <SolidColorBrush x:Key="App.AccentPressed" Color="#225BBE" />
+    <SolidColorBrush x:Key="App.AccentText" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="App.AccentSoft" Color="#273A57" />
+    <SolidColorBrush x:Key="App.Focus" Color="#7FB2FF" />
+
+    <!-- Interaction states -->
+    <SolidColorBrush x:Key="App.ButtonBackground" Color="#2C3138" />
+    <SolidColorBrush x:Key="App.ButtonBorder" Color="#444B55" />
+    <SolidColorBrush x:Key="App.ButtonText" Color="#E4E8ED" />
+    <SolidColorBrush x:Key="App.Hover" Color="#30353D" />
+    <SolidColorBrush x:Key="App.Pressed" Color="#383E47" />
+    <SolidColorBrush x:Key="App.Selection" Color="#2D4C7C" />
+    <SolidColorBrush x:Key="App.SelectionText" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="App.SelectionInactive" Color="#343A43" />
+    <SolidColorBrush x:Key="App.NavItemHover" Color="#23272D" />
+    <SolidColorBrush x:Key="App.NavItemSelected" Color="#2A2F37" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="App.Danger" Color="#F2797F" />
+    <SolidColorBrush x:Key="App.DangerSoft" Color="#3D2427" />
+    <SolidColorBrush x:Key="App.Warning" Color="#E8BC6A" />
+    <SolidColorBrush x:Key="App.WarningSoft" Color="#3B3221" />
+    <SolidColorBrush x:Key="App.Success" Color="#82D38E" />
+    <SolidColorBrush x:Key="App.SuccessSoft" Color="#22362A" />
+
+    <!-- Misc -->
+    <SolidColorBrush x:Key="App.ScrollThumb" Color="#4A525D" />
+    <SolidColorBrush x:Key="App.ScrollThumbHover" Color="#626C79" />
+    <SolidColorBrush x:Key="App.ToolTipBackground" Color="#313741" />
+    <SolidColorBrush x:Key="App.ToolTipText" Color="#E9EDF1" />
+    <SolidColorBrush x:Key="App.Shadow" Color="#55000000" />
+    <Color x:Key="App.ShadowColor">#80000000</Color>
+    <!-- Transparency checkerboard behind sprites (8 px squares). -->
+    <DrawingBrush x:Key="App.Checkerboard" TileMode="Tile" Viewport="0,0,16,16" ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#2B2F36" Geometry="M0,0 H16 V16 H0 Z" />
+                <GeometryDrawing Brush="#363B43" Geometry="M0,0 H8 V8 H0 Z M8,8 H16 V16 H8 Z" />
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+</ResourceDictionary>

@@ -1,0 +1,8 @@
+client 15.33.8791c6, 5084 sheets, 43518 objects, 1480 outfits, cpu 16
+scenario,reps,median_ms,min_ms,max_ms,alloc_mb,gen0,gen1,gen2,peak_ws_mb
+catalog-load,5,35.3,20.6,35.5,3.0,1,1,1,123
+appearances-load,5,315.4,263.9,353.3,1847.7,230.6,8.6,1.6,186
+compat-check,5,3268.9,3203.8,3380.3,2179.8,268.8,13.8,1.8,282
+compat-check-loaded,5,2847.3,2787.9,3246.4,331.9,39,4.2,1,282
+decode-300-sheets,5,852.6,841.9,894.5,350.6,9,8,8,282
+decode-all-sheets-parallel,3,2442.5,2415.0,2475.1,5991.9,78,66.7,43,367

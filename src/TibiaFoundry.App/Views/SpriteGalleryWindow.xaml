@@ -1,0 +1,99 @@
+<Window x:Class="TibiaFoundry.App.Views.SpriteGalleryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:TibiaFoundry.App.Views"
+             xmlns:loc="clr-namespace:TibiaFoundry.App.Localization"
+        Style="{StaticResource AppWindow}"
+        Width="680" Height="720" MinWidth="380" MinHeight="300"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True">
+    <DockPanel>
+        <!-- Toolbar -->
+        <Border DockPanel.Dock="Top" Background="{DynamicResource App.HeaderBackground}" BorderBrush="{DynamicResource App.Border}" BorderThickness="0,0,0,1" Padding="14,10">
+            <WrapPanel>
+                <TextBlock Text="{loc:Tr Common.Columns}" Style="{StaticResource FieldLabel}" VerticalAlignment="Center" />
+                <ComboBox x:Name="ColumnsBox" Width="70" Margin="0,0,16,4" SelectionChanged="OnColumnsChanged" AutomationProperties.Name="{loc:Tr Common.Columns}">
+                    <ComboBoxItem Content="2" Tag="2" />
+                    <ComboBoxItem Content="3" Tag="3" />
+                    <ComboBoxItem Content="4" Tag="4" />
+                    <ComboBoxItem Content="8" Tag="8" />
+                </ComboBox>
+                <TextBlock Text="{loc:Tr Common.Zoom}" Style="{StaticResource FieldLabel}" VerticalAlignment="Center" />
+                <ComboBox x:Name="ZoomBox" Width="70" Margin="0,0,16,4" SelectedIndex="0" SelectionChanged="OnZoomChanged" AutomationProperties.Name="{loc:Tr Common.Zoom}">
+                    <ComboBoxItem Content="1×" Tag="1" />
+                    <ComboBoxItem Content="2×" Tag="2" />
+                    <ComboBoxItem Content="3×" Tag="3" />
+                </ComboBox>
+                <TextBlock Text="{loc:Tr Common.Background}" Style="{StaticResource FieldLabel}" VerticalAlignment="Center" />
+                <Border Style="{StaticResource SegmentHost}" Margin="0,0,16,4">
+                    <StackPanel Orientation="Horizontal">
+                        <RadioButton x:Name="BgDefault" Style="{StaticResource SegmentRadio}" GroupName="GalBg" Content="{loc:Tr SpriteGallery.Checkered}" IsChecked="True" Checked="OnBackgroundChanged" />
+                        <RadioButton x:Name="BgMagenta" Style="{StaticResource SegmentRadio}" GroupName="GalBg" Content="{loc:Tr SpriteGallery.Magenta}" Checked="OnBackgroundChanged" />
+                        <RadioButton x:Name="BgWhite" Style="{StaticResource SegmentRadio}" GroupName="GalBg" Content="{loc:Tr SpriteGallery.White}" Checked="OnBackgroundChanged" />
+                        <RadioButton x:Name="BgBlack" Style="{StaticResource SegmentRadio}" GroupName="GalBg" Content="{loc:Tr SpriteGallery.Black}" Checked="OnBackgroundChanged" />
+                    </StackPanel>
+                </Border>
+                <Button Content="{loc:Tr SpriteGallery.CopyIDs}" Click="OnCopyIds" Margin="0,0,8,4" ToolTip="{loc:Tr SpriteGallery.CopyAllSpriteIDsToThe}" />
+                <Button Content="{loc:Tr SpriteGallery.SaveAll}" Click="OnSaveAll" Margin="0,0,0,4" ToolTip="{loc:Tr SpriteGallery.SaveEverySpriteAsIdPng}" />
+            </WrapPanel>
+        </Border>
+
+        <TextBlock x:Name="Footer" DockPanel.Dock="Bottom" Style="{StaticResource Muted}" FontSize="12" Margin="14,6" />
+
+        <!-- Rows of cells; the outer list virtualises rows so large outfits stay responsive. -->
+        <Border x:Name="Surface" Background="{DynamicResource App.Surface}">
+            <ItemsControl x:Name="RowsList" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling"
+                          VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.CanContentScroll="True" Focusable="False">
+                <ItemsControl.Template>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Focusable="False">
+                            <ItemsPresenter Margin="0,12" />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate><VirtualizingStackPanel /></ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ItemsControl ItemsSource="{Binding}" HorizontalAlignment="Center" Focusable="False">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type views:GalleryCell}">
+                                    <StackPanel Margin="3,0,3,8" ToolTip="{Binding ToolTip}">
+                                        <StackPanel.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="{loc:Tr SpriteGallery.CopySpriteID}" Click="OnCopyCellId" />
+                                                <MenuItem Header="{loc:Tr SpriteGallery.CopyImage}" Click="OnCopyCellImage" />
+                                                <MenuItem Header="{loc:Tr SpriteGallery.SaveImage}" Click="OnSaveCellImage" />
+                                            </ContextMenu>
+                                        </StackPanel.ContextMenu>
+                                        <Border BorderBrush="{DynamicResource App.BorderStrong}" BorderThickness="1"
+                                                Background="{Binding CellBackground, RelativeSource={RelativeSource AncestorType=views:SpriteGalleryWindow}}"
+                                                Width="{Binding CellSize, RelativeSource={RelativeSource AncestorType=views:SpriteGalleryWindow}}"
+                                                Height="{Binding CellSize, RelativeSource={RelativeSource AncestorType=views:SpriteGalleryWindow}}">
+                                            <Grid>
+                                                <Image Source="{Binding Image}" Stretch="None" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                                       HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Image.LayoutTransform>
+                                                        <ScaleTransform ScaleX="{Binding Zoom, RelativeSource={RelativeSource AncestorType=views:SpriteGalleryWindow}}"
+                                                                        ScaleY="{Binding Zoom, RelativeSource={RelativeSource AncestorType=views:SpriteGalleryWindow}}" />
+                                                    </Image.LayoutTransform>
+                                                </Image>
+                                                <TextBlock Text="&#xE783;" Style="{StaticResource Icon}" FontSize="16" Foreground="{DynamicResource App.Danger}"
+                                                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                           Visibility="{Binding IsMissing, Converter={StaticResource BoolToVisibility}}" />
+                                            </Grid>
+                                        </Border>
+                                        <TextBlock Text="{Binding Id}" HorizontalAlignment="Center" FontSize="11" Margin="0,2,0,0" Foreground="{DynamicResource App.TextSecondary}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+    </DockPanel>
+</Window>

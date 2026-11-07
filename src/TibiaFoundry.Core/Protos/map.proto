@@ -1,0 +1,54 @@
+// Recovered from the descriptor embedded in the original 1.8.0 build
+// (decompiled MapReflection.cs). Field names, numbers and types are exact.
+syntax = "proto3";
+
+package tibia.protobuf.map;
+
+import "shared.proto";
+
+
+enum MAP_FILE_TYPE {
+  MAP_FILE_TYPE_SUBAREA = 0;
+  MAP_FILE_TYPE_SATELLITE = 1;
+  MAP_FILE_TYPE_MINIMAP = 2;
+}
+
+enum AREA_TYPE {
+  AREA_TYPE_NONE = 0;
+  AREA_TYPE_AREA = 1;
+  AREA_TYPE_SUBAREA = 2;
+}
+
+message Map {
+  repeated .tibia.protobuf.map.Area areas = 1;
+  repeated .tibia.protobuf.map.Npc npcs = 2;
+  repeated .tibia.protobuf.map.MapFile resource_files = 3;
+  .tibia.protobuf.shared.Coordinate top_left_tile_coordinate = 4;
+  .tibia.protobuf.shared.Coordinate bottom_right_tile_coordinate = 5;
+}
+
+message Area {
+  uint32 area_id = 1;
+  string name = 2;
+  .tibia.protobuf.map.AREA_TYPE area_type = 3;
+  repeated uint32 subarea_ids = 4;
+  .tibia.protobuf.shared.Coordinate label_coordinate = 5;
+  bool reject_donations = 6;
+  string alias = 7;
+}
+
+message Npc {
+  string name = 1;
+  .tibia.protobuf.shared.Coordinate tile_coordinate = 2;
+  uint32 subarea_id = 3;
+}
+
+message MapFile {
+  .tibia.protobuf.map.MAP_FILE_TYPE file_type = 1;
+  .tibia.protobuf.shared.Coordinate top_left_coordinate = 2;
+  string file_name = 3;
+  uint32 fields_width = 4;
+  uint32 fields_height = 5;
+  uint32 area_id = 6;
+  double scale_factor = 7;
+}

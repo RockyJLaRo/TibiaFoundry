@@ -1,0 +1,1172 @@
+<!doctype html>
+<html lang="de" class="no-js">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J3EX3FB3PB');
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tibia Foundry – das kostenlose Content-Toolkit für Tibia-Fansites, Wikis und Creator</title>
+<meta name="description" content="Kostenloses Windows-Toolkit für Tibia-Fansites, Wikis und Creator: Sprites extrahieren, Outfit- und Kreaturen-GIFs rendern, Assets ordnen und fertige Galerien veröffentlichen.">
+<meta name="keywords" content="Tibia, TibiaWiki, Fansite, Sprites, Outfits, Kreaturen, GIF, Asset-Bibliothek, Galerie-Generator, Tibia-Client">
+<meta name="author" content="RockyLaRo">
+<meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f6f7fa" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://tibiafoundry.com/de/">
+<link rel="alternate" hreflang="en" href="https://tibiafoundry.com/">
+<link rel="alternate" hreflang="pt-BR" href="https://tibiafoundry.com/pt-br/">
+<link rel="alternate" hreflang="pl" href="https://tibiafoundry.com/pl/">
+<link rel="alternate" hreflang="es" href="https://tibiafoundry.com/es/">
+<link rel="alternate" hreflang="de" href="https://tibiafoundry.com/de/">
+<link rel="alternate" hreflang="x-default" href="https://tibiafoundry.com/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tibia Foundry">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_US">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="pl_PL">
+<meta property="og:locale:alternate" content="es_LA">
+<meta property="og:title" content="Tibia Foundry 9.0.2 – all deine Tibia-Werkzeuge in einem Programm">
+<meta property="og:description" content="Offizielle Tibia-Assets extrahieren, rendern, ordnen und veröffentlichen: eine durchsuchbare Asset Library und automatische Galerien für jede Fansite und jedes Wiki. Kostenlos, lokal, für Windows.">
+<meta property="og:url" content="https://tibiafoundry.com/de/">
+<meta property="og:image" content="https://tibiafoundry.com/og-image-de.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Tibia Foundry: die Asset Library mit Kreaturen-Vorschaubildern">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tibia Foundry 9.0.2 – all deine Tibia-Werkzeuge in einem Programm">
+<meta name="twitter:description" content="Offizielle Tibia-Assets extrahieren, rendern, ordnen und veröffentlichen. Kostenlos, lokal, für Windows.">
+<meta name="twitter:image" content="https://tibiafoundry.com/og-image-de.png">
+<script type="application/ld+json">
+[{"@context":"https://schema.org","@type":"WebSite","name":"Tibia Foundry","alternateName":"TibiaFoundry","url":"https://tibiafoundry.com/","inLanguage":["en","pt-BR","pl","es","de"]},
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tibia Foundry","description":"Kostenloses Windows-Toolkit für Tibia-Fansites, Wikis und Creator: Sprites extrahieren, Outfit- und Kreaturen-GIFs rendern, Assets ordnen und fertige Galerien veröffentlichen.","inLanguage":"de","softwareVersion":"9.0.2","operatingSystem":"Windows 10, Windows 11 (64-bit)","applicationCategory":"MultimediaApplication","image":"https://tibiafoundry.com/og-image-de.png","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://tibiafoundry.com/de/","downloadUrl":"https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0.2","author":{"@type":"Person","name":"RockyLaRo"}}]
+</script>
+<script>
+  // Apply the stored theme before the page paints (no flash of the other theme).
+  try { var t = localStorage.getItem('tf-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+
+</script>
+<style>
+:root {
+--bg: #f6f7fa;
+--bg-alt: #eef1f6;
+--surface: #ffffff;
+--surface-2: #f3f5f9;
+--text: #141a22;
+--text-2: #4a5563;
+--text-3: #6b7685;
+--line: #dde2ea;
+--line-strong: #c7cfdb;
+--accent: #2d71e1;
+--accent-hover: #2462c8;
+--accent-soft: #e4edfc;
+--accent-text: #ffffff;
+--gold: #b7791f;
+--gold-soft: #fbf1df;
+--success: #1f8a4c;
+--shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 8px 24px rgba(16, 24, 40, .08);
+--shadow-lg: 0 20px 60px rgba(16, 24, 40, .16);
+--radius: 14px;
+--radius-sm: 9px;
+--max: 1180px;
+--header-h: 64px;
+color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+--bg: #0f1216; --bg-alt: #13171c; --surface: #191d23; --surface-2: #1f242b; --text: #e8ecf1; --text-2: #aeb7c2; --text-3: #8892a0;
+--line: #2a3038; --line-strong: #3a424d; --accent: #4b8bf0; --accent-hover: #6a9ff4; --accent-soft: #1d2d47; --accent-text: #ffffff;
+--gold: #e8b04b; --gold-soft: #33291a; --success: #5fcf8a;
+--shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35); --shadow-lg: 0 24px 70px rgba(0, 0, 0, .55);
+color-scheme: dark;
+}
+}
+:root[data-theme="dark"] {
+--bg: #0f1216; --bg-alt: #13171c; --surface: #191d23; --surface-2: #1f242b; --text: #e8ecf1; --text-2: #aeb7c2; --text-3: #8892a0;
+--line: #2a3038; --line-strong: #3a424d; --accent: #4b8bf0; --accent-hover: #6a9ff4; --accent-soft: #1d2d47; --accent-text: #ffffff;
+--gold: #e8b04b; --gold-soft: #33291a; --success: #5fcf8a;
+--shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35); --shadow-lg: 0 24px 70px rgba(0, 0, 0, .55);
+color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+margin: 0; background: var(--bg); color: var(--text);
+font: 16px/1.6 "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+-webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; margin: 0; }
+p { margin: 0; }
+section { scroll-margin-top: calc(var(--header-h) + 12px); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--surface); padding: 8px 14px; border-radius: 8px; z-index: 100; }
+.skip:focus { left: 12px; }
+.pixel { image-rendering: pixelated; image-rendering: crisp-edges; }
+.site-header {
+position: sticky; top: 0; z-index: 50; height: var(--header-h);
+background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: saturate(160%) blur(12px);
+border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { display: flex; align-items: center; gap: 18px; height: 100%; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand:hover { text-decoration: none; }
+.brand img { width: 32px; height: 32px; }
+.brand small { font-weight: 500; color: var(--text-3); font-size: 12px; margin-left: 2px; }
+.nav { display: flex; gap: 2px; margin-left: auto; }
+.nav a { color: var(--text-2); font-size: 14.5px; padding: 7px 9px; border-radius: 8px; white-space: nowrap; }
+.nav a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+.header-actions { display: flex; align-items: center; gap: 8px; }
+.icon-btn {
+display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line);
+background: var(--surface); color: var(--text); cursor: pointer;
+}
+.icon-btn:hover { border-color: var(--line-strong); }
+.icon-btn svg { width: 18px; height: 18px; }
+.theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .moon { display: none; }
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) .theme-toggle .sun { display: block; }
+:root:not([data-theme="light"]) .theme-toggle .moon { display: none; }
+}
+.menu-btn { display: none; }
+.lang { position: relative; }
+.icon-btn.lang-btn { width: auto; display: inline-flex; gap: 5px; padding: 0 9px 0 10px; font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .02em; }
+.lang-btn .chev { width: 13px; height: 13px; color: var(--text-3); transition: transform .15s; }
+.lang-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.lang-menu {
+position: absolute; right: 0; top: calc(100% + 8px); z-index: 60; min-width: 220px; list-style: none; margin: 0; padding: 6px;
+background: var(--surface); border: 1px solid var(--line-strong); border-radius: 12px; box-shadow: var(--shadow-lg);
+}
+.lang-menu[hidden] { display: none; }
+.lang-menu a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; color: var(--text); font-size: 15px; white-space: nowrap; }
+.lang-menu a:hover, .lang-menu a:focus-visible { background: var(--surface-2); text-decoration: none; }
+.lang-menu a[aria-current="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.lang-menu a[aria-current="true"]::after { content: ""; margin-left: auto; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.lang-badge { display: inline-grid; place-items: center; min-width: 30px; height: 22px; padding: 0 5px; border-radius: 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; background: var(--surface-2); color: var(--text-2); border: 1px solid var(--line); }
+.lang-menu a[aria-current="true"] .lang-badge { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.lang-suggest { background: var(--accent-soft); border-bottom: 1px solid var(--line); color: var(--text); font-size: 14.5px; }
+.lang-suggest[hidden] { display: none; }
+.lang-suggest .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px 14px; padding-top: 9px; padding-bottom: 9px; }
+.lang-suggest .icon-btn { width: 32px; height: 32px; }
+.lang-list a[aria-current="true"] { color: var(--text); font-weight: 600; }
+.btn {
+display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 10px; font-weight: 600; font-size: 15px;
+border: 1px solid var(--line-strong); background: var(--surface); color: var(--text); cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s;
+white-space: nowrap;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-sm { padding: 8px 13px; font-size: 14px; }
+.hero { position: relative; overflow: hidden; padding: 72px 0 40px; }
+.hero::before {
+content: ""; position: absolute; inset: -40% -10% auto; height: 120%; z-index: -1;
+background: radial-gradient(60% 50% at 70% 20%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+radial-gradient(40% 40% at 15% 10%, color-mix(in srgb, var(--gold) 12%, transparent), transparent 70%);
+}
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; text-align: center; }
+.eyebrow {
+display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent);
+font-size: 13.5px; font-weight: 600; margin-bottom: 18px;
+}
+.eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); }
+.hero h1 { font-size: clamp(34px, 5.2vw, 58px); font-weight: 800; max-width: 920px; margin: 0 auto; }
+.hero h1 .accent { background: linear-gradient(90deg, var(--accent), var(--gold)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lead { font-size: clamp(17px, 2vw, 20px); color: var(--text-2); max-width: 760px; margin: 20px auto 0; }
+.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+.trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 22px; color: var(--text-3); font-size: 14px; }
+.trust span { display: inline-flex; align-items: center; gap: 7px; }
+.trust svg { width: 16px; height: 16px; color: var(--success); }
+.window {
+border-radius: 14px; overflow: hidden; border: 1px solid var(--line-strong); box-shadow: var(--shadow-lg); background: var(--surface);
+text-align: left;
+}
+.window-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-bottom: 1px solid var(--line); background: var(--surface-2); font-size: 12.5px; color: var(--text-3); }
+.window-bar i { width: 11px; height: 11px; border-radius: 50%; background: var(--line-strong); }
+.window-bar span { margin-left: 8px; }
+.hero-shot { max-width: 1100px; margin: 0 auto; }
+.shot-light { display: none; }
+:root[data-theme="light"] .themed .shot-dark { display: none; }
+:root[data-theme="light"] .themed .shot-light { display: block; }
+@media (prefers-color-scheme: light) {
+:root:not([data-theme="dark"]) .themed .shot-dark { display: none; }
+:root:not([data-theme="dark"]) .themed .shot-light { display: block; }
+}
+.section { padding: 84px 0; }
+.section.alt { background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-head { max-width: 760px; margin: 0 auto 44px; text-align: center; }
+.kicker { color: var(--gold); font-weight: 700; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+.section-head h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 800; }
+.section-head p { color: var(--text-2); font-size: 18px; margin-top: 14px; }
+.grid { display: grid; gap: 18px; }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card {
+background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+.card h3 { font-size: 18px; margin: 14px 0 8px; }
+.card p { color: var(--text-2); font-size: 15px; }
+.card .tools { margin-top: 12px; font-size: 13px; color: var(--text-3); }
+.ico {
+width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent);
+}
+.ico svg { width: 22px; height: 22px; }
+.ico.gold { background: var(--gold-soft); color: var(--gold); }
+.badge { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--gold-soft); color: var(--gold); margin-left: 6px; vertical-align: 2px; }
+.spotlight { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center; }
+.spotlight.reverse { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.spotlight.reverse .spot-text { order: 2; }
+.spot-text h2 { font-size: clamp(26px, 3.2vw, 36px); font-weight: 800; }
+.spot-text > p { color: var(--text-2); font-size: 17px; margin-top: 14px; }
+.checks { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 11px; }
+.checks li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; color: var(--text-2); font-size: 15.5px; }
+.checks li b { color: var(--text); font-weight: 600; }
+.checks svg { width: 20px; height: 20px; color: var(--success); margin-top: 2px; }
+.shot-btn { padding: 0; border: 0; background: none; cursor: zoom-in; width: 100%; display: block; border-radius: 14px; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; counter-reset: step; }
+.step { position: relative; padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.step::before {
+counter-increment: step; content: counter(step); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+background: var(--accent); color: var(--accent-text); font-weight: 700; font-size: 14px; margin-bottom: 12px;
+}
+.step h3 { font-size: 16.5px; margin-bottom: 6px; }
+.step p { color: var(--text-2); font-size: 14.5px; }
+.outputs { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 18px; margin-top: 28px; }
+.sample { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.sample .canvas {
+display: grid; place-items: center; padding: 18px; min-height: 220px;
+background: repeating-conic-gradient(#eceff3 0 25%, #f8f9fb 0 50%) 0 0 / 20px 20px;
+}
+:root[data-theme="dark"] .sample .canvas { background: repeating-conic-gradient(#1c2026 0 25%, #23282f 0 50%) 0 0 / 20px 20px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .sample .canvas { background: repeating-conic-gradient(#1c2026 0 25%, #23282f 0 50%) 0 0 / 20px 20px; } }
+.sample .canvas img { image-rendering: pixelated; image-rendering: crisp-edges; }
+.sample figcaption { padding: 12px 16px; font-size: 14px; color: var(--text-2); border-top: 1px solid var(--line); }
+.sample figcaption b { color: var(--text); }
+.stack { display: grid; gap: 18px; }
+figure { margin: 0; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-3); background: var(--surface-2); }
+tr:last-child td { border-bottom: 0; }
+td code, .code { font-family: "Cascadia Mono", Consolas, ui-monospace, monospace; font-size: 13px; background: var(--surface-2); padding: 2px 6px; border-radius: 5px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 22px; }
+.tab { padding: 8px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--text-2); font-weight: 600; font-size: 14px; cursor: pointer; }
+.tab[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+@media (max-width: 640px) {
+.tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: 6px; scrollbar-width: thin; }
+.tab { flex: 0 0 auto; }
+}
+.tab-panel[hidden] { display: none; }
+.tab-panel p { text-align: center; color: var(--text-2); margin-top: 14px; font-size: 15px; }
+.download-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.dl { display: flex; flex-direction: column; }
+.dl .btn { margin-top: auto; }
+.dl ul { color: var(--text-2); font-size: 14.5px; padding-left: 18px; margin: 12px 0 18px; }
+.dl.featured { border: 2px solid var(--accent); }
+.req { display: flex; flex-wrap: wrap; gap: 10px 26px; justify-content: center; margin-top: 26px; color: var(--text-2); font-size: 14.5px; }
+.faq { max-width: 860px; margin: 0 auto; display: grid; gap: 10px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 0 18px; }
+summary { cursor: pointer; font-weight: 600; padding: 15px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--text-3); font-size: 20px; line-height: 1; }
+details[open] summary::after { content: "−"; }
+details p { color: var(--text-2); padding-bottom: 16px; font-size: 15px; }
+.wiki-code { margin: 0; padding: 16px 18px; max-height: 470px; overflow: auto; font-family: "Cascadia Mono", Consolas, ui-monospace, monospace; font-size: 12.5px; line-height: 1.55; color: var(--text); background: var(--surface); white-space: pre; tab-size: 2; }
+.wiki-code .k { color: var(--accent); }
+.wiki-code .m { color: var(--text-3); }
+.wiki-caption { margin-top: 10px; font-size: 13.5px; color: var(--text-3); }
+.new-list { columns: 2; column-gap: 32px; color: var(--text-2); font-size: 15px; padding-left: 18px; }
+.new-list li { break-inside: avoid; margin-bottom: 10px; }
+.new-list b { color: var(--text); }
+.band {
+border-radius: 20px; padding: 44px; text-align: center; color: #fff;
+background: linear-gradient(135deg, #1f4fa8, #2d71e1 55%, #b7791f);
+}
+.band h2 { font-size: clamp(26px, 3vw, 34px); font-weight: 800; }
+.band p { opacity: .9; margin-top: 10px; font-size: 17px; }
+.band .btn { background: #fff; color: #173c80; border-color: #fff; }
+.band .btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .6); }
+.site-footer { padding: 48px 0 40px; border-top: 1px solid var(--line); color: var(--text-3); font-size: 14px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 28px; }
+.site-footer h3 { font-size: 14px; color: var(--text); margin-bottom: 10px; }
+.site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.site-footer a { color: var(--text-2); }
+.legal { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 13px; }
+dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: min(1500px, 96vw); max-height: 94vh; }
+dialog.lightbox::backdrop { background: rgba(5, 8, 12, .82); }
+dialog.lightbox img { max-height: 86vh; width: auto; margin: 0 auto; border-radius: 10px; box-shadow: var(--shadow-lg); }
+dialog.lightbox p { color: #dfe5ec; text-align: center; margin-top: 10px; font-size: 14px; }
+dialog.lightbox .close { position: fixed; top: 16px; right: 18px; background: rgba(255, 255, 255, .12); color: #fff; border: 0; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+html { scroll-behavior: auto; }
+.reveal { opacity: 1; transform: none; transition: none; }
+.card, .btn { transition: none; }
+.card:hover, .btn:hover { transform: none; }
+}
+@media (max-width: 1199px) {
+.nav { display: none; position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column; padding: 10px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+.site-header.open .nav { display: flex; }
+.nav a { padding: 11px 12px; font-size: 16px; }
+.menu-btn { display: inline-grid; }
+.header-actions .btn-sm { display: none; }
+.header-actions { margin-left: auto; }
+}
+@media (max-width: 960px) {
+.grid-3, .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.spotlight, .spotlight.reverse { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+.spotlight.reverse .spot-text { order: 0; }
+.steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.outputs { grid-template-columns: minmax(0, 1fr); }
+.footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+.section { padding: 60px 0; }
+.hero { padding-top: 44px; }
+.grid-3, .grid-2, .download-grid, .steps { grid-template-columns: minmax(0, 1fr); }
+.new-list { columns: 1; }
+.band { padding: 30px 20px; }
+.footer-grid { grid-template-columns: 1fr 1fr; }
+.footer-grid > :first-child { grid-column: 1 / -1; }
+.brand small { display: none; }
+.window-bar span { display: none; }
+.wrap { padding: 0 16px; }
+}
+@media (max-width: 480px) {
+.header-actions .gh-btn { display: none; }
+.lang-btn .chev { display: none; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Zum Inhalt springen</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-client" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+  <symbol id="i-extract" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 17.5h7M17.5 14v7"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.4 2.6a2 2 0 0 1 2.9 2.9L11 15.8 8.2 13Z"/><path d="M7.5 14.5c-1.9 0-3.5 1.6-3.5 3.5 0 1.3-1 2-2 2 1 1.3 2.7 2 4 2a4 4 0 0 0 4-4c0-1.9-1.6-3.5-2.5-3.5Z"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/></symbol>
+  <symbol id="i-library" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h3v16H4zM10 4h3v16h-3z"/><path d="m16 5 3-1 3 15-3 1z"/></symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7Z"/></symbol>
+  <symbol id="i-batch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="14" height="14" rx="2"/><path d="M3 15V5a2 2 0 0 1 2-2h10"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1 0 1.6-.8 1.6-1.6 0-.5-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5c0-4.2-4-7.6-9-7.6Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+  <symbol id="i-sword" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Tibia Foundry – Startseite"><img class="pixel" src="../img/logo.png" alt="" width="32" height="32"> Tibia Foundry <small>9.0.2</small></a>
+    <nav class="nav" id="nav" aria-label="Abschnitte">
+      <a href="#features">Funktionen</a>
+      <a href="#library">Asset Library</a>
+      <a href="#studio">Content Studio</a>
+      <a href="#publishing">Veröffentlichen</a>
+      <a href="#screens">Screenshots</a>
+      <a href="#download">Download</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <div class="lang" id="lang">
+        <button class="icon-btn lang-btn" id="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Sprache: Deutsch. Andere Sprache wählen" title="Sprache">
+          <svg aria-hidden="true"><use href="#i-globe"/></svg><span class="lang-code" aria-hidden="true">DE</span><svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+        </button>
+        <ul class="lang-menu" id="lang-menu" aria-label="Sprache" hidden>
+          <li><a href="../" hreflang="en" lang="en" data-lang="en"><span class="lang-badge" aria-hidden="true">EN</span> English</a></li>
+          <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR"><span class="lang-badge" aria-hidden="true">PT</span> Português (Brasil)</a></li>
+          <li><a href="../pl/" hreflang="pl" lang="pl" data-lang="pl"><span class="lang-badge" aria-hidden="true">PL</span> Polski</a></li>
+          <li><a href="../es/" hreflang="es" lang="es" data-lang="es"><span class="lang-badge" aria-hidden="true">ES</span> Español</a></li>
+          <li><a href="../de/" hreflang="de" lang="de" data-lang="de" aria-current="true"><span class="lang-badge" aria-hidden="true">DE</span> Deutsch</a></li>
+        </ul>
+      </div>
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Zwischen hellem und dunklem Modus wechseln" title="Hell / dunkel">
+        <svg class="moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="sun" aria-hidden="true"><use href="#i-sun"/></svg>
+      </button>
+      <a class="icon-btn gh-btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="header" aria-label="Tibia Foundry auf GitHub" title="GitHub"><svg aria-hidden="true"><use href="#i-github"/></svg></a>
+      <a class="btn btn-primary btn-sm" href="#download">Download</a>
+      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Menü"><svg aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="lang-suggest" id="lang-suggest" role="region" aria-label="Sprache" hidden>
+  <div class="wrap"><span class="lang-suggest-text"></span> <a class="btn btn-sm btn-primary lang-suggest-go" href="#"></a> <button class="icon-btn lang-suggest-close" type="button"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+</div>
+
+<main id="main">
+<!-- ===================================================================== hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span> Version 9.0.2 · kostenlos für Windows · neu: TibiaWiki-Infobox-Export</span>
+      <h1>Alle Tibia-Ressourcen für deine Fansite, <span class="accent">aus einem Desktop-Programm</span></h1>
+      <p class="lead">Tibia Foundry liest die offiziellen Dateien deines installierten Tibia-Clients und macht daraus Sprites, animierte Outfit- und Kreaturen-GIFs, Item-Bilder, Karten, Sounds und Daten – hält alles in einer durchsuchbaren Bibliothek bereit und veröffentlicht komplette Galerien für das TibiaWiki oder jede Community-Website.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> Tibia Foundry 9.0.2 herunterladen</a>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="hero"><svg aria-hidden="true"><use href="#i-github"/></svg> Auf GitHub ansehen</a>
+      </div>
+      <div class="trust">
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> Kostenlos, ohne Konto</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> Funktioniert offline – nichts wird hochgeladen</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> Verändert nie deinen Tibia-Client</span>
+        <span><svg aria-hidden="true"><use href="#i-check"/></svg> Dein Name in jedem Bild</span>
+      </div>
+    </div>
+    <div class="hero-shot">
+      <button class="shot-btn themed" type="button" data-zoom="Die Asset Library: echte Client-Assets, Vorschaubilder, Sammlungen und Details">
+        <div class="window">
+          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.2 — Asset Library</span></div>
+          <img class="shot-dark" src="../img/de/asset-library-dark.webp" alt="Die Seite Asset Library im dunklen Design: Kategorien, Sammlungen, ein Raster mit Vorschaubildern von Items und Kreaturen und die Details des ausgewählten Assets" width="1586" height="893" decoding="async">
+          <img class="shot-light" src="../img/de/asset-library-light.webp" alt="Die Seite Asset Library im hellen Design" width="1586" height="893" decoding="async">
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== TibiaWiki infobox (9.0) -->
+<section class="section alt" id="infobox">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">Neu in 9.0.2 · TibiaWiki-Infoboxen</div>
+      <h2>Die Infobox eines Gegenstandsartikels, gefüllt aus dem Client</h2>
+      <p>Wähle in Appearances ein Objekt und öffne <b>Wiki-Infobox</b>: Tibia Foundry schreibt die <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> von TibiaWiki aus den offiziellen Client-Daten, nach den Parametern der Vorlage und den Konventionen des Wikis. Prüfen, ergänzen, was nur du weißt, und in den Artikel einfügen.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Aus dem Client</b>: ID, Namen, Beschreibungstext (flavortext), Slot, Stufe und Berufe, Hände und Waffenart, Imbuement-Slots, Upgrade-Klasse, Objekteigenschaften, Licht und Kartenfarbe, stapelbar und handelbar.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>NPC-Handel</b>: die besten Ankaufs- und Verkaufspreise und jeder Händler, mit eigenem Preis, wenn er abweicht.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Nichts erfunden</b>: Jeder Wert zeigt seine Herkunft; implemented, weight, attack, armor und andere Werte, die der Client nicht enthält, stehen zum Ausfüllen bereit.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Bearbeiten, kopieren, speichern</b>: jeden Wert ändern, weitere Parameter hinzufügen, das Markup kopieren, als .txt speichern oder eine Datei pro ausgewähltem Objekt.</span></li>
+      </ul>
+    </div>
+    <figure class="reveal">
+      <div class="window">
+        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.2 — Appearances → Wiki-Infobox</span></div>
+        <pre class="wiki-code" tabindex="0" aria-label="Erzeugtes Infobox-Markup"><code><!--INFOBOX-START--><span class="m">&#123;&#123;Infobox Object|List=&#123;&#123;&#123;1|&#125;&#125;&#125;|GetValue=&#123;&#123;&#123;GetValue|&#125;&#125;&#125;</span>
+| <span class="k">name</span>          = Magic Plate Armor
+| <span class="k">actualname</span>    = magic plate armor
+| <span class="k">itemid</span>        = 3366
+| <span class="k">objectclass</span>   = Body Equipment
+| <span class="k">primarytype</span>   = Armors
+| <span class="k">slot</span>          = Body
+| <span class="k">implemented</span>   =
+| <span class="k">immobile</span>      = no
+| <span class="k">walkable</span>      = yes
+| <span class="k">pickupable</span>    = yes
+| <span class="k">vocrequired</span>   = knights and paladins
+| <span class="k">imbueslots</span>    = 2
+| <span class="k">upgradeclass</span>  = 2
+| <span class="k">weight</span>        =
+| <span class="k">stackable</span>     = no
+| <span class="k">marketable</span>    = yes
+| <span class="k">droppedby</span>     = &#123;&#123;Dropped By|&#125;&#125;
+| <span class="k">value</span>         =
+| <span class="k">npcvalue</span>      = 90000
+| <span class="k">npcprice</span>      = 0
+| <span class="k">buyfrom</span>       = --
+| <span class="k">sellto</span>        = H.L.: 720, Rashid
+| <span class="k">notes</span>         =
+<span class="m">&#125;&#125;</span><!--INFOBOX-END--></code></pre>
+      </div>
+      <figcaption class="wiki-caption">Echte Ausgabe für Magic Plate Armor aus dem installierten Client – die leeren Zeilen sind das, was der Client nicht wissen kann.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ===================================================================== audience -->
+<section class="section" id="audience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Für wen</div>
+      <h2>Gemacht für alle, die die Tibia-Community auf dem Laufenden halten</h2>
+      <p>Ob du ein Wiki, eine Fansite, eine Gildenseite oder einen YouTube-Kanal betreibst: Mit jedem Client-Update kommen dieselben Aufgaben zurück. Tibia Foundry erledigt sie für dich.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-globe"/></svg></div><h3>Fansite-Betreiber</h3><p>Einheitliche Galerien von Kreaturen, Outfits und Items, Update-Seiten und Ressourcenpakete zum Download – im Format, das deine Seite verwendet.</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-book"/></svg></div><h3>Wiki-Autoren</h3><p>Einfügefertiges <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code>-Markup, richtig benannte Bilder, animierte GIFs, Gegenstands-IDs, Kreaturen- und Hausdaten und ein Dateilink für jedes hochgeladene Bild.</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-palette"/></svg></div><h3>Künstler und Designer</h3><p>Transparente Sprites, Sprite-Sheets, Interface-Grafiken und pixelgenaue Vergrößerungen (Nearest Neighbor: keine Unschärfe, keine neuen Farben).</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-compass"/></svg></div><h3>Kartenersteller</h3><p>Kartenbilder, Gebiete und NPC-Positionen aus den Kartendaten des Clients, hochauflösende Karten für Guides und ein Bild von jedem Haus.</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-video"/></svg></div><h3>Content Creator</h3><p>Sounds und Musik des Clients, Vergleichsbögen für Videos und Artikel sowie Metadaten und Credits für alles, was du veröffentlichst.</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-sword"/></svg></div><h3>Neugierige Spieler</h3><p>Stöbere durch alle Objekte, Outfits, Effekte, Kreaturen und Quests des offiziellen Clients und bewahre jede Client-Version als Archiv auf.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== features -->
+<section class="section alt" id="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Ein Programm statt eines Dutzends Werkzeuge</div>
+      <h2>Alles vom Client bis zur veröffentlichten Seite</h2>
+      <p>23 Werkzeuge, nach Aufgaben gruppiert, mit einem Client, einer Bibliothek und einem gemeinsamen Satz von Exportregeln.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-client"/></svg></div><h3>Client-Verwaltung</h3><p>Findet deine installierten Live- und Testserver-Clients, lädt Client-Ordner von überall und archiviert jede Version platzsparend – Datei für Datei geprüft und später wiederherstellbar.</p><p class="tools">Clients · Client Installation Rebuilder · Compatibility</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-extract"/></svg></div><h3>Asset-Extraktion</h3><p>Transparente Sprites oder ganze Sprite-Sheets, alle Objekte, Outfits, Effekte und Geschosse, Kreaturen- und Questdaten sowie die Sounds und die Musik des Clients.</p><p class="tools">Extract Sprites · Appearances · Static Data · Sounds</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>Grafikerstellung</h3><p>Animierte GIFs mit Fansite-Vorlagen, eingefärbte Outfits mit Addons und Mounts, Kreaturen-Animationen und pixelgenaue Vergrößerung von 1× bis 8×.</p><p class="tools">Appearances (Outfitter) · Advanced Tools</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>Ressourcen bearbeiten</h3><p>Eine Kopie der offiziellen Assets untersuchen und bearbeiten, Qt-Ressourcendateien entpacken und neu erstellen, klassische Tibia.dat/.spr-Kopien schreiben und Datei-Metadaten bearbeiten.</p><p class="tools">Assets Editor · RCC Editor · Client Converter · File Metadata</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>Karten und Häuser</h3><p>Kartenbilder, Gebiete und NPC-Positionen, hochauflösende Karten für Guides und Hausbilder für jeden Hausartikel.</p><p class="tools">Map Tools · House Images</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>Asset-Verwaltung</h3><p>Eine durchsuchbare Bibliothek aller Bilder, Animationen und Sounds – Sammlungen, Tags, Versionen, Duplikaterkennung – in die jeder Export automatisch aufgenommen wird.</p><p class="tools">Asset Library</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>Content-Workflows</h3><p>Wiederverwendbare Projekte, die Galerien von Kreaturen, Outfits und Items, Update-Ressourcen und Wiki-Bilder erzeugen – einmal eingerichtet, bei jedem Update erneut ausgeführt.</p><p class="tools">Content Studio</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>Stapelverarbeitung</h3><p>Hunderte Bilder in einem Durchgang, in einer Hintergrund-Warteschlange mit Fortschritt, Abbruch und Wiederholung; Skripte zum Umbenennen, Skalieren und Konvertieren im Stapel.</p><p class="tools">Content-Studio-Warteschlange · Skripte</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>Veröffentlichen für jede Seite</h3><p>Profile für das TibiaWiki, deine Fansite, Galerien, Artikel oder ein Archiv: Größen, Formate, Namen, Ordner, Manifeste, Credits und Snippets.</p><p class="tools">Veröffentlichungsprofile · HTML-Galerien</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== asset library -->
+<section class="section" id="library">
+  <div class="wrap spotlight">
+    <div class="spot-text reveal">
+      <div class="kicker">Asset-Bibliothek</div>
+      <h2>Jede Ressource in Sekunden finden – und nie wieder eine verlieren</h2>
+      <p>Deine Sprites, GIFs, Renderings, Karten, Sounds und Grafiken an einem durchsuchbaren Ort. Die Dateien bleiben, wo sie sind; die Bibliothek liest sie nur.</p>
+      <ul class="checks">
+        <li><svg><use href="#i-check"/></svg><span><b>Automatisch</b>: Jede Datei, die ein Werkzeug exportiert, wird im Hintergrund aufgenommen – samt Werkzeug und Client-Version, aus der sie stammt.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Suchen und filtern</b>: nach Name, Spiel-ID, Kategorie, Client-Version, Tag, Format, Größe, Datum und mehr.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Ordnen</b>: eigene Kategorien, Tags, benutzerdefinierte Felder, verwandte Assets und teilbare Sammlungen.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Duplikate</b>: Identische Dateien, dieselbe Grafik in anderer Größe und ähnliche Bilder werden gemeldet – gelöscht wird nie etwas für dich.</span></li>
+        <li><svg><use href="#i-check"/></svg><span><b>Sicher</b>: schnelle Neuscans, frühere Versionen geänderter Dateien, Integritätsprüfung, Sicherung und Wiederherstellung – alles lokal gespeichert und komplett offline.</span></li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <button class="shot-btn themed" type="button" data-zoom="Asset Library">
+        <div class="window"><img class="shot-dark" src="../img/de/asset-library-detail-dark.webp" alt="Ausschnitt der Asset Library: Vorschaubilder von Items und Kreaturen und die Details des ausgewählten Assets" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/asset-library-detail-light.webp" alt="Ausschnitt der Asset Library im hellen Design" width="1092" height="595" loading="lazy" decoding="async"></div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== content studio -->
+<section class="section alt" id="studio">
+  <div class="wrap">
+    <div class="spotlight reverse">
+      <div class="spot-text reveal">
+        <div class="kicker">Content Studio</div>
+        <h2>Eine ganze Galerie mit einem Klick – und nach jedem Update wieder</h2>
+        <p>Wähle, was entstehen soll, passe die Schritte an, wähle das Profil deiner Seite und starte. Tibia Foundry rendert, skaliert, benennt, sortiert, beschreibt und verpackt alles im Hintergrund.</p>
+        <ul class="checks">
+          <li><svg><use href="#i-check"/></svg><span><b>Projektvorlagen</b>: Kreaturengalerie, Outfit-Galerie, Item-Bildersammlung, Kartenreferenzen, Update-Ressourcen, Wiki-Bildvorbereitung, eigener Export.</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Workflow-Editor</b>: ganz ohne Programmieren – rendern, zuschneiden, skalieren, einheitliche Leinwand, Format, Namen, Ordner, Bögen, Manifeste, Galerie, ZIP.</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Was hat sich geändert?</b>: rendert jedes Objekt und Outfit, das seit einem älteren Client neu ist oder sich geändert hat – bereit für Update-Artikel.</span></li>
+          <li><svg><use href="#i-check"/></svg><span><b>Alles oder nichts</b>: Ein abgebrochener oder fehlgeschlagener Lauf hinterlässt keinen halbfertigen Export; Originale werden nie verändert.</span></li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <button class="shot-btn themed" type="button" data-zoom="Content Studio: ein Kreaturengalerie-Projekt und sein Workflow">
+          <div class="window"><img class="shot-dark" src="../img/de/content-studio-dark.webp" alt="Content Studio mit einem Kreaturengalerie-Projekt, seinen Workflow-Schritten und der Kreaturenliste" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/content-studio-light.webp" alt="Content Studio im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div>
+        </button>
+      </div>
+    </div>
+
+    <div class="steps" style="margin-top:56px">
+      <div class="step reveal"><h3>Auswählen</h3><p>Wähle Kreaturen, Outfits, Items, eine Sammlung aus der Bibliothek oder einen Ordner – aus einer durchsuchbaren Liste der Client-Inhalte.</p></div>
+      <div class="step reveal"><h3>Einstellen</h3><p>Skalierung, Leinwand, Ausrichtung, Animation, Addons, Farben, Namen und Ordner – oder die Standardwerte der Vorlage übernehmen.</p></div>
+      <div class="step reveal"><h3>Ausführen</h3><p>Die Warteschlange arbeitet im Hintergrund, während du das Programm weiter nutzt; jeder Auftrag lässt sich abbrechen oder wiederholen.</p></div>
+      <div class="step reveal"><h3>Veröffentlichen</h3><p>Bilder mit eingebettetem Credit, Kontaktbögen, JSON/CSV/Markdown, eine HTML-Galerie und ein ZIP.</p></div>
+    </div>
+
+    <div class="outputs">
+      <figure class="sample reveal">
+        <div class="canvas"><img src="../img/output-creatures.webp" alt="Kontaktbogen einer erzeugten Kreaturengalerie: Drachen, Demon, Behemoth, Hydra und mehr, 2× pixelgenau" width="816" height="616" loading="lazy"></div>
+        <figcaption><b>Kreaturengalerie</b> – in einem Durchgang aus dem Client erzeugt: 2× Nearest Neighbor, eine 128×128-Leinwand für jede Kreatur, animierte GIFs und dieser Kontaktbogen.</figcaption>
+      </figure>
+      <div class="stack">
+        <figure class="sample reveal">
+          <div class="canvas"><img src="../img/output-outfit-129.webp" alt="Vergleichsbogen eines Outfits ohne Addons, mit erstem Addon, mit zweitem Addon und mit beiden Addons" width="544" height="154" loading="lazy"></div>
+          <figcaption><b>Outfit-Vergleichsbogen</b> – alle Addon-Varianten nebeneinander.</figcaption>
+        </figure>
+        <figure class="sample reveal">
+          <div class="canvas"><img src="../img/output-items.webp" alt="Kontaktbogen erzeugter Item-Bilder: Münzen, Rüstung, Helm, Stiefel und Schwerter" width="480" height="450" loading="lazy"></div>
+          <figcaption><b>Item-Bildersammlung</b> – einheitliche Icons, geordnete Namen und ein Manifest.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== publishing -->
+<section class="section" id="publishing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Plattformunabhängig veröffentlichen</div>
+      <h2>Die Regeln deiner Seite, nicht unsere</h2>
+      <p>Jede Fansite, jedes Wiki und jedes CMS will seine Bilder anders. Jedes Profil beschreibt eine Seite, sodass nichts in ein fremdes Format gezwängt wird. Die mitgelieferten Profile sind Ausgangspunkte, die du anpassen kannst.</p>
+    </div>
+    <div class="table-wrap reveal">
+      <table>
+        <thead><tr><th>Profil</th><th>Bilder</th><th>Namen und Ordner</th><th>Extras</th></tr></thead>
+        <tbody>
+          <tr><td><b>TibiaWiki</b></td><td>Client-Größe; PNG, Animationen als GIF</td><td>Spielnamen mit Leerzeichen · <code>{category}</code></td><td>Ein <code>[[File:…]]</code>-Link pro Bild, JSON und CSV</td></tr>
+          <tr><td><b>Eigene Fansite</b></td><td>2×</td><td><code>dragon-lord.gif</code> · Kleinbuchstaben, Bindestriche</td><td>Ein HTML-<code>&lt;img&gt;</code>-Snippet pro Bild, JSON und CSV</td></tr>
+          <tr><td><b>Galerie-Website</b></td><td>2× auf einer festen 128×128-Leinwand</td><td>Kleinbuchstaben, Unterstriche</td><td>Eine eigenständige HTML-Galerie, JSON und CSV</td></tr>
+          <tr><td><b>Artikel veröffentlichen</b></td><td>3×</td><td><code>{name}_{scale}x</code></td><td>Markdown mit einer Credit-Zeile unter jedem Bild</td></tr>
+          <tr><td><b>Persönliches Archiv</b></td><td>Originalgröße</td><td><code>{version}/{category}/{id} {name}</code></td><td>Alle Manifest-Formate</td></tr>
+          <tr><td><b>Dein eigenes</b></td><td>Beliebige Skalierung, Leinwand, Rand, Hintergrund und Format</td><td>Vorlagen mit 22 Variablen</td><td>Deine Credit-Zeile und dein Snippet (Wiki, HTML, BBCode …)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid grid-3" style="margin-top:22px">
+      <article class="card reveal"><h3>Eigenständige HTML-Galerien</h3><p>Vorschaubilder, Vollansicht, Kategorien, Suche, Metadaten und Credits, hell und dunkel – eine einzige <code class="code">index.html</code>, die direkt von der Festplatte oder auf jedem Webhost funktioniert, ohne Server und Datenbank.</p></article>
+      <article class="card reveal"><h3>Manifeste für deine Skripte</h3><p>JSON-, CSV- (tabellensicher) und Markdown-Listen aller Bilder mit Name, ID, Kategorie, Größe, Client-Version und Credit – bereit für den Import in ein CMS.</p></article>
+      <article class="card reveal"><h3>Credits, auf die du dich verlassen kannst</h3><p>Jedes PNG und GIF trägt deinen Namen als Ersteller und den Copyright-Vermerk von CipSoft für die Grafik. Dateien aus Bildern anderer behalten ihre ursprünglichen Ersteller.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== screenshots -->
+<section class="section alt" id="screens">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Ein Blick ins Programm</div>
+      <h2>Echte Screenshots von Tibia Foundry 9.0.2</h2>
+      <p>Aufgenommen im Programm mit installiertem offiziellem Client – angezeigt im Design, in dem du diese Seite gerade siehst. Klicke auf einen Screenshot, um ihn zu vergrößern.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Screenshots">
+      <button class="tab" role="tab" id="t-home" aria-controls="p-home" aria-selected="true">Home</button>
+      <button class="tab" role="tab" id="t-asset-library" aria-controls="p-asset-library" aria-selected="false" tabindex="-1">Asset Library</button>
+      <button class="tab" role="tab" id="t-duplicates" aria-controls="p-duplicates" aria-selected="false" tabindex="-1">Duplikate</button>
+      <button class="tab" role="tab" id="t-content-studio" aria-controls="p-content-studio" aria-selected="false" tabindex="-1">Content Studio</button>
+      <button class="tab" role="tab" id="t-profiles" aria-controls="p-profiles" aria-selected="false" tabindex="-1">Veröffentlichungsprofile</button>
+      <button class="tab" role="tab" id="t-appearances" aria-controls="p-appearances" aria-selected="false" tabindex="-1">Appearances</button>
+      <button class="tab" role="tab" id="t-extract-sprites" aria-controls="p-extract-sprites" aria-selected="false" tabindex="-1">Extract Sprites</button>
+      <button class="tab" role="tab" id="t-static-data" aria-controls="p-static-data" aria-selected="false" tabindex="-1">Kreaturen</button>
+      <button class="tab" role="tab" id="t-item-catalog" aria-controls="p-item-catalog" aria-selected="false" tabindex="-1">Item Catalog</button>
+      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare</button>
+      <button class="tab" role="tab" id="t-map-tools" aria-controls="p-map-tools" aria-selected="false" tabindex="-1">Map Tools</button>
+      <button class="tab" role="tab" id="t-house-images" aria-controls="p-house-images" aria-selected="false" tabindex="-1">House Images</button>
+      <button class="tab" role="tab" id="t-sounds" aria-controls="p-sounds" aria-selected="false" tabindex="-1">Sounds</button>
+      <button class="tab" role="tab" id="t-assets-editor" aria-controls="p-assets-editor" aria-selected="false" tabindex="-1">Assets Editor</button>
+      <button class="tab" role="tab" id="t-rcc-editor" aria-controls="p-rcc-editor" aria-selected="false" tabindex="-1">RCC Editor</button>
+      <button class="tab" role="tab" id="t-clients" aria-controls="p-clients" aria-selected="false" tabindex="-1">Clients</button>
+      <button class="tab" role="tab" id="t-settings" aria-controls="p-settings" aria-selected="false" tabindex="-1">Settings</button>
+      <button class="tab" role="tab" id="t-settings-attribution" aria-controls="p-settings-attribution" aria-selected="false" tabindex="-1">Dein Credit</button>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-home" aria-labelledby="t-home">
+      <button class="shot-btn themed" type="button" data-zoom="Home: der verwendete Client, zuletzt genutzte Werkzeuge und Exporte sowie Schritt-für-Schritt-Workflows für Fansites, die das passende Werkzeug öffnen."><div class="window"><img class="shot-dark" src="../img/de/home-dark.webp" alt="Seite „Home“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/home-light.webp" alt="Seite „Home“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Home: der verwendete Client, zuletzt genutzte Werkzeuge und Exporte sowie Schritt-für-Schritt-Workflows für Fansites, die das passende Werkzeug öffnen.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-asset-library" aria-labelledby="t-asset-library" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Asset Library: echte Client-Assets mit Vorschaubildern, Kategorien, Sammlungen und bearbeitbaren Details – hier mit einer Suche nach „dragon“."><div class="window"><img class="shot-dark" src="../img/de/asset-library-dark.webp" alt="Seite „Asset Library“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/asset-library-light.webp" alt="Seite „Asset Library“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Asset Library: echte Client-Assets mit Vorschaubildern, Kategorien, Sammlungen und bearbeitbaren Details – hier mit einer Suche nach „dragon“.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-duplicates" aria-labelledby="t-duplicates" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Duplikatsuche: Identische Dateien, dieselbe Grafik in anderen Dateien und ähnliche Bilder werden gemeldet – gelöscht wird nie etwas für dich."><div class="window"><img class="shot-dark" src="../img/de/duplicates-dark.webp" alt="Seite „Asset Library – Duplicates“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/duplicates-light.webp" alt="Seite „Asset Library – Duplicates“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Duplikatsuche: Identische Dateien, dieselbe Grafik in anderen Dateien und ähnliche Bilder werden gemeldet – gelöscht wird nie etwas für dich.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-content-studio" aria-labelledby="t-content-studio" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Content Studio: ein Kreaturengalerie-Projekt – Rendern, Skalieren, Leinwand, Beschreibungen, Ordner, Kontaktbogen und Manifeste."><div class="window"><img class="shot-dark" src="../img/de/content-studio-dark.webp" alt="Seite „Content Studio“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/content-studio-light.webp" alt="Seite „Content Studio“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Content Studio: ein Kreaturengalerie-Projekt – Rendern, Skalieren, Leinwand, Beschreibungen, Ordner, Kontaktbogen und Manifeste.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-profiles" aria-labelledby="t-profiles" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Veröffentlichungsprofile: Skalierung, Leinwand, Format und Dateinamenvorlagen mit Live-Beispiel, für jede Seite, auf der du veröffentlichst."><div class="window"><img class="shot-dark" src="../img/de/profiles-dark.webp" alt="Seite „Content Studio – Publishing profiles“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/profiles-light.webp" alt="Seite „Content Studio – Publishing profiles“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Veröffentlichungsprofile: Skalierung, Leinwand, Format und Dateinamenvorlagen mit Live-Beispiel, für jede Seite, auf der du veröffentlichst.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-appearances" aria-labelledby="t-appearances" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Appearances: über 43.000 Objekte, Outfits, Effekte und Geschosse; der Outfitter rendert ein Outfit mit beiden Addons und seinem Mount."><div class="window"><img class="shot-dark" src="../img/de/appearances-dark.webp" alt="Seite „Appearances“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/appearances-light.webp" alt="Seite „Appearances“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Appearances: über 43.000 Objekte, Outfits, Effekte und Geschosse; der Outfitter rendert ein Outfit mit beiden Addons und seinem Mount.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-extract-sprites" aria-labelledby="t-extract-sprites" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Extract Sprites: alle Sprite-Sheets des Clients, nach Größe eingereiht und als transparente PNGs oder ganze Sheets gespeichert."><div class="window"><img class="shot-dark" src="../img/de/extract-sprites-dark.webp" alt="Seite „Extract Sprites“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/extract-sprites-light.webp" alt="Seite „Extract Sprites“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Extract Sprites: alle Sprite-Sheets des Clients, nach Größe eingereiht und als transparente PNGs oder ganze Sheets gespeichert.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-static-data" aria-labelledby="t-static-data" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Static Data: Kreaturen, Bosse, Achievements, Häuser und Quests, mit animierten Vorschauen und einer Galerie der Liste per Klick."><div class="window"><img class="shot-dark" src="../img/de/static-data-dark.webp" alt="Seite „Static Data“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/static-data-light.webp" alt="Seite „Static Data“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Static Data: Kreaturen, Bosse, Achievements, Häuser und Quests, mit animierten Vorschauen und einer Galerie der Liste per Klick.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-item-catalog" aria-labelledby="t-item-catalog" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Item Catalog: Item-Namen und -IDs aus dem Client, dem TibiaWiki und weiteren Quellen, nach Quelle getrennt, mit Export."><div class="window"><img class="shot-dark" src="../img/de/item-catalog-dark.webp" alt="Seite „Item Catalog“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/item-catalog-light.webp" alt="Seite „Item Catalog“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Item Catalog: Item-Namen und -IDs aus dem Client, dem TibiaWiki und weiteren Quellen, nach Quelle getrennt, mit Export.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-compare" aria-labelledby="t-compare" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Compare Files: was sich zwischen zwei Client-Versionen geändert hat, Objekt für Objekt – der Ausgangspunkt für Update-Artikel."><div class="window"><img class="shot-dark" src="../img/de/compare-dark.webp" alt="Seite „Compare Files“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/compare-light.webp" alt="Seite „Compare Files“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Compare Files: was sich zwischen zwei Client-Versionen geändert hat, Objekt für Objekt – der Ausgangspunkt für Update-Artikel.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-map-tools" aria-labelledby="t-map-tools" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Map Tools: Gebiete, NPCs und Kartendateien, hochauflösende Karten und Minimap-Kacheln."><div class="window"><img class="shot-dark" src="../img/de/map-tools-dark.webp" alt="Seite „Map Tools“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/map-tools-light.webp" alt="Seite „Map Tools“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Map Tools: Gebiete, NPCs und Kartendateien, hochauflösende Karten und Minimap-Kacheln.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-house-images" aria-labelledby="t-house-images" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="House Images: jedes Haus aus den Kartendaten des Clients gezeichnet, Etage für Etage, bereit für Hausartikel."><div class="window"><img class="shot-dark" src="../img/de/house-images-dark.webp" alt="Seite „House Images“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/house-images-light.webp" alt="Seite „House Images“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>House Images: jedes Haus aus den Kartendaten des Clients gezeichnet, Etage für Etage, bereit für Hausartikel.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-sounds" aria-labelledby="t-sounds" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Sounds: die Sounds, Effekte, Umgebungsgeräusche und Musik des Clients anhören und extrahieren."><div class="window"><img class="shot-dark" src="../img/de/sounds-dark.webp" alt="Seite „Sounds“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/sounds-light.webp" alt="Seite „Sounds“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Sounds: die Sounds, Effekte, Umgebungsgeräusche und Musik des Clients anhören und extrahieren.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-assets-editor" aria-labelledby="t-assets-editor" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Assets Editor: Objekte, Flags, Sprite-Anordnung und Sprites – eine Kopie bearbeiten und geprüft speichern; der Client wird nie verändert."><div class="window"><img class="shot-dark" src="../img/de/assets-editor-dark.webp" alt="Seite „Assets Editor“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/assets-editor-light.webp" alt="Seite „Assets Editor“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Assets Editor: Objekte, Flags, Sprite-Anordnung und Sprites – eine Kopie bearbeiten und geprüft speichern; der Client wird nie verändert.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-rcc-editor" aria-labelledby="t-rcc-editor" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="RCC Editor: die Interface-Grafiken der Ressourcendatei des Clients ansehen, extrahieren und ersetzen, als Kopie gespeichert."><div class="window"><img class="shot-dark" src="../img/de/rcc-editor-dark.webp" alt="Seite „RCC Editor“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/rcc-editor-light.webp" alt="Seite „RCC Editor“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>RCC Editor: die Interface-Grafiken der Ressourcendatei des Clients ansehen, extrahieren und ersetzen, als Kopie gespeichert.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-clients" aria-labelledby="t-clients" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Clients: Client-Ordner, archivierte Revisionen jeder Version und Speicherplatz. (Lokale Pfade sind unkenntlich gemacht.)"><div class="window"><img class="shot-dark" src="../img/de/clients-dark.webp" alt="Seite „Clients“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/clients-light.webp" alt="Seite „Clients“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Clients: Client-Ordner, archivierte Revisionen jeder Version und Speicherplatz. (Lokale Pfade sind unkenntlich gemacht.)</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-settings" aria-labelledby="t-settings" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Settings: mitgelieferte helle und dunkle Designs oder ein eigenes, Ordner, Dateisicherheit, Leistung, Benachrichtigungen und mehr."><div class="window"><img class="shot-dark" src="../img/de/settings-dark.webp" alt="Seite „Settings“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/settings-light.webp" alt="Seite „Settings“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Settings: mitgelieferte helle und dunkle Designs oder ein eigenes, Ordner, Dateisicherheit, Leistung, Benachrichtigungen und mehr.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-settings-attribution" aria-labelledby="t-settings-attribution" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Dein Credit: der Name des Erstellers, der in die Metadaten jedes exportierten PNG und GIF geschrieben wird."><div class="window"><img class="shot-dark" src="../img/de/settings-attribution-dark.webp" alt="Seite „Settings – Attribution“ von Tibia Foundry im dunklen Design" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/de/settings-attribution-light.webp" alt="Seite „Settings – Attribution“ von Tibia Foundry im hellen Design" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Dein Credit: der Name des Erstellers, der in die Metadaten jedes exportierten PNG und GIF geschrieben wird.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== safety -->
+<section class="section" id="safety">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Sicher von Grund auf</div>
+      <h2>Dein Client und deine Dateien bleiben deine</h2>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="ico"><svg><use href="#i-shield"/></svg></div><h3>Tibia wird nur gelesen</h3><p>Die Client-Ordner werden nur gelesen. Editoren speichern Kopien an anderer Stelle, und kein Werkzeug schreibt in einen Client- oder Archivordner.</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-check"/></svg></div><h3>Nichts Halbfertiges</h3><p>Exporte werden an einem temporären Ort geschrieben und erst nach Abschluss an ihren Platz verschoben; ersetzte Dateien lassen sich sichern und wiederherstellen.</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-users"/></svg></div><h3>Lokal und privat</h3><p>Kein Konto, keine Cloud. Das TibiaWiki wird nur von Funktionen kontaktiert, die es brauchen. Diagnoseberichte enthalten keine persönlichen Pfade und lassen sich daher bedenkenlos teilen.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== what's new -->
+<section class="section alt" id="new">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Versionshinweise</div>
+      <h2>Neu in 9.0.2</h2>
+    </div>
+    <ul class="new-list reveal">
+      <li><b>9.0.2 – Punkt im flavortext</b>: Der flavortext der Infobox endet jetzt mit dem Punkt, den das Spiel beim Ansehen (Look) ergänzt – genau wie bei TibiaWiki.</li>
+      <li><b>9.0.1 – flavortext</b>: Der Beschreibungstext des Objekts aus dem Client füllt den flavortext der Infobox.</li>
+      <li><b>TibiaWiki-Infobox-Export</b>: <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> für jedes Objekt, aus den Daten des Clients (Appearances → Wiki-Infobox).</li>
+      <li><b>NPC-Handel in der Infobox</b>: npcvalue, npcprice, buyfrom und sellto aus den Handelsdaten des Clients.</li>
+      <li><b>Jeder Wert gekennzeichnet</b>: Client-Daten, abgeleitet (prüfen), TibiaWiki oder Eingabe nötig – nichts wird geraten.</li>
+      <li><b>Infoboxen im Stapel</b>: eine .txt-Datei pro ausgewähltem Objekt, ohne vorhandene Dateien zu ersetzen.</li>
+      <li><b>Artikelnamen von TibiaWiki</b>: Mit zwischengespeicherter Gegenstandsliste ist "name" der Artikeltitel.</li>
+      <li><b>Sichereres Speichern</b>: Einstellungen, Kataloge und andere Dokumente werden auf die Festplatte geschrieben, bevor sie die alte Datei ersetzen.</li>
+      <li><b>Sicherungen auf anderen Laufwerken</b>: Eine in eine Sicherung auf einem anderen Laufwerk verschobene Datei wird erst gelöscht, wenn die Kopie geprüft ist.</li>
+      <li><b>Stabilere Bedienelemente</b>: Zahlenfelder springen nach einem Themenwechsel nicht mehr doppelt pro Klick.</li>
+      <li><b>Eine Version überall</b>: Programm, Installer, Pakete und diese Seite sagen 9.0.2.</li>
+      <li><b>Nahtloses Upgrade</b>: Einstellungen, Bibliothek, Client-Archive und Gegenstandskataloge aus 8.8 bleiben unverändert.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================================================================== download -->
+<section class="section" id="download">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Loslegen</div>
+      <h2>Tibia Foundry 9.0.2 herunterladen</h2>
+      <p>Kostenlos für Windows 10 und 11 (64 Bit). Wähle die passende Ausgabe – Installer und portable Ausgabe enthalten dasselbe Programm.</p>
+    </div>
+    <div class="download-grid">
+      <article class="card dl featured reveal">
+        <h3>Installer</h3>
+        <p>Für die meisten empfohlen.</p>
+        <ul><li>Startmenü-Verknüpfung und normale Deinstallation</li><li>Upgrades behalten Einstellungen, Bibliothek und Archive</li><li>Deine Daten bleiben in deinem Benutzerprofil</li></ul>
+        <a class="btn btn-primary" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0.2/TibiaFoundry-9.0.2-Installer.msi" data-track="download" data-place="installer"><svg aria-hidden="true"><use href="#i-download"/></svg> Installer (.msi)</a>
+      </article>
+      <article class="card dl reveal">
+        <h3>Portabel</h3>
+        <p>Eine Datei, keine Installation.</p>
+        <ul><li>Läuft aus jedem Ordner oder von einem USB-Stick</li><li>Speichert seine Daten direkt daneben</li><li>Keine .NET-Installation nötig</li></ul>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0.2/TibiaFoundry-9.0.2-Portable.zip" data-track="download" data-place="portable"><svg aria-hidden="true"><use href="#i-download"/></svg> Portabel (.zip)</a>
+      </article>
+      <article class="card dl reveal">
+        <h3>Quellcode</h3>
+        <p>Für Entwickler und Mitwirkende.</p>
+        <ul><li>.NET-10-/WPF-Projektmappe mit Tests</li><li>Build- und Paketierungsskripte</li><li>Dokumentation aller Werkzeuge</li></ul>
+        <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v9.0.2/TibiaFoundry-9.0.2-Source.zip" data-track="download" data-place="source"><svg aria-hidden="true"><use href="#i-github"/></svg> Quellcode (.zip)</a>
+      </article>
+    </div>
+    <div class="req reveal">
+      <span><b>Voraussetzungen</b> Windows 10 oder 11, 64 Bit</span>
+      <span>Ein installierter Tibia-Client (oder ein Ordner mit seinen Dateien)</span>
+      <span>Internet nur für TibiaWiki-Funktionen (optional)</span>
+    </div>
+    <div class="steps" style="margin-top:40px">
+      <div class="step reveal"><h3>Installieren oder entpacken</h3><p>Führe den Installer aus oder entpacke die portable Ausgabe an einen beliebigen Ort.</p></div>
+      <div class="step reveal"><h3>Einrichten</h3><p>Beim ersten Start findet das Programm deinen Tibia-Client und fragt, wie Client-Versionen aufbewahrt werden sollen.</p></div>
+      <div class="step reveal"><h3>Namen festlegen</h3><p>Settings → Attribution: der Ersteller, der in jedes exportierte Bild geschrieben wird.</p></div>
+      <div class="step reveal"><h3>Loslegen</h3><p>Öffne Home für Workflows oder Content Studio → New project für eine ganze Galerie.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== FAQ -->
+<section class="section alt" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal"><div class="kicker">FAQ</div><h2>Fragen und Antworten</h2></div>
+    <div class="faq">
+      <details><summary>Ist Tibia Foundry kostenlos?</summary><p>Ja. Es ist ein kostenloses, unabhängiges Community-Projekt ohne Konto, ohne Werbung und ohne kostenpflichtige Funktionen.</p></details>
+      <details><summary>Verändert es meinen Tibia-Client oder meine Charaktere?</summary><p>Nein. Tibia Foundry liest nur die Dateien des Clients. Es schreibt nie in einen Client-Ordner, rührt weder deinen Charakter noch deine Hotkeys oder dein Konto an und interagiert während der Ausführung nicht mit dem Spiel.</p></details>
+      <details><summary>Woher stammen die Bilder, und darf ich sie veröffentlichen?</summary><p>Aus dem offiziellen Client auf deinem Computer. Die Grafiken und Daten von Tibia sind © CipSoft GmbH; Tibia Foundry schreibt diesen Hinweis und deinen Namen als Ersteller in jedes exportierte Bild. Beachte die Fansite-Regeln von CipSoft und die Bildrichtlinien deiner eigenen Website.</p></details>
+      <details><summary>Wird die Asset Library irgendwohin hochgeladen?</summary><p>Nein. Die Bibliothek ist eine SQLite-Datenbank auf deinem Computer; deine Dateien bleiben, wo sie sind, und werden nur gelesen. Das Entfernen eines Assets aus der Bibliothek löscht nie eine Datei. Sichern und wiederherstellen kannst du sie im Tab Folders and storage der Bibliothek.</p></details>
+      <details><summary>Löscht es meine doppelten Bilder?</summary><p>Nein. Die Duplikatsuche listet identische Dateien, dieselbe Grafik in anderer Größe und ähnliche Bilder auf, damit du entscheiden kannst, was du behältst. Das Programm löscht, verschiebt oder verbindet nichts.</p></details>
+      <details><summary>Kann ich es für meine eigene Fansite statt für das TibiaWiki nutzen?</summary><p>Ja – genau dafür gibt es Veröffentlichungsprofile. Lege ein Profil mit deinen Größen, Formaten, Dateinamen, Ordnern, deiner Credit-Zeile und einem HTML- oder BBCode-Snippet an; das TibiaWiki-Profil ist nur ein Beispiel.</p></details>
+      <details><summary>Was passiert nach einem Tibia-Update?</summary><p>Beim Start prüft Tibia Foundry den installierten Client im Hintergrund und bietet an, die neue Version zu archivieren. Die Seite Compatibility zeigt, wie gut die neuen Dateien verstanden werden, und ein Update-Ressourcen-Projekt rendert alles, was seit der vorherigen Version neu ist oder sich geändert hat.</p></details>
+      <details><summary>Welche Ausgabe soll ich wählen?</summary><p>Den Installer für eine normale Installation mit Startmenü-Eintrag und Deinstallation; die portable Ausgabe, um das Programm ohne Installation aus jedem Ordner oder von einem USB-Stick zu starten. Beide enthalten dasselbe Programm.</p></details>
+      <details><summary>Gehört Tibia Foundry zu CipSoft oder Fandom?</summary><p>Nein. Es ist ein unabhängiges Community-Projekt, das weder mit CipSoft GmbH noch mit Fandom verbunden ist oder von ihnen unterstützt wird. Es ist nicht Teil des Fansite Programme von CipSoft.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================== support band -->
+<section class="section" id="support">
+  <div class="wrap">
+    <div class="band reveal">
+      <h2>Dein nächster Update-Artikel in wenigen Minuten</h2>
+      <p>Lade Tibia Foundry herunter, wähle deinen Client und starte dein erstes Galerie-Projekt.</p>
+      <div class="cta-row">
+        <a class="btn" href="#download"><svg aria-hidden="true"><use href="#i-download"/></svg> 9.0.2 herunterladen</a>
+        <a class="btn ghost" href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="band"><svg aria-hidden="true"><use href="#i-github"/></svg> Problem oder Idee melden</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><img class="pixel" src="../img/logo.png" alt="" width="32" height="32"> Tibia Foundry</a>
+        <p style="margin-top:10px">All deine Tibia-Werkzeuge für das TibiaWiki und die Fansite-Community. Erstellt von RockyLaRo, Admin im TibiaWiki.</p>
+      </div>
+      <div>
+        <h3>Produkt</h3>
+        <ul><li><a href="#features">Funktionen</a></li><li><a href="#library">Asset Library</a></li><li><a href="#studio">Content Studio</a></li><li><a href="#download">Download</a></li></ul>
+      </div>
+      <div>
+        <h3>Projekt</h3>
+        <ul>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">GitHub-Repository</a></li>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases" data-track="releases" data-place="footer">Alle Versionen</a></li>
+          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">Issues und Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Community</h3>
+        <ul><li><a href="https://tibia.fandom.com/wiki/Main_Page">TibiaWiki</a></li><li><a href="https://www.tibia.com/community/?subtopic=fansites">Offizielle Fansites</a></li><li><a href="https://www.tibia.com/">Tibia</a></li></ul>
+      </div>
+      <div>
+        <h3 id="footer-lang">Sprache</h3>
+        <ul class="lang-list" aria-labelledby="footer-lang">
+          <li><a href="../" hreflang="en" lang="en" data-lang="en">English</a></li>
+          <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR">Português (Brasil)</a></li>
+          <li><a href="../pl/" hreflang="pl" lang="pl" data-lang="pl">Polski</a></li>
+          <li><a href="../es/" hreflang="es" lang="es" data-lang="es">Español</a></li>
+          <li><a href="../de/" hreflang="de" lang="de" data-lang="de" aria-current="true">Deutsch</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      Tibia Foundry ist ein unabhängiges Community-Projekt. Tibia ist eine Marke der CipSoft GmbH; Tibia, seine Spielgrafiken und Daten sind © CipSoft GmbH. Tibia Foundry ist weder mit der CipSoft GmbH noch mit Fandom verbunden und wird von ihnen nicht unterstützt.
+      Open-Source-Komponenten (Lizenzen in THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw und SQLite.
+      Version 9.0.2 · 6. November 2026
+    </div>
+  </div>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="Vergrößerter Screenshot">
+  <button class="icon-btn close" type="button" aria-label="Schließen"><svg aria-hidden="true"><use href="#i-close"/></svg></button>
+  <img src="data:," alt="">
+  <p></p>
+</dialog>
+
+<script>
+window.TF_I18N = {"lang":"de","default":"en","strings":{"suggestClose":"Aktuelle Sprache behalten","suggestGo":"Auf Deutsch anzeigen","suggestText":"Tibia Foundry gibt es auch auf Deutsch.","themeToDark":"Zum dunklen Modus wechseln","themeToLight":"Zum hellen Modus wechseln"},"fallback":{"suggestClose":"Keep the current language","suggestGo":"Show in English","suggestText":"Tibia Foundry is also available in English.","themeToDark":"Switch to dark mode","themeToLight":"Switch to light mode"},"languages":[{"code":"en","path":"../","name":"English","offer":{"text":"Tibia Foundry is also available in English.","go":"Show in English","close":"Keep the current language"}},{"code":"pt-BR","path":"../pt-br/","name":"Português (Brasil)","offer":{"text":"O Tibia Foundry também está disponível em português.","go":"Ver em português","close":"Manter o idioma atual"}},{"code":"pl","path":"../pl/","name":"Polski","offer":{"text":"Tibia Foundry jest dostępny także po polsku.","go":"Pokaż po polsku","close":"Zostaw obecny język"}},{"code":"es","path":"../es/","name":"Español","offer":{"text":"Tibia Foundry también está disponible en español.","go":"Ver en español","close":"Mantener el idioma actual"}},{"code":"de","path":"../de/","name":"Deutsch","offer":{"text":"Tibia Foundry gibt es auch auf Deutsch.","go":"Auf Deutsch anzeigen","close":"Aktuelle Sprache behalten"}}]};
+// Tibia Foundry website: language selector, theme toggle, menu, screenshot tabs, lightbox, reveal-on-scroll and
+// the analytics click events. No external scripts besides the Google tag; nothing here sends personal data.
+// Texts come from window.TF_I18N, written into each page by build_site.py from src/locales/<lang>.json.
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  root.classList.remove('no-js');
+
+  // ---------------------------------------------------------------- texts: this language, else English (never a bare key)
+  var I18N = window.TF_I18N || { lang: 'en', strings: {}, fallback: {}, languages: [] };
+  var DEV = location.protocol === 'file:' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  var plurals = window.Intl && Intl.PluralRules ? new Intl.PluralRules(I18N.lang) : null;
+  function t(key, vars) {
+    var text = I18N.strings[key];
+    if (text == null) {
+      text = I18N.fallback[key];
+      if (DEV) console.warn('[i18n] "' + key + '" is missing in ' + I18N.lang + (text == null ? ' and in English' : '; English is shown'));
+      if (text == null) text = '';
+    }
+    // A plural text is an object of CLDR categories; vars.count picks the form.
+    if (typeof text === 'object') {
+      var n = vars && vars.count != null ? Number(vars.count) : 0;
+      text = text[plurals ? plurals.select(n) : (n === 1 ? 'one' : 'other')] || text.other || text.many || '';
+    }
+    return text.replace(/\{(\w+)\}/g, function (m, name) {
+      if (!vars || vars[name] == null) return m;
+      return typeof vars[name] === 'number' && window.Intl ? new Intl.NumberFormat(I18N.lang).format(vars[name]) : String(vars[name]);
+    });
+  }
+  window.TF = { t: t, lang: I18N.lang };
+
+  function store(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* storage blocked: lasts for this page */ } }
+  function read(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+  // ---------------------------------------------------------------- language: selector, remembered choice, same place on the new page
+  var LANG_KEY = 'tf-lang', STATE_KEY = 'tf-lang-state';
+  // Opened from disk, folder links need their index.html.
+  if (location.protocol === 'file:') {
+    document.querySelectorAll('a[data-lang]').forEach(function (a) { a.setAttribute('href', a.getAttribute('href').replace(/\/?$/, '/') .replace(/^\.\/$/, '') + 'index.html'); });
+  }
+  // ?lang=en (from /en/) is an explicit choice of English.
+  if (/[?&]lang=en\b/.test(location.search)) store(LANG_KEY, 'en');
+
+  // Where the visitor is: the section in view and how far into it, the screenshot tab and the open questions.
+  function snapshot() {
+    var sections = document.querySelectorAll('main section[id]'), at = null, into = 0;
+    for (var i = 0; i < sections.length; i++) {
+      var r = sections[i].getBoundingClientRect();
+      if (r.bottom > 80) { at = sections[i].id; into = r.height ? Math.max(0, (80 - r.top) / r.height) : 0; break; }
+    }
+    var tab = document.querySelector('[role="tab"][aria-selected="true"]');
+    var open = [];
+    document.querySelectorAll('.faq details').forEach(function (d, i) { if (d.open) open.push(i); });
+    return { section: at, into: into, tab: tab ? tab.id : null, open: open, time: Date.now() };
+  }
+  function restore() {
+    var raw = null;
+    try { raw = sessionStorage.getItem(STATE_KEY); sessionStorage.removeItem(STATE_KEY); } catch (e) {}
+    if (!raw) return;
+    var s; try { s = JSON.parse(raw); } catch (e) { return; }
+    if (!s || Date.now() - s.time > 30000) return;
+    if (s.tab) { var tab = document.getElementById(s.tab); if (tab) tab.click(); }
+    (s.open || []).forEach(function (i) { var d = document.querySelectorAll('.faq details')[i]; if (d) d.open = true; });
+    if (s.section && !location.hash) {
+      var el = document.getElementById(s.section);
+      if (el) {
+        root.style.scrollBehavior = 'auto';
+        var top = el.getBoundingClientRect().top + window.pageYOffset + s.into * el.offsetHeight - 80;
+        window.scrollTo(0, Math.max(0, top));
+        el.querySelectorAll('.reveal').forEach(function (r) { r.classList.add('in'); });
+        root.style.scrollBehavior = '';
+      }
+    }
+  }
+  // Every language link (menu, footer, offer) saves the choice and carries the place over.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[data-lang]');
+    if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button > 0) return;
+    store(LANG_KEY, a.getAttribute('data-lang'));
+    if (a.getAttribute('data-lang') === I18N.lang) { e.preventDefault(); closeLang(); return; }
+    try { sessionStorage.setItem(STATE_KEY, JSON.stringify(snapshot())); } catch (err) {}
+    var params = location.search.replace(/([?&])lang=en\b&?/, '$1').replace(/[?&]$/, '');
+    if (params || location.hash) { e.preventDefault(); location.href = a.getAttribute('href') + params + location.hash; }
+  });
+
+  var langBox = document.getElementById('lang'), langBtn = document.getElementById('lang-btn'), langMenu = document.getElementById('lang-menu');
+  function langLinks() { return Array.prototype.slice.call(langMenu.querySelectorAll('a')); }
+  function openLang(focusIndex) {
+    langMenu.hidden = false;
+    langBtn.setAttribute('aria-expanded', 'true');
+    var links = langLinks(), cur = links.filter(function (a) { return a.hasAttribute('aria-current'); })[0];
+    (focusIndex === -1 ? links[links.length - 1] : focusIndex != null ? links[focusIndex] : cur || links[0]).focus();
+  }
+  function closeLang(focusButton) {
+    if (!langMenu || langMenu.hidden) return;
+    langMenu.hidden = true;
+    langBtn.setAttribute('aria-expanded', 'false');
+    if (focusButton) langBtn.focus();
+  }
+  if (langBtn && langMenu) {
+    langBtn.addEventListener('click', function () { if (langMenu.hidden) openLang(); else closeLang(); });
+    langBtn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); openLang(0); }
+      else if (e.key === 'ArrowUp') { e.preventDefault(); openLang(-1); }
+    });
+    langMenu.addEventListener('keydown', function (e) {
+      var links = langLinks(), i = links.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        links[(i + (e.key === 'ArrowDown' ? 1 : -1) + links.length) % links.length].focus();
+      } else if (e.key === 'Home' || e.key === 'End') {
+        e.preventDefault(); links[e.key === 'Home' ? 0 : links.length - 1].focus();
+      } else if (e.key === 'Escape') {
+        e.preventDefault(); closeLang(true);
+      } else if (e.key === 'Tab') {
+        closeLang();
+      }
+    });
+    document.addEventListener('click', function (e) { if (!langBox.contains(e.target)) closeLang(); });
+  }
+
+  // A visitor whose browser prefers another of our languages, and who has not chosen one, is offered it once.
+  (function offer() {
+    var bar = document.getElementById('lang-suggest');
+    if (!bar || read(LANG_KEY) || read('tf-lang-offer-closed')) return;
+    var wanted = (navigator.languages || [navigator.language || '']).map(function (l) { return String(l).toLowerCase(); });
+    var match = null;
+    for (var i = 0; i < wanted.length && !match; i++) {
+      I18N.languages.forEach(function (l) {
+        if (match) return;
+        var code = l.code.toLowerCase();
+        if (wanted[i] === code || wanted[i].split('-')[0] === code.split('-')[0]) match = l;
+      });
+    }
+    if (!match || match.code === I18N.lang) return;
+    bar.setAttribute('lang', match.code);
+    bar.querySelector('.lang-suggest-text').textContent = match.offer.text;
+    var go = bar.querySelector('.lang-suggest-go');
+    go.textContent = match.offer.go;
+    go.setAttribute('href', document.querySelector('#lang-menu a[data-lang="' + match.code + '"]').getAttribute('href'));
+    go.setAttribute('data-lang', match.code);
+    go.setAttribute('hreflang', match.code);
+    var close = bar.querySelector('.lang-suggest-close');
+    close.setAttribute('aria-label', match.offer.close);
+    close.title = match.offer.close;
+    close.addEventListener('click', function () { bar.hidden = true; store('tf-lang-offer-closed', '1'); });
+    bar.hidden = false;
+  })();
+
+  // ---------------------------------------------------------------- theme: stored choice, else the system's
+  var KEY = 'tf-theme';
+  function systemDark() { return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches; }
+  function current() { return root.getAttribute('data-theme') || (systemDark() ? 'dark' : 'light'); }
+  function label() {
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.setAttribute('aria-label', current() === 'dark' ? t('themeToLight') : t('themeToDark'));
+  }
+  var toggle = document.getElementById('theme-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var next = current() === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      store(KEY, next);
+      label();
+    });
+  }
+  // Without a stored choice the page follows the system theme as it changes (CSS does it; the button's label follows).
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', label);
+  }
+  label();
+
+  // ---------------------------------------------------------------- menu (narrow screens)
+  var header = document.querySelector('.site-header');
+  var menuBtn = document.getElementById('menu-btn');
+  function setOpen(open) {
+    header.classList.toggle('open', open);
+    menuBtn.setAttribute('aria-expanded', String(open));
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () { closeLang(); setOpen(!header.classList.contains('open')); });
+    header.querySelector('.nav').addEventListener('click', function (e) { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('click', function (e) { if (header.classList.contains('open') && !header.contains(e.target)) setOpen(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  }
+
+  // ---------------------------------------------------------------- screenshot tabs
+  document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function select(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(tab); });
+      tab.addEventListener('keydown', function (e) {
+        var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : -1;
+        if (j < 0 && e.key !== 'ArrowLeft') return;
+        j = (j + tabs.length) % tabs.length;
+        tabs[j].focus();
+        select(tabs[j]);
+        e.preventDefault();
+      });
+    });
+  });
+
+  // ---------------------------------------------------------------- lightbox
+  var box = document.getElementById('lightbox');
+  if (box && typeof box.showModal === 'function') {
+    var big = box.querySelector('img'), cap = box.querySelector('p');
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-zoom]');
+      if (!btn) return;
+      // A themed screenshot zooms the variant that is visible.
+      var img = Array.prototype.slice.call(btn.querySelectorAll('img')).filter(function (i) { return i.offsetParent !== null; })[0] || btn.querySelector('img');
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      cap.textContent = btn.getAttribute('data-zoom') || img.alt;
+      box.showModal();
+    });
+    box.addEventListener('click', function (e) { if (e.target === box || e.target.closest('.close')) box.close(); });
+  }
+
+  // ---------------------------------------------------------------- reveal on scroll (off with reduced motion)
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+  restore();
+
+  // ---------------------------------------------------------------- analytics: one event per download, releases, repository or issues link
+  var APP_VERSION = '9.0.2';
+  var EVENTS = { download: 'download_click', releases: 'releases_click', repository: 'repository_click', issues: 'issues_click' };
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[data-track]');
+    if (!link || typeof gtag !== 'function') return;
+    var kind = link.getAttribute('data-track');
+    gtag('event', EVENTS[kind] || 'outbound_click', {
+      link_url: link.href, link_category: kind, link_location: link.getAttribute('data-place') || '', app_version: APP_VERSION,
+      page_language: I18N.lang
+    });
+  });
+})();
+
+</script>
+</body>
+</html>

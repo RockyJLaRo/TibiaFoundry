@@ -1,0 +1,49 @@
+// Recovered from the descriptor embedded in the original 1.8.0 build
+// (decompiled StaticmapdataReflection.cs). Field names, numbers and types are exact.
+syntax = "proto3";
+
+package tibia.protobuf.staticmapdata;
+
+import "shared.proto";
+
+
+message StaticMapData {
+  repeated .tibia.protobuf.staticmapdata.HouseMap house_maps = 1;
+}
+
+message HouseMap {
+  uint32 house_id = 1;
+  .tibia.protobuf.staticmapdata.MapInfo map_info = 2;
+}
+
+message MapInfo {
+  .tibia.protobuf.shared.Coordinate house_coords = 1;
+  .tibia.protobuf.staticmapdata.Dimension dimension = 2;
+  .tibia.protobuf.staticmapdata.ObjectListA object_list_a = 3;
+}
+
+message Dimension {
+  uint32 tiles_x = 1;
+  uint32 tiles_y = 2;
+  uint32 tiles_z = 3;
+}
+
+message ObjectListA {
+  uint32 propAA = 1;
+  .tibia.protobuf.staticmapdata.ObjectListB object_list_b = 2;
+}
+
+message ObjectListB {
+  uint32 propBA = 1;
+  uint32 propBB = 2;
+  repeated .tibia.protobuf.staticmapdata.ObjectListC object_list_c = 3;
+}
+
+message ObjectListC {
+  repeated .tibia.protobuf.staticmapdata.Tile tile = 1;
+  uint32 skip = 2;
+}
+
+message Tile {
+  uint32 object_id = 1;
+}

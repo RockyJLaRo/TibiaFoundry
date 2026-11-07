@@ -1,0 +1,25 @@
+flowchart TB
+  subgraph App[TibiaFoundry.App]
+    Shell[MainWindow + MainViewModel] --> Pages[19 PageViewModels + Views]
+    Pages --> Svc[AppServices: composition root]
+    Svc --> Data[ClientDataService]
+    Svc --> Clients[ClientLibrary]
+    Svc --> Out[OutputService / OutputSession]
+    Svc --> Ops[OperationGate + OperationTracker]
+  end
+  subgraph Core[TibiaFoundry.Core]
+    Readers[Appearances / StaticData / Map / Sounds / Sprites readers]
+    Store[ClientStore: content-addressed archive]
+    Edit[AssetsProject / RCC / ClientConverter]
+    Cat[ItemCatalogStore]
+    Scr[Scripts]
+    Set[SettingsStore + AppSettings]
+    Safe[FileOps: AtomicFile, BackupStore, PathGuard]
+  end
+  Data --> Readers
+  Clients --> Store
+  Pages --> Edit
+  Pages --> Cat
+  Pages --> Scr
+  Svc --> Set
+  Out --> Safe
