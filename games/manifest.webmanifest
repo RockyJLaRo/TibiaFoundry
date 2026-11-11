@@ -1,13 +1,13 @@
 {
-  "name": "WriteQuest – Handwriting Adventure",
-  "short_name": "WriteQuest",
-  "description": "Trace letters, numbers, words and cursive in a playful handwriting adventure.",
+  "name": "Pixel-Quill – a pixel-art learning adventure",
+  "short_name": "Pixel-Quill",
+  "description": "Handwriting, spelling and more in a pixel-art adventure for K–12 learners. Free, no accounts, no ads, works offline.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#fef6e4",
-  "theme_color": "#5b8def",
+  "theme_color": "#3f6fd1",
   "categories": ["education", "kids", "games"],
   "icons": [
     { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" },
