@@ -4883,6 +4883,7 @@
     <sys:String x:Key="AssetIndexer.StoppedAtTheFileLimit" xml:space="preserve"> (an der Dateigrenze angehalten)</sys:String>
     <sys:String x:Key="AssetIndexer.Folder0">Ordner {0}</sys:String>
     <sys:String x:Key="AssetIndexer.Indexing0">{0} wird indiziert</sys:String>
+    <sys:String x:Key="AssetIndexer.Indexed">Indiziert</sys:String>
     <sys:String x:Key="AssetIndexer.0NotFound">{0}: nicht gefunden</sys:String>
     <sys:String x:Key="AssetIndexer.SpriteSheets">Sprite-Sheets</sys:String>
     <sys:String x:Key="AssetIndexer.HouseImages">Hausbilder</sys:String>
@@ -4974,6 +4975,7 @@
     <sys:String x:Key="MediaInspector.TheImageCouldNotBeRead" xml:space="preserve">Das Bild konnte nicht gelesen werden: </sys:String>
     <!-- ProcessingQueue -->
     <sys:String x:Key="ProcessingQueue.Starting">Wird gestartet</sys:String>
+    <sys:String x:Key="ProcessingQueue.Failed">Fehlgeschlagen</sys:String>
     <sys:String x:Key="ProcessingQueue.CancelledBeforeItStarted">Vor dem Start abgebrochen</sys:String>
     <sys:String x:Key="ProcessingQueue.CancelledNothingPartialWasKept">Abgebrochen; nichts Unvollständiges wurde behalten</sys:String>
     <!-- WorkflowRunner -->

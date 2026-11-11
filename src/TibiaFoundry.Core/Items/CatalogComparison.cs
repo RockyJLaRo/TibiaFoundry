@@ -60,7 +60,7 @@ public sealed class CatalogComparison
     /// <summary>Properties whose change can break maps or scripts (doors, teleports, containers…).</summary>
     public static readonly IReadOnlySet<string> BehaviorFlags = new HashSet<string>(StringComparer.Ordinal)
     {
-        "container", "door", "teleport", "depot", "mailbox", L.T("CatalogComparison.TrashHolder"), "bed", L.T("CatalogComparison.FloorChange"), L.T("CatalogComparison.MagicField"), "key", "podium",
+        "container", "door", "teleport", "depot", "mailbox", ItemFlags.TrashHolder, "bed", ItemFlags.FloorChange, ItemFlags.MagicField, "key", "podium",
     };
 
     private sealed record SideItem(string? Name, string? Category, IReadOnlySet<string> Flags, ItemKey Original);

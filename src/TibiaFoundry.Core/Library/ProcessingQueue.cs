@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using TibiaFoundry.Core.Common;
+using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Localization;
 
 namespace TibiaFoundry.Core.Library;
@@ -148,7 +149,7 @@ public sealed class ProcessingQueue : IDisposable
         ObjectDisposedException.ThrowIf(_disposed, this);
         var job = new QueueJob(title, category, work);
         lock (_lock) _jobs.Add(job);
-        Changed?.Invoke(job);
+        Notify(Changed, job);
         Pump();
         return job;
     }
@@ -170,7 +171,7 @@ public sealed class ProcessingQueue : IDisposable
             if (cancelled)
             {
                 Record(job);
-                Changed?.Invoke(job);
+                Notify(Changed, job);
                 return;
             }
         }
@@ -189,7 +190,7 @@ public sealed class ProcessingQueue : IDisposable
             removed = _jobs.Where(j => j.IsFinished).ToList();
             _jobs.RemoveAll(j => j.IsFinished);
         }
-        foreach (var j in removed) Changed?.Invoke(j);
+        foreach (var j in removed) Notify(Changed, j);
         return removed.Count;
     }
 
@@ -212,7 +213,7 @@ public sealed class ProcessingQueue : IDisposable
                 _running++;
                 next.Start();
             }
-            Changed?.Invoke(next);
+            Notify(Changed, next);
             _ = RunAsync(next);
         }
     }
@@ -231,14 +232,23 @@ public sealed class ProcessingQueue : IDisposable
         }
         catch (Exception ex)
         {
-            job.Finish(QueueJobState.Failed, "Failed", error: ex);
+            job.Finish(QueueJobState.Failed, L.T("ProcessingQueue.Failed"), error: ex);
         }
         finally
         {
             lock (_lock) _running--;
-            Record(job);
-            Changed?.Invoke(job);
-            Pump();
+            // 9.0.4: the next job starts whatever happens while this one is recorded and announced. A listener that
+            // threw here (a page that was closing, a full disk under the history file) ended this method before
+            // Pump(), and every job still waiting stayed "Pending" for good.
+            try
+            {
+                Record(job);
+                Notify(Changed, job);
+            }
+            finally
+            {
+                Pump();
+            }
         }
     }
 
@@ -248,9 +258,29 @@ public sealed class ProcessingQueue : IDisposable
         public void Report(OperationProgress value) => job.Report(value);
     }
 
+    /// <summary>
+    /// Raises an event one listener at a time: a listener that throws is logged and the others are still told, so
+    /// a failing window can neither stop the queue nor hide a job's result from the rest of the program.
+    /// </summary>
+    private static void Notify(Action<QueueJob>? handlers, QueueJob job)
+    {
+        if (handlers == null) return;
+        foreach (var handler in handlers.GetInvocationList())
+        {
+            try
+            {
+                ((Action<QueueJob>)handler)(job);
+            }
+            catch (Exception ex) when (ex is not OutOfMemoryException)
+            {
+                AppLog.Warn($"Queue: a listener failed for \"{job.Title}\": {ex.Message}", source: "Queue");
+            }
+        }
+    }
+
     private void Record(QueueJob job)
     {
-        Finished?.Invoke(job);
+        Notify(Finished, job);
         if (_historyFile == null) return;
         try
         {
@@ -293,7 +323,7 @@ public sealed class ProcessingQueue : IDisposable
                 catch (JsonException) { return null; }
             }).OfType<QueueHistoryEntry>().ToList();
         }
-        catch (IOException) { return []; }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { return []; }
     }
 
     public void Dispose()

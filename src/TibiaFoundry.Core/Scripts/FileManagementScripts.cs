@@ -248,7 +248,7 @@ public sealed class EmptyEntryFinderScript : Script
     {
         ".git", ".svn", ".hg", ".vs", ".idea", "node_modules", "logs", "log", "cache", "temp", "tmp", "backups",
         "screenshots", "characterdata", "minimap", "conf", "crashdump", "storeimages", "assets", "sounds", "bin",
-        "$RECYCLE.BIN", L.T("FileManagementScripts.SystemVolumeInformation"),
+        "$RECYCLE.BIN", "System Volume Information",
     };
 
     public override string Id => "empty-finder";

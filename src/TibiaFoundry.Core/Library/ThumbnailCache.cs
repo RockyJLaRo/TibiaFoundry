@@ -40,6 +40,7 @@ public static class ThumbnailCache
     public static RgbaImage Fit(RgbaImage image, int size)
     {
         int longest = Math.Max(image.Width, image.Height);
+        if (longest <= 0 || size <= 0) return image;   // nothing to scale (and no division by zero for an empty image)
         if (longest <= size)
         {
             int k = Math.Max(1, size / longest);
@@ -53,8 +54,19 @@ public static class ThumbnailCache
     public static (long Bytes, int Files) Usage(AssetLibrary library)
     {
         if (!Directory.Exists(library.ThumbnailFolder)) return (0, 0);
-        var files = Directory.EnumerateFiles(library.ThumbnailFolder, "*.png", SearchOption.AllDirectories).Select(f => new FileInfo(f)).ToList();
-        return (files.Sum(f => f.Length), files.Count);
+        long bytes = 0;
+        int count = 0;
+        try
+        {
+            // The sizes come from the directory listing itself, so a thumbnail deleted meanwhile is simply not counted.
+            foreach (var f in new DirectoryInfo(library.ThumbnailFolder).EnumerateFiles("*.png", SearchOption.AllDirectories))
+            {
+                bytes += f.Length;
+                count++;
+            }
+        }
+        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
+        return (bytes, count);
     }
 
     /// <summary>Deletes every cached thumbnail (they are made again when shown).</summary>
@@ -65,7 +77,7 @@ public static class ThumbnailCache
         foreach (string f in Directory.EnumerateFiles(library.ThumbnailFolder, "*.png", SearchOption.AllDirectories))
         {
             try { File.Delete(f); n++; }
-            catch (IOException) { }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
         }
         return n;
     }

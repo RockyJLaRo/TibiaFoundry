@@ -63,7 +63,7 @@ public sealed class SettingsStore(string filePath)
                 {
                     // Written by a newer Tibia Foundry: keep a copy before this version ever saves over it.
                     string copy = FilePath + $".v{settings.Version}.bak";
-                    try { if (!File.Exists(copy)) File.Copy(FilePath, copy); } catch (IOException) { copy = L.T("SettingsStore.BackupFailed"); }
+                    try { if (!File.Exists(copy)) File.Copy(FilePath, copy); } catch (Exception copyError) when (copyError is IOException or UnauthorizedAccessException) { copy = L.T("SettingsStore.BackupFailed"); }
                     AppLog.Warn($"Settings format {settings.Version} is newer than this version's {AppSettings.CurrentVersion}; unknown options are preserved. Backup: {copy}");
                     return (settings, SettingsLoadStatus.LoadedFromNewerVersion, copy);
                 }
@@ -71,7 +71,7 @@ public sealed class SettingsStore(string filePath)
                 {
                     // Written by an older format: keep it as it was before this version ever saves over it.
                     string copy = FilePath + $".v{settings.Version}.bak";
-                    try { if (!File.Exists(copy)) File.Copy(FilePath, copy); } catch (IOException ex) { AppLog.Warn("The settings could not be copied before they were upgraded: " + ex.Message); }
+                    try { if (!File.Exists(copy)) File.Copy(FilePath, copy); } catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { AppLog.Warn("The settings could not be copied before they were upgraded: " + ex.Message); }
                 }
                 settings.Migrate();
                 return (settings, SettingsLoadStatus.Loaded, null);
@@ -79,7 +79,9 @@ public sealed class SettingsStore(string filePath)
             catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException or NotSupportedException)
             {
                 string backup = FilePath + $".corrupt-{DateTime.Now:yyyyMMdd-HHmmss}";
-                try { File.Copy(FilePath, backup, overwrite: true); } catch (IOException) { backup = L.T("SettingsStore.BackupFailed"); }
+                // 9.0.4: a folder that cannot be written (read-only share, controlled folder access) refuses the copy with
+                // UnauthorizedAccessException, which escaped from here and ended the program before its window opened.
+                try { File.Copy(FilePath, backup, overwrite: true); } catch (Exception copyError) when (copyError is IOException or UnauthorizedAccessException) { backup = L.T("SettingsStore.BackupFailed"); }
                 AppLog.Warn($"Settings file was unreadable; defaults used. Backup: {backup}", ex);
                 var defaults = new AppSettings();
                 defaults.Normalize();

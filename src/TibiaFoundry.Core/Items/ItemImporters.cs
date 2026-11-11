@@ -66,9 +66,9 @@ public static class ItemImporters
         if (f.Take) flags.Add("pickupable");
         if (f.Cumulative) flags.Add("stackable");
         if (f.Container) flags.Add("container");
-        if (f.Liquidcontainer) flags.Add(L.T("ItemImporters.LiquidContainer"));
+        if (f.Liquidcontainer) flags.Add(ItemFlags.LiquidContainer);
         if (f.Market != null) flags.Add("market");
-        if (f.Npcsaledata.Count > 0) flags.Add(L.T("ItemImporters.NpcTrade"));
+        if (f.Npcsaledata.Count > 0) flags.Add(ItemFlags.NpcTrade);
         if (f.Cyclopediaitem != null) flags.Add("cyclopedia");
         if (f.Corpse || f.PlayerCorpse) flags.Add("corpse");
         if (f.Write != null || f.WriteOnce != null) flags.Add("writable");
@@ -266,11 +266,11 @@ public static class ItemImporters
                 switch (key)
                 {
                     case "type" when value.Length > 0:
-                        string type = value.ToLowerInvariant() switch { "magicfield" => L.T("ItemImporters.MagicField"), "trashholder" => L.T("ItemImporters.TrashHolder"), var t => t };
+                        string type = value.ToLowerInvariant() switch { "magicfield" => ItemFlags.MagicField, "trashholder" => ItemFlags.TrashHolder, var t => t };
                         if (!flags.Contains(type)) flags.Add(type);
                         break;
                     case "containersize" when !flags.Contains("container"): flags.Add("container"); break;
-                    case "floorchange" when !flags.Contains("floor change"): flags.Add("floor change"); break;
+                    case "floorchange" when !flags.Contains(ItemFlags.FloorChange): flags.Add(ItemFlags.FloorChange); break;
                     case "writeable" or "maxtextlen" when !flags.Contains("writable"): flags.Add("writable"); break;
                     case "primarytype" when value.Length > 0: category = value; break;
                     case "description" when value.Length > 0: description = value; break;

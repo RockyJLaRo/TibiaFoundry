@@ -111,7 +111,8 @@ public static class ItemCatalogStore
             try
             {
                 var snapshot = ReadSnapshot(file);
-                observations.AddRange(snapshot.Observations.Where(o => o.SourceId == source.Id));
+                // 9.0.4: flag names written in an interface language by 9.0–9.0.3 are read as their language-independent names.
+                observations.AddRange(snapshot.Observations.Where(o => o.SourceId == source.Id).Select(ItemFlags.Canonical));
                 mappings.AddRange((snapshot.Mappings ?? []).Where(m => m.SourceId == source.Id));
             }
             catch (Exception ex) when (ex is IOException or JsonException or InvalidDataException or UnauthorizedAccessException)
@@ -348,7 +349,7 @@ public static class ItemCatalogStore
                     problems.Add(L.F("ItemCatalogStore.Record0Of1BelongsTo", i + 1, JournalFile));
                     continue;
                 }
-                result.Add(o);
+                result.Add(ItemFlags.Canonical(o));
             }
             catch (JsonException)
             {

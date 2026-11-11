@@ -4883,6 +4883,7 @@
     <sys:String x:Key="AssetIndexer.StoppedAtTheFileLimit" xml:space="preserve"> (stopped at the file limit)</sys:String>
     <sys:String x:Key="AssetIndexer.Folder0">Folder {0}</sys:String>
     <sys:String x:Key="AssetIndexer.Indexing0">Indexing {0}</sys:String>
+    <sys:String x:Key="AssetIndexer.Indexed">Indexed</sys:String>
     <sys:String x:Key="AssetIndexer.0NotFound">{0}: not found</sys:String>
     <sys:String x:Key="AssetIndexer.SpriteSheets">sprite sheets</sys:String>
     <sys:String x:Key="AssetIndexer.HouseImages">house images</sys:String>
@@ -4974,6 +4975,7 @@
     <sys:String x:Key="MediaInspector.TheImageCouldNotBeRead" xml:space="preserve">The image could not be read: </sys:String>
     <!-- ProcessingQueue -->
     <sys:String x:Key="ProcessingQueue.Starting">Starting</sys:String>
+    <sys:String x:Key="ProcessingQueue.Failed">Failed</sys:String>
     <sys:String x:Key="ProcessingQueue.CancelledBeforeItStarted">Cancelled before it started</sys:String>
     <sys:String x:Key="ProcessingQueue.CancelledNothingPartialWasKept">Cancelled; nothing partial was kept</sys:String>
     <!-- WorkflowRunner -->

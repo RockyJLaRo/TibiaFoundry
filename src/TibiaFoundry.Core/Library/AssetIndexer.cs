@@ -230,7 +230,7 @@ public static class AssetIndexer
             var ids = touched.Concat(seenIds).Distinct().ToList();
             if (ids.Count > 0) library.AddToCollection(library.EnsureCollection(options.Collection.Trim()), ids);
         }
-        progress?.Report(new OperationProgress(files.Count, files.Count, "Indexed"));
+        progress?.Report(new OperationProgress(files.Count, files.Count, L.T("AssetIndexer.Indexed")));
         return new IndexResult(files.Count, added, updated, unchanged, contentChanged, missing, foundAgain, problems, truncated);
     }
 
@@ -302,14 +302,16 @@ public static class AssetIndexer
         return m.Success ? m.Groups[1].Value : null;
     }
 
+    // Folder names are matched as written on disk (lower case, "_" as a space), never in the interface language:
+    // 9.0–9.0.3 translated four of them, so "Sprite_Sheets" or "Map_Exports" were not recognized outside English.
     private static readonly (string Folder, string Category)[] FolderCategories =
     [
         ("outfits", AssetCategories.Outfits), ("outfit", AssetCategories.Outfits), ("addons", AssetCategories.OutfitAddons), ("mounts", AssetCategories.Mounts),
         ("creatures", AssetCategories.Creatures), ("monsters", AssetCategories.Creatures), ("bosses", AssetCategories.Creatures), ("npcs", AssetCategories.Creatures),
         ("objects", AssetCategories.Items), ("items", AssetCategories.Items), ("effects", AssetCategories.Effects), ("missiles", AssetCategories.Projectiles),
-        ("projectiles", AssetCategories.Projectiles), ("sheets", AssetCategories.SpriteSheets), (L.T("AssetIndexer.SpriteSheets"), AssetCategories.SpriteSheets),
-        ("sprites", AssetCategories.Sprites), ("houses", AssetCategories.Houses), (L.T("AssetIndexer.HouseImages"), AssetCategories.Houses), (L.T("AssetIndexer.MapSections"), AssetCategories.MapSections),
-        ("maps", AssetCategories.Maps), ("map", AssetCategories.Maps), (L.T("AssetIndexer.MapExports"), AssetCategories.Maps), ("sounds", AssetCategories.Sounds), ("music", AssetCategories.Sounds),
+        ("projectiles", AssetCategories.Projectiles), ("sheets", AssetCategories.SpriteSheets), ("sprite sheets", AssetCategories.SpriteSheets),
+        ("sprites", AssetCategories.Sprites), ("houses", AssetCategories.Houses), ("house images", AssetCategories.Houses), ("map sections", AssetCategories.MapSections),
+        ("maps", AssetCategories.Maps), ("map", AssetCategories.Maps), ("map exports", AssetCategories.Maps), ("sounds", AssetCategories.Sounds), ("music", AssetCategories.Sounds),
         ("environment", AssetCategories.Environment), ("artwork", AssetCategories.Artwork),
     ];
 

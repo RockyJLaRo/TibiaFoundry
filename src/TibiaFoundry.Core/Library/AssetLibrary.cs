@@ -745,7 +745,7 @@ public sealed class AssetLibrary
         finally
         {
             SqliteConnection.ClearAllPools();
-            try { File.Delete(temp); } catch (IOException) { }
+            try { File.Delete(temp); } catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
         }
     }
 
@@ -792,14 +792,37 @@ public sealed class AssetLibrary
             }
             SqliteConnection.ClearAllPools();
             string current = Path.Combine(full, DatabaseFileName);
+            string? keep = null;
             if (File.Exists(current))
             {
-                string keep = current + $".before-restore-{DateTime.Now:yyyyMMdd-HHmmss}";
+                keep = current + $".before-restore-{DateTime.Now:yyyyMMdd-HHmmss}";
                 File.Move(current, keep);
                 foreach (string side in new[] { current + "-wal", current + "-shm" })
                     if (File.Exists(side)) File.Move(side, keep + side[current.Length..]);
             }
-            File.Move(db, current);
+            try
+            {
+                File.Move(db, current);
+            }
+            catch (Exception ex) when (keep != null && ex is IOException or UnauthorizedAccessException)
+            {
+                // 9.0.4: the index of the backup could not be put in place (file in use, disk full). The index that was
+                // just set aside is put back, so a failed restore leaves the library as it was instead of without an index.
+                try
+                {
+                    if (keep != null && !File.Exists(current))
+                    {
+                        File.Move(keep, current);
+                        foreach (string suffix in new[] { "-wal", "-shm" })
+                            if (File.Exists(keep + suffix)) File.Move(keep + suffix, current + suffix);
+                    }
+                }
+                catch (Exception undo) when (undo is IOException or UnauthorizedAccessException)
+                {
+                    Diagnostics.AppLog.Warn($"Asset Library: the restore failed and the previous index could not be put back; it is kept as {keep}: {undo.Message}");
+                }
+                throw;
+            }
             foreach (string dir in new[] { "profiles", "projects", "workflows" })
             {
                 string from = Path.Combine(staging, dir);
@@ -812,7 +835,7 @@ public sealed class AssetLibrary
         }
         finally
         {
-            try { Directory.Delete(staging, recursive: true); } catch (IOException) { }
+            try { Directory.Delete(staging, recursive: true); } catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
         }
     }
 

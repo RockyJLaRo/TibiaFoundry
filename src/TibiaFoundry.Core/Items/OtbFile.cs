@@ -166,7 +166,7 @@ public sealed class OtbFile
             case OtbItemGroup.Container: flags.Add("container"); break;
             case OtbItemGroup.Door: flags.Add("door"); break;
             case OtbItemGroup.Teleport: flags.Add("teleport"); break;
-            case OtbItemGroup.MagicField: flags.Add("magic field"); break;
+            case OtbItemGroup.MagicField: flags.Add(ItemFlags.MagicField); break;
             case OtbItemGroup.Key: flags.Add("key"); break;
             case OtbItemGroup.Writable: flags.Add("writable"); break;
             case OtbItemGroup.Fluid: flags.Add("liquid container"); break;

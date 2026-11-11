@@ -44,12 +44,23 @@ public static class PathGuard
         string r = Normalize(root);
         string p = Normalize(path);
         return string.Equals(r, p, StringComparison.OrdinalIgnoreCase) ||
-               p.StartsWith(r + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+               p.StartsWith(WithSeparator(r), StringComparison.OrdinalIgnoreCase);
     }
 
     /// <summary>True when <paramref name="path"/> lies strictly inside <paramref name="root"/>.</summary>
-    public static bool IsInside(string root, string path) =>
-        Normalize(path).StartsWith(Normalize(root) + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase);
+    public static bool IsInside(string root, string path)
+    {
+        string r = Normalize(root);
+        string p = Normalize(path);
+        return !string.Equals(r, p, StringComparison.OrdinalIgnoreCase) && p.StartsWith(WithSeparator(r), StringComparison.OrdinalIgnoreCase);
+    }
+
+    /// <summary>
+    /// 9.0.4: a drive root ("E:\") keeps its separator when normalized, so adding another one matched nothing:
+    /// no file counted as inside a drive root, and extracting or restoring straight into one was refused.
+    /// </summary>
+    private static string WithSeparator(string normalized) =>
+        normalized.Length > 0 && normalized[^1] is '\\' or '/' ? normalized : normalized + Path.DirectorySeparatorChar;
 
     /// <summary>
     /// Combines a root folder and an untrusted relative path. Throws <see cref="UnsafePathException"/>
