@@ -359,6 +359,24 @@ public sealed class ContentWorkflowTests
         Assert.Equal(5, queue.History().Count);
     }
 
+    [Fact]
+    public async Task TheQueueHistoryFileIsCompactedToTheLatestEntries()
+    {
+        string history = Path.Combine(TestData.NewTempDirectory("queue-compact"), "queue-history.jsonl");
+        using var queue = new ProcessingQueue(() => 1, history, historyKeep: 3);
+        // "Changed" of a finished job is raised after its history entry was written.
+        int recorded = 0;
+        queue.Changed += j => { if (j.IsFinished) Interlocked.Increment(ref recorded); };
+        // Long titles make each entry bigger than 1 KB, so every append past the third compacts the file.
+        for (int i = 1; i <= 10; i++) queue.Enqueue($"Job {i:D2} " + new string('x', 1100), "Test", (_, _) => Task.FromResult("ok"));
+        await WaitFor(() => Volatile.Read(ref recorded) == 10);
+
+        var entries = queue.History();
+        Assert.Equal(3, File.ReadAllLines(history).Length);
+        Assert.Equal(["Job 10", "Job 09", "Job 08"], entries.Select(e => e.Title[..6]));   // the latest, newest first
+        Assert.All(entries, e => Assert.Equal("Completed", e.State));
+    }
+
     private static async Task WaitFor(Func<bool> condition)
     {
         for (int i = 0; i < 500 && !condition(); i++) await Task.Delay(10, TestContext.Current.CancellationToken);

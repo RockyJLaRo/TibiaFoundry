@@ -346,6 +346,7 @@
   "new": {
     "kicker": "Notas da versão",
     "title": "Novidades da {version}",
+    "fix3": "<b>9.0.3 – estabilidade</b>: uma folha de sprites danificada não fecha mais o programa no Outfitter, e o histórico da fila do Content Studio continua pequeno.",
     "fix2": "<b>9.0.2 – ponto final no flavortext</b>: o flavortext da infobox agora termina com o ponto que o jogo adiciona ao olhar (Look), exatamente como o TibiaWiki escreve.",
     "fix1": "<b>9.0.1 – flavortext</b>: o texto de descrição do objeto no cliente preenche o flavortext da infobox.",
     "item1": "<b>Exportador de infobox do TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> para qualquer objeto, com os dados do próprio cliente (Appearances → Wiki infobox).",

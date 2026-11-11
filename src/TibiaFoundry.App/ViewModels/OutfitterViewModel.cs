@@ -6,6 +6,7 @@ using TibiaFoundry.App.Infrastructure;
 using TibiaFoundry.App.Services;
 using TibiaFoundry.Core.Appearances;
 using TibiaFoundry.Core.Common;
+using TibiaFoundry.Core.Compatibility;
 using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Imaging;
 using TibiaFoundry.Core.FileOps;
@@ -208,6 +209,16 @@ public sealed partial class OutfitterViewModel : ObservableObject
         }
         catch (OutfitRenderException ex)
         {
+            if (version != _renderVersion) return;
+            Frames = Array.Empty<BitmapSource>();
+            Message = ex.Message;
+            AppLog.Warn("Outfitter: " + ex.Message);
+        }
+        catch (Exception ex) when (ex is IOException or InvalidDataException or UnauthorizedAccessException or DataFileException)
+        {
+            // A damaged or locked sprite sheet only empties this preview (same rule as the Appearances preview).
+            // Unhandled, every colour or option change reached the global handler, and a quick series of
+            // changes tripped its repeated-error shutdown.
             if (version != _renderVersion) return;
             Frames = Array.Empty<BitmapSource>();
             Message = ex.Message;

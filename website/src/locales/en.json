@@ -311,6 +311,7 @@
   "new": {
     "kicker": "Release notes",
     "title": "What's new in {version}",
+    "fix3": "<b>9.0.3 – stability</b>: a damaged sprite sheet no longer closes the program from the Outfitter, and the Content Studio queue history stays small.",
     "fix2": "<b>9.0.2 – flavortext full stop</b>: the infobox's flavortext now ends with the full stop the game adds on Look, exactly as TibiaWiki writes it.",
     "fix1": "<b>9.0.1 – flavortext</b>: the object's look text from the client fills the infobox's flavortext.",
     "item1": "<b>TibiaWiki infobox exporter</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> for any object, from the client's own data (Appearances → Wiki infobox).",

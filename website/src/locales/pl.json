@@ -342,6 +342,7 @@
   "new": {
     "kicker": "Informacje o wydaniu",
     "title": "Co nowego w {version}",
+    "fix3": "<b>9.0.3 – stabilność</b>: uszkodzony arkusz sprite’ów nie zamyka już programu w Outfitterze, a historia kolejki Content Studio pozostaje mała.",
     "fix2": "<b>9.0.2 – kropka w flavortext</b>: flavortext w infoboksie kończy się teraz kropką, którą gra dodaje przy oglądaniu (Look) – dokładnie tak, jak pisze TibiaWiki.",
     "fix1": "<b>9.0.1 – flavortext</b>: opis obiektu z klienta wypełnia flavortext w infoboksie.",
     "item1": "<b>Eksport infoboxów TibiaWiki</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> dla każdego obiektu, z danych samego klienta (Appearances → Wiki infobox).",

@@ -352,6 +352,7 @@
   "new": {
     "kicker": "Versionshinweise",
     "title": "Neu in {version}",
+    "fix3": "<b>9.0.3 – Stabilität</b>: Eine beschädigte Sprite-Datei schließt das Programm im Outfitter nicht mehr, und der Verlauf der Content-Studio-Warteschlange bleibt klein.",
     "fix2": "<b>9.0.2 – Punkt im flavortext</b>: Der flavortext der Infobox endet jetzt mit dem Punkt, den das Spiel beim Ansehen (Look) ergänzt – genau wie bei TibiaWiki.",
     "fix1": "<b>9.0.1 – flavortext</b>: Der Beschreibungstext des Objekts aus dem Client füllt den flavortext der Infobox.",
     "item1": "<b>TibiaWiki-Infobox-Export</b>: <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> für jedes Objekt, aus den Daten des Clients (Appearances → Wiki-Infobox).",

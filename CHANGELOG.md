@@ -1,5 +1,17 @@
 # Changelog
 
+## 9.0.3 – 2026-11-10 (Outfitter stability, bounded queue history)
+
+### Fixed
+
+* **Outfitter:** a damaged or locked sprite sheet reached the global error handler on every colour or option change (an `async void` render without a handler for I/O errors); quick changes tripped its repeated-error shutdown and closed the program. The preview now empties with a message and a log entry, like the Appearances preview since 9.0 (audit F-09).
+* **Content Studio queue history:** `queue-history.jsonl` grew without limit and was read whole on the UI thread on every queue change. `ProcessingQueue` now compacts it to the latest 500 entries (`historyKeep`) once it holds about four times that, written with `AtomicFile`.
+* Version **9.0.3** (tag `v9.0.3`); the Windows file version is 9.0.3.0.
+
+### Added
+
+* Test `ContentWorkflowTests.TheQueueHistoryFileIsCompactedToTheLatestEntries`.
+
 ## 9.0.2 – 2026-11-06 (flavortext full stop)
 
 ### Fixed

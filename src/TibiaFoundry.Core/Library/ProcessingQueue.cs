@@ -109,15 +109,21 @@ public sealed class ProcessingQueue : IDisposable
     private readonly List<QueueJob> _jobs = [];
     private readonly Func<int> _limit;
     private readonly string? _historyFile;
+    private readonly int _historyKeep;
     private int _running;
     private bool _disposed;
 
     /// <param name="maxConcurrency">How many jobs may run at once (read each time a job could start, so a changed setting applies at once).</param>
     /// <param name="historyFile">A JSON-lines file the finished jobs are appended to, or null.</param>
-    public ProcessingQueue(Func<int> maxConcurrency, string? historyFile = null)
+    /// <param name="historyKeep">
+    /// How many of the latest entries the history file keeps when it is compacted. It is compacted once it holds
+    /// roughly four times as many, so the file (read whenever the queue list refreshes) stays small.
+    /// </param>
+    public ProcessingQueue(Func<int> maxConcurrency, string? historyFile = null, int historyKeep = 500)
     {
         _limit = maxConcurrency;
         _historyFile = historyFile;
+        _historyKeep = Math.Max(1, historyKeep);
     }
 
     public int MaxConcurrency => Math.Clamp(_limit(), 1, 16);
@@ -253,9 +259,26 @@ public sealed class ProcessingQueue : IDisposable
             {
                 job.Title, job.Category, State = job.State.ToString(), job.CreatedUtc, job.StartedUtc, job.FinishedUtc, job.Result, job.Error,
             });
-            lock (_lock) File.AppendAllText(_historyFile, line + Environment.NewLine);
+            lock (_lock)
+            {
+                File.AppendAllText(_historyFile, line + Environment.NewLine);
+                CompactHistory();
+            }
         }
         catch (Exception ex) when (ex is IOException or UnauthorizedAccessException) { }
+    }
+
+    /// <summary>
+    /// Keeps only the latest <see cref="_historyKeep"/> entries once the file has grown past about four times that
+    /// (entries are about 250 bytes); without this the file grew for good and was read whole on every refresh.
+    /// </summary>
+    private void CompactHistory()
+    {
+        var file = new FileInfo(_historyFile!);
+        if (!file.Exists || file.Length <= _historyKeep * 1024L) return;
+        var lines = File.ReadAllLines(file.FullName);
+        if (lines.Length <= _historyKeep) return;
+        AtomicFile.WriteAllText(file.FullName, string.Join(Environment.NewLine, lines[^_historyKeep..]) + Environment.NewLine);
     }
 
     /// <summary>The latest entries of the history file (newest first).</summary>
