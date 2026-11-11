@@ -1,0 +1,298 @@
+{
+ "format": "pixel-quill-audio-registry",
+ "version": 1,
+ "defaultLanguage": "en",
+ "updated": "2026-11-11T04:44:47.541Z",
+ "tracks": {
+  "demo_bram_001": {
+   "category": "dialogue",
+   "character": "captain_bram",
+   "dialogueId": "demo_bram_001",
+   "text": "Hoist the sails, everyone! The storm has passed!",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/dialogue/demo_bram_001.mp3",
+     "durationMs": 2710,
+     "hash": "5c2ebf1b334cdaa9954e"
+    }
+   },
+   "meta": {
+    "emotion": "excited",
+    "intensity": 0.6,
+    "emotion_support": "native",
+    "model": "qwen-custom",
+    "voice": {
+     "speaker": "Aiden"
+    },
+    "seed": 1234,
+    "take": 1,
+    "generated": "2026-11-10T23:34:51",
+    "studio_clip": "Generated/captain_bram/dialogue/demo_bram_001__t1.wav",
+    "source": "dialogue/captain_bram/demo_bram_001.wav",
+    "peak": 0.5
+   },
+   "added": "2026-11-11T04:44:46.511Z",
+   "updated": "2026-11-11T04:44:46.511Z"
+  },
+  "demo_bram_002": {
+   "category": "dialogue",
+   "character": "captain_bram",
+   "dialogueId": "demo_bram_002",
+   "text": "Quiet now... the sea serpent is sleeping right below us.",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/dialogue/demo_bram_002.mp3",
+     "durationMs": 4210,
+     "hash": "3129dd348506542d220e"
+    }
+   },
+   "meta": {
+    "emotion": "whispering",
+    "intensity": 0.6,
+    "emotion_support": "native",
+    "model": "qwen-custom",
+    "voice": {
+     "speaker": "Aiden"
+    },
+    "seed": 1234,
+    "take": 1,
+    "generated": "2026-11-10T23:34:51",
+    "studio_clip": "Generated/captain_bram/dialogue/demo_bram_002__t1.wav",
+    "source": "dialogue/captain_bram/demo_bram_002.wav",
+    "peak": 0.881
+   },
+   "added": "2026-11-11T04:44:46.684Z",
+   "updated": "2026-11-11T04:44:46.684Z"
+  },
+  "demo_inky_001": {
+   "category": "dialogue",
+   "character": "inky",
+   "dialogueId": "demo_inky_001",
+   "text": "Look! The lighthouse is shining again!",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/dialogue/demo_inky_001.mp3",
+     "durationMs": 1980,
+     "hash": "5eec297e90ad389f2e31"
+    }
+   },
+   "meta": {
+    "emotion": "happy",
+    "intensity": 0.6,
+    "emotion_support": "approx",
+    "model": "kokoro",
+    "voice": {
+     "voice": "af_bella"
+    },
+    "seed": 1234,
+    "take": 1,
+    "generated": "2026-11-10T23:34:29",
+    "studio_clip": "Generated/inky/dialogue/demo_inky_001__t1.wav",
+    "source": "dialogue/inky/demo_inky_001.wav",
+    "peak": 0.759
+   },
+   "added": "2026-11-11T04:44:46.815Z",
+   "updated": "2026-11-11T04:44:46.815Z"
+  },
+  "demo_inky_002": {
+   "category": "dialogue",
+   "character": "inky",
+   "dialogueId": "demo_inky_002",
+   "text": "Do you think the serpent dreams about us?",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/dialogue/demo_inky_002.mp3",
+     "durationMs": 1960,
+     "hash": "41742a031c8aa56cc65b"
+    }
+   },
+   "meta": {
+    "emotion": "curious",
+    "intensity": 0.6,
+    "emotion_support": "approx",
+    "model": "kokoro",
+    "voice": {
+     "voice": "af_bella"
+    },
+    "seed": 1234,
+    "take": 1,
+    "generated": "2026-11-10T23:34:29",
+    "studio_clip": "Generated/inky/dialogue/demo_inky_002__t1.wav",
+    "source": "dialogue/inky/demo_inky_002.wav",
+    "peak": 0.508
+   },
+   "added": "2026-11-11T04:44:46.946Z",
+   "updated": "2026-11-11T04:44:46.946Z"
+  },
+  "demo_story_001": {
+   "category": "narration",
+   "character": "storyteller",
+   "dialogueId": "demo_story_001",
+   "text": "And so the little ship sailed on, past the sleeping serpent, toward the golden shore.",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/narration/demo_story_001.mp3",
+     "durationMs": 5660,
+     "hash": "b3b5560314bedd658826"
+    }
+   },
+   "meta": {
+    "emotion": "calm",
+    "intensity": 0.6,
+    "emotion_support": "native",
+    "model": "qwen-custom",
+    "voice": {
+     "speaker": "Ryan"
+    },
+    "seed": 1234,
+    "take": 1,
+    "generated": "2026-11-10T23:34:51",
+    "studio_clip": "Generated/storyteller/narration/demo_story_001__t1.wav",
+    "source": "narration/storyteller/demo_story_001.wav",
+    "peak": 0.856
+   },
+   "added": "2026-11-11T04:44:47.301Z",
+   "updated": "2026-11-11T04:44:47.301Z"
+  },
+  "demo.bell": {
+   "category": "ui",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/ui/demo.bell.mp3",
+     "durationMs": 250,
+     "hash": "10fde992255712fa1196"
+    }
+   },
+   "meta": {
+    "source": "ui/bell.wav",
+    "peak": 0.125
+   },
+   "added": "2026-11-11T04:44:47.541Z",
+   "updated": "2026-11-11T04:44:47.541Z"
+  },
+  "demo.door-creak": {
+   "category": "sfx",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/sfx/demo.door-creak.mp3",
+     "durationMs": 800,
+     "hash": "e11a340be8939d7d9d23"
+    }
+   },
+   "meta": {
+    "source": "sfx/door-creak.wav",
+    "peak": 0.125
+   },
+   "added": "2026-11-11T04:44:47.428Z",
+   "updated": "2026-11-11T04:44:47.428Z"
+  },
+  "demo.harbour-theme": {
+   "category": "music",
+   "volume": 1,
+   "loop": true,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/music/demo.harbour-theme.mp3",
+     "durationMs": 4000,
+     "hash": "eab7a3f4f3287de711a0"
+    }
+   },
+   "meta": {
+    "source": "music/harbour-theme.wav",
+    "peak": 0.053
+   },
+   "added": "2026-11-11T04:44:47.100Z",
+   "updated": "2026-11-11T04:44:47.100Z"
+  },
+  "demo.sword-swing": {
+   "category": "combat",
+   "volume": 1,
+   "loop": false,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/combat/demo.sword-swing.mp3",
+     "durationMs": 350,
+     "hash": "37fb66cc3830fbba7b51"
+    }
+   },
+   "meta": {
+    "source": "combat/sword-swing.ogg",
+    "peak": 0.488
+   },
+   "added": "2026-11-11T04:44:46.364Z",
+   "updated": "2026-11-11T04:44:46.364Z"
+  },
+  "demo.waves": {
+   "category": "ambient",
+   "volume": 1,
+   "loop": true,
+   "tags": [
+    "demo"
+   ],
+   "rev": 1,
+   "langs": {
+    "en": {
+     "file": "lib/ambient/demo.waves.mp3",
+     "durationMs": 3000,
+     "hash": "69f197e230c9bbb65ce3"
+    }
+   },
+   "meta": {
+    "source": "ambient/waves.flac",
+    "peak": 0.13
+   },
+   "added": "2026-11-11T04:44:46.254Z",
+   "updated": "2026-11-11T04:44:46.254Z"
+  }
+ }
+}
