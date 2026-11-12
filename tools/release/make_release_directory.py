@@ -117,7 +117,7 @@ for path in released:
             for info in infos:
                 parts = info.filename.replace("\\", "/").split("/")
                 # The portable program's own files are checked by name only ("logs" and friends are folders of user data).
-                if any(p in FORBIDDEN_DIRS for p in parts[:-1]) or os.path.splitext(parts[-1])[1].lower() in FORBIDDEN_EXT:
+                if any(p in FORBIDDEN_DIRS for p in parts[:-1]) or parts[-1] == ".git" or os.path.splitext(parts[-1])[1].lower() in FORBIDDEN_EXT:
                     problems.append(f"{name}: must not contain {info.filename}")
     elif open(path, "rb").read(8) != b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1":
         problems.append(f"{name}: not a Windows Installer file")
