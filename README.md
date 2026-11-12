@@ -194,7 +194,8 @@ Created by <your name> using TibiaFoundry for TibiaWiki @ https://tibia.fandom.c
 24. [Localization](docs/25_Localization.md) *(8.8)*
 25. [TibiaWiki Infobox Exporter](docs/26_TibiaWiki_Infobox_Exporter.md) *(9.0)*
 26. [9.0 audit and release report](TibiaFoundry-9.0-Audit.md)
-27. [Changelog](CHANGELOG.md)
+27. [9.0.4 audit and release decision](TibiaFoundry-9.0.4-Audit.md)
+28. [Changelog](CHANGELOG.md)
 
 ## Results at a glance (8.0.0)
 

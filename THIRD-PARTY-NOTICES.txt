@@ -1,4 +1,4 @@
-Tibia Foundry 9.0.3 - third-party notices
+Tibia Foundry 9.0.4 - third-party notices
 ============================================================
 
 Tibia Foundry includes the third-party software listed below. Each entry gives the component, its
@@ -8,8 +8,8 @@ Tibia Foundry includes no code from Nekiro's RCC Editor or from Arch-Mina's Clie
 Assets Editor; those projects are acknowledged on the program's About page.
 
 Contents:
-  1. .NET runtime 10.0.14 (Microsoft.NETCore.App) - MIT
-  2. Windows Desktop runtime 10.0.14 (WPF, System.Drawing.Common) - MIT
+  1. .NET runtime 10.0.15 (Microsoft.NETCore.App) - MIT
+  2. Windows Desktop runtime 10.0.15 (WPF, System.Drawing.Common) - MIT
   3. Google.Protobuf 3.36.2 - BSD-3-Clause
   4. Magick.NET-Q16-AnyCPU and Magick.NET.Core 14.16.0, with ImageMagick and the libraries it includes - Apache-2.0 (Magick.NET), ImageMagick License and the licenses listed below
   5. NAudio.Core and NAudio.WinMM 2.2.1 - MIT
@@ -25,7 +25,7 @@ Contents:
 
 
 ----------------------------------------------------------------------------------------------------
-1. .NET runtime 10.0.14 (Microsoft.NETCore.App)
+1. .NET runtime 10.0.15 (Microsoft.NETCore.App)
 License: MIT
 ----------------------------------------------------------------------------------------------------
 
@@ -1475,7 +1475,7 @@ You are solely responsible for determining the appropriateness of using and dist
 
 
 ----------------------------------------------------------------------------------------------------
-2. Windows Desktop runtime 10.0.14 (WPF, System.Drawing.Common)
+2. Windows Desktop runtime 10.0.15 (WPF, System.Drawing.Common)
 License: MIT
 ----------------------------------------------------------------------------------------------------
 

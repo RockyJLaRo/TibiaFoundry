@@ -1,5 +1,33 @@
 # Changelog
 
+## 9.0.4 – 2026-11-11 (language-independent data, drive roots, queue robustness)
+
+Audit and release decision: [TibiaFoundry-9.0.4-Audit.md](TibiaFoundry-9.0.4-Audit.md).
+
+### Fixed
+
+* **Item Catalog:** the item properties *liquid container*, *npc trade*, *magic field* and *trash holder* were written into catalogs in the interface language (`ItemImporters.ClientFlags`, `ItemImporters.FromItemsXml`), and `CatalogComparison.BehaviorFlags` held translated names. New `ItemFlags` constants; `ItemCatalogStore.Load` maps names written by 9.0–9.0.3 back (`ItemFlags.Canonical`), so existing catalogs are read correctly without a new import.
+* **Asset Library:** `AssetIndexer.FolderCategories` matched "sprite sheets", "house images", "map sections" and "map exports" against translated text; the folders Tibia Foundry writes were not categorized outside English.
+* **PathGuard:** `IsInside`, `IsSameOrInside` and `ResolveInside` treated no file as inside a drive root (`E:\`), so writing straight into one was refused.
+* **ProcessingQueue:** a listener of `Changed` or `Finished` that threw ended `RunAsync` before `Pump()`; waiting jobs were never started. Listeners are called one by one (`Notify`), the next job starts in a `finally`. The "Failed" state text is translated (`ProcessingQueue.Failed`); reading the history tolerates an unreadable file.
+* **SettingsStore.Load:** a backup copy refused with `UnauthorizedAccessException` ended the program at start.
+* **AssetLibrary.Restore:** the previous index is put back when the restored one cannot be moved in; temporary files are cleaned up after `UnauthorizedAccessException` too.
+* **ThumbnailCache:** `Usage` and `Clear` tolerate files that vanish or are locked; `Fit` no longer divides by zero for an empty image.
+* `EmptyEntryFinderScript.ProtectedNames` named "System Volume Information" through the string table.
+* Version **9.0.4** (tag `v9.0.4`); the Windows file version is 9.0.4.0.
+
+### Changed
+
+* **AssetLibrary.SearchIds** reads only the IDs (`BuildQuery` shared with `Search`): 283 ms → 3 ms and 21 MB → 0.3 MB per call on the benchmark library (`library-search-ids-x20`).
+* `ExternalEndpoints.TestServerAssetsBase` is `https://`.
+* Removed 65 unused `using` directives, `ThemeEditorViewModel.BasePalette`, `SvgMetadataProvider.Svg`, `LzmaDecoder.DecoderState.PosStatesMax`.
+
+### Added
+
+* `Release904Tests` and `LanguageIndependentDataTests` (10 tests).
+* `tools/release/make_release_directory.py`, `tools/release/artifacts/Website-Source-README.txt`, `Website-Assets-README.txt`; benchmark scenario `library-search-ids-x20`.
+* Strings `AssetIndexer.Indexed` and `ProcessingQueue.Failed` in all five languages.
+
 ## 9.0.3 – 2026-11-10 (Outfitter stability, bounded queue history)
 
 ### Fixed

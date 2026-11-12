@@ -17,7 +17,7 @@ Project structure
   tools/release/                   packaging: package_release.py, make_notices.py, build_installer.py,
                                    make_release_artifacts.py, assemble_release.py, installer/TibiaFoundry.wxs
   tools/benchmarks/                workload benchmarks of the 8.8.1 performance audit (results/ holds the numbers)
-  TibiaFoundry-9.0-Audit.md, TibiaFoundry-9.0.4-Audit.md, TibiaFoundry-9.0.4-ReleaseNotes.md, TibiaFoundry-9.0.3-ReleaseNotes.md, TibiaFoundry-9.0.2-ReleaseNotes.md, TibiaFoundry-9.0.1-ReleaseNotes.md, TibiaFoundry-9.0-ReleaseNotes.md, TibiaFoundry_Performance_Audit.md (8.8.1), older release notes
+  TibiaFoundry-9.0-Audit.md, TibiaFoundry-9.0.4-Audit.md, TibiaFoundry-9.0.4-TestingReport.md, TibiaFoundry-9.0.4-ReleaseNotes.md, TibiaFoundry-9.0.3-ReleaseNotes.md, TibiaFoundry-9.0.2-ReleaseNotes.md, TibiaFoundry-9.0.1-ReleaseNotes.md, TibiaFoundry-9.0-ReleaseNotes.md, TibiaFoundry_Performance_Audit.md (8.8.1), older release notes
   website/                         tibiafoundry.com: src/ (template, CSS, JS, images), build_site.py, site/ (built)
 
 Prerequisites
@@ -48,6 +48,7 @@ Distributions (from src/, then from the repository root)
     python -I website/build_site.py                      website/site/
     python -I tools/release/make_release_artifacts.py    Release_Artifacts/
     python -I tools/release/assemble_release.py          Release/9.0.4/ (TibiaFoundry-9.0.4-Installer.msi, -Portable.zip, -Source.zip, SHA256SUMS.txt)
+    python -I tools/release/make_release_directory.py    Release/TibiaFoundry_Release_9.0.4/ (Application, Website, Checksums, Documentation: all five packages)
 
 Benchmarks (8.8.1; read the installed client only)
 --------------------------------------------------
