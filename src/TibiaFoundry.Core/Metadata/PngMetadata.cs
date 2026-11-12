@@ -3,7 +3,6 @@ using System.Globalization;
 using System.IO.Compression;
 using System.Text;
 using TibiaFoundry.Core.Common;
-using TibiaFoundry.Core.Localization;
 
 namespace TibiaFoundry.Core.Metadata;
 

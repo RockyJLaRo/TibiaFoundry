@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using TibiaFoundry.Core.Appearances;
 using TibiaFoundry.Core.Imaging;
 
 namespace TibiaFoundry.Tests;

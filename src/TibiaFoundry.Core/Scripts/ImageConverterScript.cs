@@ -1,6 +1,4 @@
-using TibiaFoundry.Core.Common;
 using System.Collections.Concurrent;
-using System.Globalization;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Imaging;
 using TibiaFoundry.Core.Metadata;

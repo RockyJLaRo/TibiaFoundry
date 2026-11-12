@@ -2,7 +2,6 @@ using System.Runtime.InteropServices;
 using ImageMagick;
 using TibiaFoundry.App.Services;
 using TibiaFoundry.App.ViewModels;
-using TibiaFoundry.Core.Appearances;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Settings;
 using TibiaFoundry.Core.Sprites;

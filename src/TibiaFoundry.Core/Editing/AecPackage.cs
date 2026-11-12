@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Runtime.InteropServices;
 using Google.Protobuf;
 using TibiaFoundry.Core.Appearances;

@@ -342,6 +342,7 @@
   "new": {
     "kicker": "Informacje o wydaniu",
     "title": "Co nowego w {version}",
+    "fix4": "<b>9.0.4 – dane niezależne od języka</b>: właściwości przedmiotów w katalogach i kategorie eksportowanych folderów są takie same w każdym języku interfejsu (istniejące katalogi są poprawnie odczytywane bez zmian), foldery bezpośrednio na dysku działają, a kolejka pracuje dalej, gdy okno zgłosi błąd.",
     "fix3": "<b>9.0.3 – stabilność</b>: uszkodzony arkusz sprite’ów nie zamyka już programu w Outfitterze, a historia kolejki Content Studio pozostaje mała.",
     "fix2": "<b>9.0.2 – kropka w flavortext</b>: flavortext w infoboksie kończy się teraz kropką, którą gra dodaje przy oglądaniu (Look) – dokładnie tak, jak pisze TibiaWiki.",
     "fix1": "<b>9.0.1 – flavortext</b>: opis obiektu z klienta wypełnia flavortext w infoboksie.",

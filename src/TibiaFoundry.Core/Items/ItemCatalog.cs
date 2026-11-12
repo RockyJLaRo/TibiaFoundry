@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Globalization;
 using System.Text;
 using TibiaFoundry.Core.Localization;

@@ -12,7 +12,6 @@ using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.Export;
 using TibiaFoundry.Core.Imaging;
 using TibiaFoundry.Core.StaticData;
-using TibiaFoundry.Core.Wiki;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Localization;
 

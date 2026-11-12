@@ -2,7 +2,6 @@ using System.Security.Cryptography;
 using Google.Protobuf;
 using TibiaFoundry.Core.Assets;
 using TibiaFoundry.Core.Compression;
-using TibiaFoundry.Core.Editing;
 using TibiaFoundry.Core.Editing.Model;
 using TibiaFoundry.Core.Imaging;
 

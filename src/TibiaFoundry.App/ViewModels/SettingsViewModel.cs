@@ -1,6 +1,5 @@
 using TibiaFoundry.Core.Metadata;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Text;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;

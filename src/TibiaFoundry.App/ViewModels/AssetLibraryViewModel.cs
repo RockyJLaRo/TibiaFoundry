@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TibiaFoundry.App.Services;
 using TibiaFoundry.Core.Common;
-using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Library;
 using TibiaFoundry.Core.Localization;

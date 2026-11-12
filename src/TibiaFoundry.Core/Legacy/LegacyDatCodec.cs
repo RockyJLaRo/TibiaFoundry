@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Buffers.Binary;
 using TibiaFoundry.Core.Localization;
 

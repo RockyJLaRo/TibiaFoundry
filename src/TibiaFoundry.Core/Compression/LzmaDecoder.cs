@@ -38,7 +38,6 @@ public static class LzmaDecoder
     private sealed class DecoderState
     {
         private const int NumStates = 12;
-        private const int PosStatesMax = 16;
         private const int NumLenToPosStates = 4;
         private const int StartPosModelIndex = 4;
         private const int EndPosModelIndex = 14;

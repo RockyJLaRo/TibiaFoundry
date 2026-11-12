@@ -8,7 +8,6 @@ using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.Compression;
 using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Houses;
-using TibiaFoundry.Core.Imaging;
 using TibiaFoundry.Core.Locations;
 using TibiaFoundry.Core.Map;
 using TibiaFoundry.Core.Protobuf;

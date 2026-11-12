@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using Google.Protobuf;
@@ -13,7 +12,6 @@ using TibiaFoundry.Core.Protobuf;
 using TibiaFoundry.Core.Settings;
 using TibiaFoundry.Core.Sounds;
 using TibiaFoundry.Core.Sprites;
-using TibiaFoundry.Core.StaticData;
 
 namespace TibiaFoundry.Tests;
 

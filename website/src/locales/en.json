@@ -311,6 +311,7 @@
   "new": {
     "kicker": "Release notes",
     "title": "What's new in {version}",
+    "fix4": "<b>9.0.4 – data that no longer depends on the language</b>: item properties in catalogs and the categories of exported folders are the same in every interface language (existing catalogs are read correctly as they are), folders directly on a drive work, and the queue keeps running when a window fails.",
     "fix3": "<b>9.0.3 – stability</b>: a damaged sprite sheet no longer closes the program from the Outfitter, and the Content Studio queue history stays small.",
     "fix2": "<b>9.0.2 – flavortext full stop</b>: the infobox's flavortext now ends with the full stop the game adds on Look, exactly as TibiaWiki writes it.",
     "fix1": "<b>9.0.1 – flavortext</b>: the object's look text from the client fills the infobox's flavortext.",

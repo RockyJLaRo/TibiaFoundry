@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.IO.Enumeration;
 using TibiaFoundry.Core.Localization;
 

@@ -102,7 +102,7 @@ public sealed class LibraryService : IDisposable
 
     /// <summary>
     /// Adds a saved file or folder to the library in the background. Folders with more than
-    /// <see cref="LibrarySettings.AutoAddMaxFiles"/> files are not added automatically; the status
+    /// <see cref="Core.Settings.LibrarySettings.AutoAddMaxFiles"/> files are not added automatically; the status
     /// bar says how to add them. Failures are logged and never interrupt the tool that saved.
     /// </summary>
     public void OnSaved(StatusLink link)

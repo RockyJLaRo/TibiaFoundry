@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Globalization;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Localization;

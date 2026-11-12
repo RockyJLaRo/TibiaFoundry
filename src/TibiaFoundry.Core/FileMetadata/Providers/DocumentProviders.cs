@@ -411,7 +411,6 @@ public sealed class PdfMetadataProvider : IMetadataProvider
 /// <summary>SVG drawings: the &lt;title&gt; and &lt;desc&gt; of the drawing (editable), its size and view box (read only).</summary>
 public sealed class SvgMetadataProvider : IMetadataProvider
 {
-    private static readonly XNamespace Svg = "http://www.w3.org/2000/svg";
 
     public string Id => "svg";
     public string Name => L.T("DocumentProviders.SVGDrawings");

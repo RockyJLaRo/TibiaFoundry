@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Formats.Tar;
 using System.Globalization;
 using System.IO.Compression;

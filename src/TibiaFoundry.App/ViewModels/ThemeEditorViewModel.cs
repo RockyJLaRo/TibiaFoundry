@@ -250,8 +250,6 @@ public sealed partial class ThemeEditorViewModel : ObservableObject
     /// <summary>The colors shown: the main ones, or all with "Show all colors".</summary>
     public IEnumerable<ThemeColorRow> VisibleColors => ShowAllColors ? Colors : Colors.Where(c => c.IsPrimary);
 
-    private IReadOnlyDictionary<string, ThemeColor> BasePalette(ThemeBase b) => ThemeManager.Engine?.BaseColors(b) ?? new Dictionary<string, ThemeColor>();
-
     private void RefreshColors()
     {
         var engine = ThemeManager.Engine;

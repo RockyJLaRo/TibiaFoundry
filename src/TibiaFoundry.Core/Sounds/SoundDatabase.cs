@@ -1,7 +1,6 @@
 using TibiaFoundry.Core.Compatibility;
 using System.Reflection;
 using Google.Protobuf;
-using Google.Protobuf.Collections;
 using Tibia.Protobuf.Sound;
 using TibiaFoundry.Core.Clients;
 using TibiaFoundry.Core.Common;

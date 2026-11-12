@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Collections.ObjectModel;
 using System.Data;
 using CommunityToolkit.Mvvm.ComponentModel;

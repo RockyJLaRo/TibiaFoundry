@@ -1,5 +1,4 @@
 using TibiaFoundry.Core.Common;
-using System.Net.Http;
 using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Scripts;

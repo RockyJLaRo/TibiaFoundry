@@ -9,7 +9,6 @@ using TibiaFoundry.Core.Compatibility;
 using TibiaFoundry.Core.Editing;
 using TibiaFoundry.Core.Locations;
 using TibiaFoundry.Core.Settings;
-using TibiaFoundry.Core.Sounds;
 using TibiaFoundry.Core.Sprites;
 
 namespace TibiaFoundry.Tests;

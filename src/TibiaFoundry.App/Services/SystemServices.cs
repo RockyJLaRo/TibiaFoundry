@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Media.Imaging;
 using TibiaFoundry.App.Infrastructure;
 using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Imaging;

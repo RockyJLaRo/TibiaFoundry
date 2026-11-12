@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Diagnostics;
 using System.IO.Compression;
 using ImageMagick;

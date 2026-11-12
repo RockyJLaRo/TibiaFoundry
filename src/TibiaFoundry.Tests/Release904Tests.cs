@@ -64,6 +64,31 @@ public sealed class Release904Tests
         foreach (var language in Languages.All) Assert.True(L.Table(language.Code).ContainsKey("ProcessingQueue.Failed"), language.Code);
     }
 
+    // ------------------------------------------------------------------ library search
+
+    [Fact]
+    public void SearchIdsReturnsTheSameAssetsInTheSameOrderAsSearch()
+    {
+        string dir = TestData.NewTempDirectory("library904");
+        var lib = AssetLibrary.Open(Path.Combine(dir, "Library"));
+        string files = Path.Combine(dir, "Files");
+        for (int i = 0; i < 12; i++)
+            AssetLibraryTests.Png(files, (i % 2 == 0 ? "Outfits/" : "Creatures/") + $"{100 + i}_Image.png", AssetLibraryTests.Square(0xFF000000u + (uint)(i * 20), 32 + i));
+        AssetIndexer.IndexFolder(lib, files, ct: TestContext.Current.CancellationToken);
+        lib.AddTags(lib.Search(new AssetQuery { Text = "104" }).Assets.Select(a => a.Id).ToList(), ["tagged"]);
+        foreach (var query in new[]
+                 {
+                     new AssetQuery(), new AssetQuery { Category = AssetCategories.Outfits }, new AssetQuery { Text = "10" }, new AssetQuery { Tag = "tagged" },
+                     new AssetQuery { Sort = AssetSort.Newest }, new AssetQuery { Sort = AssetSort.Id, MinWidth = 36 }, new AssetQuery { Text = "no such asset" },
+                 })
+        {
+            var expected = lib.Search(query with { Offset = 0, Limit = 100_000 }).Assets.Select(a => a.Id).ToList();
+            Assert.Equal(expected, lib.SearchIds(query));
+        }
+        Assert.Equal(12, lib.SearchIds(new AssetQuery()).Count);
+        Assert.Equal(12, lib.SearchIds(new AssetQuery { Limit = 3, Offset = 5 }).Count);   // every page, whatever page the query names
+    }
+
     // ------------------------------------------------------------------ thumbnails
 
     [Fact]

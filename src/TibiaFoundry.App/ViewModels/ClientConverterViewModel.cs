@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,7 +8,6 @@ using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Legacy;
 using TibiaFoundry.Core.Settings;
-using TibiaFoundry.Core.Tools;
 using TibiaFoundry.Core.Localization;
 
 namespace TibiaFoundry.App.ViewModels;

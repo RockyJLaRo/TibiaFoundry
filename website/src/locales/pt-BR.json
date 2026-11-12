@@ -346,6 +346,7 @@
   "new": {
     "kicker": "Notas da versão",
     "title": "Novidades da {version}",
+    "fix4": "<b>9.0.4 – dados que não dependem mais do idioma</b>: as propriedades dos itens nos catálogos e as categorias das pastas exportadas são as mesmas em todos os idiomas da interface (os catálogos existentes são lidos corretamente como estão), pastas diretamente em uma unidade funcionam e a fila continua trabalhando quando uma janela falha.",
     "fix3": "<b>9.0.3 – estabilidade</b>: uma folha de sprites danificada não fecha mais o programa no Outfitter, e o histórico da fila do Content Studio continua pequeno.",
     "fix2": "<b>9.0.2 – ponto final no flavortext</b>: o flavortext da infobox agora termina com o ponto que o jogo adiciona ao olhar (Look), exatamente como o TibiaWiki escreve.",
     "fix1": "<b>9.0.1 – flavortext</b>: o texto de descrição do objeto no cliente preenche o flavortext da infobox.",

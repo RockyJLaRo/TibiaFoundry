@@ -1,6 +1,5 @@
 using System.Text;
 using System.Text.RegularExpressions;
-using TibiaFoundry.Core.Localization;
 
 namespace TibiaFoundry.Core.Metadata;
 

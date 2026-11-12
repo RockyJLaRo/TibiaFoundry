@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Localization;
 namespace TibiaFoundry.Core.FileMetadata;
 
 /// <summary>

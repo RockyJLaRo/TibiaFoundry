@@ -1,7 +1,6 @@
 using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
-using System.Windows.Media;
 using TibiaFoundry.App.Services;
 using TibiaFoundry.App.Themes;
 using TibiaFoundry.Core.Localization;

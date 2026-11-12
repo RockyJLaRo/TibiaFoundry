@@ -2,7 +2,6 @@ using TibiaFoundry.App.Services;
 using TibiaFoundry.App.ViewModels;
 using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.FileOps;
-using TibiaFoundry.Core.Metadata;
 using System.Text.Json;
 using TibiaFoundry.Core.Settings;
 using TibiaFoundry.Core.Sprites;

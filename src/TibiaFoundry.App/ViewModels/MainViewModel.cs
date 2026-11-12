@@ -1,4 +1,3 @@
-using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.Compatibility;
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,7 +8,6 @@ using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Locations;
 using TibiaFoundry.Core.Localization;
 using TibiaFoundry.Core.Settings;
-using TibiaFoundry.Core.Tools;
 
 namespace TibiaFoundry.App.ViewModels;
 

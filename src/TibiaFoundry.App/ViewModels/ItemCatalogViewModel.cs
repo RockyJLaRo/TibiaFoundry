@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.Input;
 using TibiaFoundry.App.Services;
 using TibiaFoundry.Core.Assets;
 using TibiaFoundry.Core.Common;
-using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Items;
 using TibiaFoundry.Core.Wiki;

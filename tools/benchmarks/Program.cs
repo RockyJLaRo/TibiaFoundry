@@ -124,6 +124,12 @@ var scenarios = new (string Name, int Reps, Action Run)[]
         lib.Facets();
         lib.Statistics();
     }),
+    ("library-search-ids-x20", reps, () =>
+    {
+        // "Select all" and workflow steps: the IDs of every asset of the library (9.0.4).
+        var lib = AssetLibrary.Open(Path.Combine(work, "library-warm"));
+        for (int i = 0; i < 20; i++) lib.SearchIds(new AssetQuery());
+    }),
 };
 
 foreach (var (name, n, run) in scenarios)

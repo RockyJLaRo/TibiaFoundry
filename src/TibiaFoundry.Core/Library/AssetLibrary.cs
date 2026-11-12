@@ -4,7 +4,6 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.Data.Sqlite;
 using TibiaFoundry.Core.Common;
-using TibiaFoundry.Core.Localization;
 
 namespace TibiaFoundry.Core.Library;
 
@@ -321,6 +320,38 @@ public sealed class AssetLibrary
     /// <summary>One page of the assets matching <paramref name="q"/>, and the number of all matches.</summary>
     public AssetPage Search(AssetQuery q)
     {
+        var (filter, order, args) = BuildQuery(q);
+        using var c = Connect();
+        // 8.8.1: the number of matches comes with the page (a window count), so the filter (LIKE over names,
+        // paths, tags and fields) is evaluated once instead of twice; a page past the end still counts.
+        long total = -1;
+        var page = QueryAssets(c, $"SELECT {Prefixed("a")}, COUNT(*) OVER () FROM assets a{filter} ORDER BY {order} LIMIT {Math.Clamp(q.Limit, 1, 100_000)} OFFSET {Math.Max(0, q.Offset)}",
+            r => total = r.GetInt64(AssetColumnCount), args);
+        if (total < 0) total = Convert.ToInt64(Scalar(c, "SELECT COUNT(*) FROM assets a" + filter, args), CultureInfo.InvariantCulture);
+        return new AssetPage(page, (int)total);
+    }
+
+    /// <summary>
+    /// Every asset ID matching the query (all pages, at most 100,000), for "select all" and workflows.
+    /// 9.0.4: only the IDs are read. It used to build the complete record of every match (26 columns, then the
+    /// tags and custom fields of all of them) just to keep the IDs, and its callers then read the records again.
+    /// </summary>
+    public IReadOnlyList<long> SearchIds(AssetQuery q)
+    {
+        var (filter, order, args) = BuildQuery(q);
+        using var c = Connect();
+        using var cmd = c.CreateCommand();
+        cmd.CommandText = $"SELECT a.id FROM assets a{filter} ORDER BY {order} LIMIT 100000";
+        foreach (var (name, value) in args) cmd.Parameters.AddWithValue(name, value ?? DBNull.Value);
+        var ids = new List<long>();
+        using var r = cmd.ExecuteReader();
+        while (r.Read()) ids.Add(r.GetInt64(0));
+        return ids;
+    }
+
+    /// <summary>The WHERE clause (empty, or starting with " WHERE "), the ORDER BY expression and the parameters of a query.</summary>
+    private static (string Filter, string Order, (string Name, object? Value)[] Args) BuildQuery(AssetQuery q)
+    {
         var where = new List<string>();
         var args = new List<(string, object?)>();
         void Add(string condition, params (string, object?)[] values)
@@ -382,18 +413,8 @@ public sealed class AssetLibrary
                 AssetSort.Id => "CAST(a.original_id AS INTEGER), a.name COLLATE NOCASE",
                 _ => "a.name COLLATE NOCASE, a.id",
             };
-        using var c = Connect();
-        // 8.8.1: the number of matches comes with the page (a window count), so the filter (LIKE over names,
-        // paths, tags and fields) is evaluated once instead of twice; a page past the end still counts.
-        long total = -1;
-        var page = QueryAssets(c, $"SELECT {Prefixed("a")}, COUNT(*) OVER () FROM assets a{filter} ORDER BY {order} LIMIT {Math.Clamp(q.Limit, 1, 100_000)} OFFSET {Math.Max(0, q.Offset)}",
-            r => total = r.GetInt64(AssetColumnCount), args.ToArray());
-        if (total < 0) total = Convert.ToInt64(Scalar(c, "SELECT COUNT(*) FROM assets a" + filter, args.ToArray()), CultureInfo.InvariantCulture);
-        return new AssetPage(page, (int)total);
+        return (filter, order, args.ToArray());
     }
-
-    /// <summary>Every asset ID matching the query (all pages), for "select all" and workflows.</summary>
-    public IReadOnlyList<long> SearchIds(AssetQuery q) => Search(q with { Offset = 0, Limit = 100_000 }).Assets.Select(a => a.Id).ToList();
 
     public LibraryFacets Facets()
     {

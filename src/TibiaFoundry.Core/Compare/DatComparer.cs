@@ -2,7 +2,6 @@ using Google.Protobuf;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Tibia.Protobuf.Appearances;
-using Tibia.Protobuf.Map;
 using Tibia.Protobuf.Staticdata;
 using Tibia.Protobuf.Staticmapdata;
 using TibiaFoundry.Core.Appearances;

@@ -352,6 +352,7 @@
   "new": {
     "kicker": "Versionshinweise",
     "title": "Neu in {version}",
+    "fix4": "<b>9.0.4 – Daten unabhängig von der Sprache</b>: Item-Eigenschaften in Katalogen und die Kategorien exportierter Ordner sind in jeder Oberflächensprache gleich (bestehende Kataloge werden unverändert richtig gelesen), Ordner direkt auf einem Laufwerk funktionieren, und die Warteschlange läuft weiter, wenn ein Fenster einen Fehler meldet.",
     "fix3": "<b>9.0.3 – Stabilität</b>: Eine beschädigte Sprite-Datei schließt das Programm im Outfitter nicht mehr, und der Verlauf der Content-Studio-Warteschlange bleibt klein.",
     "fix2": "<b>9.0.2 – Punkt im flavortext</b>: Der flavortext der Infobox endet jetzt mit dem Punkt, den das Spiel beim Ansehen (Look) ergänzt – genau wie bei TibiaWiki.",
     "fix1": "<b>9.0.1 – flavortext</b>: Der Beschreibungstext des Objekts aus dem Client füllt den flavortext der Infobox.",

@@ -1,7 +1,6 @@
 using System.Collections.Concurrent;
 using System.Globalization;
 using System.Text;
-using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Localization;
 

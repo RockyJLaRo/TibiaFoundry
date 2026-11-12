@@ -1,5 +1,4 @@
 using System.Collections.Concurrent;
-using System.Text.Json;
 using TibiaFoundry.Core.Common;
 using TibiaFoundry.Core.FileOps;
 using TibiaFoundry.Core.Localization;

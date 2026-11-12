@@ -1,13 +1,10 @@
-using TibiaFoundry.Core.Common;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Text;
 using System.Windows.Media;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using TibiaFoundry.App.Infrastructure;
 using TibiaFoundry.App.Services;
-using TibiaFoundry.Core.Assets;
 using TibiaFoundry.Core.Diagnostics;
 using TibiaFoundry.Core.Editing;
 using TibiaFoundry.Core.FileOps;

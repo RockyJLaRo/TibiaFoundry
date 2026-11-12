@@ -183,7 +183,7 @@ public sealed class ScriptResult
 /// <summary>
 /// A built-in file utility of Utilities → Scripts. Scripts are registered code, not user-supplied
 /// programs: they never run automatically, validate their inputs, report progress, can be
-/// cancelled, and — when they change files — first produce a preview (<see cref="Plan"/>) that is
+/// cancelled, and — when they change files — first produce a preview (<see cref="ScriptResult.Plan"/>) that is
 /// applied only after the user confirms it.
 /// </summary>
 public abstract class Script

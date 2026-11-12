@@ -73,7 +73,7 @@ public static class ExternalEndpoints
     public static string TibiaMapsUrl(long x, long y, long z) => string.Create(CultureInfo.InvariantCulture, $"https://tibiamaps.io/map#{x},{y},{z}:0");
 
     /// <summary>Default base address of the test-server asset files (from the original's hidden LZMA tool).</summary>
-    public const string TestServerAssetsBase = "http://static.test.tibia.com/launcher/assets-test/assets/";
+    public const string TestServerAssetsBase = "https://static.test.tibia.com/launcher/assets-test/assets/";
 
     // ------------------------------------------------------------------ About > Credits (exactly these three)
     public const string CreditTibia = "http://tibia.com/";
