@@ -1,0 +1,4 @@
+{
+  "comment": "Optional math content packs (see docs/MATH.md). List pack files in this folder, e.g. \"my-lessons.json\". They are loaded at start-up and saved for offline play; no rebuild needed.",
+  "packs": []
+}

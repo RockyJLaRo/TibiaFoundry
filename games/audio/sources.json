@@ -1,0 +1,4 @@
+{
+  "comment": "Where the game looks for optional voice downloads (tried in order; a relative address means a copy hosted with the game). Edit to add a mirror; no code change needed. See docs/AUDIO_DOWNLOADS.md.",
+  "catalogs": ["https://rockyjlaro.github.io/pixel-quill-voices/catalog.json"]
+}
