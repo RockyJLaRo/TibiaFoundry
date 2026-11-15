@@ -36,12 +36,12 @@
 <meta property="og:locale:alternate" content="es_LA">
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:title" content="Tibia Foundry 9.0.4 – wszystkie narzędzia do Tibii w jednym programie">
-<meta property="og:description" content="Wyciągaj, renderuj, porządkuj i publikuj oficjalne zasoby Tibii: przeszukiwalna Asset Library i automatyczne galerie dla każdego fansite&#x27;u i wiki. Za darmo, lokalnie, na Windows.">
+<meta property="og:description" content="Wyciągaj, renderuj, porządkuj i publikuj oficjalne zasoby Tibii: przeszukiwalna Biblioteka zasobów i automatyczne galerie dla każdego fansite&#x27;u i wiki. Za darmo, lokalnie, na Windows.">
 <meta property="og:url" content="https://tibiafoundry.com/pl/">
 <meta property="og:image" content="https://tibiafoundry.com/og-image-pl.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Tibia Foundry: Asset Library z miniaturami potworów">
+<meta property="og:image:alt" content="Tibia Foundry: Biblioteka zasobów z miniaturami potworów">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tibia Foundry 9.0.4 – wszystkie narzędzia do Tibii w jednym programie">
 <meta name="twitter:description" content="Wyciągaj, renderuj, porządkuj i publikuj oficjalne zasoby Tibii. Za darmo, lokalnie, na Windows.">
@@ -121,7 +121,7 @@ background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: sat
 border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; gap: 18px; height: 100%; }
-.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
 .brand img { width: 32px; height: 32px; }
 .brand small { font-weight: 500; color: var(--text-3); font-size: 12px; margin-left: 2px; }
@@ -324,13 +324,14 @@ html { scroll-behavior: auto; }
 .card, .btn { transition: none; }
 .card:hover, .btn:hover { transform: none; }
 }
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
 .nav { display: none; position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column; padding: 10px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
 .site-header.open .nav { display: flex; }
 .nav a { padding: 11px 12px; font-size: 16px; }
 .menu-btn { display: inline-grid; }
 .header-actions .btn-sm { display: none; }
 .header-actions { margin-left: auto; }
+.brand { flex-shrink: 1; }
 }
 @media (max-width: 960px) {
 .grid-3, .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -392,8 +393,8 @@ html { scroll-behavior: auto; }
     <a class="brand" href="#top" aria-label="Strona główna Tibia Foundry"><img class="pixel" src="../img/logo.png" alt="" width="32" height="32"> Tibia Foundry <small>9.0.4</small></a>
     <nav class="nav" id="nav" aria-label="Sekcje">
       <a href="#features">Funkcje</a>
-      <a href="#library">Asset Library</a>
-      <a href="#studio">Content Studio</a>
+      <a href="#library">Biblioteka zasobów</a>
+      <a href="#studio">Studio treści</a>
       <a href="#publishing">Publikowanie</a>
       <a href="#screens">Zrzuty ekranu</a>
       <a href="#download">Pobierz</a>
@@ -446,11 +447,11 @@ html { scroll-behavior: auto; }
       </div>
     </div>
     <div class="hero-shot">
-      <button class="shot-btn themed" type="button" data-zoom="Asset Library: prawdziwe zasoby klienta, miniatury, kolekcje i szczegóły">
+      <button class="shot-btn themed" type="button" data-zoom="Biblioteka zasobów: prawdziwe zasoby klienta, miniatury, kolekcje i szczegóły">
         <div class="window">
-          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.4 — Asset Library</span></div>
-          <img class="shot-dark" src="../img/pl/asset-library-dark.webp" alt="Strona Asset Library w ciemnym motywie: kategorie, kolekcje, siatka miniatur przedmiotów i potworów oraz szczegóły wybranego zasobu" width="1586" height="893" decoding="async">
-          <img class="shot-light" src="../img/pl/asset-library-light.webp" alt="Strona Asset Library w jasnym motywie" width="1586" height="893" decoding="async">
+          <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.4 — Biblioteka zasobów</span></div>
+          <img class="shot-dark" src="../img/screens/asset-library-pl-dark.webp" alt="Strona „Biblioteka zasobów” w ciemnym motywie: kategorie, kolekcje, siatka miniatur przedmiotów i potworów oraz szczegóły wybranego zasobu" width="1586" height="893" decoding="async">
+          <img class="shot-light" src="../img/screens/asset-library-pl-light.webp" alt="Strona „Biblioteka zasobów” w jasnym motywie" width="1586" height="893" decoding="async">
         </div>
       </button>
     </div>
@@ -463,7 +464,7 @@ html { scroll-behavior: auto; }
     <div class="spot-text reveal">
       <div class="kicker">Nowość w 9.0.4 · infoboxy TibiaWiki</div>
       <h2>Infobox artykułu o przedmiocie, wypełniony danymi klienta</h2>
-      <p>Wybierz obiekt w Appearances i otwórz <b>Wiki infobox</b>: Tibia Foundry tworzy <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> TibiaWiki z oficjalnych danych klienta, zgodnie z parametrami szablonu i konwencjami wiki. Sprawdź go, dopisz to, co wiesz tylko ty, i wklej do artykułu.</p>
+      <p>Wybierz obiekt na stronie „Wyglądy” i otwórz <b>Infobox wiki</b>: Tibia Foundry tworzy <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> TibiaWiki z oficjalnych danych klienta, zgodnie z parametrami szablonu i konwencjami wiki. Sprawdź go, dopisz to, co wiesz tylko ty, i wklej do artykułu.</p>
       <ul class="checks">
         <li><svg><use href="#i-check"/></svg><span><b>Z klienta</b>: ID, nazwy, opis przedmiotu (flavortext), slot, poziom i profesje, ręce i rodzaj broni, sloty imbuementów, klasa ulepszenia, właściwości obiektu, światło i kolor na mapie, czy się stackuje i czy jest na rynku.</span></li>
         <li><svg><use href="#i-check"/></svg><span><b>Handel z NPC</b>: najlepsze ceny skupu i sprzedaży oraz wszyscy handlarze, z własną ceną, gdy jest inna.</span></li>
@@ -473,7 +474,7 @@ html { scroll-behavior: auto; }
     </div>
     <figure class="reveal">
       <div class="window">
-        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.4 — Appearances → Wiki infobox</span></div>
+        <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.4 — Wyglądy → Infobox wiki</span></div>
         <pre class="wiki-code" tabindex="0" aria-label="Wygenerowany kod infoboxu"><code><!--INFOBOX-START--><span class="m">&#123;&#123;Infobox Object|List=&#123;&#123;&#123;1|&#125;&#125;&#125;|GetValue=&#123;&#123;&#123;GetValue|&#125;&#125;&#125;</span>
 | <span class="k">name</span>          = Magic Plate Armor
 | <span class="k">actualname</span>    = magic plate armor
@@ -533,14 +534,14 @@ html { scroll-behavior: auto; }
       <p>23 narzędzia pogrupowane według zadań, korzystające z jednego klienta, jednej biblioteki i jednego zestawu reguł eksportu.</p>
     </div>
     <div class="grid grid-3">
-      <article class="card reveal"><div class="ico"><svg><use href="#i-client"/></svg></div><h3>Zarządzanie klientami</h3><p>Znajduje zainstalowane klienty serwera głównego i testowego, wczytuje foldery klienta z dowolnego miejsca i oszczędnie archiwizuje każdą wersję – sprawdzoną plik po pliku i możliwą do odtworzenia później.</p><p class="tools">Clients · Client Installation Rebuilder · Compatibility</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-extract"/></svg></div><h3>Wyciąganie zasobów</h3><p>Przezroczyste sprite'y lub całe arkusze sprite'ów, wszystkie obiekty, outfity, efekty i pociski, dane potworów i questów oraz dźwięki i muzyka klienta.</p><p class="tools">Extract Sprites · Appearances · Static Data · Sounds</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>Tworzenie grafik</h3><p>Animowane GIF-y z ustawieniami dla fansite'ów, kolorowe outfity z addonami i mountami, animacje potworów oraz powiększenia co do piksela od 1× do 8×.</p><p class="tools">Appearances (Outfitter) · Advanced Tools</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>Edycja zasobów</h3><p>Przeglądaj i edytuj kopię oficjalnych zasobów, wyciągaj i odbudowuj pliki zasobów Qt, zapisuj klasyczne kopie Tibia.dat/.spr i edytuj metadane plików.</p><p class="tools">Assets Editor · RCC Editor · Client Converter · File Metadata</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>Mapy i domy</h3><p>Obrazy map, obszary i pozycje NPC, mapy w wysokiej rozdzielczości do poradników oraz obrazki domów do każdego artykułu o domu.</p><p class="tools">Map Tools · House Images</p></article>
-      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>Zarządzanie zasobami</h3><p>Przeszukiwalna biblioteka wszystkich obrazków, animacji i dźwięków – kolekcje, tagi, wersje, wykrywanie duplikatów – z automatycznie dodawanym każdym eksportem.</p><p class="tools">Asset Library</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>Procesy tworzenia treści</h3><p>Projekty wielokrotnego użytku, które tworzą galerie potworów, outfitów i przedmiotów, zasoby aktualizacji i obrazki do wiki – skonfigurowane raz, uruchamiane ponownie przy każdej aktualizacji.</p><p class="tools">Content Studio</p></article>
-      <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>Generowanie wsadowe</h3><p>Setki obrazków za jednym razem, w kolejce w tle z postępem, anulowaniem i ponawianiem; skrypty do masowej zmiany nazw, rozmiaru i konwersji.</p><p class="tools">Kolejka Content Studio · Skrypty</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-client"/></svg></div><h3>Zarządzanie klientami</h3><p>Znajduje zainstalowane klienty serwera głównego i testowego, wczytuje foldery klienta z dowolnego miejsca i oszczędnie archiwizuje każdą wersję – sprawdzoną plik po pliku i możliwą do odtworzenia później.</p><p class="tools">Klienci · Odtwarzanie instalacji klienta · Zgodność</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-extract"/></svg></div><h3>Wyciąganie zasobów</h3><p>Przezroczyste sprite'y lub całe arkusze sprite'ów, wszystkie obiekty, outfity, efekty i pociski, dane potworów i questów oraz dźwięki i muzyka klienta.</p><p class="tools">Wyodrębnianie sprite'ów · Wyglądy · Dane statyczne · Dźwięki</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-brush"/></svg></div><h3>Tworzenie grafik</h3><p>Animowane GIF-y z ustawieniami dla fansite'ów, kolorowe outfity z addonami i mountami, animacje potworów oraz powiększenia co do piksela od 1× do 8×.</p><p class="tools">Wyglądy (Outfitter) · Narzędzia zaawansowane</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-edit"/></svg></div><h3>Edycja zasobów</h3><p>Przeglądaj i edytuj kopię oficjalnych zasobów, wyciągaj i odbudowuj pliki zasobów Qt, zapisuj klasyczne kopie Tibia.dat/.spr i edytuj metadane plików.</p><p class="tools">Edytor zasobów · Edytor RCC · Konwerter klienta · Metadane plików</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-map"/></svg></div><h3>Mapy i domy</h3><p>Obrazy map, obszary i pozycje NPC, mapy w wysokiej rozdzielczości do poradników oraz obrazki domów do każdego artykułu o domu.</p><p class="tools">Narzędzia map · Obrazy domów</p></article>
+      <article class="card reveal"><div class="ico gold"><svg><use href="#i-library"/></svg></div><h3>Zarządzanie zasobami</h3><p>Przeszukiwalna biblioteka wszystkich obrazków, animacji i dźwięków – kolekcje, tagi, wersje, wykrywanie duplikatów – z automatycznie dodawanym każdym eksportem.</p><p class="tools">Biblioteka zasobów</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-flow"/></svg></div><h3>Procesy tworzenia treści</h3><p>Projekty wielokrotnego użytku, które tworzą galerie potworów, outfitów i przedmiotów, zasoby aktualizacji i obrazki do wiki – skonfigurowane raz, uruchamiane ponownie przy każdej aktualizacji.</p><p class="tools">Studio treści</p></article>
+      <article class="card reveal"><div class="ico"><svg><use href="#i-batch"/></svg></div><h3>Generowanie wsadowe</h3><p>Setki obrazków za jednym razem, w kolejce w tle z postępem, anulowaniem i ponawianiem; skrypty do masowej zmiany nazw, rozmiaru i konwersji.</p><p class="tools">Kolejka „Studio treści” · Skrypty</p></article>
       <article class="card reveal"><div class="ico gold"><svg><use href="#i-globe"/></svg></div><h3>Publikowanie na dowolnej stronie</h3><p>Profile dla TibiaWiki, Twojego fansite'u, galerii, artykułów lub archiwum: rozmiary, formaty, nazwy, foldery, manifesty, informacje o autorach i fragmenty kodu.</p><p class="tools">Profile publikowania · Galerie HTML</p></article>
     </div>
   </div>
@@ -562,8 +563,8 @@ html { scroll-behavior: auto; }
       </ul>
     </div>
     <div class="reveal">
-      <button class="shot-btn themed" type="button" data-zoom="Asset Library">
-        <div class="window"><img class="shot-dark" src="../img/pl/asset-library-detail-dark.webp" alt="Zbliżenie Asset Library: miniatury przedmiotów i potworów oraz szczegóły wybranego zasobu" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/asset-library-detail-light.webp" alt="Zbliżenie Asset Library w jasnym motywie" width="1092" height="595" loading="lazy" decoding="async"></div>
+      <button class="shot-btn themed" type="button" data-zoom="Biblioteka zasobów">
+        <div class="window"><img class="shot-dark" src="../img/screens/asset-library-detail-pl-dark.webp" alt="Zbliżenie strony „Biblioteka zasobów”: miniatury przedmiotów i potworów oraz szczegóły wybranego zasobu" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/asset-library-detail-pl-light.webp" alt="Zbliżenie strony „Biblioteka zasobów” w jasnym motywie" width="1092" height="595" loading="lazy" decoding="async"></div>
       </button>
     </div>
   </div>
@@ -574,7 +575,7 @@ html { scroll-behavior: auto; }
   <div class="wrap">
     <div class="spotlight reverse">
       <div class="spot-text reveal">
-        <div class="kicker">Content Studio</div>
+        <div class="kicker">Studio treści</div>
         <h2>Cała galeria jednym kliknięciem – i ponownie po każdej aktualizacji</h2>
         <p>Wybierz, co chcesz stworzyć, dostosuj kroki, wybierz profil swojej strony i uruchom. Tibia Foundry w tle renderuje, skaluje, nazywa, sortuje, opisuje i pakuje wszystko.</p>
         <ul class="checks">
@@ -585,8 +586,8 @@ html { scroll-behavior: auto; }
         </ul>
       </div>
       <div class="reveal">
-        <button class="shot-btn themed" type="button" data-zoom="Content Studio: projekt galerii potworów i jego proces">
-          <div class="window"><img class="shot-dark" src="../img/pl/content-studio-dark.webp" alt="Content Studio z projektem galerii potworów, krokami procesu i listą potworów" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/content-studio-light.webp" alt="Content Studio w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div>
+        <button class="shot-btn themed" type="button" data-zoom="Studio treści: projekt galerii potworów i jego proces">
+          <div class="window"><img class="shot-dark" src="../img/screens/content-studio-pl-dark.webp" alt="Studio treści z projektem galerii potworów, krokami procesu i listą potworów" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/content-studio-pl-light.webp" alt="Studio treści w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div>
         </button>
       </div>
     </div>
@@ -655,96 +656,101 @@ html { scroll-behavior: auto; }
       <p>Wykonane w programie z zainstalowanym oficjalnym klientem – wyświetlane w motywie, w którym oglądasz tę stronę. Kliknij dowolny zrzut, aby go powiększyć.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Zrzuty ekranu">
-      <button class="tab" role="tab" id="t-home" aria-controls="p-home" aria-selected="true">Home</button>
-      <button class="tab" role="tab" id="t-asset-library" aria-controls="p-asset-library" aria-selected="false" tabindex="-1">Asset Library</button>
+      <button class="tab" role="tab" id="t-home" aria-controls="p-home" aria-selected="true">Start</button>
+      <button class="tab" role="tab" id="t-asset-library" aria-controls="p-asset-library" aria-selected="false" tabindex="-1">Biblioteka zasobów</button>
       <button class="tab" role="tab" id="t-duplicates" aria-controls="p-duplicates" aria-selected="false" tabindex="-1">Duplikaty</button>
-      <button class="tab" role="tab" id="t-content-studio" aria-controls="p-content-studio" aria-selected="false" tabindex="-1">Content Studio</button>
-      <button class="tab" role="tab" id="t-profiles" aria-controls="p-profiles" aria-selected="false" tabindex="-1">Profile publikowania</button>
-      <button class="tab" role="tab" id="t-appearances" aria-controls="p-appearances" aria-selected="false" tabindex="-1">Appearances</button>
-      <button class="tab" role="tab" id="t-extract-sprites" aria-controls="p-extract-sprites" aria-selected="false" tabindex="-1">Extract Sprites</button>
+      <button class="tab" role="tab" id="t-content-studio" aria-controls="p-content-studio" aria-selected="false" tabindex="-1">Studio treści</button>
+      <button class="tab" role="tab" id="t-profiles" aria-controls="p-profiles" aria-selected="false" tabindex="-1">Profile publikacji</button>
+      <button class="tab" role="tab" id="t-appearances" aria-controls="p-appearances" aria-selected="false" tabindex="-1">Wyglądy</button>
+      <button class="tab" role="tab" id="t-infobox" aria-controls="p-infobox" aria-selected="false" tabindex="-1">Infobox wiki</button>
+      <button class="tab" role="tab" id="t-extract-sprites" aria-controls="p-extract-sprites" aria-selected="false" tabindex="-1">Wyodrębnianie sprite'ów</button>
       <button class="tab" role="tab" id="t-static-data" aria-controls="p-static-data" aria-selected="false" tabindex="-1">Potwory</button>
-      <button class="tab" role="tab" id="t-item-catalog" aria-controls="p-item-catalog" aria-selected="false" tabindex="-1">Item Catalog</button>
-      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare</button>
-      <button class="tab" role="tab" id="t-map-tools" aria-controls="p-map-tools" aria-selected="false" tabindex="-1">Map Tools</button>
-      <button class="tab" role="tab" id="t-house-images" aria-controls="p-house-images" aria-selected="false" tabindex="-1">House Images</button>
-      <button class="tab" role="tab" id="t-sounds" aria-controls="p-sounds" aria-selected="false" tabindex="-1">Sounds</button>
-      <button class="tab" role="tab" id="t-assets-editor" aria-controls="p-assets-editor" aria-selected="false" tabindex="-1">Assets Editor</button>
-      <button class="tab" role="tab" id="t-rcc-editor" aria-controls="p-rcc-editor" aria-selected="false" tabindex="-1">RCC Editor</button>
-      <button class="tab" role="tab" id="t-clients" aria-controls="p-clients" aria-selected="false" tabindex="-1">Clients</button>
-      <button class="tab" role="tab" id="t-settings" aria-controls="p-settings" aria-selected="false" tabindex="-1">Settings</button>
-      <button class="tab" role="tab" id="t-settings-attribution" aria-controls="p-settings-attribution" aria-selected="false" tabindex="-1">Twój podpis</button>
+      <button class="tab" role="tab" id="t-item-catalog" aria-controls="p-item-catalog" aria-selected="false" tabindex="-1">Katalog przedmiotów</button>
+      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Porównaj pliki</button>
+      <button class="tab" role="tab" id="t-map-tools" aria-controls="p-map-tools" aria-selected="false" tabindex="-1">Narzędzia map</button>
+      <button class="tab" role="tab" id="t-house-images" aria-controls="p-house-images" aria-selected="false" tabindex="-1">Obrazy domów</button>
+      <button class="tab" role="tab" id="t-sounds" aria-controls="p-sounds" aria-selected="false" tabindex="-1">Dźwięki</button>
+      <button class="tab" role="tab" id="t-assets-editor" aria-controls="p-assets-editor" aria-selected="false" tabindex="-1">Edytor zasobów</button>
+      <button class="tab" role="tab" id="t-rcc-editor" aria-controls="p-rcc-editor" aria-selected="false" tabindex="-1">Edytor RCC</button>
+      <button class="tab" role="tab" id="t-clients" aria-controls="p-clients" aria-selected="false" tabindex="-1">Klienci</button>
+      <button class="tab" role="tab" id="t-settings" aria-controls="p-settings" aria-selected="false" tabindex="-1">Ustawienia</button>
+      <button class="tab" role="tab" id="t-settings-attribution" aria-controls="p-settings-attribution" aria-selected="false" tabindex="-1">Przypisanie autorstwa</button>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-home" aria-labelledby="t-home">
-      <button class="shot-btn themed" type="button" data-zoom="Home: używany klient, ostatnie narzędzia i eksporty oraz procesy krok po kroku dla fansite&#x27;ów, które otwierają właściwe narzędzie."><div class="window"><img class="shot-dark" src="../img/pl/home-dark.webp" alt="Strona „Home” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/home-light.webp" alt="Strona „Home” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Home: używany klient, ostatnie narzędzia i eksporty oraz procesy krok po kroku dla fansite'ów, które otwierają właściwe narzędzie.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Start: używany klient, ostatnie narzędzia i eksporty oraz procesy krok po kroku dla fansite&#x27;ów, które otwierają właściwe narzędzie."><div class="window"><img class="shot-dark" src="../img/screens/home-pl-dark.webp" alt="Strona „Start” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/home-pl-light.webp" alt="Strona „Start” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Start: używany klient, ostatnie narzędzia i eksporty oraz procesy krok po kroku dla fansite'ów, które otwierają właściwe narzędzie.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-asset-library" aria-labelledby="t-asset-library" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Asset Library: prawdziwe zasoby klienta z miniaturami, kategoriami, kolekcjami i edytowalnymi szczegółami – tutaj wyszukiwanie „dragon”."><div class="window"><img class="shot-dark" src="../img/pl/asset-library-dark.webp" alt="Strona „Asset Library” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/asset-library-light.webp" alt="Strona „Asset Library” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Asset Library: prawdziwe zasoby klienta z miniaturami, kategoriami, kolekcjami i edytowalnymi szczegółami – tutaj wyszukiwanie „dragon”.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Biblioteka zasobów: prawdziwe zasoby klienta z miniaturami, kategoriami, kolekcjami i edytowalnymi szczegółami – tutaj wyszukiwanie „dragon”."><div class="window"><img class="shot-dark" src="../img/screens/asset-library-pl-dark.webp" alt="Strona „Biblioteka zasobów” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/asset-library-pl-light.webp" alt="Strona „Biblioteka zasobów” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Biblioteka zasobów: prawdziwe zasoby klienta z miniaturami, kategoriami, kolekcjami i edytowalnymi szczegółami – tutaj wyszukiwanie „dragon”.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-duplicates" aria-labelledby="t-duplicates" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Wyszukiwarka duplikatów: identyczne pliki, ta sama grafika w innych plikach i podobne obrazki są zgłaszane – nic nie zostaje usunięte za Ciebie."><div class="window"><img class="shot-dark" src="../img/pl/duplicates-dark.webp" alt="Strona „Asset Library – Duplicates” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/duplicates-light.webp" alt="Strona „Asset Library – Duplicates” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Wyszukiwarka duplikatów: identyczne pliki, ta sama grafika w innych plikach i podobne obrazki są zgłaszane – nic nie zostaje usunięte za Ciebie."><div class="window"><img class="shot-dark" src="../img/screens/duplicates-pl-dark.webp" alt="Strona „Biblioteka zasobów → Duplikaty” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/duplicates-pl-light.webp" alt="Strona „Biblioteka zasobów → Duplikaty” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Wyszukiwarka duplikatów: identyczne pliki, ta sama grafika w innych plikach i podobne obrazki są zgłaszane – nic nie zostaje usunięte za Ciebie.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-content-studio" aria-labelledby="t-content-studio" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Content Studio: projekt galerii potworów – renderowanie, skalowanie, płótno, opisy, foldery, arkusz kontaktowy i manifesty."><div class="window"><img class="shot-dark" src="../img/pl/content-studio-dark.webp" alt="Strona „Content Studio” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/content-studio-light.webp" alt="Strona „Content Studio” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Content Studio: projekt galerii potworów – renderowanie, skalowanie, płótno, opisy, foldery, arkusz kontaktowy i manifesty.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Studio treści: projekt galerii potworów – renderowanie, skalowanie, płótno, opisy, foldery, arkusz kontaktowy i manifesty."><div class="window"><img class="shot-dark" src="../img/screens/content-studio-pl-dark.webp" alt="Strona „Studio treści” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/content-studio-pl-light.webp" alt="Strona „Studio treści” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Studio treści: projekt galerii potworów – renderowanie, skalowanie, płótno, opisy, foldery, arkusz kontaktowy i manifesty.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-profiles" aria-labelledby="t-profiles" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Profile publikowania: skala, płótno, format i szablony nazw plików z podglądem na żywo, dla każdej strony, na której publikujesz."><div class="window"><img class="shot-dark" src="../img/pl/profiles-dark.webp" alt="Strona „Content Studio – Publishing profiles” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/profiles-light.webp" alt="Strona „Content Studio – Publishing profiles” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Profile publikowania: skala, płótno, format i szablony nazw plików z podglądem na żywo, dla każdej strony, na której publikujesz.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Profile publikacji: skala, płótno, format i szablony nazw plików z podglądem na żywo, dla każdej strony, na której publikujesz."><div class="window"><img class="shot-dark" src="../img/screens/profiles-pl-dark.webp" alt="Strona „Studio treści → Profile publikacji” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/profiles-pl-light.webp" alt="Strona „Studio treści → Profile publikacji” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Profile publikacji: skala, płótno, format i szablony nazw plików z podglądem na żywo, dla każdej strony, na której publikujesz.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-appearances" aria-labelledby="t-appearances" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Appearances: ponad 43 000 obiektów, outfitów, efektów i pocisków; Outfitter renderuje outfit z oboma addonami i mountem."><div class="window"><img class="shot-dark" src="../img/pl/appearances-dark.webp" alt="Strona „Appearances” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/appearances-light.webp" alt="Strona „Appearances” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Appearances: ponad 43 000 obiektów, outfitów, efektów i pocisków; Outfitter renderuje outfit z oboma addonami i mountem.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Wyglądy: ponad 43 000 obiektów, outfitów, efektów i pocisków; Outfitter renderuje outfit z oboma addonami i mountem."><div class="window"><img class="shot-dark" src="../img/screens/appearances-pl-dark.webp" alt="Strona „Wyglądy” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/appearances-pl-light.webp" alt="Strona „Wyglądy” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Wyglądy: ponad 43 000 obiektów, outfitów, efektów i pocisków; Outfitter renderuje outfit z oboma addonami i mountem.</p>
+    </div>
+    <div class="tab-panel" role="tabpanel" id="p-infobox" aria-labelledby="t-infobox" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Infobox wiki: infobox TibiaWiki wybranego obiektu – tutaj Magic Plate Armor – ze źródłem każdej wartości, do edycji przed skopiowaniem."><div class="window"><img class="shot-dark" src="../img/screens/infobox-pl-dark.webp" alt="Strona „Wyglądy → Infobox wiki” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/infobox-pl-light.webp" alt="Strona „Wyglądy → Infobox wiki” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Infobox wiki: infobox TibiaWiki wybranego obiektu – tutaj Magic Plate Armor – ze źródłem każdej wartości, do edycji przed skopiowaniem.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-extract-sprites" aria-labelledby="t-extract-sprites" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Extract Sprites: wszystkie arkusze sprite&#x27;ów klienta, ustawione w kolejce według rozmiaru i zapisane jako przezroczyste pliki PNG lub całe arkusze."><div class="window"><img class="shot-dark" src="../img/pl/extract-sprites-dark.webp" alt="Strona „Extract Sprites” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/extract-sprites-light.webp" alt="Strona „Extract Sprites” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Extract Sprites: wszystkie arkusze sprite'ów klienta, ustawione w kolejce według rozmiaru i zapisane jako przezroczyste pliki PNG lub całe arkusze.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Wyodrębnianie sprite&#x27;ów: wszystkie arkusze sprite&#x27;ów klienta, ustawione w kolejce według rozmiaru i zapisane jako przezroczyste pliki PNG lub całe arkusze."><div class="window"><img class="shot-dark" src="../img/screens/extract-sprites-pl-dark.webp" alt="Strona „Wyodrębnianie sprite&#x27;ów” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/extract-sprites-pl-light.webp" alt="Strona „Wyodrębnianie sprite&#x27;ów” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Wyodrębnianie sprite'ów: wszystkie arkusze sprite'ów klienta, ustawione w kolejce według rozmiaru i zapisane jako przezroczyste pliki PNG lub całe arkusze.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-static-data" aria-labelledby="t-static-data" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Static Data: potwory, bossowie, osiągnięcia, domy i questy, z animowanymi podglądami i galerią listy jednym kliknięciem."><div class="window"><img class="shot-dark" src="../img/pl/static-data-dark.webp" alt="Strona „Static Data” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/static-data-light.webp" alt="Strona „Static Data” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Static Data: potwory, bossowie, osiągnięcia, domy i questy, z animowanymi podglądami i galerią listy jednym kliknięciem.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Dane statyczne: potwory, bossowie, osiągnięcia, domy i questy, z animowanymi podglądami i galerią listy jednym kliknięciem."><div class="window"><img class="shot-dark" src="../img/screens/static-data-pl-dark.webp" alt="Strona „Dane statyczne → Potwory” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/static-data-pl-light.webp" alt="Strona „Dane statyczne → Potwory” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Dane statyczne: potwory, bossowie, osiągnięcia, domy i questy, z animowanymi podglądami i galerią listy jednym kliknięciem.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-item-catalog" aria-labelledby="t-item-catalog" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Item Catalog: nazwy i ID przedmiotów z klienta, TibiaWiki i innych źródeł, rozdzielone według źródła, z eksportem."><div class="window"><img class="shot-dark" src="../img/pl/item-catalog-dark.webp" alt="Strona „Item Catalog” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/item-catalog-light.webp" alt="Strona „Item Catalog” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Item Catalog: nazwy i ID przedmiotów z klienta, TibiaWiki i innych źródeł, rozdzielone według źródła, z eksportem.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Katalog przedmiotów: nazwy i ID przedmiotów z klienta, TibiaWiki i innych źródeł, rozdzielone według źródła, z eksportem."><div class="window"><img class="shot-dark" src="../img/screens/item-catalog-pl-dark.webp" alt="Strona „Katalog przedmiotów” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/item-catalog-pl-light.webp" alt="Strona „Katalog przedmiotów” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Katalog przedmiotów: nazwy i ID przedmiotów z klienta, TibiaWiki i innych źródeł, rozdzielone według źródła, z eksportem.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-compare" aria-labelledby="t-compare" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Compare Files: co się zmieniło między dwiema wersjami klienta, obiekt po obiekcie – punkt wyjścia do artykułów o aktualizacjach."><div class="window"><img class="shot-dark" src="../img/pl/compare-dark.webp" alt="Strona „Compare Files” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/compare-light.webp" alt="Strona „Compare Files” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Compare Files: co się zmieniło między dwiema wersjami klienta, obiekt po obiekcie – punkt wyjścia do artykułów o aktualizacjach.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Porównaj pliki: co się zmieniło między dwiema wersjami klienta, obiekt po obiekcie – punkt wyjścia do artykułów o aktualizacjach."><div class="window"><img class="shot-dark" src="../img/screens/compare-pl-dark.webp" alt="Strona „Porównaj pliki” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/compare-pl-light.webp" alt="Strona „Porównaj pliki” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Porównaj pliki: co się zmieniło między dwiema wersjami klienta, obiekt po obiekcie – punkt wyjścia do artykułów o aktualizacjach.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-map-tools" aria-labelledby="t-map-tools" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Map Tools: obszary, NPC i pliki map, mapy w wysokiej rozdzielczości i kafelki minimapy."><div class="window"><img class="shot-dark" src="../img/pl/map-tools-dark.webp" alt="Strona „Map Tools” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/map-tools-light.webp" alt="Strona „Map Tools” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Map Tools: obszary, NPC i pliki map, mapy w wysokiej rozdzielczości i kafelki minimapy.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Narzędzia map: obszary, NPC i pliki map, mapy w wysokiej rozdzielczości i kafelki minimapy."><div class="window"><img class="shot-dark" src="../img/screens/map-tools-pl-dark.webp" alt="Strona „Narzędzia map” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/map-tools-pl-light.webp" alt="Strona „Narzędzia map” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Narzędzia map: obszary, NPC i pliki map, mapy w wysokiej rozdzielczości i kafelki minimapy.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-house-images" aria-labelledby="t-house-images" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="House Images: dowolny dom narysowany z danych mapy klienta, piętro po piętrze, gotowy do artykułów o domach."><div class="window"><img class="shot-dark" src="../img/pl/house-images-dark.webp" alt="Strona „House Images” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/house-images-light.webp" alt="Strona „House Images” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>House Images: dowolny dom narysowany z danych mapy klienta, piętro po piętrze, gotowy do artykułów o domach.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Obrazy domów: dowolny dom narysowany z danych mapy klienta, piętro po piętrze, gotowy do artykułów o domach."><div class="window"><img class="shot-dark" src="../img/screens/house-images-pl-dark.webp" alt="Strona „Obrazy domów” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/house-images-pl-light.webp" alt="Strona „Obrazy domów” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Obrazy domów: dowolny dom narysowany z danych mapy klienta, piętro po piętrze, gotowy do artykułów o domach.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-sounds" aria-labelledby="t-sounds" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Sounds: słuchaj i wyciągaj dźwięki, efekty, odgłosy otoczenia i muzykę klienta."><div class="window"><img class="shot-dark" src="../img/pl/sounds-dark.webp" alt="Strona „Sounds” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/sounds-light.webp" alt="Strona „Sounds” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Sounds: słuchaj i wyciągaj dźwięki, efekty, odgłosy otoczenia i muzykę klienta.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Dźwięki: słuchaj i wyciągaj dźwięki, efekty, odgłosy otoczenia i muzykę klienta."><div class="window"><img class="shot-dark" src="../img/screens/sounds-pl-dark.webp" alt="Strona „Dźwięki” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/sounds-pl-light.webp" alt="Strona „Dźwięki” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Dźwięki: słuchaj i wyciągaj dźwięki, efekty, odgłosy otoczenia i muzykę klienta.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-assets-editor" aria-labelledby="t-assets-editor" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Assets Editor: obiekty, flagi, układ sprite&#x27;ów i sprite&#x27;y – edytuj kopię i zapisz ją po walidacji; klient nigdy nie jest zmieniany."><div class="window"><img class="shot-dark" src="../img/pl/assets-editor-dark.webp" alt="Strona „Assets Editor” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/assets-editor-light.webp" alt="Strona „Assets Editor” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Assets Editor: obiekty, flagi, układ sprite'ów i sprite'y – edytuj kopię i zapisz ją po walidacji; klient nigdy nie jest zmieniany.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Edytor zasobów: obiekty, flagi, układ sprite&#x27;ów i sprite&#x27;y – edytuj kopię i zapisz ją po walidacji; klient nigdy nie jest zmieniany."><div class="window"><img class="shot-dark" src="../img/screens/assets-editor-pl-dark.webp" alt="Strona „Edytor zasobów” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/assets-editor-pl-light.webp" alt="Strona „Edytor zasobów” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Edytor zasobów: obiekty, flagi, układ sprite'ów i sprite'y – edytuj kopię i zapisz ją po walidacji; klient nigdy nie jest zmieniany.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-rcc-editor" aria-labelledby="t-rcc-editor" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="RCC Editor: podglądaj, wyciągaj i podmieniaj grafiki interfejsu z pliku zasobów klienta, zapisywane jako kopia."><div class="window"><img class="shot-dark" src="../img/pl/rcc-editor-dark.webp" alt="Strona „RCC Editor” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/rcc-editor-light.webp" alt="Strona „RCC Editor” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>RCC Editor: podglądaj, wyciągaj i podmieniaj grafiki interfejsu z pliku zasobów klienta, zapisywane jako kopia.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Edytor RCC: podglądaj, wyciągaj i podmieniaj grafiki interfejsu z pliku zasobów klienta, zapisywane jako kopia."><div class="window"><img class="shot-dark" src="../img/screens/rcc-editor-pl-dark.webp" alt="Strona „Edytor RCC” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/rcc-editor-pl-light.webp" alt="Strona „Edytor RCC” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Edytor RCC: podglądaj, wyciągaj i podmieniaj grafiki interfejsu z pliku zasobów klienta, zapisywane jako kopia.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-clients" aria-labelledby="t-clients" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Clients: foldery klienta, zarchiwizowane rewizje każdej wersji i miejsce na dysku. (Ścieżki lokalne są rozmyte)."><div class="window"><img class="shot-dark" src="../img/pl/clients-dark.webp" alt="Strona „Clients” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/clients-light.webp" alt="Strona „Clients” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Clients: foldery klienta, zarchiwizowane rewizje każdej wersji i miejsce na dysku. (Ścieżki lokalne są rozmyte).</p>
+      <button class="shot-btn themed" type="button" data-zoom="Klienci: foldery klienta, zarchiwizowane rewizje każdej wersji i miejsce na dysku. (Ścieżki lokalne są rozmyte)."><div class="window"><img class="shot-dark" src="../img/screens/clients-pl-dark.webp" alt="Strona „Klienci” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/clients-pl-light.webp" alt="Strona „Klienci” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Klienci: foldery klienta, zarchiwizowane rewizje każdej wersji i miejsce na dysku. (Ścieżki lokalne są rozmyte).</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-settings" aria-labelledby="t-settings" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Settings: wbudowane motywy jasny i ciemny lub własny, foldery, bezpieczeństwo plików, wydajność, powiadomienia i nie tylko."><div class="window"><img class="shot-dark" src="../img/pl/settings-dark.webp" alt="Strona „Settings” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/settings-light.webp" alt="Strona „Settings” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Settings: wbudowane motywy jasny i ciemny lub własny, foldery, bezpieczeństwo plików, wydajność, powiadomienia i nie tylko.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Ustawienia: wbudowane motywy jasny i ciemny lub własny, foldery, bezpieczeństwo plików, wydajność, powiadomienia i nie tylko."><div class="window"><img class="shot-dark" src="../img/screens/settings-pl-dark.webp" alt="Strona „Ustawienia” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/settings-pl-light.webp" alt="Strona „Ustawienia” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Ustawienia: wbudowane motywy jasny i ciemny lub własny, foldery, bezpieczeństwo plików, wydajność, powiadomienia i nie tylko.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-settings-attribution" aria-labelledby="t-settings-attribution" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Twój podpis: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF."><div class="window"><img class="shot-dark" src="../img/pl/settings-attribution-dark.webp" alt="Strona „Settings – Attribution” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/pl/settings-attribution-light.webp" alt="Strona „Settings – Attribution” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Twój podpis: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Przypisanie autorstwa: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF."><div class="window"><img class="shot-dark" src="../img/screens/settings-attribution-pl-dark.webp" alt="Strona „Ustawienia → Przypisanie autorstwa” programu Tibia Foundry w ciemnym motywie" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="../img/screens/settings-attribution-pl-light.webp" alt="Strona „Ustawienia → Przypisanie autorstwa” programu Tibia Foundry w jasnym motywie" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Przypisanie autorstwa: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF.</p>
     </div>
   </div>
 </section>
@@ -773,10 +779,10 @@ html { scroll-behavior: auto; }
     </div>
     <ul class="new-list reveal">
       <li><b>9.0.4 – dane niezależne od języka</b>: właściwości przedmiotów w katalogach i kategorie eksportowanych folderów są takie same w każdym języku interfejsu (istniejące katalogi są poprawnie odczytywane bez zmian), foldery bezpośrednio na dysku działają, a kolejka pracuje dalej, gdy okno zgłosi błąd.</li>
-      <li><b>9.0.3 – stabilność</b>: uszkodzony arkusz sprite’ów nie zamyka już programu w Outfitterze, a historia kolejki Content Studio pozostaje mała.</li>
+      <li><b>9.0.3 – stabilność</b>: uszkodzony arkusz sprite’ów nie zamyka już programu w Outfitterze, a historia kolejki „Studio treści” pozostaje mała.</li>
       <li><b>9.0.2 – kropka w flavortext</b>: flavortext w infoboksie kończy się teraz kropką, którą gra dodaje przy oglądaniu (Look) – dokładnie tak, jak pisze TibiaWiki.</li>
       <li><b>9.0.1 – flavortext</b>: opis obiektu z klienta wypełnia flavortext w infoboksie.</li>
-      <li><b>Eksport infoboxów TibiaWiki</b>: <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> dla każdego obiektu, z danych samego klienta (Appearances → Wiki infobox).</li>
+      <li><b>Eksport infoboxów TibiaWiki</b>: <code class="code">&#123;&#123;Infobox Object&#125;&#125;</code> dla każdego obiektu, z danych samego klienta (Wyglądy → Infobox wiki).</li>
       <li><b>Handel z NPC w infoboxie</b>: npcvalue, npcprice, buyfrom i sellto z danych handlowych klienta.</li>
       <li><b>Każda wartość opisana</b>: dane klienta, wywnioskowane (sprawdź), TibiaWiki lub do uzupełnienia – nic nie jest zgadywane.</li>
       <li><b>Infoboxy hurtowo</b>: jeden plik .txt na każdy zaznaczony obiekt, bez zastępowania istniejących plików.</li>
@@ -826,8 +832,8 @@ html { scroll-behavior: auto; }
     <div class="steps" style="margin-top:40px">
       <div class="step reveal"><h3>Zainstaluj lub rozpakuj</h3><p>Uruchom instalator albo rozpakuj wersję przenośną w dowolnym miejscu.</p></div>
       <div class="step reveal"><h3>Skonfiguruj</h3><p>Przy pierwszym uruchomieniu program znajdzie Twojego klienta Tibii i zapyta, jak przechowywać wersje klienta.</p></div>
-      <div class="step reveal"><h3>Podaj swoje nazwisko</h3><p>Settings → Attribution: twórca zapisywany w każdym eksportowanym obrazku.</p></div>
-      <div class="step reveal"><h3>Twórz</h3><p>Otwórz Home, aby zobaczyć procesy, albo Content Studio → New project, aby stworzyć całą galerię.</p></div>
+      <div class="step reveal"><h3>Podaj swoje nazwisko</h3><p>Ustawienia → Przypisanie autorstwa: twórca zapisywany w każdym eksportowanym obrazku.</p></div>
+      <div class="step reveal"><h3>Twórz</h3><p>Otwórz stronę „Start”, aby zobaczyć procesy, albo Studio treści → Nowy projekt, aby stworzyć całą galerię.</p></div>
     </div>
   </div>
 </section>
@@ -840,10 +846,10 @@ html { scroll-behavior: auto; }
       <details><summary>Czy Tibia Foundry jest darmowy?</summary><p>Tak. To darmowy, niezależny projekt społeczności – bez konta, bez reklam i bez płatnych funkcji.</p></details>
       <details><summary>Czy zmienia mojego klienta Tibii lub moje postacie?</summary><p>Nie. Tibia Foundry tylko odczytuje pliki klienta. Nigdy nie zapisuje niczego w folderze klienta, nie dotyka Twojej postaci, hotkeyów ani konta i nie wchodzi w interakcję z grą, gdy jest uruchomiony.</p></details>
       <details><summary>Skąd pochodzą obrazki i czy mogę je publikować?</summary><p>Z oficjalnego klienta zainstalowanego na Twoim komputerze. Grafika i dane Tibii są © CipSoft GmbH; Tibia Foundry zapisuje tę informację oraz Twoje nazwisko jako twórcy w każdym eksportowanym obrazku. Przestrzegaj zasad CipSoft dotyczących fansite'ów i zasad publikowania obrazków na Twojej stronie.</p></details>
-      <details><summary>Czy Asset Library jest gdzieś wysyłana?</summary><p>Nie. Biblioteka to baza danych SQLite na Twoim komputerze; Twoje pliki zostają na miejscu i są tylko odczytywane. Usunięcie zasobu z biblioteki nigdy nie usuwa pliku. Kopię zapasową i przywracanie znajdziesz w zakładce Folders and storage biblioteki.</p></details>
+      <details><summary>Czy Biblioteka zasobów jest gdzieś wysyłana?</summary><p>Nie. Biblioteka to baza danych SQLite na Twoim komputerze; Twoje pliki zostają na miejscu i są tylko odczytywane. Usunięcie zasobu z biblioteki nigdy nie usuwa pliku. Kopię zapasową i przywracanie znajdziesz w zakładce Folders and storage biblioteki.</p></details>
       <details><summary>Czy program usunie moje zduplikowane obrazki?</summary><p>Nie. Wyszukiwarka duplikatów pokazuje identyczne pliki, tę samą grafikę w innym rozmiarze i podobne obrazki, abyś mógł zdecydować, co zachować. Program niczego nie usuwa, nie przenosi ani nie scala.</p></details>
       <details><summary>Czy mogę używać go na własnym fansicie zamiast TibiaWiki?</summary><p>Tak – do tego służą profile publikowania. Utwórz profil z własnymi rozmiarami, formatami, nazwami plików, folderami, informacją o autorze i fragmentem HTML lub BBCode; profil TibiaWiki to tylko jeden z przykładów.</p></details>
-      <details><summary>Co się dzieje po aktualizacji Tibii?</summary><p>Przy starcie Tibia Foundry sprawdza w tle zainstalowanego klienta i proponuje zarchiwizowanie nowej wersji. Strona Compatibility pokazuje, jak dobrze rozumiane są nowe pliki, a projekt zasobów aktualizacji renderuje wszystko, co nowe lub zmienione od poprzedniej wersji.</p></details>
+      <details><summary>Co się dzieje po aktualizacji Tibii?</summary><p>Przy starcie Tibia Foundry sprawdza w tle zainstalowanego klienta i proponuje zarchiwizowanie nowej wersji. Strona „Zgodność” pokazuje, jak dobrze rozumiane są nowe pliki, a projekt zasobów aktualizacji renderuje wszystko, co nowe lub zmienione od poprzedniej wersji.</p></details>
       <details><summary>Którą wersję wybrać?</summary><p>Instalator – do zwykłej instalacji ze skrótem w menu Start i deinstalacją; wersję przenośną – aby uruchamiać program z dowolnego folderu lub pendrive'a bez instalacji. Obie zawierają ten sam program.</p></details>
       <details><summary>Czy Tibia Foundry jest powiązany z CipSoft lub Fandom?</summary><p>Nie. To niezależny projekt społeczności, niepowiązany z CipSoft GmbH ani Fandom i nieposiadający ich poparcia. Nie należy do programu Fansite Programme firmy CipSoft.</p></details>
     </div>
@@ -874,7 +880,7 @@ html { scroll-behavior: auto; }
       </div>
       <div>
         <h3>Produkt</h3>
-        <ul><li><a href="#features">Funkcje</a></li><li><a href="#library">Asset Library</a></li><li><a href="#studio">Content Studio</a></li><li><a href="#download">Pobierz</a></li></ul>
+        <ul><li><a href="#features">Funkcje</a></li><li><a href="#library">Biblioteka zasobów</a></li><li><a href="#studio">Studio treści</a></li><li><a href="#download">Pobierz</a></li></ul>
       </div>
       <div>
         <h3>Projekt</h3>
@@ -902,7 +908,7 @@ html { scroll-behavior: auto; }
     <div class="legal">
       Tibia Foundry to niezależny projekt społeczności. Tibia jest znakiem towarowym CipSoft GmbH; Tibia, jej grafika i dane są © CipSoft GmbH. Tibia Foundry nie jest powiązany z CipSoft GmbH ani Fandom i nie jest przez nie wspierany.
       Komponenty open source (licencje w THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw i SQLite.
-      Wersja 9.0.4 · 11 listopada 2026
+      Wersja 9.0.4 · 15 listopada 2026
     </div>
   </div>
 </footer>
