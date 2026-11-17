@@ -1,0 +1,429 @@
+{
+ "highscores": {
+  "world": "Antica",
+  "category": "experience",
+  "vocation": "all",
+  "highscore_age": 62,
+  "highscore_list": [
+   {
+    "rank": 1,
+    "name": "Ranny Zolnierz Elder",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 2247,
+    "value": 188681439016
+   },
+   {
+    "rank": 2,
+    "name": "Zmek",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 2118,
+    "value": 158106548316
+   },
+   {
+    "rank": 3,
+    "name": "Orle Gniazdo",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 2032,
+    "value": 139598957307
+   },
+   {
+    "rank": 4,
+    "name": "Niquit",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 2026,
+    "value": 138286127163
+   },
+   {
+    "rank": 5,
+    "name": "Sedik",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1973,
+    "value": 127658416001
+   },
+   {
+    "rank": 6,
+    "name": "Bossprime",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1863,
+    "value": 107520217675
+   },
+   {
+    "rank": 7,
+    "name": "Pekky Khamzai",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1857,
+    "value": 106454306312
+   },
+   {
+    "rank": 8,
+    "name": "Cygonek",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1848,
+    "value": 104954402855
+   },
+   {
+    "rank": 9,
+    "name": "Daso II",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1842,
+    "value": 103945615452
+   },
+   {
+    "rank": 10,
+    "name": "Nyge",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1831,
+    "value": 102009128109
+   },
+   {
+    "rank": 11,
+    "name": "Piiotrus Pan",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1819,
+    "value": 100039030145
+   },
+   {
+    "rank": 12,
+    "name": "Yankoz Maestro",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1776,
+    "value": 93052907011
+   },
+   {
+    "rank": 13,
+    "name": "Knochi",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1770,
+    "value": 92113539493
+   },
+   {
+    "rank": 14,
+    "name": "Riivv",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1765,
+    "value": 91364879890
+   },
+   {
+    "rank": 15,
+    "name": "Onion koksu",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1748,
+    "value": 88722961396
+   },
+   {
+    "rank": 16,
+    "name": "John Ackerman",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1680,
+    "value": 78847695478
+   },
+   {
+    "rank": 17,
+    "name": "Bandokay",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1661,
+    "value": 76214025456
+   },
+   {
+    "rank": 18,
+    "name": "Furyprime",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1657,
+    "value": 75615575705
+   },
+   {
+    "rank": 19,
+    "name": "The Urek Mazino",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1636,
+    "value": 72780411862
+   },
+   {
+    "rank": 20,
+    "name": "Filipec",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1631,
+    "value": 72049040472
+   },
+   {
+    "rank": 21,
+    "name": "Paranoiid Pusher",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1621,
+    "value": 70765479070
+   },
+   {
+    "rank": 22,
+    "name": "Per Pan Nando",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1619,
+    "value": 70534128426
+   },
+   {
+    "rank": 23,
+    "name": "Iceprime",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1607,
+    "value": 68908945879
+   },
+   {
+    "rank": 24,
+    "name": "Lord Maseda",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1594,
+    "value": 67339873586
+   },
+   {
+    "rank": 25,
+    "name": "Revenger Leyend",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1564,
+    "value": 63549770690
+   },
+   {
+    "rank": 26,
+    "name": "King Rokotszu",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1557,
+    "value": 62717281499
+   },
+   {
+    "rank": 27,
+    "name": "Anilde",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1552,
+    "value": 62098964647
+   },
+   {
+    "rank": 28,
+    "name": "Bahlor",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1549,
+    "value": 61723455718
+   },
+   {
+    "rank": 29,
+    "name": "Danibolt",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1546,
+    "value": 61458731598
+   },
+   {
+    "rank": 30,
+    "name": "Twiffy",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1542,
+    "value": 60908747694
+   },
+   {
+    "rank": 31,
+    "name": "Rekuperatorzx",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1534,
+    "value": 59952857952
+   },
+   {
+    "rank": 32,
+    "name": "Piekielny Wojtus",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1532,
+    "value": 59750726388
+   },
+   {
+    "rank": 33,
+    "name": "Jose Arkadio Gipps",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1523,
+    "value": 58688220517
+   },
+   {
+    "rank": 34,
+    "name": "Bolk",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1514,
+    "value": 57654524194
+   },
+   {
+    "rank": 35,
+    "name": "Sturmak",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1507,
+    "value": 56900747967
+   },
+   {
+    "rank": 36,
+    "name": "Yrruf Nezz",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1501,
+    "value": 56181538917
+   },
+   {
+    "rank": 37,
+    "name": "Cygi los panczos",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1493,
+    "value": 55280736452
+   },
+   {
+    "rank": 38,
+    "name": "Roompe",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1492,
+    "value": 55172691724
+   },
+   {
+    "rank": 39,
+    "name": "Napaasz",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1490,
+    "value": 55005317910
+   },
+   {
+    "rank": 40,
+    "name": "Nimt",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1487,
+    "value": 54610951391
+   },
+   {
+    "rank": 41,
+    "name": "Eagle Rebel",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1484,
+    "value": 54279218792
+   },
+   {
+    "rank": 42,
+    "name": "Itz Kladi",
+    "vocation": "Elite Knight",
+    "world": "Antica",
+    "level": 1469,
+    "value": 52637852576
+   },
+   {
+    "rank": 43,
+    "name": "Zarothprime",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1462,
+    "value": 51925806218
+   },
+   {
+    "rank": 44,
+    "name": "Gitdus",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1460,
+    "value": 51737094016
+   },
+   {
+    "rank": 45,
+    "name": "Pupuliukas",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1460,
+    "value": 51664232709
+   },
+   {
+    "rank": 46,
+    "name": "Xman Lord",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1454,
+    "value": 51077475963
+   },
+   {
+    "rank": 47,
+    "name": "Foxer",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1454,
+    "value": 51050393479
+   },
+   {
+    "rank": 48,
+    "name": "Bakus",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1453,
+    "value": 50954283726
+   },
+   {
+    "rank": 49,
+    "name": "The Ends",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1448,
+    "value": 50403798171
+   },
+   {
+    "rank": 50,
+    "name": "Ostabil",
+    "vocation": "Royal Paladin",
+    "world": "Antica",
+    "level": 1446,
+    "value": 50196642246
+   }
+  ],
+  "highscore_page": {
+   "current_page": 1,
+   "total_pages": 20,
+   "total_records": 1000
+  }
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:43:45Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=highscores&world=Antica&category=6&profession=0&currentpage=1"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

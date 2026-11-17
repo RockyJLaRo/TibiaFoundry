@@ -1,0 +1,49 @@
+{
+ "house": {
+  "houseid": 10301,
+  "world": "Antica",
+  "town": "Thais",
+  "name": "Alai Flats, Flat 01",
+  "type": "house",
+  "beds": 1,
+  "size": 17,
+  "rent": 50000,
+  "img": "https://static.tibia.com/images/houses/house_10301.png",
+  "status": {
+   "is_auctioned": false,
+   "is_rented": true,
+   "is_moving": false,
+   "is_transfering": false,
+   "auction": {
+    "current_bid": 0,
+    "current_bidder": "",
+    "auction_ongoing": false,
+    "auction_end": ""
+   },
+   "rental": {
+    "owner": "Carrbonara",
+    "owner_sex": "female",
+    "paid_until": "2026-11-23T09:03:52Z",
+    "moving_date": "",
+    "transfer_receiver": "",
+    "transfer_price": 0,
+    "transfer_accept": false
+   },
+   "original": "The house has been rented by Carrbonara. She has paid the rent until Nov 23 2026, 10:03:52 CET."
+  }
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:43:46Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=houses&page=view&world=Antica&houseid=10301"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

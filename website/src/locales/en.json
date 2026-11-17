@@ -6,29 +6,23 @@
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
   "meta": {
-    "title": "Tibia Foundry – the free content toolkit for Tibia fansites, wikis and creators",
-    "description": "Free Windows toolkit for Tibia fansites, wikis and creators: extract sprites, render outfit and creature GIFs, organize assets and publish ready-made galleries.",
-    "keywords": "Tibia, TibiaWiki, fansite, sprites, outfits, creatures, GIF, asset library, gallery generator, Tibia client",
-    "ogTitle": "Tibia Foundry {version} – all your Tibia tools in one desktop app",
-    "ogDescription": "Extract, render, organize and publish official Tibia assets: a searchable Asset Library and automated galleries for any fansite or wiki. Free, local, Windows.",
-    "ogImageAlt": "Tibia Foundry: the Asset Library with creature thumbnails",
-    "twitterDescription": "Extract, render, organize and publish official Tibia assets. Free, local, for Windows."
+    "title": "Tibia Foundry – all your Tibia tools for TibiaWiki, fansites and players",
+    "description": "Free Windows toolkit for TibiaWiki editors and Tibia fansites, plus online Tibia tools: characters, worlds, guilds, highscores, creatures, spells and the latest Tibia news.",
+    "ogTitle": "Tibia Foundry {version} – all your Tibia tools for TibiaWiki",
+    "ogImageAlt": "Tibia Foundry: the Asset Library with creature thumbnails"
   },
   "ogImage": {
     "version": "Version {version} · free for Windows",
     "line1": "Extract sprites and data",
     "line2": "Render outfit and creature GIFs",
     "line3": "Organize every asset",
-    "line4": "Publish galleries for any site"
+    "line4": "Look up Tibia data online"
   },
   "a11y": {
     "skip": "Skip to content",
     "home": "Tibia Foundry home",
-    "sections": "Sections",
     "themeToggle": "Switch between light and dark mode",
-    "themeTitle": "Light / dark",
-    "github": "Tibia Foundry on GitHub",
-    "menu": "Menu"
+    "themeTitle": "Light / dark"
   },
   "lang": {
     "label": "Language",
@@ -36,16 +30,20 @@
   },
   "nav": {
     "features": "Features",
-    "library": "{app:Tool.asset-library.Name}",
-    "studio": "{app:Tool.content-studio.Name}",
-    "publishing": "Publishing",
-    "screens": "Screenshots",
-    "download": "Download",
-    "faq": "FAQ"
+    "main": "Main",
+    "home": "Home",
+    "tibia": "Tibia Data",
+    "downloads": "Downloads",
+    "guides": "Guides",
+    "about": "About",
+    "contact": "Contact",
+    "searchLabel": "Search for a Tibia character",
+    "searchPlaceholder": "Character name",
+    "searchButton": "Search",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
   },
   "hero": {
-    "eyebrow": "Version {version} · free for Windows · new: TibiaWiki infobox exporter",
-    "title": "Every Tibia resource your fansite needs, <span class=\"accent\">from one desktop app</span>",
     "lead": "Tibia Foundry reads the official files of your installed Tibia client and turns them into sprites, animated outfit and creature GIFs, item images, maps, sounds and data – then keeps everything in a searchable library and publishes complete galleries for TibiaWiki or any community website.",
     "download": "Download Tibia Foundry {version}",
     "github": "View on GitHub",
@@ -58,7 +56,6 @@
     "altLight": "The Asset Library page in the light theme"
   },
   "audience": {
-    "kicker": "Who it is for",
     "title": "Built for the people who keep the Tibia community informed",
     "lead": "Whether you run a wiki, a fansite, a guild page or a YouTube channel, the same chores come back with every client update. Tibia Foundry does them for you.",
     "fansites": {
@@ -87,7 +84,6 @@
     }
   },
   "features": {
-    "kicker": "One application instead of a dozen tools",
     "title": "Everything from the client to the published page",
     "lead": "{plural:tools:23}, grouped by task, sharing one client, one library and one set of export rules.",
     "clients": {
@@ -134,10 +130,11 @@
       "title": "Publishing for any site",
       "text": "Profiles for TibiaWiki, your fansite, galleries, articles or an archive: sizes, formats, names, folders, manifests, credits and snippets.",
       "tools": "Publishing profiles · HTML galleries"
-    }
+    },
+    "pageTitle": "Features",
+    "pageLead": "Everything Tibia Foundry does, with real screenshots of version {version} in your language."
   },
   "library": {
-    "kicker": "Asset Library",
     "title": "Find any resource in seconds, never lose one again",
     "lead": "Your sprites, GIFs, renders, maps, sounds and artwork in one searchable place. Files stay where they are; the library only reads them.",
     "point1": "<b>Automatic</b>: every file any tool exports is added in the background, with the tool and client version it came from.",
@@ -150,7 +147,6 @@
     "altLight": "Close-up of the Asset Library in the light theme"
   },
   "studio": {
-    "kicker": "{app:Tool.content-studio.Name}",
     "title": "A whole gallery in one click – and again after every update",
     "lead": "Choose what to make, adjust the steps, pick your site's profile and run it. Tibia Foundry renders, sizes, names, sorts, describes and packages everything in the background.",
     "point1": "<b>Project templates</b>: creature gallery, outfit gallery, item image collection, map references, update resources, wiki image preparation, custom export.",
@@ -192,7 +188,6 @@
     }
   },
   "publishing": {
-    "kicker": "Platform-independent publishing",
     "title": "Your site's rules, not ours",
     "lead": "Every fansite, wiki and CMS wants its images differently. Each profile describes one site, so nothing is forced into someone else's format. The built-in profiles are starting points you can edit.",
     "th": {
@@ -246,7 +241,6 @@
     }
   },
   "screens": {
-    "kicker": "A look inside",
     "title": "Real screenshots of Tibia Foundry {version}",
     "lead": "Taken from the program with the official client installed – shown in the theme you are viewing this page in. Click any screenshot to enlarge it.",
     "tablist": "Screenshots",
@@ -271,11 +265,11 @@
       "rcc-editor": "{app:Tool.rcc-editor.Name}: preview, extract and replace the interface artwork of the client's resource file, saved as a copy.",
       "clients": "{app:Tool.clients.Name}: client folders, archived revisions of every version, and storage. (Local paths are blurred.)",
       "settings": "{app:Tool.settings.Name}: built-in light and dark themes or your own, folders, file safety, performance, notifications and more.",
-      "settings-attribution": "{app:Choice.SettingsCategory.Attribution}: the creator name written into the metadata of every PNG and GIF you export."
+      "settings-attribution": "{app:Choice.SettingsCategory.Attribution}: the creator name written into the metadata of every PNG and GIF you export.",
+      "about": "{app:Tool.about.Name}: version, creator profiles, the attribution written into your exports, credits and acknowledgments."
     }
   },
   "safety": {
-    "kicker": "Safe by design",
     "title": "Your client and your files stay yours",
     "readonly": {
       "title": "Read-only on Tibia",
@@ -291,7 +285,6 @@
     }
   },
   "new": {
-    "kicker": "Release notes",
     "title": "What's new in {version}",
     "fix4": "<b>9.0.4 – data that no longer depends on the language</b>: item properties in catalogs and the categories of exported folders are the same in every interface language (existing catalogs are read correctly as they are), folders directly on a drive work, and the queue keeps running when a window fails.",
     "fix3": "<b>9.0.3 – stability</b>: a damaged sprite sheet no longer closes the program from the Outfitter, and the Content Studio queue history stays small.",
@@ -301,15 +294,12 @@
     "item2": "<b>NPC trade in the infobox</b>: npcvalue, npcprice, buyfrom and sellto from the client's trade data.",
     "item3": "<b>Every value labelled</b>: client data, derived (review), TibiaWiki, or needs your input – nothing is guessed.",
     "item4": "<b>Batch infoboxes</b>: one .txt file for every selected object, never replacing an existing file.",
-    "item5": "<b>Article names from TibiaWiki</b>: with the wiki's item list cached, \"name\" is the article title.",
     "item6": "<b>Safer saving</b>: settings, catalogs and other documents are flushed to the disk before they replace the old file.",
     "item7": "<b>Backups across drives</b>: a file moved into a backup on another drive is deleted only after its copy is verified.",
-    "item8": "<b>Steadier controls</b>: number fields no longer step twice per click after a theme switch.",
-    "item9": "<b>One version everywhere</b>: the program, installer, packages and this site all say {version}.",
-    "item10": "<b>Seamless upgrade</b>: your 8.8 settings, library, client archives and item catalogs carry over unchanged."
+    "item10": "<b>Seamless upgrade</b>: your 8.8 settings, library, client archives and item catalogs carry over unchanged.",
+    "earlier": "Earlier in the 9.0 series"
   },
   "download": {
-    "kicker": "Get started",
     "title": "Download Tibia Foundry {version}",
     "lead": "Free for Windows 10 and 11 (64-bit). Choose the edition that suits you – the installer and the portable edition contain the same program.",
     "installer": {
@@ -317,8 +307,7 @@
       "tagline": "Recommended for most people.",
       "point1": "Start-menu shortcut and normal uninstall",
       "point2": "Upgrades keep your settings, library and archives",
-      "point3": "Your data stays in your user profile",
-      "button": "Installer (.msi)"
+      "point3": "Your data stays in your user profile"
     },
     "portable": {
       "title": "Portable",
@@ -354,10 +343,19 @@
     "step4": {
       "title": "Create",
       "text": "Open Home for workflows, or Content Studio → New project for a whole gallery."
-    }
+    },
+    "filesTitle": "Files",
+    "msi": {
+      "button": "Installer (MSI in a .zip)",
+      "unzip": "Unzip it, then run the .msi file inside"
+    },
+    "verify": "Check your download with",
+    "notes": "Release notes",
+    "all": "All releases",
+    "startTitle": "First steps",
+    "shaInFile": "SHA-256: listed in SHA256SUMS.txt of the release"
   },
   "faq": {
-    "kicker": "FAQ",
     "title": "Questions and answers",
     "q1": "Is Tibia Foundry free?",
     "a1": "Yes. It is a free, independent community project with no account, no advertising and no paid features.",
@@ -376,7 +374,9 @@
     "q8": "Which edition should I choose?",
     "a8": "The installer for a normal installation with a Start-menu entry and uninstall; the portable edition to run it from any folder or USB stick without installing. Both are the same program.",
     "q9": "Is Tibia Foundry affiliated with CipSoft or Fandom?",
-    "a9": "No. It is an independent community project and is not affiliated with or endorsed by CipSoft GmbH or Fandom. It is not part of CipSoft's Fansite Programme."
+    "a9": "No. It is an independent community project and is not affiliated with or endorsed by CipSoft GmbH or Fandom. It is not part of CipSoft's Fansite Programme.",
+    "q10": "Where does the online Tibia data come from?",
+    "a10": "From TibiaData, a free public API built on Tibia.com. Your browser asks TibiaData directly; this website has no server of its own and keeps nothing about your searches."
   },
   "band": {
     "title": "Make your next update article in minutes",
@@ -385,17 +385,15 @@
     "issues": "Report a problem or idea"
   },
   "footer": {
-    "tagline": "All your Tibia tools for TibiaWiki and the fansite community. Created by RockyLaRo, TibiaWiki admin.",
     "product": "Product",
     "project": "Project",
-    "community": "Community",
     "repository": "GitHub repository",
-    "releases": "All releases",
     "issues": "Issues and support",
-    "fansites": "Official fansites",
     "legal": "Tibia Foundry is an independent community project. Tibia is a trademark of CipSoft GmbH; Tibia, its game graphics and data are © CipSoft GmbH. Tibia Foundry is not affiliated with or endorsed by CipSoft GmbH or Fandom.",
-    "components": "Open-source components (licenses in THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw and SQLite.",
-    "version": "Version {version} · {date}"
+    "version": "Version {version} · {date}",
+    "made": "Made by Rocky LaRochelle, creator and developer of Tibia Foundry.",
+    "data": "Tibia data",
+    "releaseNotes": "Release notes {version}"
   },
   "lightbox": {
     "label": "Enlarged screenshot",
@@ -406,7 +404,311 @@
     "themeToDark": "Switch to dark mode",
     "suggestText": "Tibia Foundry is also available in English.",
     "suggestGo": "Show in English",
-    "suggestClose": "Keep the current language"
+    "suggestClose": "Keep the current language",
+    "copied": "Copied",
+    "copyFailed": "Copy failed – select the text and copy it yourself",
+    "newTab": "(opens in a new tab)",
+    "yes": "yes",
+    "no": "no",
+    "none": "none",
+    "and": "and",
+    "loading": "Loading…",
+    "loadingNews": "Loading the latest news…",
+    "empty": "Nothing to show.",
+    "noMatches": "No entries match the filter.",
+    "filter": "Filter",
+    "showing": "Showing {shown} of {total}",
+    "showMore": "Show {n} more",
+    "table": "Table",
+    "copy": "Copy",
+    "copyName": "Copy name",
+    "copyId": "Copy ID",
+    "copyFormula": "Copy formula",
+    "copyWiki": "Copy as wikitext",
+    "copyWikiHint": "Copies the table as a TibiaWiki table (wikitext), filtered and sorted as shown",
+    "copyCsv": "Copy as CSV",
+    "retry": "Try again",
+    "errTitle": "The data could not be loaded",
+    "errNotFoundTitle": "Not found",
+    "errNotFound": "TibiaData has no entry with this name. Check the spelling – character, guild and world names must be exact.",
+    "errInvalid": "The request is not valid. Check the name or the selected options.",
+    "errNetwork": "TibiaData could not be reached. Check your connection and try again.",
+    "errServer": "TibiaData or Tibia.com is not answering right now. Try again in a few minutes.",
+    "errRateLimit": "Too many requests in a short time. Wait a moment and try again.",
+    "errMalformed": "TibiaData sent an answer this page cannot read. Try again later.",
+    "unknownRoute": "This page of the Tibia data does not exist.",
+    "dataBy": "Data:",
+    "original": "Original on Tibia.com",
+    "updated": "fetched at {time}",
+    "stale": "(older copy – TibiaData could not be reached)",
+    "search": "Search",
+    "characterLabel": "Look up a character",
+    "characterPlaceholder": "Character name, e.g. Roc ky",
+    "characterHelp": "Enter the exact name of any Tibia character to see its level, vocation, world, guild, houses, achievements and recent deaths.",
+    "hubTitle": "Tibia data",
+    "allTools": "All Tibia data",
+    "boostedTitle": "Boosted today",
+    "boostedCreature": "Boosted creature",
+    "boostedBoss": "Boosted boss",
+    "playersOnlineAll": "{n} players online in all worlds right now",
+    "toolCharacter": "Characters",
+    "toolCharacterText": "Level, vocation, guild, houses, achievements and deaths of any character.",
+    "toolWorlds": "Worlds",
+    "toolWorldsText": "Every game world with players online, PvP type, location and who is online.",
+    "toolGuilds": "Guilds",
+    "toolGuildsText": "Guilds of a world, their members, ranks and guildhalls.",
+    "toolHighscores": "Highscores",
+    "toolHighscoresText": "Experience, skills, achievements and more, by world and vocation.",
+    "toolHouses": "Houses",
+    "toolHousesText": "Houses and guildhalls by town, with rent, size, owner and auctions.",
+    "toolKills": "Kill statistics",
+    "toolKillsText": "Creatures and players killed on a world in the last day and week.",
+    "toolCreatures": "Creatures",
+    "toolCreaturesText": "The creature library with hit points, experience, loot and today's boosted creature.",
+    "toolSpells": "Spells",
+    "toolSpellsText": "Every spell and rune with formula, level, mana and price.",
+    "toolBosses": "Boostable bosses",
+    "toolBossesText": "All bosses that can be boosted and today's boosted boss.",
+    "toolFansites": "Fansites",
+    "toolFansitesText": "Tibia's official promoted and supported fansites.",
+    "toolNews": "Tibia news",
+    "toolNewsText": "Latest news and news tickers from Tibia.com.",
+    "toolArchive": "News archive",
+    "toolArchiveText": "Every news item of the last days, months or year.",
+    "name": "Name",
+    "formerNames": "Former names",
+    "title": "Title",
+    "sexLabel": "Sex",
+    "sex": {
+      "male": "male",
+      "female": "female"
+    },
+    "vocation": "Vocation",
+    "level": "Level",
+    "levelVocation": "Level {level} {vocation}",
+    "achievementPoints": "Achievement points",
+    "world": "World",
+    "formerWorlds": "Former worlds",
+    "residence": "Residence",
+    "marriedTo": "Married to",
+    "houses": "Houses",
+    "paidUntil": "paid until {date}",
+    "guild": "Guild",
+    "guildRank": "{rank} of",
+    "position": "Position",
+    "lastLogin": "Last login",
+    "accountStatus": "Account status",
+    "unlockedTitles": "Unlocked titles",
+    "traded": "traded",
+    "deletionDate": "To be deleted",
+    "currentInfo": "Current information",
+    "comment": "Comment",
+    "accountInfo": "Account information",
+    "created": "Created",
+    "loyaltyTitle": "Loyalty title",
+    "deaths": "Recent deaths",
+    "diedAtLevel": "Died at level {level} by",
+    "assistedBy": "assisted by",
+    "summonOf": "summon of {name}",
+    "noDeaths": "No recent deaths.",
+    "deathsTruncated": "Tibia.com lists only the most recent deaths; older ones are not shown.",
+    "achievements": "Displayed achievements",
+    "grade": "Grade {n}",
+    "secret": "secret",
+    "noAchievements": "No achievements on display.",
+    "badges": "Account badges",
+    "otherCharacters": "Other characters of the account",
+    "status": "Status",
+    "notes": "Notes",
+    "main": "main character",
+    "deleted": "deleted",
+    "online": "online",
+    "offline": "offline",
+    "openTibia": "Open on Tibia.com",
+    "location": "Location",
+    "pvpType": "PvP type",
+    "transfer": "Transfer",
+    "premium": "Premium",
+    "worldType": "World type",
+    "playersOnline": "Players online",
+    "record": "Online record",
+    "recordOn": "{n} on {date}",
+    "worldCount": "Worlds",
+    "tournamentWorlds": "Tournament worlds",
+    "moreAboutWorld": "More about this world",
+    "since": "since {date}",
+    "questTitles": "World quest titles",
+    "onlinePlayers": "Players online",
+    "nobodyOnline": "Nobody is online on this world right now.",
+    "guildsOf": "Guilds of {world}",
+    "logo": "Logo",
+    "description": "Description",
+    "activeGuilds": "Active guilds ({n})",
+    "formingGuilds": "Guilds in formation ({n})",
+    "members": "Members",
+    "rank": "Rank",
+    "joined": "Joined",
+    "onlineOnly": "Online members only",
+    "founded": "Founded",
+    "active": "Active",
+    "openApplications": "Open for applications",
+    "inWar": "At war",
+    "homepage": "Homepage",
+    "membersCount": "Members",
+    "membersOnline": "{total} ({online} online)",
+    "invited": "Invited",
+    "guildhalls": "Guildhalls",
+    "disband": "Disbanding",
+    "invites": "Invitations",
+    "allWorlds": "All worlds",
+    "category": "Category",
+    "experience": "Experience",
+    "points": "Points",
+    "pages": "Pages",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {total}",
+    "highscoreAge": "Highscores are updated by Tibia.com; this list is {minutes} minutes old.",
+    "hs": {
+      "experience": "Experience",
+      "magiclevel": "Magic level",
+      "fistfighting": "Fist fighting",
+      "clubfighting": "Club fighting",
+      "swordfighting": "Sword fighting",
+      "axefighting": "Axe fighting",
+      "distancefighting": "Distance fighting",
+      "shielding": "Shielding",
+      "fishing": "Fishing",
+      "achievements": "Achievements",
+      "loyaltypoints": "Loyalty points",
+      "charmpoints": "Charm points",
+      "bosspoints": "Boss points",
+      "dromescore": "Drome score",
+      "goshnarstaint": "Goshnar's Taint",
+      "bountypoints": "Bounty points",
+      "weeklytasks": "Weekly tasks",
+      "phosphorusrecord": "Phosphorus record"
+    },
+    "voc": {
+      "all": "All vocations",
+      "knights": "Knights",
+      "paladins": "Paladins",
+      "sorcerers": "Sorcerers",
+      "druids": "Druids",
+      "monks": "Monks"
+    },
+    "town": "Town",
+    "house": "House",
+    "housesIn": "Houses in {town}, {world}",
+    "housesCount": "Houses ({n})",
+    "guildhallsCount": "Guildhalls ({n})",
+    "size": "Size",
+    "rent": "Rent",
+    "currentBid": "Current bid",
+    "timeLeft": "Time left",
+    "auctioned": "auctioned",
+    "rented": "rented",
+    "free": "free",
+    "houseImage": "Map of {name}",
+    "houseId": "House ID",
+    "type": "Type",
+    "guildhall": "Guildhall",
+    "sqm": "{n} sqm",
+    "beds": "Beds",
+    "rentMonth": "Rent per month",
+    "gold": "{n} gold",
+    "owner": "Owner",
+    "paidUntilLabel": "Paid until",
+    "movingDate": "Moving out",
+    "bidder": "Highest bidder",
+    "auctionEnd": "Auction ends",
+    "killsOn": "Kill statistics of {world}",
+    "killsPeriod": "Counts of the last day and the last seven days, as published by Tibia.com.",
+    "killedLastDay": "Creatures killed by players, last day",
+    "playersKilledLastDay": "Players killed, last day",
+    "killedLastWeek": "Creatures killed by players, last week",
+    "playersKilledLastWeek": "Players killed, last week",
+    "creature": "Creature",
+    "killedDay": "Killed (day)",
+    "playersKilledDay": "Players killed (day)",
+    "killedWeek": "Killed (week)",
+    "playersKilledWeek": "Players killed (week)",
+    "hitpoints": "Hit points",
+    "immune": "Immune to",
+    "strong": "Strong against",
+    "weak": "Weak against",
+    "healed": "Healed by",
+    "paralysable": "Can be paralysed",
+    "summonable": "Summon",
+    "convincible": "Convince",
+    "manaCost": "{n} mana",
+    "seesInvisible": "Sees invisible",
+    "loot": "Loot",
+    "behaviour": "Behaviour",
+    "spell": "Spell",
+    "formula": "Formula",
+    "mana": "Mana",
+    "price": "Price",
+    "group": "Group",
+    "groupAttack": "attack",
+    "groupHealing": "healing",
+    "groupSupport": "support",
+    "rune": "rune",
+    "instant": "instant",
+    "allTypes": "All types",
+    "freeAccount": "Free account",
+    "formulaNote": "Spell formulas are the official incantations and are never translated.",
+    "spellInfo": "Spell",
+    "runeInfo": "Rune",
+    "damageType": "Damage type",
+    "soul": "Soul points",
+    "amount": "Amount",
+    "city": "Learnt in",
+    "cooldown": "Cooldown",
+    "seconds": "{n} s",
+    "groupCooldown": "group {n} s",
+    "magicLevel": "Magic level",
+    "bossesNote": "One of these bosses is boosted every day: more loot and boss points.",
+    "fansitesNote": "Independent websites in Tibia's official fansite programme. They are not part of Tibia Foundry.",
+    "promoted": "Promoted fansites ({n})",
+    "supported": "Supported fansites ({n})",
+    "contact": "Contact",
+    "contentTypes": "Content",
+    "languages": "Languages",
+    "specials": "Specials",
+    "socialMedia": "Social media",
+    "fansiteItem": "Fansite item",
+    "content": {
+      "statistics": "statistics",
+      "texts": "texts",
+      "tools": "tools",
+      "wiki": "wiki"
+    },
+    "latestNews": "Latest news",
+    "newsTicker": "News ticker",
+    "ticker": "ticker",
+    "read": "Read",
+    "readNamed": "Read: {title}",
+    "readOriginal": "Read on Tibia.com",
+    "allNews": "All news",
+    "noNews": "There is no news in this period.",
+    "period": "Period",
+    "days": "Last {n} days",
+    "date": "Date",
+    "headline": "Headline",
+    "cat": {
+      "community": "Community",
+      "development": "Development",
+      "support": "Support",
+      "technical": "Technical",
+      "cipsoft": "CipSoft",
+      "other": "News"
+    },
+    "newsType": {
+      "news": "News",
+      "ticker": "Ticker",
+      "article": "Article"
+    }
   },
   "plural": {
     "tools": {
@@ -419,15 +721,188 @@
     }
   },
   "infobox": {
-    "kicker": "New in {version} · TibiaWiki infoboxes",
     "title": "An item article's infobox, filled from the client",
     "lead": "Select an object in Appearances and open <b>Wiki infobox</b>: Tibia Foundry writes TibiaWiki's <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> from the official client data, following the template's own parameters and the wiki's conventions. Review it, add what only you know, and paste it into the article.",
     "point1": "<b>From the client</b>: ID, names, look text (flavortext), slot, level and vocations, hands and weapon type, imbuement slots, upgrade class, object flags, light and map colour, stackable and marketable.",
     "point2": "<b>NPC trade</b>: the best NPC buy and sell prices and every trader, with their own price where it differs.",
     "point3": "<b>Nothing invented</b>: every value shows where it came from; implemented, weight, attack, armor and the other values the client does not hold are listed for you to fill in.",
     "point4": "<b>Edit, copy, save</b>: change any value, add more parameters, copy the markup, save it as .txt, or save one file for every selected object.",
-    "window": "{app:Tool.appearances.Name} → {app:Infobox.Tab}",
-    "caption": "Real output for Magic Plate Armor from the installed client – the empty lines are what the client cannot know.",
-    "label": "Generated infobox markup"
+    "window": "{app:Tool.appearances.Name} → {app:Infobox.Tab}"
+  },
+  "pages": {
+    "tibia": {
+      "title": "Tibia data: characters, worlds, guilds, highscores and news",
+      "description": "Look up any Tibia character, world, guild, highscore list, house, creature, spell or kill statistic, and read the latest Tibia news – live data from TibiaData."
+    },
+    "features": {
+      "title": "Features",
+      "description": "Everything Tibia Foundry does: sprites, animated GIFs, the Asset Library, Content Studio galleries, TibiaWiki infoboxes, maps, houses and sounds – with real screenshots."
+    },
+    "downloads": {
+      "title": "Download Tibia Foundry {version}",
+      "description": "Download Tibia Foundry {version} for Windows 10 and 11: Windows Installer (MSI), portable edition or source code, with SHA-256 checksums."
+    },
+    "guides": {
+      "title": "Guides and documentation",
+      "description": "First steps with Tibia Foundry, how to use the online Tibia data tools, the documentation of every tool and answers to common questions."
+    },
+    "about": {
+      "title": "About Tibia Foundry and its creator",
+      "description": "Tibia Foundry is created and developed by Rocky LaRochelle from Upstate New York, USA. Profiles, project information and the data sources of this site."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contact Rocky LaRochelle, the creator of Tibia Foundry, by email at rocky@tibiafoundry.com, or report a problem on GitHub."
+    }
+  },
+  "credits": {
+    "title": "Data & resource credits",
+    "tibiadata": "Thanks to {link} for providing the Tibia data used on this site.",
+    "tibiacom": "{link} – the official Tibia website, original source of the news, character, world, guild, house, creature and spell information and of the images shown with it.",
+    "cipsoft": "{link} – Tibia, its game graphics and its data are © CipSoft GmbH; they appear in the program screenshots and the data views.",
+    "tibiawiki": "{link} – the community wiki Tibia Foundry is made for (no wiki content is copied to this site).",
+    "fansites": "{link} – the fansite directory lists Tibia's official promoted and supported fansites as published on Tibia.com.",
+    "independent": "Tibia Foundry is an independent fan project. None of these providers sponsors, endorses or is affiliated with it."
+  },
+  "home": {
+    "searchLabel": "Look up a Tibia character",
+    "news": {
+      "title": "Tibia News & Updates",
+      "lead": "The latest news from Tibia.com, refreshed automatically.",
+      "refresh": "Refresh",
+      "archive": "News archive",
+      "noscript": "Turn on JavaScript to see the latest Tibia news here, or read them on Tibia.com."
+    },
+    "tools": {
+      "title": "Online Tibia tools",
+      "lead": "Look up characters, worlds, guilds, highscores, creatures and spells in your browser – no download needed.",
+      "all": "All Tibia data"
+    },
+    "features": {
+      "all": "All features",
+      "infobox": "Select any object and get TibiaWiki's <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> filled from the official client, each value labelled with its source."
+    },
+    "creator": {
+      "title": "Made by a TibiaWiki editor",
+      "text": "Rocky created Tibia Foundry to give the Tibia community useful software, tools and resources – especially the people who write TibiaWiki and other Tibia sites.",
+      "more": "About the creator"
+    }
+  },
+  "new905": {
+    "item1": "<b>Version in the window header</b>: the program's header now reads “Tibia Foundry v{version}” above its tagline, always taken from the build's own version.",
+    "item2": "<b>One version, checked</b>: the About page, file properties, installer and packages all report {version}; an automatic check builds a later version and confirms that the header follows.",
+    "item3": "<b>A new website</b>: designed for phones first, in light and dark themes and five languages.",
+    "item4": "<b>Tibia data online</b>: characters, worlds, guilds, highscores, houses, kill statistics, creatures, spells, boosted bosses, fansites and Tibia news, provided by TibiaData.",
+    "item5": "<b>New screenshots</b>: every screenshot retaken from {version} in every language and theme, now including the About page."
+  },
+  "guides": {
+    "title": "Guides and documentation",
+    "lead": "Get started with the program, use the online Tibia data tools and find the detailed documentation of every tool.",
+    "start": "First steps with the program",
+    "data": {
+      "title": "Using the Tibia data tools",
+      "lead": "The Tibia Data pages show live information from TibiaData, which reads it from Tibia.com. Everything runs in your browser.",
+      "step1": {
+        "title": "Search",
+        "text": "Type a character name in the search field at the top of any page, or open Worlds, Guilds or Highscores and pick a world."
+      },
+      "step2": {
+        "title": "Filter and sort",
+        "text": "Every table can be filtered by typing and sorted by any column; on a phone, rows become cards."
+      },
+      "step3": {
+        "title": "Copy for the wiki",
+        "text": "Copy a name, a value or a whole table as wikitext or CSV and paste it into TibiaWiki or a spreadsheet."
+      },
+      "step4": {
+        "title": "Check the original",
+        "text": "Every view links to the same page on Tibia.com and says when the data was fetched."
+      }
+    },
+    "docs": {
+      "title": "Documentation",
+      "lead": "Detailed guides in the source repository on GitHub (in English).",
+      "build": {
+        "title": "Build and setup",
+        "text": "Requirements, building from source, tests and packaging."
+      },
+      "tools": {
+        "title": "Tools, settings and scripts",
+        "text": "What each tool does and every setting it has."
+      },
+      "library": {
+        "title": "Asset Library and Content Studio",
+        "text": "Libraries, collections, duplicates, projects, workflows and publishing profiles."
+      },
+      "infobox": {
+        "title": "TibiaWiki Infobox Exporter",
+        "text": "How every infobox value is found and which ones you add yourself."
+      },
+      "clients": {
+        "title": "Client management",
+        "text": "Installed clients, client folders and space-efficient archives of every version."
+      },
+      "localization": {
+        "title": "Languages",
+        "text": "How the program is translated and how to help."
+      }
+    }
+  },
+  "about": {
+    "title": "About Tibia Foundry",
+    "role": "Creator and Developer of Tibia Foundry",
+    "location": "Upstate New York, USA",
+    "bio1": "Rocky LaRochelle created Tibia Foundry to provide useful software, tools and resources for the Tibia community, particularly for the people involved with TibiaWiki and Tibia-related content.",
+    "bio2": "Tibia Foundry is one desktop application for the work between the installed Tibia client and a published page – sprites, animations, maps, sounds, data and wiki infoboxes. This website adds free online tools for looking up Tibia data.",
+    "profiles": "Profiles and community",
+    "link": {
+      "tibiawiki": "TibiaWiki profile",
+      "tibia": "Tibia character",
+      "youtube": "YouTube",
+      "instagram": "Instagram",
+      "github": "GitHub",
+      "reddit": "Reddit"
+    },
+    "linkLabel": "{platform}: {handle} (opens in a new tab)",
+    "project": {
+      "title": "The project",
+      "text1": "Tibia Foundry is free and open source. The program, its source code and this website are published on GitHub, together with every release, its notes and its checksums.",
+      "text2": "Bug reports and ideas are welcome as GitHub issues; questions can also be sent by email."
+    },
+    "shotAlt": "The About page of Tibia Foundry {version} with the creator's profiles and the credits",
+    "shotCaption": "The program's own About page shows the same profiles and credits.",
+    "sources": {
+      "title": "Data sources and credits",
+      "lead": "This website uses the following external data and content. Thank you to everyone who provides it."
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "lead": "Questions, ideas or feedback about Tibia Foundry or this website? Send an email – or open an issue on GitHub for a bug.",
+    "email": {
+      "title": "Email",
+      "write": "Write an email",
+      "copy": "Copy address",
+      "note": "“Write an email” opens your own mail program with the address filled in. Nothing is sent from this website."
+    },
+    "other": {
+      "title": "Other ways"
+    },
+    "issues": {
+      "title": "Bug reports and feature ideas",
+      "text": "Public issues on GitHub help everyone: others can find the answer, and you can follow the progress."
+    },
+    "profiles": {
+      "title": "Community profiles",
+      "text": "Rocky is also on TibiaWiki, YouTube, Instagram, GitHub and Reddit, and plays Tibia as Roc ky."
+    },
+    "privacy": "This site has no contact form and stores nothing you type. Character searches go only to TibiaData, to fetch the data."
+  },
+  "tibia": {
+    "title": "Tibia data",
+    "lead": "Characters, worlds, guilds, highscores, houses, kill statistics, creatures, spells and news – live from TibiaData, with a link to the original on Tibia.com.",
+    "sections": "Tibia data sections",
+    "overview": "Overview",
+    "noscript": "These tools need JavaScript to request the data from TibiaData. Everything can also be looked up on Tibia.com."
   }
 }

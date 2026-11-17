@@ -5,6 +5,10 @@
     "notes": "Terminy używane przez polską społeczność Tibii: outfit, addon, sprite, NPC, fansite, quest. Nazwy narzędzi i stron programu pozostają po angielsku, tak jak w programie.",
     "sameAsEnglish": [
       "a11y.menu",
+      "about.link.github",
+      "about.link.instagram",
+      "about.link.reddit",
+      "about.link.youtube",
       "faq.kicker",
       "features.batch.tools",
       "features.clients.tools",
@@ -15,7 +19,31 @@
       "features.maps.tools",
       "features.publishing.tools",
       "features.workflows.tools",
+      "home.news.title",
       "infobox.window",
+      "js.cat.cipsoft",
+      "js.content.wiki",
+      "js.guildhall",
+      "js.hs.goshnarstaint",
+      "js.logo",
+      "js.mana",
+      "js.membersOnline",
+      "js.newsTicker",
+      "js.newsType.ticker",
+      "js.offline",
+      "js.online",
+      "js.premium",
+      "js.seconds",
+      "js.sqm",
+      "js.status",
+      "js.ticker",
+      "js.toolHighscores",
+      "js.transfer",
+      "js.voc.druids",
+      "js.voc.knights",
+      "js.voc.monks",
+      "js.voc.paladins",
+      "js.voc.sorcerers",
       "library.zoom",
       "nav.faq",
       "nav.library",
@@ -25,29 +53,23 @@
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
   "meta": {
-    "title": "Tibia Foundry – darmowy zestaw narzędzi dla fansite'ów, wiki i twórców Tibii",
-    "description": "Darmowy zestaw narzędzi dla Windows dla fansite'ów, wiki i twórców Tibii: wyciągaj sprite'y, twórz GIF-y outfitów i potworów, porządkuj zasoby i publikuj gotowe galerie.",
-    "keywords": "Tibia, TibiaWiki, fansite, sprite'y, outfity, potwory, GIF, biblioteka zasobów, generator galerii, klient Tibii",
-    "ogTitle": "Tibia Foundry {version} – wszystkie narzędzia do Tibii w jednym programie",
-    "ogDescription": "Wyciągaj, renderuj, porządkuj i publikuj oficjalne zasoby Tibii: przeszukiwalna {app:Tool.asset-library.Name} i automatyczne galerie dla każdego fansite'u i wiki. Za darmo, lokalnie, na Windows.",
-    "ogImageAlt": "Tibia Foundry: {app:Tool.asset-library.Name} z miniaturami potworów",
-    "twitterDescription": "Wyciągaj, renderuj, porządkuj i publikuj oficjalne zasoby Tibii. Za darmo, lokalnie, na Windows."
+    "title": "Tibia Foundry – wszystkie narzędzia do Tibii dla TibiaWiki, fansite’ów i graczy",
+    "description": "Darmowy program dla Windows dla redaktorów TibiaWiki i fansite’ów Tibii oraz narzędzia do Tibii w przeglądarce: postacie, światy, gildie, highscores, stwory, czary i najnowsze wiadomości z Tibii.",
+    "ogTitle": "Tibia Foundry {version} – wszystkie narzędzia do Tibii dla TibiaWiki",
+    "ogImageAlt": "Tibia Foundry: {app:Tool.asset-library.Name} z miniaturami potworów"
   },
   "ogImage": {
     "version": "Wersja {version} · za darmo na Windows",
     "line1": "Wyciągaj sprite'y i dane",
     "line2": "Twórz GIF-y outfitów i potworów",
     "line3": "Porządkuj wszystkie zasoby",
-    "line4": "Publikuj galerie na dowolnej stronie"
+    "line4": "Dane z Tibii online"
   },
   "a11y": {
     "skip": "Przejdź do treści",
     "home": "Strona główna Tibia Foundry",
-    "sections": "Sekcje",
     "themeToggle": "Przełącz między trybem jasnym a ciemnym",
-    "themeTitle": "Jasny / ciemny",
-    "github": "Tibia Foundry na GitHubie",
-    "menu": "Menu"
+    "themeTitle": "Jasny / ciemny"
   },
   "lang": {
     "label": "Język",
@@ -55,16 +77,20 @@
   },
   "nav": {
     "features": "Funkcje",
-    "library": "{app:Tool.asset-library.Name}",
-    "studio": "{app:Tool.content-studio.Name}",
-    "publishing": "Publikowanie",
-    "screens": "Zrzuty ekranu",
-    "download": "Pobierz",
-    "faq": "FAQ"
+    "main": "Główne",
+    "home": "Start",
+    "tibia": "Dane z Tibii",
+    "downloads": "Pobieranie",
+    "guides": "Poradniki",
+    "about": "O projekcie",
+    "contact": "Kontakt",
+    "searchLabel": "Szukaj postaci z Tibii",
+    "searchPlaceholder": "Nazwa postaci",
+    "searchButton": "Szukaj",
+    "menuOpen": "Otwórz menu",
+    "menuClose": "Zamknij menu"
   },
   "hero": {
-    "eyebrow": "Wersja {version} · darmowa dla Windows · nowość: eksport infoboxów TibiaWiki",
-    "title": "Wszystkie zasoby Tibii, których potrzebuje Twój fansite, <span class=\"accent\">w jednym programie</span>",
     "lead": "Tibia Foundry odczytuje oficjalne pliki zainstalowanego klienta Tibii i zamienia je w sprite'y, animowane GIF-y outfitów i potworów, obrazki przedmiotów, mapy, dźwięki i dane – a potem przechowuje wszystko w przeszukiwalnej bibliotece i publikuje kompletne galerie dla TibiaWiki lub dowolnej strony społeczności.",
     "download": "Pobierz Tibia Foundry {version}",
     "github": "Zobacz na GitHubie",
@@ -77,7 +103,6 @@
     "altLight": "Strona „{app:Tool.asset-library.Name}” w jasnym motywie"
   },
   "audience": {
-    "kicker": "Dla kogo",
     "title": "Stworzony dla ludzi, którzy informują społeczność Tibii",
     "lead": "Niezależnie od tego, czy prowadzisz wiki, fansite, stronę gildii czy kanał na YouTube, przy każdej aktualizacji klienta wracają te same obowiązki. Tibia Foundry wykona je za Ciebie.",
     "fansites": {
@@ -106,7 +131,6 @@
     }
   },
   "features": {
-    "kicker": "Jeden program zamiast tuzina narzędzi",
     "title": "Wszystko – od klienta po opublikowaną stronę",
     "lead": "{plural:tools:23} pogrupowane według zadań, korzystające z jednego klienta, jednej biblioteki i jednego zestawu reguł eksportu.",
     "clients": {
@@ -153,10 +177,11 @@
       "title": "Publikowanie na dowolnej stronie",
       "text": "Profile dla TibiaWiki, Twojego fansite'u, galerii, artykułów lub archiwum: rozmiary, formaty, nazwy, foldery, manifesty, informacje o autorach i fragmenty kodu.",
       "tools": "Profile publikowania · Galerie HTML"
-    }
+    },
+    "pageTitle": "Funkcje",
+    "pageLead": "Wszystko, co potrafi Tibia Foundry – z prawdziwymi zrzutami ekranu wersji {version} w Twoim języku."
   },
   "library": {
-    "kicker": "Biblioteka zasobów",
     "title": "Znajdź każdy zasób w kilka sekund i nigdy więcej go nie zgub",
     "lead": "Twoje sprite'y, GIF-y, rendery, mapy, dźwięki i grafiki w jednym przeszukiwalnym miejscu. Pliki zostają tam, gdzie są – biblioteka tylko je odczytuje.",
     "point1": "<b>Automatycznie</b>: każdy plik wyeksportowany przez dowolne narzędzie jest dodawany w tle, razem z narzędziem i wersją klienta, z której pochodzi.",
@@ -169,7 +194,6 @@
     "altLight": "Zbliżenie strony „{app:Tool.asset-library.Name}” w jasnym motywie"
   },
   "studio": {
-    "kicker": "{app:Tool.content-studio.Name}",
     "title": "Cała galeria jednym kliknięciem – i ponownie po każdej aktualizacji",
     "lead": "Wybierz, co chcesz stworzyć, dostosuj kroki, wybierz profil swojej strony i uruchom. Tibia Foundry w tle renderuje, skaluje, nazywa, sortuje, opisuje i pakuje wszystko.",
     "point1": "<b>Szablony projektów</b>: galeria potworów, galeria outfitów, kolekcja obrazków przedmiotów, materiały mapowe, zasoby aktualizacji, przygotowanie obrazków do wiki, własny eksport.",
@@ -211,7 +235,6 @@
     }
   },
   "publishing": {
-    "kicker": "Publikowanie niezależne od platformy",
     "title": "Zasady Twojej strony, nie nasze",
     "lead": "Każdy fansite, wiki i CMS chce obrazków w inny sposób. Każdy profil opisuje jedną stronę, więc nic nie jest wciskane w cudzy format. Wbudowane profile to punkty wyjścia, które możesz edytować.",
     "th": {
@@ -265,7 +288,6 @@
     }
   },
   "screens": {
-    "kicker": "Zajrzyj do środka",
     "title": "Prawdziwe zrzuty ekranu Tibia Foundry {version}",
     "lead": "Wykonane w programie z zainstalowanym oficjalnym klientem – wyświetlane w motywie, w którym oglądasz tę stronę. Kliknij dowolny zrzut, aby go powiększyć.",
     "tablist": "Zrzuty ekranu",
@@ -290,11 +312,11 @@
       "rcc-editor": "{app:Tool.rcc-editor.Name}: podglądaj, wyciągaj i podmieniaj grafiki interfejsu z pliku zasobów klienta, zapisywane jako kopia.",
       "clients": "{app:Tool.clients.Name}: foldery klienta, zarchiwizowane rewizje każdej wersji i miejsce na dysku. (Ścieżki lokalne są rozmyte).",
       "settings": "{app:Tool.settings.Name}: wbudowane motywy jasny i ciemny lub własny, foldery, bezpieczeństwo plików, wydajność, powiadomienia i nie tylko.",
-      "settings-attribution": "{app:Choice.SettingsCategory.Attribution}: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF."
+      "settings-attribution": "{app:Choice.SettingsCategory.Attribution}: nazwa twórcy zapisywana w metadanych każdego eksportowanego pliku PNG i GIF.",
+      "about": "{app:Tool.about.Name}: wersja, profile twórcy, informacja o autorze zapisywana w eksportach, podziękowania i źródła."
     }
   },
   "safety": {
-    "kicker": "Bezpieczny z założenia",
     "title": "Twój klient i Twoje pliki pozostają Twoje",
     "readonly": {
       "title": "Tylko odczyt Tibii",
@@ -310,7 +332,6 @@
     }
   },
   "new": {
-    "kicker": "Informacje o wydaniu",
     "title": "Co nowego w {version}",
     "fix4": "<b>9.0.4 – dane niezależne od języka</b>: właściwości przedmiotów w katalogach i kategorie eksportowanych folderów są takie same w każdym języku interfejsu (istniejące katalogi są poprawnie odczytywane bez zmian), foldery bezpośrednio na dysku działają, a kolejka pracuje dalej, gdy okno zgłosi błąd.",
     "fix3": "<b>9.0.3 – stabilność</b>: uszkodzony arkusz sprite’ów nie zamyka już programu w Outfitterze, a historia kolejki „{app:Tool.content-studio.Name}” pozostaje mała.",
@@ -320,15 +341,12 @@
     "item2": "<b>Handel z NPC w infoboxie</b>: npcvalue, npcprice, buyfrom i sellto z danych handlowych klienta.",
     "item3": "<b>Każda wartość opisana</b>: dane klienta, wywnioskowane (sprawdź), TibiaWiki lub do uzupełnienia – nic nie jest zgadywane.",
     "item4": "<b>Infoboxy hurtowo</b>: jeden plik .txt na każdy zaznaczony obiekt, bez zastępowania istniejących plików.",
-    "item5": "<b>Nazwy artykułów z TibiaWiki</b>: gdy lista przedmiotów wiki jest w pamięci podręcznej, \"name\" to tytuł artykułu.",
     "item6": "<b>Bezpieczniejszy zapis</b>: ustawienia, katalogi i inne dokumenty trafiają na dysk, zanim zastąpią stary plik.",
     "item7": "<b>Kopie zapasowe na innym dysku</b>: plik przeniesiony do kopii na innym dysku jest usuwany dopiero po sprawdzeniu kopii.",
-    "item8": "<b>Stabilniejsze kontrolki</b>: pola liczbowe nie przeskakują już dwa razy na kliknięcie po zmianie motywu.",
-    "item9": "<b>Jedna wersja wszędzie</b>: program, instalator, pakiety i ta strona podają {version}.",
-    "item10": "<b>Płynna aktualizacja</b>: ustawienia, biblioteka, archiwa klientów i katalogi przedmiotów z 8.8 przechodzą bez zmian."
+    "item10": "<b>Płynna aktualizacja</b>: ustawienia, biblioteka, archiwa klientów i katalogi przedmiotów z 8.8 przechodzą bez zmian.",
+    "earlier": "Wcześniej w serii 9.0"
   },
   "download": {
-    "kicker": "Zacznij",
     "title": "Pobierz Tibia Foundry {version}",
     "lead": "Za darmo na Windows 10 i 11 (64-bit). Wybierz wersję, która Ci odpowiada – instalator i wersja przenośna zawierają ten sam program.",
     "installer": {
@@ -336,8 +354,7 @@
       "tagline": "Zalecany dla większości osób.",
       "point1": "Skrót w menu Start i zwykła deinstalacja",
       "point2": "Aktualizacje zachowują ustawienia, bibliotekę i archiwa",
-      "point3": "Twoje dane zostają w Twoim profilu użytkownika",
-      "button": "Instalator (.msi)"
+      "point3": "Twoje dane zostają w Twoim profilu użytkownika"
     },
     "portable": {
       "title": "Wersja przenośna",
@@ -373,10 +390,19 @@
     "step4": {
       "title": "Twórz",
       "text": "Otwórz stronę „{app:Tool.home.Name}”, aby zobaczyć procesy, albo {app:Tool.content-studio.Name} → {app:ContentProjects.NewProject}, aby stworzyć całą galerię."
-    }
+    },
+    "filesTitle": "Pliki",
+    "msi": {
+      "button": "Instalator (MSI w pliku .zip)",
+      "unzip": "Rozpakuj go i uruchom plik .msi ze środka"
+    },
+    "verify": "Sprawdź pobrany plik za pomocą",
+    "notes": "Informacje o wersji",
+    "all": "Wszystkie wersje",
+    "startTitle": "Pierwsze kroki",
+    "shaInFile": "SHA-256: w pliku SHA256SUMS.txt wydania"
   },
   "faq": {
-    "kicker": "FAQ",
     "title": "Pytania i odpowiedzi",
     "q1": "Czy Tibia Foundry jest darmowy?",
     "a1": "Tak. To darmowy, niezależny projekt społeczności – bez konta, bez reklam i bez płatnych funkcji.",
@@ -395,7 +421,9 @@
     "q8": "Którą wersję wybrać?",
     "a8": "Instalator – do zwykłej instalacji ze skrótem w menu Start i deinstalacją; wersję przenośną – aby uruchamiać program z dowolnego folderu lub pendrive'a bez instalacji. Obie zawierają ten sam program.",
     "q9": "Czy Tibia Foundry jest powiązany z CipSoft lub Fandom?",
-    "a9": "Nie. To niezależny projekt społeczności, niepowiązany z CipSoft GmbH ani Fandom i nieposiadający ich poparcia. Nie należy do programu Fansite Programme firmy CipSoft."
+    "a9": "Nie. To niezależny projekt społeczności, niepowiązany z CipSoft GmbH ani Fandom i nieposiadający ich poparcia. Nie należy do programu Fansite Programme firmy CipSoft.",
+    "q10": "Skąd pochodzą dane z Tibii online?",
+    "a10": "Z TibiaData, darmowego publicznego API opartego na Tibia.com. Twoja przeglądarka pyta TibiaData bezpośrednio; ta strona nie ma własnego serwera i nie zapisuje niczego o Twoich wyszukiwaniach."
   },
   "band": {
     "title": "Przygotuj kolejny artykuł o aktualizacji w kilka minut",
@@ -404,17 +432,15 @@
     "issues": "Zgłoś problem lub pomysł"
   },
   "footer": {
-    "tagline": "Wszystkie narzędzia do Tibii dla TibiaWiki i społeczności fansite'ów. Autor: RockyLaRo, administrator TibiaWiki.",
     "product": "Produkt",
     "project": "Projekt",
-    "community": "Społeczność",
     "repository": "Repozytorium na GitHubie",
-    "releases": "Wszystkie wydania",
     "issues": "Zgłoszenia i pomoc",
-    "fansites": "Oficjalne fansite'y",
     "legal": "Tibia Foundry to niezależny projekt społeczności. Tibia jest znakiem towarowym CipSoft GmbH; Tibia, jej grafika i dane są © CipSoft GmbH. Tibia Foundry nie jest powiązany z CipSoft GmbH ani Fandom i nie jest przez nie wspierany.",
-    "components": "Komponenty open source (licencje w THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw i SQLite.",
-    "version": "Wersja {version} · {date}"
+    "version": "Wersja {version} · {date}",
+    "made": "Stworzone przez Rocky’ego LaRochelle, twórcę i programistę Tibia Foundry.",
+    "data": "Dane z Tibii",
+    "releaseNotes": "Informacje o wersji {version}"
   },
   "lightbox": {
     "label": "Powiększony zrzut ekranu",
@@ -425,7 +451,311 @@
     "themeToDark": "Przełącz na tryb ciemny",
     "suggestText": "Tibia Foundry jest dostępny także po polsku.",
     "suggestGo": "Pokaż po polsku",
-    "suggestClose": "Zostaw obecny język"
+    "suggestClose": "Zostaw obecny język",
+    "copied": "Skopiowano",
+    "copyFailed": "Nie udało się skopiować – zaznacz tekst i skopiuj go samodzielnie",
+    "newTab": "(otwiera się w nowej karcie)",
+    "yes": "tak",
+    "no": "nie",
+    "none": "brak",
+    "and": "i",
+    "loading": "Wczytywanie…",
+    "loadingNews": "Wczytywanie najnowszych wiadomości…",
+    "empty": "Nic do pokazania.",
+    "noMatches": "Żaden wpis nie pasuje do filtra.",
+    "filter": "Filtruj",
+    "showing": "Wyświetlono {shown} z {total}",
+    "showMore": "Pokaż jeszcze {n}",
+    "table": "Tabela",
+    "copy": "Kopiuj",
+    "copyName": "Kopiuj nazwę",
+    "copyId": "Kopiuj ID",
+    "copyFormula": "Kopiuj formułę",
+    "copyWiki": "Kopiuj jako wikitekst",
+    "copyWikiHint": "Kopiuje tabelę jako tabelę TibiaWiki (wikitekst), przefiltrowaną i posortowaną tak jak na ekranie",
+    "copyCsv": "Kopiuj jako CSV",
+    "retry": "Spróbuj ponownie",
+    "errTitle": "Nie udało się wczytać danych",
+    "errNotFoundTitle": "Nie znaleziono",
+    "errNotFound": "TibiaData nie ma wpisu o tej nazwie. Sprawdź pisownię – nazwy postaci, gildii i światów muszą być dokładne.",
+    "errInvalid": "Zapytanie jest nieprawidłowe. Sprawdź nazwę lub wybrane opcje.",
+    "errNetwork": "Nie można połączyć się z TibiaData. Sprawdź połączenie i spróbuj ponownie.",
+    "errServer": "TibiaData lub Tibia.com teraz nie odpowiada. Spróbuj ponownie za kilka minut.",
+    "errRateLimit": "Zbyt wiele zapytań w krótkim czasie. Poczekaj chwilę i spróbuj ponownie.",
+    "errMalformed": "TibiaData wysłało odpowiedź, której ta strona nie potrafi odczytać. Spróbuj później.",
+    "unknownRoute": "Ta strona danych z Tibii nie istnieje.",
+    "dataBy": "Dane:",
+    "original": "Oryginał na Tibia.com",
+    "updated": "pobrano o {time}",
+    "stale": "(starsza kopia – brak połączenia z TibiaData)",
+    "search": "Szukaj",
+    "characterLabel": "Sprawdź postać",
+    "characterPlaceholder": "Nazwa postaci, np. Roc ky",
+    "characterHelp": "Wpisz dokładną nazwę dowolnej postaci z Tibii, aby zobaczyć jej poziom, profesję, świat, gildię, domy, osiągnięcia i ostatnie śmierci.",
+    "hubTitle": "Dane z Tibii",
+    "allTools": "Wszystkie dane z Tibii",
+    "boostedTitle": "Dziś wzmocnione",
+    "boostedCreature": "Wzmocniony stwór",
+    "boostedBoss": "Wzmocniony boss",
+    "playersOnlineAll": "{n} graczy online na wszystkich światach w tej chwili",
+    "toolCharacter": "Postacie",
+    "toolCharacterText": "Poziom, profesja, gildia, domy, osiągnięcia i śmierci dowolnej postaci.",
+    "toolWorlds": "Światy",
+    "toolWorldsText": "Każdy świat z liczbą graczy online, typem PvP, lokalizacją i listą osób online.",
+    "toolGuilds": "Gildie",
+    "toolGuildsText": "Gildie danego świata, ich członkowie, rangi i guildhalle.",
+    "toolHighscores": "Highscores",
+    "toolHighscoresText": "Doświadczenie, umiejętności, osiągnięcia i więcej, według świata i profesji.",
+    "toolHouses": "Domy",
+    "toolHousesText": "Domy i guildhalle według miasta, z czynszem, rozmiarem, właścicielem i aukcjami.",
+    "toolKills": "Statystyki zabójstw",
+    "toolKillsText": "Stwory i gracze zabici na danym świecie w ostatnim dniu i tygodniu.",
+    "toolCreatures": "Stwory",
+    "toolCreaturesText": "Biblioteka stworów z punktami życia, doświadczeniem, łupem i dzisiejszym wzmocnionym stworem.",
+    "toolSpells": "Czary",
+    "toolSpellsText": "Każdy czar i runa z formułą, poziomem, maną i ceną.",
+    "toolBosses": "Bossowie do wzmocnienia",
+    "toolBossesText": "Wszyscy bossowie, którzy mogą być wzmocnieni, i dzisiejszy wzmocniony boss.",
+    "toolFansites": "Fansite’y",
+    "toolFansitesText": "Oficjalne fansite’y promoted i supported Tibii.",
+    "toolNews": "Wiadomości z Tibii",
+    "toolNewsText": "Najnowsze wiadomości i news tickery z Tibia.com.",
+    "toolArchive": "Archiwum wiadomości",
+    "toolArchiveText": "Wszystkie wiadomości z ostatnich dni, miesięcy lub roku.",
+    "name": "Nazwa",
+    "formerNames": "Dawne nazwy",
+    "title": "Tytuł",
+    "sexLabel": "Płeć",
+    "sex": {
+      "male": "mężczyzna",
+      "female": "kobieta"
+    },
+    "vocation": "Profesja",
+    "level": "Poziom",
+    "levelVocation": "{vocation}, poziom {level}",
+    "achievementPoints": "Punkty osiągnięć",
+    "world": "Świat",
+    "formerWorlds": "Dawne światy",
+    "residence": "Miejsce zamieszkania",
+    "marriedTo": "W związku małżeńskim z",
+    "houses": "Domy",
+    "paidUntil": "opłacony do {date}",
+    "guild": "Gildia",
+    "guildRank": "{rank} w",
+    "position": "Stanowisko",
+    "lastLogin": "Ostatnie logowanie",
+    "accountStatus": "Status konta",
+    "unlockedTitles": "Odblokowane tytuły",
+    "traded": "sprzedana",
+    "deletionDate": "Zostanie usunięta",
+    "currentInfo": "Aktualne informacje",
+    "comment": "Komentarz",
+    "accountInfo": "Informacje o koncie",
+    "created": "Utworzono",
+    "loyaltyTitle": "Tytuł lojalności",
+    "deaths": "Ostatnie śmierci",
+    "diedAtLevel": "Śmierć na poziomie {level} –",
+    "assistedBy": "z pomocą",
+    "summonOf": "przywołaniec {name}",
+    "noDeaths": "Brak ostatnich śmierci.",
+    "deathsTruncated": "Tibia.com pokazuje tylko najnowsze śmierci; starsze nie są wyświetlane.",
+    "achievements": "Wyświetlane osiągnięcia",
+    "grade": "Stopień {n}",
+    "secret": "sekretne",
+    "noAchievements": "Brak wyświetlanych osiągnięć.",
+    "badges": "Odznaki konta",
+    "otherCharacters": "Inne postacie na koncie",
+    "status": "Status",
+    "notes": "Uwagi",
+    "main": "główna postać",
+    "deleted": "usunięta",
+    "online": "online",
+    "offline": "offline",
+    "openTibia": "Otwórz na Tibia.com",
+    "location": "Lokalizacja",
+    "pvpType": "Typ PvP",
+    "transfer": "Transfer",
+    "premium": "Premium",
+    "worldType": "Typ świata",
+    "playersOnline": "Gracze online",
+    "record": "Rekord online",
+    "recordOn": "{n}, {date}",
+    "worldCount": "Światy",
+    "tournamentWorlds": "Światy turniejowe",
+    "moreAboutWorld": "Więcej o tym świecie",
+    "since": "od {date}",
+    "questTitles": "Tytuły z questów świata",
+    "onlinePlayers": "Gracze online",
+    "nobodyOnline": "Na tym świecie nikt nie jest teraz online.",
+    "guildsOf": "Gildie świata {world}",
+    "logo": "Logo",
+    "description": "Opis",
+    "activeGuilds": "Aktywne gildie ({n})",
+    "formingGuilds": "Gildie w trakcie zakładania ({n})",
+    "members": "Członkowie",
+    "rank": "Ranga",
+    "joined": "Dołączył(a)",
+    "onlineOnly": "Tylko członkowie online",
+    "founded": "Założona",
+    "active": "Aktywna",
+    "openApplications": "Przyjmuje zgłoszenia",
+    "inWar": "W stanie wojny",
+    "homepage": "Strona WWW",
+    "membersCount": "Członkowie",
+    "membersOnline": "{total} ({online} online)",
+    "invited": "Zaproszeni",
+    "guildhalls": "Guildhalle",
+    "disband": "Rozwiązanie",
+    "invites": "Zaproszenia",
+    "allWorlds": "Wszystkie światy",
+    "category": "Kategoria",
+    "experience": "Doświadczenie",
+    "points": "Punkty",
+    "pages": "Strony",
+    "previous": "Poprzednia",
+    "next": "Następna",
+    "pageOf": "Strona {page} z {total}",
+    "highscoreAge": "Highscores aktualizuje Tibia.com; ta lista ma {minutes} min.",
+    "hs": {
+      "experience": "Doświadczenie",
+      "magiclevel": "Poziom magii",
+      "fistfighting": "Walka pięściami",
+      "clubfighting": "Walka obuchowa",
+      "swordfighting": "Walka mieczem",
+      "axefighting": "Walka toporem",
+      "distancefighting": "Walka na dystans",
+      "shielding": "Obrona tarczą",
+      "fishing": "Wędkarstwo",
+      "achievements": "Osiągnięcia",
+      "loyaltypoints": "Punkty lojalności",
+      "charmpoints": "Punkty charmów",
+      "bosspoints": "Punkty bossów",
+      "dromescore": "Wynik w Drome",
+      "goshnarstaint": "Goshnar's Taint",
+      "bountypoints": "Punkty nagród",
+      "weeklytasks": "Zadania tygodniowe",
+      "phosphorusrecord": "Rekord fosforu"
+    },
+    "voc": {
+      "all": "Wszystkie profesje",
+      "knights": "Knights",
+      "paladins": "Paladins",
+      "sorcerers": "Sorcerers",
+      "druids": "Druids",
+      "monks": "Monks"
+    },
+    "town": "Miasto",
+    "house": "Dom",
+    "housesIn": "Domy w {town}, {world}",
+    "housesCount": "Domy ({n})",
+    "guildhallsCount": "Guildhalle ({n})",
+    "size": "Rozmiar",
+    "rent": "Czynsz",
+    "currentBid": "Aktualna oferta",
+    "timeLeft": "Pozostały czas",
+    "auctioned": "na aukcji",
+    "rented": "wynajęty",
+    "free": "wolny",
+    "houseImage": "Mapa: {name}",
+    "houseId": "ID domu",
+    "type": "Typ",
+    "guildhall": "Guildhall",
+    "sqm": "{n} sqm",
+    "beds": "Łóżka",
+    "rentMonth": "Czynsz miesięczny",
+    "gold": "{n} złota",
+    "owner": "Właściciel",
+    "paidUntilLabel": "Opłacony do",
+    "movingDate": "Wyprowadzka",
+    "bidder": "Najwyższa oferta",
+    "auctionEnd": "Koniec aukcji",
+    "killsOn": "Statystyki zabójstw: {world}",
+    "killsPeriod": "Liczby z ostatniego dnia i ostatnich siedmiu dni, tak jak publikuje je Tibia.com.",
+    "killedLastDay": "Stwory zabite przez graczy, ostatni dzień",
+    "playersKilledLastDay": "Zabici gracze, ostatni dzień",
+    "killedLastWeek": "Stwory zabite przez graczy, ostatni tydzień",
+    "playersKilledLastWeek": "Zabici gracze, ostatni tydzień",
+    "creature": "Stwór",
+    "killedDay": "Zabite (dzień)",
+    "playersKilledDay": "Zabici gracze (dzień)",
+    "killedWeek": "Zabite (tydzień)",
+    "playersKilledWeek": "Zabici gracze (tydzień)",
+    "hitpoints": "Punkty życia",
+    "immune": "Odporny na",
+    "strong": "Silny przeciw",
+    "weak": "Słaby przeciw",
+    "healed": "Leczony przez",
+    "paralysable": "Można sparaliżować",
+    "summonable": "Przywołanie",
+    "convincible": "Przekonanie",
+    "manaCost": "{n} many",
+    "seesInvisible": "Widzi niewidzialnych",
+    "loot": "Łup",
+    "behaviour": "Zachowanie",
+    "spell": "Czar",
+    "formula": "Formuła",
+    "mana": "Mana",
+    "price": "Cena",
+    "group": "Grupa",
+    "groupAttack": "atak",
+    "groupHealing": "leczenie",
+    "groupSupport": "wsparcie",
+    "rune": "runa",
+    "instant": "natychmiastowy",
+    "allTypes": "Wszystkie typy",
+    "freeAccount": "Darmowe konto",
+    "formulaNote": "Formuły czarów to oficjalne inkantacje i nigdy nie są tłumaczone.",
+    "spellInfo": "Czar",
+    "runeInfo": "Runa",
+    "damageType": "Rodzaj obrażeń",
+    "soul": "Punkty duszy",
+    "amount": "Ilość",
+    "city": "Do nauczenia w",
+    "cooldown": "Czas odnowienia",
+    "seconds": "{n} s",
+    "groupCooldown": "grupa {n} s",
+    "magicLevel": "Poziom magii",
+    "bossesNote": "Każdego dnia jeden z tych bossów jest wzmocniony: więcej łupu i punktów bossów.",
+    "fansitesNote": "Niezależne strony w oficjalnym programie fansite’ów Tibii. Nie są częścią Tibia Foundry.",
+    "promoted": "Fansite’y promoted ({n})",
+    "supported": "Fansite’y supported ({n})",
+    "contact": "Kontakt",
+    "contentTypes": "Treści",
+    "languages": "Języki",
+    "specials": "Wyróżnienia",
+    "socialMedia": "Media społecznościowe",
+    "fansiteItem": "Przedmiot fansite’u",
+    "content": {
+      "statistics": "statystyki",
+      "texts": "teksty",
+      "tools": "narzędzia",
+      "wiki": "wiki"
+    },
+    "latestNews": "Najnowsze wiadomości",
+    "newsTicker": "News ticker",
+    "ticker": "ticker",
+    "read": "Czytaj",
+    "readNamed": "Czytaj: {title}",
+    "readOriginal": "Czytaj na Tibia.com",
+    "allNews": "Wszystkie wiadomości",
+    "noNews": "W tym okresie nie ma wiadomości.",
+    "period": "Okres",
+    "days": "Ostatnie {n} dni",
+    "date": "Data",
+    "headline": "Nagłówek",
+    "cat": {
+      "community": "Społeczność",
+      "development": "Rozwój",
+      "support": "Wsparcie",
+      "technical": "Technika",
+      "cipsoft": "CipSoft",
+      "other": "Wiadomości"
+    },
+    "newsType": {
+      "news": "Wiadomość",
+      "ticker": "Ticker",
+      "article": "Artykuł"
+    }
   },
   "plural": {
     "tools": {
@@ -442,15 +772,188 @@
     }
   },
   "infobox": {
-    "kicker": "Nowość w {version} · infoboxy TibiaWiki",
     "title": "Infobox artykułu o przedmiocie, wypełniony danymi klienta",
     "lead": "Wybierz obiekt na stronie „{app:Tool.appearances.Name}” i otwórz <b>{app:Infobox.Tab}</b>: Tibia Foundry tworzy <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> TibiaWiki z oficjalnych danych klienta, zgodnie z parametrami szablonu i konwencjami wiki. Sprawdź go, dopisz to, co wiesz tylko ty, i wklej do artykułu.",
     "point1": "<b>Z klienta</b>: ID, nazwy, opis przedmiotu (flavortext), slot, poziom i profesje, ręce i rodzaj broni, sloty imbuementów, klasa ulepszenia, właściwości obiektu, światło i kolor na mapie, czy się stackuje i czy jest na rynku.",
     "point2": "<b>Handel z NPC</b>: najlepsze ceny skupu i sprzedaży oraz wszyscy handlarze, z własną ceną, gdy jest inna.",
     "point3": "<b>Nic nie jest zmyślone</b>: każda wartość pokazuje swoje źródło; implemented, weight, attack, armor i inne wartości, których klient nie zawiera, czekają na uzupełnienie.",
     "point4": "<b>Edytuj, kopiuj, zapisuj</b>: zmień dowolną wartość, dodaj parametry, skopiuj kod, zapisz jako .txt albo zapisz osobny plik dla każdego zaznaczonego obiektu.",
-    "window": "{app:Tool.appearances.Name} → {app:Infobox.Tab}",
-    "caption": "Prawdziwy wynik dla Magic Plate Armor z zainstalowanego klienta – puste wiersze to to, czego klient nie może wiedzieć.",
-    "label": "Wygenerowany kod infoboxu"
+    "window": "{app:Tool.appearances.Name} → {app:Infobox.Tab}"
+  },
+  "pages": {
+    "tibia": {
+      "title": "Dane z Tibii: postacie, światy, gildie, highscores i wiadomości",
+      "description": "Sprawdź dowolną postać, świat, gildię, listę highscores, dom, stwora, czar lub statystykę zabójstw w Tibii i czytaj najnowsze wiadomości – na żywo z TibiaData."
+    },
+    "features": {
+      "title": "Funkcje",
+      "description": "Wszystko, co potrafi Tibia Foundry: sprite’y, animowane GIF-y, biblioteka zasobów, galerie z Content Studio, infoboksy TibiaWiki, mapy, domy i dźwięki – z prawdziwymi zrzutami ekranu."
+    },
+    "downloads": {
+      "title": "Pobierz Tibia Foundry {version}",
+      "description": "Pobierz Tibia Foundry {version} dla Windows 10 i 11: Instalator Windows (MSI), wersja przenośna lub kod źródłowy, z sumami SHA-256."
+    },
+    "guides": {
+      "title": "Poradniki i dokumentacja",
+      "description": "Pierwsze kroki z Tibia Foundry, korzystanie z narzędzi danych Tibii w przeglądarce, dokumentacja każdego narzędzia i odpowiedzi na częste pytania."
+    },
+    "about": {
+      "title": "O Tibia Foundry i jego twórcy",
+      "description": "Tibia Foundry tworzy i rozwija Rocky LaRochelle z północnej części stanu Nowy Jork (USA). Profile, informacje o projekcie i źródła danych tej strony."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "description": "Skontaktuj się z Rockym LaRochelle, twórcą Tibia Foundry, pod adresem rocky@tibiafoundry.com lub zgłoś problem na GitHubie."
+    }
+  },
+  "credits": {
+    "title": "Źródła danych i zasobów",
+    "tibiadata": "Dziękujemy {link} za udostępnianie danych z Tibii używanych na tej stronie.",
+    "tibiacom": "{link} – oficjalna strona Tibii, pierwotne źródło wiadomości, informacji o postaciach, światach, gildiach, domach, stworach i czarach oraz towarzyszących im obrazów.",
+    "cipsoft": "{link} – Tibia, jej grafiki i dane są © CipSoft GmbH; pojawiają się na zrzutach ekranu programu i w widokach danych.",
+    "tibiawiki": "{link} – wiki społeczności, dla której powstał Tibia Foundry (żadne treści z wiki nie są kopiowane na tę stronę).",
+    "fansites": "{link} – katalog fansite’ów pokazuje oficjalne fansite’y promoted i supported Tibii, tak jak publikuje je Tibia.com.",
+    "independent": "Tibia Foundry to niezależny projekt fanowski. Żaden z tych dostawców go nie sponsoruje, nie popiera ani nie jest z nim powiązany."
+  },
+  "home": {
+    "searchLabel": "Sprawdź postać z Tibii",
+    "news": {
+      "title": "Tibia News & Updates",
+      "lead": "Najnowsze wiadomości z Tibia.com, odświeżane automatycznie.",
+      "refresh": "Odśwież",
+      "archive": "Archiwum wiadomości",
+      "noscript": "Włącz JavaScript, aby zobaczyć tutaj najnowsze wiadomości z Tibii, lub przeczytaj je na Tibia.com."
+    },
+    "tools": {
+      "title": "Narzędzia do Tibii online",
+      "lead": "Sprawdzaj postacie, światy, gildie, highscores, stwory i czary w przeglądarce – bez pobierania.",
+      "all": "Wszystkie dane z Tibii"
+    },
+    "features": {
+      "all": "Wszystkie funkcje",
+      "infobox": "Wybierz dowolny obiekt i otrzymaj <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> TibiaWiki wypełniony z oficjalnego klienta, każdą wartość z jej źródłem."
+    },
+    "creator": {
+      "title": "Stworzone przez redaktora TibiaWiki",
+      "text": "Rocky stworzył Tibia Foundry, aby dać społeczności Tibii przydatne oprogramowanie, narzędzia i zasoby – zwłaszcza osobom piszącym TibiaWiki i inne strony o Tibii.",
+      "more": "O twórcy"
+    }
+  },
+  "new905": {
+    "item1": "<b>Wersja w nagłówku okna</b>: nagłówek programu pokazuje teraz „Tibia Foundry v{version}” nad hasłem, zawsze z wersji samej kompilacji.",
+    "item2": "<b>Jedna wersja, sprawdzona</b>: strona O programie, właściwości pliku, instalator i pakiety podają {version}; automatyczny test kompiluje późniejszą wersję i potwierdza, że nagłówek za nią podąża.",
+    "item3": "<b>Nowa strona</b>: projektowana najpierw na telefon, z jasnym i ciemnym motywem w pięciu językach.",
+    "item4": "<b>Dane z Tibii online</b>: postacie, światy, gildie, highscores, domy, statystyki zabójstw, stwory, czary, wzmocnieni bossowie, fansite’y i wiadomości z Tibii, dostarczane przez TibiaData.",
+    "item5": "<b>Nowe zrzuty ekranu</b>: każdy zrzut wykonany od nowa w wersji {version}, w każdym języku i motywie, teraz także strona O programie."
+  },
+  "guides": {
+    "title": "Poradniki i dokumentacja",
+    "lead": "Zacznij pracę z programem, korzystaj z narzędzi danych Tibii w przeglądarce i znajdź szczegółową dokumentację każdego narzędzia.",
+    "start": "Pierwsze kroki z programem",
+    "data": {
+      "title": "Jak korzystać z narzędzi danych Tibii",
+      "lead": "Strony Dane z Tibii pokazują aktualne informacje z TibiaData, które pobiera je z Tibia.com. Wszystko działa w Twojej przeglądarce.",
+      "step1": {
+        "title": "Szukaj",
+        "text": "Wpisz nazwę postaci w wyszukiwarce na górze dowolnej strony albo otwórz Światy, Gildie lub Highscores i wybierz świat."
+      },
+      "step2": {
+        "title": "Filtruj i sortuj",
+        "text": "Każdą tabelę można filtrować wpisując tekst i sortować według dowolnej kolumny; na telefonie wiersze zamieniają się w karty."
+      },
+      "step3": {
+        "title": "Kopiuj do wiki",
+        "text": "Skopiuj nazwę, wartość lub całą tabelę jako wikitekst albo CSV i wklej do TibiaWiki lub arkusza kalkulacyjnego."
+      },
+      "step4": {
+        "title": "Sprawdź oryginał",
+        "text": "Każdy widok prowadzi do tej samej strony na Tibia.com i pokazuje, kiedy dane zostały pobrane."
+      }
+    },
+    "docs": {
+      "title": "Dokumentacja",
+      "lead": "Szczegółowe poradniki w repozytorium kodu źródłowego na GitHubie (po angielsku).",
+      "build": {
+        "title": "Kompilacja i konfiguracja",
+        "text": "Wymagania, kompilacja ze źródeł, testy i pakiety."
+      },
+      "tools": {
+        "title": "Narzędzia, ustawienia i skrypty",
+        "text": "Co robi każde narzędzie i jakie ma ustawienia."
+      },
+      "library": {
+        "title": "Biblioteka zasobów i Content Studio",
+        "text": "Biblioteki, kolekcje, duplikaty, projekty, przepływy pracy i profile publikacji."
+      },
+      "infobox": {
+        "title": "Eksport infoboksów TibiaWiki",
+        "text": "Skąd pochodzi każda wartość infoboksu i które uzupełniasz sam."
+      },
+      "clients": {
+        "title": "Zarządzanie klientami",
+        "text": "Zainstalowane klienty, foldery klientów i oszczędne archiwa każdej wersji."
+      },
+      "localization": {
+        "title": "Języki",
+        "text": "Jak program jest tłumaczony i jak pomóc."
+      }
+    }
+  },
+  "about": {
+    "title": "O Tibia Foundry",
+    "role": "Twórca i programista Tibia Foundry",
+    "location": "Północna część stanu Nowy Jork, USA",
+    "bio1": "Rocky LaRochelle stworzył Tibia Foundry, aby dostarczać przydatne oprogramowanie, narzędzia i zasoby społeczności Tibii, szczególnie osobom zaangażowanym w TibiaWiki i treści związane z Tibią.",
+    "bio2": "Tibia Foundry to jedna aplikacja na komputer do całej pracy między zainstalowanym klientem Tibii a opublikowaną stroną – sprite’y, animacje, mapy, dźwięki, dane i infoboksy wiki. Ta strona dodaje darmowe narzędzia do sprawdzania danych z Tibii.",
+    "profiles": "Profile i społeczność",
+    "link": {
+      "tibiawiki": "Profil na TibiaWiki",
+      "tibia": "Postać w Tibii",
+      "youtube": "YouTube",
+      "instagram": "Instagram",
+      "github": "GitHub",
+      "reddit": "Reddit"
+    },
+    "linkLabel": "{platform}: {handle} (otwiera się w nowej karcie)",
+    "project": {
+      "title": "Projekt",
+      "text1": "Tibia Foundry jest darmowy i otwartoźródłowy. Program, jego kod źródłowy i ta strona są publikowane na GitHubie razem z każdym wydaniem, jego opisem i sumami kontrolnymi.",
+      "text2": "Zgłoszenia błędów i pomysły są mile widziane jako issues na GitHubie; pytania można też wysłać e-mailem."
+    },
+    "shotAlt": "Strona O programie w Tibia Foundry {version} z profilami twórcy i podziękowaniami",
+    "shotCaption": "Strona O programie w samym programie pokazuje te same profile i podziękowania.",
+    "sources": {
+      "title": "Źródła danych i podziękowania",
+      "lead": "Ta strona korzysta z następujących zewnętrznych danych i treści. Dziękujemy wszystkim, którzy je udostępniają."
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "lead": "Pytania, pomysły lub uwagi dotyczące Tibia Foundry albo tej strony? Napisz e-mail – a błąd zgłoś jako issue na GitHubie.",
+    "email": {
+      "title": "E-mail",
+      "write": "Napisz e-mail",
+      "copy": "Kopiuj adres",
+      "note": "„Napisz e-mail” otwiera Twój własny program pocztowy z wpisanym adresem. Ta strona niczego nie wysyła."
+    },
+    "other": {
+      "title": "Inne sposoby"
+    },
+    "issues": {
+      "title": "Błędy i pomysły",
+      "text": "Publiczne issues na GitHubie pomagają wszystkim: inni znajdą odpowiedź, a Ty możesz śledzić postępy."
+    },
+    "profiles": {
+      "title": "Profile w społeczności",
+      "text": "Rocky jest też na TibiaWiki, YouTube, Instagramie, GitHubie i Reddicie, a w Tibię gra jako Roc ky."
+    },
+    "privacy": "Ta strona nie ma formularza kontaktowego i nie zapisuje niczego, co wpisujesz. Wyszukiwania postaci trafiają tylko do TibiaData, aby pobrać dane."
+  },
+  "tibia": {
+    "title": "Dane z Tibii",
+    "lead": "Postacie, światy, gildie, highscores, domy, statystyki zabójstw, stwory, czary i wiadomości – na żywo z TibiaData, z linkiem do oryginału na Tibia.com.",
+    "sections": "Działy danych z Tibii",
+    "overview": "Przegląd",
+    "noscript": "Te narzędzia potrzebują JavaScriptu, aby pobrać dane z TibiaData. Wszystko można też sprawdzić na Tibia.com."
   }
 }

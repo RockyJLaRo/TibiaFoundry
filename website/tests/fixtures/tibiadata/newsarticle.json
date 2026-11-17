@@ -1,0 +1,25 @@
+{
+ "news": {
+  "id": 9050,
+  "date": "2026-11-13",
+  "title": "Double XP and Double Skill Event",
+  "category": "community",
+  "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9050",
+  "content": "Are you looking for an opportunity to level up and improve your skills? A double XP and double skill weekend is coming! So sharpen your weapons and stock up your potions, a weekend full of excessive monster slaughtering is waiting for you!\nBetween the server saves of November 20 and November 23 all monsters will yield twice the usual amount of experience points, and your skill training, including magic level, will advance twice as fast. The skill progress when training offline will also be doubled.\nHave fun,Your Community Managers    ",
+  "content_html": "<p>Are <img class=\"NewsImageLinkThumbnail\" src=\"https://static.tibia.com/images/news/doublexpnskill_small.png\" hspace=\"4\" vspace=\"6\" width=\"250\" height=\"215\" align=\"right\" onclick=\"ImageInNewWindow(&#39;https://static.tibia.com/images/news/doublexpnskill_big.png&#39;, &#39;double xp skill&#39;);\"/>you looking for an opportunity to level up and improve your skills? A double XP and double skill weekend is coming! So sharpen your weapons and stock up your potions, a weekend full of excessive monster slaughtering is waiting for you!</p>\n<p>Between the server saves of <strong>November 20</strong> and <b>November 23</b> all monsters will yield twice the usual amount of experience points, and your skill training, including magic level, will advance twice as fast. The skill progress when training offline will also be doubled.</p>\n<p>Have fun,<br/>Your Community Managers</p>    "
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:48:42Z",
+  "tibia_urls": [
+   "https://www.tibia.com/news/?subtopic=newsarchive&id=9050"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

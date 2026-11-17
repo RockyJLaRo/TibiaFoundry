@@ -1,0 +1,16 @@
+{
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:48:36Z",
+  "tibia_urls": [],
+  "status": {
+   "http_code": 404,
+   "error": 20001,
+   "message": "could not find character"
+  }
+ }
+}

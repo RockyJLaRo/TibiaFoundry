@@ -1,0 +1,1152 @@
+{
+ "news": [
+  {
+   "id": 9080,
+   "date": "2026-11-17",
+   "news": "In cooperation with Rookie.com.pl, TibiaWiki.com.br asks for your help...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9080",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9080"
+  },
+  {
+   "id": 9082,
+   "date": "2026-11-16",
+   "news": "Tomorrow, November 17, the server save on all game worlds will take ab...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9082",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9082"
+  },
+  {
+   "id": 9050,
+   "date": "2026-11-13",
+   "news": "Double XP and Double Skill Event",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9050",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9050"
+  },
+  {
+   "id": 9078,
+   "date": "2026-11-13",
+   "news": "Hunt-Analyser.com has released another update. Gear comparison now use...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9078",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9078"
+  },
+  {
+   "id": 9077,
+   "date": "2026-11-12",
+   "news": "Rookie.com.pl is inviting you to their Screenshot of the Month series ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9077",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9077"
+  },
+  {
+   "id": 9076,
+   "date": "2026-11-11",
+   "news": "Today, a new round of Research Tasks has started on TibiaDraptor....",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9076",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9076"
+  },
+  {
+   "id": 9063,
+   "date": "2026-11-10",
+   "news": "Join the Test Server!",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9063",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9063"
+  },
+  {
+   "id": 9065,
+   "date": "2026-11-10",
+   "news": "With today's server save, we have fixed an issue where the speed bonus...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9065",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9065"
+  },
+  {
+   "id": 9031,
+   "date": "2026-11-10",
+   "news": "The Lightbearer",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9031",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9031"
+  },
+  {
+   "id": 9064,
+   "date": "2026-11-09",
+   "news": "Tomorrow, November 10, the server save on all game worlds will take ab...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9064",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9064"
+  },
+  {
+   "id": 9062,
+   "date": "2026-11-09",
+   "news": "Just in time for the Lightbearer event, Tibiopedia.pl has published a ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9062",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9062"
+  },
+  {
+   "id": 9030,
+   "date": "2026-11-09",
+   "news": "Gems Polished Up!",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9030",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9030"
+  },
+  {
+   "id": 9061,
+   "date": "2026-11-09",
+   "news": "TibiaRoute.com has released a major update. They have rebuilt their ch...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9061",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9061"
+  },
+  {
+   "id": 9060,
+   "date": "2026-11-06",
+   "news": "A new episode is available on ElPodcastibiano.com. In Episode 128, the...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9060",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9060"
+  },
+  {
+   "id": 9027,
+   "date": "2026-11-05",
+   "news": "Clinical Observations on Men-acing Delusions",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9027",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9027"
+  },
+  {
+   "id": 9054,
+   "date": "2026-11-04",
+   "news": "PortalTibia.com.br invites you to join their anniversary contest! Answ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9054",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9054"
+  },
+  {
+   "id": 9004,
+   "date": "2026-11-03",
+   "news": "The Challenger - Quality is Life",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9004",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9004"
+  },
+  {
+   "id": 9051,
+   "date": "2026-11-03",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9051",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9051"
+  },
+  {
+   "id": 9052,
+   "date": "2026-11-02",
+   "news": "Tomorrow, November 03, the server save on all game worlds will take ab...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9052",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9052"
+  },
+  {
+   "id": 9049,
+   "date": "2026-11-02",
+   "news": "The second episode of the fairly new series Depot Talk on ElPodca...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9049",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9049"
+  },
+  {
+   "id": 9048,
+   "date": "2026-11-02",
+   "news": "Hunt-Analyser.com has released an update for paladins. Paladins can no...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9048",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9048"
+  },
+  {
+   "id": 9046,
+   "date": "2026-10-30",
+   "news": "TibiaDecorations.com has news to share! Read their newest article Dust...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9046",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9046"
+  },
+  {
+   "id": 9045,
+   "date": "2026-10-30",
+   "news": "A new episode is available on ElPodcastibiano.com. In Episode 127, the...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9045",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9045"
+  },
+  {
+   "id": 8998,
+   "date": "2026-10-29",
+   "news": "Fresh Daily Rewards and Streak Bonus",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8998",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8998"
+  },
+  {
+   "id": 9044,
+   "date": "2026-10-29",
+   "news": "TibiaMagazine.net would like to remind you of their Midnight Echoween ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9044",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9044"
+  },
+  {
+   "id": 9003,
+   "date": "2026-10-28",
+   "news": "The new game worlds Quirina(EU), Nebulera (NA), and Farsabra (SA) ...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9003",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9003"
+  },
+  {
+   "id": 9043,
+   "date": "2026-10-28",
+   "news": "With today's server save, we have implemented a fix for an issue where...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9043",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9043"
+  },
+  {
+   "id": 9042,
+   "date": "2026-10-27",
+   "news": "Tibiopedia.pl invites you to their anniversary contest. Also they want...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9042",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9042"
+  },
+  {
+   "id": 8999,
+   "date": "2026-10-27",
+   "news": "One for the Stray",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8999",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8999"
+  },
+  {
+   "id": 9039,
+   "date": "2026-10-27",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9039",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9039"
+  },
+  {
+   "id": 9026,
+   "date": "2026-10-27",
+   "news": "For players from European countries, our new manual bank transfer paym...",
+   "category": "support",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9026",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9026"
+  },
+  {
+   "id": 8942,
+   "date": "2026-10-27",
+   "news": "Happy Birthday, Tibiopedia.pl!\n Today it is their 18th anniversary alr...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8942",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8942"
+  },
+  {
+   "id": 9041,
+   "date": "2026-10-26",
+   "news": "Tomorrow, October 27, the server save on all game worlds will take abo...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9041",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9041"
+  },
+  {
+   "id": 9040,
+   "date": "2026-10-26",
+   "news": "Please welcome a new fansite in the fansite programme. TibiaWars....",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9040",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9040"
+  },
+  {
+   "id": 8940,
+   "date": "2026-10-24",
+   "news": "Happy anniversary PortalTibia.com.br! Today, the fansite turns 24 alre...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8940",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8940"
+  },
+  {
+   "id": 8941,
+   "date": "2026-10-24",
+   "news": "Happy Birthday, TibiCam.com! Today the fansite that invokes nostalgia ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8941",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8941"
+  },
+  {
+   "id": 8995,
+   "date": "2026-10-23",
+   "news": "Daylight saving time in Germany will end on Sunday, October 25. Clocks...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8995",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8995"
+  },
+  {
+   "id": 9035,
+   "date": "2026-10-23",
+   "news": "TibiaData.com has released a new version of their API. Check out their...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9035",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9035"
+  },
+  {
+   "id": 9038,
+   "date": "2026-10-23",
+   "news": "A new episode is available on ElPodcastibiano.com. In Episode 126, the...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9038",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9038"
+  },
+  {
+   "id": 9037,
+   "date": "2026-10-23",
+   "news": "TibiaDaily.com has published a new article. Want to read a bit of back...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9037",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9037"
+  },
+  {
+   "id": 9001,
+   "date": "2026-10-22",
+   "news": "All newly merged game worlds are now up and running! The corresponding...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9001",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9001"
+  },
+  {
+   "id": 9033,
+   "date": "2026-10-21",
+   "news": "Today, a new round of Research Tasks has started on TibiaDraptor....",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9033",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9033"
+  },
+  {
+   "id": 9032,
+   "date": "2026-10-21",
+   "news": "TibiaHome.com invites you to their newest contest! Have you ever heard...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9032",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9032"
+  },
+  {
+   "id": 9002,
+   "date": "2026-10-20",
+   "news": "New Optional and Open PvP Game Worlds",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9002",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9002"
+  },
+  {
+   "id": 9024,
+   "date": "2026-10-20",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9024",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9024"
+  },
+  {
+   "id": 9008,
+   "date": "2026-10-20",
+   "news": "The character backup for the winter update test will be taken on Octob...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9008",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9008"
+  },
+  {
+   "id": 9029,
+   "date": "2026-10-20",
+   "news": "Hunt-Analyser.com has released an update with quite many game data fix...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9029",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9029"
+  },
+  {
+   "id": 9028,
+   "date": "2026-10-20",
+   "news": "TibiaRoute.com offers you a new video series called Tibia Systems! In ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9028",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9028"
+  },
+  {
+   "id": 9025,
+   "date": "2026-10-19",
+   "news": "Tomorrow, October 20, the server save on all game worlds will take abo...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9025",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9025"
+  },
+  {
+   "id": 9000,
+   "date": "2026-10-19",
+   "news": "The announced game world merges will take place on Thursday, October 2...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9000",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9000"
+  },
+  {
+   "id": 9023,
+   "date": "2026-10-16",
+   "news": "A new episode is available on ElPodcastibiano.com. In Episode 124, the...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9023",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9023"
+  },
+  {
+   "id": 9020,
+   "date": "2026-10-16",
+   "news": "Tibiopedia.pl brings you a great new tool. Take a look at their brand ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9020",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9020"
+  },
+  {
+   "id": 9022,
+   "date": "2026-10-16",
+   "news": "Rookie.com.pl has published another part of the series Where to level ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9022",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9022"
+  },
+  {
+   "id": 9021,
+   "date": "2026-10-16",
+   "news": "Hunt-Analyser.com\n has released another update. From now on, players c...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9021",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9021"
+  },
+  {
+   "id": 8939,
+   "date": "2026-10-13",
+   "news": "Happy Birthday, TibiaHome.com! Today, it is their seventh anniversary....",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8939",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8939"
+  },
+  {
+   "id": 9019,
+   "date": "2026-10-13",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9019",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9019"
+  },
+  {
+   "id": 9018,
+   "date": "2026-10-12",
+   "news": "Tomorrow, October 13, the server save on all game worlds will take abo...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9018",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9018"
+  },
+  {
+   "id": 9017,
+   "date": "2026-10-12",
+   "news": "As compensation for the recent reset of Ferobra, a double \nXP/skill we...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9017",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9017"
+  },
+  {
+   "id": 9016,
+   "date": "2026-10-12",
+   "news": "Want to listen to some gossip, personal experiences, and news while hu...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9016",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9016"
+  },
+  {
+   "id": 9015,
+   "date": "2026-10-12",
+   "news": "TibiaMagazine.net invites you to their Midnight Echoween Hunters Conte...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9015",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9015"
+  },
+  {
+   "id": 9014,
+   "date": "2026-10-11",
+   "news": "We had to reset the game world Ferobra to the state of October 11, 10:...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9014",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9014"
+  },
+  {
+   "id": 9009,
+   "date": "2026-10-09",
+   "news": "A new episode is available on ElPodcastibiano.com. In Episode 123, the...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9009",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9009"
+  },
+  {
+   "id": 8988,
+   "date": "2026-10-09",
+   "news": "Rookie.com.pl is inviting you to their Screenshot of the Month series ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8988",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8988"
+  },
+  {
+   "id": 9007,
+   "date": "2026-10-08",
+   "news": "Due to technical maintenance work, our ticket system for customer supp...",
+   "category": "support",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9007",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9007"
+  },
+  {
+   "id": 8917,
+   "date": "2026-10-07",
+   "news": "Orcsoberfest",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8917",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8917"
+  },
+  {
+   "id": 9006,
+   "date": "2026-10-07",
+   "news": "TibiaDaily.com has published a nice little Tip for you. Are you planni...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9006",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9006"
+  },
+  {
+   "id": 9005,
+   "date": "2026-10-06",
+   "news": "We have released a new client version that addresses the unintended au...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9005",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9005"
+  },
+  {
+   "id": 8996,
+   "date": "2026-10-06",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8996",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8996"
+  },
+  {
+   "id": 8997,
+   "date": "2026-10-05",
+   "news": "Tomorrow, October 06, the server save on all game worlds will take abo...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8997",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8997"
+  },
+  {
+   "id": 8994,
+   "date": "2026-10-05",
+   "news": "TibiaDaily.com has published an article about Exercise Weapons. Want t...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8994",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8994"
+  },
+  {
+   "id": 8993,
+   "date": "2026-10-02",
+   "news": "Hunt-Analyser.com\n has released another update. From now on, hunters c...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8993",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8993"
+  },
+  {
+   "id": 8992,
+   "date": "2026-10-02",
+   "news": "ElPodcastibiano.com has published episode 122 of their Tibia podcast. ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8992",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8992"
+  },
+  {
+   "id": 8990,
+   "date": "2026-10-01",
+   "news": "Adjustment of Market Fee and Exercise Weapons",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8990",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8990"
+  },
+  {
+   "id": 8916,
+   "date": "2026-10-01",
+   "news": "Annual Autumn Vintage",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8916",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8916"
+  },
+  {
+   "id": 8991,
+   "date": "2026-10-01",
+   "news": "TibiaMagazine.net has published a new edition of the flip-through Tibi...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8991",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8991"
+  },
+  {
+   "id": 8989,
+   "date": "2026-09-30",
+   "news": "TibiaDaily.com has received an extensive update and appears in a brand...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8989",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8989"
+  },
+  {
+   "id": 8980,
+   "date": "2026-09-29",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8980",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8980"
+  },
+  {
+   "id": 8979,
+   "date": "2026-09-28",
+   "news": "Tomorrow, September 29, the server save on all game worlds will take a...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8979",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8979"
+  },
+  {
+   "id": 8947,
+   "date": "2026-09-28",
+   "news": "Exaltation Overload ",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8947",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8947"
+  },
+  {
+   "id": 8986,
+   "date": "2026-09-25",
+   "news": "Hunt-Analyser.com\n has released another update. From now on, a once lo...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8986",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8986"
+  },
+  {
+   "id": 8910,
+   "date": "2026-09-24",
+   "news": "Happy Birthday, Rookie.com.pl!\n The fansite that is home to everybody ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8910",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8910"
+  },
+  {
+   "id": 8938,
+   "date": "2026-09-23",
+   "news": "Farewell Tibians! ",
+   "category": "cipsoft",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8938",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8938"
+  },
+  {
+   "id": 8984,
+   "date": "2026-09-23",
+   "news": "We have released a new client fix that addresses an issue which could ...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8984",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8984"
+  },
+  {
+   "id": 8983,
+   "date": "2026-09-22",
+   "news": "Today, a new round of Research Tasks has started on TibiaDraptor....",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8983",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8983"
+  },
+  {
+   "id": 8982,
+   "date": "2026-09-22",
+   "news": "Due to technical issues, we had to revert a fix rolled out earlier tod...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8982",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8982"
+  },
+  {
+   "id": 8978,
+   "date": "2026-09-22",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8978",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8978"
+  },
+  {
+   "id": 8981,
+   "date": "2026-09-21",
+   "news": "Hunt-Analyser.com has released a big update. For example, you can now ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8981",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8981"
+  },
+  {
+   "id": 8968,
+   "date": "2026-09-21",
+   "news": "Game World Merge Announcement",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8968",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8968"
+  },
+  {
+   "id": 8976,
+   "date": "2026-09-18",
+   "news": "You have a house decoration idea and want to try out how to bring it t...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8976",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8976"
+  },
+  {
+   "id": 8975,
+   "date": "2026-09-17",
+   "news": "We have released a client fix for the freeze and performance issues on...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8975",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8975"
+  },
+  {
+   "id": 8974,
+   "date": "2026-09-17",
+   "news": "We sincerely apologise for the recent freezes and performance issues. ...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8974",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8974"
+  },
+  {
+   "id": 8971,
+   "date": "2026-09-16",
+   "news": "We have released a client fix for the issues that occurred after today...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8971",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8971"
+  },
+  {
+   "id": 8972,
+   "date": "2026-09-16",
+   "news": "We have released a new client version that fixes an issue where the Lo...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8972",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8972"
+  },
+  {
+   "id": 8970,
+   "date": "2026-09-15",
+   "news": "Due to technical issues, we had to revert the client to the previous v...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8970",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8970"
+  },
+  {
+   "id": 8967,
+   "date": "2026-09-15",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8967",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8967"
+  },
+  {
+   "id": 8909,
+   "date": "2026-09-15",
+   "news": "Colours of Magic",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8909",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8909"
+  },
+  {
+   "id": 8965,
+   "date": "2026-09-14",
+   "news": "Tomorrow, September 15, the server save on all game worlds will take a...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8965",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8965"
+  },
+  {
+   "id": 8954,
+   "date": "2026-09-14",
+   "news": "Happy anniversary, Tibia-Statistic.com! Today, the fairly new fansite ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8954",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8954"
+  },
+  {
+   "id": 8966,
+   "date": "2026-09-11",
+   "news": "TibiaLight.com wants to remind you of the current season of their ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8966",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8966"
+  },
+  {
+   "id": 8964,
+   "date": "2026-09-11",
+   "news": "Rookie.com.pl is inviting you to their Screenshot of the Month series ...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8964",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8964"
+  },
+  {
+   "id": 8963,
+   "date": "2026-09-10",
+   "news": "With their new release, Hunt-Analyser.com has made comparing hunts a l...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8963",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8963"
+  },
+  {
+   "id": 8962,
+   "date": "2026-09-10",
+   "news": "PortalTibia.com.br has published an article about the history of CipSo...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8962",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8962"
+  },
+  {
+   "id": 8961,
+   "date": "2026-09-09",
+   "news": "A message for all macOS users: Please note that the minimum requiremen...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8961",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8961"
+  },
+  {
+   "id": 8960,
+   "date": "2026-09-08",
+   "news": "With today's server save, we fixed an issue that could cause Maior Dom...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8960",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8960"
+  },
+  {
+   "id": 8957,
+   "date": "2026-09-07",
+   "news": "Tomorrow, September 08, the server save on all game worlds will take a...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8957",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8957"
+  },
+  {
+   "id": 8958,
+   "date": "2026-09-07",
+   "news": "As compensation for the recent reset of Talera and Stralis, a double X...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8958",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8958"
+  },
+  {
+   "id": 8956,
+   "date": "2026-09-06",
+   "news": "We had to reset the game world Stralis to the state of September 06, 1...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8956",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8956"
+  },
+  {
+   "id": 8955,
+   "date": "2026-09-06",
+   "news": "We had to reset the game world Talera to the state of September 06, 10...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8955",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8955"
+  },
+  {
+   "id": 8950,
+   "date": "2026-09-04",
+   "news": "TibiaDuality.com invites you to an Exiva Contest! Sign up till Se...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8950",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8950"
+  },
+  {
+   "id": 8953,
+   "date": "2026-09-02",
+   "news": "Please welcome a new fansite in the fansite programme. Tibia-Stat...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8953",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8953"
+  },
+  {
+   "id": 8952,
+   "date": "2026-09-02",
+   "news": "TibiaMagazine.net has published a new edition of the flip-through Tibi...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8952",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8952"
+  },
+  {
+   "id": 8949,
+   "date": "2026-09-02",
+   "news": "With today's server save, we have corrected the monk spell Spirit Mend...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8949",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8949"
+  },
+  {
+   "id": 8951,
+   "date": "2026-09-02",
+   "news": "Today, September 02, the server save on all game worlds will take abou...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8951",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8951"
+  },
+  {
+   "id": 8944,
+   "date": "2026-09-01",
+   "news": "Monk Adjustments",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8944",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8944"
+  },
+  {
+   "id": 8945,
+   "date": "2026-09-01",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8945",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8945"
+  },
+  {
+   "id": 8943,
+   "date": "2026-08-31",
+   "news": "Tomorrow, September 1, the server save on all game worlds will take ab...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8943",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8943"
+  },
+  {
+   "id": 8924,
+   "date": "2026-08-31",
+   "news": "Double XP and Double Skill Event",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8924",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8924"
+  },
+  {
+   "id": 8948,
+   "date": "2026-08-31",
+   "news": "Please welcome a new fansite in the fansite programme. FooTibia.c...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8948",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8948"
+  },
+  {
+   "id": 8908,
+   "date": "2026-08-28",
+   "news": "Rise of Devovorga",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8908",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8908"
+  },
+  {
+   "id": 8946,
+   "date": "2026-08-28",
+   "news": "TibiaLife.com.br is looking for your support. Have you ever considered...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8946",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8946"
+  },
+  {
+   "id": 8883,
+   "date": "2026-08-26",
+   "news": "The new game worlds Sinistra (EU), Wickera (NA) and Jinxibra...",
+   "category": "development",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8883",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8883"
+  },
+  {
+   "id": 8935,
+   "date": "2026-08-25",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8935",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8935"
+  },
+  {
+   "id": 8934,
+   "date": "2026-08-25",
+   "news": "Today, August 25, the server save on all game worlds will take about 3...",
+   "category": "technical",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8934",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8934"
+  },
+  {
+   "id": 8937,
+   "date": "2026-08-21",
+   "news": "TibiaDraptor.com invites you to a round of Bingo! The contest will tak...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8937",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8937"
+  },
+  {
+   "id": 8882,
+   "date": "2026-08-19",
+   "news": "New Retro Open PvP Game Worlds",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8882",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8882"
+  },
+  {
+   "id": 8936,
+   "date": "2026-08-19",
+   "news": "Rookie.com.pl has published a new article about Rookgaard and how it h...",
+   "category": "community",
+   "type": "ticker",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8936",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8936"
+  }
+ ],
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:43:50Z",
+  "tibia_urls": [
+   "https://www.tibia.com/news/?subtopic=newsarchive"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

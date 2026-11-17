@@ -1,0 +1,27 @@
+<div class="wrap page-head">
+  <h1>{{t:contact.title}}</h1>
+  <p class="lead">{{t:contact.lead}}</p>
+</div>
+
+<section class="band" aria-labelledby="email-title">
+  <div class="wrap">
+    <h2 id="email-title">{{t:contact.email.title}}</h2>
+    <div class="email-box">
+      <a class="email-address" id="contact-email" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}">{{EMAIL}}</a>
+      <a class="btn btn-primary" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}">{{t:contact.email.write}}</a>
+      <button type="button" class="btn" data-copy="{{EMAIL}}"><span class="copy-label">{{t:contact.email.copy}}</span></button>
+    </div>
+    <p class="muted" style="margin-top:12px">{{t:contact.email.note}}</p>
+  </div>
+</section>
+
+<section class="band band-alt" aria-labelledby="other-title">
+  <div class="wrap">
+    <h2 id="other-title">{{t:contact.other.title}}</h2>
+    <div class="grid grid-2">
+      <article class="card"><h3>{{t:contact.issues.title}}</h3><p>{{t:contact.issues.text}}</p><a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="contact">{{t:footer.issues}}</a></article>
+      <article class="card"><h3>{{t:contact.profiles.title}}</h3><p>{{t:contact.profiles.text}}</p><a class="btn" href="{{LINK:about}}">{{t:about.profiles}}</a></article>
+    </div>
+    <p class="muted" style="margin-top:16px">{{t:contact.privacy}}</p>
+  </div>
+</section>

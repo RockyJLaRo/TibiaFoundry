@@ -1,0 +1,62 @@
+{
+ "creature": {
+  "name": "Demons",
+  "race": "demon",
+  "image_url": "https://static.tibia.com/images/library/demon.gif",
+  "description": "The famous knight Apoc once wrote: \"Demons are the most malevolent, powerful, and dangerous creatures in Tibia. In addition to their awesome physical strength, they can also use powerful spells, such as fireballs and fire fields. Especially dangerous is their gaze, which can produce beams of pure energy to annihilate their poor victims. Moreover, they drain mana off their victims, heal themselves and summon fire elementals as their vassals.\nFortunately, Demons usually live in the deepest dungeons near hell but sometimes they appear also on the surface. When they do, they leave a track of death and destruction behind them. Nobody has ever been able to slay even one of these entities and only very few adventurers have survived an encounter with them.\"",
+  "behaviour": "They are immune to fire damage and cannot be paralysed. Moreover, they are strong against death, earth, energy and physical damage. On the other hand, they are weak against holy and ice damage. These creatures can neither be summoned nor convinced. In addition, they are able to sense invisible creatures.",
+  "hitpoints": 8200,
+  "immune": [
+   "fire"
+  ],
+  "strong": [
+   "death",
+   "earth",
+   "energy",
+   "physical"
+  ],
+  "weakness": [
+   "holy",
+   "ice"
+  ],
+  "healed": null,
+  "be_paralysed": false,
+  "be_summoned": false,
+  "summoned_mana": 0,
+  "be_convinced": false,
+  "convinced_mana": 0,
+  "see_invisible": true,
+  "experience_points": 6000,
+  "is_lootable": true,
+  "loot_list": [
+   "assassin stars",
+   "demon horns",
+   "demonic essence",
+   "fire mushrooms",
+   "gold coins",
+   "great mana potions",
+   "great spirit potions",
+   "platinum coins",
+   "small amethysts",
+   "small emeralds",
+   "small rubies",
+   "small topazes",
+   "ultimate health potions"
+  ],
+  "featured": false
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:10:33Z",
+  "tibia_urls": [
+   "https://www.tibia.com/library/?subtopic=creatures&race=demon"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

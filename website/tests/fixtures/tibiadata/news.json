@@ -1,0 +1,288 @@
+{
+ "news": [
+  {
+   "id": 9050,
+   "date": "2026-11-13",
+   "news": "Double XP and Double Skill Event",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9050",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9050"
+  },
+  {
+   "id": 9063,
+   "date": "2026-11-10",
+   "news": "Join the Test Server!",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9063",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9063"
+  },
+  {
+   "id": 9031,
+   "date": "2026-11-10",
+   "news": "The Lightbearer",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9031",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9031"
+  },
+  {
+   "id": 9030,
+   "date": "2026-11-09",
+   "news": "Gems Polished Up!",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9030",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9030"
+  },
+  {
+   "id": 9027,
+   "date": "2026-11-05",
+   "news": "Clinical Observations on Men-acing Delusions",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9027",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9027"
+  },
+  {
+   "id": 9004,
+   "date": "2026-11-03",
+   "news": "The Challenger - Quality is Life",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9004",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9004"
+  },
+  {
+   "id": 9051,
+   "date": "2026-11-03",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9051",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9051"
+  },
+  {
+   "id": 8998,
+   "date": "2026-10-29",
+   "news": "Fresh Daily Rewards and Streak Bonus",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8998",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8998"
+  },
+  {
+   "id": 8999,
+   "date": "2026-10-27",
+   "news": "One for the Stray",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8999",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8999"
+  },
+  {
+   "id": 9039,
+   "date": "2026-10-27",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9039",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9039"
+  },
+  {
+   "id": 9002,
+   "date": "2026-10-20",
+   "news": "New Optional and Open PvP Game Worlds",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9002",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9002"
+  },
+  {
+   "id": 9024,
+   "date": "2026-10-20",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9024",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9024"
+  },
+  {
+   "id": 9019,
+   "date": "2026-10-13",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=9019",
+   "url_api": "https://api.tibiadata.com/v5/news/id/9019"
+  },
+  {
+   "id": 8917,
+   "date": "2026-10-07",
+   "news": "Orcsoberfest",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8917",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8917"
+  },
+  {
+   "id": 8996,
+   "date": "2026-10-06",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8996",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8996"
+  },
+  {
+   "id": 8990,
+   "date": "2026-10-01",
+   "news": "Adjustment of Market Fee and Exercise Weapons",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8990",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8990"
+  },
+  {
+   "id": 8916,
+   "date": "2026-10-01",
+   "news": "Annual Autumn Vintage",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8916",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8916"
+  },
+  {
+   "id": 8980,
+   "date": "2026-09-29",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8980",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8980"
+  },
+  {
+   "id": 8947,
+   "date": "2026-09-28",
+   "news": "Exaltation Overload ",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8947",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8947"
+  },
+  {
+   "id": 8938,
+   "date": "2026-09-23",
+   "news": "Farewell Tibians! ",
+   "category": "cipsoft",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8938",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8938"
+  },
+  {
+   "id": 8978,
+   "date": "2026-09-22",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8978",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8978"
+  },
+  {
+   "id": 8968,
+   "date": "2026-09-21",
+   "news": "Game World Merge Announcement",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8968",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8968"
+  },
+  {
+   "id": 8967,
+   "date": "2026-09-15",
+   "news": "Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8967",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8967"
+  },
+  {
+   "id": 8909,
+   "date": "2026-09-15",
+   "news": "Colours of Magic",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8909",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8909"
+  },
+  {
+   "id": 8944,
+   "date": "2026-09-01",
+   "news": "Monk Adjustments",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8944",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8944"
+  },
+  {
+   "id": 8945,
+   "date": "2026-09-01",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8945",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8945"
+  },
+  {
+   "id": 8924,
+   "date": "2026-08-31",
+   "news": "Double XP and Double Skill Event",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8924",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8924"
+  },
+  {
+   "id": 8908,
+   "date": "2026-08-28",
+   "news": "Rise of Devovorga",
+   "category": "community",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8908",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8908"
+  },
+  {
+   "id": 8935,
+   "date": "2026-08-25",
+   "news": "Balancing, Fixes and Changes ",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8935",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8935"
+  },
+  {
+   "id": 8882,
+   "date": "2026-08-19",
+   "news": "New Retro Open PvP Game Worlds",
+   "category": "development",
+   "type": "news",
+   "url": "https://www.tibia.com/news/?subtopic=newsarchive&id=8882",
+   "url_api": "https://api.tibiadata.com/v5/news/id/8882"
+  }
+ ],
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:47:47Z",
+  "tibia_urls": [
+   "https://www.tibia.com/news/?subtopic=newsarchive"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

@@ -1,0 +1,1879 @@
+{
+ "guild": {
+  "name": "Crusaders of Might and Magic",
+  "world": "Calmera",
+  "logo_url": "https://static.tibia.com/images/guildlogos/Crusaders_of_Might_and_Magic.gif",
+  "description": "We are a guild based on the principles of honesty, courtesy and fair play. If anyone is helped by a member of this guild, we would like to hear about it.....If anyone is harmed by a guild member, we need to know about it.\n~~ Lady Lela and Bow Chikabowow ~~\n\nIf you are interested in joining this guild and I'm not online, you can send a letter to my depot.\n Bow Chikabowow",
+  "guildhalls": [
+   {
+    "name": "Bamboo Fortress",
+    "world": "Calmera",
+    "paid_until": "2026-11-27"
+   }
+  ],
+  "active": true,
+  "founded": "2003-11-02",
+  "open_applications": true,
+  "homepage": "",
+  "in_war": false,
+  "disband_date": "",
+  "disband_condition": "",
+  "players_online": 2,
+  "players_offline": 202,
+  "members_total": 204,
+  "members_invited": 0,
+  "members": [
+   {
+    "name": "Bow Chikabowow",
+    "title": "",
+    "rank": "Leader",
+    "vocation": "Elite Knight",
+    "level": 859,
+    "joined": "2011-07-27",
+    "status": "offline"
+   },
+   {
+    "name": "Captain Gus",
+    "title": "Sirena",
+    "rank": "Vice",
+    "vocation": "Elder Druid",
+    "level": 584,
+    "joined": "2025-09-15",
+    "status": "offline"
+   },
+   {
+    "name": "Damselle",
+    "title": "",
+    "rank": "Vice",
+    "vocation": "Elite Knight",
+    "level": 778,
+    "joined": "2025-11-02",
+    "status": "online"
+   },
+   {
+    "name": "Exotic Healer",
+    "title": "",
+    "rank": "Vice",
+    "vocation": "Elder Druid",
+    "level": 330,
+    "joined": "2022-01-23",
+    "status": "offline"
+   },
+   {
+    "name": "Lady Lela",
+    "title": "Healing Hands",
+    "rank": "Vice",
+    "vocation": "Elder Druid",
+    "level": 193,
+    "joined": "2003-11-02",
+    "status": "offline"
+   },
+   {
+    "name": "Ladyabby",
+    "title": "Lady Sorceress of Magic",
+    "rank": "Vice",
+    "vocation": "Master Sorcerer",
+    "level": 73,
+    "joined": "2005-06-29",
+    "status": "offline"
+   },
+   {
+    "name": "Paladin of Tallow",
+    "title": "",
+    "rank": "Vice",
+    "vocation": "Royal Paladin",
+    "level": 353,
+    "joined": "2020-04-01",
+    "status": "offline"
+   },
+   {
+    "name": "Stryder",
+    "title": "",
+    "rank": "Vice",
+    "vocation": "Paladin",
+    "level": 139,
+    "joined": "2003-11-02",
+    "status": "offline"
+   },
+   {
+    "name": "Aidenman",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 252,
+    "joined": "2022-04-26",
+    "status": "offline"
+   },
+   {
+    "name": "Arcus Sandor",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Knight",
+    "level": 292,
+    "joined": "2016-10-16",
+    "status": "offline"
+   },
+   {
+    "name": "Barinax",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 293,
+    "joined": "2021-09-07",
+    "status": "offline"
+   },
+   {
+    "name": "Chippewa Warrior",
+    "title": "Vice of Hiww",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 154,
+    "joined": "2015-04-12",
+    "status": "offline"
+   },
+   {
+    "name": "Draco Zorin",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 212,
+    "joined": "2011-08-31",
+    "status": "offline"
+   },
+   {
+    "name": "Dragonfire Soldier",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 196,
+    "joined": "2012-08-11",
+    "status": "offline"
+   },
+   {
+    "name": "Gusz",
+    "title": "Brighter than Sunshine",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 328,
+    "joined": "2011-11-06",
+    "status": "offline"
+   },
+   {
+    "name": "Human Kyo",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Paladin",
+    "level": 250,
+    "joined": "2021-10-23",
+    "status": "offline"
+   },
+   {
+    "name": "Lemijat",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Knight",
+    "level": 200,
+    "joined": "2019-10-13",
+    "status": "offline"
+   },
+   {
+    "name": "Lixufod",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 626,
+    "joined": "2023-08-20",
+    "status": "offline"
+   },
+   {
+    "name": "Loralee",
+    "title": "Cranky ol Bat",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 179,
+    "joined": "2010-06-09",
+    "status": "offline"
+   },
+   {
+    "name": "Nanoj",
+    "title": "Lucky charm",
+    "rank": "Warrior of Might",
+    "vocation": "Knight",
+    "level": 344,
+    "joined": "2019-12-28",
+    "status": "offline"
+   },
+   {
+    "name": "Nub Gus",
+    "title": "Holder of Horseshoe",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 515,
+    "joined": "2021-09-17",
+    "status": "offline"
+   },
+   {
+    "name": "Ralee",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 131,
+    "joined": "2007-02-02",
+    "status": "offline"
+   },
+   {
+    "name": "Reddie Junior",
+    "title": "Tensai Bakabon",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 202,
+    "joined": "2023-01-21",
+    "status": "offline"
+   },
+   {
+    "name": "Severblade",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 202,
+    "joined": "2020-05-12",
+    "status": "offline"
+   },
+   {
+    "name": "Shreddies",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 364,
+    "joined": "2022-07-10",
+    "status": "offline"
+   },
+   {
+    "name": "Swift Kiss",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 210,
+    "joined": "2022-06-29",
+    "status": "offline"
+   },
+   {
+    "name": "Tommy Macdonald",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 235,
+    "joined": "2022-12-27",
+    "status": "offline"
+   },
+   {
+    "name": "Trem Juan",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 400,
+    "joined": "2023-05-14",
+    "status": "offline"
+   },
+   {
+    "name": "Vensar",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Elite Knight",
+    "level": 205,
+    "joined": "2014-07-30",
+    "status": "offline"
+   },
+   {
+    "name": "Wicthi Doctor",
+    "title": "",
+    "rank": "Warrior of Might",
+    "vocation": "Royal Paladin",
+    "level": 405,
+    "joined": "2020-12-09",
+    "status": "offline"
+   },
+   {
+    "name": "Annetta",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Master Sorcerer",
+    "level": 130,
+    "joined": "2005-10-15",
+    "status": "offline"
+   },
+   {
+    "name": "Avalena",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Druid",
+    "level": 181,
+    "joined": "2019-03-17",
+    "status": "offline"
+   },
+   {
+    "name": "Baki Hanma",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Druid",
+    "level": 208,
+    "joined": "2019-05-07",
+    "status": "offline"
+   },
+   {
+    "name": "Huzzaz",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Master Sorcerer",
+    "level": 309,
+    "joined": "2023-01-15",
+    "status": "offline"
+   },
+   {
+    "name": "Mephir Fron",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Elder Druid",
+    "level": 369,
+    "joined": "2024-09-05",
+    "status": "offline"
+   },
+   {
+    "name": "Risin Evil",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Master Sorcerer",
+    "level": 295,
+    "joined": "2019-11-26",
+    "status": "offline"
+   },
+   {
+    "name": "Sorcerer Hannah",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Master Sorcerer",
+    "level": 116,
+    "joined": "2023-12-25",
+    "status": "offline"
+   },
+   {
+    "name": "Suikoden the Knight",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Druid",
+    "level": 312,
+    "joined": "2015-12-17",
+    "status": "offline"
+   },
+   {
+    "name": "Wazebum",
+    "title": "",
+    "rank": "Warrior of Magic",
+    "vocation": "Elder Druid",
+    "level": 243,
+    "joined": "2010-11-08",
+    "status": "offline"
+   },
+   {
+    "name": "Abaturex",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Knight",
+    "level": 84,
+    "joined": "2015-05-26",
+    "status": "offline"
+   },
+   {
+    "name": "Alameh",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Master Sorcerer",
+    "level": 65,
+    "joined": "2009-08-27",
+    "status": "offline"
+   },
+   {
+    "name": "Amber Wolfhaven",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 206,
+    "joined": "2024-06-16",
+    "status": "offline"
+   },
+   {
+    "name": "Ancient Flaw",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Sorcerer",
+    "level": 50,
+    "joined": "2012-05-09",
+    "status": "offline"
+   },
+   {
+    "name": "Blood eagle",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Sorcerer",
+    "level": 56,
+    "joined": "2008-04-13",
+    "status": "offline"
+   },
+   {
+    "name": "Bluegirl",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 58,
+    "joined": "2014-04-05",
+    "status": "offline"
+   },
+   {
+    "name": "Boltia",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 203,
+    "joined": "2020-01-09",
+    "status": "offline"
+   },
+   {
+    "name": "Cyboarg",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 109,
+    "joined": "2011-07-27",
+    "status": "offline"
+   },
+   {
+    "name": "Dangeruss Forty Eight",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 79,
+    "joined": "2015-04-23",
+    "status": "offline"
+   },
+   {
+    "name": "Drewp",
+    "title": "Pea Shooter of Might",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 67,
+    "joined": "2007-08-13",
+    "status": "offline"
+   },
+   {
+    "name": "Drewvius",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 33,
+    "joined": "2009-04-29",
+    "status": "offline"
+   },
+   {
+    "name": "Eleign",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Knight",
+    "level": 26,
+    "joined": "2003-11-19",
+    "status": "offline"
+   },
+   {
+    "name": "Eveldeenn",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Sorcerer",
+    "level": 125,
+    "joined": "2020-04-25",
+    "status": "offline"
+   },
+   {
+    "name": "Fire pixie",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Paladin",
+    "level": 46,
+    "joined": "2010-01-10",
+    "status": "offline"
+   },
+   {
+    "name": "Flokei",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 104,
+    "joined": "2020-05-13",
+    "status": "offline"
+   },
+   {
+    "name": "Gau",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Knight",
+    "level": 201,
+    "joined": "2021-11-08",
+    "status": "offline"
+   },
+   {
+    "name": "Hawkra",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 31,
+    "joined": "2009-06-08",
+    "status": "offline"
+   },
+   {
+    "name": "Healwound",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 103,
+    "joined": "2023-01-21",
+    "status": "offline"
+   },
+   {
+    "name": "Jomo Coris",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 105,
+    "joined": "2020-03-24",
+    "status": "offline"
+   },
+   {
+    "name": "Karul",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Paladin",
+    "level": 133,
+    "joined": "2020-05-04",
+    "status": "offline"
+   },
+   {
+    "name": "Kenrax",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 101,
+    "joined": "2020-01-22",
+    "status": "offline"
+   },
+   {
+    "name": "Klax Master The Second",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 105,
+    "joined": "2020-10-20",
+    "status": "offline"
+   },
+   {
+    "name": "Knight of Tallow",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 184,
+    "joined": "2023-03-19",
+    "status": "offline"
+   },
+   {
+    "name": "Lady Chassis",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 65,
+    "joined": "2015-05-20",
+    "status": "offline"
+   },
+   {
+    "name": "Ladymysty",
+    "title": "Mother Hen of Magic",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 78,
+    "joined": "2005-09-03",
+    "status": "offline"
+   },
+   {
+    "name": "Lilrascal",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 104,
+    "joined": "2023-06-26",
+    "status": "offline"
+   },
+   {
+    "name": "Little Guy",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 200,
+    "joined": "2020-06-07",
+    "status": "offline"
+   },
+   {
+    "name": "Luna Sapphire",
+    "title": "Shiny Rigel",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 165,
+    "joined": "2021-09-17",
+    "status": "offline"
+   },
+   {
+    "name": "Mad Manu",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 115,
+    "joined": "2019-04-09",
+    "status": "offline"
+   },
+   {
+    "name": "Maid of Knitting",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 51,
+    "joined": "2006-08-29",
+    "status": "offline"
+   },
+   {
+    "name": "Maid of Tat",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 54,
+    "joined": "2007-02-02",
+    "status": "offline"
+   },
+   {
+    "name": "Pointshoot",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 120,
+    "joined": "2023-01-21",
+    "status": "offline"
+   },
+   {
+    "name": "Ravenmocker",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 154,
+    "joined": "2019-08-19",
+    "status": "offline"
+   },
+   {
+    "name": "Ripping Flaw",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Knight",
+    "level": 80,
+    "joined": "2012-05-09",
+    "status": "offline"
+   },
+   {
+    "name": "Risin Death",
+    "title": "Starcrossed Lover of Might",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 52,
+    "joined": "2006-05-19",
+    "status": "offline"
+   },
+   {
+    "name": "Rylx",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Knight",
+    "level": 150,
+    "joined": "2019-05-21",
+    "status": "offline"
+   },
+   {
+    "name": "Silvr Hawk",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 108,
+    "joined": "2009-06-08",
+    "status": "offline"
+   },
+   {
+    "name": "Tazise",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 147,
+    "joined": "2019-08-19",
+    "status": "offline"
+   },
+   {
+    "name": "Trueblue Archer",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 81,
+    "joined": "2014-01-29",
+    "status": "offline"
+   },
+   {
+    "name": "Trueblue sorcerer",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Master Sorcerer",
+    "level": 97,
+    "joined": "2014-01-20",
+    "status": "offline"
+   },
+   {
+    "name": "Tutpar",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 169,
+    "joined": "2015-07-25",
+    "status": "offline"
+   },
+   {
+    "name": "Ufgor",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 82,
+    "joined": "2011-06-26",
+    "status": "offline"
+   },
+   {
+    "name": "Unsilent",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elite Knight",
+    "level": 136,
+    "joined": "2023-01-30",
+    "status": "offline"
+   },
+   {
+    "name": "Wood Amarthain",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Royal Paladin",
+    "level": 300,
+    "joined": "2023-03-13",
+    "status": "offline"
+   },
+   {
+    "name": "Yoko Kroa",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Master Sorcerer",
+    "level": 119,
+    "joined": "2023-01-21",
+    "status": "offline"
+   },
+   {
+    "name": "Zip Zap Zoop",
+    "title": "",
+    "rank": "Acolyte",
+    "vocation": "Elder Druid",
+    "level": 130,
+    "joined": "2015-07-28",
+    "status": "offline"
+   },
+   {
+    "name": "Bubaluba",
+    "title": "Lady of Kaboom",
+    "rank": "Honored Retiree",
+    "vocation": "Sorcerer",
+    "level": 252,
+    "joined": "2011-06-08",
+    "status": "offline"
+   },
+   {
+    "name": "Galiaosis",
+    "title": "Only the Best Coffee of Might",
+    "rank": "Honored Retiree",
+    "vocation": "Knight",
+    "level": 242,
+    "joined": "2005-07-19",
+    "status": "offline"
+   },
+   {
+    "name": "Lepier",
+    "title": "Hermana de Magico",
+    "rank": "Honored Retiree",
+    "vocation": "Druid",
+    "level": 60,
+    "joined": "2003-11-19",
+    "status": "offline"
+   },
+   {
+    "name": "Doralee",
+    "title": "Lurking Rookian plx",
+    "rank": "Limbo of Magic",
+    "vocation": "None",
+    "level": 31,
+    "joined": "2005-12-28",
+    "status": "offline"
+   },
+   {
+    "name": "Gary Oldtimer",
+    "title": "",
+    "rank": "Limbo of Magic",
+    "vocation": "Elite Knight",
+    "level": 52,
+    "joined": "2011-03-20",
+    "status": "offline"
+   },
+   {
+    "name": "Lady of Crochet",
+    "title": "The Dues Collector of Magic",
+    "rank": "Limbo of Magic",
+    "vocation": "Elder Druid",
+    "level": 67,
+    "joined": "2005-12-28",
+    "status": "offline"
+   },
+   {
+    "name": "Tiny Noob",
+    "title": "Insignia",
+    "rank": "Limbo of Magic",
+    "vocation": "None",
+    "level": 35,
+    "joined": "2021-09-17",
+    "status": "offline"
+   },
+   {
+    "name": "Akik",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 187,
+    "joined": "2020-09-06",
+    "status": "offline"
+   },
+   {
+    "name": "Alexander Paisely",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 50,
+    "joined": "2026-02-11",
+    "status": "offline"
+   },
+   {
+    "name": "Aliea",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 79,
+    "joined": "2019-05-20",
+    "status": "offline"
+   },
+   {
+    "name": "Allehyah Marie",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 50,
+    "joined": "2023-06-23",
+    "status": "offline"
+   },
+   {
+    "name": "Amarey",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 30,
+    "joined": "2020-04-11",
+    "status": "offline"
+   },
+   {
+    "name": "Amberlone",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 29,
+    "joined": "2019-05-20",
+    "status": "offline"
+   },
+   {
+    "name": "Ana Leda Star",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 75,
+    "joined": "2023-04-10",
+    "status": "offline"
+   },
+   {
+    "name": "Atheiyst",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 507,
+    "joined": "2026-05-21",
+    "status": "online"
+   },
+   {
+    "name": "Battery Guy",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 8,
+    "joined": "2020-10-11",
+    "status": "offline"
+   },
+   {
+    "name": "Bloody Raining Sniper",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 8,
+    "joined": "2019-12-30",
+    "status": "offline"
+   },
+   {
+    "name": "Cadence Master",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 285,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Captain Panchito",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 431,
+    "joined": "2026-07-19",
+    "status": "offline"
+   },
+   {
+    "name": "Catiandra",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 16,
+    "joined": "2023-08-25",
+    "status": "offline"
+   },
+   {
+    "name": "Ce'Nedra of Rowan",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 63,
+    "joined": "2025-02-21",
+    "status": "offline"
+   },
+   {
+    "name": "Coldbullet",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 369,
+    "joined": "2026-05-10",
+    "status": "offline"
+   },
+   {
+    "name": "Conde Fabuloso",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 121,
+    "joined": "2020-04-08",
+    "status": "offline"
+   },
+   {
+    "name": "Crazicritter",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 50,
+    "joined": "2023-07-08",
+    "status": "offline"
+   },
+   {
+    "name": "Crimzon slayar",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 62,
+    "joined": "2020-08-19",
+    "status": "offline"
+   },
+   {
+    "name": "Crissyn",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 65,
+    "joined": "2015-02-25",
+    "status": "offline"
+   },
+   {
+    "name": "Crystal Wolfhaven",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 101,
+    "joined": "2024-08-31",
+    "status": "offline"
+   },
+   {
+    "name": "Dark Kenrax",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 90,
+    "joined": "2019-07-16",
+    "status": "offline"
+   },
+   {
+    "name": "Devidian",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 114,
+    "joined": "2023-02-24",
+    "status": "offline"
+   },
+   {
+    "name": "Diel Meriel",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 56,
+    "joined": "2018-03-01",
+    "status": "offline"
+   },
+   {
+    "name": "Dolly",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 20,
+    "joined": "2026-03-07",
+    "status": "offline"
+   },
+   {
+    "name": "Dolly is Dolly",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 394,
+    "joined": "2024-12-04",
+    "status": "offline"
+   },
+   {
+    "name": "Drewiz",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 24,
+    "joined": "2020-02-23",
+    "status": "offline"
+   },
+   {
+    "name": "Drogglock",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Druid",
+    "level": 94,
+    "joined": "2019-07-16",
+    "status": "offline"
+   },
+   {
+    "name": "Druid of Tallow",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 67,
+    "joined": "2023-03-19",
+    "status": "offline"
+   },
+   {
+    "name": "Emperor Sozhe",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 41,
+    "joined": "2018-04-16",
+    "status": "offline"
+   },
+   {
+    "name": "Espressocrema",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 87,
+    "joined": "2025-10-07",
+    "status": "offline"
+   },
+   {
+    "name": "Fistacuffs",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Exalted Monk",
+    "level": 230,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Frank Zapper",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 338,
+    "joined": "2024-06-05",
+    "status": "offline"
+   },
+   {
+    "name": "Fyrerose",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 54,
+    "joined": "2023-06-26",
+    "status": "offline"
+   },
+   {
+    "name": "Gapeman",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Druid",
+    "level": 90,
+    "joined": "2024-08-04",
+    "status": "offline"
+   },
+   {
+    "name": "Gazerr",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 358,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Gerre von Gothia",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 48,
+    "joined": "2012-08-11",
+    "status": "offline"
+   },
+   {
+    "name": "Gopher",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 225,
+    "joined": "2026-01-03",
+    "status": "offline"
+   },
+   {
+    "name": "Hisieuial",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 121,
+    "joined": "2026-05-13",
+    "status": "offline"
+   },
+   {
+    "name": "Human Kiyo",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 44,
+    "joined": "2021-11-08",
+    "status": "offline"
+   },
+   {
+    "name": "Imhullu",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 50,
+    "joined": "2023-01-30",
+    "status": "offline"
+   },
+   {
+    "name": "Ipswitched",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 61,
+    "joined": "2025-06-14",
+    "status": "offline"
+   },
+   {
+    "name": "Jade Bloom",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 8,
+    "joined": "2018-09-12",
+    "status": "offline"
+   },
+   {
+    "name": "Jasonabc",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 61,
+    "joined": "2020-03-05",
+    "status": "offline"
+   },
+   {
+    "name": "Jimminy Earthfury",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Exalted Monk",
+    "level": 114,
+    "joined": "2026-05-02",
+    "status": "offline"
+   },
+   {
+    "name": "John the Sorcerer",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 234,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Karnak",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 107,
+    "joined": "2026-08-01",
+    "status": "offline"
+   },
+   {
+    "name": "Katalystic",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 96,
+    "joined": "2023-03-19",
+    "status": "offline"
+   },
+   {
+    "name": "Keleano",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 92,
+    "joined": "2023-01-30",
+    "status": "offline"
+   },
+   {
+    "name": "Kiplock",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 70,
+    "joined": "2019-07-16",
+    "status": "offline"
+   },
+   {
+    "name": "Knight dos Axes",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 191,
+    "joined": "2019-05-21",
+    "status": "offline"
+   },
+   {
+    "name": "Kravin",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 130,
+    "joined": "2025-08-27",
+    "status": "offline"
+   },
+   {
+    "name": "Lady Glugglug",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 192,
+    "joined": "2026-08-01",
+    "status": "offline"
+   },
+   {
+    "name": "Lanell Strongarm",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Exalted Monk",
+    "level": 48,
+    "joined": "2026-08-18",
+    "status": "offline"
+   },
+   {
+    "name": "Laura Elena",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 51,
+    "joined": "2004-04-25",
+    "status": "offline"
+   },
+   {
+    "name": "Lithel Talafos",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 40,
+    "joined": "2024-03-17",
+    "status": "offline"
+   },
+   {
+    "name": "Lizufod",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 216,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Lord Bailz",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 52,
+    "joined": "2023-01-10",
+    "status": "offline"
+   },
+   {
+    "name": "Lucioms",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 47,
+    "joined": "2023-01-08",
+    "status": "offline"
+   },
+   {
+    "name": "Mage Mousette",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 372,
+    "joined": "2026-05-10",
+    "status": "offline"
+   },
+   {
+    "name": "Malele",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 20,
+    "joined": "2020-03-01",
+    "status": "offline"
+   },
+   {
+    "name": "Markol",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 83,
+    "joined": "2022-01-15",
+    "status": "offline"
+   },
+   {
+    "name": "Master Snow",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 50,
+    "joined": "2019-08-24",
+    "status": "offline"
+   },
+   {
+    "name": "Matusalem on Calvera",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 60,
+    "joined": "2021-02-02",
+    "status": "offline"
+   },
+   {
+    "name": "Misses Mac",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 92,
+    "joined": "2020-05-22",
+    "status": "offline"
+   },
+   {
+    "name": "Mister Bich",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 101,
+    "joined": "2020-04-04",
+    "status": "offline"
+   },
+   {
+    "name": "Mister Sixtri",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 44,
+    "joined": "2026-05-16",
+    "status": "offline"
+   },
+   {
+    "name": "Moofantha",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 13,
+    "joined": "2013-11-10",
+    "status": "offline"
+   },
+   {
+    "name": "Moon Epiphany",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 102,
+    "joined": "2025-03-09",
+    "status": "offline"
+   },
+   {
+    "name": "Moreta of Pern",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 64,
+    "joined": "2024-07-28",
+    "status": "offline"
+   },
+   {
+    "name": "Mousette",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 218,
+    "joined": "2026-05-10",
+    "status": "offline"
+   },
+   {
+    "name": "Mulish Knight",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 78,
+    "joined": "2014-08-30",
+    "status": "offline"
+   },
+   {
+    "name": "Nikiawa",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 54,
+    "joined": "2023-06-26",
+    "status": "offline"
+   },
+   {
+    "name": "Paldurion",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 44,
+    "joined": "2020-03-05",
+    "status": "offline"
+   },
+   {
+    "name": "Pauly Walnuts",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 71,
+    "joined": "2015-07-25",
+    "status": "offline"
+   },
+   {
+    "name": "Peekay Ness",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 260,
+    "joined": "2026-09-11",
+    "status": "offline"
+   },
+   {
+    "name": "Phrefrin Xinia",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 66,
+    "joined": "2021-05-02",
+    "status": "offline"
+   },
+   {
+    "name": "Pyreno Aryn",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Druid",
+    "level": 17,
+    "joined": "2012-08-11",
+    "status": "offline"
+   },
+   {
+    "name": "Qikiltrin",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 45,
+    "joined": "2012-06-04",
+    "status": "offline"
+   },
+   {
+    "name": "Queen Demi",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 81,
+    "joined": "2020-08-27",
+    "status": "offline"
+   },
+   {
+    "name": "Ravelle",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 553,
+    "joined": "2026-05-10",
+    "status": "offline"
+   },
+   {
+    "name": "Rawman",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 271,
+    "joined": "2024-11-12",
+    "status": "offline"
+   },
+   {
+    "name": "Raydramon Druid",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Druid",
+    "level": 22,
+    "joined": "2013-01-11",
+    "status": "offline"
+   },
+   {
+    "name": "Regulators",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 78,
+    "joined": "2019-09-08",
+    "status": "offline"
+   },
+   {
+    "name": "Rever Zion",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 158,
+    "joined": "2026-07-19",
+    "status": "offline"
+   },
+   {
+    "name": "Reyna Savari",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 105,
+    "joined": "2022-05-01",
+    "status": "offline"
+   },
+   {
+    "name": "Rhea Callushand",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Exalted Monk",
+    "level": 67,
+    "joined": "2025-06-14",
+    "status": "offline"
+   },
+   {
+    "name": "Risin druid",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 131,
+    "joined": "2019-11-26",
+    "status": "offline"
+   },
+   {
+    "name": "Rixic",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 115,
+    "joined": "2023-12-03",
+    "status": "offline"
+   },
+   {
+    "name": "Roc ky",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 731,
+    "joined": "2026-08-16",
+    "status": "offline"
+   },
+   {
+    "name": "Roserita",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 58,
+    "joined": "2023-10-13",
+    "status": "offline"
+   },
+   {
+    "name": "Saya New Star",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 44,
+    "joined": "2015-01-11",
+    "status": "offline"
+   },
+   {
+    "name": "Seamus of leprchauns",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elder Druid",
+    "level": 35,
+    "joined": "2021-09-17",
+    "status": "offline"
+   },
+   {
+    "name": "Selegna skelos",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 104,
+    "joined": "2021-02-25",
+    "status": "offline"
+   },
+   {
+    "name": "Severspell",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 15,
+    "joined": "2020-05-23",
+    "status": "offline"
+   },
+   {
+    "name": "Shirayumi",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 150,
+    "joined": "2025-12-14",
+    "status": "offline"
+   },
+   {
+    "name": "Shooter Rose",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Sorcerer",
+    "level": 12,
+    "joined": "2023-08-25",
+    "status": "offline"
+   },
+   {
+    "name": "Sir Kahoot",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 38,
+    "joined": "2024-02-15",
+    "status": "offline"
+   },
+   {
+    "name": "Sir Killa lot",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 58,
+    "joined": "2023-10-13",
+    "status": "offline"
+   },
+   {
+    "name": "Slyn Pire",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 73,
+    "joined": "2012-07-28",
+    "status": "offline"
+   },
+   {
+    "name": "Spellweaver Wizard",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 55,
+    "joined": "2020-03-05",
+    "status": "offline"
+   },
+   {
+    "name": "Supsupbro",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 70,
+    "joined": "2023-11-19",
+    "status": "offline"
+   },
+   {
+    "name": "Thanatrax Malkin",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Paladin",
+    "level": 26,
+    "joined": "2012-11-15",
+    "status": "offline"
+   },
+   {
+    "name": "Toby Wesley",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 50,
+    "joined": "2026-02-11",
+    "status": "offline"
+   },
+   {
+    "name": "Trahern",
+    "title": "Walkabout of Might",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 47,
+    "joined": "2005-02-23",
+    "status": "offline"
+   },
+   {
+    "name": "True Bloodyedge",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 50,
+    "joined": "2019-12-31",
+    "status": "offline"
+   },
+   {
+    "name": "Vickorz",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 50,
+    "joined": "2026-05-21",
+    "status": "offline"
+   },
+   {
+    "name": "Vizotab",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Master Sorcerer",
+    "level": 74,
+    "joined": "2019-05-15",
+    "status": "offline"
+   },
+   {
+    "name": "Wyldeone",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 40,
+    "joined": "2019-03-18",
+    "status": "offline"
+   },
+   {
+    "name": "Zadrion Adre",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Knight",
+    "level": 38,
+    "joined": "2015-10-22",
+    "status": "offline"
+   },
+   {
+    "name": "Zethrid",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Druid",
+    "level": 36,
+    "joined": "2012-06-26",
+    "status": "offline"
+   },
+   {
+    "name": "Zhinra",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Elite Knight",
+    "level": 58,
+    "joined": "2020-02-11",
+    "status": "offline"
+   },
+   {
+    "name": "Zhzzu Sven",
+    "title": "",
+    "rank": "Crusader",
+    "vocation": "Royal Paladin",
+    "level": 47,
+    "joined": "2020-03-07",
+    "status": "offline"
+   }
+  ],
+  "invites": null
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:48:37Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=guilds&page=view&GuildName=crusaders+of+might+and+magic"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

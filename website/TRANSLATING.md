@@ -12,10 +12,10 @@ The site exists in five languages. Each is a static page built from the same tem
 
 ## How it works
 
-- `src/index.template.html` contains no visible text, only keys: `{{t:hero.title}}` (HTML text), `{{a:hero.zoom}}` (an attribute: markup is removed and quotes escaped) and `{{j:meta.description}}` (inside JSON-LD).
+- `src/templates/*.html` (one per page, inside `layout.html`) contain no visible text, only keys: `{{t:hero.lead}}` (HTML text) and `{{a:hero.zoom}}` (an attribute: markup is removed and quotes escaped). The brand line "Tibia Foundry - All your Tibia-Tools for TibiaWiki" is the program's exact tagline and stays as it is in every language.
 - `build_site.py` renders the template once per language. A key missing in a language shows the **English** text. The build lists every missing key, and `--strict` makes the build fail on one.
 - The build **fails** if a translation changes the markup (`<b>`, `<span class="accent">`, `<code>`), the content of a `<code>` element or a placeholder. This keeps file names, templates, links and code identical in every language.
-- Texts that the script needs at run time (the `js.*` keys) are embedded in each page as `window.TF_I18N`. In `app.js`, call `TF.t('key', { count: 3 })`. A missing key falls back to English and logs a warning when the page runs on `localhost` or from disk.
+- Texts that the scripts need at run time (the `js.*` keys: Tibia data views, errors, tables, news) are embedded in each page as `window.TF_I18N`. In `src/js/*.js`, call `TF.t('js.key', { n: 3 })`; runtime placeholders such as `{n}`, `{date}`, `{time}`, `{world}` are filled by the script and must be kept exactly. Numbers and dates are formatted with `Intl` in the page's language. A missing key falls back to English and logs a warning when the page runs on `localhost` or from disk.
 - `website/i18n-report.md` is the completeness report and is rewritten by every build.
 
 ## Placeholders in texts
@@ -72,3 +72,14 @@ python -I website/build_site.py --strict
 ## Review status
 
 The four translations were written by Claude (an AI). They have not yet been reviewed by native speakers. Please ask fluent Tibia players to proofread them, especially the hero texts, the FAQ and the legal notice.
+
+## Checks (9.0.5)
+
+- `python -I website/tests/check_i18n.py` – every language has every English key, no empty texts, no unknown or
+  duplicate keys, the same markup and placeholders as English, every data-provider credit keeps its `{link}`, and texts
+  identical to English are listed in `_meta.sameAsEnglish` (names and official terms: Highscores, Premium, vocation names,
+  the section title *Tibia News & Updates*...).
+- `python -I website/build_site.py --strict` fails on a missing translation or an unused text.
+- Official Tibia terms are never translated: character, world, guild, creature and boss names, spell formulas
+  (`exura`), API data (vocations, PvP types, news headlines - marked `lang="en"` on the page).
+

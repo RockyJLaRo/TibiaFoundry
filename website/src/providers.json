@@ -1,0 +1,57 @@
+{
+  "_comment": "Attribution registry: every external website or service whose data, content, images or functionality the production website uses. The footer's 'Data & resource credits' is built from this list (texts in the locale files under credits.<id>), and website/tests check that each entry is rendered with its link on every page, in every language and theme. Software licences of the desktop program are a different matter: THIRD-PARTY-NOTICES.txt.",
+  "providers": [
+    {
+      "id": "tibiadata",
+      "name": "TibiaData",
+      "url": "https://tibiadata.com/",
+      "docs": "https://docs.tibiadata.com/",
+      "uses": "Public REST API (v5, https://api.tibiadata.com/v5/) for characters, worlds, guilds, highscores, houses, kill statistics, creatures, spells, boostable bosses, fansites and news, requested directly by the visitor's browser.",
+      "attribution": "Visible thank-you with a link in the footer of every page; 'Data: TibiaData' with a link on every data view.",
+      "terms": "Public API without key or rate limit in production (https://tibiadata.com/faq/); responses are cached by TibiaData for 1-15 minutes, our cache is never shorter. TibiaData's own data is based on tibia.com. No partnership or endorsement is implied.",
+      "where": ["tibia/ (all data views)", "home page: Tibia News & Updates, boosted creature and boss"],
+      "required": true
+    },
+    {
+      "id": "tibiacom",
+      "name": "Tibia.com",
+      "url": "https://www.tibia.com/",
+      "docs": "https://www.tibia.com/support/?subtopic=legaldocuments&page=agreement",
+      "uses": "Original source of the game information TibiaData provides: news articles (headlines, text and their images on static.tibia.com), character, guild and house data, creature, boss, spell, house and guild images loaded from static.tibia.com; every data view links to the original page on tibia.com.",
+      "attribution": "Footer credit with a link; 'Original on Tibia.com' links next to the data.",
+      "terms": "Tibia, its content, graphics and data are © CipSoft GmbH. Images are shown from CipSoft's own server (not copied). No affiliation with or endorsement by CipSoft GmbH.",
+      "where": ["tibia/ (all data views)", "home page: Tibia News & Updates"],
+      "required": true
+    },
+    {
+      "id": "cipsoft",
+      "name": "CipSoft GmbH",
+      "url": "https://www.cipsoft.com/en/",
+      "uses": "Rights holder of Tibia: game graphics in the program screenshots and pixel-art samples, and all game data shown on the site.",
+      "attribution": "Copyright notice and link in the footer.",
+      "terms": "Trademark and copyright notice; Tibia Foundry is an independent fan project, not affiliated with or endorsed by CipSoft GmbH.",
+      "where": ["every page (screenshots, samples, data)"],
+      "required": true
+    },
+    {
+      "id": "tibiawiki",
+      "name": "TibiaWiki",
+      "url": "https://tibia.fandom.com/wiki/Main_Page",
+      "uses": "Linked as the wiki the program works for; its template names ({{Infobox Object}}) and conventions are described. No TibiaWiki content is copied onto the site.",
+      "attribution": "Footer link.",
+      "terms": "TibiaWiki content is licensed CC BY-SA by its authors on Fandom; none is reproduced here. No affiliation with Fandom.",
+      "where": ["features/", "guides/", "footer"],
+      "required": true
+    },
+    {
+      "id": "fansites",
+      "name": "Tibia fansites",
+      "url": "https://www.tibia.com/community/?subtopic=fansites",
+      "uses": "The fansite directory lists the promoted and supported fansites with their names, logos (from static.tibia.com) and links, as published on tibia.com through TibiaData.",
+      "attribution": "Each fansite is named and linked in the directory; the footer credits the fansite programme page.",
+      "terms": "Independent websites; listing does not imply any relationship with Tibia Foundry.",
+      "where": ["tibia/#/fansites"],
+      "required": true
+    }
+  ]
+}

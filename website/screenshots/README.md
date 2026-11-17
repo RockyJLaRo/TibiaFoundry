@@ -20,7 +20,7 @@ coverage report, builds the website and validates every image reference. Run it 
 | `coverage-report.md` | Every screenshot × language × theme with capture, state, checks, review and file. Generated. |
 | `qa-9.0.4.md` | What the 9.0.4 recreation checked, corrected, and found in the program itself (written by hand). |
 | `.work/` | Raw captures, diff images, contact sheets. Not committed (`.gitignore`), not packaged. |
-| `../src/images/screens/<code>/<id>-<code>-<theme>.png` | **The library**: lossless 1586×893 window captures, e.g. `screens/pt-BR/home-pt-BR-dark.png`. |
+| `../src/images/screens/<code>/<id>-<code>-<theme>.png` | **The library**: lossless 1280×800 window captures, e.g. `screens/pt-BR/home-pt-BR-dark.png`. |
 | `../site/img/screens/<id>-<code>-<theme>.webp` | What the website serves (written by `build_site.py`). |
 
 ## Requirements
@@ -73,7 +73,7 @@ mouse and keyboard alone for that time.
   `src/locales/<code>.json` and the program needs `Strings.<code>.xaml`; a missing one is reported before anything
   is captured. Languages the program has but the website does not are listed as a note.
 * **Locations**: the screenshot gallery (`SCREENS` in `build_site.py`), every `{{IMG:<id>-dark}}` /
-  `{{IMG:<id>-light}}` in `src/index.template.html` (with its section), the crops in `DERIVED` (traced back to their
+  `{{SHOT:<id>:...}}` and `{{IMG:<id>-dark}}` in `src/templates/*.html` (with page and section), the crops in `DERIVED` (traced back to their
   source shot) and the link preview image.
 * **Shots the program can take**: the `Shot` list in `src/TibiaFoundry.App/Views/SiteScreenshots.cs`. A location
   without a shot is reported as a problem.
@@ -97,7 +97,7 @@ mouse and keyboard alone for that time.
 
 Every capture is checked before it is stored (a failed check keeps the previous file and is reported):
 
-* size exactly 1586×893 (the program sizes its window frame to that);
+* size exactly 1280×800 (the program sizes its window frame to that);
 * the theme: average brightness of the page area and of the title bar must be dark (≤ 110) or light (≥ 150);
 * not blank (brightness spread ≥ 12);
 * the program's own result (every requested shot reported `ok`, the page existed, the language it started in).
@@ -122,5 +122,5 @@ is unused and that no old-style screenshot is left in `src/images`.
   not appear in unattended runs, or a page that never stops loading.
 * *does not look dark/light*: the theme was not applied before the capture; check `ThemeManager.Apply`.
 * *size*: display scaling or a window that could not be resized (another monitor setup); the program fits the
-  frame to 1586×893 physical pixels.
+  frame to 1280×800 physical pixels.
 * A run that was stopped leaves `.work/lock`; delete it if no capture is running.

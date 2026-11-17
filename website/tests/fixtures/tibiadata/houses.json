@@ -1,0 +1,1767 @@
+{
+ "houses": {
+  "world": "Antica",
+  "town": "Thais",
+  "house_list": [
+   {
+    "name": "Alai Flats, Flat 01",
+    "house_id": 10301,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 02",
+    "house_id": 10302,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 03",
+    "house_id": 10303,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 04",
+    "house_id": 10304,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 05",
+    "house_id": 10305,
+    "size": 25,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 06",
+    "house_id": 10306,
+    "size": 25,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 07",
+    "house_id": 10307,
+    "size": 17,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 08",
+    "house_id": 10308,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 11",
+    "house_id": 10311,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 12",
+    "house_id": 10312,
+    "size": 17,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 13",
+    "house_id": 10313,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 14",
+    "house_id": 10314,
+    "size": 20,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 15",
+    "house_id": 10315,
+    "size": 30,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 16",
+    "house_id": 10316,
+    "size": 30,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 17",
+    "house_id": 10317,
+    "size": 20,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 18",
+    "house_id": 10318,
+    "size": 20,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 21",
+    "house_id": 10320,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 22",
+    "house_id": 10319,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 23",
+    "house_id": 10321,
+    "size": 17,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 24",
+    "house_id": 10322,
+    "size": 20,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 25",
+    "house_id": 10323,
+    "size": 30,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 26",
+    "house_id": 10324,
+    "size": 30,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 27",
+    "house_id": 10325,
+    "size": 20,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Alai Flats, Flat 28",
+    "house_id": 10326,
+    "size": 20,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 01",
+    "house_id": 10201,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 02",
+    "house_id": 10202,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 03",
+    "house_id": 10203,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 04",
+    "house_id": 10204,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 05",
+    "house_id": 10205,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 06",
+    "house_id": 10206,
+    "size": 19,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 11",
+    "house_id": 10211,
+    "size": 13,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 12",
+    "house_id": 10212,
+    "size": 16,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 13",
+    "house_id": 10213,
+    "size": 16,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 14",
+    "house_id": 10214,
+    "size": 7,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 15",
+    "house_id": 10215,
+    "size": 7,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Beach Home Apartments, Flat 16",
+    "house_id": 10216,
+    "size": 19,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Demon Tower",
+    "house_id": 10006,
+    "size": 72,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Farm Lane, 1st floor (Shop)",
+    "house_id": 10702,
+    "size": 21,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Farm Lane, 2nd Floor (Shop)",
+    "house_id": 10703,
+    "size": 21,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Farm Lane, Basement (Shop)",
+    "house_id": 10701,
+    "size": 21,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village 1",
+    "house_id": 12003,
+    "size": 13,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village 2",
+    "house_id": 12004,
+    "size": 13,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village 3",
+    "house_id": 12005,
+    "size": 54,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village 4",
+    "house_id": 12006,
+    "size": 26,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village 5",
+    "house_id": 12007,
+    "size": 26,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village, Bar (Shop)",
+    "house_id": 12009,
+    "size": 79,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village, Tower Flat",
+    "house_id": 12008,
+    "size": 78,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Village, Villa",
+    "house_id": 12100,
+    "size": 222,
+    "rent": 200000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village 1",
+    "house_id": 14005,
+    "size": 37,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village 2",
+    "house_id": 14006,
+    "size": 26,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village 3",
+    "house_id": 14008,
+    "size": 26,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village 6",
+    "house_id": 14010,
+    "size": 71,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village 7",
+    "house_id": 14011,
+    "size": 21,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village, Shop",
+    "house_id": 14004,
+    "size": 30,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Village, Villa",
+    "house_id": 14003,
+    "size": 155,
+    "rent": 300000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Harbour Place 1 (Shop)",
+    "house_id": 11404,
+    "size": 22,
+    "rent": 800000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Harbour Place 2 (Shop)",
+    "house_id": 11401,
+    "size": 26,
+    "rent": 600000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Harbour Place 3",
+    "house_id": 11402,
+    "size": 87,
+    "rent": 800000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Harbour Street 4",
+    "house_id": 10602,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Lower Swamp Lane 1",
+    "house_id": 10403,
+    "size": 74,
+    "rent": 400000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Lower Swamp Lane 3",
+    "house_id": 10404,
+    "size": 74,
+    "rent": 400000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Main Street 9, 1st floor (Shop)",
+    "house_id": 10802,
+    "size": 32,
+    "rent": 200000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Main Street 9a, 2nd floor (Shop)",
+    "house_id": 10803,
+    "size": 17,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Main Street 9b, 2nd floor (Shop)",
+    "house_id": 10804,
+    "size": 28,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mill Avenue 1 (Shop)",
+    "house_id": 10901,
+    "size": 26,
+    "rent": 200000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mill Avenue 2 (Shop)",
+    "house_id": 10902,
+    "size": 45,
+    "rent": 200000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mill Avenue 3",
+    "house_id": 10903,
+    "size": 26,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mill Avenue 4",
+    "house_id": 10904,
+    "size": 26,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mill Avenue 5",
+    "house_id": 10905,
+    "size": 59,
+    "rent": 300000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Open-Air Theatre",
+    "house_id": 10007,
+    "size": 60,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Smuggler's Den",
+    "house_id": 11024,
+    "size": 219,
+    "rent": 400000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue 1a",
+    "house_id": 10501,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue 1b",
+    "house_id": 10502,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue 1c",
+    "house_id": 10503,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue 5 (Shop)",
+    "house_id": 10504,
+    "size": 49,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue Labs 2a",
+    "house_id": 10505,
+    "size": 29,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue Labs 2b",
+    "house_id": 10508,
+    "size": 29,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sorcerer's Avenue Labs 2c",
+    "house_id": 10510,
+    "size": 29,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 01",
+    "house_id": 10101,
+    "size": 13,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 02",
+    "house_id": 10102,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 03",
+    "house_id": 10103,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 11",
+    "house_id": 10104,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 12",
+    "house_id": 10112,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 13",
+    "house_id": 10113,
+    "size": 19,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 14",
+    "house_id": 10114,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 21",
+    "house_id": 10121,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 22",
+    "house_id": 10122,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 23",
+    "house_id": 10123,
+    "size": 19,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Sunset Homes, Flat 24",
+    "house_id": 10124,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Targuna Cottage  1",
+    "house_id": 101,
+    "size": 89,
+    "rent": 300000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Targuna Cottage 2",
+    "house_id": 102,
+    "size": 68,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Thais Hostel",
+    "house_id": 10603,
+    "size": 117,
+    "rent": 200000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 1a",
+    "house_id": 11022,
+    "size": 26,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 1b",
+    "house_id": 11023,
+    "size": 26,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3a",
+    "house_id": 11016,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3b",
+    "house_id": 11017,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3c",
+    "house_id": 11018,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3d",
+    "house_id": 11019,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3e",
+    "house_id": 11020,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 3f",
+    "house_id": 11021,
+    "size": 21,
+    "rent": 100000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5a",
+    "house_id": 11001,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5b",
+    "house_id": 11002,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5c",
+    "house_id": 11003,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5d",
+    "house_id": 11004,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5e",
+    "house_id": 11005,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 5f",
+    "house_id": 11006,
+    "size": 13,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7a",
+    "house_id": 11007,
+    "size": 13,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7b",
+    "house_id": 11008,
+    "size": 13,
+    "rent": 25000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7c",
+    "house_id": 11009,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7d",
+    "house_id": 11010,
+    "size": 17,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7e",
+    "house_id": 11011,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7f",
+    "house_id": 11012,
+    "size": 17,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7g",
+    "house_id": 11013,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 7h",
+    "house_id": 11014,
+    "size": 13,
+    "rent": 50000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The City Wall 9",
+    "house_id": 11015,
+    "size": 19,
+    "rent": 80000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Upper Swamp Lane 10",
+    "house_id": 10407,
+    "size": 31,
+    "rent": 150000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Upper Swamp Lane 12",
+    "house_id": 10408,
+    "size": 60,
+    "rent": 300000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Upper Swamp Lane 2",
+    "house_id": 10401,
+    "size": 74,
+    "rent": 600000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Upper Swamp Lane 4",
+    "house_id": 10402,
+    "size": 74,
+    "rent": 600000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Upper Swamp Lane 8",
+    "house_id": 10405,
+    "size": 132,
+    "rent": 600000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   }
+  ],
+  "guildhall_list": [
+   {
+    "name": "Bloodhall",
+    "house_id": 10005,
+    "size": 306,
+    "rent": 500000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Castle of Greenshore",
+    "house_id": 14002,
+    "size": 296,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Dark Mansion",
+    "house_id": 10004,
+    "size": 361,
+    "rent": 1000000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Fibula Clanhall",
+    "house_id": 12010,
+    "size": 162,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Greenshore Clanhall",
+    "house_id": 14012,
+    "size": 165,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Guildhall of the Red Rose",
+    "house_id": 12002,
+    "size": 405,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Halls of the Adventurers",
+    "house_id": 10003,
+    "size": 304,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Mercenary Tower",
+    "house_id": 12001,
+    "size": 607,
+    "rent": 250000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Snake Tower",
+    "house_id": 10002,
+    "size": 616,
+    "rent": 500000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Southern Thais Guildhall",
+    "house_id": 10406,
+    "size": 349,
+    "rent": 1000000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Spiritkeep",
+    "house_id": 10001,
+    "size": 382,
+    "rent": 500000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Thais Clanhall",
+    "house_id": 10601,
+    "size": 188,
+    "rent": 500000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "The Tibianic",
+    "house_id": 14001,
+    "size": 540,
+    "rent": 500000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   },
+   {
+    "name": "Warriors' Guildhall",
+    "house_id": 10801,
+    "size": 307,
+    "rent": 5000000,
+    "rented": true,
+    "auctioned": false,
+    "auction": {
+     "current_bid": 0,
+     "time_left": "",
+     "finished": false
+    }
+   }
+  ]
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:43:46Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=houses&world=Antica&town=Thais&type=houses",
+   "https://www.tibia.com/community/?subtopic=houses&world=Antica&town=Thais&type=guildhalls"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

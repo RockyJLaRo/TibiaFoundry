@@ -1,0 +1,57 @@
+{
+ "spell": {
+  "name": "Light Healing",
+  "spell_id": "lighthealing",
+  "image_url": "https://static.tibia.com/images/library/lighthealing.png",
+  "description": "",
+  "has_spell_information": true,
+  "spell_information": {
+   "formula": "exura",
+   "vocation": [
+    "Druid",
+    "Monk",
+    "Paladin",
+    "Sorcerer"
+   ],
+   "group_attack": false,
+   "group_healing": true,
+   "group_support": false,
+   "type_instant": true,
+   "type_rune": false,
+   "damage_type": "healing",
+   "cooldown_alone": 1,
+   "cooldown_group": 1,
+   "soul_points": 0,
+   "amount": 0,
+   "level": 8,
+   "mana": 20,
+   "price": 0,
+   "city": null,
+   "premium_only": false
+  },
+  "has_rune_information": false,
+  "rune_information": {
+   "vocation": null,
+   "group_attack": false,
+   "group_healing": false,
+   "group_support": false,
+   "damage_type": "",
+   "level": 0,
+   "magic_level": 0
+  }
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:10:34Z",
+  "tibia_urls": [
+   "https://www.tibia.com/library/?subtopic=spells&spell=lighthealing"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

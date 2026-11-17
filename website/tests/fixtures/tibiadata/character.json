@@ -1,0 +1,175 @@
+{
+ "character": {
+  "character": {
+   "name": "Roc ky",
+   "sex": "female",
+   "title": "Tibia's Topmodel (Grade 5)",
+   "unlocked_titles": 43,
+   "vocation": "Master Sorcerer",
+   "level": 731,
+   "achievement_points": 1202,
+   "world": "Calmera",
+   "residence": "Edron",
+   "houses": [
+    {
+     "name": "Edron Flats, Flat 13",
+     "town": "Edron",
+     "paid": "2026-12-13",
+     "houseid": 50312
+    },
+    {
+     "name": "Main Street 9b, 2nd floor (Shop)",
+     "town": "Thais",
+     "paid": "2026-12-11",
+     "houseid": 10804
+    },
+    {
+     "name": "Edron Flats, Flat 12",
+     "town": "Edron",
+     "paid": "2026-12-13",
+     "houseid": 50311
+    }
+   ],
+   "guild": {
+    "name": "Crusaders of Might and Magic",
+    "rank": "Crusader"
+   },
+   "last_login": "2026-11-17T12:50:32Z",
+   "account_status": "Premium Account",
+   "comment": "====================================\n\nTibiaWiki Admin\n\nTibiaWiki:\nhttps://tibia.fandom.com/wiki/User:RockyLaRo\n\n------------------------------------\n\nMagic Level: 129\nDiscord: roc.ky\n\n===================================="
+  },
+  "account_badges": [
+   {
+    "name": "Ancient Hero",
+    "icon_url": "https://static.tibia.com/images/badges/badge_accountage4.png",
+    "description": "The account is older than 15 years."
+   },
+   {
+    "name": "Senior Hero",
+    "icon_url": "https://static.tibia.com/images/badges/badge_accountage3.png",
+    "description": "The account is older than 10 years."
+   },
+   {
+    "name": "Veteran Hero",
+    "icon_url": "https://static.tibia.com/images/badges/badge_accountage2.png",
+    "description": "The account is older than 5 years."
+   },
+   {
+    "name": "Fledgeling Hero",
+    "icon_url": "https://static.tibia.com/images/badges/badge_accountage1.png",
+    "description": "The account is older than 1 year."
+   },
+   {
+    "name": "Tibia Loyalist (Grade 2)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_tibialoyalist2.png",
+    "description": "The account earned more than 1000 loyalty points."
+   },
+   {
+    "name": "Tibia Loyalist (Grade 1)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_tibialoyalist1.png",
+    "description": "The account earned more than 100 loyalty points."
+   },
+   {
+    "name": "Global Player (Grade 2)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_globalplayer2.png",
+    "description": "Summing up the levels of all characters on the account amounts to at least 1000."
+   },
+   {
+    "name": "Global Player (Grade 1)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_globalplayer1.png",
+    "description": "Summing up the levels of all characters on the account amounts to at least 500."
+   },
+   {
+    "name": "Freshman of the Tournament",
+    "icon_url": "https://static.tibia.com/images/badges/badge_tournamentparticipance1.png",
+    "description": "The account participated 1x in a Tournament."
+   },
+   {
+    "name": "Master Class (Grade 1)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_masterclass1.png",
+    "description": "The account has reached at least level 100 with all four vocations."
+   },
+   {
+    "name": "Extended Master Class (Grade 1)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_extendedmasterclass1.png",
+    "description": "Brilliant! You have reached at least level 100 with all five vocations."
+   },
+   {
+    "name": "Enlightened Student (Grade 1)",
+    "icon_url": "https://static.tibia.com/images/badges/badge_monk1.png",
+    "description": "The account has reached at least level 100 with the monk."
+   }
+  ],
+  "achievements": [
+   {
+    "name": "A Well-Honed Arsenal",
+    "grade": 5,
+    "secret": false
+   },
+   {
+    "name": "Echo Conqueror",
+    "grade": 7,
+    "secret": true
+   },
+   {
+    "name": "Lucky Devil",
+    "grade": 4,
+    "secret": true
+   },
+   {
+    "name": "Mystic Fabric Magic",
+    "grade": 4,
+    "secret": false
+   },
+   {
+    "name": "Pyromaniac",
+    "grade": 4,
+    "secret": true
+   }
+  ],
+  "account_information": {
+   "created": "2008-08-19T21:04:11Z",
+   "loyalty_title": "Guardian of Tibia"
+  },
+  "other_characters": [
+   {
+    "name": "Holder on Newhaven",
+    "world": "Calmera",
+    "status": "offline",
+    "deleted": true,
+    "main": false,
+    "traded": false
+   },
+   {
+    "name": "Roc ky",
+    "world": "Calmera",
+    "status": "offline",
+    "deleted": false,
+    "main": true,
+    "traded": false
+   },
+   {
+    "name": "Rocky on Newhaven",
+    "world": "Calmera",
+    "status": "offline",
+    "deleted": false,
+    "main": false,
+    "traded": false
+   }
+  ]
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:43:43Z",
+  "tibia_urls": [
+   "https://fansiteapi.tibia.com/api/v1/CharacterData/GetCharacter/roc%20ky"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

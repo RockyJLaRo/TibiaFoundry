@@ -1,0 +1,117 @@
+{
+ "api": "https://api.tibiadata.com/v5/",
+ "recorded": "2026-11-17T17:48:34+00:00",
+ "purpose": "Test and screenshot fixtures only. Never served by the production website.",
+ "files": {
+  "worlds": {
+   "file": "worlds.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "world/Antica": {
+   "file": "world.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "character/Roc%20ky": {
+   "file": "character.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "character/Zzqqxx%20Nonexistentname": {
+   "file": "character-missing.json",
+   "status": 404,
+   "api_release": "5.1.0"
+  },
+  "guilds/Antica": {
+   "file": "guilds.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "guild/Crusaders%20of%20Might%20and%20Magic": {
+   "file": "guild.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "highscores/Antica/experience/all/1": {
+   "file": "highscores.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "highscores/all/experience/all/1": {
+   "file": "highscores-all.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "highscores/Antica/magiclevel/all/1": {
+   "file": "highscores-magic.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "houses/Antica/Thais": {
+   "file": "houses.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "house/Antica/10301": {
+   "file": "house.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "killstatistics/Antica": {
+   "file": "killstatistics.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "creatures": {
+   "file": "creatures.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "creature/demon": {
+   "file": "creature.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "spells": {
+   "file": "spells.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "spell/lighthealing": {
+   "file": "spell.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "boostablebosses": {
+   "file": "boostablebosses.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "fansites": {
+   "file": "fansites.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "news/latest": {
+   "file": "news.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "news/newsticker": {
+   "file": "newsticker.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "news/archive/90": {
+   "file": "newsarchive.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  },
+  "news/id/9050": {
+   "file": "newsarticle.json",
+   "status": 200,
+   "api_release": "5.1.0"
+  }
+ }
+}

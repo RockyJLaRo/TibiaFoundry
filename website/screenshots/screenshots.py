@@ -102,18 +102,19 @@ class Inventory:
         # Where the website uses screenshots.
         self.derived = {name.rsplit("-", 1)[0]: (srcfile.rsplit("-", 1)[0], box) for name, srcfile, box in bs.DERIVED}
         self.locations = {}   # base shot id -> list of (where, image id, size)
+        size = "×".join(str(x) for x in bs.SCREEN_SIZE)
         for sid, *_ in bs.SCREENS:
-            self._use(sid, "Screenshots gallery (#screens) – tab " + sid, sid, "1586×893")
-        template = open(os.path.join(SRC, "index.template.html"), encoding="utf-8").read()
-        for m in re.finditer(r"\{\{IMG:([\w-]+)-(dark|light)\}\}", template):
-            if m.group(2) != "dark":
-                continue
-            image = m.group(1)
-            section = re.findall(r'<(?:section|header)\b[^>]*\bid="([\w-]+)"', template[:m.start()])
-            size = re.search(r'width="(\d+)" height="(\d+)"', template[m.start():m.start() + 400])
-            where = f"section #{section[-1] if section else 'top'}"
-            base, crop = (self.derived[image][0], f" (crop {self.derived[image][1]})") if image in self.derived else (image, "")
-            self._use(base, where + crop, image, f"{size.group(1)}×{size.group(2)}" if size else "?")
+            self._use(sid, "Features page – screenshot gallery, tab " + sid, sid, size)
+        # Screenshots placed in the page templates: {{SHOT:<id>:...}} (both themes) and {{IMG:<id>-dark}}.
+        templates = os.path.join(SRC, "templates")
+        for name in sorted(os.listdir(templates)):
+            text = open(os.path.join(templates, name), encoding="utf-8").read()
+            page = name.rsplit(".", 1)[0]
+            for m in re.finditer(r"\{\{SHOT:([\w-]+):", text):
+                section = re.findall(r'<section\b[^>]*\bid="([\w-]+)"', text[:m.start()])
+                self._use(m.group(1), f"{page} page" + (f", section #{section[-1]}" if section else ""), m.group(1), size)
+            for m in re.finditer(r"\{\{IMG:([\w-]+)-dark\}\}", text):
+                self._use(m.group(1), f"{page} page", m.group(1), size)
         if "write_preview" in open(os.path.join(WEBSITE, "build_site.py"), encoding="utf-8").read():
             self._use("asset-library", "link preview og-image*.png (dark theme only, scaled into 1200×630)", "og-image", "760 wide")
         self.pages = list(self.locations)
@@ -674,7 +675,7 @@ def write_reports(cfg, inv, manifest, fps, failures):
         uses = "<br>".join(w for w, _, _ in inv.locations[sid])
         sizes = ", ".join(sorted({s for _, _, s in inv.locations[sid]}))
         lines.append(f"| {i} | `{sid}` | {inv.app_shots.get(sid, '**not in the program**')} | {uses} | {sizes} |")
-    lines += ["", "Files: `website/src/images/screens/<code>/<id>-<code>-<theme>.png` (lossless master, 1586×893 window "
+    lines += ["", "Files: `website/src/images/screens/<code>/<id>-<code>-<theme>.png` (lossless master, 1280×800 window "
               "capture with title bar); the website build writes `site/img/screens/<id>-<code>-<theme>.webp`.", "",
               "Not screenshots (language- and theme-neutral, kept as they are): `logo.png`, `output-creatures.png`, "
               "`output-items.png`, `output-outfit-129.png` (real Content Studio output), and the infobox sample, which is "

@@ -1,0 +1,429 @@
+{
+ "highscores": {
+  "world": "Antica",
+  "category": "magiclevel",
+  "vocation": "all",
+  "highscore_age": 9,
+  "highscore_list": [
+   {
+    "rank": 1,
+    "name": "Darem Leywin",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 462,
+    "value": 151
+   },
+   {
+    "rank": 2,
+    "name": "Fobison",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 968,
+    "value": 147
+   },
+   {
+    "rank": 3,
+    "name": "Zarothprime",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1462,
+    "value": 141
+   },
+   {
+    "rank": 4,
+    "name": "Iceprime",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1607,
+    "value": 140
+   },
+   {
+    "rank": 5,
+    "name": "Yankoz Maestro",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1776,
+    "value": 139
+   },
+   {
+    "rank": 6,
+    "name": "Bijou Kidi",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 862,
+    "value": 138
+   },
+   {
+    "rank": 6,
+    "name": "Pawly",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1414,
+    "value": 138
+   },
+   {
+    "rank": 6,
+    "name": "Rand Silverfang",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 689,
+    "value": 138
+   },
+   {
+    "rank": 9,
+    "name": "Ranny Zolnierz Elder",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 2247,
+    "value": 137
+   },
+   {
+    "rank": 9,
+    "name": "Riivv",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1765,
+    "value": 137
+   },
+   {
+    "rank": 9,
+    "name": "Vincent'Dra",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1342,
+    "value": 137
+   },
+   {
+    "rank": 12,
+    "name": "Voodoomancer",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 538,
+    "value": 136
+   },
+   {
+    "rank": 13,
+    "name": "Pekky Khamzai",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1857,
+    "value": 135
+   },
+   {
+    "rank": 13,
+    "name": "Siri Derdie",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1224,
+    "value": 135
+   },
+   {
+    "rank": 15,
+    "name": "Bandokay",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1661,
+    "value": 134
+   },
+   {
+    "rank": 15,
+    "name": "Niquit",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 2026,
+    "value": 134
+   },
+   {
+    "rank": 15,
+    "name": "Sedik",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1973,
+    "value": 134
+   },
+   {
+    "rank": 15,
+    "name": "Sundog",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 802,
+    "value": 134
+   },
+   {
+    "rank": 15,
+    "name": "Zuali",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 983,
+    "value": 134
+   },
+   {
+    "rank": 20,
+    "name": "Fortitude Of Nature",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 983,
+    "value": 133
+   },
+   {
+    "rank": 20,
+    "name": "Piiotrus Pan",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1819,
+    "value": 133
+   },
+   {
+    "rank": 22,
+    "name": "Ayaka",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 787,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Croania",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1057,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Middel",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1443,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Miki Colio",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1341,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Mui Mug",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 963,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Neo",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1066,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Paranoiid Pusher",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1621,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Saidkah",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 749,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Supreme Sun",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1202,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Szyszek Milord Black",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1332,
+    "value": 132
+   },
+   {
+    "rank": 22,
+    "name": "Yrruf Nezz",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1501,
+    "value": 132
+   },
+   {
+    "rank": 33,
+    "name": "Blaina Siwynia",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1174,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Darkprime",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1082,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Foxer",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1454,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Kyzor",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1279,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Magicallse",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1393,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Naruse",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1179,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Pew Pew beroek",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1155,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Spartanprime",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1320,
+    "value": 131
+   },
+   {
+    "rank": 33,
+    "name": "Xogoode",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1367,
+    "value": 131
+   },
+   {
+    "rank": 42,
+    "name": "Aspect Deathweaver",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 765,
+    "value": 130
+   },
+   {
+    "rank": 42,
+    "name": "Bahlor",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 1549,
+    "value": 130
+   },
+   {
+    "rank": 42,
+    "name": "Cygi los panczos",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1493,
+    "value": 130
+   },
+   {
+    "rank": 42,
+    "name": "Turek Prime",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1031,
+    "value": 130
+   },
+   {
+    "rank": 46,
+    "name": "Bolk",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1514,
+    "value": 129
+   },
+   {
+    "rank": 46,
+    "name": "Eksura Sio Loading",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 899,
+    "value": 129
+   },
+   {
+    "rank": 46,
+    "name": "Evil Forceman",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 517,
+    "value": 129
+   },
+   {
+    "rank": 46,
+    "name": "Haidsio",
+    "vocation": "Elder Druid",
+    "world": "Antica",
+    "level": 859,
+    "value": 129
+   },
+   {
+    "rank": 46,
+    "name": "Mahmoud-zoro",
+    "vocation": "Master Sorcerer",
+    "world": "Antica",
+    "level": 1172,
+    "value": 129
+   }
+  ],
+  "highscore_page": {
+   "current_page": 1,
+   "total_pages": 20,
+   "total_records": 1000
+  }
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:48:38Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=highscores&world=Antica&category=11&profession=0&currentpage=1"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

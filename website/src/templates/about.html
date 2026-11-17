@@ -1,0 +1,44 @@
+<div class="wrap page-head">
+  <h1>{{t:about.title}}</h1>
+</div>
+
+<section class="band" aria-labelledby="creator-name">
+  <div class="wrap creator">
+    <div>
+      <h2 class="creator-name" id="creator-name">Rocky LaRochelle</h2>
+      <p class="creator-role">{{t:about.role}}</p>
+      <p class="creator-place">{{t:about.location}}</p>
+      <p>{{t:about.bio1}}</p>
+      <p>{{t:about.bio2}}</p>
+      <p><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+    </div>
+    <div>
+      <h2 class="h3" style="font-size:1.125rem">{{t:about.profiles}}</h2>
+      {{PROFILES}}
+    </div>
+  </div>
+</section>
+
+<section class="band band-alt" aria-labelledby="project-title">
+  <div class="wrap hero-grid">
+    <div>
+      <h2 id="project-title">{{t:about.project.title}}</h2>
+      <p>{{t:about.project.text1}}</p>
+      <p>{{t:about.project.text2}}</p>
+      <p>{{t:faq.a9}}</p>
+      <div class="actions"><a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="about">{{t:footer.repository}}</a><a class="btn" href="{{LINK:contact}}">{{t:nav.contact}}</a></div>
+    </div>
+    <figure>
+      {{SHOT:about:about.shotAlt:about.shotAlt:about.shotAlt}}
+      <figcaption>{{t:about.shotCaption}}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="sources-title">
+  <div class="wrap">
+    <h2 id="sources-title">{{t:about.sources.title}}</h2>
+    <p class="lead">{{t:about.sources.lead}}</p>
+{{CREDITS}}
+  </div>
+</section>

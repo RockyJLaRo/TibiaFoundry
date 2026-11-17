@@ -1,0 +1,20 @@
+[
+  {"name": "script element", "html": "<script>window.__xss=true</script><p>ok</p>", "mustNotContain": ["<script", "__xss"], "mustContain": ["<p>ok</p>"]},
+  {"name": "img onerror (relative src)", "html": "<img src=x onerror=\"window.__xss=true\">", "mustNotContain": ["onerror", "<img"]},
+  {"name": "img onerror (https src)", "html": "<img src=\"https://static.tibia.com/images/news/a.png\" onerror=\"window.__xss=true\" alt=\"A\">", "mustNotContain": ["onerror"], "mustContain": ["src=\"https://static.tibia.com/images/news/a.png\"", "alt=\"A\""]},
+  {"name": "javascript: link", "html": "<a href=\"javascript:window.__xss=true\">x</a>", "mustNotContain": ["javascript:", "href"], "mustContain": ["x"]},
+  {"name": "obfuscated javascript: link", "html": "<a href=\" jav&#x09;ascript:window.__xss=true\">y</a><a href=\"JaVaScRiPt:window.__xss=true\">z</a>", "mustNotContain": ["javascript", "href"]},
+  {"name": "legitimate link", "html": "<a href=\"https://www.tibia.com/news/?subtopic=newsarchive&amp;id=9050\" target=\"_self\" onclick=\"window.__xss=true\">Read</a>", "mustNotContain": ["onclick", "_self"], "mustContain": ["href=\"https://www.tibia.com/news/?subtopic=newsarchive&amp;id=9050\"", "rel=\"noopener noreferrer nofollow\"", "target=\"_blank\""]},
+  {"name": "iframe", "html": "<iframe src=\"https://example.com\"></iframe><p>after</p>", "mustNotContain": ["iframe"], "mustContain": ["<p>after</p>"]},
+  {"name": "svg onload", "html": "<svg onload=\"window.__xss=true\"><circle r=\"5\"/></svg>", "mustNotContain": ["svg", "onload", "circle"]},
+  {"name": "style, class and id attributes", "html": "<div style=\"background:url(javascript:window.__xss=true)\" class=\"evil\" id=\"main\">t</div>", "mustNotContain": ["style", "class", "id=", "javascript"], "mustContain": ["<div>t</div>"]},
+  {"name": "mutation XSS through math/style", "html": "<math><mtext><table><mglyph><style><img src=x onerror=\"window.__xss=true\">", "mustNotContain": ["onerror", "<style", "<math"]},
+  {"name": "noscript breakout", "html": "<noscript><p title=\"</noscript><img src=x onerror=window.__xss=true>\"></noscript>", "mustNotContain": ["onerror"]},
+  {"name": "form and input", "html": "<form action=\"https://evil.example\"><input name=\"password\"><button>Send</button></form>", "mustNotContain": ["<form", "<input", "<button"]},
+  {"name": "object, embed, base, meta, link", "html": "<object data=\"x.swf\"></object><embed src=\"x\"><base href=\"https://evil.example/\"><meta http-equiv=\"refresh\" content=\"0;url=https://evil.example\"><link rel=\"stylesheet\" href=\"https://evil.example/a.css\">", "mustNotContain": ["<object", "<embed", "<base", "<meta", "<link"]},
+  {"name": "data: and http image URLs", "html": "<img src=\"data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9YWxlcnQoMSk+\"><img src=\"http://static.tibia.com/a.png\">", "mustNotContain": ["data:", "<img"]},
+  {"name": "event handler on a paragraph", "html": "<p onclick=\"window.__xss=true\" onmouseover=\"window.__xss=true\">text</p>", "mustNotContain": ["onclick", "onmouseover"], "mustContain": ["<p>text</p>"]},
+  {"name": "legitimate formatting is kept", "html": "<p><b>Bold</b> and <i>italic</i><br>line</p><ul><li>one</li><li>two</li></ul>", "mustContain": ["<b>Bold</b>", "<i>italic</i>", "<br>", "<ul><li>one</li><li>two</li></ul>"]},
+  {"name": "unknown elements are unwrapped", "html": "<custom-el><font color=\"red\">kept text</font></custom-el>", "mustNotContain": ["custom-el", "<font"], "mustContain": ["kept text"]},
+  {"name": "srcset and formaction", "html": "<img src=\"https://static.tibia.com/a.png\" srcset=\"javascript:alert(1)\"><button formaction=\"javascript:alert(1)\">b</button>", "mustNotContain": ["srcset", "formaction", "javascript"]}
+]

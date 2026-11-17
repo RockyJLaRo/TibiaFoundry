@@ -1,0 +1,1024 @@
+{
+ "fansites": {
+  "promoted": [
+   {
+    "name": "GuildStats.eu",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/GuildStats.eu.gif",
+    "homepage": "https://guildstats.eu/",
+    "contact": "Sir Dzidek",
+    "content_type": {
+     "statistics": true,
+     "texts": true,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "es",
+     "nl",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Stats for chars, guilds, worlds and bosses.",
+     "Calculators.",
+     "Activity system with rewards."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/GuildStats.eu.gif"
+   },
+   {
+    "name": "Hunt-Analyser.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/Hunt-Analyser.com.gif",
+    "homepage": "https://www.hunt-analyser.com/",
+    "contact": "Chid Kills",
+    "content_type": {
+     "statistics": true,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Track your hunt's finances.",
+     "Show detailed stats.",
+     "For group and solo hunters."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "NabBot",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/NabBot.gif",
+    "homepage": "https://nabbot.xyz/",
+    "contact": "Galarzaa Fidera",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": true,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "es",
+     "pt"
+    ],
+    "specials": [
+     "Verified Bot for Discord Servers.",
+     "Online lists.",
+     "Level and death tracker."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/NabBot.gif"
+   },
+   {
+    "name": "PortalTibia.com.br",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/PortalTibia.com.br.gif",
+    "homepage": "https://portaltibia.com.br",
+    "contact": "Emulov Sun",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": true
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Active Tibia Forum.",
+     "Huge archive of news and texts."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/PortalTibia.com.br.gif"
+   },
+   {
+    "name": "Rookie.com.pl",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/Rookie.com.pl.gif",
+    "homepage": "https://rookie.com.pl/",
+    "contact": "Insane Rookstar",
+    "content_type": {
+     "statistics": true,
+     "texts": true,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "pl"
+    ],
+    "specials": [
+     "All about Rookgaard.",
+     "Stat section.",
+     "Active forum."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/Rookie.com.pl.gif"
+   },
+   {
+    "name": "Tibia Live",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/Tibia_Live.gif",
+    "homepage": "https://tibia.live/",
+    "contact": "Nohus",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "es",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Tibia app for Android.",
+     "Notifications / char tracking.",
+     "Calculators / tools."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "Tibia.Fandom.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/Tibia.Fandom.com.gif",
+    "homepage": "https://tibia.fandom.com",
+    "contact": "Picture",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": true
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Awesome mapper and outfitter.",
+     "Extensive English wiki. ~ 20,000 pages."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/Tibia.Fandom.com.gif"
+   },
+   {
+    "name": "TibiaDraptor",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaDraptor.gif",
+    "homepage": "https://tibiadraptor.com/",
+    "contact": "Storned",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Track ingame progress.",
+     "Extensive Challenges System"
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaDraptor.gif"
+   },
+   {
+    "name": "TibiaDuality.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaDuality.com.gif",
+    "homepage": "https://tibiaduality.com",
+    "contact": "Meredit",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "es",
+     "pt"
+    ],
+    "specials": [
+     "Guides for PvP.",
+     "Guides for features and quests.",
+     "Exiva Challenges."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaDuality.com.gif"
+   },
+   {
+    "name": "TibiaFanart",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaFanart.gif",
+    "homepage": "https://www.tibiafanart.com/",
+    "contact": "Makadamia",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Hub for Tibian artists.",
+     "Collection of fanart."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaFanart.gif"
+   },
+   {
+    "name": "TibiaGoals.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaGoals.com.gif",
+    "homepage": "https://www.tibiagoals.com",
+    "contact": "Lady Mass",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "es",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Daily goals on Instagram.",
+     "Riddles.",
+     "Focus on player motivation."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaGoals.com.gif"
+   },
+   {
+    "name": "TibiaHome.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaHome.com.gif",
+    "homepage": "https://tibiahome.com/",
+    "contact": "Suzy Kill",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": true,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "en",
+     "es",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Everything on House decoration.",
+     "Tutorials and frequent contests."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaHome.com.gif"
+   },
+   {
+    "name": "TibiaLife.com.br",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaLife.com.br.gif",
+    "homepage": "https://www.tibialife.com.br/",
+    "contact": "Beatrix Kiddo",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Active Facebook group.",
+     "Tutorials and articles.",
+     "Forum"
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaLife.com.br.gif"
+   },
+   {
+    "name": "TibiaMagazine.com.ve",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaMagazine.com.ve.gif",
+    "homepage": "https://www.tibiamagazine.net",
+    "contact": "Amy Meow",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "en",
+     "es"
+    ],
+    "specials": [
+     "Info on Tibia in a magazine style.",
+     "Xena's Challenges."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaMagazine.com.ve.gif"
+   },
+   {
+    "name": "TibiaMaps.io",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaMaps.io.gif",
+    "homepage": "https://tibiamaps.io/",
+    "contact": "Mathias Bynens",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Over 95 % of TibiaMap explored.",
+     "GitHub participant."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaMaps.io.gif"
+   },
+   {
+    "name": "TibiaQA.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaQA.com.gif",
+    "homepage": "https://www.tibiaqa.com/",
+    "contact": "Ellotris Guardian",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": false,
+     "wiki": true
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Ask and answer questions.",
+     "Contribution system to earn fansite item."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaQA.com.gif"
+   },
+   {
+    "name": "TibiaRoute.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaRoute.com.gif",
+    "homepage": "https://TibiaRoute.com",
+    "contact": "Sedron",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": true,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "de",
+     "en",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Info on Hunting Places.",
+     "Cool Fiendish Map.",
+     "Discord Bot."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaRoute.com.gif"
+   },
+   {
+    "name": "TibiaWiki.com.br",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaWiki.com.br.gif",
+    "homepage": "https://www.tibiawiki.com.br",
+    "contact": "Sabarath",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": false,
+     "wiki": true
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Extensive Tibia wiki in Portuguese.",
+     "Over 16,000 pages."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaWiki.com.br.gif"
+   },
+   {
+    "name": "TibioPedia.pl",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibioPedia.pl.gif",
+    "homepage": "https://tibiopedia.pl",
+    "contact": "Mastro Daro",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": true,
+     "wiki": true
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "en",
+     "pl"
+    ],
+    "specials": [
+     "Active forum.",
+     "Boss' Statistics.",
+     "Guides, screenshots, Update archive."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibioPedia.pl.gif"
+   }
+  ],
+  "supported": [
+   {
+    "name": "BomDiaTibia.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/BomDiaTibia.com.gif",
+    "homepage": "https://www.bomdiatibia.com/",
+    "contact": "Bomdrax",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Podcasts. Also on Spotify.",
+     "Entertainment through contests and events."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/BomDiaTibia.com.gif"
+   },
+   {
+    "name": "ElPodcastibiano.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/ElPodcastibiano.com.gif",
+    "homepage": "https://www.elpodcastibiano.com",
+    "contact": "Kikix Rayito",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": true,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "es"
+    ],
+    "specials": [
+     "Spanish podcasts.",
+     "Featuring Tibians.",
+     "Depot Talk Show."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/ElPodcastibiano.com.gif"
+   },
+   {
+    "name": "FooTibia.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/FooTibia.com.gif",
+    "homepage": "https://footibia.com/",
+    "contact": "The Referee",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Register your team and join.",
+     "Cards of famous players.",
+     "Gallery of matches."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "TibiCam.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiCam.com.gif",
+    "homepage": "https://tibicam.com",
+    "contact": "Atheyre",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": true
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Catalogue of old Tibicams.",
+     "Vote which videos interest you the most."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "Tibia-Statistic.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/Tibia-Statistic.com.gif",
+    "homepage": "https://www.tibia-statistic.com/",
+    "contact": "Wrog",
+    "content_type": {
+     "statistics": true,
+     "texts": false,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en",
+     "es",
+     "pl",
+     "pt"
+    ],
+    "specials": [
+     "Stats for bosses, houses and more.",
+     "World analytics.",
+     "Player statistics."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "TibiaDaily.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaDaily.com.gif",
+    "homepage": "https://tibiadaily.com",
+    "contact": "Nasty Kasper",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Tibia's newspaper.",
+     "News, gossip, tips, lifestyle, ..."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "TibiaData.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaData.com.gif",
+    "homepage": "https://tibiadata.com",
+    "contact": "Trollefar",
+    "content_type": {
+     "statistics": false,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "API for Tibia data in JSON.",
+     "Discord server.",
+     "GitHub participant."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "TibiaDecorations.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaDecorations.com.gif",
+    "homepage": "https://tibiadecorations.com",
+    "contact": "Makadamia",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Articles, guides and info on decoration.",
+     "Decoration galleries"
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   },
+   {
+    "name": "TibiaEvents.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaEvents.com.gif",
+    "homepage": "https://tibiaevents.com",
+    "contact": "Umbra mckeening",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": true,
+     "instagram": true,
+     "reddit": false,
+     "twitch": true,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Many events and contests.",
+     "Active Forum and discussion groups."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaEvents.com.gif"
+   },
+   {
+    "name": "TibiaLight.com",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaLight.com.gif",
+    "homepage": "https://www.tibialight.com/",
+    "contact": "Brighid Grand Explorateur",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": true
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Fan Lore.",
+     "Own Discord Bot.",
+     "Playing Guides."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaLight.com.gif"
+   },
+   {
+    "name": "TibiaMisterios.com.br",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaMisterios.com.br.gif",
+    "homepage": "https://www.tibiamisterios.com.br",
+    "contact": "Getshock",
+    "content_type": {
+     "statistics": false,
+     "texts": true,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": true,
+     "facebook": true,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": true,
+     "youtube": false
+    },
+    "languages": [
+     "pt"
+    ],
+    "specials": [
+     "Info on mysteries and Tibia's history.",
+     "Nostalgic screenshot collection."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaMisterios.com.br.gif"
+   },
+   {
+    "name": "TibiaVip.app",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaVip.app.gif",
+    "homepage": "https://tibiavip.app/",
+    "contact": "Slayour",
+    "content_type": {
+     "statistics": true,
+     "texts": false,
+     "tools": true,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": true,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Lottery system.",
+     "Verified Twitch Bot.",
+     "Stats for chars, guilds, bosses, houses, etc."
+    ],
+    "fansite_item": true,
+    "fansite_item_url": "https://static.tibia.com/images/community/fansiteitems/TibiaVip.app.gif"
+   },
+   {
+    "name": "TibiaWars.eu",
+    "logo_url": "https://static.tibia.com/images/community/fansitelogos/TibiaWars.eu.gif",
+    "homepage": "https://www.tibiawars.eu",
+    "contact": "Nozyk",
+    "content_type": {
+     "statistics": true,
+     "texts": false,
+     "tools": false,
+     "wiki": false
+    },
+    "social_media": {
+     "discord": false,
+     "facebook": false,
+     "instagram": false,
+     "reddit": false,
+     "twitch": false,
+     "twitter": false,
+     "youtube": false
+    },
+    "languages": [
+     "en"
+    ],
+    "specials": [
+     "Wars and Alliance Wars.",
+     "War Bounty System.",
+     "Hall of Fame."
+    ],
+    "fansite_item": false,
+    "fansite_item_url": ""
+   }
+  ]
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:10:22Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=fansites"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

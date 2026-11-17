@@ -1,0 +1,101 @@
+{
+  "_comment": "Single source of the website's structure: languages, pages, Tibia data routes (with the fixtures used for screenshots and tests), download files, the creator's profiles and every external data provider. Read by build_site.py, the page scripts (as window.TF_SITE), the screenshot generator and the tests.",
+  "origin": "https://tibiafoundry.com/",
+  "repository": "https://github.com/RockyJLaRo/TibiaFoundry",
+  "languages": [
+    {"code": "en", "folder": "", "name": "English", "badge": "EN", "ogLocale": "en_US", "intl": "en-US"},
+    {"code": "pt-BR", "folder": "pt-br", "name": "Português (Brasil)", "badge": "PT", "ogLocale": "pt_BR", "intl": "pt-BR"},
+    {"code": "pl", "folder": "pl", "name": "Polski", "badge": "PL", "ogLocale": "pl_PL", "intl": "pl-PL"},
+    {"code": "es", "folder": "es", "name": "Español", "badge": "ES", "ogLocale": "es_LA", "intl": "es"},
+    {"code": "de", "folder": "de", "name": "Deutsch", "badge": "DE", "ogLocale": "de_DE", "intl": "de-DE"}
+  ],
+  "themes": ["light", "dark"],
+  "pages": [
+    {"id": "home", "path": "", "template": "home.html", "nav": "nav.home"},
+    {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia"},
+    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features"},
+    {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads"},
+    {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides"},
+    {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about"},
+    {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact"}
+  ],
+  "dataRoutes": [
+    {"id": "hub", "pattern": "", "sample": ""},
+    {"id": "character-search", "pattern": "character", "sample": "character"},
+    {"id": "character", "pattern": "character/:name", "sample": "character/Roc ky"},
+    {"id": "worlds", "pattern": "worlds", "sample": "worlds"},
+    {"id": "world", "pattern": "world/:name", "sample": "world/Antica"},
+    {"id": "guilds", "pattern": "guilds/:world", "sample": "guilds/Antica"},
+    {"id": "guild", "pattern": "guild/:name", "sample": "guild/Crusaders of Might and Magic"},
+    {"id": "highscores", "pattern": "highscores/:world/:category/:vocation/:page", "sample": "highscores/Antica/experience/all/1"},
+    {"id": "houses", "pattern": "houses/:world/:town", "sample": "houses/Antica/Thais"},
+    {"id": "house", "pattern": "house/:world/:id", "sample": "house/Antica/10301"},
+    {"id": "killstatistics", "pattern": "killstatistics/:world", "sample": "killstatistics/Antica"},
+    {"id": "creatures", "pattern": "creatures", "sample": "creatures"},
+    {"id": "creature", "pattern": "creature/:race", "sample": "creature/demon"},
+    {"id": "spells", "pattern": "spells", "sample": "spells"},
+    {"id": "spell", "pattern": "spell/:id", "sample": "spell/lighthealing"},
+    {"id": "bosses", "pattern": "bosses", "sample": "bosses"},
+    {"id": "fansites", "pattern": "fansites", "sample": "fansites"},
+    {"id": "news", "pattern": "news", "sample": "news"},
+    {"id": "news-archive", "pattern": "news/archive/:days", "sample": "news/archive/90"},
+    {"id": "news-article", "pattern": "news/:id", "sample": "news/9050"}
+  ],
+  "fixtures": {
+    "_comment": "Real TibiaData responses recorded by website/tests/record_fixtures.py, used only by tests and screenshots (never deployed).",
+    "character": "Roc ky",
+    "world": "Antica",
+    "guild": "Crusaders of Might and Magic",
+    "house": {"world": "Antica", "town": "Thais", "id": 10301},
+    "creature": "demon",
+    "spell": "lighthealing",
+    "news": 9050,
+    "missingCharacter": "Zzqqxx Nonexistentname"
+  },
+  "api": {
+    "base": "https://api.tibiadata.com/v5/",
+    "version": "v5",
+    "cacheSeconds": {
+      "_comment": "Our client-side cache per endpoint, never shorter than TibiaData's own cache (https://tibiadata.com/faq/).",
+      "worlds": 120, "world": 120, "character": 300, "guild": 180, "guilds": 180,
+      "highscores": 900, "killstatistics": 900, "houses": 300, "house": 300,
+      "news": 1200, "newsticker": 1200, "newsarchive": 1800, "newsarticle": 1800,
+      "boostablebosses": 1200, "creatures": 86400, "creature": 86400, "spells": 86400, "spell": 86400, "fansites": 86400
+    },
+    "highscoreCategories": ["experience", "magiclevel", "fistfighting", "clubfighting", "swordfighting", "axefighting", "distancefighting", "shielding", "fishing", "achievements", "loyaltypoints", "charmpoints", "bosspoints", "dromescore", "goshnarstaint", "bountypoints", "weeklytasks", "phosphorusrecord"],
+    "highscoreVocations": ["all", "knights", "paladins", "sorcerers", "druids", "monks"],
+    "towns": ["Ab'Dendriel", "Ankrahmun", "Carlin", "Darashia", "Edron", "Farmine", "Gray Beach", "Issavi", "Kazordoon", "Liberty Bay", "Moonfall", "Port Hope", "Rathleton", "Silvertides", "Svargrond", "Thais", "Venore", "Yalahar"]
+  },
+  "downloads": {
+    "tag": "v{version}",
+    "base": "https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{version}/",
+    "files": [
+      {"id": "msi", "file": "TibiaFoundry-{version}-MSI.zip", "inner": "TibiaFoundry-{version}.msi"},
+      {"id": "portable", "file": "TibiaFoundry-{version}-Portable.zip"},
+      {"id": "source", "file": "TibiaFoundry-{version}-Source.zip"}
+    ],
+    "checksums": "SHA256SUMS.txt",
+    "releasePage": "https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v{version}",
+    "allReleases": "https://github.com/RockyJLaRo/TibiaFoundry/releases"
+  },
+  "creator": {
+    "name": "Rocky LaRochelle",
+    "email": "rocky@tibiafoundry.com",
+    "links": [
+      {"id": "tibiawiki", "platform": "TibiaWiki", "handle": "User:RockyLaRo", "url": "https://tibia.fandom.com/wiki/User:RockyLaRo"},
+      {"id": "tibia", "platform": "Tibia", "handle": "Roc ky", "url": "https://www.tibia.com/community/?name=Roc+ky"},
+      {"id": "youtube", "platform": "YouTube", "handle": "@Roc_ky", "url": "https://www.youtube.com/@Roc_ky"},
+      {"id": "instagram", "platform": "Instagram", "handle": "rocky_tibia", "url": "https://www.instagram.com/rocky_tibia/"},
+      {"id": "github", "platform": "GitHub", "handle": "RockyJLaRo", "url": "https://github.com/RockyJLaRo"},
+      {"id": "reddit", "platform": "Reddit", "handle": "u/Roc-ky", "url": "https://www.reddit.com/user/Roc-ky/"}
+    ]
+  },
+  "docs": [
+    {"id": "build", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/06_Build_and_Setup.md"},
+    {"id": "tools", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/14_Tools_Settings_and_Scripts.md"},
+    {"id": "library", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/24_Asset_Library_and_Content_Studio.md"},
+    {"id": "infobox", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/26_TibiaWiki_Infobox_Exporter.md"},
+    {"id": "clients", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/20_Client_Management.md"},
+    {"id": "localization", "url": "https://github.com/RockyJLaRo/TibiaFoundry/blob/source/docs/25_Localization.md"}
+  ]
+}

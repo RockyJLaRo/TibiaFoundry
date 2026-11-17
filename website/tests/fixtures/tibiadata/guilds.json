@@ -1,0 +1,582 @@
+{
+ "guilds": {
+  "world": "Antica",
+  "active": [
+   {
+    "name": "Abeyance",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Abeyance.gif",
+    "description": "Abeyance is a Sorcerer-only guild recruiting players level 50 and above. Characters must not be bought or traded. Feel free to contact me if youd like to join our association of mages!"
+   },
+   {
+    "name": "Above",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Above.gif",
+    "description": "Welcome to Above! We are a close group of friends focused on casual PvE, socializing on Discord, and hanging out at our Thais guildhall. New players learning the game and veterans pushing late-game content are both welcome. We allow long breaks from the game, but members are expected to be a part of the community when active. Please contact Vizhen on Discord before applying."
+   },
+   {
+    "name": "Alanui Institute",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Alanui_Institute.gif",
+    "description": "Founded in 2018, The Alanui Institute mobilizes resources and tools for ideas and actions that transform Tibia. The institute works with leaders, social organizations and a global network of supporters to promote equality, social justice and opportunity in form of art for all players. It also works with various services on behalf of the community. The headquarters is on Harbour Street in Thais."
+   },
+   {
+    "name": "All For One",
+    "logo_url": "https://static.tibia.com/images/guildlogos/All_For_One.gif",
+    "description": "Bienvenidos a All for One! Somos una guild neutral española. Aquí encontrarás jugadores apasionados de Tibia que comparten sus experiencias juntos y se apoyan mutuamente para disfrutar del juego. Discord propio para organizar quest, hunt, bosses, bestiary.. Si necesitas más información contacta a algún leader en el juego."
+   },
+   {
+    "name": "Ancients",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Ancients.gif",
+    "description": "It doesn't matter how the war ends, what matters is to fight it till the end. To die with dignity, or win with honour."
+   },
+   {
+    "name": "Arcanum Lyceum Conservatory",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Arcanum_Lyceum_Conservatory.gif",
+    "description": "The Arcanum Lyceum Conservatory is a sanctuary of study and exploration. We preserve, examine, and reinterpret knowledge—texts, symbols, histories, and hidden structures—seeking to uncover the mysteries that shape meaning across time and worlds. We are open to everyone, from every guild, from every world. Here, inquiry is ritual, memory is discipline, and understanding is earned.\nJoin us. Become Adeptus.\n~ Ex Lux Obscura ~"
+   },
+   {
+    "name": "Argent Gryphon",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Argent_Gryphon.gif",
+    "description": "The Order of the Argent Gryphon is a militaristic and esoteric order guarding its lands in the mountains of Vandura. The Order is known for its discipline, martial culture, and unyielding nature. Depending on who you ask, the Gryphon is either a steadfast warden or a gray butcher.\n\nTo enlist, write to Valkera Blackheart. Write of who you are, from whence you came, and what path you seek.\n\nAllied with Circle of Stonehaze."
+   },
+   {
+    "name": "Astaroth",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Ayyildiz",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Ayyildiz.gif",
+    "description": "\"Yurtta sulh, cihanda sulh.\"\n\n\"Mustafa Kemal ATATÜRK\"\n\nKlana basvurmak isteyen kisiler mutlaka klan baskanina veya nokkorlara mesaj atmalari veya zarf yollayarak basvurmalari gerekmektedir. \n\nFor any complaints, disputes, non-aggression pacts, and communication regarding the Natural Turkic Clan, you can contact our diplomat by sending a message or envelope."
+   },
+   {
+    "name": "Aztecs",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Aztecs.gif",
+    "description": ""
+   },
+   {
+    "name": "Banterboys",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Banterboys.gif",
+    "description": "If you can handle jokes, late-night chaos, and the occasional roast while taking down bosses, you’ll fit right in. \nWe are PvE focused with goals of clearing end game content. \nWe are looking for skilled players that know their vocation. \nLevel 500+"
+   },
+   {
+    "name": "Black Covenant",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Black_Covenant.gif",
+    "description": "Black Covenant is a group of close friends. We are neutral, do not PK and do not abuse power. We show respect to all players. However, we do strike back when attacked! Befriended with Green Dragons. For communication we use Discord."
+   },
+   {
+    "name": "Black Dragons",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Black_Dragons.gif",
+    "description": "The sky has shifted color tonight, by the blood of our fallen enemies. A dark gathering is held, in an ancient cave far away from mortal eyes. If you look deep inside the eye of the dragon, you will discover a sorrow no words can describe. The world is no longer close to what it used to be, and we strive to protect those left of our kind. But nothing seems to still the constant hunger deep within our souls. Once again we will spread our darkened wings over the lands of Antica."
+   },
+   {
+    "name": "Black Dragons Legacy",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Black_Dragons_Legacy.gif",
+    "description": "The sky has shifted color tonight, by the blood of our fallen enemies. A dark gathering is held, in an ancient cave far away from mortal eyes. If you look deep inside the eye of the dragon, you will discover a sorrow no words can describe. The world is no longer close to what it used to be, and we strive to protect those left of our kind. But nothing seems to still the constant hunger deep within our souls. Once again we will spread our darkened wings over the lands of Antica."
+   },
+   {
+    "name": "Blue Saints",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Bounty Boys",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "Gildia Bounty Boys zaprasza w swoje szeregi bounty taskerów! Laczymy sily w celu osiagniecia jak najwiekszej liczby bounty points.\n\nWymagania Discora oraz minimum 1000 bounty points\n\nW celu dolacznia kontakt z Liskoo lub Vice.\n\nThe Bounty Boys guild is recruiting bounty taskers! We are joining forces to rack up as many bounty points as possible.\n\nRequirements: Discord and a minimum of 1,000 bounty points.\n\nTo join, contact Liskoo or Vice."
+   },
+   {
+    "name": "Brygada Dostepowa",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Brygada_Dostepowa.gif",
+    "description": "Czesc!\nCel: robienie dostepów\nGildia dla niedzielnych graczy\nBrak wymogu codziennej aktywnosci \nNie dla toksycznych graczy, nabijaczy red skuli czy scamerów kostkowych"
+   },
+   {
+    "name": "Butla Knyciarzu",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Campfire",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Campfire.gif",
+    "description": ""
+   },
+   {
+    "name": "Children of Void",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Children_of_Void.gif",
+    "description": ""
+   },
+   {
+    "name": "Circle of Stonehaze",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Circle_of_Stonehaze.gif",
+    "description": "We are here to explore the lands of Tibia,\nyou will find us Questing, Role Playing, Hold Events, Hunting, doing Bosses, guide people if needed...all at a slow and comfortable pace, a Group of Friends... Hard as Stone, Lost in a Haze...\nWe are the Circle of Stonehaze!\n\nTo join our guild you can Apply true Kyabo Stonehaze.\nFighting the Evul Forces of Tibia with our Allies of the Argent Gryphon!"
+   },
+   {
+    "name": "Codex",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Codex.gif",
+    "description": "- Codex - Polska Neutralna Gildia || \n\nTylko aktywni gracze, Questy, Dostepy, Bossy, TeamHunt, Dummy 300+ Lvl <DISCORD>"
+   },
+   {
+    "name": "Czinczaki",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "I take no response of behave any of person in the guild. \n\nGuild is made for stream fans and ppl who just want join."
+   },
+   {
+    "name": "Damned",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Damned.gif",
+    "description": "Bad boys, bad boys\nWhat you gonna do?\nWhat you gonna do when they come for you ?\nBad boys, bad boys\nWhat you gonna do ?\nWhat you gonna do when they come for you ?"
+   },
+   {
+    "name": "Deja Vu",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Deja_Vu.gif",
+    "description": ""
+   },
+   {
+    "name": "Divine Wrath",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Divine_Wrath.gif",
+    "description": "Esta es una guild hispana y buscamos gente para poder hacer crecer más a la guild y ayudarnos en todo lo que se pueda.\n\n\n\nsi quieres ser parte de nuestra guild manda una solicitud."
+   },
+   {
+    "name": "Edit",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Edit.gif",
+    "description": "Gildia starych i doswiadczonych wyjadaczy. Nastawiamy sie na spokojna gre z naciskiem na wspólne spedzanie czasu, bossy, teamhunty, przegadane, pelne smiechu godziny na discordzie, ciekawe tematy i rozmowy. W gildii Edit mozesz liczyc na wszelka pomoc, w zdobyciu informacji, questach, dostepach oraz w obronie przeciwko agresorom, oraz w odstrzale oponentów!\nWymagany lvl 200+ oraz discord. \nRekrutacja trwa!"
+   },
+   {
+    "name": "Est Vis Nexus",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Exiled Gits Association",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Exiled_Gits_Association.gif",
+    "description": ""
+   },
+   {
+    "name": "Fahowcy",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Fahowcy.gif",
+    "description": ""
+   },
+   {
+    "name": "Fanatics",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Fanatics.gif",
+    "description": "Gildia Fanatics rekrutuje membersow do gildii, oferujemy TH, questy, dostepy etc. Nasze wymagania to progress, aktywnosc, discord. Kazdy jest mile widziany zapraszamy!!!! Gildia PVP/RPG\n\nZAPRASZAMY !!!"
+   },
+   {
+    "name": "First Call",
+    "logo_url": "https://static.tibia.com/images/guildlogos/First_Call.gif",
+    "description": "~ FIRST CALL ~"
+   },
+   {
+    "name": "Followers of Kazordoon",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Followers_of_Kazordoon.gif",
+    "description": "We are not recruting!\n\n\n\nEnnyn Durin Aran Moria. \n\n\nSatori and Friends of Honour scion."
+   },
+   {
+    "name": "Fontaneda Army",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Fontaneda_Army.gif",
+    "description": "Created in February 2001 and still coexisting in the territories of Antica.\nWe are just good friends.\nWe play Tibia in a peaceful way, trying to help and protect each other. \nThe friendship between us is our flag.\nInmortal as the time.\nInalterable as the history.\nAlways loyal.\n- Fontaneda Army."
+   },
+   {
+    "name": "Friends of Honour",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Friends_of_Honour.gif",
+    "description": "Set into the soil of Tibia, Riverspring.\nSurrounded by 3 cities.\nWe take our place and sign the book of history.\nFor our peaceful home,\nour unity,\nour strength\nand our Honour.\nWe will stay forever,\nwe will stand together,\nwe are the Friends of Honour.\n\n\nWe stay always beside Lavrance and we will play in his memorial."
+   },
+   {
+    "name": "General Levy of Sarmats",
+    "logo_url": "https://static.tibia.com/images/guildlogos/General_Levy_of_Sarmats.gif",
+    "description": "Najstarsza polska gildia. Naszym celem jest gra dla przyjemnosci w przyjacielskiej atmosferze z dala od wszelkich konfliktow. Dla nas liczysz sie Ty a nie Twoja postac.\n~~~~ We are from the gentry, everyone of us is a master for himself, but together we are General Levy. We dispute in Seyms in our Guild Hall.\n\nSee you there."
+   },
+   {
+    "name": "Ghosts of Perdition",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Golden Dawn",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "We shall defend our island, whatever the cost may be, we shall fight on the beaches, we shall fight on the landing grounds, we shall fight in the fields and in the streets, we shall fight in the hills; we shall never surrender, our barracks will fight and will never go back for a golden dawn coming with all glory and might."
+   },
+   {
+    "name": "Golden blood",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Golden_blood.gif",
+    "description": "Em meio às terras perigosas de Tibia, um grupo de aventureiros decidiu se reunir por algo em comum: falar português e aproveitar o jogo juntos. Assim nasceu nossa guild, um lugar para brasileiros e jogadores PT-BR que procuram companhia para hunts, boas conversas e novas amizades."
+   },
+   {
+    "name": "Green Dragon",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Green_Dragon.gif",
+    "description": "The Green Dragon Inn is located directly north of Thais depot. Our goals are quests, teamhunts, bosses and running the Inn! We are looking for active PL/EN people. Apply or write to Owner/Investors, and become one of us! Requirements: active, discord, unhidden character."
+   },
+   {
+    "name": "Haunted House",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "Postcard from Hell, \nwith love."
+   },
+   {
+    "name": "Headstrong",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Headstrong.gif",
+    "description": "Make Headstrong Great Again.\nFounded at 20.02.2013.\nOld Furora & Bellona Guild.\nFor friends and allies only. No recruting.\nIn memory of: Xinetta, Nagi Aniol, Keepsake of Furora, Rudolf Gromowladny, Tarantinek, Debrutsid, Salis Chlee, Dobrodziej Ziom, Yasno Ciemny, Prototyp, Shav'ek, Adamiakowa, Dusza Maga, Derex, Tomi Skrim, Nevish, Nishibell, Assassin Jimbo, Klaz Janizus, Naturae Lusus, Ezrael Lerua, Danes, Zefroith, Xaen, Nalardey, Tangur, Rakev, Awesolux, Ayina, Leon Exanet, Srox"
+   },
+   {
+    "name": "Hectum",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Hectum.gif",
+    "description": "Szukasz gildii, w ktorej panuje mila atmosfera, a wspolne wyprawy na TH to codziennosc? Dolacz do nas!\nCo oferujemy:\nRegularne wspolne wyprawy na TH i Bossy\nPrzyjazne srodowisko i pomoc dla nowych graczy\nBaw sie w swoim tempie :)\n\nChcesz dolaczyc? Napisz do nas w grze lub skontaktuj sie z nami!\n   GH suntower Carlin"
+   },
+   {
+    "name": "Hellshade",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Hellshade.gif",
+    "description": "HELLSHADE –\n\n Born in Darkness, United by Power \n\n\nWelcome to Hellshade, where loyalty is everything and strength is earned, not given.\n\nWe stand together, fight together and rise together. Whether you’re hunting, leveling, battling or exploring, we believe that a strong guild is built on respect, teamwork and loyalty.\n\nNo egos. No drama. Just good people, strong bonds and a shared passion for Tibia.\n\nUnited as one.  \nWelcome to Hellshade"
+   },
+   {
+    "name": "House Redd",
+    "logo_url": "https://static.tibia.com/images/guildlogos/House_Redd.gif",
+    "description": "We are a like minded group of people coming together to make our Tibian experience better by having friends to share in our adventures.  We participate in events, all major quests, boss hunts, team hunts, or just hanging out with one another and our allies.  Discord is our main form of communication.\n\n~To apply to House Redd, please message one of the vice leaders in-game.~\n\nWe are open for recruitment to neutral players of any level."
+   },
+   {
+    "name": "House of Salinos",
+    "logo_url": "https://static.tibia.com/images/guildlogos/House_of_Salinos.gif",
+    "description": "We are descendants of Ferion who founded the House of Salinos in the reign of Tibianus I.\nWe proudly carry his family traditions forward, setting the family and its household first, thereby servicing the Tibian society and it's better values.\n\nFor the Family; by bonds of Honor and Valor"
+   },
+   {
+    "name": "Indestructible",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Insomnia",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Insomnia.gif",
+    "description": "Jestesmy Polska gildia Starych Dziadow i Bab, staramy sie dozyc emerytury na tym pelnym zwierzat i chaosu pieknym serwerze.\n\nRobimy teamhunty, dostepy i rozne eventy wewnatrz gildii, rekrutacja jest otwarta dla graczy z poziomem 300+, co potrafia sie zachowac, albo chociaz dobrze udaja.\n\nKorzystamy z discorda i jest on obowiazkowy.\n\nZapraszamy do kontaktu w grze:\n- Neo\n- Boski Erollex\n- Melonova"
+   },
+   {
+    "name": "Ironblood Order",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Ironblood_Order.gif",
+    "description": "Ironblood Order is a friendly Tibia guild focused on teamwork. We mainly do team hunts and quests, helping each other progress and improve. We’re looking for active, nice players who enjoy group play. We value respect, cooperation, and good vibes. We are a peaceful, no-drama guild where the goal is to have fun together. Join us if you want a relaxed and enjoyable place to play."
+   },
+   {
+    "name": "Knights of the Round Table",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Knights_of_the_Round_Table.gif",
+    "description": "We are the Knights of the Round Table. We protect our brothers and sisters.\nIn our guild friendship is prioritized. It's not important if you are well experienced or a master in your skills.\nWe are a good guild, fighting against evil and injustice.\nKnights of the Round Table stands for honour and fraternity.\nTogether we will prevail! \nFor information about joining, check our homepage, do not spam our members about it!"
+   },
+   {
+    "name": "La Ultima Alianza",
+    "logo_url": "https://static.tibia.com/images/guildlogos/La_Ultima_Alianza.gif",
+    "description": ""
+   },
+   {
+    "name": "Legio Libertatis",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Legio_Libertatis.gif",
+    "description": "Strength and honor, wisdom and glory. Famed for our discipline, loyalty and organisation."
+   },
+   {
+    "name": "Les hermanos",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Living the Dream",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "Created for War Mode, 100-129 lvl."
+   },
+   {
+    "name": "Lone Wolf",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Lone_Wolf.gif",
+    "description": "Guild's solely made for personal interests. \n\nWe'll not be held responsible over the act of our individuals. \n\nMuch obliged! (Beyond Action & Mere Words)"
+   },
+   {
+    "name": "Loremasters",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Loremasters.gif",
+    "description": "We are teachers & gatherers of knowledge. We teach new heroes the basic things of life in Tibia. We try to help low level players to form adventuring parties & guard newbies on their first steps in a dangerous, unknown world."
+   },
+   {
+    "name": "Mercenarys",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Mercenarys.gif",
+    "description": "My blood to your blood, your blood to mine. Our unity over all, until the end of time.\nMy life for the family, my sword for the victory. HAIL to the Mercs, forever and in eternity!"
+   },
+   {
+    "name": "Messiahs of Bedlam",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Messiahs_of_Bedlam.gif",
+    "description": "A Messiah is sworn to valor. \nHis heart knows only virtue. \nHis sword defends the helpless, \nHis might upholds the weak. \nHis wrath undoes the wicked,His word speaks only truth.\n// ~ Established :July 21, 2001.~ \n\nLook at our website for more information about how to join us."
+   },
+   {
+    "name": "Most Wanted",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Most_Wanted.gif",
+    "description": ""
+   },
+   {
+    "name": "New Day",
+    "logo_url": "https://static.tibia.com/images/guildlogos/New_Day.gif",
+    "description": "It's a new day...."
+   },
+   {
+    "name": "Nightmare Knights",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Nightmare_Knights.gif",
+    "description": "A single sword was born from will; it held the power of change, destiny, and hope. This sword, the Holy Blade Excalibug, was entrusted to the Nightmare Knights. The order was formed by those who saw the schemes of evil in their dreams, though foreknowledge proved not enough to halt the darkness. A final prophecy was given before their end: when the forces of darkness consume the land, the Knights will ride once more under a new banner. We are that new banner. We seek those of liberty and peace."
+   },
+   {
+    "name": "Nine Inch Runes",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Nine_Inch_Runes.gif",
+    "description": "When these memories fade away, So shall I fade with them. {*} In remembrance of Tim and Thomas, fallen but never forgotten."
+   },
+   {
+    "name": "No Mercy",
+    "logo_url": "https://static.tibia.com/images/guildlogos/No_Mercy.gif",
+    "description": "Gildia neutralna nastawiona na wspólna gre i dobra atmosfere. Szanujemy innych graczy, pomagamy sobie nawzajem i gramy bez niepotrzebnych konfliktów, jednak kiedy zostaniemy zaatakowani, nie boimy sie odpowiedziec na zaczepke. Nasze motto to \"Jeden za wszystkich, wszyscy za jednego\". Posiadamy rozbudowany serwer Discord ulatwiajacy komunikacje i integracje czlonków, który jest obowiazkowy jesli logujesz sie na Tibie masz byc na dc."
+   },
+   {
+    "name": "Noob Hunters",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Noob_Hunters.gif",
+    "description": "Tam gdzie PvP tam i my, lubimy sie bic oraz byc followani ale to nie oznacza ze potrafimy to robic xD\n\n\n\nPokonane gildie:\n\n- Westland\n- Chillouters\n- Death Hard\n- The Storm\n- One Hand x3\n- Street Fighters\n- The Enemy\n- Publiic Enemy\n- Always Front\n- Loose Ends\n- We Are Staying\n- Cavestayers\n- Familly"
+   },
+   {
+    "name": "Nuevos Corsarios",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Nuevos_Corsarios.gif",
+    "description": "In the age of the third king, three warriors decide to unite their forces to travel around the world. During his journeys they know people all the classes and professions, and some, single bravest are united to them.\nNow they are known like Nuevos Corsarios."
+   },
+   {
+    "name": "Operadora De Gas",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Operadora_De_Gas.gif",
+    "description": ""
+   },
+   {
+    "name": "Otium multorum",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Owner of Thais",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Owner_of_Thais.gif",
+    "description": "†   †   †                                        since                                       †   †   †                                   •••••••••••••••••••••••••••••••••••      Join or Die              •    O W N E R     O F     T H A I S    •             Bully = King                                   •••••••••••••••••••••••••••••••••••        †   †   †                                        2017                                       †   †   † min 40 lvl · More info: click—› Guild Events"
+   },
+   {
+    "name": "Pandoras Pithos",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Pandoras_Pithos.gif",
+    "description": "Est. Jul 10 2005 - A true guild of honor. \nOld friends and family. This is our home, these are our people.  <lore> The bottle can be enticing. Its glowing draws you near. Is it riches beyond belief?! Oh, how life would change if so!... However, beware! You may unleash all that is evil.\n\nWe are a neutral guild but will defend ourselves.\nWe are Pandoras, we are a family, we stand together.  Honor above all else.\n\nNot open for applications."
+   },
+   {
+    "name": "Pepino And Thumbs",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Pepino_And_Thumbs.gif",
+    "description": ""
+   },
+   {
+    "name": "Per Aspera",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Power Puff Pinglorna",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Power_Puff_Pinglorna.gif",
+    "description": ""
+   },
+   {
+    "name": "Primes",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Primes.gif",
+    "description": "Loyalität - Des versteht sunst kana."
+   },
+   {
+    "name": "Progressive",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Progressive.gif",
+    "description": "Nudzi Cie neutralka i schodzenie innym z respa ze spuszczona glowa? Szukamy ludzi do aktywnego teamu - teamhunty, questy, bossy, PvP. Wymagany discord. Zapraszamy priv.\n\nBored of being neutral and hanging your head in shame as someone is kicking you from the spawn? We’re looking for players to join an active team -teamhunts, quests, bosses, and PvP. Discord required. PM us."
+   },
+   {
+    "name": "Promilleverket",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Promilleverket.gif",
+    "description": "Bira bira \n\nSvensk clan med gamla uncs"
+   },
+   {
+    "name": "Quaki",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Quaki.gif",
+    "description": "Papadyn to stan umyslu, ale mamy jednego..\naaaaa tam"
+   },
+   {
+    "name": "Reckless Assault",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Reckless_Assault.gif",
+    "description": ""
+   },
+   {
+    "name": "Red Rose",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Red_Rose.gif",
+    "description": "We are an ancient guild of Good, followers of Banor. \nWe are peaceloving and try to uphold law and noble virtues, but like the rose we have sharp thorns, too! \n\n- Founded December 7th 1998 - \n\n- Proud winner of the first ever Tibian Football League - Recruitment is currently open! \nContact us at our forum."
+   },
+   {
+    "name": "Retro Rushers",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Retro_Rushers.gif",
+    "description": ""
+   },
+   {
+    "name": "Rising Phoenix",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Rising_Phoenix.gif",
+    "description": "You expected to be sad in the fall. Part of you died each year when the leaves fell from the trees and their branches were bare against the wind and the cold, wintry light. But you knew there would always be the spring, as you knew the river would flow again after it was frozen. When the cold rains kept on and killed the spring, it was as though a young person had died for no reason. -- A Moveable Feast"
+   },
+   {
+    "name": "Rising Rebels",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Rising_Rebels.gif",
+    "description": "Rebels of the Golden Faith / Askara - United Friends, united Legends! Aged over 100 in sum and mostlikely german speaking (80%)!\n\nIn case of applications - please have a look on our Discord (reachable via Homepage)."
+   },
+   {
+    "name": "Riverspring Monastery",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Riverspring_Monastery.gif",
+    "description": "We are Nightmare Knights and overseers of the Riverspring Monastery. From here to the Knightwatch Tower we overlook what was once known as the Fair Plains. But times have passed, and with it many things have changed. However, our legacy remains, and so it will, until Excalibug is reborn in the flame of justice.\n\n\nPraised be the gods, and praised be the Nightmare Knights!"
+   },
+   {
+    "name": "Rosebuds",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Rosebuds.gif",
+    "description": ""
+   },
+   {
+    "name": "Roshamuul spolka akcyjna",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Roshamuul_spolka_akcyjna.gif",
+    "description": "A friendly idiot can be more dangerous than an enemy."
+   },
+   {
+    "name": "Ruthless Reign",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Ruthless_Reign.gif",
+    "description": ""
+   },
+   {
+    "name": "Satori",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Satori.gif",
+    "description": "As the world moves onward into darkness and the smell of blood is thick in the air, we strive to hold back the powers of the night. Justice and order shall be established once again, chaos shall be driven back into its murky lair. As we give light, so shall we receive light."
+   },
+   {
+    "name": "Satori Kouga",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Satori_Kouga.gif",
+    "description": ""
+   },
+   {
+    "name": "Scarface",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Scarface.gif",
+    "description": "Neutral by choice. Loyal to our own. Built for bosses, quests and hunts."
+   },
+   {
+    "name": "Shadow Slayers",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Silent Execution",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Silent_Execution.gif",
+    "description": "We strike from the shadows and disappear before the echo.\nPrecision over chaos. Discipline over emotion. Results over promises.\n\nWe are not many — we are enough.\nEvery move is calculated. Every target is chosen.\n\nNo noise. No hesitation. No mercy.\n\nWe don’t speak. We end."
+   },
+   {
+    "name": "Silent Family",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "SVENSK gemenskap \n\nBehövs ingen \n\nCv\nBelastnings register\nKronofogden i arslet\nPersonligt brev\nSkulder till staten\nOlagligt utseende\n\nDe enda ni behöver är stora bollar\nFinns det är ni välkomna"
+   },
+   {
+    "name": "Sleeping Lions",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Sleeping_Lions.gif",
+    "description": "We are a neutral guild. \n\nJoin our public Discord:\n\ndPpvSeYACP or\nhttps://dsc.gg/sleepinglion"
+   },
+   {
+    "name": "Soldiers of Justice",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Soldiers_of_Justice.gif",
+    "description": "\"The original Soldiers of Justice were a group of Tibians who gathered to make Tibia more than just moving pixels. They had gathered together to work against the thieves and murderers that roamed the lands and were keen to keep the spirit of justice in Tibia alive.\" We now try to live by their example and follow their way foward.\n   Founded July 2000.\n \n\n\nLevel requirement to join: level 50"
+   },
+   {
+    "name": "Specialized",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Stars",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Stars.gif",
+    "description": "Guild neutral y con personalidad cuya comunidad es 100% hispanoparlante pero abierta a cualquier tibian@ interesado.\nSi necesitáis info extendida de la guild poneros en contacto con cualquier Polaris o Antares.\nSed bienvenidos!"
+   },
+   {
+    "name": "Success",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Success.gif",
+    "description": ""
+   },
+   {
+    "name": "Summerhaven",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Summerhaven.gif",
+    "description": "Arrr!\nGather children of Summerhaven! \nThe mainlanders call our Home Liberty Bay, \nkings and nobillity still act like they're our saviors, because they forced there laws and ''fine customs'' on our lands, meanwhile they fill there ever growing pockets with Vandura's resources <Spits> ''Liberty Bay'' they call it.. just remember that, no matter the place we'll always be the sons and daughters of Summerhaven, and you'll always be welcome at the shelter. Always."
+   },
+   {
+    "name": "Suti Family",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Tennis My Life",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "Ahoy Tennis Lovers!\n\nEveryone who love tennis can join :)\n\nChill out and play tennis <3"
+   },
+   {
+    "name": "Tetillos Army",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "The Cursed",
+    "logo_url": "https://static.tibia.com/images/guildlogos/The_Cursed.gif",
+    "description": "Czesto w gildiach tworza sie zamkniete grupki wzajemnej adoracji, do których trudno sie przebic. My stawiamy na prosta zasade: zero elitaryzmu i podzialów na \"starych\" i \"nowych\". Wchodzisz do nas i od razu jestes czescia czegos wiekszego. To co? Na co jeszcze czekasz?"
+   },
+   {
+    "name": "The Octopus",
+    "logo_url": "https://static.tibia.com/images/guildlogos/The_Octopus.gif",
+    "description": ""
+   },
+   {
+    "name": "The Tavern",
+    "logo_url": "https://static.tibia.com/images/guildlogos/The_Tavern.gif",
+    "description": "Welcome to The Tavern! A Rookgaard community united by nostalgia from many years ago. Applications by referral only.\n\nGuidelines:\n• Respect hunting spots\n• Respect others skilling\n• Never insult anyone\n• If you run into a problem, do not say anything, not one word. Raise it to Bilbo or Zwenti, with proof, and we will do our best to mediate conflict resolution."
+   },
+   {
+    "name": "Thirteen Spirits",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Thirteen_Spirits.gif",
+    "description": "We protect the 13 Spirits: Fire, Water, Earth, Wind, Magic,Nature, Mystic, Death, Live, Soul, Ghost, Human and Subject.\n\nOur Guild is like a family, we protect ourselves mutually and help ourselves the best we can. \n\nTo join us,feel free to write us a letter or contact us in tibia!\n\nWe live in Friendship with the Friends of Honor"
+   },
+   {
+    "name": "Trolls",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Trolls.gif",
+    "description": "Make Antica Great Again"
+   },
+   {
+    "name": "Tuatha De Danann",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Tuatha_De_Danann.gif",
+    "description": "The Tuatha de Danann was a magical race that possessed supernatural powers. \n\nMost of them were god-like creatures or divine beings that were being worshipped\n\nThis race was also known to believe in Goddess Danu. \nShe was sometimes referred to as the mother. \n\nThe Tuatha de Danann settled in four major cities; Falias, Gorias, Finias, and Murias."
+   },
+   {
+    "name": "United Front",
+    "logo_url": "https://static.tibia.com/images/guildlogos/United_Front.gif",
+    "description": "Jesli szukasz wspólnego TH, towarzyszy na questy czy Bosy to jestes w dobrym miejscu. \nJestesmy Gildia neutralna nie szukajaca konfliktow.(ZAWSZE STAJEMY W OBRONIE SWOICH)\n\nWymagany DC.\nZapraszamy"
+   },
+   {
+    "name": "Valheru",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Valheru.gif",
+    "description": "Eons ago we, the Valheru, descended from the skies. Upon the wings of firebreathing dragons we rode, watching and protecting the people of our realm. After a long war against the Gods of old we were banished from our homelands and were forced to live in exile. The Dragons abandoned us and we were forgotten for many centuries. But now we are arising and this time neither God nor Dragon shall stand in our way...\n(Founded in spring 2001) \n\nHomepage offline due to new data security scum."
+   },
+   {
+    "name": "Wasted",
+    "logo_url": "https://static.tibia.com/images/guildlogos/Wasted.gif",
+    "description": "ishi action in maschichi blo"
+   },
+   {
+    "name": "We dont care",
+    "logo_url": "https://static.tibia.com/images/guildlogos/We_dont_care.gif",
+    "description": ""
+   },
+   {
+    "name": "White Rose",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": ""
+   },
+   {
+    "name": "Wyverns",
+    "logo_url": "https://static.tibia.com/images/community/default_logo.gif",
+    "description": "When night falls, she cloaks the world in impenetrable darkness. A chill rises from the soil and contaminates the air. Suddenly, life has new meaning."
+   }
+  ],
+  "formation": null
+ },
+ "information": {
+  "api": {
+   "version": 5,
+   "release": "5.1.0",
+   "commit": "b3abf3738c00b20c80e5cfde132df849cf2767b4"
+  },
+  "timestamp": "2026-11-17T17:48:37Z",
+  "tibia_urls": [
+   "https://www.tibia.com/community/?subtopic=guilds&world=Antica"
+  ],
+  "status": {
+   "http_code": 200
+  }
+ }
+}

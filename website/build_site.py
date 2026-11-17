@@ -1,34 +1,37 @@
 """
-Builds tibiafoundry.com (version from src/Directory.Build.props) into website/site/ from website/src/, in every language of LANGUAGES:
+Builds tibiafoundry.com (version from src/Directory.Build.props) into website/site/ from website/src/:
 
-    python -I website/build_site.py            (from the repository root)
-    python -I website/build_site.py --strict   (fail when a translation is missing)
+    python -I website/build_site.py                       (from the repository root)
+    python -I website/build_site.py --strict              (fail when a translation is missing or a text is unused)
+    python -I website/build_site.py --checksums Release/9.0.5/SHA256SUMS.txt   (show the archives' SHA-256 on Downloads)
 
-* src/index.template.html is rendered once per language with the texts of src/locales/<lang>.json:
-  English at /, the others at /pt-br/, /pl/, /es/ and /de/ (see website/TRANSLATING.md);
-* src/styles.css and src/app.js are inlined into every page;
-* screenshots come from the library src/images/screens/<code>/<id>-<code>-<theme>.png (made by
-  website/screenshots/screenshots.py from the running program, in every language and both themes) and are written
-  as lossy WebP (quality 80) to site/img/screens/<id>-<code>-<theme>.webp. Every language shows its own screenshots:
-  a missing one stops the build (one language or theme never stands in for another);
-* the program's pixel-art output and the logo are shared by all languages and written losslessly, so they stay
-  pixel-exact;
-* {app:Key} in a text (and {{APP:Key}} in the template) is the program's own translation of that key
-  (Strings.<code>.xaml), so page names on the site match the screenshots exactly;
-* {version} comes from src/Directory.Build.props, {date} is the build date (written in each language's style);
-* sitemap.xml lists every language with hreflang alternates; CNAME and robots.txt are kept;
+* src/registry.json is the site's structure: languages, pages, Tibia data routes, downloads, the creator's profiles;
+  src/providers.json lists every external data provider (rendered as the footer's "Data & resource credits");
+* every page of src/registry.json "pages" is rendered from src/templates/<page>.html inside src/templates/layout.html,
+  once per language with the texts of src/locales/<lang>.json: English at /<page>/, the others at /<lang>/<page>/;
+* src/styles.css and src/js/*.js are published under site/assets/ with a content hash in their URL (cache busting);
+* screenshots come from the library src/images/screens/<code>/<id>-<code>-<theme>.png (website/screenshots/
+  screenshots.py captures them from the running program) and are written as WebP to site/img/screens/; every language
+  shows its own screenshots, a missing one stops the build;
+* {app:Key} in a text is the program's own translation of that key (Strings.<code>.xaml), so page names on the site
+  match the screenshots; {version} comes from src/Directory.Build.props, {date} is the build date;
+* sitemap.xml lists every page in every language with hreflang alternates; 404.html sends old and deep data URLs
+  (e.g. /tibia/character/Name) to their view; CNAME and robots.txt are never written when they exist;
 * website/i18n-report.md is the translation completeness report.
 
-The pages load nothing from other hosts except the Google tag (analytics, unchanged: G-J3EX3FB3PB).
-Needs Pillow (pip install pillow).
+The pages load nothing from other hosts except the Google tag (unchanged: G-J3EX3FB3PB) and, at run time, the
+TibiaData API and images on static.tibia.com (credited in the footer). Needs Pillow (pip install pillow).
 """
 import datetime
+import hashlib
 import html as htmllib
 import io
 import json
 import os
 import re
+import shutil
 import sys
+import urllib.parse
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -36,21 +39,20 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "src")
 SITE = os.path.join(HERE, "site")
 ROOT = os.path.dirname(HERE)
-ORIGIN = "https://tibiafoundry.com/"
 
-# (code, URL folder, name in its own language, short badge, Open Graph locale). The first one is the default.
-LANGUAGES = [
-    ("en", "", "English", "EN", "en_US"),
-    ("pt-BR", "pt-br", "Português (Brasil)", "PT", "pt_BR"),
-    ("pl", "pl", "Polski", "PL", "pl_PL"),
-    ("es", "es", "Español", "ES", "es_LA"),
-    ("de", "de", "Deutsch", "DE", "de_DE"),
-]
+REGISTRY = json.load(open(os.path.join(SRC, "registry.json"), encoding="utf-8"))
+PROVIDERS = json.load(open(os.path.join(SRC, "providers.json"), encoding="utf-8"))["providers"]
+ORIGIN = REGISTRY["origin"]
+
+# (code, URL folder, name in its own language, short badge, Open Graph locale) - kept in this form for screenshots.py.
+LANGUAGES = [(l["code"], l["folder"], l["name"], l["badge"], l["ogLocale"]) for l in REGISTRY["languages"]]
+INTL = {l["code"]: l["intl"] for l in REGISTRY["languages"]}
 DEFAULT = LANGUAGES[0][0]
+PAGES = REGISTRY["pages"]
 
-# Screenshot gallery: (id, the program's page as keys of its own texts, tab label). The page name (alt text) is the
-# program's translation of those keys joined with " → "; the tab label is the last of them (or the site text
-# screens.tab.<id> when the third value names one). Each id is a shot of SiteScreenshots.cs in the program.
+# Screenshot gallery (Features page): (id, the program's page as keys of its own texts, unused). The page name (alt
+# text) is the program's translation of those keys joined with " → "; the tab label is the last of them. Each id is a
+# shot of SiteScreenshots.cs in the program.
 SCREENS = [
     ("home", ["Tool.home.Name"], None),
     ("asset-library", ["Tool.asset-library.Name"], None),
@@ -71,18 +73,15 @@ SCREENS = [
     ("clients", ["Tool.clients.Name"], None),
     ("settings", ["Tool.settings.Name"], None),
     ("settings-attribution", ["Tool.settings.Name", "Choice.SettingsCategory.Attribution"], None),
+    ("about", ["Tool.about.Name"], None),
 ]
-SCREEN_SIZE = (1586, 893)
+SCREEN_SIZE = (1280, 800)
 SHOTS = os.path.join(SRC, "images", "screens")
 APP_STRINGS = os.path.join(ROOT, "src", "TibiaFoundry.Core", "Localization", "Resources", "Strings.{code}.xaml")
-
-# Derived images: (name, source, crop box) – a close-up of the library so the page never shows one picture twice.
-DERIVED = [
-    ("asset-library-detail-dark", "asset-library-dark", (480, 250, 1572, 845)),
-    ("asset-library-detail-light", "asset-library-light", (480, 250, 1572, 845)),
-]
-# Images that are the same in every language and theme (the logo and real Content Studio output).
+APP_LINK_ICONS = os.path.join(ROOT, "src", "TibiaFoundry.App", "Assets", "Links")
+DERIVED = []          # (name, source, crop box): none since 9.0.5 (kept for screenshots.py)
 SHARED = ("logo", "output-")
+PROTECTED = ("CNAME", "robots.txt")   # never written when they exist (the Pages repository's own files)
 
 MONTHS = {
     "en": "January February March April May June July August September October November December",
@@ -91,8 +90,7 @@ MONTHS = {
     "es": "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre",
     "de": "Januar Februar März April Mai Juni Juli August September Oktober November Dezember",
 }
-# Digit-group separator for 1000 and up (CLDR; Polish and Spanish group with a no-break space).
-GROUP = {"en": ",", "pt-BR": ".", "pl": " ", "es": " ", "de": "."}
+GROUP = {"en": ",", "pt-BR": ".", "pl": " ", "es": " ", "de": "."}
 
 
 def version():
@@ -102,7 +100,6 @@ def version():
 
 # ============================================================================ localization
 def plural_form(lang, n):
-    """CLDR cardinal plural category of the integer n."""
     if lang == "pl":
         if n == 1:
             return "one"
@@ -116,7 +113,6 @@ def plural_form(lang, n):
 
 def format_number(lang, n):
     s = f"{n:,}"
-    # Polish and Spanish leave four-digit numbers ungrouped.
     if lang in ("pl", "es") and n < 10000:
         s = str(n)
     return s.replace(",", GROUP[lang])
@@ -124,13 +120,8 @@ def format_number(lang, n):
 
 def format_date(lang, d):
     month = MONTHS[lang].split()[d.month - 1]
-    return {
-        "en": f"{month} {d.day}, {d.year}",
-        "pt-BR": f"{d.day} de {month} de {d.year}",
-        "pl": f"{d.day} {month} {d.year}",
-        "es": f"{d.day} de {month} de {d.year}",
-        "de": f"{d.day}. {month} {d.year}",
-    }[lang]
+    return {"en": f"{month} {d.day}, {d.year}", "pt-BR": f"{d.day} de {month} de {d.year}", "pl": f"{d.day} {month} {d.year}",
+            "es": f"{d.day} de {month} de {d.year}", "de": f"{d.day}. {month} {d.year}"}[lang]
 
 
 def flatten(tree, prefix=""):
@@ -139,7 +130,6 @@ def flatten(tree, prefix=""):
         if key.startswith("_"):
             continue
         full = prefix + key
-        # A plural entry is an object of CLDR categories ("one", "few", "many", "other").
         if isinstance(value, dict) and not (prefix == "plural." and set(value) <= {"zero", "one", "two", "few", "many", "other"}):
             out.update(flatten(value, full + "."))
         else:
@@ -150,8 +140,7 @@ def flatten(tree, prefix=""):
 def load_locales():
     locales, meta = {}, {}
     for code, *_ in LANGUAGES:
-        path = os.path.join(SRC, "locales", code + ".json")
-        tree = json.load(open(path, encoding="utf-8"))
+        tree = json.load(open(os.path.join(SRC, "locales", code + ".json"), encoding="utf-8"))
         meta[code] = tree.get("_meta", {})
         locales[code] = flatten(tree)
     return locales, meta
@@ -159,21 +148,19 @@ def load_locales():
 
 TAG = re.compile(r"</?[a-zA-Z][^>]*>")
 CODE = re.compile(r"<code[^>]*>(.*?)</code>", re.S)
-VARIABLE = re.compile(r"\{(?:version|date|count|page|language|num:\d+|plural:\w+:\d+|app:[\w.-]+)\}")
-
+BUILD_VARIABLE = re.compile(r"\{(?:version|date|count|page|language|num:\d+|plural:\w+:\d+|app:[\w.-]+)\}")
+PLACEHOLDER = re.compile(r"\{[\w.:-]+\}")
 _app_cache = {}
 
 
 def app_strings(code):
-    """The program's own interface texts in one language (English for keys it lacks)."""
     if code not in _app_cache:
         texts = {}
         for c in (DEFAULT, code):
             path = APP_STRINGS.replace("{code}", c)
             if os.path.exists(path):
                 xaml = open(path, encoding="utf-8-sig").read()
-                texts.update({k: htmllib.unescape(v) for k, v in
-                              re.findall(r'<sys:String x:Key="([^"]+)"[^>]*>([^<]*)</sys:String>', xaml)})
+                texts.update({k: htmllib.unescape(v) for k, v in re.findall(r'<sys:String x:Key="([^"]+)"[^>]*>([^<]*)</sys:String>', xaml)})
         _app_cache[code] = texts
     return _app_cache[code]
 
@@ -186,17 +173,13 @@ def app_text(code, key):
 
 
 def signature(value):
-    """What a translation must keep exactly: its markup, its code and its placeholders."""
+    """What a translation must keep exactly: its markup, its code and its placeholders ({app:...} may be written out)."""
     if isinstance(value, dict):
-        return ("plural", sorted(set(VARIABLE.findall(" ".join(value.values())))))
-    # {app:…} is optional: a translation may write the name itself where its grammar needs another form.
-    return (sorted(TAG.findall(value)), CODE.findall(value),
-            sorted(v for v in VARIABLE.findall(value) if not v.startswith("{app:")))
+        return ("plural", sorted(set(PLACEHOLDER.findall(" ".join(value.values())))))
+    return (sorted(TAG.findall(value)), CODE.findall(value), sorted(v for v in PLACEHOLDER.findall(value) if not v.startswith("{app:")))
 
 
 class Translator:
-    """Texts of one language with English fallback; records what it used and what it had to borrow."""
-
     def __init__(self, code, locales, ver, date):
         self.code, self.locales, self.ver, self.date = code, locales, ver, date
         self.used, self.missing = set(), set()
@@ -214,8 +197,7 @@ class Translator:
 
     def plural(self, name, n, **vars):
         forms, lang = self.raw("plural." + name)
-        form = plural_form(lang, n)
-        text = forms.get(form) or forms.get("other") or forms.get("many")
+        text = forms.get(plural_form(lang, n)) or forms.get("other") or forms.get("many")
         return self.interpolate(text, lang, count=format_number(lang, n), **vars)
 
     def interpolate(self, text, lang, **vars):
@@ -233,11 +215,31 @@ class Translator:
             if token.startswith("app:"):
                 return htmllib.escape(app_text(self.code, token[4:]), quote=False)
             return str(vars.get(token, m.group(0)))
-        return VARIABLE.sub(sub, text)
+        text = BUILD_VARIABLE.sub(sub, text)
+        for name, value in vars.items():
+            text = text.replace("{" + name + "}", str(value))
+        return text
 
     def text(self, key, **vars):
         value, lang = self.raw(key)
         return self.interpolate(value, lang, **vars)
+
+    def runtime_text(self, key):
+        """A text for the page scripts: only {version}, {app:...}, {num:...} and {plural:...} are filled in at build time;
+        {date}, {page}, {count}, {language} and the other placeholders stay for the script (TF.t) to fill."""
+        value, lang = self.raw(key)
+        kept = []
+
+        def protect(m):
+            if m.group(0)[1:-1] in ("date", "page", "count", "language"):
+                kept.append(m.group(0))
+                return "@@RUNTIME%d@@" % (len(kept) - 1)
+            return m.group(0)
+
+        text = self.interpolate(re.sub(r"\{\w+\}", protect, value), lang)
+        for i, token in enumerate(kept):
+            text = text.replace("@@RUNTIME%d@@" % i, token)
+        return text
 
     def app(self, key):
         return app_text(self.code, key)
@@ -247,36 +249,16 @@ class Translator:
 
 
 # ============================================================================ images
-def encode(image, name):
-    buf = io.BytesIO()
-    if name == "logo":
-        # The 32×32 pixel-art logo, enlarged 2× with nearest neighbour (sharp header icon).
-        image.resize((image.width * 2, image.height * 2), Image.NEAREST).save(buf, "PNG", optimize=True)
-        return "png", buf.getvalue()
-    if name.startswith("output-"):
-        image.save(buf, "WEBP", lossless=True, method=6)
-        return "webp", buf.getvalue()
-    image.convert("RGB").save(buf, "WEBP", quality=80, method=6)
-    return "webp", buf.getvalue()
-
-
-def is_shared(name):
-    return name.startswith(SHARED)
-
-
 def screenshot(name):
-    """'asset-library-detail-dark' -> ('asset-library-detail', 'dark'); None for an image that is not a screenshot."""
-    if is_shared(name) or not re.search(r"-(dark|light)$", name):
+    if name.startswith(SHARED) or not re.search(r"-(dark|light)$", name):
         return None
     return tuple(name.rsplit("-", 1))
 
 
 def source(name, code):
-    """The source file of an image for a language (screenshots: that language's own capture, required)."""
     if not screenshot(name):
         return os.path.join(SRC, "images", name + ".png")
-    file = next((src for derived, src, _ in DERIVED if derived == name), name)
-    sid, theme = file.rsplit("-", 1)
+    sid, theme = screenshot(name)
     path = os.path.join(SHOTS, code, f"{sid}-{code}-{theme}.png")
     if not os.path.exists(path):
         sys.exit(f"[{code}] Missing screenshot {os.path.relpath(path, ROOT)}. Capture it with: python -I "
@@ -285,7 +267,6 @@ def source(name, code):
 
 
 def output_path(name, code):
-    """Where an image is published (without extension): img/<name> (shared) or img/screens/<id>-<code>-<theme>."""
     if screenshot(name):
         sid, theme = screenshot(name)
         return f"img/screens/{sid}-{code}-{theme}"
@@ -294,22 +275,24 @@ def output_path(name, code):
 
 def load(name, code=DEFAULT):
     image = Image.open(source(name, code))
-    for derived, _, box in DERIVED:
-        if derived == name:
-            return image.crop(box)
     if screenshot(name) and image.size != SCREEN_SIZE:
         sys.exit(f"[{code}] {source(name, code)} is {image.size[0]}x{image.size[1]}, not {SCREEN_SIZE[0]}x{SCREEN_SIZE[1]}.")
     return image
 
 
-def minify_css(css):
-    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
-    css = re.sub(r"\s*\n\s*", "\n", css)
-    return css.strip()
+def encode(image, name):
+    buf = io.BytesIO()
+    if name == "logo":
+        image.resize((image.width * 2, image.height * 2), Image.NEAREST).save(buf, "PNG", optimize=True)
+        return "png", buf.getvalue()
+    if name.startswith("output-"):
+        image.save(buf, "WEBP", lossless=True, method=6)
+        return "webp", buf.getvalue()
+    image.convert("RGB").save(buf, "WEBP", quality=82, method=6)
+    return "webp", buf.getvalue()
 
 
 def font(size, bold=False):
-    # Segoe UI on Windows; Pillow's own font elsewhere.
     for name in (("segoeuib.ttf", "arialbd.ttf") if bold else ("segoeui.ttf", "arial.ttf")):
         try:
             return ImageFont.truetype(name, size)
@@ -327,138 +310,296 @@ def scaled_logo(size):
 
 
 def write_icons():
-    """Favicons as real files (search engines do not use data URIs)."""
     scaled_logo(48).save(os.path.join(SITE, "favicon.ico"), sizes=[(16, 16), (32, 32), (48, 48)])
     scaled_logo(192).save(os.path.join(SITE, "favicon-192.png"), optimize=True)
-    touch = Image.new("RGBA", (180, 180), (15, 18, 22, 255))
+    touch = Image.new("RGBA", (180, 180), (22, 24, 28, 255))
     touch.alpha_composite(scaled_logo(160), (10, 10))
     touch.convert("RGB").save(os.path.join(SITE, "apple-touch-icon.png"), optimize=True)
+    # The site icons of TibiaWiki and tibia.com, as the program's About page shows them next to the creator's profiles.
+    os.makedirs(os.path.join(SITE, "img", "icons"), exist_ok=True)
+    for name in ("tibiawiki", "tibia"):
+        ico = Image.open(os.path.join(APP_LINK_ICONS, f"{name}-favicon.ico"))
+        sizes = sorted(ico.info.get("sizes", {ico.size}), key=lambda s: s[0])
+        best = sizes[-1]
+        ico.size = best
+        ico = ico.convert("RGBA")
+        ico.resize((32, 32), Image.LANCZOS if best[0] > 32 else Image.NEAREST).save(os.path.join(SITE, "img", "icons", f"{name}.png"), optimize=True)
 
 
 def write_preview(tr, filename):
-    """The 1200x630 link-preview image of one language."""
-    og = Image.new("RGB", (1200, 630), (15, 18, 22))
+    og = Image.new("RGB", (1200, 630), (22, 24, 28))
     shot = load("asset-library-dark", tr.code).convert("RGB")
-    shot = shot.resize((760, int(shot.height * 760 / shot.width)), Image.LANCZOS)
-    og.paste(shot, (470, 120))
+    shot = shot.resize((700, int(shot.height * 700 / shot.width)), Image.LANCZOS)
+    og.paste(shot, (470, 100))
     d = ImageDraw.Draw(og)
     og.paste(scaled_logo(96).convert("RGB"), (56, 64), scaled_logo(96))
     d.text((56, 190), "Tibia Foundry", font=font(54, True), fill=(240, 242, 245))
-    d.text((58, 258), tr.text("ogImage.version"), font=font(24), fill=(232, 176, 72))
+    d.text((58, 258), tr.text("ogImage.version"), font=font(24), fill=(232, 188, 106))
     y = 320
     for n in range(1, 5):
-        line, size = "• " + tr.text(f"ogImage.line{n}"), 25
+        line, size = "• " + TAG.sub("", tr.text(f"ogImage.line{n}")), 25
         while d.textlength(line, font=font(size)) > 400 and size > 18:
             size -= 1
         d.text((58, y), line, font=font(size), fill=(200, 205, 212))
         y += 44
-    d.text((58, 560), "tibiafoundry.com", font=font(22, True), fill=(120, 170, 255))
+    d.text((58, 560), "tibiafoundry.com", font=font(22, True), fill=(127, 178, 255))
     og.save(os.path.join(SITE, filename), optimize=True)
 
 
 # ============================================================================ pages
-def page_url(folder):
-    return ORIGIN + (folder + "/" if folder else "")
+def lang_folder(code):
+    return next(l[1] for l in LANGUAGES if l[0] == code)
 
 
-def relative(from_folder, to_folder):
-    up = "../" if from_folder else ""
-    return up + (to_folder + "/" if to_folder else "") if (up or to_folder) else "./"
+def page_dir(code, page):
+    """Folder of a page relative to the site root ('' for the English home page)."""
+    return "/".join(x for x in (lang_folder(code), page["path"].strip("/")) if x)
 
 
-def og_name(folder):
+def page_url(code, page):
+    d = page_dir(code, page)
+    return ORIGIN + (d + "/" if d else "")
+
+
+def rel(from_dir, to_dir):
+    """Relative link from one page folder to another (both relative to the site root)."""
+    up = "../" * (len(from_dir.split("/")) if from_dir else 0)
+    target = (to_dir + "/") if to_dir else ""
+    return (up + target) or "./"
+
+
+def og_name(code):
+    folder = lang_folder(code)
     return f"og-image-{folder}.png" if folder else "og-image.png"
 
 
-def render_screens(tr, img):
+def asset_files():
+    files = {"site.css": os.path.join(SRC, "styles.css")}
+    for name in sorted(os.listdir(os.path.join(SRC, "js"))):
+        if name.endswith(".js"):
+            files[name] = os.path.join(SRC, "js", name)
+    return files
+
+
+def credits_html(tr):
+    """The footer's (and About page's) data and resource credits from providers.json; TibiaData first, with its own thank-you."""
+    out = []
+    for p in PROVIDERS:
+        link = (f'<a href="{htmllib.escape(p["url"])}" rel="noopener noreferrer" target="_blank" data-provider="{p["id"]}">'
+                f'{htmllib.escape(p["name"])}<span class="sr-only"> {tr.attr("js.newTab")}</span></a>')
+        raw = tr.raw(f"credits.{p['id']}")[0]
+        if "{link}" not in raw:
+            sys.exit(f"[{tr.code}] credits.{p['id']} needs {{link}} (the provider's name, linked)")
+        out.append((p["id"], tr.text(f"credits.{p['id']}").replace("{link}", link)))
+    first = next(t for i, t in out if i == "tibiadata")
+    items = "\n".join(f'        <li data-credit="{i}">{t}</li>' for i, t in out if i != "tibiadata")
+    return (f'      <p class="credits-thanks" data-credit="tibiadata">{first}</p>\n      <ul>\n{items}\n      </ul>\n'
+            f'      <p class="muted">{tr.text("credits.independent")}</p>')
+
+
+def profiles_html(tr, root):
+    items = []
+    for link in REGISTRY["creator"]["links"]:
+        name = tr.text(f"about.link.{link['id']}")
+        if link["id"] in ("tibiawiki", "tibia"):
+            icon = f'<img src="{root}img/icons/{link["id"]}.png" alt="" width="28" height="28">'
+        else:
+            icon = f'<svg aria-hidden="true" focusable="false"><use href="#i-{link["id"]}"/></svg>'
+        label = tr.attr("about.linkLabel", platform=TAG.sub("", name), handle=link["handle"])
+        items.append(f'        <li><a class="profile" href="{htmllib.escape(link["url"])}" target="_blank" rel="noopener noreferrer" '
+                     f'data-profile="{link["id"]}" aria-label="{label}">{icon}<span class="profile-text"><span class="profile-name">{name}</span>'
+                     f'<span class="profile-handle">{htmllib.escape(link["handle"])}</span></span></a></li>')
+    return '<ul class="profiles" data-profiles>\n' + "\n".join(items) + "\n      </ul>"
+
+
+def shot_html(tr, img, spec):
+    sid, dark_key, light_key, zoom_key, *rest = spec.split(":")
+    eager = bool(rest) and rest[0] == "eager"
+    w, h = SCREEN_SIZE
+    load_attr = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<button class="shot" type="button" data-zoom="{tr.attr(zoom_key)}">'
+            f'<img class="shot-dark" src="{img(sid + "-dark")}" alt="{tr.attr(dark_key)}" width="{w}" height="{h}" {load_attr} decoding="async">'
+            f'<img class="shot-light" src="{img(sid + "-light")}" alt="{tr.attr(light_key)}" width="{w}" height="{h}" {load_attr} decoding="async"></button>')
+
+
+def gallery_html(tr, img):
     tabs, panels = [], []
-    for i, (sid, keys, tab) in enumerate(SCREENS):
+    w, h = SCREEN_SIZE
+    for i, (sid, keys, _) in enumerate(SCREENS):
         on = i == 0
         page = " → ".join(tr.app(k) for k in keys)
-        label = tr.text(tab) if tab else htmllib.escape(tr.app(keys[-1]), quote=False)
+        label = htmllib.escape(tr.app(keys[-1]), quote=False)
         tabs.append(f'      <button class="tab" role="tab" id="t-{sid}" aria-controls="p-{sid}" aria-selected="{str(on).lower()}"'
                     + ("" if on else ' tabindex="-1"') + f">{label}</button>")
-        cap_attr, cap = tr.attr(f"screens.caption.{sid}"), tr.text(f"screens.caption.{sid}")
         dark, light = tr.attr("screens.altDark", page=page), tr.attr("screens.altLight", page=page)
+        caption_key = f"screens.caption.{sid}"
         panels.append(
-            f'    <div class="tab-panel" role="tabpanel" id="p-{sid}" aria-labelledby="t-{sid}"' + ("" if on else " hidden") + ">\n"
-            f'      <button class="shot-btn themed" type="button" data-zoom="{cap_attr}"><div class="window">'
-            f'<img class="shot-dark" src="{img(sid + "-dark")}" alt="{dark}" width="1586" height="893" loading="lazy" decoding="async">'
-            f'<img class="shot-light" src="{img(sid + "-light")}" alt="{light}" width="1586" height="893" loading="lazy" decoding="async"></div></button>\n'
-            f"      <p>{cap}</p>\n    </div>")
+            f'    <figure class="tab-panel" role="tabpanel" id="p-{sid}" aria-labelledby="t-{sid}"' + ("" if on else " hidden") + ">\n"
+            f'      <button class="shot" type="button" data-zoom="{tr.attr(caption_key)}">'
+            f'<img class="shot-dark" src="{img(sid + "-dark")}" alt="{dark}" width="{w}" height="{h}" loading="lazy" decoding="async">'
+            f'<img class="shot-light" src="{img(sid + "-light")}" alt="{light}" width="{w}" height="{h}" loading="lazy" decoding="async"></button>\n'
+            f"      <figcaption>{tr.text(caption_key)}</figcaption>\n    </figure>")
     return (f'    <div class="tabs" role="tablist" aria-label="{tr.attr("screens.tablist")}">\n' + "\n".join(tabs)
-            + "\n    </div>\n" + "\n".join(panels))
+            + "\n    </div>\n" + "\n".join(panels)
+            + f'\n    <dialog class="lightbox" id="lightbox" aria-label="{tr.attr("lightbox.label")}"><img alt=""><p></p>'
+            f'<button class="btn btn-small close" type="button">{tr.text("lightbox.close")}</button></dialog>')
 
 
-def render_page(template, css, js, code, folder, tr, translators, img, ver):
+def docs_html(tr):
+    return "\n".join(f'      <li><a class="tool-card" href="{d["url"]}" target="_blank" rel="noopener noreferrer">'
+                     f'<span class="tool-title">{tr.text("guides.docs." + d["id"] + ".title")}</span>'
+                     f'<span class="tool-text">{tr.text("guides.docs." + d["id"] + ".text")}</span></a></li>' for d in REGISTRY["docs"])
+
+
+def downloads(ver, checksums):
+    dl = REGISTRY["downloads"]
+    base = dl["base"].replace("{version}", ver)
+    files = {}
+    for f in dl["files"]:
+        name = f["file"].replace("{version}", ver)
+        files[f["id"]] = {"file": name, "url": base + name, "sha": checksums.get(name)}
+    return files, base + dl["checksums"], dl["releasePage"].replace("{version}", ver), dl["allReleases"]
+
+
+def page_title(tr, page):
+    return tr.text("meta.title") if page["id"] == "home" else tr.text(f"pages.{page['id']}.title") + " – Tibia Foundry"
+
+
+def page_description(tr, page):
+    return tr.attr("meta.description") if page["id"] == "home" else tr.attr(f"pages.{page['id']}.description")
+
+
+def structured_data(tr, ver, page, code):
+    creator = {"@type": "Person", "name": REGISTRY["creator"]["name"], "jobTitle": TAG.sub("", tr.text("about.role")),
+               "homeLocation": {"@type": "Place", "name": "Upstate New York, USA"},
+               "email": "mailto:" + REGISTRY["creator"]["email"], "sameAs": [l["url"] for l in REGISTRY["creator"]["links"]]}
+    data = [{"@context": "https://schema.org", "@type": "WebPage", "name": TAG.sub("", page_title(tr, page)), "url": page_url(code, page),
+             "inLanguage": code, "isPartOf": {"@type": "WebSite", "name": "Tibia Foundry", "url": ORIGIN}}]
+    if page["id"] in ("home", "downloads"):
+        data.append({"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Tibia Foundry", "softwareVersion": ver,
+                     "operatingSystem": "Windows 10, Windows 11", "applicationCategory": "MultimediaApplication",
+                     "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "url": ORIGIN, "downloadUrl": ORIGIN + "downloads/",
+                     "author": creator, "description": TAG.sub("", tr.text("meta.description"))})
+    if page["id"] in ("about", "contact"):
+        data.append(dict(creator, **{"@context": "https://schema.org"}))
+    return json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+
+
+def render(layout, templates, code, page, tr, translators, img, ver, assets, dlinfo):
+    here = page_dir(code, page)
+    root = ("../" * len(here.split("/"))) if here else ""
     current = next(l for l in LANGUAGES if l[0] == code)
-    alternates = [f'<link rel="alternate" hreflang="{c}" href="{page_url(f)}">' for c, f, *_ in LANGUAGES]
-    alternates.append(f'<link rel="alternate" hreflang="x-default" href="{page_url("")}">')
-    menu, footer = [], []
-    for c, f, name, badge, _ in LANGUAGES:
-        here = ' aria-current="true"' if c == code else ""
-        href = relative(folder, f)
-        menu.append(f'          <li><a href="{href}" hreflang="{c}" lang="{c}" data-lang="{c}"{here}>'
-                    f'<span class="lang-badge" aria-hidden="true">{badge}</span> {name}</a></li>')
-        footer.append(f'          <li><a href="{href}" hreflang="{c}" lang="{c}" data-lang="{c}"{here}>{name}</a></li>')
 
-    # Texts the script needs at run time, plus every language's offer line for visitors whose browser prefers it.
+    def link_to(page_id, lang=code):
+        return rel(here, page_dir(lang, next(p for p in PAGES if p["id"] == page_id)))
+
+    alternates = [f'<link rel="alternate" hreflang="{c}" href="{page_url(c, page)}">' for c, *_ in LANGUAGES]
+    alternates.append(f'<link rel="alternate" hreflang="x-default" href="{page_url(DEFAULT, page)}">')
+    nav, menu = [], []
+    for p in PAGES:
+        here_attr = ' aria-current="page"' if p["id"] == page["id"] else ""
+        nav.append(f'        <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
+        menu.append(f'          <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
+    lang_menu, lang_footer = [], []
+    for c, folder, name, badge, _ in LANGUAGES:
+        cur = ' aria-current="true"' if c == code else ""
+        href = link_to(page["id"], c)
+        lang_menu.append(f'          <li><a href="{href}" hreflang="{c}" lang="{c}" data-lang="{c}"{cur}><span class="lang-badge" aria-hidden="true">{badge}</span> {name}</a></li>')
+        lang_footer.append(f'          <li><a href="{href}" hreflang="{c}" lang="{c}" data-lang="{c}"{cur}>{name}</a></li>')
+
+    english = translators[DEFAULT]
+    js_keys = [k for k in sorted(english.locales[DEFAULT]) if k.startswith("js.")] + ["nav.menuOpen", "nav.menuClose"]
     runtime = {
-        "lang": code, "default": DEFAULT,
-        "strings": {k[3:]: tr.text(k) for k in sorted(translators[DEFAULT].locales[DEFAULT]) if k.startswith("js.")},
-        "fallback": {k[3:]: translators[DEFAULT].text(k) for k in sorted(translators[DEFAULT].locales[DEFAULT]) if k.startswith("js.")},
-        "languages": [{"code": c, "path": relative(folder, f), "name": n,
-                       "offer": {"text": translators[c].text("js.suggestText"), "go": translators[c].text("js.suggestGo"),
-                                 "close": translators[c].text("js.suggestClose")}} for c, f, n, *_ in LANGUAGES],
+        "lang": code, "intl": INTL[code], "default": DEFAULT,
+        "strings": {k: tr.runtime_text(k) for k in js_keys}, "fallback": {k: english.runtime_text(k) for k in js_keys},
+        "languages": [{"code": c, "name": n, "offer": {"text": translators[c].text("js.suggestText"), "go": translators[c].text("js.suggestGo"),
+                                                       "close": translators[c].text("js.suggestClose")}} for c, f, n, *_ in LANGUAGES],
     }
-    runtime_js = "window.TF_I18N = " + json.dumps(runtime, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";"
-
+    tibia_link = link_to("tibia")
+    site_json = {
+        "version": ver, "page": page["id"], "api": REGISTRY["api"], "dataRoutes": REGISTRY["dataRoutes"],
+        "defaultWorld": REGISTRY["fixtures"]["world"],
+        "paths": {"tibia": tibia_link, "tibiaHash": "" if page["id"] == "tibia" else tibia_link},
+    }
     redirect = ""
     if code == DEFAULT:
         paths = {c: f + "/" for c, f, *_ in LANGUAGES if f}
-        redirect = ("  // A visitor who picked another language before is taken there from the English page; search engines keep no\n"
-                    "  // storage, so they always see this page. ?lang=en opens English regardless.\n"
+        redirect = ("  // A visitor who chose another language is taken to this page in that language; search engines keep no storage.\n"
                     "  try { var l = localStorage.getItem('tf-lang'), P = " + json.dumps(paths) + ";\n"
                     "    if (P[l] && !/[?&]lang=en\\b/.test(location.search)) {\n"
-                    "      var p = location.pathname.replace(/index\\.html$/, '');\n"
-                    "      location.replace(p + P[l] + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
+                    "      var path = location.pathname.replace(/index\\.html$/, ''), sub = " + json.dumps(page["path"]) + ";\n"
+                    "      var base = path.slice(0, path.length - sub.length);\n"
+                    "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
+    scripts = ["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
+    files, checksums_url, release_page, all_releases = dlinfo
 
-    page = template
+    page_html = layout.replace("{{CONTENT}}", templates[page["template"]])
+
+    def dl_sub(m):
+        fid, what = m.group(1), m.group(2)
+        if fid == "checksums":
+            return checksums_url
+        f = files[fid]
+        if what == "sha":
+            return (f'<p class="sha" data-sha="{f["sha"]}">SHA-256: {f["sha"]}</p>' if f["sha"]
+                    else f'<p class="sha">{tr.text("download.shaInFile")}</p>')
+        return htmllib.escape(f[what])
+
     fixed = {
-        "LANG": code, "LANG_CODE": current[3], "URL": page_url(folder), "OG_IMAGE": ORIGIN + og_name(folder),
-        "OG_LOCALE": current[4],
+        "LANG": code, "LANG_BADGE": current[3], "TITLE": htmllib.escape(TAG.sub("", page_title(tr, page)), quote=False),
+        "DESCRIPTION": page_description(tr, page), "CANONICAL": page_url(code, page), "HREFLANG": "\n".join(alternates),
+        "OG_TITLE": htmllib.escape(TAG.sub("", page_title(tr, page) if page["id"] != "home" else tr.text("meta.ogTitle")), quote=True),
+        "OG_IMAGE": ORIGIN + og_name(code), "OG_LOCALE": current[4],
         "OG_LOCALE_ALTERNATES": "\n".join(f'<meta property="og:locale:alternate" content="{l[4]}">' for l in LANGUAGES if l[0] != code),
-        "HREFLANG": "\n".join(alternates), "LANG_MENU": "\n".join(menu), "LANG_FOOTER": "\n".join(footer),
-        "LANG_REDIRECT": redirect, "SCREENS": render_screens(tr, img), "VERSION": ver,
+        "LANG_REDIRECT": redirect, "ROOT": root, "VERSION": ver, "PAGE_ID": page["id"],
+        "NAV": "\n".join(nav), "MENU_NAV": "\n".join(menu), "LANG_MENU": "\n".join(lang_menu), "MENU_LANGS": "\n".join(lang_menu),
+        "LANG_FOOTER": "\n".join(lang_footer), "CREDITS": credits_html(tr), "PROFILES": profiles_html(tr, root),
+        "DOCS": docs_html(tr) if "{{DOCS}}" in page_html else "", "GALLERY": gallery_html(tr, img) if "{{GALLERY}}" in page_html else "",
+        "EMAIL": REGISTRY["creator"]["email"], "MAIL_SUBJECT": urllib.parse.quote("Tibia Foundry"),
+        "RELEASE_PAGE": release_page, "ALL_RELEASES": all_releases, "ASSET_VERSION": assets["version"],
+        "STRUCTURED_DATA": structured_data(tr, ver, page, code),
     }
     for name, value in fixed.items():
-        page = page.replace("{{" + name + "}}", value)
-    page = re.sub(r"\{\{t:([\w.-]+)\}\}", lambda m: tr.text(m.group(1)), page)
-    page = re.sub(r"\{\{a:([\w.-]+)\}\}", lambda m: tr.attr(m.group(1)), page)
-    page = re.sub(r"\{\{j:([\w.-]+)\}\}", lambda m: json.dumps(TAG.sub("", tr.text(m.group(1))), ensure_ascii=False)[1:-1].replace("</", "<\\/"), page)
-    page = re.sub(r"\{\{IMG:([\w-]+)\}\}", lambda m: img(m.group(1)), page)
-    page = re.sub(r"\{\{APP:([\w.-]+)\}\}", lambda m: htmllib.escape(tr.app(m.group(1)), quote=False), page)
-    # CSS and script last: their own braces are never read as placeholders.
-    return page.replace("{{CSS}}", css).replace("{{I18N}}", runtime_js).replace("{{JS}}", js)
+        page_html = page_html.replace("{{" + name + "}}", value)
+    page_html = re.sub(r"\{\{LINK:([\w-]+)\}\}", lambda m: link_to(m.group(1)), page_html)
+    page_html = re.sub(r"\{\{SHOT:([\w.:-]+)\}\}", lambda m: shot_html(tr, img, m.group(1)), page_html)
+    page_html = re.sub(r"\{\{DL:(\w+)(?::(\w+))?\}\}", dl_sub, page_html)
+    page_html = re.sub(r"\{\{t:([\w.-]+)\}\}", lambda m: tr.text(m.group(1)), page_html)
+    page_html = re.sub(r"\{\{a:([\w.-]+)\}\}", lambda m: tr.attr(m.group(1)), page_html)
+    page_html = re.sub(r"\{\{IMG:([\w-]+)\}\}", lambda m: img(m.group(1)), page_html)
+    page_html = re.sub(r"\{\{APP:([\w.-]+)\}\}", lambda m: htmllib.escape(tr.app(m.group(1)), quote=False), page_html)
+    i18n = "window.TF_I18N = " + json.dumps(runtime, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/") + ";"
+    page_html = page_html.replace("{{SITE_JSON}}", json.dumps(site_json, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
+    page_html = page_html.replace("{{I18N}}", i18n)
+    page_html = page_html.replace("{{SCRIPTS}}", "\n".join(f'<script src="{root}assets/{s}?v={assets["hash"][s]}" defer></script>' for s in scripts))
+    return page_html
 
 
-def check_page(code, page):
+def check_page(where, page):
     left = re.findall(r"\{\{[^}]+\}\}", page)
     if left:
-        sys.exit(f"[{code}] Unreplaced placeholders: " + ", ".join(sorted(set(left))))
+        sys.exit(f"[{where}] Unreplaced placeholders: " + ", ".join(sorted(set(left))))
     if page.count("googletagmanager.com/gtag/js") != 1:
-        sys.exit(f"[{code}] The page must contain exactly one Google tag.")
-    # Nothing else may load from another host (links to other sites are fine).
+        sys.exit(f"[{where}] The page must contain exactly one Google tag.")
     loads = re.findall(r'<(?:script|img|iframe|source)\b[^>]*\bsrc="(https?://[^"]+)"', page)
     loads += re.findall(r'<link\b[^>]*\brel="(?:stylesheet|icon|preload|modulepreload)"[^>]*\bhref="(https?://[^"]+)"', page)
     loads = [u for u in loads if not u.startswith("https://www.googletagmanager.com/gtag/js")]
     if loads:
-        sys.exit(f"[{code}] External resources are not allowed: " + ", ".join(loads))
+        sys.exit(f"[{where}] External resources are not allowed: " + ", ".join(loads))
+    if page.count("<h1") != 1:
+        sys.exit(f"[{where}] A page needs exactly one <h1>.")
+    if 'href="https://tibiadata.com/"' not in page or 'data-credit="tibiadata"' not in page:
+        sys.exit(f"[{where}] The footer credit to TibiaData is missing.")
+    for p in PROVIDERS:
+        if f'data-provider="{p["id"]}"' not in page:
+            sys.exit(f"[{where}] The footer credit to {p['name']} is missing.")
+    for m in re.finditer(r'<a\b[^>]*target="_blank"[^>]*>', page):
+        if 'rel="noopener noreferrer' not in m.group(0):
+            sys.exit(f"[{where}] A link opening a new tab lacks rel=\"noopener noreferrer\": {m.group(0)[:120]}")
 
 
 def validate(locales):
-    """Every translation keeps the English markup, code and placeholders; returns the list of problems."""
     problems, english = [], locales[DEFAULT]
     for code, texts in locales.items():
         for key, value in texts.items():
@@ -466,7 +607,7 @@ def validate(locales):
                 problems.append(f"[{code}] '{key}' is not an English key (typo or removed text)")
             elif type(value) is not type(english[key]):
                 problems.append(f"[{code}] '{key}' must be a {'plural object' if isinstance(english[key], dict) else 'string'}")
-            elif signature(value) != signature(english[key]):
+            elif value not in ("", None) and signature(value) != signature(english[key]):
                 problems.append(f"[{code}] '{key}' changes markup, code or placeholders: {signature(value)} vs English {signature(english[key])}")
     return problems
 
@@ -499,13 +640,37 @@ def write_report(locales, meta, translators, ver, today):
             lines += [f"- missing: `{k}`" for k in missing] + [f"- same as English, not marked as intended: `{k}`" for k in review[code]]
             lines.append("")
     if unused:
-        lines += ["## Texts not used by the page", ""] + [f"- `{k}`" for k in unused] + [""]
+        lines += ["## Texts not used by the site", ""] + [f"- `{k}`" for k in unused] + [""]
     open(os.path.join(HERE, "i18n-report.md"), "w", encoding="utf-8", newline="\n").write("\n".join(lines))
     return review, unused
 
 
+def not_found_page(assets):
+    """404.html: deep data URLs without the hash (/de/tibia/character/Name) open their view; anything else gets links."""
+    folders = "|".join(f for _, f, *_ in LANGUAGES if f)
+    script = ("(function(){var p=location.pathname,m=p.match(/^(.*?\\/)(?:(" + folders + ")\\/)?tibia\\/(.+?)\\/?$/);"
+              "if(m){location.replace(m[1]+(m[2]?m[2]+'/':'')+'tibia/#/'+m[3]);}})();")
+    return ("<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+            "<title>Page not found – Tibia Foundry</title>\n<meta name=\"robots\" content=\"noindex\">\n"
+            f"<script>{script}</script>\n<link rel=\"stylesheet\" href=\"/assets/site.css?v={assets['hash']['site.css']}\">\n</head>\n"
+            "<body><main class=\"wrap page-head\"><h1>Page not found</h1><p class=\"lead\">This page does not exist (any more).</p>"
+            "<p class=\"actions\"><a class=\"btn btn-primary\" href=\"/\">Tibia Foundry</a><a class=\"btn\" href=\"/tibia/\">Tibia data</a>"
+            "<a class=\"btn\" href=\"/downloads/\">Downloads</a></p>"
+            "<p class=\"muted\"><a href=\"/pt-br/\" lang=\"pt-BR\">Português (Brasil)</a> · <a href=\"/pl/\" lang=\"pl\">Polski</a> · "
+            "<a href=\"/es/\" lang=\"es\">Español</a> · <a href=\"/de/\" lang=\"de\">Deutsch</a></p>"
+            "</main></body>\n</html>\n")
+
+
 def main():
-    strict = "--strict" in sys.argv[1:]
+    args = sys.argv[1:]
+    strict = "--strict" in args
+    checksums = {}
+    if "--checksums" in args:
+        path = args[args.index("--checksums") + 1]
+        for line in open(path, encoding="utf-8"):
+            m = re.match(r"^([0-9a-fA-F]{64})\s+\*?(.+?)\s*$", line)
+            if m:
+                checksums[os.path.basename(m.group(2))] = m.group(1).lower()
     ver = version()
     today = datetime.date.today()
     locales, meta = load_locales()
@@ -513,81 +678,108 @@ def main():
     if problems:
         sys.exit("Translation errors:\n  " + "\n  ".join(problems))
 
-    template = open(os.path.join(SRC, "index.template.html"), encoding="utf-8").read()
-    css = minify_css(open(os.path.join(SRC, "styles.css"), encoding="utf-8").read())
-    js = open(os.path.join(SRC, "app.js"), encoding="utf-8").read().replace("__VERSION__", ver)
-    if "</script" in js.lower() or "</style" in css.lower():
-        sys.exit("The script or style sheet would close its own element.")
+    layout = open(os.path.join(SRC, "templates", "layout.html"), encoding="utf-8").read()
+    templates = {p["template"]: open(os.path.join(SRC, "templates", p["template"]), encoding="utf-8").read() for p in PAGES}
 
-    os.makedirs(os.path.join(SITE, "img"), exist_ok=True)
+    # Generated pages, assets and images are rebuilt from scratch; CNAME and robots.txt are kept as they are.
+    os.makedirs(SITE, exist_ok=True)
+    for name in os.listdir(SITE):
+        if name in PROTECTED:
+            continue
+        path = os.path.join(SITE, name)
+        shutil.rmtree(path) if os.path.isdir(path) else os.remove(path)
+
+    os.makedirs(os.path.join(SITE, "assets"), exist_ok=True)
+    assets = {"hash": {}}
+    for name, path in asset_files().items():
+        data = open(path, "rb").read()
+        if b"</script" in data.lower() or b"</style" in data.lower():
+            sys.exit(f"{name} would close its own element.")
+        open(os.path.join(SITE, "assets", name), "wb").write(data)
+        assets["hash"][name] = hashlib.sha256(data).hexdigest()[:10]
+    assets["version"] = assets["hash"]["site.css"]
+
     files = {}
     translators = {code: Translator(code, locales, ver, today) for code, *_ in LANGUAGES}
+    dlinfo = downloads(ver, checksums)
+    count = 0
     for code, folder, *_ in LANGUAGES:
-        def img(name, folder=folder, code=code):
-            key = output_path(name, code)
-            if key not in files:
-                ext, data = encode(load(name, code), name)
-                files[key] = (f"{key}.{ext}", data)
-                os.makedirs(os.path.dirname(os.path.join(SITE, files[key][0])), exist_ok=True)
-                with open(os.path.join(SITE, files[key][0]), "wb") as f:
-                    f.write(data)
-            return ("../" if folder else "") + files[key][0]
-        page = render_page(template, css, js, code, folder, translators[code], translators, img, ver)
-        check_page(code, page)
-        out = os.path.join(SITE, folder) if folder else SITE
-        os.makedirs(out, exist_ok=True)
-        with open(os.path.join(out, "index.html"), "w", encoding="utf-8", newline="\n") as f:
-            f.write(page)
-        write_preview(translators[code], og_name(folder))
-        print(f"site/{folder + '/' if folder else ''}index.html: {len(page.encode('utf-8')) / 1024:,.0f} KB ({code})")
+        for page in PAGES:
+            here = page_dir(code, page)
+            root = ("../" * len(here.split("/"))) if here else ""
 
-    # /en/ is the English page's language URL: it remembers the choice and opens /.
-    os.makedirs(os.path.join(SITE, "en"), exist_ok=True)
-    with open(os.path.join(SITE, "en", "index.html"), "w", encoding="utf-8", newline="\n") as f:
-        f.write('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Tibia Foundry</title>\n'
-                f'<link rel="canonical" href="{ORIGIN}">\n<meta name="robots" content="noindex">\n'
-                '<meta http-equiv="refresh" content="0; url=../?lang=en">\n'
-                "<script>try { localStorage.setItem('tf-lang', 'en'); } catch (e) {}\n"
-                "location.replace('../' + (location.protocol === 'file:' ? 'index.html' : '') + '?lang=en' + location.hash);</script>\n"
-                '</head>\n<body><a href="../">Tibia Foundry</a></body>\n</html>\n')
+            def img(name, code=code, root=root):
+                key = output_path(name, code)
+                if key not in files:
+                    ext, data = encode(load(name, code), name)
+                    files[key] = (f"{key}.{ext}", data)
+                    os.makedirs(os.path.dirname(os.path.join(SITE, files[key][0])), exist_ok=True)
+                    with open(os.path.join(SITE, files[key][0]), "wb") as f:
+                        f.write(data)
+                return root + files[key][0]
 
-    # Images of earlier builds that no page uses any more.
-    keep = {os.path.normpath(os.path.join(SITE, p)) for p, _ in files.values()}
-    for folder, dirs, names in os.walk(os.path.join(SITE, "img"), topdown=False):
-        for name in names:
-            if os.path.normpath(os.path.join(folder, name)) not in keep:
-                os.remove(os.path.join(folder, name))
-        if folder != os.path.join(SITE, "img") and not os.listdir(folder):
-            os.rmdir(folder)
+            html = render(layout, templates, code, page, translators[code], translators, img, ver, assets, dlinfo)
+            check_page(f"{code}/{page['id']}", html)
+            out = os.path.join(SITE, here) if here else SITE
+            os.makedirs(out, exist_ok=True)
+            with open(os.path.join(out, "index.html"), "w", encoding="utf-8", newline="\n") as f:
+                f.write(html)
+            count += 1
+        write_preview(translators[code], og_name(code))
+    if "img/logo" not in files:
+        ext, data = encode(load("logo"), "logo")
+        files["img/logo"] = ("img/logo.png", data)
+        open(os.path.join(SITE, "img", "logo.png"), "wb").write(data)
+
+    # /en/<page>/ remembers the choice of English and opens the English page.
+    for page in PAGES:
+        sub = page["path"].strip("/")
+        d = os.path.join(SITE, "en", sub) if sub else os.path.join(SITE, "en")
+        os.makedirs(d, exist_ok=True)
+        target = "../" * (2 if sub else 1) + page["path"]
+        with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as f:
+            f.write('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Tibia Foundry</title>\n'
+                    f'<link rel="canonical" href="{ORIGIN}{page["path"]}">\n<meta name="robots" content="noindex">\n'
+                    f'<meta http-equiv="refresh" content="0; url={target}?lang=en">\n'
+                    "<script>try { localStorage.setItem('tf-lang', 'en'); } catch (e) {}\n"
+                    f"location.replace({json.dumps(target)} + (location.protocol === 'file:' ? 'index.html' : '') + '?lang=en' + location.hash);</script>\n"
+                    f'</head>\n<body><a href="{target}">Tibia Foundry</a></body>\n</html>\n')
+
+    with open(os.path.join(SITE, "404.html"), "w", encoding="utf-8", newline="\n") as f:
+        f.write(not_found_page(assets))
+    open(os.path.join(SITE, ".nojekyll"), "w").close()
 
     with open(os.path.join(SITE, "sitemap.xml"), "w", encoding="utf-8", newline="\n") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n'
                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n')
-        for _, folder, *_ in LANGUAGES:
-            f.write(f"  <url>\n    <loc>{page_url(folder)}</loc>\n    <lastmod>{today.isoformat()}</lastmod>\n")
-            for c, other, *_ in LANGUAGES:
-                f.write(f'    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(other)}"/>\n')
-            f.write(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("")}"/>\n  </url>\n')
+        for page in PAGES:
+            for code, *_ in LANGUAGES:
+                f.write(f"  <url>\n    <loc>{page_url(code, page)}</loc>\n    <lastmod>{today.isoformat()}</lastmod>\n")
+                for c, *_ in LANGUAGES:
+                    f.write(f'    <xhtml:link rel="alternate" hreflang="{c}" href="{page_url(c, page)}"/>\n')
+                f.write(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url(DEFAULT, page)}"/>\n  </url>\n')
         f.write("</urlset>\n")
     write_icons()
-    for name, content in (("CNAME", "tibiafoundry.com"),  # exactly as in the Pages repository (no newline) ("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://tibiafoundry.com/sitemap.xml\n")):
+    for name, content in (("CNAME", "tibiafoundry.com"),  # exactly as in the Pages repository (no newline)
+                          ("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://tibiafoundry.com/sitemap.xml\n")):
         path = os.path.join(SITE, name)
         if not os.path.exists(path):
             open(path, "w", encoding="utf-8", newline="\n").write(content)
 
     review, unused = write_report(locales, meta, translators, ver, today.isoformat())
     total = sum(len(d) for _, d in files.values())
-    print(f"site/img: {len(files)} images, {total / 1024:,.0f} KB; version {ver}, {today.isoformat()}")
+    print(f"site: {count} pages in {len(LANGUAGES)} languages; img: {len(files)} images, {total / 1024:,.0f} KB; version {ver}, {today.isoformat()}"
+          + (f"; SHA-256 shown for {len(checksums)} archive(s)" if checksums else ""))
     missing = {c: sorted(t.missing) for c, t in translators.items() if t.missing}
     for code, keys in missing.items():
-        print(f"  [{code}] {len(keys)} missing, shown in English: " + ", ".join(keys))
+        print(f"  [{code}] {len(keys)} missing, shown in English: " + ", ".join(keys[:40]) + (" ..." if len(keys) > 40 else ""))
     for code, keys in review.items():
         if keys:
-            print(f"  [{code}] same as English, not marked as intended: " + ", ".join(keys))
+            print(f"  [{code}] same as English, not marked as intended: " + ", ".join(keys[:40]))
     if unused:
         print("  unused texts: " + ", ".join(unused))
     print("Report: website/i18n-report.md")
-    if strict and (missing or unused):
+    if strict and (missing or unused or any(review.values())):
         sys.exit("--strict: translations are incomplete.")
 
 
