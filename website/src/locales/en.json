@@ -867,7 +867,8 @@
     "project": {
       "title": "The project",
       "text1": "Tibia Foundry is free and open source. The program, its source code and this website are published on GitHub, together with every release, its notes and its checksums.",
-      "text2": "Bug reports and ideas are welcome as GitHub issues; questions can also be sent by email."
+      "text2": "Bug reports and ideas are welcome as GitHub issues; questions can also be sent by email.",
+      "text3": "Tibia Foundry is an independent community project. It is not affiliated with or endorsed by CipSoft GmbH or Fandom, and it is not part of CipSoft's Fansite Programme."
     },
     "shotAlt": "The About page of Tibia Foundry {version} with the creator's profiles and the credits",
     "shotCaption": "The program's own About page shows the same profiles and credits.",
