@@ -542,6 +542,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
             return checksums_url
         f = files[fid]
         if what == "sha":
+            tr.raw("download.shaInFile")   # the text for builds without checksums counts as used either way
             return (f'<p class="sha" data-sha="{f["sha"]}">SHA-256: {f["sha"]}</p>' if f["sha"]
                     else f'<p class="sha">{tr.text("download.shaInFile")}</p>')
         return htmllib.escape(f[what])
