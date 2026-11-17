@@ -50,6 +50,13 @@ Distributions (from src/, then from the repository root)
     python -I tools/release/assemble_release.py          Release/9.0.5/ (TibiaFoundry-9.0.5-Installer.msi, -Portable.zip, -Source.zip, SHA256SUMS.txt)
     python -I tools/release/make_release_directory.py    Release/TibiaFoundry_Release_9.0.5/ (Application, Website, Checksums, Documentation: all five packages)
 
+9.0.5 release in one go (from the repository root; uses the scripts above, writes Release/9.0.5/)
+--------------------------------------------------------------------------------------------------
+    python -I scripts/check_version.py --expect 9.0.5 --future 9.0.6 --ui   version checks incl. a rebuilt future version
+    python -I scripts/build_release.py      -MSI.zip (with TibiaFoundry-9.0.5.msi), -Portable.zip, -Source.zip, -Website.zip, SHA256SUMS.txt
+    python -I scripts/verify_release.py --smoke --rebuild   archive integrity, contents, MSI metadata, portable start, rebuilds
+    python -I scripts/protected_paths.py verify <repo> <baseline.json>   games/, pokemon/, tools/, .github/, CNAME, robots.txt unchanged
+
 Benchmarks (8.8.1; read the installed client only)
 --------------------------------------------------
     dotnet run -c Release --project tools/benchmarks -- "%LOCALAPPDATA%\Tibia\packages\Tibia" %TEMP%\tf-bench [scenario...] [--reps N]

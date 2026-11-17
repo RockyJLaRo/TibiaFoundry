@@ -1,5 +1,28 @@
 # Changelog
 
+## 9.0.5 – 2026-11-17 (version in the window header, single version source, new website)
+
+Release notes: [TibiaFoundry-9.0.5-ReleaseNotes.md](TibiaFoundry-9.0.5-ReleaseNotes.md).
+
+### Changed
+
+* **Window header:** line 1 `Tibia Foundry v<version>` (`AppIdentity.HeaderTitle`, bound with `x:Static` in
+  `MainWindow.xaml`), line 2 the unchanged tagline. `AppIdentity.Tagline`, `FormatHeaderTitle`, `VersionOf(Assembly)`.
+* **app.manifest** holds `0.0.0.0`; the `StampApplicationManifest` target (TibiaFoundry.App.csproj) writes the four-part
+  version into `obj/.../app.manifest`, which is embedded. `src/Directory.Build.props` is the only place the version is written.
+* **Site screenshots** (`--site-screenshots`): 1280×800 frame, new `about` shot.
+* Version **9.0.5** (tag `v9.0.5`); the Windows file version is 9.0.5.0.
+
+### Added
+
+* `VersionDisplayTests` (6 tests incl. 9.0.6 / 9.1.0 / 10.0.0 through a dynamic assembly), `UiSnapshot` checks of the
+  rendered header and the About version (`HEADER-TITLE:` line).
+* `scripts/check_version.py` (version, derived versions, header binding, stale previous-release references, MSI version,
+  `--future X --ui`), `scripts/protected_paths.py`, `scripts/build_release.py`, `scripts/verify_release.py`.
+* Website: multi-page mobile-first redesign, TibiaData v5 integration, live Tibia news, creator profile, contact, data
+  and resource credits, locale parity check, API client unit tests, Playwright end-to-end tests, website screenshot
+  matrix (see `website/README.md`).
+
 ## 9.0.4 – 2026-11-11 (language-independent data, drive roots, queue robustness)
 
 Audit and release decision: [TibiaFoundry-9.0.4-Audit.md](TibiaFoundry-9.0.4-Audit.md).
