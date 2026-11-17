@@ -186,9 +186,27 @@ public static class UiSnapshot
               && taglineLinkText == "TibiaWiki" && ReferenceEquals(taglineLink!.Command, vm.OpenTibiaWikiCommand),
               $"\"{taglineText}\"{(vm.IsNavExpanded ? "" : ", compact navigation: shown as the logo's tooltip")}");
 
+        // Header line 1: "Tibia Foundry v<version>" from the build's version (AppIdentity), fully visible when expanded.
+        var headerTitle = window.FindName("HeaderTitle") as System.Windows.Controls.TextBlock;
+        static bool FitsUntrimmed(System.Windows.Controls.TextBlock tb)
+        {
+            var text = new FormattedText(tb.Text, System.Globalization.CultureInfo.CurrentUICulture, tb.FlowDirection,
+                new Typeface(tb.FontFamily, tb.FontStyle, tb.FontWeight, tb.FontStretch), tb.FontSize, Brushes.Black, VisualTreeHelper.GetDpi(tb).PixelsPerDip);
+            return text.WidthIncludingTrailingWhitespace <= tb.ActualWidth + 0.5;
+        }
+        string expectedHeader = "Tibia Foundry v" + Core.Common.AppIdentity.Version;
+        Check("header line 1 shows the version of this build", headerTitle != null && headerTitle.Text == expectedHeader
+              && headerTitle.Text == Core.Common.AppIdentity.HeaderTitle && (!vm.IsNavExpanded || (headerTitle.IsVisible && FitsUntrimmed(headerTitle))),
+              $"\"{headerTitle?.Text}\", version {Core.Common.AppIdentity.Version}");
+        report.AppendLine($"HEADER-TITLE: {headerTitle?.Text}");
+
         vm.SelectedPage = vm.Pages.First(p => p is AboutViewModel);
         await Settle();
         var linkButtons = FindAll<System.Windows.Controls.Button>(window, b => b.DataContext is CreatorLink).ToList();
+        var aboutVersion = FindFirst<System.Windows.Controls.TextBlock>(window, tb => tb.DataContext is AboutViewModel && tb.IsVisible
+            && tb.Inlines.OfType<System.Windows.Documents.Run>().Any(r => r.Text == Core.Common.AppIdentity.Version));
+        Check("About page shows the same version as the header", aboutVersion != null, Core.Common.AppIdentity.Version);
+
         int iconCount = linkButtons.Count(b => FindAll<System.Windows.Controls.Image>(b, i => i.IsVisible && i.Source != null).Any());
         Check("About page shows the creator links with icons", linkButtons.Count == 6 && iconCount == 6, $"{linkButtons.Count} links, {iconCount} icons");
         var faviconLinks = linkButtons

@@ -23,13 +23,31 @@ public static class AppIdentity
     /// <summary>Canonical website the application works for (TibiaWiki).</summary>
     public const string Website = "https://tibia.fandom.com/";
 
-    /// <summary>Version shown to users, e.g. "9.0" or "9.0.1" (src/Directory.Build.props is the single source).</summary>
-    public static string Version { get; } =
-        typeof(AppIdentity).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+', ' ')[0]
-        ?? (typeof(AppIdentity).Assembly.GetName().Version is { } v ? v.ToString(v.Build > 0 ? 3 : 2) : "0.0");
+    /// <summary>The second line of the window header, exact wording (also the logo's tooltip).</summary>
+    public const string Tagline = "Tibia Foundry - All your Tibia-Tools for TibiaWiki";
 
-    /// <summary>"Tibia Foundry 9.0".</summary>
+    /// <summary>
+    /// Version shown to users, e.g. "9.0" or "9.0.5". src/Directory.Build.props is the single source: the build writes it
+    /// into the assembly's informational version, which is read here (see <see cref="VersionOf"/>).
+    /// </summary>
+    public static string Version { get; } = VersionOf(typeof(AppIdentity).Assembly);
+
+    /// <summary>"Tibia Foundry 9.0.5".</summary>
     public static string NameAndVersion => $"{Name} {Version}";
+
+    /// <summary>First line of the window header: "Tibia Foundry v9.0.5" for the version of this build.</summary>
+    public static string HeaderTitle => FormatHeaderTitle(Version);
+
+    /// <summary>"Tibia Foundry v{version}". The header never contains a version of its own; it always shows this.</summary>
+    public static string FormatHeaderTitle(string version) => $"{Name} v{version}";
+
+    /// <summary>
+    /// The user-facing version of an assembly built by this solution: its informational version (the &lt;Version&gt; of
+    /// src/Directory.Build.props, without a "+commit" suffix), else its assembly version without trailing zero parts.
+    /// </summary>
+    public static string VersionOf(Assembly assembly) =>
+        assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion.Split('+', ' ')[0]
+        ?? (assembly.GetName().Version is { } v ? v.ToString(v.Build > 0 ? 3 : 2) : "0.0");
 
     /// <summary>
     /// File and folder identifiers that version 3.0 used before the program was named Tibia Foundry.

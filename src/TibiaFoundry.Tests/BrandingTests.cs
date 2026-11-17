@@ -119,9 +119,13 @@ public sealed partial class BrandingTests(ITestOutputHelper output)
         var padded = new Version(props.Major, props.Minor, Math.Max(0, props.Build), 0);
         Assert.Equal(padded, app.GetName().Version);
 
+        // app.manifest holds no version of its own: the build stamps the padded version into the copy it embeds.
         string manifest = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "app.manifest"));
-        Assert.Contains("name=\"TibiaFoundry.app\"", manifest);
-        Assert.Contains($"<assemblyIdentity version=\"{padded}\"", manifest);
+        Assert.Contains("<assemblyIdentity version=\"0.0.0.0\" name=\"TibiaFoundry.app\"", manifest);
+        string configuration = AppContext.BaseDirectory.Contains($"{Path.DirectorySeparatorChar}Release{Path.DirectorySeparatorChar}") ? "Release" : "Debug";
+        string stamped = Directory.GetFiles(Path.Combine(SourceRoot(), "TibiaFoundry.App", "obj", configuration), "app.manifest", SearchOption.AllDirectories)
+            .OrderByDescending(File.GetLastWriteTimeUtc).First();
+        Assert.Contains($"<assemblyIdentity version=\"{padded}\" name=\"TibiaFoundry.app\"", File.ReadAllText(stamped));
         string window = File.ReadAllText(Path.Combine(SourceRoot(), "TibiaFoundry.App", "Views", "MainWindow.xaml"));
         Assert.Contains("Title=\"Tibia Foundry\"", window);
         Assert.Contains("Icon=\"/Assets/Branding/tibia-foundry.ico\"", window);

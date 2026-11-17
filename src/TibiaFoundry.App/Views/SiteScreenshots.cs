@@ -29,7 +29,7 @@ namespace TibiaFoundry.App.Views;
 public static class SiteScreenshots
 {
     /// <summary>The window's visible size in the captures (the website's image size).</summary>
-    private const int FrameWidth = 1586, FrameHeight = 893;
+    private const int FrameWidth = 1280, FrameHeight = 800;
 
     private sealed record Shot(string Name, Type Page, Func<dynamic, Task>? Prepare = null);
 
@@ -160,6 +160,7 @@ public static class SiteScreenshots
             new("clients", typeof(ClientsViewModel)),
             new("settings", typeof(SettingsViewModel), p => SelectSettingsCategory(p, "General")),
             new("settings-attribution", typeof(SettingsViewModel), p => SelectSettingsCategory(p, "Attribution")),
+            new("about", typeof(AboutViewModel)),
         };
 
         var unknown = pages?.Where(n => !shots.Any(s => s.Name.Equals(n, StringComparison.OrdinalIgnoreCase))).ToList() ?? [];
@@ -315,8 +316,8 @@ public static class SiteScreenshots
 
     private static async Task FitFrameAsync(Window window)
     {
-        window.Width = 1600;
-        window.Height = 900;
+        window.Width = FrameWidth;
+        window.Height = FrameHeight;
         for (int i = 0; i < 3; i++)
         {
             await Dispatcher.Yield(DispatcherPriority.ApplicationIdle);

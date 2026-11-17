@@ -45,6 +45,25 @@
     <InternalsVisibleTo Include="TibiaFoundry.Tests" />
   </ItemGroup>
 
+  <!--
+    The application manifest gets the Windows file version of src/Directory.Build.props at build time: app.manifest
+    holds 0.0.0.0, the stamped copy in obj/ is what the compiler embeds. The version is written in one place only.
+  -->
+  <Target Name="StampApplicationManifest" BeforeTargets="_SetEmbeddedWin32ManifestProperties;_SetExternalWin32ManifestProperties">
+    <PropertyGroup>
+      <_StampedManifest>$(IntermediateOutputPath)app.manifest</_StampedManifest>
+      <_StampedManifestText>$([System.IO.File]::ReadAllText('$(MSBuildProjectDirectory)\app.manifest').Replace('assemblyIdentity version="0.0.0.0"', 'assemblyIdentity version="$(FileVersion)"'))</_StampedManifestText>
+    </PropertyGroup>
+    <Error Condition="!$(_StampedManifestText.Contains('assemblyIdentity version=&quot;$(FileVersion)&quot; name=&quot;TibiaFoundry.app&quot;'))" Text="app.manifest: assemblyIdentity version=&quot;0.0.0.0&quot; not found." />
+    <WriteLinesToFile File="$(_StampedManifest)" Lines="$(_StampedManifestText)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <PropertyGroup>
+      <ApplicationManifest>$(_StampedManifest)</ApplicationManifest>
+    </PropertyGroup>
+    <ItemGroup>
+      <FileWrites Include="$(_StampedManifest)" />
+    </ItemGroup>
+  </Target>
+
   <!-- Portable build (publish profile "Portable"): settings and logs are kept next to the program. -->
   <ItemGroup Condition="'$(PortableBuild)' == 'true'">
     <AssemblyMetadata Include="PortableBuild" Value="true" />

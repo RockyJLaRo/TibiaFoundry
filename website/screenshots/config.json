@@ -15,7 +15,7 @@
   },
   "client_assets": "%LOCALAPPDATA%\\Tibia\\packages\\Tibia\\assets",
   "compare_old_file": "auto",
-  "frame": [1586, 893],
+  "frame": [1280, 800],
   "checks": {
     "dark_max_luminance": 110,
     "light_min_luminance": 150,

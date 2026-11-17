@@ -4,6 +4,7 @@
         xmlns:vm="clr-namespace:TibiaFoundry.App.ViewModels"
         xmlns:svc="clr-namespace:TibiaFoundry.App.Services"
         xmlns:settings="clr-namespace:TibiaFoundry.Core.Settings;assembly=TibiaFoundry.Core"
+        xmlns:common="clr-namespace:TibiaFoundry.Core.Common;assembly=TibiaFoundry.Core"
              xmlns:loc="clr-namespace:TibiaFoundry.App.Localization"
         Style="{StaticResource AppWindow}"
         Title="Tibia Foundry" Icon="/Assets/Branding/tibia-foundry.ico"
@@ -40,8 +41,10 @@
                            SnapsToDevicePixels="True" AutomationProperties.Name="Tibia Foundry"
                            ToolTip="Tibia Foundry - All your Tibia-Tools for TibiaWiki" />
                     <StackPanel x:Name="BrandText" Margin="10,0,0,0" VerticalAlignment="Center" Width="150">
-                        <TextBlock Text="Tibia Foundry" FontWeight="SemiBold" FontSize="15" />
-                        <!-- Tagline (exact wording); "TibiaWiki" links to the wiki's main page. -->
+                        <!-- Line 1: "Tibia Foundry v<version>", always the version of this build (src/Directory.Build.props). -->
+                        <TextBlock x:Name="HeaderTitle" Text="{x:Static common:AppIdentity.HeaderTitle}" FontWeight="SemiBold" FontSize="14"
+                                   TextTrimming="CharacterEllipsis" ToolTip="{x:Static common:AppIdentity.HeaderTitle}" />
+                        <!-- Line 2: the tagline (exact wording, AppIdentity.Tagline); "TibiaWiki" links to the wiki's main page. -->
                         <TextBlock x:Name="Tagline" FontSize="11" Foreground="{DynamicResource App.TextSecondary}" TextWrapping="Wrap"
                                    AutomationProperties.Name="Tibia Foundry - All your Tibia-Tools for TibiaWiki"><Run Text="Tibia Foundry - All your " /><LineBreak /><Run Text="Tibia-Tools for " /><Hyperlink
                                 Command="{Binding OpenTibiaWikiCommand}" ToolTip="https://tibia.fandom.com/wiki/Main_Page" AutomationProperties.Name="TibiaWiki (opens tibia.fandom.com)"><Run Text="TibiaWiki" /></Hyperlink></TextBlock>
