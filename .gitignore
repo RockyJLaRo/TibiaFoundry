@@ -12,3 +12,6 @@ tools/benchmarks/BenchmarkDotNet.Artifacts/
 website/screenshots/.work/
 # Progress notes of a release (kept locally, moved to Release/<version>/ at the end)
 /PROGRESS_*.md
+# Python bytecode caches
+__pycache__/
+*.pyc

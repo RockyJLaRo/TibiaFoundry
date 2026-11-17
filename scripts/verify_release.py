@@ -72,7 +72,8 @@ def check_zip(name, required, forbidden=(), top=None):
         if any(p in BAD_PARTS for p in parts[:-1]) or BAD_NAMES.search(parts[-1]):
             problem(name, f"unexpected entry {n}")
         other = re.findall(r"TibiaFoundry-(\d+\.\d+(?:\.\d+)?)", n)
-        if any(v != VERSION for v in other):
+        history = re.search(r"-(ReleaseNotes|Audit|TestingReport)\.md$", n)   # release history documents of the source tree
+        if any(v != VERSION for v in other) and not history:
             problem(name, f"entry names another version: {n}")
         if top and not n.startswith(top + "/"):
             problem(name, f"entry outside {top}/: {n}")
