@@ -68,7 +68,7 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
   border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; gap: 18px; height: 100%; }
-.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
 .brand img { width: 32px; height: 32px; }
 .brand small { font-weight: 500; color: var(--text-3); font-size: 12px; margin-left: 2px; }
@@ -303,13 +303,14 @@ dialog.lightbox .close { position: fixed; top: 16px; right: 18px; background: rg
 }
 
 /* ------------------------------------------------------------------ responsive */
-@media (max-width: 1199px) {
+@media (max-width: 1279px) { /* the full menu needs about 1250 px in Portuguese and Spanish */
   .nav { display: none; position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column; padding: 10px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
   .site-header.open .nav { display: flex; }
   .nav a { padding: 11px 12px; font-size: 16px; }
   .menu-btn { display: inline-grid; }
   .header-actions .btn-sm { display: none; }
   .header-actions { margin-left: auto; }
+  .brand { flex-shrink: 1; } /* next to the full menu it must not shrink (the version would run into the menu) */
 }
 @media (max-width: 960px) {
   .grid-3, .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

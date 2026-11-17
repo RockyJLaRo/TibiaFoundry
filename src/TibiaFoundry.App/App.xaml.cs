@@ -19,7 +19,7 @@ namespace TibiaFoundry.App;
 /// </summary>
 /// <remarks>
 /// Command line (for automated verification):
-/// <c>--ui-snapshot &lt;folder&gt; [--theme light|dark] [--size 1280x820]</c> renders every page to PNG and exits; <c>--site-screenshots &lt;folder&gt;</c> captures the website screenshots with the normal data;
+/// <c>--ui-snapshot &lt;folder&gt; [--theme light|dark] [--size 1280x820]</c> renders every page to PNG and exits; <c>--site-screenshots &lt;folder&gt; [--site-pages a,b] [--site-themes dark,light]</c> captures the website screenshots with the normal data (exit code 1 when one fails);
 /// <c>--self-test &lt;folder&gt;</c> checks the bundled components headlessly and exits (0 = no failures);
 /// <c>--language &lt;code&gt;</c> starts in a language without saving it (en, pt-BR, pl, es, de);
 /// <c>--localization-report &lt;file&gt;</c> writes the translation completeness report and exits.
@@ -185,8 +185,8 @@ public partial class App : Application
         await vm.StartAsync();
         if (options.SiteScreenshots != null)
         {
-            await Views.SiteScreenshots.RunAsync(window, vm, options.SiteScreenshots);
-            Shutdown();
+            await Views.SiteScreenshots.RunAsync(window, vm, options.SiteScreenshots, options.SitePages, options.SiteThemes);
+            Shutdown(Views.SiteScreenshots.ExitCode);
         }
     }
 
@@ -251,13 +251,16 @@ public partial class App : Application
 }
 
 /// <summary>Parsed command line.</summary>
-public sealed record StartupOptions(string? SnapshotFolder, ThemePreference? Theme, Size? Size, string? SelfTestFolder = null, string? Language = null, string? LocalizationReport = null, string? SiteScreenshots = null)
+public sealed record StartupOptions(string? SnapshotFolder, ThemePreference? Theme, Size? Size, string? SelfTestFolder = null, string? Language = null, string? LocalizationReport = null, string? SiteScreenshots = null,
+    IReadOnlyList<string>? SitePages = null, IReadOnlyList<string>? SiteThemes = null)
 {
     public static StartupOptions Parse(string[] args)
     {
         string? folder = null;
         string? selfTest = null;
         string? language = null, report = null, site = null;
+        IReadOnlyList<string>? sitePages = null, siteThemes = null;
+        static IReadOnlyList<string> List(string value) => value.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
         ThemePreference? theme = null;
         Size? size = null;
         for (int i = 0; i < args.Length; i++)
@@ -269,6 +272,8 @@ public sealed record StartupOptions(string? SnapshotFolder, ThemePreference? The
             else if (a == "--language" && next != null) { language = next; i++; }
             else if (a == "--localization-report" && next != null) { report = next; i++; }
             else if (a == "--site-screenshots" && next != null) { site = next; i++; }
+            else if (a == "--site-pages" && next != null) { sitePages = List(next); i++; }
+            else if (a == "--site-themes" && next != null) { siteThemes = List(next); i++; }
             else if (a == "--theme" && next != null) { theme = Enum.TryParse<ThemePreference>(next, true, out var t) ? t : null; i++; }
             else if (a == "--size" && next != null)
             {
@@ -277,6 +282,6 @@ public sealed record StartupOptions(string? SnapshotFolder, ThemePreference? The
                 i++;
             }
         }
-        return new StartupOptions(folder, theme, size, selfTest, language, report, site);
+        return new StartupOptions(folder, theme, size, selfTest, language, report, site, sitePages, siteThemes);
     }
 }

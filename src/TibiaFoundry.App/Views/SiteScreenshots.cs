@@ -16,11 +16,15 @@ using TibiaFoundry.Core.Settings;
 namespace TibiaFoundry.App.Views;
 
 /// <summary>
-/// Website screenshots (<c>--site-screenshots &lt;folder&gt; [--language code]</c>): with the normal
-/// settings and data (the website uses a portable demo copy), sets each page to the state the website
+/// Website screenshots (<c>--site-screenshots &lt;folder&gt; [--language code] [--site-pages a,b] [--site-themes dark,light]</c>):
+/// with the normal settings and data (the website uses a portable demo copy), sets each page to the state the website
 /// shows, and captures the whole window with its title bar, in the light and the dark theme, as
 /// <c>&lt;page&gt;-light.png</c> / <c>&lt;page&gt;-dark.png</c>. Text that shows a path inside the Windows
 /// user's folder is blurred. Nothing is saved: themes are applied without being stored.
+/// <para>Besides the pictures it writes <c>site-screenshots.txt</c> (readable log) and <c>site-screenshots.json</c>
+/// (language, every shot it knows, and the result of each capture), which <c>website/screenshots/screenshots.py</c>
+/// reads. The shot list below is the program's side of the website's screenshot inventory: a new website screenshot
+/// is a new <see cref="Shot"/> here plus its id in <c>website/build_site.py</c>.</para>
 /// </summary>
 public static class SiteScreenshots
 {
@@ -29,10 +33,14 @@ public static class SiteScreenshots
 
     private sealed record Shot(string Name, Type Page, Func<dynamic, Task>? Prepare = null);
 
-    public static async Task RunAsync(MainWindow window, MainViewModel vm, string folder)
+    /// <summary>Process exit code: 0 when every requested capture was written, 1 otherwise.</summary>
+    public static int ExitCode { get; private set; }
+
+    public static async Task RunAsync(MainWindow window, MainViewModel vm, string folder, IReadOnlyCollection<string>? pages = null, IReadOnlyCollection<string>? themes = null)
     {
         Directory.CreateDirectory(folder);
         var log = new List<string> { $"Language: {L.Language.Code}" };
+        var results = new List<Dictionary<string, object?>>();
         window.WindowState = WindowState.Normal;
         window.Left = 40;
         window.Top = 40;
@@ -64,7 +72,8 @@ public static class SiteScreenshots
             new("profiles", typeof(ContentStudioViewModel), p =>
             {
                 p.Tab = 1;
-                p.SelectedProfile = First((IEnumerable)p.Profiles);
+                // By id: the list is sorted by the profiles' translated names, so "the first" differs between languages.
+                p.SelectedProfile = Pick((IEnumerable)p.Profiles, x => (string)x.Id == "article") ?? First((IEnumerable)p.Profiles);
                 return Task.CompletedTask;
             }),
             new("appearances", typeof(AppearancesViewModel), async p =>
@@ -82,6 +91,17 @@ public static class SiteScreenshots
                 o.UseMount = true;
                 o.MountId = 1599;
                 o.Mounted = true;
+            }),
+            // 9.0: Appearances → Wiki infobox, for the object the website's infobox sample shows (Magic Plate Armor).
+            new("infobox", typeof(AppearancesViewModel), async p =>
+            {
+                p.Kind = Core.Appearances.AppearanceKind.Object;
+                await Settle(p);
+                p.SearchText = "3366";
+                await ((IAsyncRelayCommand)p.SearchCommand).ExecuteAsync(null);
+                await Settle(p);
+                p.SelectedItem = Pick((IEnumerable)p.VisibleItems, i => (uint)i.Appearance.Id == 3366) ?? p.SelectedItem;
+                p.SelectedDetailTab = AppearancesViewModel.InfoboxTab;
             }),
             new("extract-sprites", typeof(SpriteExtractorViewModel), async p =>
             {
@@ -138,39 +158,91 @@ public static class SiteScreenshots
                 p.Selected = Pick((IEnumerable)p.Entries, e => ((string)e.Path).EndsWith("button-gold-up.png", StringComparison.Ordinal)) ?? First((IEnumerable)p.Entries);
             }),
             new("clients", typeof(ClientsViewModel)),
-            new("settings", typeof(SettingsViewModel), p => { p.SelectedCategory = "General"; return Task.CompletedTask; }),
-            new("settings-attribution", typeof(SettingsViewModel), p => { p.SelectedCategory = "Attribution"; return Task.CompletedTask; }),
+            new("settings", typeof(SettingsViewModel), p => SelectSettingsCategory(p, "General")),
+            new("settings-attribution", typeof(SettingsViewModel), p => SelectSettingsCategory(p, "Attribution")),
         };
 
-        foreach (var theme in new[] { ThemePreference.Light, ThemePreference.Dark })
+        var unknown = pages?.Where(n => !shots.Any(s => s.Name.Equals(n, StringComparison.OrdinalIgnoreCase))).ToList() ?? [];
+        foreach (string name in unknown) log.Add($"{name}  FAILED: no such screenshot (known: {string.Join(", ", shots.Select(s => s.Name))})");
+        var selected = shots.Where(s => pages == null || pages.Count == 0 || pages.Any(n => n.Equals(s.Name, StringComparison.OrdinalIgnoreCase))).ToList();
+        int failures = unknown.Count;
+        // The Settings page shows the theme preference as "Active theme"; while a theme is captured the preference
+        // says the same in memory (restored below, so nothing is saved) – otherwise the dark pictures read "Light".
+        var settings = vm.Services.Settings;
+        var (savedTheme, savedCustom) = (settings.Theme, settings.Themes.ActiveCustomTheme);
+        // Visiting the pages makes them "recently used"; Home must show the same list in every picture.
+        var savedRecent = settings.RecentPages.ToList();
+        // Animated previews show their first frame, so a picture never depends on when it was taken.
+        bool savedAnimations = Controls.AnimatedSprite.AnimationsEnabled;
+        Controls.AnimatedSprite.AnimationsEnabled = false;
+        try
         {
-            ThemeManager.Apply(theme);
-            string themeName = theme == ThemePreference.Dark ? "dark" : "light";
-            foreach (var shot in shots)
+            foreach (var theme in new[] { ThemePreference.Light, ThemePreference.Dark })
             {
-                try
+                string themeName = theme == ThemePreference.Dark ? "dark" : "light";
+                if (themes != null && themes.Count > 0 && !themes.Contains(themeName, StringComparer.OrdinalIgnoreCase)) continue;
+                settings.Theme = theme;
+                settings.Themes.ActiveCustomTheme = null;
+                ThemeManager.Apply(theme);
+                if (vm.Pages.OfType<SettingsViewModel>().FirstOrDefault() is { } settingsPage) settingsPage.Themes.Refresh();
+                foreach (var shot in selected)
                 {
-                    var page = vm.Pages.First(p => p.GetType() == shot.Page);
-                    if (!ReferenceEquals(vm.SelectedPage, page)) vm.SelectedPage = page;
-                    await Settle(page);
-                    if (shot.Prepare != null) await shot.Prepare(page);
-                    await Settle(page);
-                    ScrollNavigation(window, page);
-                    ((dynamic)vm).ClientChange = null; // the "not archived yet" reminder
-                    vm.Status.Show(L.T("Status.Ready"));
-                    await Settle(page);
-                    string file = Path.Combine(folder, $"{shot.Name}-{themeName}.png");
-                    int blurred = Capture(window, file);
-                    log.Add($"{shot.Name}-{themeName}.png  blurred {blurred}");
-                }
-                catch (Exception ex)
-                {
-                    log.Add($"{shot.Name}-{themeName}.png  FAILED: {ex.Message}");
-                    AppLog.Error($"Site screenshot {shot.Name} failed.", ex);
+                    var started = DateTime.UtcNow;
+                    var result = new Dictionary<string, object?> { ["name"] = shot.Name, ["page"] = shot.Page.Name, ["theme"] = themeName, ["file"] = $"{shot.Name}-{themeName}.png" };
+                    results.Add(result);
+                    try
+                    {
+                        var page = vm.Pages.First(p => p.GetType() == shot.Page);
+                        settings.RecentPages.Clear();
+                        settings.RecentPages.AddRange(savedRecent);
+                        if (!ReferenceEquals(vm.SelectedPage, page)) vm.SelectedPage = page;
+                        await Settle(page);
+                        if (shot.Prepare != null) await shot.Prepare(page);
+                        await Settle(page);
+                        ScrollNavigation(window, page);
+                        ((dynamic)vm).ClientChange = null; // the "not archived yet" reminder
+                        vm.Status.Show(L.T("Status.Ready"));
+                        await Settle(page);
+                        string file = Path.Combine(folder, $"{shot.Name}-{themeName}.png");
+                        int blurred = Capture(window, file);
+                        log.Add($"{shot.Name}-{themeName}.png  blurred {blurred}");
+                        result["status"] = "ok";
+                        result["blurred"] = blurred;
+                    }
+                    catch (Exception ex)
+                    {
+                        failures++;
+                        log.Add($"{shot.Name}-{themeName}.png  FAILED: {ex.Message}");
+                        AppLog.Error($"Site screenshot {shot.Name} failed.", ex);
+                        result["status"] = "failed";
+                        result["error"] = ex.GetType().Name + ": " + ex.Message;
+                    }
+                    result["seconds"] = Math.Round((DateTime.UtcNow - started).TotalSeconds, 1);
                 }
             }
         }
+        finally
+        {
+            settings.Theme = savedTheme;
+            settings.Themes.ActiveCustomTheme = savedCustom;
+            settings.RecentPages.Clear();
+            settings.RecentPages.AddRange(savedRecent);
+            Controls.AnimatedSprite.AnimationsEnabled = savedAnimations;
+        }
         File.WriteAllLines(Path.Combine(folder, "site-screenshots.txt"), log);
+        var summary = new Dictionary<string, object?>
+        {
+            ["app"] = Core.Common.AppIdentity.NameAndVersion,
+            ["language"] = L.Language.Code,
+            ["languages"] = Languages.All.Select(l => l.Code).ToList(),
+            ["frame"] = new[] { FrameWidth, FrameHeight },
+            ["available"] = shots.Select(s => new Dictionary<string, string> { ["name"] = s.Name, ["page"] = s.Page.Name }).ToList(),
+            ["unknown"] = unknown,
+            ["results"] = results,
+        };
+        File.WriteAllText(Path.Combine(folder, "site-screenshots.json"),
+            System.Text.Json.JsonSerializer.Serialize(summary, new System.Text.Json.JsonSerializerOptions { WriteIndented = true }));
+        ExitCode = failures == 0 ? 0 : 1;
     }
 
     /// <summary>A typed array of the items (for properties of type IReadOnlyList&lt;T&gt;).</summary>
@@ -182,6 +254,18 @@ public static class SiteScreenshots
     }
 
     private static dynamic? First(IEnumerable items) => items.Cast<object>().FirstOrDefault();
+
+    /// <summary>
+    /// Settings scrolls a category to the top when it is selected, measured on the layout of that moment. Right after
+    /// a theme change the sections are still being laid out, so the category is selected again once they are settled.
+    /// </summary>
+    private static async Task SelectSettingsCategory(dynamic page, string category)
+    {
+        page.SelectedCategory = category;
+        await Settle(page);
+        page.SelectedCategory = category == "General" ? "Advanced" : "General";
+        page.SelectedCategory = category;
+    }
 
     private static dynamic? Pick(IEnumerable items, Func<dynamic, bool> match)
     {

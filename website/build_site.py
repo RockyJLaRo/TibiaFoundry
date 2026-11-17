@@ -7,10 +7,14 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
 * src/index.template.html is rendered once per language with the texts of src/locales/<lang>.json:
   English at /, the others at /pt-br/, /pl/, /es/ and /de/ (see website/TRANSLATING.md);
 * src/styles.css and src/app.js are inlined into every page;
-* every image of src/images is written once to site/img/: screenshots as lossy WebP (quality 80), the program's
-  pixel-art output and the logo losslessly, so they stay pixel-exact. A language whose folder src/images/<code>/
-  has a screenshot of the program in that language gets its own copy in site/img/<url folder>/; everything else
-  (and English) is shared;
+* screenshots come from the library src/images/screens/<code>/<id>-<code>-<theme>.png (made by
+  website/screenshots/screenshots.py from the running program, in every language and both themes) and are written
+  as lossy WebP (quality 80) to site/img/screens/<id>-<code>-<theme>.webp. Every language shows its own screenshots:
+  a missing one stops the build (one language or theme never stands in for another);
+* the program's pixel-art output and the logo are shared by all languages and written losslessly, so they stay
+  pixel-exact;
+* {app:Key} in a text (and {{APP:Key}} in the template) is the program's own translation of that key
+  (Strings.<code>.xaml), so page names on the site match the screenshots exactly;
 * {version} comes from src/Directory.Build.props, {date} is the build date (written in each language's style);
 * sitemap.xml lists every language with hreflang alternates; CNAME and robots.txt are kept;
 * website/i18n-report.md is the translation completeness report.
@@ -44,22 +48,41 @@ LANGUAGES = [
 ]
 DEFAULT = LANGUAGES[0][0]
 
-# Screenshot gallery: (id, page name in the program). The program is in English, so its page names stay English.
+# Screenshot gallery: (id, the program's page as keys of its own texts, tab label). The page name (alt text) is the
+# program's translation of those keys joined with " → "; the tab label is the last of them (or the site text
+# screens.tab.<id> when the third value names one). Each id is a shot of SiteScreenshots.cs in the program.
 SCREENS = [
-    ("home", "Home"), ("asset-library", "Asset Library"), ("duplicates", "Asset Library – Duplicates"),
-    ("content-studio", "Content Studio"), ("profiles", "Content Studio – Publishing profiles"),
-    ("appearances", "Appearances"), ("extract-sprites", "Extract Sprites"), ("static-data", "Static Data"),
-    ("item-catalog", "Item Catalog"), ("compare", "Compare Files"), ("map-tools", "Map Tools"),
-    ("house-images", "House Images"), ("sounds", "Sounds"), ("assets-editor", "Assets Editor"),
-    ("rcc-editor", "RCC Editor"), ("clients", "Clients"), ("settings", "Settings"),
-    ("settings-attribution", "Settings – Attribution"),
+    ("home", ["Tool.home.Name"], None),
+    ("asset-library", ["Tool.asset-library.Name"], None),
+    ("duplicates", ["Tool.asset-library.Name", "AssetLibrary.Duplicates"], None),
+    ("content-studio", ["Tool.content-studio.Name"], None),
+    ("profiles", ["Tool.content-studio.Name", "ContentStudio.PublishingProfiles"], None),
+    ("appearances", ["Tool.appearances.Name"], None),
+    ("infobox", ["Tool.appearances.Name", "Infobox.Tab"], None),
+    ("extract-sprites", ["Tool.sprite-extractor.Name"], None),
+    ("static-data", ["Tool.static-data.Name", "StaticData.Monsters"], None),
+    ("item-catalog", ["Tool.item-catalog.Name"], None),
+    ("compare", ["Tool.compare.Name"], None),
+    ("map-tools", ["Tool.map-tools.Name"], None),
+    ("house-images", ["Tool.house-images.Name"], None),
+    ("sounds", ["Tool.sounds.Name"], None),
+    ("assets-editor", ["Tool.assets-editor.Name"], None),
+    ("rcc-editor", ["Tool.rcc-editor.Name"], None),
+    ("clients", ["Tool.clients.Name"], None),
+    ("settings", ["Tool.settings.Name"], None),
+    ("settings-attribution", ["Tool.settings.Name", "Choice.SettingsCategory.Attribution"], None),
 ]
+SCREEN_SIZE = (1586, 893)
+SHOTS = os.path.join(SRC, "images", "screens")
+APP_STRINGS = os.path.join(ROOT, "src", "TibiaFoundry.Core", "Localization", "Resources", "Strings.{code}.xaml")
 
 # Derived images: (name, source, crop box) – a close-up of the library so the page never shows one picture twice.
 DERIVED = [
-    ("asset-library-detail-dark", "asset-library-dark.png", (480, 250, 1572, 845)),
-    ("asset-library-detail-light", "asset-library-light.png", (480, 250, 1572, 845)),
+    ("asset-library-detail-dark", "asset-library-dark", (480, 250, 1572, 845)),
+    ("asset-library-detail-light", "asset-library-light", (480, 250, 1572, 845)),
 ]
+# Images that are the same in every language and theme (the logo and real Content Studio output).
+SHARED = ("logo", "output-")
 
 MONTHS = {
     "en": "January February March April May June July August September October November December",
@@ -136,14 +159,39 @@ def load_locales():
 
 TAG = re.compile(r"</?[a-zA-Z][^>]*>")
 CODE = re.compile(r"<code[^>]*>(.*?)</code>", re.S)
-VARIABLE = re.compile(r"\{(?:version|date|count|page|language|num:\d+|plural:\w+:\d+)\}")
+VARIABLE = re.compile(r"\{(?:version|date|count|page|language|num:\d+|plural:\w+:\d+|app:[\w.-]+)\}")
+
+_app_cache = {}
+
+
+def app_strings(code):
+    """The program's own interface texts in one language (English for keys it lacks)."""
+    if code not in _app_cache:
+        texts = {}
+        for c in (DEFAULT, code):
+            path = APP_STRINGS.replace("{code}", c)
+            if os.path.exists(path):
+                xaml = open(path, encoding="utf-8-sig").read()
+                texts.update({k: htmllib.unescape(v) for k, v in
+                              re.findall(r'<sys:String x:Key="([^"]+)"[^>]*>([^<]*)</sys:String>', xaml)})
+        _app_cache[code] = texts
+    return _app_cache[code]
+
+
+def app_text(code, key):
+    texts = app_strings(code)
+    if key not in texts:
+        sys.exit(f"Unknown program text '{key}' (not in {APP_STRINGS.replace('{code}', DEFAULT)}).")
+    return texts[key]
 
 
 def signature(value):
     """What a translation must keep exactly: its markup, its code and its placeholders."""
     if isinstance(value, dict):
         return ("plural", sorted(set(VARIABLE.findall(" ".join(value.values())))))
-    return (sorted(TAG.findall(value)), CODE.findall(value), sorted(VARIABLE.findall(value)))
+    # {app:…} is optional: a translation may write the name itself where its grammar needs another form.
+    return (sorted(TAG.findall(value)), CODE.findall(value),
+            sorted(v for v in VARIABLE.findall(value) if not v.startswith("{app:")))
 
 
 class Translator:
@@ -182,12 +230,17 @@ class Translator:
                 return self.ver
             if token == "date":
                 return format_date(lang, self.date)
+            if token.startswith("app:"):
+                return htmllib.escape(app_text(self.code, token[4:]), quote=False)
             return str(vars.get(token, m.group(0)))
         return VARIABLE.sub(sub, text)
 
     def text(self, key, **vars):
         value, lang = self.raw(key)
         return self.interpolate(value, lang, **vars)
+
+    def app(self, key):
+        return app_text(self.code, key)
 
     def attr(self, key, **vars):
         return htmllib.escape(TAG.sub("", htmllib.unescape(self.text(key, **vars))), quote=True)
@@ -207,22 +260,45 @@ def encode(image, name):
     return "webp", buf.getvalue()
 
 
+def is_shared(name):
+    return name.startswith(SHARED)
+
+
+def screenshot(name):
+    """'asset-library-detail-dark' -> ('asset-library-detail', 'dark'); None for an image that is not a screenshot."""
+    if is_shared(name) or not re.search(r"-(dark|light)$", name):
+        return None
+    return tuple(name.rsplit("-", 1))
+
+
 def source(name, code):
-    """The source file of an image for a language: src/images/<code>/<file> when it exists, else src/images/<file>.
-    Returns (path, localized)."""
-    file = next((src for derived, src, _ in DERIVED if derived == name), name + ".png")
-    localized = os.path.join(SRC, "images", code, file)
-    if code != DEFAULT and os.path.exists(localized):
-        return localized, True
-    return os.path.join(SRC, "images", file), False
+    """The source file of an image for a language (screenshots: that language's own capture, required)."""
+    if not screenshot(name):
+        return os.path.join(SRC, "images", name + ".png")
+    file = next((src for derived, src, _ in DERIVED if derived == name), name)
+    sid, theme = file.rsplit("-", 1)
+    path = os.path.join(SHOTS, code, f"{sid}-{code}-{theme}.png")
+    if not os.path.exists(path):
+        sys.exit(f"[{code}] Missing screenshot {os.path.relpath(path, ROOT)}. Capture it with: python -I "
+                 f"website/screenshots/screenshots.py capture --pages {sid} --languages {code} --themes {theme}")
+    return path
+
+
+def output_path(name, code):
+    """Where an image is published (without extension): img/<name> (shared) or img/screens/<id>-<code>-<theme>."""
+    if screenshot(name):
+        sid, theme = screenshot(name)
+        return f"img/screens/{sid}-{code}-{theme}"
+    return f"img/{name}"
 
 
 def load(name, code=DEFAULT):
-    path, _ = source(name, code)
-    image = Image.open(path)
+    image = Image.open(source(name, code))
     for derived, _, box in DERIVED:
         if derived == name:
             return image.crop(box)
+    if screenshot(name) and image.size != SCREEN_SIZE:
+        sys.exit(f"[{code}] {source(name, code)} is {image.size[0]}x{image.size[1]}, not {SCREEN_SIZE[0]}x{SCREEN_SIZE[1]}.")
     return image
 
 
@@ -262,7 +338,7 @@ def write_icons():
 def write_preview(tr, filename):
     """The 1200x630 link-preview image of one language."""
     og = Image.new("RGB", (1200, 630), (15, 18, 22))
-    shot = load("asset-library-dark").convert("RGB")
+    shot = load("asset-library-dark", tr.code).convert("RGB")
     shot = shot.resize((760, int(shot.height * 760 / shot.width)), Image.LANCZOS)
     og.paste(shot, (470, 120))
     d = ImageDraw.Draw(og)
@@ -296,9 +372,10 @@ def og_name(folder):
 
 def render_screens(tr, img):
     tabs, panels = [], []
-    for i, (sid, page) in enumerate(SCREENS):
+    for i, (sid, keys, tab) in enumerate(SCREENS):
         on = i == 0
-        label = tr.text(f"screens.tab.{sid}")
+        page = " → ".join(tr.app(k) for k in keys)
+        label = tr.text(tab) if tab else htmllib.escape(tr.app(keys[-1]), quote=False)
         tabs.append(f'      <button class="tab" role="tab" id="t-{sid}" aria-controls="p-{sid}" aria-selected="{str(on).lower()}"'
                     + ("" if on else ' tabindex="-1"') + f">{label}</button>")
         cap_attr, cap = tr.attr(f"screens.caption.{sid}"), tr.text(f"screens.caption.{sid}")
@@ -361,6 +438,7 @@ def render_page(template, css, js, code, folder, tr, translators, img, ver):
     page = re.sub(r"\{\{a:([\w.-]+)\}\}", lambda m: tr.attr(m.group(1)), page)
     page = re.sub(r"\{\{j:([\w.-]+)\}\}", lambda m: json.dumps(TAG.sub("", tr.text(m.group(1))), ensure_ascii=False)[1:-1].replace("</", "<\\/"), page)
     page = re.sub(r"\{\{IMG:([\w-]+)\}\}", lambda m: img(m.group(1)), page)
+    page = re.sub(r"\{\{APP:([\w.-]+)\}\}", lambda m: htmllib.escape(tr.app(m.group(1)), quote=False), page)
     # CSS and script last: their own braces are never read as placeholders.
     return page.replace("{{CSS}}", css).replace("{{I18N}}", runtime_js).replace("{{JS}}", js)
 
@@ -446,11 +524,10 @@ def main():
     translators = {code: Translator(code, locales, ver, today) for code, *_ in LANGUAGES}
     for code, folder, *_ in LANGUAGES:
         def img(name, folder=folder, code=code):
-            localized = source(name, code)[1]
-            key = (folder if localized else "", name)
+            key = output_path(name, code)
             if key not in files:
-                ext, data = encode(load(name, code if localized else DEFAULT), name)
-                files[key] = (f"img/{key[0] + '/' if key[0] else ''}{name}.{ext}", data)
+                ext, data = encode(load(name, code), name)
+                files[key] = (f"{key}.{ext}", data)
                 os.makedirs(os.path.dirname(os.path.join(SITE, files[key][0])), exist_ok=True)
                 with open(os.path.join(SITE, files[key][0]), "wb") as f:
                     f.write(data)
@@ -493,7 +570,7 @@ def main():
             f.write(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{page_url("")}"/>\n  </url>\n')
         f.write("</urlset>\n")
     write_icons()
-    for name, content in (("CNAME", "tibiafoundry.com\n"), ("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://tibiafoundry.com/sitemap.xml\n")):
+    for name, content in (("CNAME", "tibiafoundry.com"),  # exactly as in the Pages repository (no newline) ("robots.txt", "User-agent: *\nAllow: /\n\nSitemap: https://tibiafoundry.com/sitemap.xml\n")):
         path = os.path.join(SITE, name)
         if not os.path.exists(path):
             open(path, "w", encoding="utf-8", newline="\n").write(content)

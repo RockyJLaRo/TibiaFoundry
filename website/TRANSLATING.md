@@ -26,7 +26,8 @@ The site exists in five languages. Each is a static page built from the same tem
 | `{date}` | the build date in the language's own style (`1. November 2026`, `1 de novembro de 2026`, …) |
 | `{num:43000}` | the number grouped the language's way (43,000 · 43.000 · 43 000) |
 | `{plural:tools:23}` | the matching form of `plural.tools` for 23, with `{count}` replaced |
-| `{page}` | the program page name in screenshot descriptions |
+| `{page}` | the program page name in screenshot descriptions (the program's own translation) |
+| `{app:Tool.asset-library.Name}` | that text of the **program**, in this language (from `src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml`) – e.g. *Asset-Bibliothek*, *Biblioteka zasobów*. Optional: where grammar needs another form, write the name yourself |
 
 Plurals use the CLDR categories: `one` and `other` for English, Portuguese, Spanish and German, and `one`, `few` and `many` for Polish (1 narzędzie, 23 narzędzia, 25 narzędzi). For example:
 
@@ -34,9 +35,17 @@ Plurals use the CLDR categories: `one` and `other` for English, Portuguese, Span
 "plural": { "tools": { "one": "{count} narzędzie", "few": "{count} narzędzia", "many": "{count} narzędzi", "other": "{count} narzędzia" } }
 ```
 
-## What stays in English
+## Names of the program's pages and tools
 
-- **Names of the program's pages and tools**: Asset Library, Content Studio, Appearances, Extract Sprites, Static Data, Item Catalog, Compare Files, Map Tools, House Images, Sounds, Assets Editor, RCC Editor, Clients, Settings, Home, Compatibility, Outfitter, Settings → Attribution, Content Studio → New project, Folders and storage. The program itself is in English, so readers find these words on screen.
+The program is translated too, and every screenshot shows it in the page's language. So the site must use the
+**program's own words** for its pages, tabs and buttons (Asset Library, Content Studio, Appearances, Settings →
+Attribution, Content Studio → New project, Wiki infobox…): write them as `{app:Key}` (keys: `Tool.<id>.Name`,
+`Infobox.Tab`, `Choice.SettingsCategory.Attribution`, `ContentProjects.NewProject`, `Appearances.Outfitter`, …) and
+the build inserts the program's translation. The screenshot gallery's tab labels come from the program directly
+(`SCREENS` in `build_site.py`). Where a sentence needs an inflected form, put the name in quotes after a noun
+(„Seite „{app:…}“", „strona „{app:…}”") or write it yourself.
+
+## What stays in English
 - Proper names and terms: Tibia, CipSoft GmbH, TibiaWiki, Fandom, Fansite Programme, RockyLaRo, GitHub, and creature names in alt text (Demon, Behemoth, Hydra).
 - Technical content: file names (`dragon-lord.gif`, `index.html`, `THIRD-PARTY-NOTICES.txt`), name templates (`{category}`, `{name}_{scale}x`), wiki and HTML code (`[[File:…]]`, `<img>`), formats (PNG, GIF, JSON, CSV, Markdown, ZIP, SQLite, BBCode, .msi), library names and URLs.
 - Community terms that Tibia players use untranslated in each language: outfit, addon, sprite, NPC, quest, fansite. German also keeps Mount; the others use the local word (montaria, montura).

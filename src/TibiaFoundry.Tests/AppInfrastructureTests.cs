@@ -59,6 +59,19 @@ public sealed class AppInfrastructureTests
     }
 
     [Fact]
+    public void SiteScreenshotOptionsAreParsed()
+    {
+        var o = StartupOptions.Parse(["--site-screenshots", @"C:\shots", "--language", "de", "--site-pages", "home, infobox,,compare", "--site-themes", "dark"]);
+        Assert.Equal(@"C:\shots", o.SiteScreenshots);
+        Assert.Equal("de", o.Language);
+        Assert.Equal(["home", "infobox", "compare"], o.SitePages);
+        Assert.Equal(["dark"], o.SiteThemes);
+        var all = StartupOptions.Parse(["--site-screenshots", "out"]);
+        Assert.Null(all.SitePages);
+        Assert.Null(all.SiteThemes);
+    }
+
+    [Fact]
     public void SelfTestOptionIsParsed()
     {
         var o = StartupOptions.Parse(["--self-test", "self-test-output"]);

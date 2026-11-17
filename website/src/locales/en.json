@@ -2,7 +2,8 @@
   "_meta": {
     "language": "English",
     "translator": "RockyLaRo (source text)",
-    "notes": "Source language. Every other locale file uses these keys; a key missing there falls back to this text."
+    "notes": "Source language. Every other locale file uses these keys; a key missing there falls back to this text.",
+    "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
   "meta": {
     "title": "Tibia Foundry – the free content toolkit for Tibia fansites, wikis and creators",
@@ -35,8 +36,8 @@
   },
   "nav": {
     "features": "Features",
-    "library": "Asset Library",
-    "studio": "Content Studio",
+    "library": "{app:Tool.asset-library.Name}",
+    "studio": "{app:Tool.content-studio.Name}",
     "publishing": "Publishing",
     "screens": "Screenshots",
     "download": "Download",
@@ -92,37 +93,37 @@
     "clients": {
       "title": "Client management",
       "text": "Finds your installed live and test-server clients, loads client folders from anywhere and archives every version space-efficiently – verified file by file and rebuildable later.",
-      "tools": "Clients · Client Installation Rebuilder · Compatibility"
+      "tools": "{app:Tool.clients.Name} · {app:Tool.client-rebuilder.Name} · {app:Tool.compatibility.Name}"
     },
     "extraction": {
       "title": "Asset extraction",
       "text": "Transparent sprites or whole sprite sheets, every object, outfit, effect and missile, creature and quest data, and the client's sounds and music.",
-      "tools": "Extract Sprites · Appearances · Static Data · Sounds"
+      "tools": "{app:Tool.sprite-extractor.Name} · {app:Tool.appearances.Name} · {app:Tool.static-data.Name} · {app:Tool.sounds.Name}"
     },
     "graphics": {
       "title": "Graphics creation",
       "text": "Animated GIFs with fansite presets, colored outfits with addons and mounts, creature animations and 1×–8× pixel-exact enlargement.",
-      "tools": "Appearances (Outfitter) · Advanced Tools"
+      "tools": "{app:Tool.appearances.Name} ({app:Appearances.Outfitter}) · {app:Tool.advanced-tools.Name}"
     },
     "editing": {
       "title": "Resource editing",
       "text": "Inspect and edit a copy of the official assets, extract and rebuild Qt resource files, write classic Tibia.dat/.spr copies, edit file metadata.",
-      "tools": "Assets Editor · RCC Editor · Client Converter · File Metadata"
+      "tools": "{app:Tool.assets-editor.Name} · {app:Tool.rcc-editor.Name} · {app:Tool.client-converter.Name} · {app:Tool.file-metadata.Name}"
     },
     "maps": {
       "title": "Maps and houses",
       "text": "Map images, areas and NPC positions, high-resolution maps for guides, and house images for every house article.",
-      "tools": "Map Tools · House Images"
+      "tools": "{app:Tool.map-tools.Name} · {app:Tool.house-images.Name}"
     },
     "library": {
       "title": "Asset management",
       "text": "A searchable library of every image, animation and sound – collections, tags, versions, duplicate detection – with every export added automatically.",
-      "tools": "Asset Library"
+      "tools": "{app:Tool.asset-library.Name}"
     },
     "workflows": {
       "title": "Content workflows",
       "text": "Reusable projects that render creature, outfit and item galleries, update resources and wiki images – configured once, run again with every update.",
-      "tools": "Content Studio"
+      "tools": "{app:Tool.content-studio.Name}"
     },
     "batch": {
       "title": "Batch generation",
@@ -144,12 +145,12 @@
     "point3": "<b>Organize</b>: your own categories, tags, custom fields, related assets and shareable collections.",
     "point4": "<b>Duplicates</b>: identical files, the same graphic at another size and look-alike images are reported – nothing is ever deleted for you.",
     "point5": "<b>Safe</b>: fast rescans, earlier versions of changed files, an integrity check, backup and restore – all stored locally and fully offline.",
-    "zoom": "Asset Library",
+    "zoom": "{app:Tool.asset-library.Name}",
     "altDark": "Close-up of the Asset Library: thumbnails of items and creatures and the details of the selected asset",
     "altLight": "Close-up of the Asset Library in the light theme"
   },
   "studio": {
-    "kicker": "Content Studio",
+    "kicker": "{app:Tool.content-studio.Name}",
     "title": "A whole gallery in one click – and again after every update",
     "lead": "Choose what to make, adjust the steps, pick your site's profile and run it. Tibia Foundry renders, sizes, names, sorts, describes and packages everything in the background.",
     "point1": "<b>Project templates</b>: creature gallery, outfit gallery, item image collection, map references, update resources, wiki image preparation, custom export.",
@@ -251,45 +252,26 @@
     "tablist": "Screenshots",
     "altDark": "{page} page of Tibia Foundry in the dark theme",
     "altLight": "{page} page of Tibia Foundry in the light theme",
-    "tab": {
-      "home": "Home",
-      "asset-library": "Asset Library",
-      "duplicates": "Duplicates",
-      "content-studio": "Content Studio",
-      "profiles": "Publishing profiles",
-      "appearances": "Appearances",
-      "extract-sprites": "Extract Sprites",
-      "static-data": "Creatures",
-      "item-catalog": "Item Catalog",
-      "compare": "Compare",
-      "map-tools": "Map Tools",
-      "house-images": "House Images",
-      "sounds": "Sounds",
-      "assets-editor": "Assets Editor",
-      "rcc-editor": "RCC Editor",
-      "clients": "Clients",
-      "settings": "Settings",
-      "settings-attribution": "Your credit"
-    },
     "caption": {
-      "home": "Home: the client in use, recent tools and exports, and step-by-step fansite workflows that open the right tool.",
-      "asset-library": "Asset Library: real client assets with thumbnails, categories, collections and editable details – here searched for “dragon”.",
+      "home": "{app:Tool.home.Name}: the client in use, recent tools and exports, and step-by-step fansite workflows that open the right tool.",
+      "asset-library": "{app:Tool.asset-library.Name}: real client assets with thumbnails, categories, collections and editable details – here searched for “dragon”.",
       "duplicates": "Duplicate finder: identical files, the same graphic in other files and similar images are reported – nothing is ever deleted for you.",
-      "content-studio": "Content Studio: a creature gallery project – render, resize, canvas, descriptions, folders, contact sheet and manifests.",
-      "profiles": "Publishing profiles: scale, canvas, format and file-name templates with a live example, for every site you publish to.",
-      "appearances": "Appearances: {num:43000}+ objects, outfits, effects and missiles; the Outfitter renders an outfit with both addons and its mount.",
-      "extract-sprites": "Extract Sprites: every sprite sheet of the client, queued by size and saved as transparent PNGs or whole sheets.",
-      "static-data": "Static Data: creatures, bosses, achievements, houses and quests, with animated previews and a one-click gallery of the list.",
-      "item-catalog": "Item Catalog: item names and IDs from the client, TibiaWiki and other sources, kept apart by source, with exports.",
-      "compare": "Compare Files: what changed between two client versions, object by object – the starting point for update articles.",
-      "map-tools": "Map Tools: areas, NPCs and map files, high-resolution maps and minimap tiles.",
-      "house-images": "House Images: any house drawn from the client's map data, floor by floor, ready for house articles.",
-      "sounds": "Sounds: listen to and extract the client's sounds, effects, ambience and music.",
-      "assets-editor": "Assets Editor: objects, flags, sprite layout and sprites – edit a copy and save it validated; the client is never changed.",
-      "rcc-editor": "RCC Editor: preview, extract and replace the interface artwork of the client's resource file, saved as a copy.",
-      "clients": "Clients: client folders, archived revisions of every version, and storage. (Local paths are blurred.)",
-      "settings": "Settings: built-in light and dark themes or your own, folders, file safety, performance, notifications and more.",
-      "settings-attribution": "Your credit: the creator name written into the metadata of every PNG and GIF you export."
+      "content-studio": "{app:Tool.content-studio.Name}: a creature gallery project – render, resize, canvas, descriptions, folders, contact sheet and manifests.",
+      "profiles": "{app:ContentStudio.PublishingProfiles}: scale, canvas, format and file-name templates with a live example, for every site you publish to.",
+      "appearances": "{app:Tool.appearances.Name}: {num:43000}+ objects, outfits, effects and missiles; the Outfitter renders an outfit with both addons and its mount.",
+      "infobox": "{app:Infobox.Tab}: the TibiaWiki infobox of the selected object – here Magic Plate Armor – with the source of every value, editable before you copy it.",
+      "extract-sprites": "{app:Tool.sprite-extractor.Name}: every sprite sheet of the client, queued by size and saved as transparent PNGs or whole sheets.",
+      "static-data": "{app:Tool.static-data.Name}: creatures, bosses, achievements, houses and quests, with animated previews and a one-click gallery of the list.",
+      "item-catalog": "{app:Tool.item-catalog.Name}: item names and IDs from the client, TibiaWiki and other sources, kept apart by source, with exports.",
+      "compare": "{app:Tool.compare.Name}: what changed between two client versions, object by object – the starting point for update articles.",
+      "map-tools": "{app:Tool.map-tools.Name}: areas, NPCs and map files, high-resolution maps and minimap tiles.",
+      "house-images": "{app:Tool.house-images.Name}: any house drawn from the client's map data, floor by floor, ready for house articles.",
+      "sounds": "{app:Tool.sounds.Name}: listen to and extract the client's sounds, effects, ambience and music.",
+      "assets-editor": "{app:Tool.assets-editor.Name}: objects, flags, sprite layout and sprites – edit a copy and save it validated; the client is never changed.",
+      "rcc-editor": "{app:Tool.rcc-editor.Name}: preview, extract and replace the interface artwork of the client's resource file, saved as a copy.",
+      "clients": "{app:Tool.clients.Name}: client folders, archived revisions of every version, and storage. (Local paths are blurred.)",
+      "settings": "{app:Tool.settings.Name}: built-in light and dark themes or your own, folders, file safety, performance, notifications and more.",
+      "settings-attribution": "{app:Choice.SettingsCategory.Attribution}: the creator name written into the metadata of every PNG and GIF you export."
     }
   },
   "safety": {
@@ -444,7 +426,7 @@
     "point2": "<b>NPC trade</b>: the best NPC buy and sell prices and every trader, with their own price where it differs.",
     "point3": "<b>Nothing invented</b>: every value shows where it came from; implemented, weight, attack, armor and the other values the client does not hold are listed for you to fill in.",
     "point4": "<b>Edit, copy, save</b>: change any value, add more parameters, copy the markup, save it as .txt, or save one file for every selected object.",
-    "window": "Appearances → Wiki infobox",
+    "window": "{app:Tool.appearances.Name} → {app:Infobox.Tab}",
     "caption": "Real output for Magic Plate Armor from the installed client – the empty lines are what the client cannot know.",
     "label": "Generated infobox markup"
   }

@@ -80,7 +80,7 @@ for path, name in packages:
 website_source = os.path.join(out, "Website", f"TibiaFoundry-{version}-Website-Source.zip")
 top = f"TibiaFoundry-{version}-Website-Source"
 with zipfile.ZipFile(website_source, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
-    add_tree(z, os.path.join(root, "website"), top + "/website", skip=("__pycache__",))
+    add_tree(z, os.path.join(root, "website"), top + "/website", skip=("__pycache__", ".work"))  # .work: screenshot scratch files
     z.write(os.path.join(root, "src", "Directory.Build.props"), top + "/src/Directory.Build.props")
     z.write(os.path.join(root, f"TibiaFoundry-{version}-ReleaseNotes.md"), top + f"/TibiaFoundry-{version}-ReleaseNotes.md")
     z.writestr(top + "/README.txt", readme("Website-Source").replace("\r\n", "\n").replace("\n", "\r\n"))

@@ -1,0 +1,5746 @@
+{
+ "screenshots": {
+  "appearances/de/dark": {
+   "file": "website/src/images/screens/de/appearances-de-dark.png",
+   "sha256": "38568ecce06478168f1422d2f8d507bc02a7a0ff9c5781cd226b56c30c1d2028",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "38568ecce06478168f1422d2f8d507bc02a7a0ff9c5781cd226b56c30c1d2028",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/de/light": {
+   "file": "website/src/images/screens/de/appearances-de-light.png",
+   "sha256": "73c7f5af95f85ff636d02700537f0f353c27cb4fd042b608ff20237d0f3b9088",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 231.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 42.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "73c7f5af95f85ff636d02700537f0f353c27cb4fd042b608ff20237d0f3b9088",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/en/dark": {
+   "file": "website/src/images/screens/en/appearances-en-dark.png",
+   "sha256": "15bb00a2116fef17ebe00ea1dfeec500001321d54f0798dbb3454c05acc95b09",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "15bb00a2116fef17ebe00ea1dfeec500001321d54f0798dbb3454c05acc95b09",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/en/light": {
+   "file": "website/src/images/screens/en/appearances-en-light.png",
+   "sha256": "f58ab85d4e895d46f44fc576d3644461059aa563b1d61eb494d5d7579c66ffd7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 231.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 41.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f58ab85d4e895d46f44fc576d3644461059aa563b1d61eb494d5d7579c66ffd7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/es/dark": {
+   "file": "website/src/images/screens/es/appearances-es-dark.png",
+   "sha256": "6bd9ee1b0f7179de5c23944de78c634231bc4f01ea75df4a5c03690b71c314f9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6bd9ee1b0f7179de5c23944de78c634231bc4f01ea75df4a5c03690b71c314f9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/es/light": {
+   "file": "website/src/images/screens/es/appearances-es-light.png",
+   "sha256": "644779ae75c5b0e41deccabbe23852a8711ddcd4001e36f9a3ae0ba35b879710",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 231.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 42.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "644779ae75c5b0e41deccabbe23852a8711ddcd4001e36f9a3ae0ba35b879710",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/pl/dark": {
+   "file": "website/src/images/screens/pl/appearances-pl-dark.png",
+   "sha256": "31b4c804aa021f7877beb489b23547d2659f4d5cf5396e36387b43b18c314332",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "31b4c804aa021f7877beb489b23547d2659f4d5cf5396e36387b43b18c314332",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/pl/light": {
+   "file": "website/src/images/screens/pl/appearances-pl-light.png",
+   "sha256": "d8c80176f47e9f6a2e17cb68c3b440c6359612b77b4e8fd0f23682b1ae61e2f8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 231.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 41.8
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d8c80176f47e9f6a2e17cb68c3b440c6359612b77b4e8fd0f23682b1ae61e2f8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/appearances-pt-BR-dark.png",
+   "sha256": "56d64f57639bf114615763f5a0789fc2d29dd7f9d4cae91de0d4567e307c7f70",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "56d64f57639bf114615763f5a0789fc2d29dd7f9d4cae91de0d4567e307c7f70",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "appearances/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/appearances-pt-BR-light.png",
+   "sha256": "8f4bafeb1f4f3562fe6fd43d4f5a09379ad76f949a766aec2e3ea6d70c7dfd00",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 231.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 42.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8f4bafeb1f4f3562fe6fd43d4f5a09379ad76f949a766aec2e3ea6d70c7dfd00",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/de/dark": {
+   "file": "website/src/images/screens/de/asset-library-de-dark.png",
+   "sha256": "e99413aa5e9ac76b52c6c2df7dc49f3faf0a87ca49a52857fd9ed0eb4f5903a7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e99413aa5e9ac76b52c6c2df7dc49f3faf0a87ca49a52857fd9ed0eb4f5903a7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/de/light": {
+   "file": "website/src/images/screens/de/asset-library-de-light.png",
+   "sha256": "63cd5b8b4e0ca3e68557106fb7bcdc8f562b049ecd0408b12a00be41bc6849b1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 228.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "63cd5b8b4e0ca3e68557106fb7bcdc8f562b049ecd0408b12a00be41bc6849b1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/en/dark": {
+   "file": "website/src/images/screens/en/asset-library-en-dark.png",
+   "sha256": "9fbc87095c0a5f7eed4a3997d3ac1e8bee6002e36c68d46c23806daf8284d1b8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "9fbc87095c0a5f7eed4a3997d3ac1e8bee6002e36c68d46c23806daf8284d1b8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/en/light": {
+   "file": "website/src/images/screens/en/asset-library-en-light.png",
+   "sha256": "5de2572dcdb2f22e07fba4a9da43bc6e85b53d86162dd6ce4ee3dfe818daffe5",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 228.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 47.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "5de2572dcdb2f22e07fba4a9da43bc6e85b53d86162dd6ce4ee3dfe818daffe5",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/es/dark": {
+   "file": "website/src/images/screens/es/asset-library-es-dark.png",
+   "sha256": "bd0274dcac7e5755c90bb6b90e1b320e1fd232abb85bb0e2bfec1cdf54736679",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "bd0274dcac7e5755c90bb6b90e1b320e1fd232abb85bb0e2bfec1cdf54736679",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/es/light": {
+   "file": "website/src/images/screens/es/asset-library-es-light.png",
+   "sha256": "311d6daa16814f55898331b76119c1d5b84e4d75b854d53a5e6c3aa7f9d36bab",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 228.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.3
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "311d6daa16814f55898331b76119c1d5b84e4d75b854d53a5e6c3aa7f9d36bab",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/pl/dark": {
+   "file": "website/src/images/screens/pl/asset-library-pl-dark.png",
+   "sha256": "28a77485c5ef13e618d0484f01ff8c708763a8e58daedf2e0626d0e8d3ec026e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.8,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "28a77485c5ef13e618d0484f01ff8c708763a8e58daedf2e0626d0e8d3ec026e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/pl/light": {
+   "file": "website/src/images/screens/pl/asset-library-pl-light.png",
+   "sha256": "7f60c18c76638a64c174108ce1348f997dd56518c6520aa651a67018ae027823",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 228.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7f60c18c76638a64c174108ce1348f997dd56518c6520aa651a67018ae027823",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/asset-library-pt-BR-dark.png",
+   "sha256": "d141fd18bf58d29e16999cdf270e5f8ca7246ea139c2640f94c29b9f56d52ec1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d141fd18bf58d29e16999cdf270e5f8ca7246ea139c2640f94c29b9f56d52ec1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "asset-library/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/asset-library-pt-BR-light.png",
+   "sha256": "1c1dc832426529e1a7d405ffd039e282e4f1fcc716fd194b65091b4ded06eaed",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 228.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "1c1dc832426529e1a7d405ffd039e282e4f1fcc716fd194b65091b4ded06eaed",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/de/dark": {
+   "file": "website/src/images/screens/de/assets-editor-de-dark.png",
+   "sha256": "6785e2e039fd1abda653d9f639d147fe4d0a85fd6f61750396051c6559cf3801",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6785e2e039fd1abda653d9f639d147fe4d0a85fd6f61750396051c6559cf3801",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/de/light": {
+   "file": "website/src/images/screens/de/assets-editor-de-light.png",
+   "sha256": "94dec4ea580b35f75260384de35bebe6206bad0fe9e9ef7c19fce6088c6a7e59",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 229.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 49.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "94dec4ea580b35f75260384de35bebe6206bad0fe9e9ef7c19fce6088c6a7e59",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/en/dark": {
+   "file": "website/src/images/screens/en/assets-editor-en-dark.png",
+   "sha256": "3626d2e116757475e6035853395acb663d1ef8c9431b2a75036370229dba8f1e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3626d2e116757475e6035853395acb663d1ef8c9431b2a75036370229dba8f1e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/en/light": {
+   "file": "website/src/images/screens/en/assets-editor-en-light.png",
+   "sha256": "5118e3a7c77d2567c5c753842e27889ea94934e86bc37f9473ef4449477b2a8f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 230.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "5118e3a7c77d2567c5c753842e27889ea94934e86bc37f9473ef4449477b2a8f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/es/dark": {
+   "file": "website/src/images/screens/es/assets-editor-es-dark.png",
+   "sha256": "65e7c8283f67311918c960884b883e9cc5acc5023d9eb9f0c51ef3467c40defb",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "65e7c8283f67311918c960884b883e9cc5acc5023d9eb9f0c51ef3467c40defb",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/es/light": {
+   "file": "website/src/images/screens/es/assets-editor-es-light.png",
+   "sha256": "edc9a20ded6403188fc64fea323e5166c547afac1854f93899f698c188988698",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 229.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 49.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "edc9a20ded6403188fc64fea323e5166c547afac1854f93899f698c188988698",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/pl/dark": {
+   "file": "website/src/images/screens/pl/assets-editor-pl-dark.png",
+   "sha256": "bae089891f93ec7b36b04c9544b21a9ebee321acc476f9953d25765fc15d5eec",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.8,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "bae089891f93ec7b36b04c9544b21a9ebee321acc476f9953d25765fc15d5eec",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/pl/light": {
+   "file": "website/src/images/screens/pl/assets-editor-pl-light.png",
+   "sha256": "6917430b42a14cca10b4a6a41a573b0e6f68e2afb000fe43a3a61ccd7799688b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 229.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 49.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6917430b42a14cca10b4a6a41a573b0e6f68e2afb000fe43a3a61ccd7799688b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/assets-editor-pt-BR-dark.png",
+   "sha256": "523d6d27ec96a6f45bdfbba85de055b90fcf1e28e2ca4febc1932eb4219a737d",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.8,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "523d6d27ec96a6f45bdfbba85de055b90fcf1e28e2ca4febc1932eb4219a737d",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "assets-editor/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/assets-editor-pt-BR-light.png",
+   "sha256": "4db871b544d3398978b17c1fda658a5fb4491443aac99327dcddff7ab242ecd6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 229.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 49.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "4db871b544d3398978b17c1fda658a5fb4491443aac99327dcddff7ab242ecd6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/de/dark": {
+   "file": "website/src/images/screens/de/clients-de-dark.png",
+   "sha256": "498a9dc6101539799420059f27e009c75f008c7bd01be00297983d5df53d8d14",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.8
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "498a9dc6101539799420059f27e009c75f008c7bd01be00297983d5df53d8d14",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/de/light": {
+   "file": "website/src/images/screens/de/clients-de-light.png",
+   "sha256": "ca36db9146ad85dbe7b6bcab10dd663241fc2f4bb0910148fdce6348e3ee915b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "ca36db9146ad85dbe7b6bcab10dd663241fc2f4bb0910148fdce6348e3ee915b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/en/dark": {
+   "file": "website/src/images/screens/en/clients-en-dark.png",
+   "sha256": "aa3596e9632121ec670a7fa6d90d782bd3db6b047b749794c346b460bb2f25ef",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 24.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "aa3596e9632121ec670a7fa6d90d782bd3db6b047b749794c346b460bb2f25ef",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/en/light": {
+   "file": "website/src/images/screens/en/clients-en-light.png",
+   "sha256": "e1620a519ea22c43dff49cfdbc356d023baf55553fb2d78e30b777737eae24cc",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e1620a519ea22c43dff49cfdbc356d023baf55553fb2d78e30b777737eae24cc",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/es/dark": {
+   "file": "website/src/images/screens/es/clients-es-dark.png",
+   "sha256": "cfd6486a23e2d72be39e2d9067b0b56aab883ec44a0748a5e04948d9e0572e99",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "cfd6486a23e2d72be39e2d9067b0b56aab883ec44a0748a5e04948d9e0572e99",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/es/light": {
+   "file": "website/src/images/screens/es/clients-es-light.png",
+   "sha256": "23d313d67374b20de798de325d2dd8fbff5b9fd14b3b1dd1da8c42efbf7b190f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "23d313d67374b20de798de325d2dd8fbff5b9fd14b3b1dd1da8c42efbf7b190f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/pl/dark": {
+   "file": "website/src/images/screens/pl/clients-pl-dark.png",
+   "sha256": "3681cdde42de0d75dc8785d07da211f2a88548722a271be5f4c5692aba0cb469",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3681cdde42de0d75dc8785d07da211f2a88548722a271be5f4c5692aba0cb469",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/pl/light": {
+   "file": "website/src/images/screens/pl/clients-pl-light.png",
+   "sha256": "99513ef9cfa591763e0cf84fc8652ba12f724a6954104c4599e588440932f081",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "99513ef9cfa591763e0cf84fc8652ba12f724a6954104c4599e588440932f081",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/clients-pt-BR-dark.png",
+   "sha256": "c5d52ddbc462efdf6b9d215b7906f9a957b5fde387ed95a232eaa358a406f1fe",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c5d52ddbc462efdf6b9d215b7906f9a957b5fde387ed95a232eaa358a406f1fe",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "clients/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/clients-pt-BR-light.png",
+   "sha256": "fab8ec10f7702bb09a3db581628133a99423cdf4d160ac4a09f955d743c596c4",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "fab8ec10f7702bb09a3db581628133a99423cdf4d160ac4a09f955d743c596c4",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/de/dark": {
+   "file": "website/src/images/screens/de/compare-de-dark.png",
+   "sha256": "a65605ab9410557dad64e495fae2f18aeb1e47de383b56dbb8d2cedf8d5080f1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.7
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a65605ab9410557dad64e495fae2f18aeb1e47de383b56dbb8d2cedf8d5080f1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/de/light": {
+   "file": "website/src/images/screens/de/compare-de-light.png",
+   "sha256": "9d1e5dddde1466f7bd6aec6754faa95b03e9a13b9292d722adcfe858768a0de9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 27.1
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "9d1e5dddde1466f7bd6aec6754faa95b03e9a13b9292d722adcfe858768a0de9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/en/dark": {
+   "file": "website/src/images/screens/en/compare-en-dark.png",
+   "sha256": "8efaaa6f6f85b1c4f1ed13a2924abc4c71e3bb75779333bb6e560ae8c279db47",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 20.6
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8efaaa6f6f85b1c4f1ed13a2924abc4c71e3bb75779333bb6e560ae8c279db47",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/en/light": {
+   "file": "website/src/images/screens/en/compare-en-light.png",
+   "sha256": "cba2ad3612616328108b0f5e6e81ad484ad3e0d5eec795f65d1f8fdfa7399837",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 240.1,
+    "title_bar_luminance": 241.4,
+    "contrast": 26.5
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "cba2ad3612616328108b0f5e6e81ad484ad3e0d5eec795f65d1f8fdfa7399837",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/es/dark": {
+   "file": "website/src/images/screens/es/compare-es-dark.png",
+   "sha256": "818867667e212dd7d807b23714ef34b6c7d7fcb211585144106b2c40ad67cefc",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.7
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "818867667e212dd7d807b23714ef34b6c7d7fcb211585144106b2c40ad67cefc",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/es/light": {
+   "file": "website/src/images/screens/es/compare-es-light.png",
+   "sha256": "aafbcc45a0f192886f42e34e9e37a96fe3f482734de44c029f9011f5ed920168",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 27.2
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "aafbcc45a0f192886f42e34e9e37a96fe3f482734de44c029f9011f5ed920168",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/pl/dark": {
+   "file": "website/src/images/screens/pl/compare-pl-dark.png",
+   "sha256": "8b542fb360527d05b44af6368796d8803fe7dda68ae2317a6f03719f9767d072",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.2
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8b542fb360527d05b44af6368796d8803fe7dda68ae2317a6f03719f9767d072",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/pl/light": {
+   "file": "website/src/images/screens/pl/compare-pl-light.png",
+   "sha256": "407098ca104e79de1cc2a1495f97e76f0ec4c516fee8226b30e5cfbe7cea1b9b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 26.9
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "407098ca104e79de1cc2a1495f97e76f0ec4c516fee8226b30e5cfbe7cea1b9b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/compare-pt-BR-dark.png",
+   "sha256": "6435e4c5c00e38a9d04c05a00da6dc6199d5b76751f9b5f415cc999e5f07e6da",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.5
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6435e4c5c00e38a9d04c05a00da6dc6199d5b76751f9b5f415cc999e5f07e6da",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "compare/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/compare-pt-BR-light.png",
+   "sha256": "a68fb23dda421fab97164ec87b1e46ba38f893e2ad43d930ce724c94b01d37f1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 27.0
+   },
+   "blurred_areas": 2,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a68fb23dda421fab97164ec87b1e46ba38f893e2ad43d930ce724c94b01d37f1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/de/dark": {
+   "file": "website/src/images/screens/de/content-studio-de-dark.png",
+   "sha256": "4d86cbeaad2bd2331615f57c3e68065977aab3d5551016614c4c6d469499e93c",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "4d86cbeaad2bd2331615f57c3e68065977aab3d5551016614c4c6d469499e93c",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/de/light": {
+   "file": "website/src/images/screens/de/content-studio-de-light.png",
+   "sha256": "f59b031916b1c2a45b535a4fa67d416eb94d90930960f5cc5c3c46b202a58d89",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f59b031916b1c2a45b535a4fa67d416eb94d90930960f5cc5c3c46b202a58d89",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/en/dark": {
+   "file": "website/src/images/screens/en/content-studio-en-dark.png",
+   "sha256": "751bb56b641e3b1ef1d50be2f074fe16a4fbc89ae92fdcff71752ff466b50068",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "751bb56b641e3b1ef1d50be2f074fe16a4fbc89ae92fdcff71752ff466b50068",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/en/light": {
+   "file": "website/src/images/screens/en/content-studio-en-light.png",
+   "sha256": "b262f2d1cfc44b7872bf1163ebf31f5d530d688a9272cf977201fcd7205ba29a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b262f2d1cfc44b7872bf1163ebf31f5d530d688a9272cf977201fcd7205ba29a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/es/dark": {
+   "file": "website/src/images/screens/es/content-studio-es-dark.png",
+   "sha256": "126dfcaa61584da29c7de6647461f8ab621a241ef88892c587cfeb5e79667629",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "126dfcaa61584da29c7de6647461f8ab621a241ef88892c587cfeb5e79667629",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/es/light": {
+   "file": "website/src/images/screens/es/content-studio-es-light.png",
+   "sha256": "76eb0bc58a426d9752826751071de34a00fa8d2684bf66c0b2d135f492373f64",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "76eb0bc58a426d9752826751071de34a00fa8d2684bf66c0b2d135f492373f64",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/pl/dark": {
+   "file": "website/src/images/screens/pl/content-studio-pl-dark.png",
+   "sha256": "0ae834f50ae2d758c80feba993d6fdf116d45b0c16e255194c2ba76d6a78e724",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.9
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "0ae834f50ae2d758c80feba993d6fdf116d45b0c16e255194c2ba76d6a78e724",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/pl/light": {
+   "file": "website/src/images/screens/pl/content-studio-pl-light.png",
+   "sha256": "c9e4fb6f303e930e874e13f10f0a7c4d24cbaee7051b8452b97bcb6ee0c5e3e6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c9e4fb6f303e930e874e13f10f0a7c4d24cbaee7051b8452b97bcb6ee0c5e3e6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/content-studio-pt-BR-dark.png",
+   "sha256": "eb6866bb0276f1ca6223b77fe4ec77bddd9d85b479517a720a8dbdf28178b086",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "eb6866bb0276f1ca6223b77fe4ec77bddd9d85b479517a720a8dbdf28178b086",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "content-studio/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/content-studio-pt-BR-light.png",
+   "sha256": "d9a505688bb6b606d87a39b720df75f7ab5537c422339e3800b0775fea4a287e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.6
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d9a505688bb6b606d87a39b720df75f7ab5537c422339e3800b0775fea4a287e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/de/dark": {
+   "file": "website/src/images/screens/de/duplicates-de-dark.png",
+   "sha256": "36f2648bf47fe401c77c0c2d0e1ef9f044eae86d09200158d758713ae1108485",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 47.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "36f2648bf47fe401c77c0c2d0e1ef9f044eae86d09200158d758713ae1108485",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/de/light": {
+   "file": "website/src/images/screens/de/duplicates-de-light.png",
+   "sha256": "61a91b2f3083d8b698dc14d388f997154093e0c302bb5cfd7236ba746b8fa7a5",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 238.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 37.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "61a91b2f3083d8b698dc14d388f997154093e0c302bb5cfd7236ba746b8fa7a5",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/en/dark": {
+   "file": "website/src/images/screens/en/duplicates-en-dark.png",
+   "sha256": "7a22db7e74be488f454c57cdaa48e70c35b3c96c11269518f908b1d222d92a40",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 30.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7a22db7e74be488f454c57cdaa48e70c35b3c96c11269518f908b1d222d92a40",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/en/light": {
+   "file": "website/src/images/screens/en/duplicates-en-light.png",
+   "sha256": "2468034627d37ed2fa1c9f25b613204ef0bb9e50fefa163d453c80eb21b283bc",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 36.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "2468034627d37ed2fa1c9f25b613204ef0bb9e50fefa163d453c80eb21b283bc",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/es/dark": {
+   "file": "website/src/images/screens/es/duplicates-es-dark.png",
+   "sha256": "f04b2f78bf411cf26bf28d4f0aa97f8d375ebd508f6633f3fa75719237e2e402",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 47.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 32.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f04b2f78bf411cf26bf28d4f0aa97f8d375ebd508f6633f3fa75719237e2e402",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/es/light": {
+   "file": "website/src/images/screens/es/duplicates-es-light.png",
+   "sha256": "cbfb89f4cb0577d3e6b3c6cfa54ebc26f27c8d824fa9e0de7dbfdb9bc8fce92f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 238.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 37.6
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "cbfb89f4cb0577d3e6b3c6cfa54ebc26f27c8d824fa9e0de7dbfdb9bc8fce92f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/pl/dark": {
+   "file": "website/src/images/screens/pl/duplicates-pl-dark.png",
+   "sha256": "0ec7fc4dafa1911647a1bed044bdbae1ffe7a69e83afe9d6adf7164aa08eafd8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.8,
+    "title_bar_luminance": 33.4,
+    "contrast": 32.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "0ec7fc4dafa1911647a1bed044bdbae1ffe7a69e83afe9d6adf7164aa08eafd8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/pl/light": {
+   "file": "website/src/images/screens/pl/duplicates-pl-light.png",
+   "sha256": "7435a257c94f113745882d2f93ae194f69bf3107917021b2760e9ac917a4cdf2",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 238.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 37.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7435a257c94f113745882d2f93ae194f69bf3107917021b2760e9ac917a4cdf2",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/duplicates-pt-BR-dark.png",
+   "sha256": "611749318807c3a7cb9beb64c787778d9f0b2668b4ca0e5e1b102f638488de54",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 47.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 32.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "611749318807c3a7cb9beb64c787778d9f0b2668b4ca0e5e1b102f638488de54",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "duplicates/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/duplicates-pt-BR-light.png",
+   "sha256": "200b761c2d90984a340a91d770b07fb68153797f4225e1f7d6145e70e2d8f554",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 238.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 37.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "200b761c2d90984a340a91d770b07fb68153797f4225e1f7d6145e70e2d8f554",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/de/dark": {
+   "file": "website/src/images/screens/de/extract-sprites-de-dark.png",
+   "sha256": "70da0811aa897d07241db31ef68136746634e0954ecf4a1f5d6f49439dca560f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "70da0811aa897d07241db31ef68136746634e0954ecf4a1f5d6f49439dca560f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/de/light": {
+   "file": "website/src/images/screens/de/extract-sprites-de-light.png",
+   "sha256": "b754dbb9fcf472695e7cbb5cc28a0d732e69c29e36744a5e88891854b2d2fc5d",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b754dbb9fcf472695e7cbb5cc28a0d732e69c29e36744a5e88891854b2d2fc5d",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/en/dark": {
+   "file": "website/src/images/screens/en/extract-sprites-en-dark.png",
+   "sha256": "c3483d5cb06c82222670b35ed0a31833b2de3de10c021dedbb5620435bb69d5e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c3483d5cb06c82222670b35ed0a31833b2de3de10c021dedbb5620435bb69d5e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/en/light": {
+   "file": "website/src/images/screens/en/extract-sprites-en-light.png",
+   "sha256": "21add56b0c2c398c2557c2dd435c0d8f9970c6b9915f95bd8a3e7fc03bd11b7e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "21add56b0c2c398c2557c2dd435c0d8f9970c6b9915f95bd8a3e7fc03bd11b7e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/es/dark": {
+   "file": "website/src/images/screens/es/extract-sprites-es-dark.png",
+   "sha256": "ac3d9ec1997347979008042686b606be1992adf98a48086f1af6c541d7c86c8b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "ac3d9ec1997347979008042686b606be1992adf98a48086f1af6c541d7c86c8b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/es/light": {
+   "file": "website/src/images/screens/es/extract-sprites-es-light.png",
+   "sha256": "17998f7a9013632fc960cbe2c0461ac32c21233128edc5dbec717851325f77bc",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "17998f7a9013632fc960cbe2c0461ac32c21233128edc5dbec717851325f77bc",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/pl/dark": {
+   "file": "website/src/images/screens/pl/extract-sprites-pl-dark.png",
+   "sha256": "daada124e28c9665f37397647013f662a3253affde15a4423c8743978ebb6c10",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "daada124e28c9665f37397647013f662a3253affde15a4423c8743978ebb6c10",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/pl/light": {
+   "file": "website/src/images/screens/pl/extract-sprites-pl-light.png",
+   "sha256": "4342f20a3eb449411e055772331157cab159752dcb8c3ea31b171d5673299d15",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "4342f20a3eb449411e055772331157cab159752dcb8c3ea31b171d5673299d15",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/extract-sprites-pt-BR-dark.png",
+   "sha256": "75eee67db3cfd442872ec535b365db012bc5f569e7ddbfc80d8abdb0b7a8ed57",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "75eee67db3cfd442872ec535b365db012bc5f569e7ddbfc80d8abdb0b7a8ed57",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "extract-sprites/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/extract-sprites-pt-BR-light.png",
+   "sha256": "348669fce8546a6467c3efc91eca36266f39c9fc88f412ec8ea13317d2835493",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 241.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "348669fce8546a6467c3efc91eca36266f39c9fc88f412ec8ea13317d2835493",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/de/dark": {
+   "file": "website/src/images/screens/de/home-de-dark.png",
+   "sha256": "4814af91e6d15ee402053585efc9af6abaeb9ef4f30c2e7f859de4e68ab859a0",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "4814af91e6d15ee402053585efc9af6abaeb9ef4f30c2e7f859de4e68ab859a0",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/de/light": {
+   "file": "website/src/images/screens/de/home-de-light.png",
+   "sha256": "eb3afa0aee3c180d00503059d796b0b56c8345c7d9f6b07867e7eb5bb9cea6ba",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "eb3afa0aee3c180d00503059d796b0b56c8345c7d9f6b07867e7eb5bb9cea6ba",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/en/dark": {
+   "file": "website/src/images/screens/en/home-en-dark.png",
+   "sha256": "c5312e1a62d3740bb09a15bd22df81cee0f4aff82d650863a36c888d248a0412",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 45.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c5312e1a62d3740bb09a15bd22df81cee0f4aff82d650863a36c888d248a0412",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/en/light": {
+   "file": "website/src/images/screens/en/home-en-light.png",
+   "sha256": "4b8be20f7b41db03a2c908de170ea5505d3b3711402e841c585deca47e65c281",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 243.1,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.2
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "4b8be20f7b41db03a2c908de170ea5505d3b3711402e841c585deca47e65c281",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/es/dark": {
+   "file": "website/src/images/screens/es/home-es-dark.png",
+   "sha256": "eef9aee8231a49ed429a3dfedc3f1485d472b9ff2196bcdbdddeb6500203ddf9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "eef9aee8231a49ed429a3dfedc3f1485d472b9ff2196bcdbdddeb6500203ddf9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/es/light": {
+   "file": "website/src/images/screens/es/home-es-light.png",
+   "sha256": "64d1f6d5c6ebee9e0ba8b089f2d367fad0de673d4e4568290d7c681153799e8a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 34.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "64d1f6d5c6ebee9e0ba8b089f2d367fad0de673d4e4568290d7c681153799e8a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/pl/dark": {
+   "file": "website/src/images/screens/pl/home-pl-dark.png",
+   "sha256": "c636f608cbb2df616b35d5e2c2b48be2b92b4b77e0110edba6a1ea7389f6a354",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.3
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c636f608cbb2df616b35d5e2c2b48be2b92b4b77e0110edba6a1ea7389f6a354",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/pl/light": {
+   "file": "website/src/images/screens/pl/home-pl-light.png",
+   "sha256": "e382914f17bd177741b7c021ce5f19623f43a75970813546cdb164adcbc22963",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e382914f17bd177741b7c021ce5f19623f43a75970813546cdb164adcbc22963",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/home-pt-BR-dark.png",
+   "sha256": "726424865ea98b89a761319bba7542260818fda881e622e1d9dbefd35fcc7f9f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.5
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "726424865ea98b89a761319bba7542260818fda881e622e1d9dbefd35fcc7f9f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "home/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/home-pt-BR-light.png",
+   "sha256": "d452fee6b9a362d8d43928979b4a6a83bb4d3eb70ec28e9b42525787a6212299",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.6
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d452fee6b9a362d8d43928979b4a6a83bb4d3eb70ec28e9b42525787a6212299",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/de/dark": {
+   "file": "website/src/images/screens/de/house-images-de-dark.png",
+   "sha256": "b9dfb050530db76f3a54e917dbda8f4064667c8bd439e57c9368b1eda3146e03",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 55.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 32.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b9dfb050530db76f3a54e917dbda8f4064667c8bd439e57c9368b1eda3146e03",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/de/light": {
+   "file": "website/src/images/screens/de/house-images-de-light.png",
+   "sha256": "293e93f6d83900dece7e8a96f20fa6fb16eadedb9c18c10f6f7431937d94f0e1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 221.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.8
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "293e93f6d83900dece7e8a96f20fa6fb16eadedb9c18c10f6f7431937d94f0e1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/en/dark": {
+   "file": "website/src/images/screens/en/house-images-en-dark.png",
+   "sha256": "7bbbe6b045d58ff8f9525ff9fb1b7a165cb76ed999cd402277da797563599ec6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 55.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 32.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7bbbe6b045d58ff8f9525ff9fb1b7a165cb76ed999cd402277da797563599ec6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/en/light": {
+   "file": "website/src/images/screens/en/house-images-en-light.png",
+   "sha256": "296a096c50ff771432ac946019dd9bc7305ff45cadbf7e4b30943a2814013ea6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 222.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "296a096c50ff771432ac946019dd9bc7305ff45cadbf7e4b30943a2814013ea6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/es/dark": {
+   "file": "website/src/images/screens/es/house-images-es-dark.png",
+   "sha256": "25b9508fcf64345465680b259caa21ec98bc28de4dee36b5563d5c591c1393fc",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 55.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 33.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "25b9508fcf64345465680b259caa21ec98bc28de4dee36b5563d5c591c1393fc",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/es/light": {
+   "file": "website/src/images/screens/es/house-images-es-light.png",
+   "sha256": "b75d9fc61ee7cac503e3cf199d4333910b008a867110806f4119dec0435174e6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 221.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b75d9fc61ee7cac503e3cf199d4333910b008a867110806f4119dec0435174e6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/pl/dark": {
+   "file": "website/src/images/screens/pl/house-images-pl-dark.png",
+   "sha256": "48f178cc490d1209984d6760d53a9c615f2a2f65fc7591ae5b2eaa3804c82e76",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 55.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "48f178cc490d1209984d6760d53a9c615f2a2f65fc7591ae5b2eaa3804c82e76",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/pl/light": {
+   "file": "website/src/images/screens/pl/house-images-pl-light.png",
+   "sha256": "290ee8ce6a974929c042d3e9e087ae86f27c6deabc32940f5cb2e724d34ac162",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 221.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "290ee8ce6a974929c042d3e9e087ae86f27c6deabc32940f5cb2e724d34ac162",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/house-images-pt-BR-dark.png",
+   "sha256": "a0ada574f7c5148bee8fc6e077a8de36ec01a918b9ea4d5f32db1ec15a29e5ec",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 55.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a0ada574f7c5148bee8fc6e077a8de36ec01a918b9ea4d5f32db1ec15a29e5ec",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "house-images/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/house-images-pt-BR-light.png",
+   "sha256": "f3d93cf95bb3732090d468241dcfd3e338f19da59b617dbe05627e4dcc84f0e0",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 221.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 48.8
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f3d93cf95bb3732090d468241dcfd3e338f19da59b617dbe05627e4dcc84f0e0",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/de/dark": {
+   "file": "website/src/images/screens/de/infobox-de-dark.png",
+   "sha256": "66ad92c885f491ad246cbc1856c214dbefa5cf952bd5608ab8817020025287ea",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 30.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "66ad92c885f491ad246cbc1856c214dbefa5cf952bd5608ab8817020025287ea",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/de/light": {
+   "file": "website/src/images/screens/de/infobox-de-light.png",
+   "sha256": "175617ca92fbc0e27305d8b6fef10222228c18d749caa3b62bf61691e916b04a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 232.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 36.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "175617ca92fbc0e27305d8b6fef10222228c18d749caa3b62bf61691e916b04a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/en/dark": {
+   "file": "website/src/images/screens/en/infobox-en-dark.png",
+   "sha256": "60d0c804d9829ca635a1b7b8679b4d1b42aa8ffc02a2d45c131d06e2a4370a6b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "60d0c804d9829ca635a1b7b8679b4d1b42aa8ffc02a2d45c131d06e2a4370a6b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/en/light": {
+   "file": "website/src/images/screens/en/infobox-en-light.png",
+   "sha256": "7d79d64fb0606f0d6197fe7b82bf96889dd600a7d512a6b27509c2344b6f3067",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 233.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 35.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7d79d64fb0606f0d6197fe7b82bf96889dd600a7d512a6b27509c2344b6f3067",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/es/dark": {
+   "file": "website/src/images/screens/es/infobox-es-dark.png",
+   "sha256": "8ff2a0fade381d3caa2863be33f019be9e37cc4290c9aadd65d31bdbf17e1179",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 30.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8ff2a0fade381d3caa2863be33f019be9e37cc4290c9aadd65d31bdbf17e1179",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/es/light": {
+   "file": "website/src/images/screens/es/infobox-es-light.png",
+   "sha256": "a67a598fe09861047c833df17a16da52f04a8e1690d3a6ca0942fff600285b08",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 232.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 35.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a67a598fe09861047c833df17a16da52f04a8e1690d3a6ca0942fff600285b08",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/pl/dark": {
+   "file": "website/src/images/screens/pl/infobox-pl-dark.png",
+   "sha256": "ec9da61232effc8cd18fb57999ece1595fefa78c6af9a5de0c227282f61cbf2a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.0,
+    "title_bar_luminance": 33.4,
+    "contrast": 30.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "ec9da61232effc8cd18fb57999ece1595fefa78c6af9a5de0c227282f61cbf2a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/pl/light": {
+   "file": "website/src/images/screens/pl/infobox-pl-light.png",
+   "sha256": "88f5ab3f51e61641c8d37e7f2afa049f64e10dffbdb2e31d9b2e90424671ba5c",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 232.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 35.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "88f5ab3f51e61641c8d37e7f2afa049f64e10dffbdb2e31d9b2e90424671ba5c",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/infobox-pt-BR-dark.png",
+   "sha256": "cdb6c19c162a3d11c24848b2d3b85e9e039bc9b1f4a0238d0e9823bab6933554",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 44.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 30.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "cdb6c19c162a3d11c24848b2d3b85e9e039bc9b1f4a0238d0e9823bab6933554",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "infobox/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/infobox-pt-BR-light.png",
+   "sha256": "1d01a4c3dae69c7790dc634d794833c2d62b08b6ff14c11391ec4e754cf7f878",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 232.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 35.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "1d01a4c3dae69c7790dc634d794833c2d62b08b6ff14c11391ec4e754cf7f878",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/de/dark": {
+   "file": "website/src/images/screens/de/item-catalog-de-dark.png",
+   "sha256": "d5f191bb6039b6dc2c5274e8855688ed6e97848a3464c1afacd93f0f1fdd2ed9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.9
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d5f191bb6039b6dc2c5274e8855688ed6e97848a3464c1afacd93f0f1fdd2ed9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/de/light": {
+   "file": "website/src/images/screens/de/item-catalog-de-light.png",
+   "sha256": "38861a22df4bd3c8b6753e38f3772fcb27184e5608832143ad848e8bf640ce55",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "38861a22df4bd3c8b6753e38f3772fcb27184e5608832143ad848e8bf640ce55",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/en/dark": {
+   "file": "website/src/images/screens/en/item-catalog-en-dark.png",
+   "sha256": "917f96c681beea86c31f7ca6b10801c995d97330029202dad2b8eb07a2ec1a71",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "917f96c681beea86c31f7ca6b10801c995d97330029202dad2b8eb07a2ec1a71",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/en/light": {
+   "file": "website/src/images/screens/en/item-catalog-en-light.png",
+   "sha256": "8e8459f7b408e9d65f5255d405af0bcb9f1a139342fc24dafefca4def73e7cbb",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 243.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8e8459f7b408e9d65f5255d405af0bcb9f1a139342fc24dafefca4def73e7cbb",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/es/dark": {
+   "file": "website/src/images/screens/es/item-catalog-es-dark.png",
+   "sha256": "698ab0883fffe1187eacb87a7bfc50a1880cf0e2f13d8c53e8ad7972f87738fe",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.8,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.1
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "698ab0883fffe1187eacb87a7bfc50a1880cf0e2f13d8c53e8ad7972f87738fe",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/es/light": {
+   "file": "website/src/images/screens/es/item-catalog-es-light.png",
+   "sha256": "f6482fb9e63b3ffb53f9c42705d051ecfdcc5dcb28711aac5914edf3c392afa9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.6
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f6482fb9e63b3ffb53f9c42705d051ecfdcc5dcb28711aac5914edf3c392afa9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/pl/dark": {
+   "file": "website/src/images/screens/pl/item-catalog-pl-dark.png",
+   "sha256": "12821ffd89e3462c3a446b31795a573b76389c843e7eeaa6ba558f685a4d8aa7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "12821ffd89e3462c3a446b31795a573b76389c843e7eeaa6ba558f685a4d8aa7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/pl/light": {
+   "file": "website/src/images/screens/pl/item-catalog-pl-light.png",
+   "sha256": "6c1588149c7c24c91313ab10c14df05ad884873bc84196625aa05bdfcab957ee",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.3
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6c1588149c7c24c91313ab10c14df05ad884873bc84196625aa05bdfcab957ee",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/item-catalog-pt-BR-dark.png",
+   "sha256": "54745ef06c41a111b85eab9c5fca1981251363912a7b255709b0e85ba4e790fd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.9
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "54745ef06c41a111b85eab9c5fca1981251363912a7b255709b0e85ba4e790fd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "item-catalog/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/item-catalog-pt-BR-light.png",
+   "sha256": "86d3cd0ca974c905ab5abcc71af0e0cfc2111953f891a001ff8c938c14f6c644",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 242.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "86d3cd0ca974c905ab5abcc71af0e0cfc2111953f891a001ff8c938c14f6c644",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/de/dark": {
+   "file": "website/src/images/screens/de/map-tools-de-dark.png",
+   "sha256": "ac3837b6e9249eb9d7688f9a75d98fce520b9ab96c2ef3170703a4bfc3fea9be",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 22.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "ac3837b6e9249eb9d7688f9a75d98fce520b9ab96c2ef3170703a4bfc3fea9be",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/de/light": {
+   "file": "website/src/images/screens/de/map-tools-de-light.png",
+   "sha256": "8789d7509744ade7730b0909ec80d7a568b7e1a24dd15dc615905b3e4e0755cd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 245.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8789d7509744ade7730b0909ec80d7a568b7e1a24dd15dc615905b3e4e0755cd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/en/dark": {
+   "file": "website/src/images/screens/en/map-tools-en-dark.png",
+   "sha256": "25ef066fcc06b8723b77c0ef0686802a85459328d322749ed2023933763fd5cf",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "25ef066fcc06b8723b77c0ef0686802a85459328d322749ed2023933763fd5cf",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/en/light": {
+   "file": "website/src/images/screens/en/map-tools-en-light.png",
+   "sha256": "c1743f24d9170261127a203a2051fdd025d5039ab9e66404f890f8f4b8d44ab8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 245.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 28.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c1743f24d9170261127a203a2051fdd025d5039ab9e66404f890f8f4b8d44ab8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/es/dark": {
+   "file": "website/src/images/screens/es/map-tools-es-dark.png",
+   "sha256": "36271a50f6c8a36f5d0505897a8f3b8350b682cb947488882c520acca7e36f38",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 22.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "36271a50f6c8a36f5d0505897a8f3b8350b682cb947488882c520acca7e36f38",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/es/light": {
+   "file": "website/src/images/screens/es/map-tools-es-light.png",
+   "sha256": "b05d06eb6443b6a3aa7020023e63e884bdd41c2dd5a940bdff811d6b878cf79a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 245.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b05d06eb6443b6a3aa7020023e63e884bdd41c2dd5a940bdff811d6b878cf79a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/pl/dark": {
+   "file": "website/src/images/screens/pl/map-tools-pl-dark.png",
+   "sha256": "c02f0615e53a060a4112d0f0558114fe03c414313e4a3fb447268a34410e8095",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 22.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c02f0615e53a060a4112d0f0558114fe03c414313e4a3fb447268a34410e8095",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/pl/light": {
+   "file": "website/src/images/screens/pl/map-tools-pl-light.png",
+   "sha256": "2da65ca3f6fb336b3ce09ca1784e6c1c294da3c35eacf59e720f0b2e2b514f05",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 245.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 28.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "2da65ca3f6fb336b3ce09ca1784e6c1c294da3c35eacf59e720f0b2e2b514f05",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/map-tools-pt-BR-dark.png",
+   "sha256": "9138508bcf83bc7ffda84760f4cbc72d0e56a7652ade5d541fc0dcdb009ff115",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 22.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "9138508bcf83bc7ffda84760f4cbc72d0e56a7652ade5d541fc0dcdb009ff115",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "map-tools/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/map-tools-pt-BR-light.png",
+   "sha256": "e8ffd59368cacae43a66d999a7d0c5ead79c9399b5d57ae9bcdfbaeb8a789029",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 245.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e8ffd59368cacae43a66d999a7d0c5ead79c9399b5d57ae9bcdfbaeb8a789029",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/de/dark": {
+   "file": "website/src/images/screens/de/profiles-de-dark.png",
+   "sha256": "dbae428eb0341477f094508d8931a138f0a05b24cc9778c663fa51c0f443604e",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "dbae428eb0341477f094508d8931a138f0a05b24cc9778c663fa51c0f443604e",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/de/light": {
+   "file": "website/src/images/screens/de/profiles-de-light.png",
+   "sha256": "1c091a8634a0637a93f4c36e30c6b63eb0714a843111fbef4f22182075942cf9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "1c091a8634a0637a93f4c36e30c6b63eb0714a843111fbef4f22182075942cf9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/en/dark": {
+   "file": "website/src/images/screens/en/profiles-en-dark.png",
+   "sha256": "9326e9b92340412f1a7fab5e1547a1a39585e795f0e1490e8010927f816e7cbb",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.5
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "9326e9b92340412f1a7fab5e1547a1a39585e795f0e1490e8010927f816e7cbb",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/en/light": {
+   "file": "website/src/images/screens/en/profiles-en-light.png",
+   "sha256": "e89ef81435f4d9ed370619df1c75d8a498f1eb1b67642d940eb5a220c8342c4b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 240.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e89ef81435f4d9ed370619df1c75d8a498f1eb1b67642d940eb5a220c8342c4b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/es/dark": {
+   "file": "website/src/images/screens/es/profiles-es-dark.png",
+   "sha256": "3d845a51a094e140a79b92082dae6acc721ef3523146e8bd33194a38ad7e17c6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.25,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-es-dark.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3d845a51a094e140a79b92082dae6acc721ef3523146e8bd33194a38ad7e17c6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/es/light": {
+   "file": "website/src/images/screens/es/profiles-es-light.png",
+   "sha256": "c7c2e5e23179b7efeb1b31c537907ac2e0d6d15f8139fc9150b101bf65171778",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 33.0
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.259,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-es-light.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c7c2e5e23179b7efeb1b31c537907ac2e0d6d15f8139fc9150b101bf65171778",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/pl/dark": {
+   "file": "website/src/images/screens/pl/profiles-pl-dark.png",
+   "sha256": "3b130fcd42be52d884a33df27349b60a5243d50ff08c374cad69804bbbea16f7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.204,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-pl-dark.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3b130fcd42be52d884a33df27349b60a5243d50ff08c374cad69804bbbea16f7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/pl/light": {
+   "file": "website/src/images/screens/pl/profiles-pl-light.png",
+   "sha256": "acafebffb98bd2d4d497ab777eea3ab4890e58b7f4f1a1e048352d6635f40df3",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.7
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.218,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-pl-light.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "acafebffb98bd2d4d497ab777eea3ab4890e58b7f4f1a1e048352d6635f40df3",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/profiles-pt-BR-dark.png",
+   "sha256": "171e552fe6fe74a09ed1868ce2557df439e634bc724c64d0d7bd895d237a4eeb",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 43.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.4
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.246,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-pt-BR-dark.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "171e552fe6fe74a09ed1868ce2557df439e634bc724c64d0d7bd895d237a4eeb",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "profiles/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/profiles-pt-BR-light.png",
+   "sha256": "698b4cc503820beaf738dd22912d6222c9434c4d47635e27767ee291d8953112",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.8
+   },
+   "blurred_areas": 0,
+   "diff_vs_previous": {
+    "changed_percent": 2.258,
+    "box": [
+     254,
+     243,
+     1567,
+     783
+    ],
+    "diff_image": "website/screenshots/.work/diff/profiles-pt-BR-light.png"
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "698b4cc503820beaf738dd22912d6222c9434c4d47635e27767ee291d8953112",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/de/dark": {
+   "file": "website/src/images/screens/de/rcc-editor-de-dark.png",
+   "sha256": "b0efbbb28d7216c7c150987a494266600af75db005133c6d1a3cec38b094467b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b0efbbb28d7216c7c150987a494266600af75db005133c6d1a3cec38b094467b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/de/light": {
+   "file": "website/src/images/screens/de/rcc-editor-de-light.png",
+   "sha256": "a4dcd6a92a0fcace5166a16836201a1413adee2a5ed050b7c061c0bbd738c10c",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.1,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a4dcd6a92a0fcace5166a16836201a1413adee2a5ed050b7c061c0bbd738c10c",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/en/dark": {
+   "file": "website/src/images/screens/en/rcc-editor-en-dark.png",
+   "sha256": "75a2fe74320ebbc85f961882b835763f45d0937fc390497dfbfc8ef1ebf89b06",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 28.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "75a2fe74320ebbc85f961882b835763f45d0937fc390497dfbfc8ef1ebf89b06",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/en/light": {
+   "file": "website/src/images/screens/en/rcc-editor-en-light.png",
+   "sha256": "aabe95b7bfb66a8f90e89cff3c8ce7d6d292c6e444eb3d47ada58452fb4f78a7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "aabe95b7bfb66a8f90e89cff3c8ce7d6d292c6e444eb3d47ada58452fb4f78a7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/es/dark": {
+   "file": "website/src/images/screens/es/rcc-editor-es-dark.png",
+   "sha256": "2b3d7738c534aaf34ebb479efd6ebce78a0f03e171cdd5b88e0ba159652214e6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "2b3d7738c534aaf34ebb479efd6ebce78a0f03e171cdd5b88e0ba159652214e6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/es/light": {
+   "file": "website/src/images/screens/es/rcc-editor-es-light.png",
+   "sha256": "6126f7d537c8b9ab1e40c29fa9ec3203a5d2e529620a39ea73f9d170933f7074",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6126f7d537c8b9ab1e40c29fa9ec3203a5d2e529620a39ea73f9d170933f7074",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/pl/dark": {
+   "file": "website/src/images/screens/pl/rcc-editor-pl-dark.png",
+   "sha256": "da40065baa810e87d8db0d87930cd931a11d5b6fb1e3858ae6742c9308f87113",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "da40065baa810e87d8db0d87930cd931a11d5b6fb1e3858ae6742c9308f87113",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/pl/light": {
+   "file": "website/src/images/screens/pl/rcc-editor-pl-light.png",
+   "sha256": "fb2b556164aa3ac70c44c5c6f26a8bca8a20414ba595b8d621a9e05a96ba3c96",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "fb2b556164aa3ac70c44c5c6f26a8bca8a20414ba595b8d621a9e05a96ba3c96",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/rcc-editor-pt-BR-dark.png",
+   "sha256": "a4ccad14e244dd252bb53eb7158160a151b23598a228ac36b38dfcc1902005d8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 46.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 29.0
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a4ccad14e244dd252bb53eb7158160a151b23598a228ac36b38dfcc1902005d8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "rcc-editor/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/rcc-editor-pt-BR-light.png",
+   "sha256": "70f1bb3eceb97ead559358f631766a4d8745278b896cd0abe0259092bdf506bd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 239.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.5
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "70f1bb3eceb97ead559358f631766a4d8745278b896cd0abe0259092bdf506bd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/de/dark": {
+   "file": "website/src/images/screens/de/settings-attribution-de-dark.png",
+   "sha256": "95715b9fda7049418dbfa6a48b06c4633d060fe8591604293ddcea07893d2b8a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 27.0
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "95715b9fda7049418dbfa6a48b06c4633d060fe8591604293ddcea07893d2b8a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/de/light": {
+   "file": "website/src/images/screens/de/settings-attribution-de-light.png",
+   "sha256": "0212d0975c214bd7d3d614635c5fb4fd7d7baba4469da450b950fc7aa9bf52ca",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.0,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.0
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "0212d0975c214bd7d3d614635c5fb4fd7d7baba4469da450b950fc7aa9bf52ca",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/en/dark": {
+   "file": "website/src/images/screens/en/settings-attribution-en-dark.png",
+   "sha256": "35eb3f017e3ed15de17edc3494d855efbc5ce76b719a07fef5523235219ddec2",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.2
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "35eb3f017e3ed15de17edc3494d855efbc5ce76b719a07fef5523235219ddec2",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/en/light": {
+   "file": "website/src/images/screens/en/settings-attribution-en-light.png",
+   "sha256": "6bf3e0f8226f417431f75af8cc32f7c8f7ec5db0c13dc93a954e01b0e9364d4f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.9,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.7
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "6bf3e0f8226f417431f75af8cc32f7c8f7ec5db0c13dc93a954e01b0e9364d4f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/es/dark": {
+   "file": "website/src/images/screens/es/settings-attribution-es-dark.png",
+   "sha256": "1193f4e17fbd9f79e05efc2bf186b08282cfc36d7c81adbb7134c2fca76f56a8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.9
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "1193f4e17fbd9f79e05efc2bf186b08282cfc36d7c81adbb7134c2fca76f56a8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/es/light": {
+   "file": "website/src/images/screens/es/settings-attribution-es-light.png",
+   "sha256": "24466b7584c402391f2224a7da1aab7c97e00f91c8da3a5bb94e45060e3d7a87",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.1,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.9
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "24466b7584c402391f2224a7da1aab7c97e00f91c8da3a5bb94e45060e3d7a87",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/pl/dark": {
+   "file": "website/src/images/screens/pl/settings-attribution-pl-dark.png",
+   "sha256": "e930047331243399504bc3c85f3008366a90d78ebe1d2244e67ea4a2b734c5d1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.5,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.8
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "e930047331243399504bc3c85f3008366a90d78ebe1d2244e67ea4a2b734c5d1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/pl/light": {
+   "file": "website/src/images/screens/pl/settings-attribution-pl-light.png",
+   "sha256": "75f78ac514a73001fac60766e491f1a2c80ce6c2850d42e7ab1d0fca946041a7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.1,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.8
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "75f78ac514a73001fac60766e491f1a2c80ce6c2850d42e7ab1d0fca946041a7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/settings-attribution-pt-BR-dark.png",
+   "sha256": "aea2f08facae03485402bdaf0eae78d97387e1c3011dae5ffdc1431c43c2a9ed",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 26.4
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "aea2f08facae03485402bdaf0eae78d97387e1c3011dae5ffdc1431c43c2a9ed",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings-attribution/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/settings-attribution-pt-BR-light.png",
+   "sha256": "f40418c4e664aaa06e5539f01a57b2db1069beba11a0eff3c63f7e74f71772dd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.6
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f40418c4e664aaa06e5539f01a57b2db1069beba11a0eff3c63f7e74f71772dd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/de/dark": {
+   "file": "website/src/images/screens/de/settings-de-dark.png",
+   "sha256": "712516b923a25acab9ec0f09ba61a52cb3cf966f29a862843b8f1354ce89aff1",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.4
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "712516b923a25acab9ec0f09ba61a52cb3cf966f29a862843b8f1354ce89aff1",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/de/light": {
+   "file": "website/src/images/screens/de/settings-de-light.png",
+   "sha256": "b94845a26dd71e98c911d0b6194f8a182ae160e792807a63473a4f1bbe131bc7",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.2
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b94845a26dd71e98c911d0b6194f8a182ae160e792807a63473a4f1bbe131bc7",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/en/dark": {
+   "file": "website/src/images/screens/en/settings-en-dark.png",
+   "sha256": "3a3b6e13dd7675ff0000da146c1f696b090dce4c8aaaf5ae03e020ec7acfcc9f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 41.6,
+    "title_bar_luminance": 33.4,
+    "contrast": 23.4
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3a3b6e13dd7675ff0000da146c1f696b090dce4c8aaaf5ae03e020ec7acfcc9f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/en/light": {
+   "file": "website/src/images/screens/en/settings-en-light.png",
+   "sha256": "b01e3f5eef5e47b9957ef9a99e0757c0cd81f266570206a731cec7860788f875",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 238.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 28.8
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b01e3f5eef5e47b9957ef9a99e0757c0cd81f266570206a731cec7860788f875",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/es/dark": {
+   "file": "website/src/images/screens/es/settings-es-dark.png",
+   "sha256": "edbc16ac4a96a96648e4f8bf5008e248a035b4da597dbff55cc54e658377f587",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 24.9
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "edbc16ac4a96a96648e4f8bf5008e248a035b4da597dbff55cc54e658377f587",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/es/light": {
+   "file": "website/src/images/screens/es/settings-es-light.png",
+   "sha256": "0a6ee138406e0a8a4b0ed979bc22b4764ebd7023e5f32b432b915c15d2ff772a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.8
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "0a6ee138406e0a8a4b0ed979bc22b4764ebd7023e5f32b432b915c15d2ff772a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/pl/dark": {
+   "file": "website/src/images/screens/pl/settings-pl-dark.png",
+   "sha256": "036a1786993aebf3e5a02b2615f63e4a2cf67b007ff5fa3736410c1b407c5c53",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.0
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "036a1786993aebf3e5a02b2615f63e4a2cf67b007ff5fa3736410c1b407c5c53",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/pl/light": {
+   "file": "website/src/images/screens/pl/settings-pl-light.png",
+   "sha256": "f721f0ced499b637b22d3b8a4107335656a941f75506cd2bcdff42daf0cf03de",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.5,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.8
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f721f0ced499b637b22d3b8a4107335656a941f75506cd2bcdff42daf0cf03de",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/settings-pt-BR-dark.png",
+   "sha256": "b34b4ac3bf9cc1447373ea5578e9229a2371d7ff304d4b5a5994fc0faab0cbbd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.1,
+    "title_bar_luminance": 33.4,
+    "contrast": 24.6
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b34b4ac3bf9cc1447373ea5578e9229a2371d7ff304d4b5a5994fc0faab0cbbd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "settings/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/settings-pt-BR-light.png",
+   "sha256": "7326ff1dc12037f67aa2c39a9f4ca1a526ab31203f97daf4bbad1c2bf861b51f",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 237.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 29.7
+   },
+   "blurred_areas": 11,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "7326ff1dc12037f67aa2c39a9f4ca1a526ab31203f97daf4bbad1c2bf861b51f",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/de/dark": {
+   "file": "website/src/images/screens/de/sounds-de-dark.png",
+   "sha256": "205b37c6a903273e4d5c87d677bccfcc8b50b270f3e21d7494de0443ae68c735",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "205b37c6a903273e4d5c87d677bccfcc8b50b270f3e21d7494de0443ae68c735",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/de/light": {
+   "file": "website/src/images/screens/de/sounds-de-light.png",
+   "sha256": "c9a440841b58f70a8fc78a438c0d81a230499222ad82224e6328e7d27eedd7a6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "c9a440841b58f70a8fc78a438c0d81a230499222ad82224e6328e7d27eedd7a6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/en/dark": {
+   "file": "website/src/images/screens/en/sounds-en-dark.png",
+   "sha256": "26acd821f73cb0b6c77123f08f1f6e44ad75d905dfa632b85a492ab5757b3180",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.7,
+    "title_bar_luminance": 33.4,
+    "contrast": 24.9
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "26acd821f73cb0b6c77123f08f1f6e44ad75d905dfa632b85a492ab5757b3180",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/en/light": {
+   "file": "website/src/images/screens/en/sounds-en-light.png",
+   "sha256": "bc402d1cd3cf0602da3bdc37a25f978f4aa943406f3d134809a0deee0b59f45a",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.8,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "bc402d1cd3cf0602da3bdc37a25f978f4aa943406f3d134809a0deee0b59f45a",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/es/dark": {
+   "file": "website/src/images/screens/es/sounds-es-dark.png",
+   "sha256": "bb83eab0e65e32a012847a219431506c550f523dac00726629f2b17f4f9c74c6",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "bb83eab0e65e32a012847a219431506c550f523dac00726629f2b17f4f9c74c6",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/es/light": {
+   "file": "website/src/images/screens/es/sounds-es-light.png",
+   "sha256": "1a39195bb31b38ad3c0dfe67aa1f442094bbf16bc9d47b991642888d1014ed17",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.7
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "1a39195bb31b38ad3c0dfe67aa1f442094bbf16bc9d47b991642888d1014ed17",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/pl/dark": {
+   "file": "website/src/images/screens/pl/sounds-pl-dark.png",
+   "sha256": "11951c032945a886c3000c0a8cbb1eaf5503cb5f2e419d59757b814cf07ef535",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "11951c032945a886c3000c0a8cbb1eaf5503cb5f2e419d59757b814cf07ef535",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/pl/light": {
+   "file": "website/src/images/screens/pl/sounds-pl-light.png",
+   "sha256": "9d804dfaa407d5b9467057782d4e41d566f957bccc56254dc343d4b1f728c637",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.6,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "9d804dfaa407d5b9467057782d4e41d566f957bccc56254dc343d4b1f728c637",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/sounds-pt-BR-dark.png",
+   "sha256": "ba6c77baaa2011a4a97510a89eafc9d1d216146c9b1199a67d2a357a329f9066",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.9,
+    "title_bar_luminance": 33.4,
+    "contrast": 25.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "ba6c77baaa2011a4a97510a89eafc9d1d216146c9b1199a67d2a357a329f9066",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "sounds/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/sounds-pt-BR-light.png",
+   "sha256": "2a53629c53c0f5b18c5e27977e8579384661e68a592d8b32ccdf9677e1524efe",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.7,
+    "title_bar_luminance": 241.4,
+    "contrast": 30.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "2a53629c53c0f5b18c5e27977e8579384661e68a592d8b32ccdf9677e1524efe",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/de/dark": {
+   "file": "website/src/images/screens/de/static-data-de-dark.png",
+   "sha256": "8ba16f08cf0e5efccad3b1ad5fc71913f1f93deee38c41bad1b8e894ff9a9fd9",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "d2f3478844903ce5",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8ba16f08cf0e5efccad3b1ad5fc71913f1f93deee38c41bad1b8e894ff9a9fd9",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/de/light": {
+   "file": "website/src/images/screens/de/static-data-de-light.png",
+   "sha256": "fad51041f7a312a69b9e4dbc539a66f3a208ed11ee6c1b28f614addaf7701c9c",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "13bed96bc27f3ce6",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "609f7822360baf05",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.2,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "fad51041f7a312a69b9e4dbc539a66f3a208ed11ee6c1b28f614addaf7701c9c",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/en/dark": {
+   "file": "website/src/images/screens/en/static-data-en-dark.png",
+   "sha256": "3e7821b4065bc2d85ccc6975abd045ea448cfba378b4fd7606fe8ab066aa844b",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "3cc1ee8c681a05dd",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.2,
+    "title_bar_luminance": 33.4,
+    "contrast": 20.6
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "3e7821b4065bc2d85ccc6975abd045ea448cfba378b4fd7606fe8ab066aa844b",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/en/light": {
+   "file": "website/src/images/screens/en/static-data-en-light.png",
+   "sha256": "a0dc6eef436cb75b5a71a04f2bad6faf6c8fdb91fd14d2f8bdadb7e29d03a0bd",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a35d3eea79cc935e",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "d620a30aec1c8eb4",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.4,
+    "title_bar_luminance": 241.4,
+    "contrast": 31.8
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "a0dc6eef436cb75b5a71a04f2bad6faf6c8fdb91fd14d2f8bdadb7e29d03a0bd",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/es/dark": {
+   "file": "website/src/images/screens/es/static-data-es-dark.png",
+   "sha256": "b74979c2ee8c979c6839c180e4790a1d4995706c5409f3a1ef2d770e3044dd98",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "a294838b88fcf010",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "b74979c2ee8c979c6839c180e4790a1d4995706c5409f3a1ef2d770e3044dd98",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/es/light": {
+   "file": "website/src/images/screens/es/static-data-es-light.png",
+   "sha256": "d859ba4b721d53bd7ffb1f8fb646a87157ce17e0de67f42768f065a30832d1c8",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "4a89559c0d2aaca7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7acf3fb5f98ed15d",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "d859ba4b721d53bd7ffb1f8fb646a87157ce17e0de67f42768f065a30832d1c8",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/pl/dark": {
+   "file": "website/src/images/screens/pl/static-data-pl-dark.png",
+   "sha256": "8bf1d39a601a94f082dbc949bf2fb29d8b021f841ed216b02ac3a6f734f61347",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b8544feb5051f0c7",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.3,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.3
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "8bf1d39a601a94f082dbc949bf2fb29d8b021f841ed216b02ac3a6f734f61347",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/pl/light": {
+   "file": "website/src/images/screens/pl/static-data-pl-light.png",
+   "sha256": "492b4e3e022bce281364e6b4437b29a37fdcb08b98ca9d24e5ae82693bb06b41",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "8e2ef645b152353f",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "7989c11473f92509",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.1
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "492b4e3e022bce281364e6b4437b29a37fdcb08b98ca9d24e5ae82693bb06b41",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/pt-BR/dark": {
+   "file": "website/src/images/screens/pt-BR/static-data-pt-BR-dark.png",
+   "sha256": "f7180fb94c72d09a7b2487928bcfc5e4b55a7cbfbc543ade6797c9001f4dec46",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "b6ad04a5518527b1",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "d1079b3f66b64b67",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 42.4,
+    "title_bar_luminance": 33.4,
+    "contrast": 21.4
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "f7180fb94c72d09a7b2487928bcfc5e4b55a7cbfbc543ade6797c9001f4dec46",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  },
+  "static-data/pt-BR/light": {
+   "file": "website/src/images/screens/pt-BR/static-data-pt-BR-light.png",
+   "sha256": "80ce73b8f96f843432c9f2b17f19b68aff507f97a5d1a71398891cf6c0843113",
+   "width": "1586x893",
+   "captured": "2026-11-15T16:14:06",
+   "app": "Tibia Foundry 9.0.4",
+   "fingerprint": "0b6094f2049e68c8",
+   "components": {
+    "app": "298c0ab2e69a22ca",
+    "language": "98356be478b399ad",
+    "theme": "04f5beb82c375c0c",
+    "client": "e2484f78b932cd56"
+   },
+   "checks": {
+    "size": "1586x893",
+    "luminance": 244.3,
+    "title_bar_luminance": 241.4,
+    "contrast": 32.2
+   },
+   "blurred_areas": 1,
+   "diff_vs_previous": {
+    "changed_percent": 0.0
+   },
+   "review": {
+    "status": "approved",
+    "sha256": "80ce73b8f96f843432c9f2b17f19b68aff507f97a5d1a71398891cf6c0843113",
+    "date": "2026-11-15",
+    "note": "contact sheets of all 19 locations x 5 languages x 2 themes; full-size pl, de/pt-BR spot checks"
+   }
+  }
+ }
+}

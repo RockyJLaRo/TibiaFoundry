@@ -127,7 +127,7 @@ background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: sat
 border-bottom: 1px solid var(--line);
 }
 .site-header .wrap { display: flex; align-items: center; gap: 18px; height: 100%; }
-.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--text); font-weight: 700; font-size: 17px; white-space: nowrap; flex-shrink: 0; }
 .brand:hover { text-decoration: none; }
 .brand img { width: 32px; height: 32px; }
 .brand small { font-weight: 500; color: var(--text-3); font-size: 12px; margin-left: 2px; }
@@ -330,13 +330,14 @@ html { scroll-behavior: auto; }
 .card, .btn { transition: none; }
 .card:hover, .btn:hover { transform: none; }
 }
-@media (max-width: 1199px) {
+@media (max-width: 1279px) {
 .nav { display: none; position: absolute; top: var(--header-h); left: 0; right: 0; flex-direction: column; padding: 10px 16px 16px; background: var(--bg); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
 .site-header.open .nav { display: flex; }
 .nav a { padding: 11px 12px; font-size: 16px; }
 .menu-btn { display: inline-grid; }
 .header-actions .btn-sm { display: none; }
 .header-actions { margin-left: auto; }
+.brand { flex-shrink: 1; }
 }
 @media (max-width: 960px) {
 .grid-3, .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -455,8 +456,8 @@ html { scroll-behavior: auto; }
       <button class="shot-btn themed" type="button" data-zoom="The Asset Library: real client assets, thumbnails, collections and details">
         <div class="window">
           <div class="window-bar"><i></i><i></i><i></i><span>Tibia Foundry 9.0.4 — Asset Library</span></div>
-          <img class="shot-dark" src="img/asset-library-dark.webp" alt="The Asset Library page in the dark theme: categories, collections, a grid of item and creature thumbnails, and the details of the selected asset" width="1586" height="893" decoding="async">
-          <img class="shot-light" src="img/asset-library-light.webp" alt="The Asset Library page in the light theme" width="1586" height="893" decoding="async">
+          <img class="shot-dark" src="img/screens/asset-library-en-dark.webp" alt="The Asset Library page in the dark theme: categories, collections, a grid of item and creature thumbnails, and the details of the selected asset" width="1586" height="893" decoding="async">
+          <img class="shot-light" src="img/screens/asset-library-en-light.webp" alt="The Asset Library page in the light theme" width="1586" height="893" decoding="async">
         </div>
       </button>
     </div>
@@ -569,7 +570,7 @@ html { scroll-behavior: auto; }
     </div>
     <div class="reveal">
       <button class="shot-btn themed" type="button" data-zoom="Asset Library">
-        <div class="window"><img class="shot-dark" src="img/asset-library-detail-dark.webp" alt="Close-up of the Asset Library: thumbnails of items and creatures and the details of the selected asset" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="img/asset-library-detail-light.webp" alt="Close-up of the Asset Library in the light theme" width="1092" height="595" loading="lazy" decoding="async"></div>
+        <div class="window"><img class="shot-dark" src="img/screens/asset-library-detail-en-dark.webp" alt="Close-up of the Asset Library: thumbnails of items and creatures and the details of the selected asset" width="1092" height="595" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/asset-library-detail-en-light.webp" alt="Close-up of the Asset Library in the light theme" width="1092" height="595" loading="lazy" decoding="async"></div>
       </button>
     </div>
   </div>
@@ -592,7 +593,7 @@ html { scroll-behavior: auto; }
       </div>
       <div class="reveal">
         <button class="shot-btn themed" type="button" data-zoom="Content Studio: a creature gallery project and its workflow">
-          <div class="window"><img class="shot-dark" src="img/content-studio-dark.webp" alt="Content Studio with a creature gallery project, its workflow steps and the creature list" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/content-studio-light.webp" alt="Content Studio in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div>
+          <div class="window"><img class="shot-dark" src="img/screens/content-studio-en-dark.webp" alt="Content Studio with a creature gallery project, its workflow steps and the creature list" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/content-studio-en-light.webp" alt="Content Studio in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div>
         </button>
       </div>
     </div>
@@ -667,10 +668,11 @@ html { scroll-behavior: auto; }
       <button class="tab" role="tab" id="t-content-studio" aria-controls="p-content-studio" aria-selected="false" tabindex="-1">Content Studio</button>
       <button class="tab" role="tab" id="t-profiles" aria-controls="p-profiles" aria-selected="false" tabindex="-1">Publishing profiles</button>
       <button class="tab" role="tab" id="t-appearances" aria-controls="p-appearances" aria-selected="false" tabindex="-1">Appearances</button>
+      <button class="tab" role="tab" id="t-infobox" aria-controls="p-infobox" aria-selected="false" tabindex="-1">Wiki infobox</button>
       <button class="tab" role="tab" id="t-extract-sprites" aria-controls="p-extract-sprites" aria-selected="false" tabindex="-1">Extract Sprites</button>
-      <button class="tab" role="tab" id="t-static-data" aria-controls="p-static-data" aria-selected="false" tabindex="-1">Creatures</button>
+      <button class="tab" role="tab" id="t-static-data" aria-controls="p-static-data" aria-selected="false" tabindex="-1">Monsters</button>
       <button class="tab" role="tab" id="t-item-catalog" aria-controls="p-item-catalog" aria-selected="false" tabindex="-1">Item Catalog</button>
-      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare</button>
+      <button class="tab" role="tab" id="t-compare" aria-controls="p-compare" aria-selected="false" tabindex="-1">Compare Files</button>
       <button class="tab" role="tab" id="t-map-tools" aria-controls="p-map-tools" aria-selected="false" tabindex="-1">Map Tools</button>
       <button class="tab" role="tab" id="t-house-images" aria-controls="p-house-images" aria-selected="false" tabindex="-1">House Images</button>
       <button class="tab" role="tab" id="t-sounds" aria-controls="p-sounds" aria-selected="false" tabindex="-1">Sounds</button>
@@ -678,79 +680,83 @@ html { scroll-behavior: auto; }
       <button class="tab" role="tab" id="t-rcc-editor" aria-controls="p-rcc-editor" aria-selected="false" tabindex="-1">RCC Editor</button>
       <button class="tab" role="tab" id="t-clients" aria-controls="p-clients" aria-selected="false" tabindex="-1">Clients</button>
       <button class="tab" role="tab" id="t-settings" aria-controls="p-settings" aria-selected="false" tabindex="-1">Settings</button>
-      <button class="tab" role="tab" id="t-settings-attribution" aria-controls="p-settings-attribution" aria-selected="false" tabindex="-1">Your credit</button>
+      <button class="tab" role="tab" id="t-settings-attribution" aria-controls="p-settings-attribution" aria-selected="false" tabindex="-1">Attribution</button>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-home" aria-labelledby="t-home">
-      <button class="shot-btn themed" type="button" data-zoom="Home: the client in use, recent tools and exports, and step-by-step fansite workflows that open the right tool."><div class="window"><img class="shot-dark" src="img/home-dark.webp" alt="Home page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/home-light.webp" alt="Home page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Home: the client in use, recent tools and exports, and step-by-step fansite workflows that open the right tool."><div class="window"><img class="shot-dark" src="img/screens/home-en-dark.webp" alt="Home page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/home-en-light.webp" alt="Home page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Home: the client in use, recent tools and exports, and step-by-step fansite workflows that open the right tool.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-asset-library" aria-labelledby="t-asset-library" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Asset Library: real client assets with thumbnails, categories, collections and editable details – here searched for “dragon”."><div class="window"><img class="shot-dark" src="img/asset-library-dark.webp" alt="Asset Library page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/asset-library-light.webp" alt="Asset Library page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Asset Library: real client assets with thumbnails, categories, collections and editable details – here searched for “dragon”."><div class="window"><img class="shot-dark" src="img/screens/asset-library-en-dark.webp" alt="Asset Library page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/asset-library-en-light.webp" alt="Asset Library page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Asset Library: real client assets with thumbnails, categories, collections and editable details – here searched for “dragon”.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-duplicates" aria-labelledby="t-duplicates" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Duplicate finder: identical files, the same graphic in other files and similar images are reported – nothing is ever deleted for you."><div class="window"><img class="shot-dark" src="img/duplicates-dark.webp" alt="Asset Library – Duplicates page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/duplicates-light.webp" alt="Asset Library – Duplicates page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Duplicate finder: identical files, the same graphic in other files and similar images are reported – nothing is ever deleted for you."><div class="window"><img class="shot-dark" src="img/screens/duplicates-en-dark.webp" alt="Asset Library → Duplicates page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/duplicates-en-light.webp" alt="Asset Library → Duplicates page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Duplicate finder: identical files, the same graphic in other files and similar images are reported – nothing is ever deleted for you.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-content-studio" aria-labelledby="t-content-studio" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Content Studio: a creature gallery project – render, resize, canvas, descriptions, folders, contact sheet and manifests."><div class="window"><img class="shot-dark" src="img/content-studio-dark.webp" alt="Content Studio page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/content-studio-light.webp" alt="Content Studio page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Content Studio: a creature gallery project – render, resize, canvas, descriptions, folders, contact sheet and manifests."><div class="window"><img class="shot-dark" src="img/screens/content-studio-en-dark.webp" alt="Content Studio page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/content-studio-en-light.webp" alt="Content Studio page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Content Studio: a creature gallery project – render, resize, canvas, descriptions, folders, contact sheet and manifests.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-profiles" aria-labelledby="t-profiles" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Publishing profiles: scale, canvas, format and file-name templates with a live example, for every site you publish to."><div class="window"><img class="shot-dark" src="img/profiles-dark.webp" alt="Content Studio – Publishing profiles page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/profiles-light.webp" alt="Content Studio – Publishing profiles page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Publishing profiles: scale, canvas, format and file-name templates with a live example, for every site you publish to."><div class="window"><img class="shot-dark" src="img/screens/profiles-en-dark.webp" alt="Content Studio → Publishing profiles page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/profiles-en-light.webp" alt="Content Studio → Publishing profiles page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Publishing profiles: scale, canvas, format and file-name templates with a live example, for every site you publish to.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-appearances" aria-labelledby="t-appearances" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Appearances: 43,000+ objects, outfits, effects and missiles; the Outfitter renders an outfit with both addons and its mount."><div class="window"><img class="shot-dark" src="img/appearances-dark.webp" alt="Appearances page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/appearances-light.webp" alt="Appearances page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Appearances: 43,000+ objects, outfits, effects and missiles; the Outfitter renders an outfit with both addons and its mount."><div class="window"><img class="shot-dark" src="img/screens/appearances-en-dark.webp" alt="Appearances page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/appearances-en-light.webp" alt="Appearances page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Appearances: 43,000+ objects, outfits, effects and missiles; the Outfitter renders an outfit with both addons and its mount.</p>
     </div>
+    <div class="tab-panel" role="tabpanel" id="p-infobox" aria-labelledby="t-infobox" hidden>
+      <button class="shot-btn themed" type="button" data-zoom="Wiki infobox: the TibiaWiki infobox of the selected object – here Magic Plate Armor – with the source of every value, editable before you copy it."><div class="window"><img class="shot-dark" src="img/screens/infobox-en-dark.webp" alt="Appearances → Wiki infobox page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/infobox-en-light.webp" alt="Appearances → Wiki infobox page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Wiki infobox: the TibiaWiki infobox of the selected object – here Magic Plate Armor – with the source of every value, editable before you copy it.</p>
+    </div>
     <div class="tab-panel" role="tabpanel" id="p-extract-sprites" aria-labelledby="t-extract-sprites" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Extract Sprites: every sprite sheet of the client, queued by size and saved as transparent PNGs or whole sheets."><div class="window"><img class="shot-dark" src="img/extract-sprites-dark.webp" alt="Extract Sprites page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/extract-sprites-light.webp" alt="Extract Sprites page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Extract Sprites: every sprite sheet of the client, queued by size and saved as transparent PNGs or whole sheets."><div class="window"><img class="shot-dark" src="img/screens/extract-sprites-en-dark.webp" alt="Extract Sprites page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/extract-sprites-en-light.webp" alt="Extract Sprites page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Extract Sprites: every sprite sheet of the client, queued by size and saved as transparent PNGs or whole sheets.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-static-data" aria-labelledby="t-static-data" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Static Data: creatures, bosses, achievements, houses and quests, with animated previews and a one-click gallery of the list."><div class="window"><img class="shot-dark" src="img/static-data-dark.webp" alt="Static Data page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/static-data-light.webp" alt="Static Data page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Static Data: creatures, bosses, achievements, houses and quests, with animated previews and a one-click gallery of the list."><div class="window"><img class="shot-dark" src="img/screens/static-data-en-dark.webp" alt="Static Data → Monsters page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/static-data-en-light.webp" alt="Static Data → Monsters page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Static Data: creatures, bosses, achievements, houses and quests, with animated previews and a one-click gallery of the list.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-item-catalog" aria-labelledby="t-item-catalog" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Item Catalog: item names and IDs from the client, TibiaWiki and other sources, kept apart by source, with exports."><div class="window"><img class="shot-dark" src="img/item-catalog-dark.webp" alt="Item Catalog page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/item-catalog-light.webp" alt="Item Catalog page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Item Catalog: item names and IDs from the client, TibiaWiki and other sources, kept apart by source, with exports."><div class="window"><img class="shot-dark" src="img/screens/item-catalog-en-dark.webp" alt="Item Catalog page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/item-catalog-en-light.webp" alt="Item Catalog page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Item Catalog: item names and IDs from the client, TibiaWiki and other sources, kept apart by source, with exports.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-compare" aria-labelledby="t-compare" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Compare Files: what changed between two client versions, object by object – the starting point for update articles."><div class="window"><img class="shot-dark" src="img/compare-dark.webp" alt="Compare Files page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/compare-light.webp" alt="Compare Files page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Compare Files: what changed between two client versions, object by object – the starting point for update articles."><div class="window"><img class="shot-dark" src="img/screens/compare-en-dark.webp" alt="Compare Files page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/compare-en-light.webp" alt="Compare Files page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Compare Files: what changed between two client versions, object by object – the starting point for update articles.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-map-tools" aria-labelledby="t-map-tools" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Map Tools: areas, NPCs and map files, high-resolution maps and minimap tiles."><div class="window"><img class="shot-dark" src="img/map-tools-dark.webp" alt="Map Tools page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/map-tools-light.webp" alt="Map Tools page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Map Tools: areas, NPCs and map files, high-resolution maps and minimap tiles."><div class="window"><img class="shot-dark" src="img/screens/map-tools-en-dark.webp" alt="Map Tools page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/map-tools-en-light.webp" alt="Map Tools page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Map Tools: areas, NPCs and map files, high-resolution maps and minimap tiles.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-house-images" aria-labelledby="t-house-images" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="House Images: any house drawn from the client&#x27;s map data, floor by floor, ready for house articles."><div class="window"><img class="shot-dark" src="img/house-images-dark.webp" alt="House Images page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/house-images-light.webp" alt="House Images page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="House Images: any house drawn from the client&#x27;s map data, floor by floor, ready for house articles."><div class="window"><img class="shot-dark" src="img/screens/house-images-en-dark.webp" alt="House Images page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/house-images-en-light.webp" alt="House Images page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>House Images: any house drawn from the client's map data, floor by floor, ready for house articles.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-sounds" aria-labelledby="t-sounds" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Sounds: listen to and extract the client&#x27;s sounds, effects, ambience and music."><div class="window"><img class="shot-dark" src="img/sounds-dark.webp" alt="Sounds page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/sounds-light.webp" alt="Sounds page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Sounds: listen to and extract the client&#x27;s sounds, effects, ambience and music."><div class="window"><img class="shot-dark" src="img/screens/sounds-en-dark.webp" alt="Sounds page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/sounds-en-light.webp" alt="Sounds page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Sounds: listen to and extract the client's sounds, effects, ambience and music.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-assets-editor" aria-labelledby="t-assets-editor" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Assets Editor: objects, flags, sprite layout and sprites – edit a copy and save it validated; the client is never changed."><div class="window"><img class="shot-dark" src="img/assets-editor-dark.webp" alt="Assets Editor page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/assets-editor-light.webp" alt="Assets Editor page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Assets Editor: objects, flags, sprite layout and sprites – edit a copy and save it validated; the client is never changed."><div class="window"><img class="shot-dark" src="img/screens/assets-editor-en-dark.webp" alt="Assets Editor page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/assets-editor-en-light.webp" alt="Assets Editor page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Assets Editor: objects, flags, sprite layout and sprites – edit a copy and save it validated; the client is never changed.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-rcc-editor" aria-labelledby="t-rcc-editor" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="RCC Editor: preview, extract and replace the interface artwork of the client&#x27;s resource file, saved as a copy."><div class="window"><img class="shot-dark" src="img/rcc-editor-dark.webp" alt="RCC Editor page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/rcc-editor-light.webp" alt="RCC Editor page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="RCC Editor: preview, extract and replace the interface artwork of the client&#x27;s resource file, saved as a copy."><div class="window"><img class="shot-dark" src="img/screens/rcc-editor-en-dark.webp" alt="RCC Editor page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/rcc-editor-en-light.webp" alt="RCC Editor page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>RCC Editor: preview, extract and replace the interface artwork of the client's resource file, saved as a copy.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-clients" aria-labelledby="t-clients" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Clients: client folders, archived revisions of every version, and storage. (Local paths are blurred.)"><div class="window"><img class="shot-dark" src="img/clients-dark.webp" alt="Clients page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/clients-light.webp" alt="Clients page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Clients: client folders, archived revisions of every version, and storage. (Local paths are blurred.)"><div class="window"><img class="shot-dark" src="img/screens/clients-en-dark.webp" alt="Clients page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/clients-en-light.webp" alt="Clients page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Clients: client folders, archived revisions of every version, and storage. (Local paths are blurred.)</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-settings" aria-labelledby="t-settings" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Settings: built-in light and dark themes or your own, folders, file safety, performance, notifications and more."><div class="window"><img class="shot-dark" src="img/settings-dark.webp" alt="Settings page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/settings-light.webp" alt="Settings page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <button class="shot-btn themed" type="button" data-zoom="Settings: built-in light and dark themes or your own, folders, file safety, performance, notifications and more."><div class="window"><img class="shot-dark" src="img/screens/settings-en-dark.webp" alt="Settings page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/settings-en-light.webp" alt="Settings page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
       <p>Settings: built-in light and dark themes or your own, folders, file safety, performance, notifications and more.</p>
     </div>
     <div class="tab-panel" role="tabpanel" id="p-settings-attribution" aria-labelledby="t-settings-attribution" hidden>
-      <button class="shot-btn themed" type="button" data-zoom="Your credit: the creator name written into the metadata of every PNG and GIF you export."><div class="window"><img class="shot-dark" src="img/settings-attribution-dark.webp" alt="Settings – Attribution page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/settings-attribution-light.webp" alt="Settings – Attribution page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
-      <p>Your credit: the creator name written into the metadata of every PNG and GIF you export.</p>
+      <button class="shot-btn themed" type="button" data-zoom="Attribution: the creator name written into the metadata of every PNG and GIF you export."><div class="window"><img class="shot-dark" src="img/screens/settings-attribution-en-dark.webp" alt="Settings → Attribution page of Tibia Foundry in the dark theme" width="1586" height="893" loading="lazy" decoding="async"><img class="shot-light" src="img/screens/settings-attribution-en-light.webp" alt="Settings → Attribution page of Tibia Foundry in the light theme" width="1586" height="893" loading="lazy" decoding="async"></div></button>
+      <p>Attribution: the creator name written into the metadata of every PNG and GIF you export.</p>
     </div>
   </div>
 </section>
@@ -908,7 +914,7 @@ html { scroll-behavior: auto; }
     <div class="legal">
       Tibia Foundry is an independent community project. Tibia is a trademark of CipSoft GmbH; Tibia, its game graphics and data are © CipSoft GmbH. Tibia Foundry is not affiliated with or endorsed by CipSoft GmbH or Fandom.
       Open-source components (licenses in THIRD-PARTY-NOTICES.txt): .NET, WPF, Magick.NET/ImageMagick, Google.Protobuf, NAudio, NVorbis, Newtonsoft.Json, CommunityToolkit.Mvvm, TagLib# (LGPL-2.1), Microsoft.Data.Sqlite, SQLitePCLRaw and SQLite.
-      Version 9.0.4 · November 11, 2026
+      Version 9.0.4 · November 15, 2026
     </div>
   </div>
 </footer>

@@ -1,0 +1,28 @@
+{
+  "_comment": "Settings of website/screenshots/screenshots.py. Paths are relative to the repository root unless absolute. See website/screenshots/README.md.",
+  "app": {
+    "project": "src/TibiaFoundry.App/TibiaFoundry.App.csproj",
+    "build_output": "src/TibiaFoundry.App/bin/Release/net10.0-windows/win-x64",
+    "shot_list": "src/TibiaFoundry.App/Views/SiteScreenshots.cs",
+    "runtime_dir": "C:\\Users\\Public\\Documents\\Tibia Foundry Demo\\App",
+    "baseline_data": "C:\\Users\\Public\\Documents\\Tibia Foundry Demo\\Baseline-Data",
+    "timeout_minutes": 25
+  },
+  "fingerprint": {
+    "app_sources": ["src/TibiaFoundry.App", "src/TibiaFoundry.Core", "src/Directory.Build.props", "src/Directory.Packages.props"],
+    "language_file": "src/TibiaFoundry.Core/Localization/Resources/Strings.{code}.xaml",
+    "theme_file": "src/TibiaFoundry.App/Themes/Colors.{Theme}.xaml"
+  },
+  "client_assets": "%LOCALAPPDATA%\\Tibia\\packages\\Tibia\\assets",
+  "compare_old_file": "auto",
+  "frame": [1586, 893],
+  "checks": {
+    "dark_max_luminance": 110,
+    "light_min_luminance": 150,
+    "min_contrast_stddev": 12
+  },
+  "diff": {
+    "pixel_threshold": 24,
+    "changed_percent": 0.25
+  }
+}

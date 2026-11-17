@@ -8,3 +8,5 @@ dist/
 .vs/
 TestResults/
 tools/benchmarks/BenchmarkDotNet.Artifacts/
+# Raw captures, diffs and contact sheets of website/screenshots/screenshots.py
+website/screenshots/.work/
