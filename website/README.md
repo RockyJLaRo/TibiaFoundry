@@ -1,7 +1,8 @@
-# tibiafoundry.com – website (9.0.5)
+# tibiafoundry.com – website (9.0.5, 2026 redesign)
 
 A mobile-first, multi-page static site in **five languages** (English, Português (Brasil), Polski, Español, Deutsch),
-with light and dark themes taken from the desktop program's own colour themes, and **online Tibia tools** powered by
+with a "stone and parchment" design (light and dark; see `docs/redesign/design-system-and-concepts.md`), original pixel art,
+and **online Tibia tools** powered by
 [TibiaData](https://tibiadata.com/). Built for **GitHub Pages** (static hosting, no backend, no build step on the server).
 Translation guide: [TRANSLATING.md](TRANSLATING.md) · API integration: [TIBIADATA.md](TIBIADATA.md) ·
 credits: [ATTRIBUTION.md](ATTRIBUTION.md) · completeness: [i18n-report.md](i18n-report.md).
@@ -10,16 +11,20 @@ credits: [ATTRIBUTION.md](ATTRIBUTION.md) · completeness: [i18n-report.md](i18n
 
 | Page | URL (English; other languages under `/pt-br/`, `/pl/`, `/es/`, `/de/`) | Content |
 |---|---|---|
-| Home | `/` | Tibia Foundry {version} with the program's tagline, download, character search, **Tibia News & Updates** (live), online tools and today's boosted creature and boss, feature highlights, creator, download band |
-| Tibia Data | `/tibia/` + `#/route` | characters, worlds, guilds, highscores, houses, kill statistics, creatures, spells, boostable bosses, fansites, news and archive (20 routes, see `src/registry.json`) |
+| Home | `/` | headline for both audiences, character search, **Today in Tibia** (live boosted creature/boss, players online), six task cards, desktop-app spotlight with the download notice, three feature highlights, **Tibia News & Updates** (live), creator |
+| Tibia tools | `/tibia/` + `#/route` | grouped overview with pixel icons; characters, worlds, guilds, highscores, houses, kill statistics, creatures, spells, boostable bosses, fansites, news and archive (20 routes, see `src/registry.json`) |
 | Features | `/features/` | audiences, all feature groups, infobox exporter, Asset Library, Content Studio, publishing profiles, screenshot gallery (20 program pages), safety |
-| Downloads | `/downloads/` | MSI (in a ZIP), portable and source archives with their canonical v{version} URLs and SHA-256, requirements, first steps, release notes |
+| Downloads | `/downloads/` | download notice, MSI (in a ZIP), portable and source archives with canonical v{version} URLs, sizes and SHA-256; release facts (date, systems, signing, scan), safety, requirements, first steps, release notes |
 | Guides | `/guides/` | first steps, using the Tibia data tools, documentation links, FAQ |
 | About | `/about/` | Rocky LaRochelle – Creator and Developer of Tibia Foundry, Upstate New York, USA; six profiles; project; data credits |
-| Contact | `/contact/` | rocky@tibiafoundry.com (mail link and copy button), GitHub issues – no contact form, nothing is sent from the site |
+| Contact | `/contact/` | rocky@tibiafoundry.com (mail link and copy button), responsible administrator with Tibia character, GitHub issues – no contact form, nothing is sent from the site |
+| Legal & transparency | `/legal/` | copyright and CipSoft, Fansite Programme status, responsible administrator, downloads and safety, money and advertising, privacy and statistics (opt-out), community rules and spoiler policy, content sources |
 
-Every page has the header (brand, navigation, character search, language, theme; a menu below 1180 px), and the
-footer with **Data & resource credits** (TibiaData thank-you with link, Tibia.com, CipSoft, TibiaWiki, fansites).
+Every page has the header (brand, four task links, Download button, language, theme; character search from 1280 px; a menu
+with pixel icons below 1024 px) and breadcrumbs on inner pages. Which page appears where is `placement` in
+`src/registry.json`. The footer has the brand block with the creator's email and six profiles, link groups, **Data &
+resource credits** (TibiaData thank-you with link, Tibia.com, CipSoft, TibiaWiki, fansites), links to Tibia.com, CipSoft
+and the Tibia Rules, and the copyright year (updated in the browser).
 
 ## Structure
 
@@ -30,7 +35,8 @@ footer with **Data & resource credits** (TibiaData thank-you with link, Tibia.co
 | `src/providers.json` | attribution registry of every external data or content provider |
 | `src/templates/` | `layout.html` (head, header, footer) and one template per page; texts only as keys |
 | `src/locales/*.json` | the texts (`en.json` is the source) |
-| `src/styles.css` | mobile-first design system; tokens from `Colors.Light.xaml` / `Colors.Dark.xaml` of the program |
+| `src/styles.css` | mobile-first design system (tokens, components; WCAG AA contrast checked) |
+| `src/images/pixel/` | the site's original pixel art: `icons.svg` (19 icons, themed by CSS variables) and ornament masks; drawn by `art/pixelart.py` |
 | `src/js/` | `site.js` (texts, theme, menu, language, search, copy, tabs, lightbox), `tibiadata.js` (API client), `sanitize.js` (news HTML), `data-app.js` (router, views, home news) |
 | `src/images/` | logo, real Content Studio output, and `screens/<code>/<id>-<code>-<theme>.png`: the program screenshot library (1280×800, 20 pages × 5 languages × 2 themes) |
 | `screenshots/` | program screenshot generator ([screenshots/README.md](screenshots/README.md)) |

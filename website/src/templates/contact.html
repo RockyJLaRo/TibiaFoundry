@@ -1,4 +1,5 @@
 <div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li aria-current="page">{{t:nav.contact}}</li></ol></nav>
   <h1>{{t:contact.title}}</h1>
   <p class="lead">{{t:contact.lead}}</p>
 </div>
@@ -8,10 +9,15 @@
     <h2 id="email-title">{{t:contact.email.title}}</h2>
     <div class="email-box">
       <a class="email-address" id="contact-email" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}">{{EMAIL}}</a>
-      <a class="btn btn-primary" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}">{{t:contact.email.write}}</a>
-      <button type="button" class="btn" data-copy="{{EMAIL}}"><span class="copy-label">{{t:contact.email.copy}}</span></button>
+      <a class="btn btn-primary" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>{{t:contact.email.write}}</a>
+      <button type="button" class="btn" data-copy="{{EMAIL}}"><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">{{t:contact.email.copy}}</span></button>
     </div>
     <p class="muted" style="margin-top:12px">{{t:contact.email.note}}</p>
+    <dl class="admin" style="margin-top:16px">
+      <div><dt>{{t:legal.admin.name}}</dt><dd>Rocky LaRochelle</dd></div>
+      <div><dt>{{t:legal.admin.character}}</dt><dd><a href="https://www.tibia.com/community/?name=Roc+ky" rel="noopener noreferrer" target="_blank">Roc ky<span class="sr-only"> {{t:js.newTab}}</span></a></dd></div>
+      <div><dt>{{t:legal.admin.place}}</dt><dd>{{t:about.location}}</dd></div>
+    </dl>
   </div>
 </section>
 

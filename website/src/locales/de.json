@@ -59,7 +59,11 @@
       "nav.studio",
       "publishing.th.extras",
       "screens.tablist",
-      "studio.kicker"
+      "studio.kicker",
+      "download.facts.version",
+      "home.dest.highscores.title",
+      "home.app.fact.version",
+      "legal.admin.name"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -87,10 +91,10 @@
     "button": "Sprache: Deutsch. Andere Sprache wählen"
   },
   "nav": {
-    "features": "Funktionen",
+    "features": "Desktop-Programm",
     "main": "Hauptnavigation",
     "home": "Start",
-    "tibia": "Tibia-Daten",
+    "tibia": "Tibia-Tools",
     "downloads": "Downloads",
     "guides": "Anleitungen",
     "about": "Über",
@@ -99,12 +103,14 @@
     "searchPlaceholder": "Charaktername",
     "searchButton": "Suchen",
     "menuOpen": "Menü öffnen",
-    "menuClose": "Menü schließen"
+    "menuClose": "Menü schließen",
+    "download": "Download",
+    "legal": "Rechtliches & Transparenz",
+    "breadcrumb": "Brotkrümelnavigation"
   },
   "hero": {
     "lead": "Tibia Foundry liest die offiziellen Dateien deines installierten Tibia-Clients und macht daraus Sprites, animierte Outfit- und Kreaturen-GIFs, Item-Bilder, Karten, Sounds und Daten – hält alles in einer durchsuchbaren Bibliothek bereit und veröffentlicht komplette Galerien für das TibiaWiki oder jede Community-Website.",
     "download": "Tibia Foundry {version} herunterladen",
-    "github": "Auf GitHub ansehen",
     "trust1": "Kostenlos, ohne Konto",
     "trust2": "Funktioniert offline – nichts wird hochgeladen",
     "trust3": "Verändert nie deinen Tibia-Client",
@@ -411,7 +417,32 @@
     "notes": "Versionshinweise",
     "all": "Alle Versionen",
     "startTitle": "Erste Schritte",
-    "shaInFile": "SHA-256: in der Datei SHA256SUMS.txt der Version"
+    "shaInFile": "SHA-256: in der Datei SHA256SUMS.txt der Version",
+    "facts": {
+      "title": "Versionsinformationen",
+      "version": "Version",
+      "date": "Veröffentlicht am",
+      "dateUnknown": "Nicht angegeben",
+      "os": "Unterstützte Systeme",
+      "packages": "Pakete",
+      "packagesValue": "Windows Installer (MSI in einem ZIP), portables ZIP, Quellcode-ZIP",
+      "source": "Quellcode",
+      "notes": "Versionshinweise",
+      "checksums": "Prüfsummen",
+      "signing": "Codesignatur",
+      "signedNo": "Nicht signiert. Windows SmartScreen kann bei einem neuen Download warnen; vergleiche stattdessen die SHA-256-Prüfsumme.",
+      "signedYes": "Signiert",
+      "scan": "Malware-Prüfung",
+      "scanValue": "Für diese Version ist keine Malware-Prüfung durch Dritte veröffentlicht. Prüfe die Datei vor der Installation mit deinem eigenen Virenscanner."
+    },
+    "safety": {
+      "title": "Sicher herunterladen",
+      "official": "Lade nur über diese Seite oder die GitHub-Releases von RockyJLaRo/TibiaFoundry herunter – jeder Link führt per HTTPS direkt zu GitHub.",
+      "verify": "Vergleiche die SHA-256-Prüfsumme der Datei mit dem Wert hier und in SHA256SUMS.txt.",
+      "nothingBundled": "Die Pakete enthalten Tibia Foundry und die in THIRD-PARTY-NOTICES.txt genannten Open-Source-Komponenten – keine beigepackten Angebote, Adware oder andere Programme.",
+      "purpose": "Tibia Foundry erstellt aus deinem eigenen Client Bilder und Daten für das TibiaWiki und Fansites. Es ist kein Bot, Cheat oder Automatisierungstool und greift nicht ins laufende Spiel ein."
+    },
+    "reqTitle": "Systemanforderungen"
   },
   "faq": {
     "title": "Fragen und Antworten",
@@ -436,22 +467,17 @@
     "q10": "Woher kommen die Tibia-Daten im Browser?",
     "a10": "Von TibiaData, einer kostenlosen öffentlichen API auf Grundlage von Tibia.com. Dein Browser fragt TibiaData direkt; diese Website hat keinen eigenen Server und speichert nichts über deine Suchen."
   },
-  "band": {
-    "title": "Dein nächster Update-Artikel in wenigen Minuten",
-    "text": "Lade Tibia Foundry herunter, wähle deinen Client und starte dein erstes Galerie-Projekt.",
-    "download": "{version} herunterladen",
-    "issues": "Problem oder Idee melden"
-  },
   "footer": {
-    "product": "Produkt",
+    "product": "Desktop-Programm",
     "project": "Projekt",
     "repository": "GitHub-Repository",
     "issues": "Issues und Support",
-    "legal": "Tibia Foundry ist ein unabhängiges Community-Projekt. Tibia ist eine Marke der CipSoft GmbH; Tibia, seine Spielgrafiken und Daten sind © CipSoft GmbH. Tibia Foundry ist weder mit der CipSoft GmbH noch mit Fandom verbunden und wird von ihnen nicht unterstützt.",
+    "legal": "Tibia wird von der CipSoft GmbH entwickelt und betrieben. Tibia, die Website, Spielgrafiken und Spieldaten sind urheberrechtlich geschützt (© CipSoft GmbH); von CipSoft bereitgestellte Inhalte bleiben deren Eigentum. Tibia Foundry ist ein unabhängiges Fanprojekt und weder mit der CipSoft GmbH noch mit Fandom verbunden oder von ihnen unterstützt.",
     "version": "Version {version} · {date}",
     "made": "Entwickelt von Rocky LaRochelle, Schöpfer und Entwickler von Tibia Foundry.",
-    "data": "Tibia-Daten",
-    "releaseNotes": "Versionshinweise {version}"
+    "data": "Tibia-Tools",
+    "releaseNotes": "Versionshinweise {version}",
+    "about": "Kostenlose Tibia-Tools im Browser und ein Desktop-Werkzeugkasten für TibiaWiki-Autoren und Fansite-Macher – ein unabhängiges Fanprojekt."
   },
   "lightbox": {
     "label": "Vergrößerter Screenshot",
@@ -503,8 +529,8 @@
     "characterLabel": "Einen Charakter nachschlagen",
     "characterPlaceholder": "Charaktername, z. B. Roc ky",
     "characterHelp": "Gib den genauen Namen eines Tibia-Charakters ein, um Stufe, Berufung, Welt, Gilde, Häuser, Erfolge und letzte Tode zu sehen.",
-    "hubTitle": "Tibia-Daten",
-    "allTools": "Alle Tibia-Daten",
+    "hubTitle": "Tibia-Tools",
+    "allTools": "Alle Tibia-Tools",
     "boostedTitle": "Heute geboostet",
     "boostedCreature": "Geboostete Kreatur",
     "boostedBoss": "Geboosteter Boss",
@@ -766,7 +792,21 @@
       "news": "News",
       "ticker": "Ticker",
       "article": "Artikel"
-    }
+    },
+    "groupPlayers": "Spieler und Gilden",
+    "groupWorlds": "Welten, Ranglisten und Häuser",
+    "groupReference": "Kreaturen, Bosse und Zauber",
+    "groupNews": "News und Community",
+    "analyticsOn": "Die Statistik ist für diesen Browser an.",
+    "analyticsOff": "Die Statistik ist für diesen Browser aus.",
+    "analyticsGpc": "Die Statistik ist aus: Dein Browser sendet ein Global-Privacy-Control-Signal.",
+    "sortBy": "Nach {column} sortieren",
+    "sortedAsc": "Nach {column} sortiert, aufsteigend",
+    "sortedDesc": "Nach {column} sortiert, absteigend",
+    "sortByLabel": "Sortieren nach",
+    "sortNone": "Ursprüngliche Reihenfolge",
+    "ascending": "Aufsteigend",
+    "descending": "Absteigend"
   },
   "plural": {
     "tools": {
@@ -811,6 +851,10 @@
     "contact": {
       "title": "Kontakt",
       "description": "Kontakt zu Rocky LaRochelle, dem Entwickler von Tibia Foundry: per E-Mail an rocky@tibiafoundry.com oder mit einer Fehlermeldung auf GitHub."
+    },
+    "legal": {
+      "title": "Rechtliches & Transparenz",
+      "description": "Urheberrecht und CipSoft-Hinweis, verantwortlicher Administrator, Download-Sicherheit, Geld und Werbung, Datenschutz und Statistik, Community-Regeln und Inhaltsquellen von Tibia Foundry."
     }
   },
   "credits": {
@@ -820,7 +864,8 @@
     "cipsoft": "{link} – Tibia, seine Spielgrafiken und Daten sind © CipSoft GmbH; sie erscheinen in den Screenshots des Programms und in den Datenansichten.",
     "tibiawiki": "{link} – das Community-Wiki, für das Tibia Foundry gemacht ist (es werden keine Wiki-Inhalte auf diese Website kopiert).",
     "fansites": "{link} – das Fansite-Verzeichnis zeigt Tibias offizielle Promoted und Supported Fansites, wie sie auf Tibia.com veröffentlicht sind.",
-    "independent": "Tibia Foundry ist ein unabhängiges Fanprojekt. Keiner dieser Anbieter unterstützt oder empfiehlt es oder ist mit ihm verbunden."
+    "independent": "Tibia Foundry ist ein unabhängiges Fanprojekt. Keiner dieser Anbieter unterstützt oder empfiehlt es oder ist mit ihm verbunden.",
+    "lucide": "{link} – das quelloffene Icon-Set (ISC-Lizenz) für die Bedienelement-Icons dieser Website."
   },
   "home": {
     "searchLabel": "Einen Tibia-Charakter nachschlagen",
@@ -832,9 +877,9 @@
       "noscript": "Schalte JavaScript ein, um hier die neuesten Tibia-News zu sehen, oder lies sie auf Tibia.com."
     },
     "tools": {
-      "title": "Tibia-Werkzeuge im Browser",
-      "lead": "Charaktere, Welten, Gilden, Highscores, Kreaturen und Zauber nachschlagen – direkt im Browser, ohne Download.",
-      "all": "Alle Tibia-Daten"
+      "title": "Finde, was du suchst",
+      "lead": "Alle Tools laufen im Browser mit aktuellen Daten von Tibia.com über TibiaData – ohne Download, ohne Konto.",
+      "all": "Alle Tibia-Tools"
     },
     "features": {
       "all": "Alle Funktionen",
@@ -844,6 +889,52 @@
       "title": "Von einem TibiaWiki-Autor gemacht",
       "text": "Rocky hat Tibia Foundry geschaffen, um der Tibia-Community nützliche Software, Werkzeuge und Ressourcen zu geben – vor allem den Menschen, die TibiaWiki und andere Tibia-Seiten schreiben.",
       "more": "Über den Entwickler"
+    },
+    "hero": {
+      "title": "Tibia-Tools, aktuelle Spieldaten und ein Desktop-Werkzeugkasten für Fansite-Macher",
+      "lead": "Charaktere, Welten, Highscores, Häuser und Bosse mit aktuellen Daten nachschlagen – kostenlos, direkt im Browser. Du baust eine Fansite oder schreibst im TibiaWiki? Das kostenlose Windows-Programm macht aus deinem eigenen Tibia-Client wikifertige Bilder und Daten.",
+      "searchPlaceholder": "Charaktername, z. B. Roc ky",
+      "popular": "Beliebt:",
+      "creators": "Für Fansite-Macher:",
+      "getApp": "Desktop-Programm {version} holen"
+    },
+    "today": {
+      "title": "Heute in Tibia"
+    },
+    "dest": {
+      "characters": {
+        "title": "Charaktere & Gilden",
+        "text": "Level, Beruf, Tode, Errungenschaften und Gildenmitglieder jedes Tibianers."
+      },
+      "worlds": {
+        "title": "Welten",
+        "text": "Wer online ist, PvP-Typ, Standort und Spielerrekord jeder Spielwelt."
+      },
+      "highscores": {
+        "title": "Highscores",
+        "text": "Erfahrung, Skills, Errungenschaften und mehr – pro Welt und Beruf."
+      },
+      "reference": {
+        "title": "Kreaturen, Bosse & Zauber",
+        "text": "Die heute geboostete Kreatur und der Boss, dazu die Kreaturen- und Zauberbibliothek."
+      },
+      "houses": {
+        "title": "Häuser",
+        "text": "Häuser und Gildenhallen jeder Stadt: Größe, Miete, Besitzer und Auktionen."
+      },
+      "community": {
+        "title": "News & Fansites",
+        "text": "Offizielle Tibia-News, Newsticker und Archiv sowie das offizielle Fansite-Verzeichnis."
+      }
+    },
+    "app": {
+      "title": "Das Desktop-Programm für Fansite-Macher",
+      "fact": {
+        "version": "Version {version}",
+        "os": "Windows 10 und 11",
+        "free": "Kostenlos und quelloffen"
+      },
+      "source": "Quellcode auf GitHub"
     }
   },
   "new905": {
@@ -933,7 +1024,9 @@
     "sources": {
       "title": "Datenquellen und Danksagungen",
       "lead": "Diese Website verwendet die folgenden externen Daten und Inhalte. Danke an alle, die sie bereitstellen."
-    }
+    },
+    "character": "Tibia-Charakter: Roc ky",
+    "adminNote": "Rocky ist der verantwortliche Administrator dieser Website."
   },
   "contact": {
     "title": "Kontakt",
@@ -958,10 +1051,111 @@
     "privacy": "Diese Website hat kein Kontaktformular und speichert nichts, was du eingibst. Charaktersuchen gehen nur an TibiaData, um die Daten abzurufen."
   },
   "tibia": {
-    "title": "Tibia-Daten",
+    "title": "Tibia-Tools",
     "lead": "Charaktere, Welten, Gilden, Highscores, Häuser, Tötungsstatistiken, Kreaturen, Zauber und News – live von TibiaData, mit Link zum Original auf Tibia.com.",
     "sections": "Bereiche der Tibia-Daten",
     "overview": "Übersicht",
     "noscript": "Diese Werkzeuge brauchen JavaScript, um die Daten bei TibiaData abzufragen. Alles lässt sich auch auf Tibia.com nachschlagen."
+  },
+  "notice": {
+    "title": "Wichtiger Hinweis zum Download",
+    "text1": "Tibia Foundry ist unabhängig entwickelte Software von Rocky LaRochelle. Sie wird nicht von der CipSoft GmbH erstellt, entwickelt, vertrieben oder unterstützt.",
+    "text2": "Tibia Foundry ist ein unabhängiges Fanprojekt und kein offizielles Tibia-Produkt.",
+    "text3": "Die CipSoft GmbH ist für diese Software nicht verantwortlich. Lade sie nur aus den offiziellen Quellen von Tibia Foundry herunter und lies vor der Installation die veröffentlichten Versionsinformationen.",
+    "more": "Download-Sicherheit und Versionsinformationen"
+  },
+  "legal": {
+    "title": "Rechtliches & Transparenz",
+    "lead": "Wer Tibia Foundry betreibt, was wem gehört, wie Downloads veröffentlicht werden, was diese Seite erfasst – und an welche Regeln sie sich hält.",
+    "sections": "Abschnitte dieser Seite",
+    "rulesLink": "Tibia-Regeln",
+    "copyright": {
+      "title": "Urheberrecht und CipSoft",
+      "text1": "Tibia ist ein Spiel, das von der CipSoft GmbH entwickelt und betrieben wird. Tibia, die offizielle Tibia-Website und ihre Inhalte sind urheberrechtlich geschützt.",
+      "text2": "Von CipSoft bereitgestellte Inhalte – auch die Spielgrafiken, Bilder und Daten auf dieser Seite und in den Screenshots von Tibia Foundry – bleiben Eigentum der CipSoft GmbH. Tibia Foundry beansprucht daran keine Rechte.",
+      "text3": "Tibia Foundry ist ein unabhängig entwickeltes Fanprojekt von Rocky LaRochelle. Es ist weder mit der CipSoft GmbH verbunden noch von ihr unterstützt, gesponsert oder genehmigt."
+    },
+    "status": {
+      "title": "Status im Fansite-Programm",
+      "text1": "Tibia Foundry ist keine Promoted oder Supported Fansite des Fansite-Programms von CipSoft und zeigt kein Programm-Abzeichen. Es ist ein unabhängiges Fanprojekt.",
+      "text2": "Sollte sich das ändern, steht es hier. Das Programm und seine Anforderungen beschreibt Tibia.com:",
+      "programme": "Tibia-Fansite-Programm"
+    },
+    "admin": {
+      "title": "Verantwortlicher Administrator",
+      "name": "Name",
+      "role": "Rolle",
+      "place": "Ort",
+      "character": "Tibia-Charakter",
+      "email": "E-Mail",
+      "note": "Rocky betreibt diese Website und das Projekt allein. Fragen, Korrekturen und Meldungen gehen an diese Adresse; es gibt kein Support-Team und keine zugesagte Antwortzeit."
+    },
+    "downloads": {
+      "title": "Downloads und Sicherheit",
+      "whereTitle": "Offizielle Download-Quellen",
+      "where": "Tibia Foundry wird nur auf der Download-Seite von tibiafoundry.com und in den Releases von github.com/RockyJLaRo/TibiaFoundry veröffentlicht. Kopien von anderswo sind nicht offiziell.",
+      "checkTitle": "Wie jede Version geprüft wird",
+      "check1": "Jedes Paket wird mit den eigenen Release-Skripten des Projekts aus dem veröffentlichten Quellcode gebaut.",
+      "check2": "Nach dem Bauen werden die Inhalte der Archive aufgelistet und verglichen, das Programm aus den entpackten Dateien gestartet und die SHA-256-Prüfsummen veröffentlicht.",
+      "check3": "Programm und Installer sind nicht signiert, und es wird keine Malware-Prüfung durch Dritte veröffentlicht. Niemand kann garantieren, dass eine Datei frei von Schadsoftware ist – prüfe sie selbst.",
+      "check4": "Melde Verdächtiges per E-Mail an den verantwortlichen Administrator.",
+      "purposeTitle": "Wofür das Programm gedacht ist",
+      "purpose": "Tibia Foundry liest die Dateien des Tibia-Clients auf deinem eigenen PC, um Bilder, Animationen, Karten und Daten für das TibiaWiki und Fansites zu erstellen. Es ist kein Bot, Cheat, Makro oder Automatisierungstool. Seine Datei-Editoren (Assets Editor, RCC Editor, Client Converter) ändern nie den installierten Client, sondern speichern Kopien – spiele nie mit veränderten Client-Dateien auf den Tibia-Servern, denn das verstößt gegen die Tibia-Regeln."
+    },
+    "money": {
+      "title": "Geld und Werbung",
+      "adsTitle": "Werbung",
+      "ads": "Keine Werbung, keine Sponsoren, keine gesponserten Inhalte.",
+      "incomeTitle": "Einnahmen",
+      "income": "Keine Spenden, Affiliate-Links, kostenpflichtigen Funktionen oder sonstigen Einnahmen. Tibia Foundry und diese Website sind kostenlos; Rocky bezahlt sie selbst.",
+      "hiddenTitle": "Nichts Verstecktes",
+      "hidden": "Kein Krypto-Mining, keine versteckte Nutzung deines Computers, kein Aufblähen von Stream-Zuschauerzahlen und kein verschwiegenes Tracking.",
+      "change": "Sollte sich das ändern, steht es hier, bevor es beginnt."
+    },
+    "privacy": {
+      "title": "Datenschutz und Statistik",
+      "intro": "Tibia Foundry hat keine Konten und erfasst keine Namen, E-Mail-Adressen oder Passwörter. Das ist alles, was diese Website mit Daten macht.",
+      "statsTitle": "Besuchsstatistik (Google Analytics)",
+      "stats": "Diese Website zählt Besuche mit Google Analytics 4: aufgerufene Seiten, ungefähre Region, Geräte- und Browsertyp sowie Klicks auf Download- und GitHub-Links. Google setzt dafür Cookies. Rocky sieht nur zusammengefasste Berichte; zusammengefasste Summen können an das Fansite-Team von CipSoft gehen. Du kannst die Statistik für diesen Browser abschalten:",
+      "stateUnknown": "Aktiviere JavaScript, um diese Einstellung zu ändern.",
+      "turnOff": "Statistik ausschalten",
+      "turnOn": "Statistik einschalten",
+      "gpc": "Sendet dein Browser ein Global-Privacy-Control-Signal, ist die Statistik automatisch aus.",
+      "dataTitle": "Tibia-Daten und Bilder",
+      "data": "Dein Browser fragt die Tibia-Daten, die du ansiehst – auch gesuchte Charaktere –, bei der TibiaData-API (api.tibiadata.com) ab und lädt Spielbilder von static.tibia.com (CipSoft). Wie jede Website sehen diese Dienste deine IP-Adresse.",
+      "storageTitle": "In deinem Browser gespeichert",
+      "storage": "Nur auf deinem Gerät: dein Design (tf-theme), deine Sprache (tf-lang), deine Statistik-Wahl (tf-analytics) und die zuletzt angesehene Welt (tf-world), dazu ein Zwischenspeicher der TibiaData-Antworten, der beim Schließen des Tabs gelöscht wird (tf-api). Nichts davon geht an Tibia Foundry.",
+      "nothingTitle": "Was diese Website nicht hat",
+      "nothing": "Keine Konten, kein Kontaktformular, keine Kommentare, kein Newsletter und keine Werbe-Tracker. E-Mails an Rocky liest nur Rocky."
+    },
+    "community": {
+      "title": "Community-Regeln",
+      "text1": "Diese Website hat kein Forum, keine Kommentare und keine Uploads. Der einzige öffentliche Ort für Tibia Foundry ist der Issue-Tracker auf GitHub, für den zusätzlich die Regeln von GitHub gelten.",
+      "text2": "Alles, was hier und im GitHub-Bereich des Projekts veröffentlicht wird, muss die Tibia-Regeln einhalten. Nicht erlaubt sind:",
+      "rule1": "Spam, Belästigung, Beleidigungen oder anstößige Inhalte.",
+      "rule2": "Phishing, Hack-Links, Cheat-Tools, Bots oder Werbung dafür.",
+      "rule3": "Account-Handel oder der Handel mit Charakteren, Gegenständen oder Gold gegen echtes Geld.",
+      "report": "Um ein Problem mit dieser Website oder dem Projekt zu melden, schreibe an",
+      "spoilersTitle": "Quest-Spoiler",
+      "spoilers": "Diese Website veröffentlicht keine Quest-Lösungen. Sollten je vollständige Lösungen hinzukommen, erscheinen sie erst nach dieser Warnung:"
+    },
+    "spoilerWarning": {
+      "title": "Achtung: Spoiler!",
+      "text": "Der folgende Abschnitt enthält ausführliche Informationen und Lösungen zu dieser Quest. Lies nur weiter, wenn dich Spoiler nicht stören."
+    },
+    "sources": {
+      "title": "Inhaltsquellen",
+      "originalTitle": "Von Tibia Foundry",
+      "original": "Die Texte dieser Website, das Desktop-Programm und seine Screenshots sowie die Pixel-Art dieser Seite.",
+      "officialTitle": "Offizielle CipSoft-Informationen",
+      "official": "News, Charaktere, Welten, Highscores, Häuser, Kreaturen und Zauber stammen von Tibia.com und sind © CipSoft GmbH; jede Ansicht verlinkt das Original.",
+      "externalTitle": "Externe Daten",
+      "external": "TibiaData stellt die Daten von Tibia.com als API bereit; jede Ansicht nennt diese Quelle und zeigt, wann die Daten abgerufen wurden.",
+      "communityTitle": "Community-Inhalte",
+      "community": "Links zum TibiaWiki und zu Fansites führen zu Inhalten ihrer Autoren; davon wird hier nichts kopiert oder übersetzt.",
+      "artTitle": "Grafiken Dritter",
+      "art": "Bilder von Kreaturen, Gegenständen, Outfits und Häusern gehören CipSoft; die Profil-Icons sind die Logos ihrer Plattformen.",
+      "unconfirmed": "Von CipSoft nicht bestätigte Informationen würden als \"Unbestätigte Information. Dies wurde von CipSoft nicht bestätigt.\" gekennzeichnet. Derzeit veröffentlicht die Seite keine solchen Informationen."
+    }
   }
 }

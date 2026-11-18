@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESCRIPTION}}">
-<meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#16181c" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#48423a" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="{{CANONICAL}}">
@@ -35,9 +35,11 @@
 {{LANG_REDIRECT}}
 </script>
 <link rel="stylesheet" href="{{ROOT}}assets/site.css?v={{ASSET_VERSION}}">
-<!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js). Visitors can turn statistics off on the Legal page (stored as tf-analytics=off); a browser's
+     Global Privacy Control signal turns them off too. Disclosed on the Legal page under "Privacy and statistics". -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
 <script>
+  try { if (localStorage.getItem('tf-analytics') === 'off' || navigator.globalPrivacyControl === true) window['ga-disable-G-J3EX3FB3PB'] = true; } catch (e) {}
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -47,19 +49,15 @@
 </head>
 <body data-page="{{PAGE_ID}}">
 <a class="skip" href="#main">{{t:a11y.skip}}</a>
+{{UI_ICONS}}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-  <symbol id="i-theme" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></symbol>
-  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.6 2.6 2.6 14.4 0 17M12 3.5c-2.6 2.6-2.6 14.4 0 17" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
   <symbol id="i-youtube" viewBox="0 0 24 24"><rect x="0" y="4" width="24" height="16" rx="5" fill="#FF0000"/><path d="M9.6 8.4 16.2 12 9.6 15.6Z" fill="#fff"/></symbol>
   <symbol id="i-instagram" viewBox="0 0 24 24"><defs><linearGradient id="ig-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".25" stop-color="#FA7E1E"/><stop offset=".55" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient></defs><rect width="24" height="24" rx="6" fill="url(#ig-grad)"/><rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.9"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.9"/><circle cx="16.1" cy="7.9" r="1" fill="#fff"/></symbol>
-  <symbol id="i-github" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#fff"/><path transform="matrix(.9 0 0 .9 1.2 1.2)" fill="#24292F" d="M12 .297C5.37.297 0 5.67 0 12.297c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#fff"/><path transform="matrix(.9 0 0 .9 1.2 1.2)" fill="#24292F" d="M12 .297C5.37.297 0 5.67 0 12.297c0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.610-4.042-1.610-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.070 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.930 0-1.310.465-2.380 1.235-3.220-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.230.96-.267 1.98-.399 3-.405 1.020.006 2.040.138 3 .405 2.280-1.552 3.285-1.230 3.285-1.230.645 1.653.24 2.873.12 3.176.765.840 1.230 1.910 1.230 3.220 0 4.610-2.805 5.625-5.475 5.920.42.36.81 1.096.81 2.220 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297 24 5.67 18.627.297 12 .297z"/></symbol>
   <symbol id="i-reddit" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#FF4500"/><g fill="#fff"><ellipse cx="12" cy="14" rx="6.6" ry="4.6"/><circle cx="6.2" cy="11.6" r="1.6"/><circle cx="17.8" cy="11.6" r="1.6"/><circle cx="15.6" cy="5.6" r="1.4"/></g><path d="M12 9.5 13 5.2 15.6 5.6" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><g fill="#FF4500"><circle cx="9.5" cy="13.4" r="1.15"/><circle cx="14.5" cy="13.4" r="1.15"/></g><path d="M9.4 15.9Q12 17.6 14.6 15.9" fill="none" stroke="#FF4500" stroke-linecap="round"/></symbol>
 </svg>
 <div class="lang-suggest" id="lang-suggest" hidden>
-  <div class="wrap"><span class="lang-suggest-text"></span><a class="btn btn-small lang-suggest-go" href="#"></a><button type="button" class="icon-btn lang-suggest-close"><svg aria-hidden="true"><use href="#i-close"/></svg></button></div>
+  <div class="wrap"><span class="lang-suggest-text"></span><a class="btn btn-small lang-suggest-go" href="#"></a><button type="button" class="icon-btn lang-suggest-close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
 </div>
 <header class="site-header">
   <div class="wrap header-bar">
@@ -72,6 +70,7 @@
 {{NAV}}
       </ul>
     </nav>
+    <a class="btn btn-primary btn-small header-download" href="{{LINK:downloads}}" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:nav.download}}</a>
     <form class="header-search search-row" role="search" action="{{LINK:tibia}}" data-character-search>
       <input class="input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29">
       <button class="btn btn-small" type="submit">{{t:nav.searchButton}}</button>
@@ -79,17 +78,17 @@
     <div class="header-tools">
       <div class="lang" id="lang">
         <button type="button" class="icon-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="{{a:lang.button}}">
-          <svg aria-hidden="true"><use href="#i-globe"/></svg><span>{{LANG_BADGE}}</span>
+          <svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>{{LANG_BADGE}}</span>
         </button>
         <ul class="lang-menu" id="lang-menu" hidden aria-label="{{a:lang.label}}">
 {{LANG_MENU}}
         </ul>
       </div>
-      <button type="button" class="icon-btn" data-theme-toggle aria-label="{{a:a11y.themeToggle}}"><svg aria-hidden="true"><use href="#i-theme"/></svg></button>
+      <button type="button" class="icon-btn" data-theme-toggle aria-label="{{a:a11y.themeToggle}}"><svg class="ic theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ic theme-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
     </div>
-    <a class="icon-btn search-link" href="{{LINK:tibia}}#/character" aria-label="{{a:nav.searchLabel}}"><svg aria-hidden="true"><use href="#i-search"/></svg></a>
+    <a class="icon-btn search-link" href="{{LINK:tibia}}#/character" aria-label="{{a:nav.searchLabel}}"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></a>
     <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="{{a:nav.menuOpen}}">
-      <svg class="menu-icon-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="menu-icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+      <svg class="ic menu-icon-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ic menu-icon-close" aria-hidden="true"><use href="#i-x"/></svg>
     </button>
   </div>
   <div class="menu-panel" id="site-menu">
@@ -108,7 +107,7 @@
         <ul class="menu-langs">
 {{MENU_LANGS}}
         </ul>
-        <button type="button" class="btn theme-btn" data-theme-toggle aria-label="{{a:a11y.themeToggle}}"><svg width="20" height="20" aria-hidden="true"><use href="#i-theme"/></svg><span class="theme-label">{{t:a11y.themeTitle}}</span></button>
+        <button type="button" class="btn theme-btn" data-theme-toggle aria-label="{{a:a11y.themeToggle}}"><svg class="ic theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ic theme-sun" aria-hidden="true"><use href="#i-sun"/></svg><span class="theme-label">{{t:a11y.themeTitle}}</span></button>
       </div>
     </div>
   </div>
@@ -118,52 +117,69 @@
 </main>
 <footer class="site-footer">
   <div class="wrap">
-    <div class="footer-grid">
+    <div class="footer-top">
       <div class="footer-brand">
         <a class="brand" href="{{LINK:home}}"><img src="{{ROOT}}img/logo.png" alt="" width="32" height="32"><span class="brand-name">Tibia Foundry</span></a>
-        <p>Tibia Foundry - All your Tibia-Tools for TibiaWiki</p>
+        <p class="footer-tagline">Tibia Foundry - All your Tibia-Tools for TibiaWiki</p>
+        <p>{{t:footer.about}}</p>
         <p>{{t:footer.made}}</p>
+        <p class="footer-contact"><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+{{FOOTER_PROFILES}}
       </div>
-      <div>
-        <h2>{{t:footer.product}}</h2>
-        <ul>
-          <li><a href="{{LINK:downloads}}">{{t:nav.downloads}}</a></li>
-          <li><a href="{{LINK:features}}">{{t:nav.features}}</a></li>
-          <li><a href="{{LINK:guides}}">{{t:nav.guides}}</a></li>
-          <li><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="footer">{{t:footer.releaseNotes}}</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>{{t:footer.data}}</h2>
-        <ul>
-          <li><a href="{{LINK:tibia}}#/character">{{t:js.toolCharacter}}</a></li>
-          <li><a href="{{LINK:tibia}}#/worlds">{{t:js.toolWorlds}}</a></li>
-          <li><a href="{{LINK:tibia}}#/highscores/all/experience/all/1">{{t:js.toolHighscores}}</a></li>
-          <li><a href="{{LINK:tibia}}#/news">{{t:js.toolNews}}</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>{{t:footer.project}}</h2>
-        <ul>
-          <li><a href="{{LINK:about}}">{{t:nav.about}}</a></li>
-          <li><a href="{{LINK:contact}}">{{t:nav.contact}}</a></li>
-          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">{{t:footer.repository}}</a></li>
-          <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">{{t:footer.issues}}</a></li>
-        </ul>
-      </div>
-      <div>
-        <h2>{{t:lang.label}}</h2>
-        <ul>
+      <div class="footer-grid">
+        <div>
+          <h2>{{t:footer.data}}</h2>
+          <ul>
+            <li><a href="{{LINK:tibia}}#/character">{{t:js.toolCharacter}}</a></li>
+            <li><a href="{{LINK:tibia}}#/worlds">{{t:js.toolWorlds}}</a></li>
+            <li><a href="{{LINK:tibia}}#/highscores/all/experience/all/1">{{t:js.toolHighscores}}</a></li>
+            <li><a href="{{LINK:tibia}}#/bosses">{{t:js.toolBosses}}</a></li>
+            <li><a href="{{LINK:tibia}}#/news">{{t:js.toolNews}}</a></li>
+            <li><a href="{{LINK:tibia}}#/fansites">{{t:js.toolFansites}}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{{t:footer.product}}</h2>
+          <ul>
+            <li><a href="{{LINK:downloads}}">{{t:nav.downloads}}</a></li>
+            <li><a href="{{LINK:features}}">{{t:nav.features}}</a></li>
+            <li><a href="{{LINK:guides}}">{{t:nav.guides}}</a></li>
+            <li><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="footer">{{t:footer.releaseNotes}}</a></li>
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">{{t:footer.repository}}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{{t:footer.project}}</h2>
+          <ul>
+            <li><a href="{{LINK:about}}">{{t:nav.about}}</a></li>
+            <li><a href="{{LINK:contact}}">{{t:nav.contact}}</a></li>
+            <li><a href="{{LINK:legal}}">{{t:nav.legal}}</a></li>
+            <li><a href="{{LINK:legal}}#privacy">{{t:legal.privacy.title}}</a></li>
+            <li><a href="{{LINK:legal}}#community">{{t:legal.community.title}}</a></li>
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">{{t:footer.issues}}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2>{{t:lang.label}}</h2>
+          <ul>
 {{LANG_FOOTER}}
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
+    <hr class="footer-rule">
     <section class="credits" aria-labelledby="credits-title" data-credits>
       <h2 id="credits-title">{{t:credits.title}}</h2>
 {{CREDITS}}
     </section>
     <div class="legal">
-      <p>{{t:footer.legal}}</p>
+      <ul class="legal-links">
+        <li><a href="https://www.tibia.com/" rel="noopener noreferrer" target="_blank">Tibia.com<span class="sr-only"> {{t:js.newTab}}</span></a></li>
+        <li><a href="https://www.cipsoft.com/" rel="noopener noreferrer" target="_blank">CipSoft GmbH<span class="sr-only"> {{t:js.newTab}}</span></a></li>
+        <li><a href="https://www.tibia.com/support/?subtopic=tibiarules" rel="noopener noreferrer" target="_blank">{{t:legal.rulesLink}}<span class="sr-only"> {{t:js.newTab}}</span></a></li>
+        <li><a href="{{LINK:legal}}">{{t:nav.legal}}</a></li>
+      </ul>
+      <p>© <span data-year>{{YEAR}}</span> Tibia Foundry · Rocky LaRochelle. {{t:footer.legal}}</p>
       <p>{{t:footer.version}}</p>
     </div>
   </div>

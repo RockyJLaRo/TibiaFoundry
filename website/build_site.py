@@ -17,7 +17,11 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
   match the screenshots; {version} comes from src/Directory.Build.props, {date} is the build date;
 * sitemap.xml lists every page in every language with hreflang alternates; 404.html sends old and deep data URLs
   (e.g. /tibia/character/Name) to their view; CNAME and robots.txt are never written when they exist;
-* website/i18n-report.md is the translation completeness report.
+* website/i18n-report.md is the translation completeness report;
+* src/ui-icons.svg (interface icons: a Lucide subset, ISC licence, written by website/art/icons.py) is inlined in every page;
+* src/images/pixel/*.svg (the site's own pixel ornaments, drawn by website/art/pixelart.py) is copied to site/img/pixel/;
+* --checksums also reads the archives' sizes when the files sit next to the checksum file, and the release date is the
+  date of the version's heading in CHANGELOG.md (both are shown on the Downloads page when known).
 
 The pages load nothing from other hosts except the Google tag (unchanged: G-J3EX3FB3PB) and, at run time, the
 TibiaData API and images on static.tibia.com (credited in the footer). Needs Pillow (pip install pillow).
@@ -82,6 +86,8 @@ APP_LINK_ICONS = os.path.join(ROOT, "src", "TibiaFoundry.App", "Assets", "Links"
 DERIVED = []          # (name, source, crop box): none since 9.0.5 (kept for screenshots.py)
 SHARED = ("logo", "output-")
 PROTECTED = ("CNAME", "robots.txt")   # never written when they exist (the Pages repository's own files)
+# Interface icons (Lucide subset, inline sprite written by art/icons.py); included once per page.
+UI_ICONS = open(os.path.join(SRC, "ui-icons.svg"), encoding="utf-8").read().strip()
 
 MONTHS = {
     "en": "January February March April May June July August September October November December",
@@ -122,6 +128,23 @@ def format_date(lang, d):
     month = MONTHS[lang].split()[d.month - 1]
     return {"en": f"{month} {d.day}, {d.year}", "pt-BR": f"{d.day} de {month} de {d.year}", "pl": f"{d.day} {month} {d.year}",
             "es": f"{d.day} de {month} de {d.year}", "de": f"{d.day}. {month} {d.year}"}[lang]
+
+
+DECIMAL = {"en": ".", "pt-BR": ",", "pl": ",", "es": ",", "de": ","}
+
+
+def format_size(lang, n):
+    """Archive sizes as MB (10^6 bytes, as GitHub shows them) with one decimal."""
+    return f"{n / 1_000_000:.1f}".replace(".", DECIMAL[lang]) + " MB"
+
+
+def release_date(ver):
+    """The date of the version's heading in CHANGELOG.md ("## 9.0.5 – 2026-11-17 ..."), or None."""
+    path = os.path.join(ROOT, "CHANGELOG.md")
+    if not os.path.exists(path):
+        return None
+    m = re.search(r"^## " + re.escape(ver) + r"\s+\S\s+(\d{4})-(\d{2})-(\d{2})", open(path, encoding="utf-8").read(), re.M)
+    return datetime.date(int(m.group(1)), int(m.group(2)), int(m.group(3))) if m else None
 
 
 def flatten(tree, prefix=""):
@@ -412,6 +435,30 @@ def profiles_html(tr, root):
     return '<ul class="profiles" data-profiles>\n' + "\n".join(items) + "\n      </ul>"
 
 
+def footer_profiles_html(tr, root):
+    """The six profiles as a row of icons in the footer (same URLs and labels as the About page)."""
+    items = []
+    for link in REGISTRY["creator"]["links"]:
+        name = tr.text(f"about.link.{link['id']}")
+        if link["id"] in ("tibiawiki", "tibia"):
+            icon = f'<img src="{root}img/icons/{link["id"]}.png" alt="" width="24" height="24">'
+        else:
+            icon = f'<svg aria-hidden="true" focusable="false"><use href="#i-{link["id"]}"/></svg>'
+        label = tr.attr("about.linkLabel", platform=TAG.sub("", name), handle=link["handle"])
+        items.append(f'          <li><a href="{htmllib.escape(link["url"])}" target="_blank" rel="noopener noreferrer" '
+                     f'data-profile="{link["id"]}" aria-label="{label}" title="{htmllib.escape(TAG.sub("", name))}">{icon}</a></li>')
+    return '        <ul class="footer-people" data-footer-profiles>\n' + "\n".join(items) + "\n        </ul>"
+
+
+def download_notice_html(tr, root, legal_link, heading="h3"):
+    """The download notice shown next to every download offer (Fansite Agreement: downloads need a disclaimer)."""
+    return (f'      <div class="dl-notice" data-download-notice role="note">'
+            f'<svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><div>'
+            f'<{heading} class="dl-notice-title">{tr.text("notice.title")}</{heading}>'
+            f'<p>{tr.text("notice.text1")}</p><p>{tr.text("notice.text2")}</p><p>{tr.text("notice.text3")}</p>'
+            f'<p><a href="{legal_link}#downloads">{tr.text("notice.more")}</a></p></div></div>')
+
+
 def shot_html(tr, img, spec):
     sid, dark_key, light_key, zoom_key, *rest = spec.split(":")
     eager = bool(rest) and rest[0] == "eager"
@@ -451,13 +498,13 @@ def docs_html(tr):
                      f'<span class="tool-text">{tr.text("guides.docs." + d["id"] + ".text")}</span></a></li>' for d in REGISTRY["docs"])
 
 
-def downloads(ver, checksums):
+def downloads(ver, checksums, sizes=None):
     dl = REGISTRY["downloads"]
     base = dl["base"].replace("{version}", ver)
     files = {}
     for f in dl["files"]:
         name = f["file"].replace("{version}", ver)
-        files[f["id"]] = {"file": name, "url": base + name, "sha": checksums.get(name)}
+        files[f["id"]] = {"file": name, "url": base + name, "sha": checksums.get(name), "size": (sizes or {}).get(name)}
     return files, base + dl["checksums"], dl["releasePage"].replace("{version}", ver), dl["allReleases"]
 
 
@@ -498,8 +545,11 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
     nav, menu = [], []
     for p in PAGES:
         here_attr = ' aria-current="page"' if p["id"] == page["id"] else ""
-        nav.append(f'        <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
-        menu.append(f'          <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
+        if "header" in p["placement"]:
+            nav.append(f'        <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
+        if "menu" in p["placement"]:
+            menu.append(f'          <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}><svg class="ic" aria-hidden="true">'
+                        f'<use href="#i-{p["icon"]}"/></svg>{tr.text(p["nav"])}</a></li>')
     lang_menu, lang_footer = [], []
     for c, folder, name, badge, _ in LANGUAGES:
         cur = ' aria-current="true"' if c == code else ""
@@ -532,7 +582,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
     scripts = ["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
-    files, checksums_url, release_page, all_releases = dlinfo
+    files, checksums_url, release_page, all_releases, released = dlinfo
 
     page_html = layout.replace("{{CONTENT}}", templates[page["template"]])
 
@@ -541,6 +591,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         if fid == "checksums":
             return checksums_url
         f = files[fid]
+        if what == "size":
+            return format_size(code, f["size"]) if f["size"] else ""
         if what == "sha":
             tr.raw("download.shaInFile")   # the text for builds without checksums counts as used either way
             return (f'<p class="sha" data-sha="{f["sha"]}">SHA-256: {f["sha"]}</p>' if f["sha"]
@@ -560,7 +612,16 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "EMAIL": REGISTRY["creator"]["email"], "MAIL_SUBJECT": urllib.parse.quote("Tibia Foundry"),
         "RELEASE_PAGE": release_page, "ALL_RELEASES": all_releases, "ASSET_VERSION": assets["version"],
         "STRUCTURED_DATA": structured_data(tr, ver, page, code),
+        "UI_ICONS": UI_ICONS,
+        "FOOTER_PROFILES": footer_profiles_html(tr, root),
+        "DOWNLOAD_NOTICE": download_notice_html(tr, root, link_to("legal"), "h2" if page["id"] == "downloads" else "h3")
+                           if "{{DOWNLOAD_NOTICE}}" in page_html else "", "YEAR": str(datetime.date.today().year),
+        "RELEASE_DATE": format_date(code, released) if released else tr.text("download.facts.dateUnknown"),
+        "DL_OS": REGISTRY["downloads"]["os"],
+        "CODE_SIGNING": tr.text("download.facts.signedYes" if REGISTRY["downloads"]["codeSigning"] else "download.facts.signedNo"),
     }
+    tr.raw("download.facts.dateUnknown")   # used when CHANGELOG.md has no date for the version
+    tr.raw("download.facts.signedYes")     # used once a release is code-signed
     for name, value in fixed.items():
         page_html = page_html.replace("{{" + name + "}}", value)
     page_html = re.sub(r"\{\{LINK:([\w-]+)\}\}", lambda m: link_to(m.group(1)), page_html)
@@ -595,6 +656,12 @@ def check_page(where, page):
     for p in PROVIDERS:
         if f'data-provider="{p["id"]}"' not in page:
             sys.exit(f"[{where}] The footer credit to {p['name']} is missing.")
+    for needle, what in (('href="https://www.tibia.com/"', "the link to Tibia.com"), ('href="https://www.cipsoft.com/"', "the link to CipSoft"),
+                         ("data-year", "the copyright year"), ("data-footer-profiles", "the creator's profiles")):
+        if needle not in page:
+            sys.exit(f"[{where}] The footer lacks {what}.")
+    if ("data-download=" in page or "data-download-link" in page) and "data-download-notice" not in page:
+        sys.exit(f"[{where}] A page offering the download must show the download notice (data-download-notice) next to it.")
     for m in re.finditer(r'<a\b[^>]*target="_blank"[^>]*>', page):
         if 'rel="noopener noreferrer' not in m.group(0):
             sys.exit(f"[{where}] A link opening a new tab lacks rel=\"noopener noreferrer\": {m.group(0)[:120]}")
@@ -665,13 +732,17 @@ def not_found_page(assets):
 def main():
     args = sys.argv[1:]
     strict = "--strict" in args
-    checksums = {}
+    checksums, sizes = {}, {}
     if "--checksums" in args:
         path = args[args.index("--checksums") + 1]
         for line in open(path, encoding="utf-8"):
             m = re.match(r"^([0-9a-fA-F]{64})\s+\*?(.+?)\s*$", line)
             if m:
-                checksums[os.path.basename(m.group(2))] = m.group(1).lower()
+                name = os.path.basename(m.group(2))
+                checksums[name] = m.group(1).lower()
+                archive = os.path.join(os.path.dirname(os.path.abspath(path)), name)
+                if os.path.exists(archive):
+                    sizes[name] = os.path.getsize(archive)
     ver = version()
     today = datetime.date.today()
     locales, meta = load_locales()
@@ -702,7 +773,7 @@ def main():
 
     files = {}
     translators = {code: Translator(code, locales, ver, today) for code, *_ in LANGUAGES}
-    dlinfo = downloads(ver, checksums)
+    dlinfo = downloads(ver, checksums, sizes) + (release_date(ver),)
     count = 0
     for code, folder, *_ in LANGUAGES:
         for page in PAGES:
@@ -731,6 +802,13 @@ def main():
         ext, data = encode(load("logo"), "logo")
         files["img/logo"] = ("img/logo.png", data)
         open(os.path.join(SITE, "img", "logo.png"), "wb").write(data)
+
+    # The site's own pixel art (icons sprite and ornament masks).
+    pixel = os.path.join(SRC, "images", "pixel")
+    os.makedirs(os.path.join(SITE, "img", "pixel"), exist_ok=True)
+    for name in sorted(os.listdir(pixel)):
+        if name.endswith(".svg"):
+            shutil.copyfile(os.path.join(pixel, name), os.path.join(SITE, "img", "pixel", name))
 
     # /en/<page>/ remembers the choice of English and opens the English page.
     for page in PAGES:

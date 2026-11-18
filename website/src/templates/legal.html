@@ -1,0 +1,120 @@
+<div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li aria-current="page">{{t:nav.legal}}</li></ol></nav>
+  <h1>{{t:legal.title}}</h1>
+  <p class="lead">{{t:legal.lead}}</p>
+  <nav class="legal-nav" aria-label="{{a:legal.sections}}">
+    <ul>
+      <li><a href="#copyright">{{t:legal.copyright.title}}</a></li>
+      <li><a href="#status">{{t:legal.status.title}}</a></li>
+      <li><a href="#administrator">{{t:legal.admin.title}}</a></li>
+      <li><a href="#downloads">{{t:legal.downloads.title}}</a></li>
+      <li><a href="#money">{{t:legal.money.title}}</a></li>
+      <li><a href="#privacy">{{t:legal.privacy.title}}</a></li>
+      <li><a href="#community">{{t:legal.community.title}}</a></li>
+      <li><a href="#sources">{{t:legal.sources.title}}</a></li>
+    </ul>
+  </nav>
+</div>
+
+<div class="wrap band legal-body">
+  <section class="legal-section" id="copyright" aria-labelledby="copyright-title">
+    <h2 id="copyright-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-scroll-text"/></svg></span>{{t:legal.copyright.title}}</h2>
+    <p>{{t:legal.copyright.text1}}</p>
+    <p>{{t:legal.copyright.text2}}</p>
+    <p>{{t:legal.copyright.text3}}</p>
+    <p><a href="https://www.tibia.com/" rel="noopener noreferrer" target="_blank">Tibia.com<span class="sr-only"> {{t:js.newTab}}</span></a> · <a href="https://www.cipsoft.com/" rel="noopener noreferrer" target="_blank">CipSoft GmbH<span class="sr-only"> {{t:js.newTab}}</span></a></p>
+  </section>
+
+  <section class="legal-section" id="status" aria-labelledby="status-title">
+    <h2 id="status-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span>{{t:legal.status.title}}</h2>
+    <p>{{t:legal.status.text1}}</p>
+    <p>{{t:legal.status.text2}} <a href="https://www.tibia.com/community/?subtopic=fansites&amp;page=programme" rel="noopener noreferrer" target="_blank">{{t:legal.status.programme}}<span class="sr-only"> {{t:js.newTab}}</span></a></p>
+  </section>
+
+  <section class="legal-section" id="administrator" aria-labelledby="admin-title">
+    <h2 id="admin-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-user-round"/></svg></span>{{t:legal.admin.title}}</h2>
+    <dl class="admin">
+      <div><dt>{{t:legal.admin.name}}</dt><dd>Rocky LaRochelle</dd></div>
+      <div><dt>{{t:legal.admin.role}}</dt><dd>{{t:about.role}}</dd></div>
+      <div><dt>{{t:legal.admin.place}}</dt><dd>{{t:about.location}}</dd></div>
+      <div><dt>{{t:legal.admin.character}}</dt><dd><a href="https://www.tibia.com/community/?name=Roc+ky" rel="noopener noreferrer" target="_blank">Roc ky<span class="sr-only"> {{t:js.newTab}}</span></a></dd></div>
+      <div><dt>{{t:legal.admin.email}}</dt><dd><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></dd></div>
+    </dl>
+    <p class="muted" style="margin-top:12px">{{t:legal.admin.note}} <a href="{{LINK:contact}}">{{t:nav.contact}}</a></p>
+  </section>
+
+  <section class="legal-section" id="downloads" aria-labelledby="downloads-title">
+    <h2 id="downloads-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></span>{{t:legal.downloads.title}}</h2>
+    <p>{{t:notice.text1}} {{t:notice.text2}} {{t:notice.text3}}</p>
+    <h3>{{t:legal.downloads.whereTitle}}</h3>
+    <p>{{t:legal.downloads.where}}</p>
+    <h3>{{t:legal.downloads.checkTitle}}</h3>
+    <ul class="checks">
+      <li>{{t:legal.downloads.check1}}</li>
+      <li>{{t:legal.downloads.check2}}</li>
+      <li>{{t:legal.downloads.check3}}</li>
+      <li>{{t:legal.downloads.check4}}</li>
+    </ul>
+    <h3>{{t:legal.downloads.purposeTitle}}</h3>
+    <p>{{t:legal.downloads.purpose}}</p>
+    <p><a class="btn" href="{{LINK:downloads}}">{{t:nav.downloads}}</a></p>
+  </section>
+
+  <section class="legal-section" id="money" aria-labelledby="money-title">
+    <h2 id="money-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-coins"/></svg></span>{{t:legal.money.title}}</h2>
+    <ul class="status-list">
+      <li><strong>{{t:legal.money.adsTitle}}</strong>{{t:legal.money.ads}}</li>
+      <li><strong>{{t:legal.money.incomeTitle}}</strong>{{t:legal.money.income}}</li>
+      <li><strong>{{t:legal.money.hiddenTitle}}</strong>{{t:legal.money.hidden}}</li>
+    </ul>
+    <p class="muted">{{t:legal.money.change}}</p>
+  </section>
+
+  <section class="legal-section" id="privacy" aria-labelledby="privacy-title">
+    <h2 id="privacy-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg></span>{{t:legal.privacy.title}}</h2>
+    <p>{{t:legal.privacy.intro}}</p>
+    <h3>{{t:legal.privacy.statsTitle}}</h3>
+    <p>{{t:legal.privacy.stats}}</p>
+    <div class="toggle-row" data-analytics-toggle>
+      <output data-analytics-state>{{t:legal.privacy.stateUnknown}}</output>
+      <button type="button" class="btn btn-small" data-analytics-off>{{t:legal.privacy.turnOff}}</button>
+      <button type="button" class="btn btn-small" data-analytics-on>{{t:legal.privacy.turnOn}}</button>
+    </div>
+    <p class="muted">{{t:legal.privacy.gpc}}</p>
+    <h3>{{t:legal.privacy.dataTitle}}</h3>
+    <p>{{t:legal.privacy.data}}</p>
+    <h3>{{t:legal.privacy.storageTitle}}</h3>
+    <p>{{t:legal.privacy.storage}}</p>
+    <h3>{{t:legal.privacy.nothingTitle}}</h3>
+    <p>{{t:legal.privacy.nothing}}</p>
+  </section>
+
+  <section class="legal-section" id="community" aria-labelledby="community-title">
+    <h2 id="community-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span>{{t:legal.community.title}}</h2>
+    <p>{{t:legal.community.text1}}</p>
+    <p>{{t:legal.community.text2}}</p>
+    <ul class="points">
+      <li>{{t:legal.community.rule1}}</li>
+      <li>{{t:legal.community.rule2}}</li>
+      <li>{{t:legal.community.rule3}}</li>
+    </ul>
+    <p>{{t:legal.community.report}} <a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+    <p><a href="https://www.tibia.com/support/?subtopic=tibiarules" rel="noopener noreferrer" target="_blank">{{t:legal.rulesLink}}<span class="sr-only"> {{t:js.newTab}}</span></a></p>
+    <h3>{{t:legal.community.spoilersTitle}}</h3>
+    <p>{{t:legal.community.spoilers}}</p>
+    <div class="spoiler" role="note"><strong>{{t:legal.spoilerWarning.title}}</strong> {{t:legal.spoilerWarning.text}}</div>
+  </section>
+
+  <section class="legal-section" id="sources" aria-labelledby="sources-title">
+    <h2 id="sources-title"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true"><use href="#i-newspaper"/></svg></span>{{t:legal.sources.title}}</h2>
+    <ul class="status-list">
+      <li><strong>{{t:legal.sources.originalTitle}}</strong>{{t:legal.sources.original}}</li>
+      <li><strong>{{t:legal.sources.officialTitle}}</strong>{{t:legal.sources.official}}</li>
+      <li><strong>{{t:legal.sources.externalTitle}}</strong>{{t:legal.sources.external}}</li>
+      <li><strong>{{t:legal.sources.communityTitle}}</strong>{{t:legal.sources.community}}</li>
+      <li><strong>{{t:legal.sources.artTitle}}</strong>{{t:legal.sources.art}}</li>
+    </ul>
+    <p class="muted">{{t:legal.sources.unconfirmed}}</p>
+    <p><a href="{{LINK:about}}#sources-title">{{t:about.sources.title}}</a></p>
+  </section>
+</div>

@@ -1,4 +1,6 @@
+<script>/* route marker before first paint: the phone layout of the overview differs from the views (no layout shift) */ document.body.setAttribute("data-route", /^#?\/?$/.test(location.hash) && !/[?&]character=/.test(location.search) ? "hub" : "view");</script>
 <div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li data-crumb-hub><a href="#/">{{t:nav.tibia}}</a></li><li aria-current="page" data-crumb-current hidden></li></ol></nav>
   <h1>{{t:tibia.title}}</h1>
   <p class="lead">{{t:tibia.lead}}</p>
 </div>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tibia Foundry palette lab</title>
+<meta name="robots" content="noindex">
+<!-- Design exploration only (never built into the site). ?p=p0|p1|p2|p3&t=light|dark renders the same real components
+     in each candidate palette. p0 is the stage-1 palette (baseline). -->
+<script>
+  var q = new URLSearchParams(location.search);
+  document.documentElement.className = (q.get('p') || 'p1') + ' ' + (q.get('t') || 'light');
+</script>
+<style>
+/* ---------- candidate palettes ---------- */
+.p0.light { --bg:#ebe5d6; --surface:#fbf7ec; --surface-2:#f3ecdb; --raised:#fffdf6; --border:#d6c8a8; --border-strong:#8c7650; --text:#2a2117; --text-2:#5b4c39;
+  --link:#7a3b0b; --primary:#8a4813; --primary-text:#fffaf0; --accent:#c8962f; --accent-soft:#f7ead0; --info:#1f63a3; --info-soft:#e4eef8;
+  --success:#2f7536; --success-soft:#e4f1df; --warning:#8a5b00; --warning-soft:#fbefd2; --danger:#b0262e; --danger-soft:#f8e1df;
+  --chrome:#48423a; --chrome-2:#3a352f; --chrome-text:#f4ead2; --chrome-muted:#d7c9a9; --chrome-link:#f6d38b; --row:#f3ecdb; }
+.p0.dark { --bg:#1c1915; --surface:#26221c; --surface-2:#2d2821; --raised:#2e2a23; --border:#463e31; --border-strong:#8a7a5e; --text:#efe6d0; --text-2:#c0b294;
+  --link:#ebb75f; --primary:#d79d47; --primary-text:#1d150b; --accent:#d9a548; --accent-soft:#33291a; --info:#8cc4ef; --info-soft:#1d2a36;
+  --success:#8fd29a; --success-soft:#1f3324; --warning:#e3b65c; --warning-soft:#33291a; --danger:#f08a8f; --danger-soft:#3d2324;
+  --chrome:#14120f; --chrome-2:#0f0d0b; --chrome-text:#efe6d0; --chrome-muted:#b9ab8d; --chrome-link:#ebb75f; --row:#2d2821; }
+
+/* P1 Ivory & Sapphire: ivory paper, slate chrome, sapphire actions (the logo's blue), antique gold only as an accent */
+.p1.light { --bg:#f5f2eb; --surface:#fffdf8; --surface-2:#f0ebe1; --raised:#ffffff; --border:#e1d9ca; --border-strong:#8d8170; --text:#24221e; --text-2:#5a554c;
+  --link:#1d5a8e; --primary:#1f5b8f; --primary-text:#ffffff; --accent:#b6893a; --accent-soft:#f5ead3; --info:#1f5b8f; --info-soft:#e6eef7;
+  --success:#2b7a3f; --success-soft:#e3f2e6; --warning:#8a5a00; --warning-soft:#fbf0d6; --danger:#b42f36; --danger-soft:#fae4e3;
+  --chrome:#262b33; --chrome-2:#1d2128; --chrome-text:#f2eee6; --chrome-muted:#b9bfc9; --chrome-link:#e7c47c; --row:#f7f3ec; }
+.p1.dark { --bg:#14171c; --surface:#1c2027; --surface-2:#232832; --raised:#262c36; --border:#323946; --border-strong:#6b7686; --text:#ebe7df; --text-2:#a8b0bc;
+  --link:#86bdf0; --primary:#5f9fdb; --primary-text:#0b1520; --accent:#d3ad62; --accent-soft:#2c2618; --info:#86bdf0; --info-soft:#1a2a3a;
+  --success:#7dcf93; --success-soft:#19301f; --warning:#e2bb63; --warning-soft:#302714; --danger:#f2878c; --danger-soft:#3a1f22;
+  --chrome:#0f1216; --chrome-2:#0b0d10; --chrome-text:#ebe7df; --chrome-muted:#9aa3af; --chrome-link:#e2bf72; --row:#20252e; }
+
+/* P2 Refined parchment & bronze: cleaner neutrals than p0, bronze kept for actions but less orange, verdigris secondary */
+.p2.light { --bg:#f7f3ea; --surface:#fffcf6; --surface-2:#f1eadc; --raised:#ffffff; --border:#e3d8c4; --border-strong:#8f7f64; --text:#27231d; --text-2:#5d5446;
+  --link:#7c4a12; --primary:#7c4a12; --primary-text:#fffaf0; --accent:#b8893a; --accent-soft:#f6ead2; --info:#2d6b62; --info-soft:#e2f0ec;
+  --success:#2b7a3f; --success-soft:#e3f2e6; --warning:#8a5a00; --warning-soft:#fbf0d6; --danger:#b42f36; --danger-soft:#fae4e3;
+  --chrome:#3a3631; --chrome-2:#2e2b27; --chrome-text:#f5efe3; --chrome-muted:#cfc6b6; --chrome-link:#ecc77f; --row:#f8f3e9; }
+.p2.dark { --bg:#171615; --surface:#201f1d; --surface-2:#282624; --raised:#2b2926; --border:#3a3733; --border-strong:#7a7266; --text:#eee8dd; --text-2:#b3ab9e;
+  --link:#e6b56a; --primary:#d6a15a; --primary-text:#1b130a; --accent:#d6a85c; --accent-soft:#2f2718; --info:#7fc4b6; --info-soft:#17302b;
+  --success:#7dcf93; --success-soft:#19301f; --warning:#e2bb63; --warning-soft:#302714; --danger:#f2878c; --danger-soft:#3a1f22;
+  --chrome:#100f0e; --chrome-2:#0c0b0a; --chrome-text:#eee8dd; --chrome-muted:#a59d90; --chrome-link:#e3b46a; --row:#242220; }
+
+/* P3 Stone & Verdigris: cool stone neutrals, verdigris actions, antique gold accent */
+.p3.light { --bg:#f3f2ee; --surface:#ffffff; --surface-2:#edebe5; --raised:#ffffff; --border:#dcd8cf; --border-strong:#857f74; --text:#1f2421; --text-2:#545a56;
+  --link:#17676a; --primary:#1e6b66; --primary-text:#ffffff; --accent:#b08a3e; --accent-soft:#f3ead6; --info:#1d5f8a; --info-soft:#e4eef6;
+  --success:#2b7a3f; --success-soft:#e3f2e6; --warning:#8a5a00; --warning-soft:#fbf0d6; --danger:#b42f36; --danger-soft:#fae4e3;
+  --chrome:#25302e; --chrome-2:#1c2523; --chrome-text:#eef1ec; --chrome-muted:#b4bfba; --chrome-link:#e3c27e; --row:#f6f5f2; }
+.p3.dark { --bg:#121615; --surface:#1a201f; --surface-2:#212827; --raised:#242c2b; --border:#313b39; --border-strong:#6c7a76; --text:#e7ebe7; --text-2:#a4b0ac;
+  --link:#76c9bd; --primary:#4fae9f; --primary-text:#06110f; --accent:#d2ad62; --accent-soft:#2b2617; --info:#86bdf0; --info-soft:#1a2a3a;
+  --success:#7dcf93; --success-soft:#19301f; --warning:#e2bb63; --warning-soft:#302714; --danger:#f2878c; --danger-soft:#3a1f22;
+  --chrome:#0d1110; --chrome-2:#090c0b; --chrome-text:#e7ebe7; --chrome-muted:#97a39f; --chrome-link:#dbb86f; --row:#1e2524; }
+
+/* ---------- shared components (same as the site) ---------- */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif; }
+h1, h2, h3 { font-family: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; margin: 0 0 .4em; line-height: 1.2; }
+h1 { font-size: 2.2rem; } h2 { font-size: 1.45rem; } h3 { font-size: 1.05rem; }
+a { color: var(--link); text-underline-offset: .18em; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+.hdr { background: var(--chrome); color: var(--chrome-text); border-bottom: 3px solid var(--accent); }
+.hdr .wrap { display: flex; align-items: center; gap: 22px; height: 60px; }
+.brand { font: 700 1.15rem "Palatino Linotype", Palatino, serif; margin-right: auto; display: flex; gap: 10px; align-items: center; }
+.brand img { image-rendering: pixelated; }
+.hdr nav a { color: var(--chrome-text); text-decoration: none; font-weight: 600; padding: 18px 2px; }
+.hdr nav a.on { box-shadow: inset 0 -3px 0 var(--chrome-link); }
+.hdr nav { display: flex; gap: 22px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--raised); color: var(--text); font: 600 .9rem inherit; font-family: inherit; }
+.btn-primary { background: var(--primary); border-color: var(--primary); color: var(--primary-text); }
+.btn-quiet { background: transparent; border-color: transparent; color: var(--link); }
+.btn svg, .ic { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+main { padding: 28px 0 40px; }
+.grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; }
+.panel { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; box-shadow: 0 1px 2px rgb(0 0 0 / .05); }
+.lead { color: var(--text-2); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: grid; grid-template-columns: 40px 1fr; gap: 2px 12px; }
+.medal { grid-row: span 2; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
+.medal .ic { width: 22px; height: 22px; stroke: currentColor; }
+.card b { color: var(--link); } .card span { color: var(--text-2); font-size: .88rem; }
+table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-variant-numeric: tabular-nums; }
+th { background: var(--surface-2); text-align: left; font-size: .82rem; padding: 0; border-bottom: 1px solid var(--border); }
+th button { all: unset; display: flex; align-items: center; gap: 6px; padding: 9px 12px; cursor: pointer; font-weight: 700; color: var(--text); }
+th .ic { width: 14px; height: 14px; color: var(--text-2); opacity: .6; } th.on .ic { color: var(--primary); opacity: 1; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--border); } tr:nth-child(even) td { background: var(--row); } .num { text-align: right; }
+tr:last-child td { border-bottom: 0; }
+.input { width: 100%; min-height: 40px; border: 1px solid var(--border-strong); border-radius: 8px; padding: 0 12px; background: var(--raised); color: var(--text); font: inherit; }
+.notice { display: grid; grid-template-columns: 22px 1fr; gap: 10px; padding: 12px 14px; border-radius: 10px; background: var(--accent-soft); border: 1px solid var(--border); border-left: 4px solid var(--accent); font-size: .9rem; margin-top: 14px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+.chip { padding: 4px 12px; border-radius: 999px; font-size: .8rem; font-weight: 600; }
+.ok { background: var(--success-soft); color: var(--success); } .warn { background: var(--warning-soft); color: var(--warning); } .err { background: var(--danger-soft); color: var(--danger); } .inf { background: var(--info-soft); color: var(--info); }
+.ftr { background: var(--chrome); color: var(--chrome-text); padding: 26px 0; font-size: .9rem; }
+.ftr .cols { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 24px; }
+.ftr h3 { color: var(--chrome-link); } .ftr a { color: var(--chrome-text); display: block; padding: 3px 0; text-decoration: none; } .ftr p { color: var(--chrome-muted); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="arrows" viewBox="0 0 24 24"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></symbol>
+  <symbol id="down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="user" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+  <symbol id="shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+</svg>
+<header class="hdr"><div class="wrap"><span class="brand"><img src="../../../../website/src/images/logo.png" width="28" height="28" alt="">Tibia Foundry</span>
+  <nav><a class="on">Tibia tools</a><a>Desktop app</a><a>Guides</a><a>About</a></nav><span class="btn btn-primary"><svg class="ic"><use href="#dl"/></svg>Download</span></div></header>
+<main class="wrap">
+  <div class="grid">
+    <div>
+      <h1>Tibia tools, live game data and a desktop toolkit</h1>
+      <p class="lead">Look up characters, worlds, highscores, houses and bosses with live data – free, right in your browser.</p>
+      <div style="display:flex;gap:8px"><input class="input" placeholder="Character name, e.g. Roc ky"><span class="btn btn-primary">Search</span><span class="btn">Worlds</span><span class="btn btn-quiet">All tools</span></div>
+      <div class="chips"><span class="chip ok">Online</span><span class="chip warn">Auctioned</span><span class="chip err">Offline API</span><span class="chip inf">Boosted</span></div>
+      <div class="cards">
+        <div class="card"><span class="medal"><svg class="ic"><use href="#user"/></svg></span><b>Characters</b><span>Level, deaths, guild</span></div>
+        <div class="card"><span class="medal"><svg class="ic"><use href="#globe"/></svg></span><b>Worlds</b><span>Who is online</span></div>
+        <div class="card"><span class="medal"><svg class="ic"><use href="#trophy"/></svg></span><b>Highscores</b><span>Per world and vocation</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Highscores</h2>
+      <table><thead><tr><th class="on"><button>#<svg class="ic"><use href="#down"/></svg></button></th><th><button>Name<svg class="ic"><use href="#arrows"/></svg></button></th><th><button>Vocation<svg class="ic"><use href="#arrows"/></svg></button></th><th class="num"><button>Level<svg class="ic"><use href="#arrows"/></svg></button></th></tr></thead>
+        <tbody><tr><td>1</td><td><a>Example Knight</a></td><td>Elite Knight</td><td class="num">2,247</td></tr><tr><td>2</td><td><a>Example Druid</a></td><td>Elder Druid</td><td class="num">2,118</td></tr>
+        <tr><td>3</td><td><a>Example Paladin</a></td><td>Royal Paladin</td><td class="num">2,032</td></tr><tr><td>4</td><td><a>Example Sorcerer</a></td><td>Master Sorcerer</td><td class="num">2,026</td></tr></tbody></table>
+      <div class="notice"><svg class="ic" style="color:var(--accent)"><use href="#shield"/></svg><div><b>Important download notice.</b> Tibia Foundry is independent software by Rocky LaRochelle, not made or supported by CipSoft GmbH.</div></div>
+    </div>
+  </div>
+</main>
+<footer class="ftr"><div class="wrap cols"><div><h3>Tibia Foundry</h3><p>Free Tibia tools in your browser and a desktop toolkit for TibiaWiki editors and fansite creators.</p></div>
+  <div><h3>Tibia tools</h3><a>Characters</a><a>Worlds</a><a>Highscores</a></div><div><h3>Desktop app</h3><a>Downloads</a><a>Features</a></div><div><h3>Project</h3><a>About</a><a>Legal</a></div></div></footer>
+</body>
+</html>

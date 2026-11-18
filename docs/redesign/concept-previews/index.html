@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" class="concept-a" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tibia Foundry design concepts</title>
+<meta name="robots" content="noindex">
+<!-- Design exploration only (not published). ?c=a|b|c&t=light|dark picks the concept and theme.
+     The same real content of tibiafoundry.com is shown in three visual directions. -->
+<script>
+  var q = new URLSearchParams(location.search);
+  document.documentElement.className = 'concept-' + (q.get('c') || 'a');
+  document.documentElement.dataset.theme = q.get('t') || 'light';
+</script>
+<link rel="stylesheet" href="concepts.css">
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap hdr-bar">
+    <a class="brand" href="#"><img src="../../../website/src/images/logo.png" alt="" width="32" height="32"><span>Tibia Foundry</span><small>9.0.5</small></a>
+    <nav class="nav"><a href="#" aria-current="page">Tibia tools</a><a href="#">Desktop app</a><a href="#">Guides</a><a href="#">About</a></nav>
+    <a class="btn btn-primary btn-sm nav-dl" href="#"><svg class="px"><use href="../../../website/src/images/pixel/icons.svg#px-download"/></svg>Download</a>
+    <button class="menu" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-main">
+      <h1>Tibia tools, live game data and a desktop toolkit for fansite creators</h1>
+      <p class="lead">Look up characters, worlds, highscores, houses and bosses with live data from TibiaData — or download the free Windows toolkit that turns your Tibia client into wiki-ready graphics.</p>
+      <form class="search" onsubmit="return false">
+        <label for="c">Look up a character</label>
+        <div class="search-row"><input id="c" placeholder="Character name, e.g. Roc ky"><button class="btn btn-primary">Search</button></div>
+      </form>
+      <p class="quick">Popular: <a href="#">Worlds online</a> <a href="#">Experience highscores</a> <a href="#">Boosted boss</a> <a href="#">Latest news</a></p>
+    </div>
+    <aside class="today panel framed">
+      <h2>Today in Tibia</h2>
+      <div class="boost"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-creatures"/></svg><div><small>Boosted creature</small><strong>Dragon Lord</strong></div></div>
+      <div class="boost"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-bosses"/></svg><div><small>Boosted boss</small><strong>Grand Master Oberon</strong></div></div>
+      <div class="boost"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-news"/></svg><div><small>Latest news · 17 November</small><strong>Winter update test server</strong></div></div>
+      <p class="src">Data: TibiaData · Original on Tibia.com</p>
+    </aside>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head"><h2>Find what you need</h2><a href="#">All Tibia tools</a></div>
+    <ul class="dest">
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-character"/></svg></span><b>Characters &amp; guilds</b><span>Level, deaths, achievements and guild members of any Tibian.</span></a></li>
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-world"/></svg></span><b>Worlds</b><span>Who is online, PvP type, location and records for every world.</span></a></li>
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-highscores"/></svg></span><b>Highscores</b><span>Experience, skills and more, per world and vocation.</span></a></li>
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-creatures"/></svg></span><b>Creatures, bosses &amp; spells</b><span>The boosted creature and boss, creature and spell reference.</span></a></li>
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-houses"/></svg></span><b>Houses</b><span>Auctions, owners and rent in every town.</span></a></li>
+      <li><a class="dcard" href="#"><span class="tile"><svg class="px px-lg"><use href="../../../website/src/images/pixel/icons.svg#px-news"/></svg></span><b>News &amp; fansites</b><span>Official news, the ticker and the fansite directory.</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band band-alt">
+  <div class="wrap split">
+    <div class="tool panel">
+      <h3>Highscores</h3>
+      <div class="fields">
+        <label>World<select><option>All worlds</option></select></label>
+        <label>Category<select><option>Experience points</option></select></label>
+        <label>Vocation<select><option>All vocations</option></select></label>
+      </div>
+      <table><thead><tr><th>#</th><th>Name</th><th class="n">Level</th></tr></thead>
+        <tbody><tr><td>1</td><td><a href="#">Example Knight</a></td><td class="n">1,000</td></tr><tr><td>2</td><td><a href="#">Example Druid</a></td><td class="n">950</td></tr><tr><td>3</td><td><a href="#">Example Paladin</a></td><td class="n">900</td></tr></tbody></table>
+      <p class="src">Data: TibiaData · Original on Tibia.com</p>
+    </div>
+    <div class="app">
+      <h2>The desktop toolkit for TibiaWiki and fansite work</h2>
+      <p>Extract sprites, outfits and maps from your own Tibia client, keep an asset library, and export wiki infoboxes — free and open source for Windows 10 and 11.</p>
+      <div class="actions"><a class="btn btn-primary" href="#"><svg class="px"><use href="../../../website/src/images/pixel/icons.svg#px-download"/></svg>Download Tibia Foundry 9.0.5</a><a class="btn" href="#">See features</a></div>
+      <p class="notice"><strong>Important download notice.</strong> Tibia Foundry is independent software by Rocky LaRochelle, not made or supported by CipSoft GmbH.</p>
+      <div class="btn-row"><a class="btn btn-sm" href="#">Secondary</a><a class="btn btn-sm btn-quiet" href="#">Quiet</a><button class="btn btn-sm" disabled>Disabled</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="ornament" aria-hidden="true"></div>
+    <div class="sec-head"><h2>Tibia news &amp; updates</h2><a href="#">News archive</a></div>
+    <ul class="news">
+      <li class="panel"><small>Development · 17 Nov 2026</small><a href="#">Winter update: test server open</a><p>The test server opens for the winter update with new hunting grounds and quality-of-life changes.</p></li>
+      <li class="panel"><small>Community · 14 Nov 2026</small><a href="#">Fansite spotlight</a><p>A look at community projects that help players plan hunts and track progress.</p></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div class="ftr-brand"><a class="brand" href="#"><img src="../../../website/src/images/logo.png" alt="" width="32" height="32"><span>Tibia Foundry</span></a><p>All your Tibia tools for TibiaWiki — an independent fan project by Rocky LaRochelle, Upstate New York.</p></div>
+      <div><h3>Tibia tools</h3><a href="#">Character lookup</a><a href="#">Worlds</a><a href="#">Highscores</a><a href="#">News</a></div>
+      <div><h3>Desktop app</h3><a href="#">Download</a><a href="#">Features</a><a href="#">Guides</a><a href="#">Source code</a></div>
+      <div><h3>Project</h3><a href="#">About</a><a href="#">Contact</a><a href="#">Legal &amp; transparency</a><a href="#">Privacy</a></div>
+    </div>
+    <p class="credit">Thanks to <a href="#">TibiaData</a> for providing the Tibia data used on this site.</p>
+    <p class="legal">© 2026 Tibia Foundry. Tibia is made by <a href="#">CipSoft GmbH</a>; Tibia content and graphics are copyright CipSoft GmbH. Tibia Foundry is an independent fan project, not affiliated with or endorsed by CipSoft.</p>
+  </div>
+</footer>
+</body>
+</html>

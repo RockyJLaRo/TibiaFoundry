@@ -148,14 +148,36 @@ def creator_links(c, browser, base):
 
 
 def navigation(c, browser, base):
+    """Every page is reachable: the header holds the task pages (registry placement "header") and the Download button,
+    the logo leads home, the phone menu holds the "menu" pages, and the footer links every page."""
     en = kit.LANGUAGES[0]
     ctx, page = new_page(browser, base, 1440, 1000)
     page.goto(url_of(base, en, "home"))
     for pg in kit.PAGES:
-        page.locator(f".main-nav a[data-page-link={pg['id']}]").click()
+        if "header" in pg["placement"]:
+            link = page.locator(f".main-nav a[data-page-link={pg['id']}]")
+        elif pg["id"] == "downloads":
+            link = page.locator(".header-download")
+        elif pg["id"] == "home":
+            link = page.locator(".site-header .brand")
+        else:
+            link = page.locator(f"footer .footer-grid a[href$='{pg['path']}']").first
+        c.ok(link.count() >= 1 and link.first.is_visible(), f"desktop: no visible link to {pg['id']}")
+        link.first.click()
         page.wait_for_load_state()
         c.ok(page.url.rstrip("/").endswith(("/" + pg["path"]).rstrip("/")) or (pg["path"] == "" and page.url == base), f"desktop nav to {pg['id']}: {page.url}")
-        c.ok(page.locator(f".main-nav a[data-page-link={pg['id']}]").get_attribute("aria-current") == "page", f"aria-current on {pg['id']}")
+        if "header" in pg["placement"]:
+            c.ok(page.locator(f".main-nav a[data-page-link={pg['id']}]").get_attribute("aria-current") == "page", f"aria-current on {pg['id']}")
+    for pg in kit.PAGES:
+        if pg["id"] != "home":
+            c.ok(page.locator(f"footer a[href$='{pg['path']}']").count() >= 1, f"footer lacks a link to {pg['id']}")
+    ctx.close()
+    ctx, page = new_page(browser, base, 390, 844)
+    page.goto(url_of(base, en, "home"))
+    page.locator("#menu-btn").click()
+    for pg in kit.PAGES:
+        if "menu" in pg["placement"]:
+            c.ok(page.locator(f"#site-menu a[data-page-link={pg['id']}]").is_visible(), f"phone menu lacks {pg['id']}")
     ctx.close()
     # Mobile menu: opens, keyboard, Escape, closes after navigation.
     ctx, page = new_page(browser, base, 390, 844)
@@ -496,13 +518,146 @@ def live_api(c, browser, base):
     ctx.close()
 
 
+def compliance(c, browser, base):
+    """Fansite Agreement items the site itself must show, in every language: the download notice before any download
+    button (home and Downloads), the footer's six profile icons, CipSoft/Tibia links and copyright year, the Legal page's
+    sections, and the statistics opt-out (stored choice + Google tag disabled)."""
+    exact = {l["id"]: l["url"] for l in kit.REGISTRY["creator"]["links"]}
+    ctx, page = new_page(browser, base, 1440, 1000)
+    for lang in kit.LANGUAGES:
+        for pid in ("home", "downloads"):
+            page.goto(url_of(base, lang, pid))
+            where = f"{lang['code']}/{pid}"
+            notice = page.locator("[data-download-notice]")
+            c.ok(notice.count() == 1 and notice.is_visible(), f"{where}: download notice missing or hidden")
+            if notice.count():
+                top = notice.bounding_box()["y"]
+                buttons = page.locator("[data-download] a.btn" if pid == "downloads" else "#desktop-app a[data-download-link]")
+                c.ok(buttons.count() >= 1, f"{where}: no download button")
+                if pid == "downloads":
+                    c.ok(all(buttons.nth(i).bounding_box()["y"] > top for i in range(buttons.count())), f"{where}: a download button comes before the notice")
+                c.ok("CipSoft" in notice.inner_text(), f"{where}: notice does not name CipSoft")
+        page.goto(url_of(base, lang, "legal"))
+        where = f"{lang['code']}/legal"
+        for sid in ("copyright", "status", "administrator", "downloads", "money", "privacy", "community", "sources"):
+            c.ok(page.locator(f"section#{sid} h2").count() == 1, f"{where}: section {sid}")
+        c.ok(page.locator("#administrator a[href='https://www.tibia.com/community/?name=Roc+ky']").count() == 1, f"{where}: administrator's character link")
+        c.ok(page.locator("#administrator a[href='mailto:rocky@tibiafoundry.com']").count() == 1, f"{where}: administrator's email")
+        icons = page.locator("[data-footer-profiles] a")
+        c.ok(icons.count() == 6, f"{where}: footer profile icons {icons.count()}")
+        for i in range(icons.count()):
+            a = icons.nth(i)
+            pid = a.get_attribute("data-profile")
+            c.ok(a.get_attribute("href") == exact.get(pid) and (a.get_attribute("aria-label") or "").strip(), f"{where}: footer profile {pid}")
+        c.ok(page.locator("footer [data-year]").inner_text().strip() == str(time.localtime().tm_year), f"{where}: copyright year")
+        for href in ("https://www.tibia.com/", "https://www.cipsoft.com/", "https://www.tibia.com/support/?subtopic=tibiarules"):
+            c.ok(page.locator(f"footer a[href='{href}']").count() >= 1, f"{where}: footer link {href}")
+    # Statistics opt-out: the choice is stored and disables the Google tag on the next page.
+    page.goto(url_of(base, kit.LANGUAGES[0], "legal"))
+    page.locator("[data-analytics-off]").click()
+    c.ok(page.evaluate("localStorage.getItem('tf-analytics')") == "off", "opt-out not stored")
+    page.goto(url_of(base, kit.LANGUAGES[0], "home"))
+    c.ok(page.evaluate("window['ga-disable-G-J3EX3FB3PB'] === true"), "Google tag not disabled after opting out")
+    page.goto(url_of(base, kit.LANGUAGES[0], "legal"))
+    page.locator("[data-analytics-on]").click()
+    c.ok(page.evaluate("localStorage.getItem('tf-analytics')") is None, "opt-in not stored")
+    ctx.close()
+    c.note("download notice, footer profiles, CipSoft links, year, Legal sections and statistics opt-out checked in 5 languages")
+
+
+COLUMN_TEXTS = """(i) => [...document.querySelectorAll('#app .data-table')[0].querySelectorAll('tbody tr')].map(tr => (tr.children[i] || {}).innerText || '').map(s => s.trim())"""
+
+
+def _num(s):
+    s = re.sub(r"[^\d,.\-]", "", s)
+    return float(s.replace(",", "").replace(".", "")) if re.search(r"\d", s) else None
+
+
+def table_sorting(c, browser, base):
+    """Every sortable column sorts by its data type in both directions, empty cells stay last, aria-sort and the
+    announcement follow, the phone sort bar mirrors the header, in all five languages; fansite contacts link to Tibia.com."""
+    ctx, page = new_page(browser, base, 1440, 1000)
+    checked = 0
+    for lang in kit.LANGUAGES:
+        # Worlds: number (players online), text (name), date (BattlEye)
+        page.goto(url_of(base, lang, "tibia", "#/worlds")); wait_app(page)
+        heads = page.locator("#app .data-table").first.locator("thead th")
+        names = [heads.nth(i).inner_text().strip() for i in range(heads.count())]
+        for i in range(heads.count()):
+            btn = heads.nth(i).locator("button.sort")
+            if not btn.count():
+                continue
+            for _ in range(2):
+                btn.click()
+                state = heads.nth(i).get_attribute("aria-sort")
+                vals = [v for v in page.evaluate(COLUMN_TEXTS, i)]
+                filled = [v for v in vals if v and v != "–"]
+                c.ok(state in ("ascending", "descending"), f"{lang['code']}/worlds col {names[i]}: aria-sort {state}")
+                c.ok(all(v in ("", "–") for v in vals[len(filled):]), f"{lang['code']}/worlds col {names[i]}: empty values not last")
+                nums = [_num(v) for v in filled]
+                if i == 1 and None not in nums:      # players online: numeric order
+                    want = sorted(nums, reverse=state == "descending")
+                    c.ok(nums == want, f"{lang['code']}/worlds online: not numeric order ({state})")
+                checked += 1
+            page.wait_for_timeout(120)   # the announcement is written 30 ms after the click (so screen readers notice the change)
+            live = page.evaluate("document.getElementById('live-status').textContent")
+            c.ok(names[i].split("\n")[0] in live, f"{lang['code']}/worlds: no sort announcement for {names[i]} ({live!r})")
+        # direction toggles and the first column is alphabetical (locale collation)
+        name_btn = heads.nth(0).locator("button.sort")
+        name_btn.click()
+        if heads.nth(0).get_attribute("aria-sort") != "ascending":
+            name_btn.click()
+        vals = page.evaluate(COLUMN_TEXTS, 0)
+        c.ok(vals == sorted(vals, key=lambda s: s.lower()), f"{lang['code']}/worlds names not alphabetical")
+        name_btn.click()
+        c.ok(heads.nth(0).get_attribute("aria-sort") == "descending" and page.evaluate(COLUMN_TEXTS, 0) == vals[::-1], f"{lang['code']}/worlds: second click must reverse")
+    # Guild members: rank keeps the guild hierarchy; joined sorts by date; empty titles stay last both ways
+    page.goto(url_of(base, kit.LANGUAGES[0], "tibia", "#/guild/" + urllib.parse.quote(kit.REGISTRY["fixtures"].get("guild", "Crusaders of Might and Magic"))))
+    wait_app(page)
+    heads = page.locator("#app .data-table").first.locator("thead th")
+    labels = [heads.nth(i).inner_text().strip() for i in range(heads.count())]
+    for i in range(heads.count()):
+        for _ in range(2):
+            heads.nth(i).locator("button.sort").click()
+            vals = page.evaluate(COLUMN_TEXTS, i)
+            filled = [v for v in vals if v and v != "–"]
+            c.ok(all(v in ("", "–") for v in vals[len(filled):]), f"guild col {labels[i]}: empty values not last")
+            checked += 1
+    # Phone: the sort bar drives the same sorting
+    pctx, ph = new_page(browser, base, 390, 844)
+    ph.goto(url_of(base, kit.LANGUAGES[0], "tibia", "#/worlds")); wait_app(ph)
+    bar = ph.locator(".table-sortbar").first
+    c.ok(bar.is_visible(), "phone sort bar hidden")
+    bar.locator("select").select_option(index=2)
+    c.ok(ph.locator("#app .data-table thead th[aria-sort=descending], #app .data-table thead th[aria-sort=ascending]").count() == 1, "phone sort bar did not sort")
+    sorted_th = ph.locator("#app .data-table thead th[aria-sort=descending], #app .data-table thead th[aria-sort=ascending]").first
+    before = sorted_th.get_attribute("aria-sort")
+    bar.locator("button").click()
+    after = ph.locator("#app .data-table thead th[aria-sort=descending], #app .data-table thead th[aria-sort=ascending]").first.get_attribute("aria-sort")
+    c.ok(before != after, f"phone direction button did not reverse ({before} -> {after})")
+    pctx.close()
+    # Fansites: each contact person links to their Tibia.com character page
+    page.goto(url_of(base, kit.LANGUAGES[0], "tibia", "#/fansites")); wait_app(page)
+    data = json.load(open(os.path.join(kit.WEBSITE, "tests", "fixtures", "tibiadata", "fansites.json"), encoding="utf-8"))["fansites"]
+    contacts = [s["contact"] for k in ("promoted", "supported") for s in data[k] if s.get("contact")]
+    links = page.evaluate("""() => [...document.querySelectorAll('.fansite .facts a')].filter(a => a.href.includes('community/?name=')).map(a => [a.textContent.replace(/\\s*\\(.*$/, '').trim(), a.href, a.target, a.rel])""")
+    c.ok(len(links) == len(contacts), f"fansite contact links {len(links)} != contacts {len(contacts)}")
+    for (text, href, target, rel), name in zip(links, contacts):
+        want = "https://www.tibia.com/community/?name=" + urllib.parse.quote(name).replace("%20", "+")
+        c.ok(text.startswith(name) and href == want and target == "_blank" and "noopener" in rel, f"contact {name}: {href}")
+    ctx.close()
+    c.note(f"{checked} column sorts checked (worlds in 5 languages, guild members), phone sort bar, {len(contacts)} fansite contact links")
+
+
 CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", creator_links), ("navigation", navigation),
+          ("compliance", compliance), ("table-sorting", table_sorting),
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),
           ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive)]
 
 
 def main():
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")   # failure texts can contain Polish or German letters
     args = sys.argv[1:]
     only = args[args.index("--only") + 1].split(",") if "--only" in args else None
     report = args[args.index("--report") + 1] if "--report" in args else None

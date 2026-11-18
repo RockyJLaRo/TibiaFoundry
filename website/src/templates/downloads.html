@@ -1,45 +1,79 @@
 <div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li aria-current="page">{{t:nav.downloads}}</li></ol></nav>
   <h1>{{t:download.title}}</h1>
   <p class="lead">{{t:download.lead}}</p>
 </div>
 
 <section class="band" aria-labelledby="files-title">
   <div class="wrap">
+{{DOWNLOAD_NOTICE}}
     <h2 id="files-title" class="sr-only">{{t:download.filesTitle}}</h2>
     <div class="grid grid-3">
       <article class="card download" data-download="msi">
-        <h3>{{t:download.installer.title}}</h3>
+        <div class="card-head"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-package"/></svg></span><h3>{{t:download.installer.title}}</h3></div>
         <p class="muted">{{t:download.installer.tagline}}</p>
         <ul class="checks"><li>{{t:download.installer.point1}}</li><li>{{t:download.installer.point2}}</li><li>{{t:download.installer.point3}}</li><li>{{t:download.msi.unzip}}</li></ul>
-        <a class="btn btn-primary" href="{{DL:msi:url}}" data-track="download" data-place="downloads-msi">{{t:download.msi.button}}</a>
+        <a class="btn btn-primary" href="{{DL:msi:url}}" data-track="download" data-place="downloads-msi"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.msi.button}}</a>
         <p class="file">{{DL:msi:file}}</p>
+        <p class="size">{{DL:msi:size}}</p>
         {{DL:msi:sha}}
       </article>
       <article class="card download" data-download="portable">
-        <h3>{{t:download.portable.title}}</h3>
+        <div class="card-head"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-file-archive"/></svg></span><h3>{{t:download.portable.title}}</h3></div>
         <p class="muted">{{t:download.portable.tagline}}</p>
         <ul class="checks"><li>{{t:download.portable.point1}}</li><li>{{t:download.portable.point2}}</li><li>{{t:download.portable.point3}}</li></ul>
-        <a class="btn" href="{{DL:portable:url}}" data-track="download" data-place="downloads-portable">{{t:download.portable.button}}</a>
+        <a class="btn" href="{{DL:portable:url}}" data-track="download" data-place="downloads-portable"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.portable.button}}</a>
         <p class="file">{{DL:portable:file}}</p>
+        <p class="size">{{DL:portable:size}}</p>
         {{DL:portable:sha}}
       </article>
       <article class="card download" data-download="source">
-        <h3>{{t:download.source.title}}</h3>
+        <div class="card-head"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg></span><h3>{{t:download.source.title}}</h3></div>
         <p class="muted">{{t:download.source.tagline}}</p>
         <ul class="checks"><li>{{t:download.source.point1}}</li><li>{{t:download.source.point2}}</li><li>{{t:download.source.point3}}</li></ul>
-        <a class="btn" href="{{DL:source:url}}" data-track="download" data-place="downloads-source">{{t:download.source.button}}</a>
+        <a class="btn" href="{{DL:source:url}}" data-track="download" data-place="downloads-source"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.source.button}}</a>
         <p class="file">{{DL:source:file}}</p>
+        <p class="size">{{DL:source:size}}</p>
         {{DL:source:sha}}
       </article>
     </div>
-    <p class="muted" style="margin-top:16px">{{t:download.verify}} <a href="{{DL:checksums}}" data-track="releases" data-place="downloads-checksums">SHA256SUMS.txt</a> · <a href="{{RELEASE_PAGE}}" data-track="releases" data-place="downloads">{{t:download.notes}}</a> · <a href="{{ALL_RELEASES}}" data-track="releases" data-place="downloads-all">{{t:download.all}}</a></p>
-    <ul class="checks">
-      <li>{{t:download.req1}}</li><li>{{t:download.req2}}</li><li>{{t:download.req3}}</li>
-    </ul>
   </div>
 </section>
 
-<section class="band band-alt" aria-labelledby="start-title">
+<section class="band band-alt" aria-labelledby="release-title">
+  <div class="wrap split">
+    <div>
+      <h2 id="release-title">{{t:download.facts.title}}</h2>
+      <dl class="release-facts">
+        <div><dt>{{t:download.facts.version}}</dt><dd>{{VERSION}}</dd></div>
+        <div><dt>{{t:download.facts.date}}</dt><dd>{{RELEASE_DATE}}</dd></div>
+        <div><dt>{{t:download.facts.os}}</dt><dd>{{DL_OS}}</dd></div>
+        <div><dt>{{t:download.facts.packages}}</dt><dd>{{t:download.facts.packagesValue}}</dd></div>
+        <div><dt>{{t:download.facts.source}}</dt><dd><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="downloads-facts">github.com/RockyJLaRo/TibiaFoundry</a></dd></div>
+        <div><dt>{{t:download.facts.notes}}</dt><dd><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="downloads">{{t:download.notes}}</a> · <a href="{{ALL_RELEASES}}" data-track="releases" data-place="downloads-all">{{t:download.all}}</a></dd></div>
+        <div><dt>{{t:download.facts.checksums}}</dt><dd><a href="{{DL:checksums}}" data-track="releases" data-place="downloads-checksums">SHA256SUMS.txt</a></dd></div>
+        <div><dt>{{t:download.facts.signing}}</dt><dd>{{CODE_SIGNING}}</dd></div>
+        <div><dt>{{t:download.facts.scan}}</dt><dd>{{t:download.facts.scanValue}}</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h2>{{t:download.safety.title}}</h2>
+      <ul class="checks">
+        <li>{{t:download.safety.official}}</li>
+        <li>{{t:download.safety.verify}}</li>
+        <li>{{t:download.safety.nothingBundled}}</li>
+        <li>{{t:download.safety.purpose}}</li>
+      </ul>
+      <p class="muted">{{t:download.verify}}</p>
+      <h3>{{t:download.reqTitle}}</h3>
+      <ul class="checks">
+        <li>{{t:download.req1}}</li><li>{{t:download.req2}}</li><li>{{t:download.req3}}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="start-title">
   <div class="wrap">
     <h2 id="start-title">{{t:download.startTitle}}</h2>
     <ol class="steps grid grid-4">
@@ -51,7 +85,7 @@
   </div>
 </section>
 
-<section class="band" id="whats-new" aria-labelledby="new-title">
+<section class="band band-alt" id="whats-new" aria-labelledby="new-title">
   <div class="wrap">
     <h2 id="new-title">{{t:new.title}}</h2>
     <ul class="points">

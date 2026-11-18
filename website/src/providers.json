@@ -52,6 +52,16 @@
       "terms": "Independent websites; listing does not imply any relationship with Tibia Foundry.",
       "where": ["tibia/#/fansites"],
       "required": true
+    },
+    {
+      "id": "lucide",
+      "name": "Lucide",
+      "url": "https://lucide.dev/",
+      "uses": "49 interface icons (navigation, buttons, sorting, notices, tool categories), inlined from lucide-static 0.460.0 by art/icons.py.",
+      "attribution": "Credited in the footer and in THIRD-PARTY-NOTICES.md with the ISC licence text.",
+      "terms": "ISC License (portions MIT, from Feather); no endorsement implied.",
+      "where": ["every page"],
+      "required": true
     }
   ]
 }

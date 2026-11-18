@@ -11,13 +11,14 @@
   ],
   "themes": ["light", "dark"],
   "pages": [
-    {"id": "home", "path": "", "template": "home.html", "nav": "nav.home"},
-    {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia"},
-    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features"},
-    {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads"},
-    {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides"},
-    {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about"},
-    {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact"}
+    {"id": "home", "path": "", "template": "home.html", "nav": "nav.home", "icon": "anvil", "placement": ["menu"]},
+    {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia", "icon": "search", "placement": ["header", "menu"]},
+    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features", "icon": "monitor", "placement": ["header", "menu"]},
+    {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads", "icon": "download", "placement": ["menu"]},
+    {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides", "icon": "book-open", "placement": ["header", "menu"]},
+    {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about", "icon": "user-round", "placement": ["header", "menu"]},
+    {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact", "icon": "mail", "placement": ["menu"]},
+    {"id": "legal", "path": "legal/", "template": "legal.html", "nav": "nav.legal", "icon": "scroll-text", "placement": []}
   ],
   "dataRoutes": [
     {"id": "hub", "pattern": "", "sample": ""},
@@ -68,6 +69,9 @@
   },
   "downloads": {
     "tag": "v{version}",
+    "os": "Windows 10, Windows 11 (64-bit)",
+    "codeSigning": false,
+    "_comment": "codeSigning: the MSI and the program are not code-signed (Windows SmartScreen may warn). Change it only when a release is actually signed.",
     "base": "https://github.com/RockyJLaRo/TibiaFoundry/releases/download/v{version}/",
     "files": [
       {"id": "msi", "file": "TibiaFoundry-{version}-MSI.zip", "inner": "TibiaFoundry-{version}.msi"},

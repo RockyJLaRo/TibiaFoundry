@@ -1,0 +1,149 @@
+/* Three design concepts on one shared structure. Only tokens and a few concept-specific rules differ. */
+:root { --display: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052, Georgia, serif;
+  --sans: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif; }
+
+/* ---- Concept A: Medieval Parchment ---- */
+.concept-a[data-theme=light] { --bg:#e6dcc4; --surface:#f6edd6; --surface-2:#efe2c4; --text:#2b2116; --muted:#5e4f3b; --line:#c8b48d;
+  --accent:#8a4b14; --accent-text:#fff8ea; --link:#7a3d0c; --hdr:#4b443a; --hdr-text:#f3e7cb; --gold:#b98526; --stone:#6c6457; --stone-2:#585044;
+  --px-ink:#2a2017; --heading: var(--display); --body: var(--display); --radius:3px; }
+.concept-a[data-theme=dark] { --bg:#231d15; --surface:#30281d; --surface-2:#3a3124; --text:#f0e3c4; --muted:#c7b48f; --line:#5a4b35;
+  --accent:#d39a45; --accent-text:#22190e; --link:#f0b65e; --hdr:#16130f; --hdr-text:#f0e3c4; --gold:#d6a24e; --stone:#3c362e; --stone-2:#2c2721;
+  --px-ink:#120e09; --heading: var(--display); --body: var(--display); --radius:3px; }
+
+/* ---- Concept B: Dark Fantasy / Dungeon ---- */
+.concept-b[data-theme=dark] { --bg:#141317; --surface:#1f1d22; --surface-2:#28252b; --text:#e9e3d6; --muted:#a59d8e; --line:#3a3540;
+  --accent:#c8952f; --accent-text:#16120a; --link:#e2b358; --hdr:#0e0d10; --hdr-text:#e9e3d6; --gold:#c8952f; --stone:#2b2830; --stone-2:#1c1a1f;
+  --px-ink:#0a090b; --heading: var(--display); --body: var(--sans); --radius:2px; }
+.concept-b[data-theme=light] { --bg:#cfccc6; --surface:#e7e4de; --surface-2:#dcd8d0; --text:#1d1b20; --muted:#4d4852; --line:#a9a39a;
+  --accent:#7e5a14; --accent-text:#fff; --link:#6d4a0c; --hdr:#2b2830; --hdr-text:#ece6d8; --gold:#9a7020; --stone:#5c5761; --stone-2:#46424b;
+  --px-ink:#1d1b20; --heading: var(--display); --body: var(--sans); --radius:2px; }
+
+/* ---- Concept C: Modern Tibia Foundry ---- */
+.concept-c[data-theme=light] { --bg:#f3f4f6; --surface:#ffffff; --surface-2:#eceef2; --text:#1b2330; --muted:#566070; --line:#d6dbe3;
+  --accent:#2b6fb0; --accent-text:#fff; --link:#1f5f9e; --hdr:#ffffff; --hdr-text:#1b2330; --gold:#b07a1a; --stone:#e4e7ec; --stone-2:#d6dbe3;
+  --px-ink:#1b2330; --heading: var(--sans); --body: var(--sans); --radius:10px; }
+.concept-c[data-theme=dark] { --bg:#15181d; --surface:#1e2228; --surface-2:#262b33; --text:#e6e9ee; --muted:#a3acb9; --line:#323843;
+  --accent:#4a8fd6; --accent-text:#08111c; --link:#86b9ef; --hdr:#1a1d22; --hdr-text:#e6e9ee; --gold:#e0b45a; --stone:#262b33; --stone-2:#1e2228;
+  --px-ink:#0b0d10; --heading: var(--sans); --body: var(--sans); --radius:10px; }
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 1rem/1.6 var(--body); }
+a { color: var(--link); }
+h1, h2, h3 { font-family: var(--heading); line-height: 1.15; margin: 0 0 .5em; text-wrap: balance; }
+h1 { font-size: clamp(1.9rem, 1.3rem + 2.6vw, 3.1rem); font-weight: 700; }
+h2 { font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem); }
+.wrap { max-width: 74rem; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .wrap { padding: 0 28px; } }
+.px { width: 20px; height: 20px; image-rendering: pixelated; flex: none; }
+.px-lg { width: 32px; height: 32px; }
+
+/* header */
+.hdr { background: var(--hdr); color: var(--hdr-text); position: relative; }
+.hdr-bar { display: flex; align-items: center; gap: 12px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; font: 700 1.15rem var(--heading); margin-right: auto; }
+.brand img { image-rendering: pixelated; }
+.brand small { font: 600 .75rem var(--sans); border: 1px solid currentColor; border-radius: 99px; padding: 0 .5em; opacity: .75; }
+.nav { display: none; gap: 4px; }
+.nav a { color: inherit; text-decoration: none; padding: 10px 12px; font-weight: 600; font-family: var(--sans); }
+.nav a[aria-current] { box-shadow: inset 0 -3px 0 var(--gold); }
+.nav-dl { display: none !important; }
+.menu { display: grid; gap: 4px; width: 44px; height: 44px; place-content: center; background: none; border: 1px solid color-mix(in srgb, var(--hdr-text) 30%, transparent); border-radius: var(--radius); }
+.menu span { display: block; width: 20px; height: 2px; background: var(--hdr-text); }
+@media (min-width: 960px) { .nav, .nav-dl { display: flex !important; } .menu { display: none; } }
+
+/* buttons, fields */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: .5em 1.1em; border: 1px solid var(--line);
+  background: var(--surface); color: var(--text); font: 600 .95rem var(--sans); text-decoration: none; border-radius: var(--radius); cursor: pointer; }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn-sm { min-height: 36px; font-size: .875rem; }
+.btn-quiet { background: transparent; border-color: transparent; }
+.btn[disabled] { opacity: .5; }
+input, select { width: 100%; min-height: 44px; padding: .5em .75em; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); font: 1rem var(--sans); }
+
+/* hero */
+.hero { padding: 28px 0 32px; }
+.hero-grid { display: grid; gap: 24px; }
+@media (min-width: 1024px) { .hero { padding: 56px 0; } .hero-grid { grid-template-columns: 7fr 5fr; align-items: center; gap: 48px; } }
+.lead { font-size: 1.1rem; color: var(--muted); max-width: 40rem; }
+.search label { display: block; font: 700 1rem var(--sans); margin-bottom: 6px; }
+.search-row { display: flex; gap: 8px; }
+.quick { font-size: .925rem; color: var(--muted); font-family: var(--sans); }
+.quick a { margin-right: 10px; white-space: nowrap; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.today h2 { font-size: 1.25rem; }
+.boost { display: flex; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.boost small { display: block; color: var(--muted); font-family: var(--sans); }
+.src { font-size: .8rem; color: var(--muted); margin: 8px 0 0; font-family: var(--sans); }
+
+/* destinations */
+.band { padding: 36px 0; }
+.band-alt { background: var(--surface-2); border-block: 1px solid var(--line); }
+.sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; font-family: var(--sans); }
+.sec-head h2 { margin: 0; font-family: var(--heading); }
+.dest { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); }
+.dcard { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; align-items: start; padding: 14px; height: 100%; background: var(--surface);
+  border: 1px solid var(--line); border-radius: var(--radius); color: var(--text); text-decoration: none; }
+.dcard b { font: 700 1.05rem var(--heading); color: var(--link); }
+.dcard span:last-child { grid-column: 2; color: var(--muted); font-size: .925rem; font-family: var(--sans); }
+.tile { grid-row: span 2; display: grid; place-items: center; width: 48px; height: 48px; background: var(--stone); border-radius: var(--radius); }
+
+/* tool + app */
+.split { display: grid; gap: 24px; }
+@media (min-width: 960px) { .split { grid-template-columns: 1fr 1fr; align-items: start; } }
+.fields { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); margin-bottom: 12px; font: 600 .85rem var(--sans); color: var(--muted); }
+table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: .95rem; }
+th, td { padding: 8px; border-top: 1px solid var(--line); text-align: left; }
+th { background: var(--surface-2); font-size: .85rem; }
+.n { text-align: right; }
+.actions, .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+.notice { border-left: 4px solid var(--gold); background: var(--surface); padding: 10px 12px; font-size: .9rem; font-family: var(--sans); }
+.news { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+@media (min-width: 800px) { .news { grid-template-columns: 1fr 1fr; } }
+.news small { display: block; color: var(--muted); font-family: var(--sans); }
+.news a { font: 700 1.1rem var(--heading); }
+.news p { margin: 4px 0 0; color: var(--muted); }
+
+/* footer */
+.ftr { background: var(--hdr); color: var(--hdr-text); padding: 32px 0 24px; margin-top: 24px; position: relative; font-family: var(--sans); font-size: .925rem; }
+.ftr a { color: inherit; }
+.ftr-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
+.ftr-grid > div > a:not(.brand) { display: block; padding: 6px 0; }
+.ftr h3 { font-size: 1rem; color: var(--gold); }
+.ftr-brand { grid-column: 1 / -1; max-width: 26rem; }
+@media (min-width: 900px) { .ftr-brand { grid-column: auto; } }
+.credit { border-top: 1px solid color-mix(in srgb, var(--hdr-text) 20%, transparent); padding-top: 14px; margin-top: 20px; font-weight: 600; }
+.legal { opacity: .8; font-size: .85rem; }
+
+/* ===== concept-specific character ===== */
+/* A: stone header with bricks and battlement, parchment cards with gold corner pieces */
+.concept-a .hdr, .concept-a .ftr { background-color: var(--hdr);
+  background-image: linear-gradient(transparent, transparent), url(../../../website/src/images/pixel/bricks.svg); background-size: auto, 64px 32px; }
+.concept-a .hdr::after, .concept-a .ftr::before, .concept-b .ftr::before { content: ""; position: absolute; left: 0; right: 0; height: 16px; background: var(--hdr);
+  -webkit-mask: url(../../../website/src/images/pixel/battlement.svg) repeat-x 0 0 / 48px 16px; mask: url(../../../website/src/images/pixel/battlement.svg) repeat-x 0 0 / 48px 16px; }
+.concept-a .hdr::after { top: 100%; transform: scaleY(-1); }
+.concept-a .ftr::before, .concept-b .ftr::before { bottom: 100%; }
+.concept-a .ftr, .concept-b .ftr { margin-top: 40px; }
+.concept-a .framed, .concept-a .dcard { position: relative; box-shadow: inset 0 0 0 3px var(--surface), inset 0 0 0 4px var(--line); }
+.concept-a .framed::before { content: ""; position: absolute; inset: 6px; pointer-events: none; background: var(--gold);
+  -webkit-mask: url(../../../website/src/images/pixel/corner.svg) no-repeat 0 0 / 20px 20px, url(../../../website/src/images/pixel/corner.svg) no-repeat 100% 0 / 20px 20px;
+  mask: url(../../../website/src/images/pixel/corner.svg) no-repeat 0 0 / 20px 20px; }
+.concept-a .ornament, .concept-b .ornament { height: 16px; margin: 0 auto 18px; max-width: 18rem; background: linear-gradient(var(--gold), var(--gold)) center / 100% 2px no-repeat; position: relative; }
+.concept-a .ornament::after, .concept-b .ornament::after { content: ""; position: absolute; left: 50%; top: 0; width: 16px; height: 16px; margin-left: -8px; background: var(--gold);
+  -webkit-mask: url(../../../website/src/images/pixel/gem.svg) 0 0 / 16px 16px; mask: url(../../../website/src/images/pixel/gem.svg) 0 0 / 16px 16px; }
+.concept-a h1, .concept-a h2 { color: color-mix(in srgb, var(--text) 85%, var(--accent)); }
+
+/* B: carved stone everywhere, gold glints */
+.concept-b body { background-image: url(../../../website/src/images/pixel/bricks.svg); background-size: 64px 32px; background-blend-mode: soft-light; }
+.concept-b .panel, .concept-b .dcard { box-shadow: inset 0 1px 0 rgb(255 255 255 / .06), inset 0 -2px 0 rgb(0 0 0 / .35), 0 2px 0 rgb(0 0 0 / .35); border-color: var(--line); }
+.concept-b h1, .concept-b h2 { letter-spacing: .02em; color: var(--gold); }
+.concept-b .tile { background: var(--stone-2); box-shadow: inset 0 0 0 2px var(--stone); }
+.concept-b .ftr { background-image: url(../../../website/src/images/pixel/bricks.svg); background-size: 64px 32px; }
+
+/* C: calm and modern; pixel icons are the only game reference */
+.concept-c .hdr { border-bottom: 1px solid var(--line); }
+.concept-c .ftr { background: var(--surface-2); color: var(--text); border-top: 1px solid var(--line); }
+.concept-c .ftr h3 { color: var(--text); }
+.concept-c .dcard:hover { border-color: var(--accent); }
+.concept-c .tile { background: var(--surface-2); border-radius: 8px; }
+.concept-c .ornament { display: none; }
+.concept-c .nav a[aria-current] { box-shadow: inset 0 -3px 0 var(--accent); }

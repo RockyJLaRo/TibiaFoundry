@@ -52,9 +52,18 @@
   }
   function route(path) { return "#/" + path.split("/").map(function (p) { return encodeURIComponent(p); }).join("/"); }
   function link(path, text, props) { return h("a", Object.assign({ href: route(path) }, props || {}), text); }
+  // A Lucide icon from the inline sprite (#i-<name>); decorative.
+  function icon(name, cls) {
+    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), use = document.createElementNS(NS, "use");
+    svg.setAttribute("class", "ic" + (cls ? " " + cls : "")); svg.setAttribute("aria-hidden", "true");
+    use.setAttribute("href", "#i-" + name);
+    svg.appendChild(use);
+    return svg;
+  }
   function ext(href, text, cls) {
+    // Text links get the external-link mark from CSS; buttons carry the icon themselves.
     return h("a", { href: href, target: "_blank", rel: "noopener noreferrer", class: cls || null },
-      text, h("span", { class: "sr-only", text: " " + t("js.newTab") }));
+      cls && /btn/.test(cls) ? icon("external-link") : null, text, h("span", { class: "sr-only", text: " " + t("js.newTab") }));
   }
   function img(src, alt, cls, size) {
     if (!src || !/^https:\/\//.test(src)) return null;
@@ -67,7 +76,7 @@
   }
   function section(title, body, id) { return h("section", { class: "data-section", "aria-labelledby": id || null }, h("h2", { id: id || null, text: title }), body); }
   function copyButton(text, label) {
-    return h("button", { type: "button", class: "btn btn-small btn-quiet", "data-copy": text }, h("span", { class: "copy-label", text: label || t("js.copy") }));
+    return h("button", { type: "button", class: "btn btn-small btn-quiet", "data-copy": text }, icon("copy"), h("span", { class: "copy-label", text: label || t("js.copy") }));
   }
   function tibiaUrl(json, fallback) {
     var urls = json && json.information && json.information.tibia_urls;
@@ -106,6 +115,47 @@
     if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;           // no spreadsheet formulas from data
     return /[",\n;]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
   }
+  // ---------------------------------------------------------------- sorting: one comparator for every table
+  // Types: number (also "1,234 gp", "45%"), date (ISO), version ("1.10" after "1.9"), text (locale collation, numeric).
+  // Empty values always sort last; ties keep the original order; the data itself is never changed.
+  var collator = new Intl.Collator(LOCALE, { numeric: true, sensitivity: "base" });
+  function isEmpty(v) { return v == null || v === "" || v === "–" || (typeof v === "number" && isNaN(v)); }
+  function toNumber(v) {
+    if (typeof v === "number") return v;
+    if (typeof v === "boolean") return v ? 1 : 0;
+    var m = String(v).replace(/[\s\u00a0\u202f']/g, "").match(/-?\d[\d.,]*/);
+    if (!m) return NaN;
+    var n = m[0], dec = Math.max(n.lastIndexOf("."), n.lastIndexOf(","));
+    if (dec >= 0) {
+      var both = n.indexOf(".") >= 0 && n.indexOf(",") >= 0, after = n.length - dec - 1;
+      n = both || after !== 3 ? n.slice(0, dec).replace(/[.,]/g, "") + "." + n.slice(dec + 1) : n.replace(/[.,]/g, "");
+    }
+    return parseFloat(n);
+  }
+  function versionParts(v) { return String(v).split(/[^\d]+/).filter(Boolean).map(Number); }
+  function detectType(values) {
+    var list = values.filter(function (v) { return !isEmpty(v); });
+    if (!list.length) return "text";
+    if (list.every(function (v) { return typeof v === "number"; })) return "number";
+    var str = list.map(String);
+    if (str.every(function (v) { return /^\d{4}-\d{2}-\d{2}/.test(v); })) return "date";
+    if (str.every(function (v) { return /^v?\d+(\.\d+){2,3}$/.test(v); })) return "version";
+    if (str.every(function (v) { return /^[^\d-]{0,3}-?\d[\d.,\s\u00a0]*\s*(%|gp|kk|k|tc)?$/i.test(v.trim()); })) return "number";
+    return "text";
+  }
+  function compareValues(x, y, type) {
+    if (type === "number") return toNumber(x) - toNumber(y);
+    if (type === "date") return (Date.parse(x) || 0) - (Date.parse(y) || 0);
+    if (type === "version") {
+      var a = versionParts(x), b = versionParts(y);
+      for (var i = 0; i < Math.max(a.length, b.length); i++) { var d = (a[i] || 0) - (b[i] || 0); if (d) return d; }
+      return 0;
+    }
+    return collator.compare(String(x), String(y));
+  }
+  function sortIcon(dir) { return icon(dir > 0 ? "arrow-up" : dir < 0 ? "arrow-down" : "arrow-up-down", "sort-icon"); }
+  function announce(text) { var live = document.getElementById("live-status"); if (live) { live.textContent = ""; setTimeout(function () { live.textContent = text; }, 30); } }
+
   function table(opts) {
     var cols = opts.columns, all = opts.rows || [], pageSize = opts.pageSize || 100, shown = pageSize;
     var sortCol = opts.sort ? cols.findIndex(function (c) { return c.key === opts.sort; }) : -1, sortDir = opts.sortDir || 1;
@@ -115,6 +165,13 @@
     var search = opts.filter === false ? null : h("input", { type: "search", class: "input", placeholder: opts.filterPlaceholder || t("js.filter"), "aria-label": opts.filterPlaceholder || t("js.filter"),
       oninput: function () { filter = search.value.trim().toLowerCase(); shown = pageSize; draw(); } });
     function value(c, r) { return c.get ? c.get(r) : r[c.key]; }
+    function sortValue(c, r) { return c.sortValue ? c.sortValue(r) : value(c, r); }
+    var types = {};
+    function colType(c) {
+      if (!types[c.key]) types[c.key] = c.type || (c.num ? "number" : detectType(all.map(function (r) { return sortValue(c, r); })));
+      return types[c.key];
+    }
+    function firstDir(c) { return c.firstDir || (colType(c) === "number" || colType(c) === "date" ? -1 : 1); }
     function rows() {
       var list = all.filter(function (r) {
         if (extraFilter && !extraFilter(r)) return false;
@@ -122,12 +179,12 @@
         return cols.some(function (c) { var v = value(c, r); return v != null && String(v).toLowerCase().indexOf(filter) >= 0; });
       });
       if (sortCol >= 0) {
-        var c = cols[sortCol];
-        list = list.slice().sort(function (a, b) {
-          var x = value(c, a), y = value(c, b);
-          if (x == null) return 1; if (y == null) return -1;
-          return (typeof x === "number" && typeof y === "number" ? x - y : String(x).localeCompare(String(y), LOCALE, { numeric: true })) * sortDir;
-        });
+        var c = cols[sortCol], type = colType(c);
+        list = list.map(function (r, i) { return [r, i]; }).sort(function (A, B) {
+          var x = sortValue(c, A[0]), y = sortValue(c, B[0]), ex = isEmpty(x), ey = isEmpty(y);
+          if (ex || ey) return ex === ey ? A[1] - B[1] : ex ? 1 : -1;
+          return compareValues(x, y, type) * sortDir || A[1] - B[1];
+        }).map(function (P) { return P[0]; });
       }
       return list;
     }
@@ -138,15 +195,32 @@
       thead.textContent = "";
       var tr = h("tr");
       cols.forEach(function (c, i) {
-        var th = h("th", { scope: "col", class: c.num ? "num" : null, "aria-sort": i === sortCol ? (sortDir > 0 ? "ascending" : "descending") : (c.sort === false ? null : "none") });
+        var on = i === sortCol;
+        var th = h("th", { scope: "col", class: (c.num ? "num " : "") + (on ? "sorted" : ""), "aria-sort": on ? (sortDir > 0 ? "ascending" : "descending") : (c.sort === false ? null : "none") });
         if (c.sort === false) th.textContent = c.label;
-        else th.appendChild(h("button", { type: "button", class: "sort", onclick: function () {
-          if (sortCol === i) sortDir = -sortDir; else { sortCol = i; sortDir = c.num ? -1 : 1; }
-          head(); draw();
-        } }, c.label, h("span", { class: "sort-mark", "aria-hidden": "true" })));
+        else th.appendChild(h("button", { type: "button", class: "sort", title: t("js.sortBy", { column: c.label }), onclick: function () { sortBy(i, sortCol === i ? -sortDir : firstDir(c)); } },
+          h("span", { text: c.label }), sortIcon(on ? sortDir : 0)));
         tr.appendChild(th);
       });
       thead.appendChild(tr);
+      syncBar();
+    }
+    function sortBy(i, dir) {
+      sortCol = i; sortDir = dir;
+      head(); draw();
+      announce(t(dir > 0 ? "js.sortedAsc" : "js.sortedDesc", { column: cols[i].label }));
+    }
+    // Phones show rows as cards without a header row, so the same sorting is offered as a select + direction button.
+    var barSelect = h("select", { class: "input", "aria-label": t("js.sortByLabel"), onchange: function () { var i = +barSelect.value; sortBy(i, firstDir(cols[i])); } },
+      [h("option", { value: "-1", text: t("js.sortNone"), disabled: true })].concat(cols.map(function (c, i) { return c.sort === false ? null : h("option", { value: String(i), text: c.label }); })));
+    var barDir = h("button", { type: "button", class: "btn btn-small", onclick: function () { if (sortCol >= 0) sortBy(sortCol, -sortDir); } });
+    var bar = h("div", { class: "table-sortbar" }, h("label", null, h("span", { class: "field-label", text: t("js.sortByLabel") }), barSelect), barDir);
+    function syncBar() {
+      barSelect.value = String(sortCol);
+      barDir.textContent = "";
+      barDir.appendChild(sortIcon(sortDir));
+      barDir.appendChild(h("span", { text: t(sortDir > 0 ? "js.ascending" : "js.descending") }));
+      barDir.disabled = sortCol < 0;
     }
     function draw() {
       var list = rows();
@@ -182,12 +256,13 @@
     }
     var tools = h("div", { class: "table-tools" }, search,
       h("div", { class: "table-actions" },
-        h("button", { type: "button", class: "btn btn-small btn-quiet", onclick: copyAs(asWiki), title: t("js.copyWikiHint") }, h("span", { class: "copy-label", text: t("js.copyWiki") })),
-        h("button", { type: "button", class: "btn btn-small btn-quiet", onclick: copyAs(asCsv) }, h("span", { class: "copy-label", text: t("js.copyCsv") }))));
+        h("button", { type: "button", class: "btn btn-small btn-quiet", onclick: copyAs(asWiki), title: t("js.copyWikiHint") }, icon("copy"), h("span", { class: "copy-label", text: t("js.copyWiki") })),
+        h("button", { type: "button", class: "btn btn-small btn-quiet", onclick: copyAs(asCsv) }, icon("copy"), h("span", { class: "copy-label", text: t("js.copyCsv") }))));
     wrap.appendChild(tools);
     if (opts.controls) wrap.appendChild(opts.controls);
+    wrap.appendChild(bar);
     wrap.appendChild(count);
-    wrap.appendChild(h("div", { class: "table-scroll", tabindex: "0", role: "region", "aria-label": opts.caption || t("js.table") }, tableEl));
+    wrap.appendChild(h("div", { class: "table-scroll" + (all.length > 25 ? " tall" : ""), tabindex: "0", role: "region", "aria-label": opts.caption || t("js.table") }, tableEl));
     wrap.appendChild(more);
     head(); draw();
     wrap.setFilter = function (fn) { extraFilter = fn; shown = pageSize; draw(); };
@@ -237,22 +312,26 @@
     ctx.title("");
     var boosted = h("div", { class: "boosted" }, loading());
     var online = h("p", { class: "lead-number" });
-    var grid = h("ul", { class: "tool-grid" }, [
-      ["character", "js.toolCharacter", "js.toolCharacterText"], ["worlds", "js.toolWorlds", "js.toolWorldsText"],
-      ["guilds/" + lastWorld(), "js.toolGuilds", "js.toolGuildsText"], ["highscores/" + lastWorld() + "/experience/all/1", "js.toolHighscores", "js.toolHighscoresText"],
-      ["houses/" + lastWorld() + "/Thais", "js.toolHouses", "js.toolHousesText"], ["killstatistics/" + lastWorld(), "js.toolKills", "js.toolKillsText"],
-      ["creatures", "js.toolCreatures", "js.toolCreaturesText"], ["spells", "js.toolSpells", "js.toolSpellsText"],
-      ["bosses", "js.toolBosses", "js.toolBossesText"], ["fansites", "js.toolFansites", "js.toolFansitesText"],
-      ["news", "js.toolNews", "js.toolNewsText"], ["news/archive/90", "js.toolArchive", "js.toolArchiveText"]
-    ].map(function (x) { return h("li", null, link(x[0], null, { class: "tool-card" }), null); }));
-    // Fill the cards (title + text) after creating the links (keeps the map readable).
-    Array.prototype.forEach.call(grid.querySelectorAll("a"), function (a, i) {
-      var keys = [["js.toolCharacter", "js.toolCharacterText"], ["js.toolWorlds", "js.toolWorldsText"], ["js.toolGuilds", "js.toolGuildsText"], ["js.toolHighscores", "js.toolHighscoresText"],
-        ["js.toolHouses", "js.toolHousesText"], ["js.toolKills", "js.toolKillsText"], ["js.toolCreatures", "js.toolCreaturesText"], ["js.toolSpells", "js.toolSpellsText"],
-        ["js.toolBosses", "js.toolBossesText"], ["js.toolFansites", "js.toolFansitesText"], ["js.toolNews", "js.toolNewsText"], ["js.toolArchive", "js.toolArchiveText"]][i];
-      a.appendChild(h("span", { class: "tool-title", text: t(keys[0]) }));
-      a.appendChild(h("span", { class: "tool-text", text: t(keys[1]) }));
-    });
+    // Every view, grouped by what a visitor wants to do; each card has the site's pixel icon.
+    var groups = [
+      ["js.groupPlayers", [["character", "js.toolCharacter", "js.toolCharacterText", "character"], ["guilds/" + lastWorld(), "js.toolGuilds", "js.toolGuildsText", "guild"]]],
+      ["js.groupWorlds", [["worlds", "js.toolWorlds", "js.toolWorldsText", "world"], ["highscores/" + lastWorld() + "/experience/all/1", "js.toolHighscores", "js.toolHighscoresText", "highscores"],
+        ["killstatistics/" + lastWorld(), "js.toolKills", "js.toolKillsText", "killstatistics"], ["houses/" + lastWorld() + "/Thais", "js.toolHouses", "js.toolHousesText", "houses"]]],
+      ["js.groupReference", [["creatures", "js.toolCreatures", "js.toolCreaturesText", "creatures"], ["bosses", "js.toolBosses", "js.toolBossesText", "bosses"],
+        ["spells", "js.toolSpells", "js.toolSpellsText", "spells"]]],
+      ["js.groupNews", [["news", "js.toolNews", "js.toolNewsText", "news"], ["news/archive/90", "js.toolArchive", "js.toolArchiveText", "news"],
+        ["fansites", "js.toolFansites", "js.toolFansitesText", "fansites"]]]
+    ];
+    var grid = h("div", null, groups.map(function (g, gi) {
+      return h("div", { class: "tool-group" }, h("h3", { id: "hub-group-" + gi, text: t(g[0]) }),
+        h("ul", { class: "tool-grid", "aria-labelledby": "hub-group-" + gi }, g[1].map(function (x) {
+          var a = link(x[0], null, { class: "tool-card" });
+          a.appendChild(pixelTile(x[3]));
+          a.appendChild(h("span", { class: "tool-title", text: t(x[1]) }));
+          a.appendChild(h("span", { class: "tool-text", text: t(x[2]) }));
+          return h("li", null, a);
+        })));
+    }));
     ctx.render([
       section(t("js.characterLabel"), characterSearch("", false), "hub-search"),
       online,
@@ -264,6 +343,21 @@
     }, function () {});
     renderBoosted(boosted, ctx.signal);
   };
+
+  // Lucide icons (inline sprite #i-*) in their tile; decorative, so hidden from assistive technology.
+  function pixelTile(name) {
+    var ICON = { character: "user", guild: "users", world: "globe", highscores: "trophy", killstatistics: "skull", houses: "house",
+      creatures: "paw-print", bosses: "crown", spells: "wand-sparkles", news: "newspaper", fansites: "flag" };
+    var tile = h("span", { class: "icon-tile", "aria-hidden": "true" });
+    tile.appendChild(icon(ICON[name] || name));
+    return tile;
+  }
+
+  function renderOnline(target, signal) {
+    API.get("worlds", [], { signal: signal }).then(function (r) {
+      target.textContent = t("js.playersOnlineAll", { n: r.data.worlds.players_online });
+    }, function () { target.textContent = ""; });
+  }
 
   function renderBoosted(target, signal) {
     Promise.all([API.get("creatures", [], { signal: signal }), API.get("boostablebosses", [], { signal: signal })]).then(function (res) {
@@ -332,7 +426,7 @@
           { key: "name", label: t("js.name"), render: function (o) { return link("character/" + o.name, o.name); } },
           { key: "world", label: t("js.world"), render: function (o) { return link("world/" + o.world, o.world); } },
           { key: "status", label: t("js.status"), render: function (o) { return statusBadge(o.status === "online"); } },
-          { key: "flags", label: t("js.notes"), sort: false, get: function (o) { return [o.main ? t("js.main") : "", o.deleted ? t("js.deleted") : "", o.traded ? t("js.traded") : ""].filter(Boolean).join(", "); } }
+          { key: "flags", label: t("js.notes"), get: function (o) { return [o.main ? t("js.main") : "", o.deleted ? t("js.deleted") : "", o.traded ? t("js.traded") : ""].filter(Boolean).join(", "); } }
         ], rows: others })));
       parts.push(sourceLine(r, tibiaUrl(r.data, tibiaCharacter(c.name))));
       return parts;
@@ -364,7 +458,7 @@
         { key: "location", label: t("js.location") }, { key: "pvp_type", label: t("js.pvpType") },
         { key: "transfer_type", label: t("js.transfer") },
         { key: "premium_only", label: t("js.premium"), get: function (x) { return yesNo(x.premium_only); } },
-        { key: "battleye_protected", label: "BattlEye", get: function (x) { return x.battleye_protected ? (x.battleye_date ? fmtDate(x.battleye_date) : t("js.yes")) : t("js.no"); } },
+        { key: "battleye_protected", label: "BattlEye", type: "date", sortValue: function (x) { return x.battleye_protected ? (x.battleye_date || "1970-01-01") : null; }, get: function (x) { return x.battleye_protected ? (x.battleye_date ? fmtDate(x.battleye_date) : t("js.yes")) : t("js.no"); } },
         { key: "game_world_type", label: t("js.worldType") }
       ];
       var parts = [h("h2", { class: "view-title", text: t("js.toolWorlds") }),
@@ -428,14 +522,16 @@
       var g = r.data.guild;
       ctx.title(g.name);
       var members = g.members || [];
+      var rankOrder = {};   // guild ranks in Tibia.com order (leader first), so "Rank" sorts by hierarchy, not alphabetically
+      members.forEach(function (m) { if (!(m.rank in rankOrder)) rankOrder[m.rank] = Object.keys(rankOrder).length; });
       var onlineOnly = h("input", { type: "checkbox", id: "online-only" });
       var memberTable = table({ caption: t("js.members"), sort: "level", sortDir: -1, columns: [
-        { key: "rank", label: t("js.rank") },
+        { key: "rank", label: t("js.rank"), type: "number", firstDir: 1, sortValue: function (x) { return rankOrder[x.rank]; } },
         { key: "name", label: t("js.name"), render: function (x) { return link("character/" + x.name, x.name); } },
         { key: "title", label: t("js.title") }, { key: "vocation", label: t("js.vocation") },
         { key: "level", label: t("js.level"), num: true },
         { key: "status", label: t("js.status"), render: function (x) { return statusBadge(x.status === "online"); } },
-        { key: "joined", label: t("js.joined"), render: function (x) { return fmtDate(x.joined); } }], rows: members,
+        { key: "joined", label: t("js.joined"), type: "date", render: function (x) { return fmtDate(x.joined); } }], rows: members,
         controls: h("label", { class: "check" }, onlineOnly, " " + t("js.onlineOnly")) });
       onlineOnly.addEventListener("change", function () { memberTable.setFilter(onlineOnly.checked ? function (x) { return x.status === "online"; } : null); });
       var homepage = g.homepage && /^https?:\/\//i.test(g.homepage) ? ext(g.homepage, g.homepage) : null;
@@ -470,7 +566,7 @@
       selectField(t("js.vocation"), vocs.map(function (v) { return [v, vocationLabel(v)]; }), vocation, function (v) { go(world, category, v, 1); }));
     return ctx.load("highscores", [world.toLowerCase() === "all" ? "all" : world, category, vocation, page], function (r) {
       var hs = r.data.highscores, list = hs.highscore_list || [], pg = hs.highscore_page || {};
-      var cols = [{ key: "rank", label: t("js.rank"), num: true },
+      var cols = [{ key: "rank", label: t("js.rank"), num: true, firstDir: 1 },
         { key: "name", label: t("js.name"), render: function (x) { return link("character/" + x.name, x.name); } },
         { key: "vocation", label: t("js.vocation") }];
       if (world.toLowerCase() === "all") cols.push({ key: "world", label: t("js.world"), render: function (x) { return link("world/" + x.world, x.world); } });
@@ -479,9 +575,9 @@
       if (category !== "experience" || true) cols.push({ key: "value", label: category === "experience" ? t("js.experience") : t("js.points"), num: true });
       var total = pg.total_pages || 1;
       var pager = h("nav", { class: "pager", "aria-label": t("js.pages") },
-        h("button", { type: "button", class: "btn btn-small", disabled: page <= 1 || null, onclick: function () { go(world, category, vocation, page - 1); }, text: t("js.previous") }),
+        h("button", { type: "button", class: "btn btn-small", disabled: page <= 1 || null, onclick: function () { go(world, category, vocation, page - 1); } }, icon("arrow-left"), t("js.previous")),
         h("span", { text: t("js.pageOf", { page: num(page), total: num(total) }) }),
-        h("button", { type: "button", class: "btn btn-small", disabled: page >= total || null, onclick: function () { go(world, category, vocation, page + 1); }, text: t("js.next") }));
+        h("button", { type: "button", class: "btn btn-small", disabled: page >= total || null, onclick: function () { go(world, category, vocation, page + 1); } }, t("js.next"), icon("arrow-right")));
       return [h("h2", { class: "view-title", text: t("js.toolHighscores") }), controls,
         h("p", { class: "muted", text: t("js.highscoreAge", { minutes: num(hs.highscore_age || 0) }) }),
         list.length ? table({ caption: t("js.toolHighscores"), columns: cols, rows: list, filter: false, pageSize: 50 }) : empty(),
@@ -691,7 +787,7 @@
           var social = Object.keys(x.social_media || {}).filter(function (k) { return x.social_media[k]; });
           return h("li", { class: "fansite" }, img(x.logo_url, "", "fansite-logo"),
             h("h3", null, /^https?:\/\//.test(x.homepage) ? ext(x.homepage, x.name) : x.name),
-            dl([[t("js.contact"), x.contact], [t("js.contentTypes"), types.join(", ")], [t("js.languages"), (x.languages || []).join(", ").toUpperCase()],
+            dl([[t("js.contact"), x.contact ? ext("https://www.tibia.com/community/?name=" + encodeURIComponent(x.contact).replace(/%20/g, "+"), x.contact) : null], [t("js.contentTypes"), types.join(", ")], [t("js.languages"), (x.languages || []).join(", ").toUpperCase()],
               [t("js.specials"), (x.specials || []).join(", ")], [t("js.socialMedia"), social.join(", ")], [t("js.fansiteItem"), yesNo(x.fansite_item)]]));
         }));
       }
@@ -740,7 +836,7 @@
     return ctx.load("newsarchive", [days], function (r) {
       var items = r.data.news || [];
       var tbl = table({ caption: t("js.toolArchive"), sort: "date", sortDir: -1, columns: [
-        { key: "date", label: t("js.date"), render: function (n) { return h("time", { datetime: n.date, text: fmtDate(n.date) }); } },
+        { key: "date", label: t("js.date"), type: "date", render: function (n) { return h("time", { datetime: n.date, text: fmtDate(n.date) }); } },
         { key: "category", label: t("js.category"), get: function (n) { return t("js.cat." + (n.category || "other")); } },
         { key: "type", label: t("js.type"), get: function (n) { return t("js.newsType." + (n.type || "news")); } },
         { key: "news", label: t("js.headline"), render: function (n) { return n.type === "ticker" ? h("span", { lang: "en", text: tidy(n.news) }) : link("news/" + n.id, tidy(n.news), { lang: "en" }); } },
@@ -802,7 +898,18 @@
     app.setAttribute("aria-busy", "true");
     var ctx = {
       signal: controller.signal,
-      title: function (s) { document.title = s ? s + " – " + baseTitle : siteTitle; },
+      title: function (s) {
+        document.title = s ? s + " – " + baseTitle : siteTitle;
+        // Breadcrumb: Home › Tibia tools › <this view> (the hub itself ends at "Tibia tools").
+        var cur = document.querySelector("[data-crumb-current]"), hub = document.querySelector("[data-crumb-hub]");
+        if (cur && hub) {
+          cur.textContent = s || "";
+          cur.hidden = !s;
+          var a = hub.querySelector("a");
+          if (s) { hub.removeAttribute("aria-current"); a.setAttribute("href", "#/"); }
+          else { hub.setAttribute("aria-current", "page"); a.removeAttribute("href"); }
+        }
+      },
       render: function (nodes) {
         if (controller.signal.aborted) return;
         app.textContent = "";
@@ -883,6 +990,7 @@
   }
   document.querySelectorAll("[data-live-news]").forEach(mountNews);
   document.querySelectorAll("[data-live-boosted]").forEach(function (el) { renderBoosted(el, null); });
+  document.querySelectorAll("[data-live-online]").forEach(function (el) { renderOnline(el, null); });
 
   window.TFApp = { match: match, views: Object.keys(V), table: table };
 })();
