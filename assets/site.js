@@ -191,7 +191,7 @@
     menuBtn.addEventListener("click", function () { closeLang(); setMenu(!header.classList.contains("menu-open")); });
     panel.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && header.classList.contains("menu-open")) setMenu(false, true); });
-    window.addEventListener("resize", function () { if (window.innerWidth >= 1180 && header.classList.contains("menu-open")) setMenu(false); });
+    window.addEventListener("resize", function () { if (window.innerWidth >= 1024 && header.classList.contains("menu-open")) setMenu(false); });
   }
 
   // ---------------------------------------------------------------- character search (header, home, menu): opens tibia/#/character/<name>
@@ -252,6 +252,29 @@
       box.showModal();
     });
     box.addEventListener("click", function (e) { if (e.target === box || e.target.closest(".close")) box.close(); });
+  }
+
+  // ---------------------------------------------------------------- footer: the current year (the build year is the fallback)
+  Array.prototype.forEach.call(document.querySelectorAll("[data-year]"), function (el) { el.textContent = String(new Date().getFullYear()); });
+
+  // ---------------------------------------------------------------- statistics opt-out (Legal page): stored as tf-analytics=off;
+  // the layout's Google tag snippet reads it before configuring the tag. The browser's Global Privacy Control also turns it off.
+  var toggle = document.querySelector("[data-analytics-toggle]");
+  if (toggle) {
+    var state = toggle.querySelector("[data-analytics-state]"), off = toggle.querySelector("[data-analytics-off]"), on = toggle.querySelector("[data-analytics-on]");
+    var gpc = navigator.globalPrivacyControl === true;
+    var showState = function () {
+      var isOff = read("tf-analytics") === "off" || gpc;
+      state.textContent = t(gpc ? "js.analyticsGpc" : isOff ? "js.analyticsOff" : "js.analyticsOn");
+      off.hidden = isOff;
+      on.hidden = !isOff || gpc;
+    };
+    off.addEventListener("click", function () { store("tf-analytics", "off"); window["ga-disable-G-J3EX3FB3PB"] = true; showState(); announce(t("js.analyticsOff")); });
+    on.addEventListener("click", function () {
+      try { localStorage.removeItem("tf-analytics"); } catch (e) { /* storage blocked */ }
+      window["ga-disable-G-J3EX3FB3PB"] = false; showState(); announce(t("js.analyticsOn"));
+    });
+    showState();
   }
 
   // ---------------------------------------------------------------- analytics: one event per download, release, repository or issues link
