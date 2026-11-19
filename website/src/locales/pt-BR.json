@@ -543,6 +543,31 @@
     "updated": "obtidos às {time}",
     "stale": "(cópia anterior: o TibiaData não respondeu)",
     "search": "Buscar",
+    "searchBox": {
+      "typeLabel": "Tipo de busca",
+      "type": {
+        "character": "Personagem",
+        "guild": "Guilda",
+        "world": "Mundo",
+        "creature": "Criatura",
+        "spell": "Magia",
+        "house": "Casa"
+      },
+      "placeholder": {
+        "character": "Nome do personagem",
+        "guild": "Nome da guilda",
+        "world": "Nome do mundo",
+        "creature": "Nome da criatura",
+        "spell": "Nome ou fórmula da magia",
+        "house": "Nome do mundo"
+      },
+      "suggestions": "Sugestões",
+      "recent": "Buscas recentes",
+      "clearRecent": "Limpar buscas recentes",
+      "cleared": "Buscas recentes apagadas.",
+      "noMatches": "Nenhum resultado",
+      "count": "Sugestões: {n}"
+    },
     "characterLabel": "Consultar um personagem",
     "characterPlaceholder": "Nome do personagem, ex.: Roc ky",
     "characterHelp": "Digite o nome exato de qualquer personagem do Tibia para ver nível, vocação, mundo, guilda, casas, conquistas e mortes recentes.",
@@ -1098,7 +1123,7 @@
       "title": "Perfis na comunidade",
       "text": "Rocky também está no TibiaWiki, YouTube, Instagram, GitHub e Reddit, e joga Tibia como Roc ky."
     },
-    "privacy": "Este site não tem formulário de contato e não guarda nada do que você digita. As buscas de personagens vão apenas para o TibiaData, para obter os dados."
+    "privacy": "Este site não tem formulário de contato. Suas buscas recentes ficam apenas no seu navegador, e as buscas de personagens vão apenas para o TibiaData, para obter os dados."
   },
   "tibia": {
     "title": "Ferramentas Tibia",
@@ -1175,6 +1200,7 @@
       "data": "Seu navegador pede à API do TibiaData (api.tibiadata.com) os dados do Tibia que você vê, incluindo os personagens que você pesquisa, e carrega imagens do jogo de static.tibia.com (CipSoft). Como qualquer site, esses serviços veem o seu endereço IP.",
       "storageTitle": "Guardado no seu navegador",
       "storage": "Somente no seu dispositivo: o tema (tf-theme), o idioma (tf-lang), a escolha sobre estatísticas (tf-analytics) e o último mundo visto (tf-world), além de um cache das respostas do TibiaData apagado ao fechar a aba (tf-api). Nada disso é enviado ao Tibia Foundry.",
+      "recentSearches": "Buscas recentes (tf-recent-searches): suas últimas 8 buscas na caixa de busca no topo de cada página, para abri-las de novo; “Limpar buscas recentes” nessa caixa apaga todas.",
       "nothingTitle": "O que este site não tem",
       "nothing": "Sem contas, sem formulário de contato, sem comentários, sem newsletter e sem rastreadores de publicidade. Os e-mails que você envia são lidos apenas por Rocky."
     },

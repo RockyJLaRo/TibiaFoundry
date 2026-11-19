@@ -533,6 +533,31 @@
     "updated": "pobrano o {time}",
     "stale": "(starsza kopia – brak połączenia z TibiaData)",
     "search": "Szukaj",
+    "searchBox": {
+      "typeLabel": "Czego szukasz",
+      "type": {
+        "character": "Postać",
+        "guild": "Gildia",
+        "world": "Świat",
+        "creature": "Stwór",
+        "spell": "Czar",
+        "house": "Dom"
+      },
+      "placeholder": {
+        "character": "Nazwa postaci",
+        "guild": "Nazwa gildii",
+        "world": "Nazwa świata",
+        "creature": "Nazwa stwora",
+        "spell": "Nazwa lub formuła czaru",
+        "house": "Nazwa świata"
+      },
+      "suggestions": "Podpowiedzi",
+      "recent": "Ostatnie wyszukiwania",
+      "clearRecent": "Wyczyść ostatnie wyszukiwania",
+      "cleared": "Ostatnie wyszukiwania zostały wyczyszczone.",
+      "noMatches": "Brak wyników",
+      "count": "Podpowiedzi: {n}"
+    },
     "characterLabel": "Sprawdź postać",
     "characterPlaceholder": "Nazwa postaci, np. Roc ky",
     "characterHelp": "Wpisz dokładną nazwę dowolnej postaci z Tibii, aby zobaczyć jej poziom, profesję, świat, gildię, domy, osiągnięcia i ostatnie śmierci.",
@@ -1092,7 +1117,7 @@
       "title": "Profile w społeczności",
       "text": "Rocky jest też na TibiaWiki, YouTube, Instagramie, GitHubie i Reddicie, a w Tibię gra jako Roc ky."
     },
-    "privacy": "Ta strona nie ma formularza kontaktowego i nie zapisuje niczego, co wpisujesz. Wyszukiwania postaci trafiają tylko do TibiaData, aby pobrać dane."
+    "privacy": "Ta strona nie ma formularza kontaktowego. Twoje ostatnie wyszukiwania zostają tylko w Twojej przeglądarce, a wyszukiwania postaci trafiają tylko do TibiaData, aby pobrać dane."
   },
   "tibia": {
     "title": "Narzędzia Tibii",
@@ -1169,6 +1194,7 @@
       "data": "Twoja przeglądarka pobiera oglądane dane Tibii, w tym wyszukiwane postacie, z API TibiaData (api.tibiadata.com), a obrazy z gry z static.tibia.com (CipSoft). Jak każda strona, te usługi widzą Twój adres IP.",
       "storageTitle": "Zapisane w Twojej przeglądarce",
       "storage": "Tylko na Twoim urządzeniu: motyw (tf-theme), język (tf-lang), wybór dotyczący statystyk (tf-analytics) i ostatnio oglądany świat (tf-world) oraz pamięć podręczna odpowiedzi TibiaData usuwana po zamknięciu karty (tf-api). Nic z tego nie trafia do Tibia Foundry.",
+      "recentSearches": "Ostatnie wyszukiwania (tf-recent-searches): Twoje 8 ostatnich wyszukiwań z pola wyszukiwania u góry każdej strony, aby można je było ponownie otworzyć; „Wyczyść ostatnie wyszukiwania” w tym polu je usuwa.",
       "nothingTitle": "Czego ta strona nie ma",
       "nothing": "Brak kont, formularza kontaktowego, komentarzy, newslettera i reklamowych trackerów. Wysłane przez Ciebie e-maile czyta tylko Rocky."
     },

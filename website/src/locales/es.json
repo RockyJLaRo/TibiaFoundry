@@ -537,6 +537,31 @@
     "updated": "obtenidos a las {time}",
     "stale": "(copia anterior: no se pudo conectar con TibiaData)",
     "search": "Buscar",
+    "searchBox": {
+      "typeLabel": "Tipo de búsqueda",
+      "type": {
+        "character": "Personaje",
+        "guild": "Gremio",
+        "world": "Mundo",
+        "creature": "Criatura",
+        "spell": "Hechizo",
+        "house": "Casa"
+      },
+      "placeholder": {
+        "character": "Nombre del personaje",
+        "guild": "Nombre del gremio",
+        "world": "Nombre del mundo",
+        "creature": "Nombre de la criatura",
+        "spell": "Nombre o fórmula del hechizo",
+        "house": "Nombre del mundo"
+      },
+      "suggestions": "Sugerencias",
+      "recent": "Búsquedas recientes",
+      "clearRecent": "Borrar búsquedas recientes",
+      "cleared": "Búsquedas recientes borradas.",
+      "noMatches": "Sin resultados",
+      "count": "Sugerencias: {n}"
+    },
     "characterLabel": "Consultar un personaje",
     "characterPlaceholder": "Nombre del personaje, p. ej. Roc ky",
     "characterHelp": "Escribe el nombre exacto de cualquier personaje de Tibia para ver su nivel, vocación, mundo, guild, casas, logros y muertes recientes.",
@@ -1092,7 +1117,7 @@
       "title": "Perfiles en la comunidad",
       "text": "Rocky también está en TibiaWiki, YouTube, Instagram, GitHub y Reddit, y juega a Tibia como Roc ky."
     },
-    "privacy": "Este sitio no tiene formulario de contacto y no guarda nada de lo que escribes. Las búsquedas de personajes solo van a TibiaData para obtener los datos."
+    "privacy": "Este sitio no tiene formulario de contacto. Tus búsquedas recientes se quedan solo en tu navegador y las búsquedas de personajes solo van a TibiaData para obtener los datos."
   },
   "tibia": {
     "title": "Herramientas de Tibia",
@@ -1169,6 +1194,7 @@
       "data": "Tu navegador pide a la API de TibiaData (api.tibiadata.com) los datos de Tibia que ves, incluidos los personajes que buscas, y carga las imágenes del juego desde static.tibia.com (CipSoft). Como cualquier sitio web, estos servicios ven tu dirección IP.",
       "storageTitle": "Guardado en tu navegador",
       "storage": "Solo en tu dispositivo: el tema (tf-theme), el idioma (tf-lang), tu elección sobre estadísticas (tf-analytics) y el último mundo visto (tf-world), además de una caché de respuestas de TibiaData que se borra al cerrar la pestaña (tf-api). Nada de eso se envía a Tibia Foundry.",
+      "recentSearches": "Búsquedas recientes (tf-recent-searches): tus últimas 8 búsquedas del buscador de la parte superior de cada página, para volver a abrirlas; «Borrar búsquedas recientes» en ese buscador las elimina.",
       "nothingTitle": "Lo que este sitio no tiene",
       "nothing": "Sin cuentas, sin formulario de contacto, sin comentarios, sin newsletter y sin rastreadores publicitarios. Los correos que envías solo los lee Rocky."
     },

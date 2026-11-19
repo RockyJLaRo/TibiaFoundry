@@ -72,6 +72,15 @@
     {"id": "news-archive", "pattern": "news/archive/:days", "sample": "news/archive/90"},
     {"id": "news-article", "pattern": "news/:id", "sample": "news/9050"}
   ],
+  "_searchComment": "The header's global search (src/js/search.js), in this order. route: a data route with {placeholders} - {q} the name typed or picked, {race}/{id} the picked item's key, {world}/{town} the houses page's pickers (the world typed, else the remembered or default world; the default town). exact: only an exact name works (no suggestions). list: the TibiaData list loaded for suggestions. browse: the list page opened when nothing specific was picked. --strict checks every route against dataRoutes.",
+  "search": [
+    {"type": "character", "route": "character/{q}", "exact": true},
+    {"type": "guild", "route": "guild/{q}", "exact": true},
+    {"type": "world", "route": "world/{q}", "list": "worlds", "browse": "worlds"},
+    {"type": "creature", "route": "creature/{race}", "list": "creatures", "browse": "creatures"},
+    {"type": "spell", "route": "spell/{id}", "list": "spells", "browse": "spells"},
+    {"type": "house", "route": "houses/{world}/{town}", "list": "worlds"}
+  ],
   "fixtures": {
     "_comment": "Real TibiaData responses recorded by website/tests/record_fixtures.py, used only by tests and screenshots (never deployed).",
     "character": "Roc ky",

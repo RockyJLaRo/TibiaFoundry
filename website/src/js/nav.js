@@ -145,5 +145,5 @@
     window.addEventListener("hashchange", markRoute);
   }
 
-  window.TFNav = { openDrawer: openDrawer, closeDrawer: closeDrawer, fit: fit };
+  window.TFNav = { openDrawer: openDrawer, closeDrawer: closeDrawer, isOpen: drawerOpen, fit: fit };
 })();

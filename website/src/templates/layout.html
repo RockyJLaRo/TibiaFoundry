@@ -63,9 +63,21 @@
 <header class="site-header">
   <div class="header-search-row">
     <div class="wrap">
-      <form class="header-search search-row" role="search" action="{{LINK:tibia}}" data-character-search>
-        <input class="input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29">
+      <!-- The global Tibia search (src/js/search.js, types from registry.json "search"). Without JavaScript it is a plain
+           character search (GET tibia/?character=): the type picker is hidden then, and it has no name. -->
+      <form class="header-search search-row" role="search" action="{{LINK:tibia}}" data-global-search>
+        <label class="sr-only" for="tf-search-type">{{t:js.searchBox.typeLabel}}</label>
+        <select class="input search-type" id="tf-search-type" data-search-type>
+{{SEARCH_TYPES}}
+        </select>
+        <input class="input search-input" id="tf-search-input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29" data-search-input>
         <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>{{t:nav.searchButton}}</button>
+        <div class="search-popup" data-search-popup hidden>
+          <p class="search-popup-title" data-search-title hidden>{{t:js.searchBox.recent}}</p>
+          <ul class="search-options" id="tf-search-listbox" role="listbox" aria-label="{{a:js.searchBox.suggestions}}" hidden></ul>
+          <p class="search-status" data-search-status hidden></p>
+          <button type="button" class="btn search-clear" data-search-clear hidden>{{t:js.searchBox.clearRecent}}</button>
+        </div>
       </form>
     </div>
   </div>

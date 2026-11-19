@@ -543,6 +543,31 @@
     "updated": "abgerufen um {time}",
     "stale": "(ältere Kopie – TibiaData war nicht erreichbar)",
     "search": "Suchen",
+    "searchBox": {
+      "typeLabel": "Suchbereich",
+      "type": {
+        "character": "Charakter",
+        "guild": "Gilde",
+        "world": "Welt",
+        "creature": "Kreatur",
+        "spell": "Zauber",
+        "house": "Haus"
+      },
+      "placeholder": {
+        "character": "Charaktername",
+        "guild": "Gildenname",
+        "world": "Weltname",
+        "creature": "Kreaturname",
+        "spell": "Zaubername oder Formel",
+        "house": "Weltname"
+      },
+      "suggestions": "Vorschläge",
+      "recent": "Letzte Suchen",
+      "clearRecent": "Letzte Suchen löschen",
+      "cleared": "Letzte Suchen gelöscht.",
+      "noMatches": "Keine Treffer",
+      "count": "Vorschläge: {n}"
+    },
     "characterLabel": "Einen Charakter nachschlagen",
     "characterPlaceholder": "Charaktername, z. B. Roc ky",
     "characterHelp": "Gib den genauen Namen eines Tibia-Charakters ein, um Stufe, Berufung, Welt, Gilde, Häuser, Erfolge und letzte Tode zu sehen.",
@@ -1098,7 +1123,7 @@
       "title": "Community-Profile",
       "text": "Rocky ist auch auf TibiaWiki, YouTube, Instagram, GitHub und Reddit zu finden und spielt Tibia als Roc ky."
     },
-    "privacy": "Diese Website hat kein Kontaktformular und speichert nichts, was du eingibst. Charaktersuchen gehen nur an TibiaData, um die Daten abzurufen."
+    "privacy": "Diese Website hat kein Kontaktformular. Deine letzten Suchen bleiben nur in deinem Browser, und Charaktersuchen gehen nur an TibiaData, um die Daten abzurufen."
   },
   "tibia": {
     "title": "Tibia-Tools",
@@ -1175,6 +1200,7 @@
       "data": "Dein Browser fragt die Tibia-Daten, die du ansiehst – auch gesuchte Charaktere –, bei der TibiaData-API (api.tibiadata.com) ab und lädt Spielbilder von static.tibia.com (CipSoft). Wie jede Website sehen diese Dienste deine IP-Adresse.",
       "storageTitle": "In deinem Browser gespeichert",
       "storage": "Nur auf deinem Gerät: dein Design (tf-theme), deine Sprache (tf-lang), deine Statistik-Wahl (tf-analytics) und die zuletzt angesehene Welt (tf-world), dazu ein Zwischenspeicher der TibiaData-Antworten, der beim Schließen des Tabs gelöscht wird (tf-api). Nichts davon geht an Tibia Foundry.",
+      "recentSearches": "Letzte Suchen (tf-recent-searches): deine letzten 8 Suchen aus dem Suchfeld oben auf jeder Seite, damit du sie wieder öffnen kannst; „Letzte Suchen löschen“ in diesem Feld entfernt sie.",
       "nothingTitle": "Was diese Website nicht hat",
       "nothing": "Keine Konten, kein Kontaktformular, keine Kommentare, kein Newsletter und keine Werbe-Tracker. E-Mails an Rocky liest nur Rocky."
     },

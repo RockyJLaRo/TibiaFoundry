@@ -701,6 +701,41 @@ def check_menu(strict):
         print("  registry.menu: " + p)
 
 
+# ============================================================================ global search (header; src/js/search.js)
+SEARCH = REGISTRY["search"]
+SEARCH_LISTS = {"worlds", "creatures", "spells"}   # the TibiaData lists search.js turns into suggestions
+
+
+def check_search(strict):
+    """registry.search: each route is a data route with {placeholders} where the pattern has :params, browse is a data route
+    without params, list is a list search.js understands; a type exists in every language (js.searchBox.*)."""
+    problems, patterns, seen = [], [r["pattern"].split("/") for r in REGISTRY["dataRoutes"]], set()
+    for e in SEARCH:
+        t = e.get("type")
+        if not t or t in seen:
+            problems.append(f"entry {e} needs a unique type")
+        seen.add(t)
+        segs = e.get("route", "").split("/")
+        if not any(len(p) == len(segs) and all((re.fullmatch(r"\{\w+\}", s) is not None) if q.startswith(":") else q == s for q, s in zip(p, segs))
+                   for p in patterns):
+            problems.append(f"{t}: route '{e.get('route')}' matches no data route")
+        if "browse" in e and e["browse"].split("/") not in patterns:
+            problems.append(f"{t}: browse '{e['browse']}' is not a data route without parameters")
+        if "list" in e and e["list"] not in SEARCH_LISTS:
+            problems.append(f"{t}: list '{e['list']}' is not one of {sorted(SEARCH_LISTS)}")
+        if e.get("exact") and "list" in e:
+            problems.append(f"{t}: an exact-name type has no list")
+    if problems and strict:
+        sys.exit("--strict: registry.search errors:\n  " + "\n  ".join(problems))
+    for p in problems:
+        print("  registry.search: " + p)
+
+
+def search_types_html(tr):
+    """{{SEARCH_TYPES}}: the header search's type picker, in registry order (the first is the default)."""
+    return "\n".join(f'          <option value="{e["type"]}">{tr.text("js.searchBox.type." + e["type"])}</option>' for e in SEARCH)
+
+
 def menu_html(tr, link_to, page):
     """{{NAV}} (desktop disclosure buttons and panels), {{MENU_NAV}} (the drawer's collapsible groups and plain links),
     {{FOOTER_MENU}} (a footer column per group) and {{FOOTER_MENU_LINKS}} (the plain links, in the footer's Project column)."""
@@ -810,7 +845,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
     tibia_link = link_to("tibia")
     site_json = {
         "version": ver, "page": page["id"], "api": REGISTRY["api"], "dataRoutes": REGISTRY["dataRoutes"],
-        "defaultWorld": REGISTRY["fixtures"]["world"],
+        "defaultWorld": REGISTRY["fixtures"]["world"], "defaultTown": MENU_ROUTE_DEFAULTS["town"], "search": SEARCH,
         "paths": {"tibia": tibia_link, "tibiaHash": "" if page["id"] == "tibia" else tibia_link},
     }
     redirect = ""
@@ -823,8 +858,10 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      var base = path.slice(0, path.length - sub.length);\n"
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
-    scripts = (["site.js", "nav.js"] + (["formulas.js"] if page["id"] in ("home", "tibia") or calc_page else [])
-               + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
+    # Every page: the header search (search.js) needs the API client (tibiadata.js), which needs formulas.js loaded before it
+    # (server-save expiry of the creature list).
+    scripts = (["site.js", "nav.js", "formulas.js", "tibiadata.js", "sanitize.js", "search.js"]
+               + (["data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
                + (["today.js"] if today_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
 
@@ -856,7 +893,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "EMAIL": REGISTRY["creator"]["email"], "MAIL_SUBJECT": urllib.parse.quote("Tibia Foundry"),
         "RELEASE_PAGE": release_page, "ALL_RELEASES": all_releases, "ASSET_VERSION": assets["version"],
         "STRUCTURED_DATA": structured_data(tr, ver, page, code),
-        "UI_ICONS": UI_ICONS,
+        "UI_ICONS": UI_ICONS, "SEARCH_TYPES": search_types_html(tr),
         "FOOTER_PROFILES": footer_profiles_html(tr, root),
         "CALC_CARDS": calc_cards_html(tr, link_to) if "{{CALC_CARDS}}" in page_html else "",
         "DOWNLOAD_NOTICE": download_notice_html(tr, root, link_to("legal"), "h2" if page["id"] == "downloads" else "h3")
@@ -1048,6 +1085,7 @@ def main():
     if strict:
         check_formulas()
     check_menu(strict)
+    check_search(strict)
 
     layout = open(os.path.join(SRC, "templates", "layout.html"), encoding="utf-8").read()
     templates = {p["template"]: open(os.path.join(SRC, "templates", p["template"]), encoding="utf-8").read() for p in PAGES}

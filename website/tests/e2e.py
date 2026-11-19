@@ -1348,13 +1348,179 @@ def today_in_tibia(c, browser, base):
         ctx.close()
 
 
+def global_search(c, browser, base):
+    """The header's global Tibia search (src/js/search.js): type picker, combobox suggestions from the full lists, exact-name
+    routes, recent searches (tf-recent-searches) and a blocked localStorage (Review Focus 3 and 5)."""
+    en = kit.LANGUAGES[0]
+    TYPE, INPUT, LIST = "#tf-search-type", "#tf-search-input", "#tf-search-listbox"
+    options = f"{LIST} [role=option]"
+
+    def search(page, kind, text, key="Enter"):
+        page.select_option(TYPE, kind)
+        page.fill(INPUT, text)
+        if key:
+            page.keyboard.press(key)
+
+    ctx, page = new_page(browser, base, 1280, 900)
+    page.goto(url_of(base, en, "about"))
+    # ARIA: a labelled type <select> and an APG combobox controlling a listbox.
+    a = page.evaluate(f"""() => {{ const i = document.querySelector('{INPUT}'), s = document.querySelector('{TYPE}');
+      const lb = document.getElementById(i.getAttribute('aria-controls')), label = s.id && document.querySelector('label[for="' + s.id + '"]');
+      return {{ role: i.getAttribute('role'), exp: i.getAttribute('aria-expanded'), auto: i.getAttribute('aria-autocomplete'),
+        list: lb && lb.getAttribute('role'), label: label ? label.textContent.trim() : '', types: [...s.options].map(o => o.value) }}; }}""")
+    c.ok(a["role"] == "combobox" and a["exp"] == "false" and a["list"] == "listbox" and a["auto"] == "list", f"combobox ARIA: {a}")
+    c.ok(bool(a["label"]), f"type select has a label: {a}")
+    c.ok(a["types"] == [e["type"] for e in kit.REGISTRY["search"]], f"types from registry.search: {a['types']}")
+    # Character: exact name, Enter, lands on the Tibia page's character view.
+    search(page, "character", "Roc ky")
+    page.wait_for_url("**/tibia/#/character/Roc%20ky")
+    wait_app(page)
+    c.ok(page.locator("#app h2").first.inner_text() == "Roc ky", "character search opens the character view")
+    # Review Focus 5: names with an apostrophe and an accent survive the URL and come back into the name field.
+    for name, hsh in (("Mc'Lovin", "#/character/Mc'Lovin"), ("Zé Ninja", "#/character/Z%C3%A9%20Ninja")):
+        search(page, "character", name)
+        page.wait_for_function("h => location.hash === h", arg=hsh, timeout=5000)
+        wait_app(page)
+        page.reload()
+        wait_app(page)
+        c.ok(page.evaluate("location.hash") == hsh, f"{name}: hash {page.evaluate('location.hash')}")
+        c.ok(page.input_value(INPUT) == name and page.input_value(TYPE) == "character", f"{name}: name field after reload {page.input_value(INPUT)!r}")
+        c.ok(page.locator("#app .notice-error").count() == 1, f"{name}: not-found state shown")
+    # Guild: exact name.
+    search(page, "guild", kit.REGISTRY["fixtures"]["guild"])
+    page.wait_for_function("() => document.body.dataset.route === 'guild'", timeout=5000)
+    wait_app(page)
+    c.ok(page.locator("#app h2").first.inner_text() == kit.REGISTRY["fixtures"]["guild"], "guild search opens the guild view")
+    # World: suggestions from the full list contain the text; ArrowDown + Enter opens the first one.
+    worlds = json.load(open(os.path.join(kit.FIXTURES, "worlds.json"), encoding="utf-8"))["worlds"]
+    names = [w["name"] for w in worlds["regular_worlds"] + (worlds.get("tournament_worlds") or [])]
+    page.goto(url_of(base, en, "about"))
+    page.select_option(TYPE, "world")
+    page.click(INPUT)
+    page.keyboard.type("ant")
+    page.wait_for_selector(options, timeout=10000)
+    shown = [s.strip() for s in page.locator(options).all_inner_texts()]
+    want = [n for n in names if "ant" in n.lower()]
+    c.ok(shown and all("ant" in s.lower() for s in shown) and sorted(shown) == sorted(want[:8]), f"world 'ant' suggestions {shown} (expected {want})")
+    c.ok(page.get_attribute(INPUT, "aria-expanded") == "true", "aria-expanded is true while suggestions show")
+    page.keyboard.press("ArrowDown")
+    first = page.locator(options).first
+    c.ok(page.get_attribute(INPUT, "aria-activedescendant") == first.get_attribute("id") and first.get_attribute("aria-selected") == "true",
+         "ArrowDown makes the first option active (aria-activedescendant)")
+    page.keyboard.press("Escape")
+    c.ok(page.get_attribute(INPUT, "aria-expanded") == "false" and page.input_value(INPUT) == "ant", "Escape closes the suggestions")
+    page.keyboard.press("ArrowDown")
+    page.wait_for_selector(options)
+    page.keyboard.press("Enter")
+    page.wait_for_url("**/tibia/#/world/**")
+    c.ok(page.url.endswith("#/world/" + urllib.parse.quote(shown[0])), f"ArrowDown + Enter opens the world: {page.url}")
+    wait_app(page)
+    # Creature: 'dem' shows Demons, which opens by race.
+    page.select_option(TYPE, "creature")
+    page.fill(INPUT, "")
+    page.click(INPUT)
+    page.keyboard.type("dem")
+    page.wait_for_selector(options, timeout=10000)
+    shown = page.locator(options).all_inner_texts()
+    c.ok(any(s.strip().startswith("Demon") for s in shown) and all("dem" in s.lower() for s in shown), f"creature 'dem' suggestions {shown}")
+    page.locator(options, has_text="Demons").first.click()
+    page.wait_for_function("() => location.hash === '#/creature/demon' && document.body.dataset.route === 'creature'", timeout=5000)
+    wait_app(page)
+    c.ok(page.locator("#app .notice-error").count() == 0, "creature opens by race")
+    # Spell: 'exura' (the formula) shows suggestions.
+    page.select_option(TYPE, "spell")
+    page.fill(INPUT, "")
+    page.click(INPUT)
+    page.keyboard.type("exura")
+    page.wait_for_selector(options, timeout=10000)
+    c.ok(1 <= page.locator(options).count() <= 8, f"spell 'exura' suggestions: {page.locator(options).all_inner_texts()}")
+    page.keyboard.press("Escape")
+    # House: opens the houses route with its world and town pickers.
+    search(page, "house", "")
+    page.wait_for_function("() => location.hash.startsWith('#/houses/') && document.body.dataset.route === 'houses'", timeout=5000)
+    wait_app(page)
+    c.ok(page.evaluate("document.body.dataset.route") == "houses" and page.locator("#app select").count() >= 2, f"house search opens houses: {page.url}")
+    c.ok(not page.console_errors, f"console errors: {page.console_errors[:3]}")
+    ctx.close()
+
+    # Recent searches: 9 searches keep 8, newest first; "Clear Recent Searches" empties them.
+    ctx, page = new_page(browser, base, 390, 844)
+    page.goto(url_of(base, en, "tibia"))
+    wait_app(page)
+    for i in range(1, 10):
+        search(page, "character", f"Name {i}")
+        page.wait_for_function("h => location.hash === h", arg=f"#/character/Name%20{i}", timeout=5000)
+    stored = page.evaluate("JSON.parse(localStorage.getItem('tf-recent-searches'))")
+    c.ok([r["q"] for r in stored] == [f"Name {i}" for i in range(9, 1, -1)], f"stored recents: {stored}")
+    page.fill(INPUT, "")
+    page.click(INPUT)
+    page.wait_for_selector(options, timeout=5000)
+    shown = page.locator(options).all_inner_texts()
+    c.ok(len(shown) == 8 and shown[0].startswith("Name 9") and shown[-1].startswith("Name 2"), f"recent searches shown: {shown}")
+    clear = page.get_by_role("button", name="Clear Recent Searches")
+    c.ok(clear.count() == 1, "a 'Clear Recent Searches' button")
+    clear.click()
+    c.ok(page.evaluate("localStorage.getItem('tf-recent-searches')") in (None, "[]"), "clearing removes the stored searches")
+    c.ok(page.locator(options).count() == 0, "no recent searches shown after clearing")
+    # A recent entry opens again from another page.
+    search(page, "world", "Antica")
+    page.wait_for_function("() => location.hash === '#/world/Antica'", timeout=10000)
+    page.goto(url_of(base, en, "about"))
+    page.click(INPUT)
+    page.wait_for_selector(options)
+    page.keyboard.press("ArrowDown")
+    page.keyboard.press("Enter")
+    page.wait_for_url("**/tibia/#/world/Antica")
+    c.ok(not page.console_errors, f"console errors (recents): {page.console_errors[:3]}")
+    ctx.close()
+
+    # Review Focus 3: localStorage throws on every call; the search still navigates and nothing is logged.
+    ctx, page = new_page(browser, base, 1280, 900)
+    page.add_init_script("""(() => { const boom = () => { throw new DOMException('blocked', 'SecurityError'); };
+      Storage.prototype.getItem = boom; Storage.prototype.setItem = boom; Storage.prototype.removeItem = boom; })();""")
+    page.goto(url_of(base, en, "about"))
+    page.click(INPUT)
+    search(page, "character", "Roc ky")
+    page.wait_for_url("**/tibia/#/character/Roc%20ky")
+    wait_app(page)
+    c.ok(page.locator("#app h2").first.inner_text() == "Roc ky", "search works with a throwing localStorage")
+    page.select_option(TYPE, "world")
+    page.fill(INPUT, "")
+    page.click(INPUT)
+    page.keyboard.type("ant")
+    page.wait_for_selector(options, timeout=10000)
+    page.keyboard.press("ArrowDown")
+    page.keyboard.press("Enter")
+    page.wait_for_function("() => location.hash.startsWith('#/world/')", timeout=5000)
+    c.ok(not page.console_errors, f"console errors with blocked storage: {page.console_errors[:3]}")
+    ctx.close()
+
+    # "/" focuses the search field; at 320 px the open suggestions fit without horizontal scroll and have 44 px targets.
+    pl = next(l for l in kit.LANGUAGES if l["code"] == "pl")
+    ctx, page = new_page(browser, base, 320, 700)
+    page.goto(url_of(base, pl, "about"))
+    page.keyboard.press("/")
+    c.ok(page.evaluate(f"document.activeElement === document.querySelector('{INPUT}')"), "'/' focuses the search field")
+    page.select_option(TYPE, "creature")
+    page.click(INPUT)
+    page.keyboard.type("dem")
+    page.wait_for_selector(options, timeout=10000)
+    m = page.evaluate(f"""() => {{ const r = document.querySelector('{LIST}').getBoundingClientRect();
+      const small = [...document.querySelectorAll('{options}')].filter(e => e.getBoundingClientRect().height < 44).length;
+      return {{ over: document.documentElement.scrollWidth - document.documentElement.clientWidth, l: r.left, r: r.right, w: innerWidth, small }}; }}""")
+    c.ok(m["over"] <= 0 and m["l"] >= 0 and m["r"] <= m["w"], f"320 px: suggestions fit {m}")
+    c.ok(m["small"] == 0, f"320 px: options under 44 px tall: {m['small']}")
+    c.ok(not page.console_errors, f"console errors (320): {page.console_errors[:3]}")
+    ctx.close()
+
+
 CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", creator_links), ("navigation", navigation),
           ("menu-keyboard", menu_keyboard), ("menu-overflow", menu_overflow), ("no-js-reachability", no_js_reachability),
           ("compliance", compliance), ("table-sorting", table_sorting),
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),
           ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive),
-          ("calculators", calculators), ("today-in-tibia", today_in_tibia)]
+          ("calculators", calculators), ("today-in-tibia", today_in_tibia), ("global-search", global_search)]
 
 
 def main():

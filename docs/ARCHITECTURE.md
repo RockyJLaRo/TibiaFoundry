@@ -99,3 +99,15 @@ with no benefit to players.
   opens a modal drawer with a focus trap. When the desktop header does not fit on one line (long labels, for example German, Polish,
   Spanish or Portuguese at 1024 px), `html.nav-collapsed` switches it to the drawer. An inline script right after the header sets
   that class before the first paint, and `nav.js` keeps it current on resize.
+
+## Global search
+
+- `registry.json` `search` lists the header search's types in order (character, guild, world, creature, spell, house).
+  Each `route` is a data route with `{placeholders}`; `exact` types need the exact name, `list` types suggest from a
+  TibiaData list, `browse` is the list page opened when nothing specific was picked. `--strict` checks every route.
+- `src/js/search.js` (every page, after `tibiadata.js`): an ARIA combobox with a listbox popup. Lists load on the first
+  focus after a type is chosen; matching ignores case and accents, prefix matches first, at most 8.
+  `window.TFSearch.routeFor(type, item)` returns the hash route for other pages to reuse.
+- Recent searches live in `localStorage` `tf-recent-searches` (at most 8, newest first), listed on the Legal page.
+  Every storage access is guarded; when storage is blocked they last for the page only.
+- Without JavaScript the form is a plain `GET tibia/?character=` search; the type picker is hidden and has no name.

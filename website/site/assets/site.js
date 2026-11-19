@@ -1,6 +1,6 @@
 /*
- * Tibia Foundry website shell (every page): texts (TF.t), theme, language selector and offer, header
- * character search, copy buttons, screenshot tabs, lightbox and the analytics click events.
+ * Tibia Foundry website shell (every page): texts (TF.t), theme, language selector and offer, the "/" shortcut to the
+ * header search (src/js/search.js), copy buttons, screenshot tabs, lightbox and the analytics click events.
  * Texts come from window.TF_I18N (written into each page by build_site.py from src/locales/<lang>.json).
  */
 (function () {
@@ -190,26 +190,15 @@
   // The header menu and the phone drawer are src/js/nav.js; it closes the language menu through TF.closeLang.
   window.TF.closeLang = closeLang;
 
-  // ---------------------------------------------------------------- character search (header, home): opens tibia/#/character/<name>
-  document.querySelectorAll("form[data-character-search]").forEach(function (form) {
-    form.addEventListener("submit", function (e) {
-      var input = form.querySelector("input[name=character]");
-      var name = (input.value || "").replace(/\s+/g, " ").trim();
-      e.preventDefault();
-      if (!name) { input.focus(); return; }
-      var target = form.getAttribute("action") + "#/character/" + encodeURIComponent(name);
-      if (window.TFNav) window.TFNav.closeDrawer();
-      if (window.TFApp && form.getAttribute("action") === (SITE.paths && SITE.paths.tibia) && document.body.getAttribute("data-page") === "tibia") location.hash = "#/character/" + encodeURIComponent(name);
-      else location.href = target;
-    });
-  });
-  // "/" focuses the visible search field (not while typing).
+  // ---------------------------------------------------------------- "/" focuses the header search field (src/js/search.js), not while
+  // typing and not while the menu drawer (a modal dialog) is open. The header shows its search row while the field has focus.
   document.addEventListener("keydown", function (e) {
     if (e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey) return;
     var tag = (document.activeElement && document.activeElement.tagName) || "";
     if (/^(INPUT|TEXTAREA|SELECT)$/.test(tag) || (document.activeElement && document.activeElement.isContentEditable)) return;
-    var fields = Array.prototype.slice.call(document.querySelectorAll("form[data-character-search] input")).filter(function (i) { return i.offsetParent !== null; });
-    if (fields.length) { e.preventDefault(); fields[0].focus(); }
+    if (window.TFNav && window.TFNav.isOpen && window.TFNav.isOpen()) return;
+    var field = document.querySelector("form[data-global-search] [data-search-input]");
+    if (field && field.getClientRects().length) { e.preventDefault(); field.focus({ preventScroll: true }); }
   });
 
   // ---------------------------------------------------------------- tabs (screenshots)
