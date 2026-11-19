@@ -842,6 +842,22 @@ def calculators(c, browser, base):
                     c.ok(st["errors"].get(name) and all(not o["value"] for o in st["outs"].values()), f"{where}: {name}={text!r} must be refused with an inline error")
                 st = calc_fill(page, dict(current="0:00", target="42:00"))
                 c.ok(st["outs"]["regen"]["value"] == "8100" and st["outs"]["minutes"]["value"] == "8110", f"{where}: 0:00 -> 42:00 gives {st['outs']}")
+            if p["id"] == "calc-blessings":
+                # Default level 100 (200 x 80 = 16,000 each regular), Inquisition +10%, the note about discounts and skulls.
+                st = calc_fill(page, dict(defaults))
+                want = {"regularAll": "80000", "regularEach": "16000", "enhancedAll": "41600", "enhancedEach": "20800", "inquisition": "88000", "twistOfFate": "16000"}
+                c.ok({k: st["outs"][k]["value"] for k in want} == want, f"{where}: level 100 gives {st['outs']}")
+                c.ok(page.locator("form[data-calc] .calc-note").count() == 1, f"{where}: the note about discounts and skulls is missing")
+                for level, tof in (("269", "49800"), ("270", "50000"), ("271", "50000"), ("1", "2000")):
+                    st = calc_fill(page, dict(level=level))
+                    c.ok(st["outs"]["twistOfFate"]["value"] == tof, f"{where}: Twist of Fate at level {level} = {st['outs']['twistOfFate']['value']!r}, expected {tof}")
+                st = calc_fill(page, dict(level="121"))
+                c.ok(st["outs"]["inquisition"]["value"] == "110412", f"{where}: Inquisition at level 121 must round down to 110412, got {st['outs']['inquisition']['value']!r}")
+                st = calc_fill(page, dict(level="20000"))
+                c.ok(st["outs"]["regularEach"]["value"] == "1511000" and not st["errors"].get("level"), f"{where}: level 20,000 gives {st['outs']['regularEach']}")
+                for text in ("0", "20001", "7.5", "abc", ""):
+                    st = calc_fill(page, dict(level=text))
+                    c.ok(st["errors"].get("level") and all(not o["value"] for o in st["outs"].values()), f"{where}: level={text!r} must be refused with an inline error")
         c.ok(not page.console_errors, f"{code}: console errors {page.console_errors[:3]}")
         ctx.close()
     # Share link opened in German, copy, share, typing, reset (desktop: "How" open).

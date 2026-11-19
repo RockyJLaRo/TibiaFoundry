@@ -63,7 +63,9 @@
       "download.facts.version",
       "home.dest.highscores.title",
       "home.app.fact.version",
-      "legal.admin.name"
+      "legal.admin.name",
+      "calc.blessings.title",
+      "calc.blessings.twist"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -859,7 +861,7 @@
     },
     "calculators": {
       "title": "Tibia-Rechner",
-      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit, den Party-Share-Bereich und die Stamina-Regeneration. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
+      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit, den Party-Share-Bereich, die Stamina-Regeneration und die Preise der Blessings. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
     },
     "calc-experience": {
       "title": "Tibia-Rechner für Erfahrung und Level",
@@ -868,6 +870,10 @@
     "calc-stamina": {
       "title": "Tibia-Stamina-Rechner",
       "description": "Wie lange dein Charakter ausgeloggt sein muss, um Stamina von einem aktuellen auf einen Zielwert zu regenerieren, mit der 10-Minuten-Verzögerung nach dem Logout und den langsameren Bonusstunden – mit Formel und Quellen."
+    },
+    "calc-blessings": {
+      "title": "Tibia-Blessing-Rechner",
+      "description": "Was die 5 normalen Blessings, die 2 Enhanced Blessings, die Blessing of the Inquisition und Twist of Fate auf deinem Level kosten – mit Formel und Quellen."
     }
   },
   "credits": {
@@ -1260,6 +1266,26 @@
       },
       "rule": {
         "staminaRest": "Ausgeloggt erhältst du 1 Minute Stamina pro 3 Minuten Offline-Zeit, solange du unter 39:00 bist, und 1 Minute pro 6 Minuten Offline-Zeit von 39:00 bis zum Maximum von 42:00. Regenerationszeit = 3 × (Stamina-Minuten unter 39:00) + 6 × (Stamina-Minuten von 39:00 bis 42:00). In den ersten 10 Minuten nach dem Logout wird nichts regeneriert, also nötige Offline-Zeit = Regenerationszeit + 10 Minuten. Beispiel: von 39:00 bis 42:00 sind 18 Stunden Regeneration, 18 Std. 10 Min. offline."
+      }
+    },
+    "blessings": {
+      "title": "Blessings",
+      "card": "Was die 5 normalen Blessings, die 2 Enhanced Blessings, die Blessing of the Inquisition und Twist of Fate auf deinem Level kosten.",
+      "lead": "Der Goldpreis jeder Todes-Blessing auf deinem Level: normale, Enhanced, die Inquisition-Blessing von Henricus und Twist of Fate.",
+      "level": "Dein Level",
+      "hint": "Die Level 1 bis 30 zahlen alle denselben Preis.",
+      "regularAll": "5 normale Blessings (gp)",
+      "regularEach": "Jede normale Blessing (gp)",
+      "enhancedAll": "2 Enhanced Blessings (gp)",
+      "enhancedEach": "Jede Enhanced Blessing (gp)",
+      "inquisition": "Blessing of the Inquisition, statt der 5 normalen (gp)",
+      "twist": "Twist of Fate (gp)",
+      "note": "Nicht enthalten: die Rabatte durch Phoenix Egg und Pilgrimage of Ashes sowie die Store-Preise (Tibia Coins). Charaktere mit rotem oder schwarzem Skull zahlen den vollen Preis.",
+      "error": {
+        "level": "Gib ein Level von 1 bis 20.000 ein."
+      },
+      "rule": {
+        "blessings": "Normale Blessing (jede der 5): 2.000 gp bis Level 30; 200 × (Level − 20) von Level 31 bis 119; 20.000 + 75 × (Level − 120) ab Level 120. Enhanced Blessing (jede der 2): 2.600 gp bis Level 30; 260 × (Level − 20) von Level 31 bis 119; 26.000 + 100 × (Level − 120) ab Level 120. Twist of Fate: 2.000 gp bis Level 30; 200 × (Level − 20) von Level 31 bis 269; 50.000 gp ab Level 270. Die Blessing of the Inquisition (nach der Quest The Inquisition, bei Henricus gekauft) ersetzt die 5 normalen Blessings und kostet 10 % mehr als diese zusammen, abgerundet. Unter Level 8 gelten die Preise der Level bis 30. Beispiel, Level 75: 5 normale Blessings 55.000 gp, Inquisition 60.500 gp, jede Enhanced Blessing 14.300 gp, Twist of Fate 11.000 gp."
       }
     }
   }

@@ -111,3 +111,21 @@ test("staminaRest: a target at or below the current stamina needs no rest (no de
   assert.deepEqual(FORMULAS.staminaRest({ current: 1000, target: 1000 }), { regen: 0, minutes: 0 });
   assert.deepEqual(FORMULAS.staminaRest({ current: 2520, target: 100 }), { regen: 0, minutes: 0 });
 });
+
+test("blessings: price brackets at their boundaries (levels 30/31, 119/120/121, 269/270/271)", () => {
+  const price = (level) => FORMULAS.blessings({ level });
+  assert.deepEqual(price(30), { regularEach: 2000, regularAll: 10000, enhancedEach: 2600, enhancedAll: 5200, inquisition: 11000, twistOfFate: 2000 });
+  assert.deepEqual(price(31), { regularEach: 2200, regularAll: 11000, enhancedEach: 2860, enhancedAll: 5720, inquisition: 12100, twistOfFate: 2200 });
+  assert.deepEqual(price(119), { regularEach: 19800, regularAll: 99000, enhancedEach: 25740, enhancedAll: 51480, inquisition: 108900, twistOfFate: 19800 });
+  assert.deepEqual(price(120), { regularEach: 20000, regularAll: 100000, enhancedEach: 26000, enhancedAll: 52000, inquisition: 110000, twistOfFate: 20000 });
+  assert.deepEqual(price(121), { regularEach: 20075, regularAll: 100375, enhancedEach: 26100, enhancedAll: 52200, inquisition: 110412, twistOfFate: 20200 });
+  assert.equal(price(269).twistOfFate, 49800);
+  assert.equal(price(270).twistOfFate, 50000);
+  assert.equal(price(271).twistOfFate, 50000);
+});
+
+test("blessings: below level 8 the prices of the level <= 30 bracket apply; the Inquisition price rounds down; large levels stay integers", () => {
+  assert.deepEqual(FORMULAS.blessings({ level: 1 }), FORMULAS.blessings({ level: 30 }));
+  assert.equal(FORMULAS.blessings({ level: 271 }).inquisition, 172287); // 156,625 x 1.1 = 172,287.5
+  for (const level of [1, 77, 20000]) for (const v of Object.values(FORMULAS.blessings({ level }))) assert.ok(Number.isSafeInteger(v));
+});

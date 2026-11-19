@@ -59,7 +59,9 @@
       "studio.step2.title",
       "home.dest.highscores.title",
       "calc.how.kind.wiki",
-      "calc.unit.hoursMinutes"
+      "calc.unit.hoursMinutes",
+      "calc.blessings.title",
+      "calc.blessings.twist"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -855,7 +857,7 @@
     },
     "calculators": {
       "title": "Calculadoras de Tibia",
-      "description": "Calculadoras gratuitas de Tibia para experiência e nível, tempo de hunt, faixa de share da party e regeneração de stamina. Cada resultado mostra a fórmula, as fontes e a data da última verificação."
+      "description": "Calculadoras gratuitas de Tibia para experiência e nível, tempo de hunt, faixa de share da party, regeneração de stamina e preço das blessings. Cada resultado mostra a fórmula, as fontes e a data da última verificação."
     },
     "calc-experience": {
       "title": "Calculadora de experiência e nível de Tibia",
@@ -864,6 +866,10 @@
     "calc-stamina": {
       "title": "Calculadora de stamina de Tibia",
       "description": "Quanto tempo o personagem precisa ficar deslogado para recuperar stamina de um valor atual até um valor desejado, contando o atraso de 10 minutos após o logout e as horas bônus mais lentas – com fórmula e fontes."
+    },
+    "calc-blessings": {
+      "title": "Calculadora de blessings do Tibia",
+      "description": "Quanto custam as 5 blessings comuns, as 2 enhanced, a Blessing of the Inquisition e a Twist of Fate no seu nível – com fórmula e fontes."
     }
   },
   "credits": {
@@ -1256,6 +1262,26 @@
       },
       "rule": {
         "staminaRest": "Deslogado, você recupera 1 minuto de stamina a cada 3 minutos offline enquanto estiver abaixo de 39:00, e 1 minuto a cada 6 minutos offline de 39:00 até o máximo de 42:00. Tempo de regeneração = 3 × (minutos de stamina abaixo de 39:00) + 6 × (minutos de stamina de 39:00 a 42:00). Nada é recuperado nos primeiros 10 minutos após o logout, então o tempo deslogado necessário = tempo de regeneração + 10 minutos. Exemplo: de 39:00 a 42:00 são 18 horas de regeneração, 18 h 10 min deslogado."
+      }
+    },
+    "blessings": {
+      "title": "Blessings",
+      "card": "Quanto custam as 5 blessings comuns, as 2 enhanced, a Blessing of the Inquisition e a Twist of Fate no seu nível.",
+      "lead": "O preço em gold de cada blessing de morte no seu nível: comuns, enhanced, a blessing da Inquisition de Henricus e a Twist of Fate.",
+      "level": "Seu nível",
+      "hint": "Os níveis de 1 a 30 pagam o mesmo preço.",
+      "regularAll": "5 blessings comuns (gp)",
+      "regularEach": "Cada blessing comum (gp)",
+      "enhancedAll": "2 blessings enhanced (gp)",
+      "enhancedEach": "Cada blessing enhanced (gp)",
+      "inquisition": "Blessing of the Inquisition, no lugar das 5 comuns (gp)",
+      "twist": "Twist of Fate (gp)",
+      "note": "Não incluídos: os descontos do Phoenix Egg e da Pilgrimage of Ashes e os preços da Store (Tibia Coins). Personagens com skull vermelha ou preta pagam o preço integral.",
+      "error": {
+        "level": "Digite um nível de 1 a 20.000."
+      },
+      "rule": {
+        "blessings": "Blessing comum (cada uma das 5): 2.000 gp até o nível 30; 200 × (nível − 20) do nível 31 ao 119; 20.000 + 75 × (nível − 120) a partir do nível 120. Blessing enhanced (cada uma das 2): 2.600 gp até o nível 30; 260 × (nível − 20) do nível 31 ao 119; 26.000 + 100 × (nível − 120) a partir do nível 120. Twist of Fate: 2.000 gp até o nível 30; 200 × (nível − 20) do nível 31 ao 269; 50.000 gp a partir do nível 270. A Blessing of the Inquisition (depois da quest The Inquisition, comprada de Henricus) substitui as 5 blessings comuns e custa 10% mais do que elas juntas, arredondado para baixo. Abaixo do nível 8 valem os preços dos níveis até 30. Exemplo, nível 75: 5 blessings comuns 55.000 gp, Inquisition 60.500 gp, cada blessing enhanced 14.300 gp, Twist of Fate 11.000 gp."
       }
     }
   }

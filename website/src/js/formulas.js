@@ -87,6 +87,22 @@
       var bonus = Math.max(0, Math.min(i.target, FULL) - Math.max(i.current, BONUS));
       var regen = normal * 3 + bonus * 6;
       return { regen: regen, minutes: regen + 10 };
+    },
+    // Death blessing prices in gold (TibiaWiki "Blessings"; levels below 8 follow the level <= 30 bracket). One regular blessing,
+    // one enhanced blessing and Twist of Fate each have three brackets; Blessing of the Inquisition costs the 5 regular blessings
+    // plus 10%, rounded down (TibiaWiki's calculator: 110,412.5 -> 110,412). All integer arithmetic.
+    blessings: function (i) {
+      var L = i.level, regular, enhanced, twist;
+      if (L <= 30) { regular = 2000; enhanced = 2600; }
+      else if (L < 120) { regular = 200 * (L - 20); enhanced = 260 * (L - 20); }
+      else { regular = 20000 + 75 * (L - 120); enhanced = 26000 + 100 * (L - 120); }
+      twist = L <= 30 ? 2000 : L < 270 ? 200 * (L - 20) : 50000;
+      return {
+        regularEach: regular, regularAll: 5 * regular,
+        enhancedEach: enhanced, enhancedAll: 2 * enhanced,
+        inquisition: Math.floor((5 * regular * 11) / 10),
+        twistOfFate: twist
+      };
     }
   };
 

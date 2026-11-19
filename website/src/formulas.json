@@ -361,6 +361,402 @@
           ]
         }
       ]
+    },
+    {
+      "id": "blessings",
+      "calc": "blessings",
+      "rule": "calc.blessings.rule.blessings",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Blessings",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Price formulas by level: regular blessing 2000 up to level 30, 200 x (level - 20) from 31 to 119, 20000 + 75 x (level - 120) from 120; enhanced 2600, 260 x (level - 20), 26000 + 100 x (level - 120); Twist of Fate 2000, 200 x (level - 20) up to level 269, 50000 from level 270. Blessing of the Inquisition works as the 5 regular blessings and costs 10% more than buying them separately. Level 75: 55,000 for the 5 regular blessings."
+        },
+        {
+          "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "TibiaWiki's separate interactive calculator (not the rule page): prices of one regular blessing, one enhanced blessing, all 7 and all 7 using Henricus (the Inquisition blessing for the 5 regular ones) for levels 8, 30, 31, 75, 119, 120, 121, 269, 270, 271, 1000 and 2000. The Inquisition price is the Henricus total minus the two enhanced blessings; at levels 121, 269 and 271 it rounds down (110,412.5 shown as 110,412). It has no Twist of Fate."
+        },
+        {
+          "url": "https://tibiapal.com/bless",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "Capture research/calc-tests/blessings-tibiapal.json: cost of the 5 regular blessings (with and without Henricus), 2 enhanced blessings and Twist of Fate, shown in thousands of gold (rounded by the page) for levels 30 to 2000; used only where our exact value is a whole number of thousands. It shows negative prices below level 30, so level 8 is not covered."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-18",
+      "checkedOn": "2026-11-18",
+      "tests": [
+        {
+          "in": {
+            "level": 1
+          },
+          "out": {
+            "regularEach": 2000,
+            "regularAll": 10000,
+            "enhancedEach": 2600,
+            "enhancedAll": 5200,
+            "inquisition": 11000,
+            "twistOfFate": 2000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "level": 8
+          },
+          "out": {
+            "regularEach": 2000,
+            "regularAll": 10000,
+            "enhancedEach": 2600,
+            "enhancedAll": 5200,
+            "inquisition": 11000,
+            "twistOfFate": 2000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 30
+          },
+          "out": {
+            "regularEach": 2000,
+            "regularAll": 10000,
+            "enhancedEach": 2600,
+            "enhancedAll": 5200,
+            "inquisition": 11000,
+            "twistOfFate": 2000
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "regularAll",
+            "inquisition",
+            "twistOfFate"
+          ]
+        },
+        {
+          "in": {
+            "level": 30
+          },
+          "out": {
+            "regularEach": 2000,
+            "regularAll": 10000,
+            "enhancedEach": 2600,
+            "enhancedAll": 5200,
+            "inquisition": 11000,
+            "twistOfFate": 2000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 31
+          },
+          "out": {
+            "regularEach": 2200,
+            "regularAll": 11000,
+            "enhancedEach": 2860,
+            "enhancedAll": 5720,
+            "inquisition": 12100,
+            "twistOfFate": 2200
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 75
+          },
+          "out": {
+            "regularEach": 11000,
+            "regularAll": 55000,
+            "enhancedEach": 14300,
+            "enhancedAll": 28600,
+            "inquisition": 60500,
+            "twistOfFate": 11000
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "regularAll",
+            "twistOfFate"
+          ]
+        },
+        {
+          "in": {
+            "level": 75
+          },
+          "out": {
+            "regularEach": 11000,
+            "regularAll": 55000,
+            "enhancedEach": 14300,
+            "enhancedAll": 28600,
+            "inquisition": 60500,
+            "twistOfFate": 11000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 75
+          },
+          "out": {
+            "regularEach": 11000,
+            "regularAll": 55000,
+            "enhancedEach": 14300,
+            "enhancedAll": 28600,
+            "inquisition": 60500,
+            "twistOfFate": 11000
+          },
+          "from": "wiki",
+          "cites": [
+            "regularAll"
+          ]
+        },
+        {
+          "in": {
+            "level": 119
+          },
+          "out": {
+            "regularEach": 19800,
+            "regularAll": 99000,
+            "enhancedEach": 25740,
+            "enhancedAll": 51480,
+            "inquisition": 108900,
+            "twistOfFate": 19800
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 120
+          },
+          "out": {
+            "regularEach": 20000,
+            "regularAll": 100000,
+            "enhancedEach": 26000,
+            "enhancedAll": 52000,
+            "inquisition": 110000,
+            "twistOfFate": 20000
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "regularAll",
+            "enhancedAll",
+            "inquisition",
+            "twistOfFate"
+          ]
+        },
+        {
+          "in": {
+            "level": 120
+          },
+          "out": {
+            "regularEach": 20000,
+            "regularAll": 100000,
+            "enhancedEach": 26000,
+            "enhancedAll": 52000,
+            "inquisition": 110000,
+            "twistOfFate": 20000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 121
+          },
+          "out": {
+            "regularEach": 20075,
+            "regularAll": 100375,
+            "enhancedEach": 26100,
+            "enhancedAll": 52200,
+            "inquisition": 110412,
+            "twistOfFate": 20200
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 269
+          },
+          "out": {
+            "regularEach": 31175,
+            "regularAll": 155875,
+            "enhancedEach": 40900,
+            "enhancedAll": 81800,
+            "inquisition": 171462,
+            "twistOfFate": 49800
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 270
+          },
+          "out": {
+            "regularEach": 31250,
+            "regularAll": 156250,
+            "enhancedEach": 41000,
+            "enhancedAll": 82000,
+            "inquisition": 171875,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "twistOfFate"
+          ]
+        },
+        {
+          "in": {
+            "level": 270
+          },
+          "out": {
+            "regularEach": 31250,
+            "regularAll": 156250,
+            "enhancedEach": 41000,
+            "enhancedAll": 82000,
+            "inquisition": 171875,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 271
+          },
+          "out": {
+            "regularEach": 31325,
+            "regularAll": 156625,
+            "enhancedEach": 41100,
+            "enhancedAll": 82200,
+            "inquisition": 172287,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 1000
+          },
+          "out": {
+            "regularEach": 86000,
+            "regularAll": 430000,
+            "enhancedEach": 114000,
+            "enhancedAll": 228000,
+            "inquisition": 473000,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "regularAll",
+            "enhancedAll",
+            "inquisition",
+            "twistOfFate"
+          ]
+        },
+        {
+          "in": {
+            "level": 1000
+          },
+          "out": {
+            "regularEach": 86000,
+            "regularAll": 430000,
+            "enhancedEach": 114000,
+            "enhancedAll": 228000,
+            "inquisition": 473000,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000
+          },
+          "out": {
+            "regularEach": 161000,
+            "regularAll": 805000,
+            "enhancedEach": 214000,
+            "enhancedAll": 428000,
+            "inquisition": 885500,
+            "twistOfFate": 50000
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "regularEach",
+            "enhancedEach",
+            "inquisition"
+          ]
+        },
+        {
+          "in": {
+            "level": 20000
+          },
+          "out": {
+            "regularEach": 1511000,
+            "regularAll": 7555000,
+            "enhancedEach": 2014000,
+            "enhancedAll": 4028000,
+            "inquisition": 8310500,
+            "twistOfFate": 50000
+          },
+          "from": "computed"
+        }
+      ]
     }
   ]
 }

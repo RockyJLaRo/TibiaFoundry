@@ -797,7 +797,7 @@
     },
     "calculators": {
       "title": "Tibia calculators",
-      "description": "Free Tibia calculators for experience and level, hunting time, the party share range and stamina regeneration. Each result shows its formula, its sources and the date it was checked."
+      "description": "Free Tibia calculators for experience and level, hunting time, the party share range, stamina regeneration and blessing prices. Each result shows its formula, its sources and the date it was checked."
     },
     "calc-experience": {
       "title": "Tibia experience and level calculator",
@@ -806,6 +806,10 @@
     "calc-stamina": {
       "title": "Tibia stamina calculator",
       "description": "How long your character must stay logged out to regain stamina from a current value to a target value, with the 10-minute logout delay and the slower bonus hours counted – with formula and sources."
+    },
+    "calc-blessings": {
+      "title": "Tibia blessings calculator",
+      "description": "What the 5 regular blessings, the 2 enhanced blessings, Blessing of the Inquisition and Twist of Fate cost at your Tibia level – with formula and sources."
     }
   },
   "credits": {
@@ -1198,6 +1202,26 @@
       },
       "rule": {
         "staminaRest": "Logged out, you regain 1 minute of stamina for every 3 minutes offline while below 39:00, and 1 minute for every 6 minutes offline from 39:00 up to the maximum of 42:00. Regeneration time = 3 × (minutes of stamina below 39:00) + 6 × (minutes of stamina from 39:00 to 42:00). Nothing is regained during the first 10 minutes after logout, so the offline time needed = regeneration time + 10 minutes. Example: 39:00 to 42:00 takes 18 hours of regeneration, 18 h 10 min offline."
+      }
+    },
+    "blessings": {
+      "title": "Blessings",
+      "card": "What the 5 regular blessings, the 2 enhanced blessings, Blessing of the Inquisition and Twist of Fate cost at your level.",
+      "lead": "The price in gold of every death blessing at your level: regular, enhanced, the Inquisition blessing from Henricus and Twist of Fate.",
+      "level": "Your level",
+      "hint": "Levels 1 to 30 all pay the same price.",
+      "regularAll": "5 regular blessings (gp)",
+      "regularEach": "Each regular blessing (gp)",
+      "enhancedAll": "2 enhanced blessings (gp)",
+      "enhancedEach": "Each enhanced blessing (gp)",
+      "inquisition": "Blessing of the Inquisition, instead of the 5 regular (gp)",
+      "twist": "Twist of Fate (gp)",
+      "note": "Not included: the Phoenix Egg and Pilgrimage of Ashes discounts and Store (Tibia Coin) prices. Characters with a red or black skull pay full price.",
+      "error": {
+        "level": "Enter a level from 1 to 20,000."
+      },
+      "rule": {
+        "blessings": "Regular blessing (each of 5): 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 119; 20,000 + 75 × (level − 120) from level 120. Enhanced blessing (each of 2): 2,600 gp up to level 30; 260 × (level − 20) from level 31 to 119; 26,000 + 100 × (level − 120) from level 120. Twist of Fate: 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 269; 50,000 gp from level 270. Blessing of the Inquisition (after the Inquisition quest, bought from Henricus) replaces the 5 regular blessings and costs 10% more than they do together, rounded down. Below level 8 the prices of levels up to 30 apply. Example, level 75: 5 regular blessings 55,000 gp, Inquisition 60,500 gp, each enhanced blessing 14,300 gp, Twist of Fate 11,000 gp."
       }
     }
   }
