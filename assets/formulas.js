@@ -1,0 +1,174 @@
+/*
+ * Calculator formulas and number input (the formula registry is src/formulas.json; build_site.py --strict checks it).
+ *
+ * - parseNumber: reads a number the way the page language writes it (grouping and decimal separator per language,
+ *   shorthand k = 10^3, kk = 10^6, kkk = 10^9); anything it cannot read is an error code, never a guess.
+ * - parseDuration: h:mm / hh:mm into minutes.
+ * - formatNumber: writes a number the way parseNumber reads it in that language (the site's grouping, not the browser's
+ *   Intl rules: Intl groups Spanish with "." and leaves out grouping below 10 000 in pl/es); pl/es use no-break spaces.
+ * - FORMULAS: id -> pure function (input object -> result object), one per entry of formulas.json.
+ *
+ * Works in the browser (window.TFFormulas) and in Node for the unit tests (module.exports).
+ */
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.TFFormulas = factory();
+})(typeof self !== "undefined" ? self : this, function () {
+  "use strict";
+
+  // Group separator per language (same values as GROUP in build_site.py). Intl formats pl and es with no-break
+  // spaces, so a space group accepts a regular space, U+00A0 and U+202F.
+  var GROUP = { "en": ",", "pt-BR": ".", "de": ".", "pl": " ", "es": " " };
+  var GROUP_CLASS = { ",": ",", ".": "\\.", " ": "[ \u00a0\u202f]" };
+  var MULTIPLIER = { k: 1e3, kk: 1e6, kkk: 1e9 };
+  var patterns = {};
+
+  function pattern(lang) {
+    if (!patterns[lang]) {
+      var g = GROUP_CLASS[GROUP[lang]];
+      var d = lang === "en" ? "\\." : ",";
+      patterns[lang] = new RegExp("^(\\d{1,3}(?:" + g + "\\d{3})+|\\d+)(?:" + d + "(\\d+))?(k{1,3})?$");
+    }
+    return patterns[lang];
+  }
+
+  function parseNumber(text, lang, opts) {
+    if (!Object.prototype.hasOwnProperty.call(GROUP, lang)) return { error: "format" };
+    var s = String(text == null ? "" : text).trim().toLowerCase();
+    if (s === "") return { error: "empty" };
+    var m = pattern(lang).exec(s);
+    if (!m) return { error: "format" };
+    var value = Number(m[1].replace(/\D/g, "") + (m[2] ? "." + m[2] : ""));
+    if (m[3]) value = Math.round(value * MULTIPLIER[m[3]] * 1e6) / 1e6;
+    if (!isFinite(value) || value > Number.MAX_SAFE_INTEGER) return { error: "range" };
+    if (opts && opts.integer && value !== Math.floor(value)) return { error: "integer" };
+    return { value: value };
+  }
+
+  function parseDuration(text) {
+    var m = /^(\d{1,3}):([0-5]\d)$/.exec(String(text == null ? "" : text).trim());
+    if (!m) return { error: "format" };
+    return { value: Number(m[1]) * 60 + Number(m[2]) };
+  }
+
+  function formatNumber(value, lang) {
+    var group = GROUP[lang] === " " ? "\u00a0" : GROUP[lang] || ",";
+    // Plain digits, never exponent notation (String(1e-5) is "1e-5"); grouping and separators are added below.
+    var plain = Math.abs(value).toLocaleString("en-US", { useGrouping: false, maximumFractionDigits: 20 });
+    var parts = plain.split(".");
+    var whole = parts[0];
+    if (!(group === "\u00a0" && whole.length <= 4)) whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, group);
+    return (value < 0 ? "-" : "") + whole + (parts[1] ? (lang === "en" ? "." : ",") + parts[1] : "");
+  }
+
+  // Berlin wall clock (Europe/Berlin = CET / CEST, the zone the servers save in); the offsets come from Intl, never from constants.
+  var berlin = null;
+  function berlinParts(ms) {
+    if (!berlin) berlin = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Berlin", hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" });
+    var p = {};
+    berlin.formatToParts(new Date(ms)).forEach(function (x) { p[x.type] = Number(x.value); });
+    return p;
+  }
+  function berlinOffset(ms) {
+    var p = berlinParts(ms), whole = Math.floor(ms / 1000) * 1000;
+    return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - whole;
+  }
+  // The instant at which the Berlin wall clock reads 10:00:00 on the given calendar day (10:00 is never skipped or repeated).
+  function serverSaveOn(year, month, day) {
+    var wall = Date.UTC(year, month - 1, day, 10, 0, 0);
+    return wall - berlinOffset(wall - berlinOffset(wall));
+  }
+  // Calendar day of the Tibia day containing "now" (it starts at 10:00:00.000 Berlin time) and whether that is today's date.
+  function tibiaDay(now) {
+    var p = berlinParts(now);
+    var beforeSave = p.hour < 10;
+    return { year: p.year, month: p.month, day: p.day, beforeSave: beforeSave };
+  }
+
+  var FORMULAS = {
+    // Total experience for a level: 50/3 * (L^3 - 6L^2 + 17L - 12). The product is always divisible by 3 (exact integer).
+    levelExp: function (i) {
+      var L = i.level;
+      return { exp: (50 * (L * L * L - 6 * L * L + 17 * L - 12)) / 3 };
+    },
+    // Experience between two levels, minutes at exph experience per hour, days at hpd hours per day.
+    levelPlan: function (i) {
+      var exp = FORMULAS.levelExp({ level: i.to }).exp - FORMULAS.levelExp({ level: i.from }).exp;
+      var minutes = Math.floor((exp * 60) / i.exph);
+      return { exp: exp, minutes: minutes, days: Math.ceil(minutes / (i.hpd * 60)) };
+    },
+    // Party share range (TibiaWiki "Party Experience Sharing" table): min = floor(2L/3), max = floor(3L/2) + 1.
+    shareRange: function (i) {
+      return { min: Math.floor((2 * i.level) / 3), max: Math.floor((3 * i.level) / 2) + 1 };
+    },
+    // Offline time to regain stamina (all values in minutes). Logged out: 1 stamina minute per 3 offline minutes below 39:00 (2340),
+    // per 6 from 39:00 to 42:00 (2520, TibiaWiki "Stamina"). regen = regeneration time; minutes = regen + the 10 minutes after
+    // logout in which nothing is regained. A target at or below the current stamina needs neither.
+    staminaRest: function (i) {
+      var BONUS = 2340, FULL = 2520;
+      if (i.target <= i.current) return { regen: 0, minutes: 0 };
+      var normal = Math.max(0, Math.min(i.target, BONUS) - Math.min(i.current, BONUS));
+      var bonus = Math.max(0, Math.min(i.target, FULL) - Math.max(i.current, BONUS));
+      var regen = normal * 3 + bonus * 6;
+      return { regen: regen, minutes: regen + 10 };
+    },
+    // Death blessing prices in gold (TibiaWiki "Blessings"; levels below 8 follow the level <= 30 bracket). One regular blessing,
+    // one enhanced blessing and Twist of Fate each have three brackets; Blessing of the Inquisition costs the 5 regular blessings
+    // plus 10%, rounded down (TibiaWiki's calculator: 110,412.5 -> 110,412). All 7 = the 5 regular + the 2 enhanced blessings, or
+    // the Inquisition blessing + the 2 enhanced ones (TibiaWiki's calculator, "All 7 Blessings (using Henricus)"); Twist of Fate is
+    // not part of the 7. All integer arithmetic.
+    blessings: function (i) {
+      var L = i.level, regular, enhanced, twist;
+      if (L <= 30) { regular = 2000; enhanced = 2600; }
+      else if (L < 120) { regular = 200 * (L - 20); enhanced = 260 * (L - 20); }
+      else { regular = 20000 + 75 * (L - 120); enhanced = 26000 + 100 * (L - 120); }
+      twist = L <= 30 ? 2000 : L < 270 ? 200 * (L - 20) : 50000;
+      var inquisition = Math.floor((5 * regular * 11) / 10);
+      return {
+        regularEach: regular, regularAll: 5 * regular,
+        enhancedEach: enhanced, enhancedAll: 2 * enhanced,
+        inquisition: inquisition,
+        allSeven: 5 * regular + 2 * enhanced,
+        allSevenInquisition: inquisition + 2 * enhanced,
+        twistOfFate: twist
+      };
+    },
+    // Next server save: every day at 10:00:00 Berlin time (CET in winter, CEST in summer; TibiaWiki "Server Save"). Exactly at 10:00:00.000
+    // the save has just happened, so the next one is the following day's. Extended maintenance days are not modelled.
+    nextServerSave: function (i) {
+      var d = tibiaDay(i.now);
+      var day = d.beforeSave ? Date.UTC(d.year, d.month - 1, d.day) : Date.UTC(d.year, d.month - 1, d.day + 1);
+      var t = new Date(day);
+      return { at: serverSaveOn(t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate()) };
+    },
+    // Rashid's town for the Tibia day containing "now": the day changes at server save (10:00 Berlin), not at midnight.
+    // Weekly route (TibiaWiki "Rashid"): Sunday Carlin, Monday Svargrond, Tuesday Liberty Bay, Wednesday Port Hope, Thursday Ankrahmun,
+    // Friday Darashia, Saturday Edron.
+    rashid: function (i) {
+      var d = tibiaDay(i.now);
+      var weekday = new Date(Date.UTC(d.year, d.month - 1, d.day - (d.beforeSave ? 1 : 0))).getUTCDay();
+      return { town: ["carlin", "svargrond", "libertybay", "porthope", "ankrahmun", "darashia", "edron"][weekday] };
+    },
+    // Maximum hit points, mana and capacity of a character with no equipment or Wheel of Destiny bonus, assuming the vocation
+    // was chosen at level 8. Below level 8 every character gains 5 hit points, 5 mana and 10 oz per level from 150 / 55 / 600;
+    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data", for the
+    // five vocations; no vocation: TibiaWiki's calculator and GuildStats' hit points and mana). Capacity includes the +200 base of the
+    // October 2025 update (CipSoft news of 15 October 2025: release "scheduled for ... Tuesday, October 21st"). Monk mana follows from the
+    // Monk's +10 per level (official manual), not from TibiaWiki's Formulae page, whose 5(2L - 9) disagrees with every other source.
+    characterStats: function (i) {
+      var GAIN = {
+        none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20],
+        sorcerer: [5, 30, 10], druid: [5, 30, 10], monk: [10, 10, 25]
+      };
+      var L = i.level, g = GAIN[i.vocation];
+      var early = Math.min(L, 8) - 1, late = Math.max(L, 8) - 8;
+      return {
+        hp: 150 + 5 * early + g[0] * late,
+        mana: 55 + 5 * early + g[1] * late,
+        cap: 600 + 10 * early + g[2] * late
+      };
+    }
+  };
+
+  return { parseNumber: parseNumber, parseDuration: parseDuration, formatNumber: formatNumber, FORMULAS: FORMULAS };
+});

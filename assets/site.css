@@ -159,6 +159,7 @@ select.input { padding-right: 2em; }
 .brand img { width: 32px; height: 32px; image-rendering: pixelated; flex: none; }
 .brand-name { font: 700 1.15rem/1 var(--font-display); white-space: nowrap; letter-spacing: .01em; }
 .brand-version { font-size: .75rem; font-weight: 600; color: var(--stone-link); border: 1px solid var(--stone-line); border-radius: 999px; padding: .1em .55em; white-space: nowrap; }
+@media (max-width: 359.98px) { .brand-version { display: none; } }   /* 320 px: the badge would sit under the search icon */
 .site-header .icon-btn { color: var(--stone-text); }
 .icon-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 44px; height: 44px; flex: none; padding: 0 8px;
@@ -199,9 +200,12 @@ select.input { padding-right: 2em; }
 @media (min-width: 1024px) {
   :root { --header-h: 64px; }
   .menu-btn, .search-link, .menu-panel, .menu-open .menu-panel { display: none; }
-  .main-nav { display: block; margin-right: 4px; }
+  /* The brand never gives up its width; when five page names do not fit on one line (long languages, 1024 px) a name
+     wraps onto a second line instead of running under the brand. */
+  .brand { flex: none; }
+  .main-nav { display: block; margin-right: 4px; min-width: 0; }
   .main-nav ul { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
-  .main-nav a { display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: var(--radius); color: var(--stone-text); text-decoration: none; font-weight: 600; font-size: .95rem; white-space: nowrap; }
+  .main-nav a { display: flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 10px; border-radius: var(--radius); color: var(--stone-text); text-decoration: none; font-weight: 600; font-size: .95rem; line-height: 1.15; text-align: center; }
   .main-nav a:hover { background: rgb(255 255 255 / .08); }
   .main-nav a[aria-current="page"] { box-shadow: inset 0 -3px 0 var(--gold-bright); border-radius: var(--radius) var(--radius) 0 0; }
   .header-download { display: inline-flex; margin-left: 6px; }
@@ -281,6 +285,15 @@ select.input { padding-right: 2em; }
 .today .boost-card { border: 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; padding: 10px 2px; grid-template-columns: 56px 1fr; }
 .today .boost-img { width: 56px; height: 56px; }
 .today .lead-number { border-top: 1px solid var(--border); padding-top: 10px; margin: 0; font-size: 1rem; }
+.today-server { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 10px; }
+.today-row { margin: 0 0 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 1rem; }
+.today-label { color: var(--text-2); }
+.today-value { font-variant-numeric: tabular-nums; }
+.today-sub { color: var(--text-2); font-size: .925rem; }
+.today-note { margin: 0 0 8px; color: var(--text-2); font-size: .875rem; }
+.today-how { box-shadow: none; }
+.today-how .how-body { padding-inline: 12px; }
+.calc-today { margin-top: 20px; max-width: 34rem; }
 .today-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 @media (min-width: 640px) { .actions .btn { flex: 0 0 auto; } }
 @media (min-width: 1024px) {
@@ -638,3 +651,52 @@ a[target="_blank"]:not(.btn):not(.profile):not([data-profile]):not(.shot):not(.b
 }
 .data-table td > .badge { justify-self: start; }      /* phone cards: the status badge keeps its own width */
 @media (min-width: 640px) { .data-table code { white-space: nowrap; } }   /* tables (not phone cards): formulas stay on one line */
+
+/* ------------------------------------------------------------------ calculators (calc.js; one column on phones, two from 768 px) */
+.calc-head { display: flex; align-items: center; gap: 12px; margin-bottom: .5em; }
+.calc-head h1 { margin: 0; min-width: 0; }
+.calc-page { display: grid; gap: 20px; padding-block: 8px 40px; }
+.calc { display: grid; gap: 16px; min-width: 0; }
+.calc-inputs { display: grid; gap: 14px; align-content: start; min-width: 0; padding: 18px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-card); box-shadow: var(--shadow); }
+.calc-panel-title { font: 700 1.05rem/1.3 var(--font-display); margin: 0; }
+.calc-results .calc-panel-title { margin: 2px 0 6px 18px; }
+.field-hint, .echo, .field-error { margin: 0; font-size: .875rem; line-height: 1.4; }
+.field-hint, .echo { color: var(--text-2); }
+.field-error { color: var(--danger); font-weight: 600; }
+.echo:empty, .field-error:empty { display: none; }
+.input[aria-invalid="true"] { border-color: var(--danger); box-shadow: 0 0 0 1px var(--danger); }
+.calc-side { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.calc-results { min-width: 0; }
+.calc-main { display: grid; gap: 2px; padding: 4px 0 12px; }
+.calc-main .calc-label { color: var(--text-2); font-weight: 600; }
+.calc-main .calc-value { font: 700 clamp(1.7rem, 1.35rem + 1.6vw, 2.4rem)/1.15 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.calc-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; padding: 9px 0; border-top: 1px solid var(--border); }
+.calc-label { color: var(--text-2); }
+.calc-row .calc-value, .calc-range { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; margin-left: auto; }
+.calc-range .calc-value { margin: 0; }
+[data-out]:empty::before, [data-finish]:empty::before, [data-finish-at]:empty::before { content: "–"; color: var(--text-2); font-weight: 400; }
+.calc-range:has(.calc-value:empty) .calc-sep, .calc-range:has(.calc-value:empty) .calc-value + .calc-sep + .calc-value { display: none; }
+.calc-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.calc-actions .btn { flex: 1 1 auto; }
+.how { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); box-shadow: var(--shadow); min-width: 0; }
+.how summary { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 10px 16px; cursor: pointer; font-weight: 650; }
+.how summary .ic { color: var(--gold); }
+.how-body { padding: 0 16px 6px; }
+.how-item { padding: 12px 0; border-top: 1px solid var(--border); }
+.how-item p { margin: 0 0 .4em; }
+.how-rule { max-width: 60rem; }
+.how-label { font-size: .875rem; font-weight: 650; color: var(--text-2); }
+/* source links: at least 24 px apart (WCAG 2.5.8) and 44 px tall touch targets on phones */
+.how-sources { list-style: none; margin: 0 0 .4em; padding: 0; display: grid; gap: 4px; font-size: .925rem; }
+.how-sources li { padding-block: 3px; }
+.how-sources a { display: inline-block; min-height: 24px; padding-block: 2px; overflow-wrap: anywhere; }
+.how-kind, .how-note, .how-checked { color: var(--text-2); font-size: .875rem; }
+@media (max-width: 767px) { .how-sources a { min-height: 44px; display: inline-flex; align-items: center; } }
+.calc-trust { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 0; color: var(--text-2); max-width: 46rem; }
+.calc-trust .ic { color: var(--gold); margin-top: 3px; }
+.calc-hub { padding-block: 8px 40px; }
+@media (min-width: 640px) { .calc-actions .btn { flex: 0 0 auto; } }
+@media (min-width: 768px) {
+  .calc { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: start; gap: 20px; }
+}

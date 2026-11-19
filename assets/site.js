@@ -60,7 +60,20 @@
     copyText(text).then(function () { confirmCopy(button, true); }, function () { confirmCopy(button, false); });
   });
 
-  window.TF = { t: t, lang: I18N.lang, intl: I18N.intl, site: SITE, copy: copyText, confirmCopy: confirmCopy, announce: announce, dev: DEV };
+  // Runs fn at every full minute while the page is visible, and once when it becomes visible again (so nothing shows a stale clock
+  // after the tab was in the background); hidden pages run no timer. Used by the calculators and the "Today in Tibia" panel.
+  function everyMinute(fn) {
+    var tick = null;
+    function schedule() {
+      clearTimeout(tick);
+      if (document.hidden) return;
+      tick = setTimeout(function () { fn(); schedule(); }, 60000 - (Date.now() % 60000) + 50);
+    }
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) fn(); schedule(); });
+    schedule();
+  }
+
+  window.TF = { t: t, lang: I18N.lang, intl: I18N.intl, site: SITE, copy: copyText, confirmCopy: confirmCopy, announce: announce, dev: DEV, everyMinute: everyMinute };
 
   // ---------------------------------------------------------------- language: selector, remembered choice, same page and place
   var LANG_KEY = "tf-lang";
