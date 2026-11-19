@@ -1020,7 +1020,10 @@ def calculators(c, browser, base):
         c.ok(page.evaluate("document.activeElement.name") == "current" and page.locator("form[data-calc] [name=current]").input_value() == "39:00", "the timer must not touch the focused field")
         page.clock.run_for(60 * 1000)
         page.locator("form[data-calc] [data-copy]").click()
-        c.ok("04:16" in (page.evaluate(read)[2] or ""), f"copy text rebuilt at click time: {page.evaluate(read)}")
+        # The copy text is rebuilt at click time: it carries the clock time for "now + 18 h 10 min" at the click, as shown.
+        clicked = page.evaluate(read)
+        due = page.evaluate("(() => { const d = new Date(Date.now() + 1090 * 60000), t = (n) => ('0' + n).slice(-2); return d.getFullYear() + '-' + t(d.getMonth() + 1) + '-' + t(d.getDate()) + 'T' + t(d.getHours()) + ':' + t(d.getMinutes()); })()")
+        c.ok(clicked[0] == due and plain(clicked[1]) in (clicked[2] or "") and clicked[0] != before[0], f"copy text rebuilt at click time (due {due}): {clicked}")
         # Experience: the finish date (today + days) is outside the live region; ticks across midnight do not touch it either.
         page.goto(url_of(base, kit.LANGUAGES[0], "calc-experience"))
         page.wait_for_function(CALC_READY, timeout=10000)
