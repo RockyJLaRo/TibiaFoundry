@@ -648,8 +648,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      var base = path.slice(0, path.length - sub.length);\n"
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
-    scripts = (["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
-               + (["formulas.js"] if calc_page or page["id"] == "home" else []) + (["calc.js"] if calc_page else [])
+    scripts = (["site.js"] + (["formulas.js"] if page["id"] in ("home", "tibia") or calc_page else [])
+               + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
                + (["today.js"] if today_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
 

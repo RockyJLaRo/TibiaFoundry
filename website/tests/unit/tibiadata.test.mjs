@@ -10,6 +10,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const website = path.resolve(here, "..", "..");
 const require = createRequire(import.meta.url);
 const create = require(path.join(website, "src", "js", "tibiadata.js"));
+const { FORMULAS } = require(path.join(website, "src", "js", "formulas.js"));
 const registry = JSON.parse(readFileSync(path.join(website, "src", "registry.json"), "utf8"));
 const fixtures = path.join(website, "tests", "fixtures", "tibiadata");
 const manifest = JSON.parse(readFileSync(path.join(fixtures, "manifest.json"), "utf8"));
@@ -54,7 +55,7 @@ function client(opts = {}) {
   let clock = opts.start ?? 1_000_000;
   const api = create({
     config: registry.api, fetch: opts.fetch ?? fakeFetch(), storage: opts.storage ?? memoryStorage(),
-    now: () => clock, sleep: (ms, signal) => new Promise((res, rej) => {
+    now: () => clock, nextServerSave: opts.nextServerSave, sleep: (ms, signal) => new Promise((res, rej) => {
       if (signal && signal.aborted) return rej(Object.assign(new Error("x"), { kind: "aborted" }));
       res();
     }),
@@ -238,4 +239,46 @@ test("requests go only to the configured TibiaData v5 base", async () => {
   await api.get("spell", ["lighthealing"]);
   assert.ok(fetch.calls.every((u) => u.startsWith("https://api.tibiadata.com/v5/")));
   assert.equal(registry.api.version, "v5");
+});
+
+// Boosted creature and boss change at server save (10:00 Berlin), so those caches must not outlive it.
+const nextSave = (ms) => FORMULAS.nextServerSave({ now: ms }).at;
+const BERLIN_0950 = Date.UTC(2026, 10, 19, 8, 50);
+
+test("boosted creature cache expires at server save", async () => {
+  const fetch = fakeFetch();
+  const api = client({ fetch, start: BERLIN_0950, nextServerSave: nextSave });
+  await api.get("creatures", []);
+  api.advance((Date.UTC(2026, 10, 19, 9, 5) - BERLIN_0950) / 1000);
+  const r = await api.get("creatures", []);
+  assert.equal(fetch.calls.length, 2);
+  assert.equal(r.fromCache, false);
+});
+
+test("boosted cache within the same server day is reused", async () => {
+  const fetch = fakeFetch();
+  const api = client({ fetch, start: BERLIN_0950, nextServerSave: nextSave });
+  await api.get("creatures", []);
+  api.advance((Date.UTC(2026, 10, 19, 8, 59) - BERLIN_0950) / 1000);
+  const r = await api.get("creatures", []);
+  assert.equal(fetch.calls.length, 1);
+  assert.equal(r.fromCache, true);
+});
+
+test("spells cache ignores server save", async () => {
+  const fetch = fakeFetch();
+  const api = client({ fetch, start: BERLIN_0950, nextServerSave: nextSave });
+  await api.get("spells", []);
+  api.advance((Date.UTC(2026, 10, 19, 9, 5) - BERLIN_0950) / 1000);
+  await api.get("spells", []);
+  assert.equal(fetch.calls.length, 1);
+});
+
+test("no nextServerSave dependency: TTL only", async () => {
+  const fetch = fakeFetch();
+  const api = client({ fetch, start: BERLIN_0950 });
+  await api.get("creatures", []);
+  api.advance((Date.UTC(2026, 10, 19, 9, 5) - BERLIN_0950) / 1000);
+  await api.get("creatures", []);
+  assert.equal(fetch.calls.length, 1);
 });

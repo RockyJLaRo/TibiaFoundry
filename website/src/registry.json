@@ -61,6 +61,7 @@
   "api": {
     "base": "https://api.tibiadata.com/v5/",
     "version": "v5",
+    "expireAtServerSave": ["creatures", "boostablebosses"],
     "cacheSeconds": {
       "_comment": "Our client-side cache per endpoint, never shorter than TibiaData's own cache (https://tibiadata.com/faq/).",
       "worlds": 120, "world": 120, "character": 300, "guild": 180, "guilds": 180,
