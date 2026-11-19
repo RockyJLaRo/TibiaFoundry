@@ -40,7 +40,7 @@
   document.querySelectorAll("form[data-calc]").forEach(setup);
 
   // The "How this is calculated" block is open on wide screens, collapsed on phones.
-  if (window.matchMedia && matchMedia("(min-width: 768px)").matches) each(document.querySelectorAll("details.how"), function (d) { d.open = true; });
+  if (window.matchMedia && matchMedia("(min-width: 768px)").matches) each(document.querySelectorAll("details.how[data-how-block]"), function (d) { d.open = true; });
 
   function setup(form) {
     var fields = Array.prototype.slice.call(form.querySelectorAll("input[name][data-kind], select[name]"));
@@ -236,14 +236,7 @@
     form.addEventListener("input", update);
     // Time-dependent results stay current: on returning to the tab, at every minute boundary while visible, and before Copy.
     form.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("[data-copy]")) renderTimes(); }, true);
-    var tick = null;
-    function schedule() {
-      clearTimeout(tick);
-      if (document.hidden) return;
-      tick = setTimeout(function () { renderTimes(); schedule(); }, 60000 - (Date.now() % 60000) + 50);
-    }
-    document.addEventListener("visibilitychange", function () { if (!document.hidden) renderTimes(); schedule(); });
-    schedule();
+    TF.everyMinute(renderTimes);
     form.addEventListener("change", function (e) { if (e.target.tagName === "SELECT") update(); });
     if (shareBtn) shareBtn.addEventListener("click", function () {
       TF.copy(shareUrl()).then(function () { TF.confirmCopy(shareBtn, true); }, function () { TF.confirmCopy(shareBtn, false); });

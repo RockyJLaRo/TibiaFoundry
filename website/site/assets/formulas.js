@@ -61,6 +61,30 @@
     return (value < 0 ? "-" : "") + whole + (parts[1] ? (lang === "en" ? "." : ",") + parts[1] : "");
   }
 
+  // Berlin wall clock (Europe/Berlin = CET / CEST, the zone the servers save in); the offsets come from Intl, never from constants.
+  var berlin = null;
+  function berlinParts(ms) {
+    if (!berlin) berlin = new Intl.DateTimeFormat("en-US", { timeZone: "Europe/Berlin", hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" });
+    var p = {};
+    berlin.formatToParts(new Date(ms)).forEach(function (x) { p[x.type] = Number(x.value); });
+    return p;
+  }
+  function berlinOffset(ms) {
+    var p = berlinParts(ms), whole = Math.floor(ms / 1000) * 1000;
+    return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second) - whole;
+  }
+  // The instant at which the Berlin wall clock reads 10:00:00 on the given calendar day (10:00 is never skipped or repeated).
+  function serverSaveOn(year, month, day) {
+    var wall = Date.UTC(year, month - 1, day, 10, 0, 0);
+    return wall - berlinOffset(wall - berlinOffset(wall));
+  }
+  // Calendar day of the Tibia day containing "now" (it starts at 10:00:00.000 Berlin time) and whether that is today's date.
+  function tibiaDay(now) {
+    var p = berlinParts(now);
+    var beforeSave = p.hour < 10;
+    return { year: p.year, month: p.month, day: p.day, beforeSave: beforeSave };
+  }
+
   var FORMULAS = {
     // Total experience for a level: 50/3 * (L^3 - 6L^2 + 17L - 12). The product is always divisible by 3 (exact integer).
     levelExp: function (i) {
@@ -103,6 +127,22 @@
         inquisition: Math.floor((5 * regular * 11) / 10),
         twistOfFate: twist
       };
+    },
+    // Next server save: every day at 10:00:00 Berlin time (CET in winter, CEST in summer; TibiaWiki "Server Save"). Exactly at 10:00:00.000
+    // the save has just happened, so the next one is the following day's. Extended maintenance days are not modelled.
+    nextServerSave: function (i) {
+      var d = tibiaDay(i.now);
+      var day = d.beforeSave ? Date.UTC(d.year, d.month - 1, d.day) : Date.UTC(d.year, d.month - 1, d.day + 1);
+      var t = new Date(day);
+      return { at: serverSaveOn(t.getUTCFullYear(), t.getUTCMonth() + 1, t.getUTCDate()) };
+    },
+    // Rashid's town for the Tibia day containing "now": the day changes at server save (10:00 Berlin), not at midnight.
+    // Weekly route (TibiaWiki "Rashid"): Sunday Carlin, Monday Svargrond, Tuesday Liberty Bay, Wednesday Port Hope, Thursday Ankrahmun,
+    // Friday Darashia, Saturday Edron.
+    rashid: function (i) {
+      var d = tibiaDay(i.now);
+      var weekday = new Date(Date.UTC(d.year, d.month - 1, d.day - (d.beforeSave ? 1 : 0))).getUTCDay();
+      return { town: ["carlin", "svargrond", "libertybay", "porthope", "ankrahmun", "darashia", "edron"][weekday] };
     },
     // Maximum hit points, mana and capacity of a character with no equipment or Wheel of Destiny bonus, assuming the vocation
     // was chosen at level 8. Below level 8 every character gains 5 hit points, 5 mana and 10 oz per level from 150 / 55 / 600;

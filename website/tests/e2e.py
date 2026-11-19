@@ -51,9 +51,9 @@ def run(name, fn, *args):
     results.append({"check": name, "status": status, "failures": c.failures, "notes": c.notes})
 
 
-def new_page(browser, base, width=1440, height=1000, theme=None, lang_pref=None, overrides=None, permissions=None):
+def new_page(browser, base, width=1440, height=1000, theme=None, lang_pref=None, overrides=None, permissions=None, timezone=None):
     ctx = browser.new_context(viewport={"width": width, "height": height}, color_scheme=theme or "light",
-                              locale="en-US", reduced_motion="reduce")
+                              locale="en-US", reduced_motion="reduce", timezone_id=timezone)
     if permissions:
         ctx.grant_permissions(permissions, origin=base)
     kit.use_fixtures(ctx, overrides)
@@ -971,12 +971,71 @@ def calculators(c, browser, base):
     c.note(f"{verified} test values shown correctly across {len(kit.LANGUAGES)} languages; refused by the page's validation: {sorted(set(refused))}")
 
 
+def today_in_tibia(c, browser, base):
+    """"Today in Tibia" (home page and calculators hub): Rashid's town and the next server save, calculated in the browser from the
+    clock. Two pinned times (Thursday 06:26 Berlin and Sunday 09:59:30 Berlin, visitor in New York) in all languages at 360 px: the town,
+    the countdown and the local clock time, the minute tick across the 10:00 switch, no stale value after the tab was hidden,
+    no live region around the ticking value, sources shown, no request beyond the site's own and no storage."""
+    thursday = datetime.datetime(2026, 11, 19, 5, 26, 0, tzinfo=datetime.timezone.utc)      # Berlin 06:26 (CET)
+    sunday = datetime.datetime(2026, 11, 22, 8, 59, 30, tzinfo=datetime.timezone.utc)       # Berlin 09:59:30 (CET)
+    save_thursday = 1795078800000                                                            # 2026-11-19 10:00 Berlin = 09:00Z
+    read = """() => { const r = document.querySelector('[data-today-server]'); const q = (s) => (r.querySelector(s) || {textContent: ''}).textContent.trim();
+      return {town: q('[data-today-rashid]'), countdown: q('[data-today-countdown]'), clock: q('[data-today-clock]'),
+              at: (r.querySelector('[data-today-clock]') || {getAttribute: () => ''}).getAttribute('data-at'),
+              live: !!r.closest('[aria-live]') || !!r.querySelector('[aria-live]'), sources: r.querySelectorAll('.how-sources a').length,
+              labels: [...r.querySelectorAll('.today-label')].map(e => e.textContent.trim()),
+              how: r.querySelectorAll('.how-item').length, overflow: document.documentElement.scrollWidth - window.innerWidth}; }"""
+    for lang in kit.LANGUAGES:
+        for page_id in ("home", "calculators"):
+            where = f"{lang['code']}/{page_id}"
+            ctx, page = new_page(browser, base, 360, 800, timezone="America/New_York")
+            hosts = set()
+            page.on("request", lambda r: hosts.add(r.url.split("/")[2]) if r.url.startswith("http") else None)
+            page.clock.install(time=thursday)
+            page.goto(url_of(base, lang, page_id))
+            page.wait_for_selector("[data-today-server] [data-today-rashid]:not(:empty)", timeout=10000)
+            st = page.evaluate(read)
+            c.ok(st["town"] == "Port Hope", f"{where}: Rashid at Thursday 06:26 Berlin (Wednesday's town): {st}")
+            c.ok("3:34" in st["countdown"], f"{where}: countdown 3:34 to 10:00 Berlin: {st}")
+            c.ok(st["at"] == str(save_thursday) and "04:00" in st["clock"], f"{where}: save at 04:00 New York time: {st}")
+            c.ok(len(st["labels"]) == 2 and all(0 < len(x) <= 30 for x in st["labels"]), f"{where}: row labels are short texts: {st['labels']}")
+            c.ok(not st["live"], f"{where}: the ticking countdown must not be in a live region")
+            c.ok(st["how"] == 2 and st["sources"] >= 6, f"{where}: both rules with their sources: {st}")
+            c.ok(st["overflow"] <= 0, f"{where}: horizontal overflow {st['overflow']}px at 360 px")
+            if lang["code"] == "en" and page_id == "calculators":
+                # Thursday 06:26 -> a minute later the countdown is 3:33; the 10:00 switch moves Rashid and the countdown restarts.
+                page.clock.run_for(60 * 1000)
+                c.ok("3:33" in page.evaluate(read)["countdown"], f"{where}: countdown after one minute: {page.evaluate(read)}")
+                # A background tab shows no stale value: while hidden the timer is off; on return the page recalculates at once.
+                page.evaluate("() => { Object.defineProperty(document, 'hidden', {configurable: true, get: () => true}); document.dispatchEvent(new Event('visibilitychange')); }")
+                page.clock.run_for(10 * 60 * 1000)
+                c.ok("3:33" in page.evaluate(read)["countdown"], f"{where}: a hidden page must not tick: {page.evaluate(read)}")
+                page.evaluate("() => { Object.defineProperty(document, 'hidden', {configurable: true, get: () => false}); document.dispatchEvent(new Event('visibilitychange')); }")
+                c.ok("3:23" in page.evaluate(read)["countdown"], f"{where}: back in view the countdown is current: {page.evaluate(read)}")
+                c.ok(set(hosts) <= {base.split("//")[1].rstrip("/"), "www.googletagmanager.com", "www.google-analytics.com"}, f"{where}: requests beyond the site itself and its existing analytics: {hosts}")
+                keys = page.evaluate("Object.keys(localStorage).concat(Object.keys(sessionStorage))")
+                c.ok(not [k for k in keys if re.search("today|rashid|save", k, re.I)], f"{where}: storage keys {keys}")
+            c.ok(not page.console_errors, f"{where}: console errors {page.console_errors[:3]}")
+            ctx.close()
+        # Sunday 09:59:30 Berlin: Saturday's town and a countdown of one minute; at 10:00 Rashid is in Carlin and the next save is a day away.
+        ctx, page = new_page(browser, base, 1000, 800, timezone="America/New_York")
+        page.clock.install(time=sunday)
+        page.goto(url_of(base, lang, "home"))
+        page.wait_for_selector("[data-today-server] [data-today-rashid]:not(:empty)", timeout=10000)
+        before = page.evaluate(read)
+        page.clock.run_for(31 * 1000)
+        after = page.evaluate(read)
+        c.ok(before["town"] == "Edron" and "0:01" in before["countdown"], f"{lang['code']}: Sunday 09:59:30 Berlin: {before}")
+        c.ok(after["town"] == "Carlin" and "24:00" in after["countdown"] and after["at"] == str(1795338000000 + 86400000), f"{lang['code']}: Sunday 10:00:01 Berlin: {after}")
+        ctx.close()
+
+
 CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", creator_links), ("navigation", navigation),
           ("compliance", compliance), ("table-sorting", table_sorting),
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),
           ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive),
-          ("calculators", calculators)]
+          ("calculators", calculators), ("today-in-tibia", today_in_tibia)]
 
 
 def main():

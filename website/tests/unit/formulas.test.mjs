@@ -160,3 +160,32 @@ test("characterStats: large levels stay exact integers; sorcerer and druid are t
     for (const v of Object.values(FORMULAS.characterStats({ level, vocation: "monk" }))) assert.ok(Number.isSafeInteger(v));
   }
 });
+
+// Europe/Berlin instants (computed independently with Python zoneinfo): 10:00:00 local = 09:00Z in winter, 08:00Z in summer.
+const berlin = (iso) => Date.parse(iso);
+test("nextServerSave: 10:00 Berlin; exactly at 10:00:00.000 the next one is the following day's", () => {
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-11-19T08:59:59.999Z") }).at, berlin("2026-11-19T09:00:00Z"));
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-11-19T09:00:00.000Z") }).at, berlin("2026-11-20T09:00:00Z"));
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-07-01T07:59:59.999Z") }).at, berlin("2026-07-01T08:00:00Z"));
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-07-01T08:00:00.000Z") }).at, berlin("2026-07-02T08:00:00Z"));
+});
+
+test("nextServerSave: across the clock changes the save stays at 10:00 local (23 h and 25 h days)", () => {
+  // 2026-03-28 10:00 CET -> 2026-03-29 10:00 CEST is 23 hours; 2026-10-24 10:00 CEST -> 2026-10-25 10:00 CET is 25 hours.
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-03-28T09:00:00Z") }).at - berlin("2026-03-28T09:00:00Z"), 23 * 3600000);
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-10-24T08:00:00Z") }).at - berlin("2026-10-24T08:00:00Z"), 25 * 3600000);
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-03-29T07:59:59Z") }).at, berlin("2026-03-29T08:00:00Z"));
+  assert.equal(FORMULAS.nextServerSave({ now: berlin("2026-10-25T08:59:59Z") }).at, berlin("2026-10-25T09:00:00Z"));
+});
+
+test("rashid: the town changes at server save, not at midnight (Sunday 09:59:59 Berlin is still Saturday's town)", () => {
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-11-22T08:59:59Z") }).town, "edron");
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-11-22T09:00:00Z") }).town, "carlin");
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-11-18T23:00:00Z") }).town, "porthope"); // Thursday 00:00 Berlin
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-11-19T09:00:00Z") }).town, "ankrahmun");
+  // the two clock-change Sundays
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-03-29T07:59:59Z") }).town, "edron");
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-03-29T08:00:00Z") }).town, "carlin");
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-10-25T08:59:59Z") }).town, "edron");
+  assert.equal(FORMULAS.rashid({ now: berlin("2026-10-25T09:00:00Z") }).town, "carlin");
+});

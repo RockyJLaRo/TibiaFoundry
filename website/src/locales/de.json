@@ -924,7 +924,16 @@
       "getApp": "Desktop-Programm {version} holen"
     },
     "today": {
-      "title": "Heute in Tibia"
+      "title": "Heute in Tibia",
+      "rashid": "Rashid ist in",
+      "save": "Nächster Server Save",
+      "countdown": "in {hm} Std.",
+      "local": "{time}, in deiner Ortszeit",
+      "maintenance": "An Wartungstagen kann der Server später zurückkehren.",
+      "rule": {
+        "nextServerSave": "Jede Spielwelt speichert einmal täglich um 10:00 Uhr mitteleuropäischer Zeit: MEZ im Winter, MESZ im Sommer, also Berliner Zeit. Der nächste Server Save ist das nächste 10:00 Uhr in Berlin; genau um 10:00:00 Uhr hat der Save gerade stattgefunden, der nächste ist also der des Folgetags. Der Countdown zeigt die Zeit bis dahin, die Uhrzeit steht in deiner Zeitzone. An Tagen mit verlängerter Wartung kommt der Server später zurück; das ist nicht berücksichtigt.",
+        "rashid": "Rashids Stadt hängt vom Wochentag ab, und der Tibia-Tag beginnt mit dem Server Save (10:00 Uhr Berliner Zeit), nicht um Mitternacht: bis 10:00 Uhr steht er noch dort, wo er am Vortag war. Montag Svargrond, Dienstag Liberty Bay, Mittwoch Port Hope, Donnerstag Ankrahmun, Freitag Darashia, Samstag Edron, Sonntag Carlin. Beispiel: Sonntag um 09:59 Uhr Berliner Zeit ist er noch in Edron; um 10:00 Uhr in Carlin."
+      }
     },
     "dest": {
       "characters": {

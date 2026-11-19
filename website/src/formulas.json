@@ -1171,6 +1171,364 @@
           "from": "computed"
         }
       ]
+    },
+    {
+      "id": "nextServerSave",
+      "calc": "today",
+      "rule": "home.today.rule.nextServerSave",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Server_Save",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Since 21 September 2011 all servers save at 10:00:00 CEST/CET; the server then boots again and starts a new day. On days with extended maintenance the time until the server boots lasts significantly longer."
+        },
+        {
+          "url": "https://tibiastats.pl/en/tools/",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/rashid-tibiastats.json (captured 2026-11-19 05:25 UTC): the server save is daily at 10:00 CEST/CET, and the Tibian day changes at server save, not at midnight."
+        },
+        {
+          "url": "https://tibiapal.com/",
+          "kind": "news",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/rashid-tibiapal.json: event announcements give '10am CEST (server save on 3rd of July)' and a tournament start of 10:00 CEST."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
+      "tests": [
+        {
+          "in": {
+            "now": 1795065960000
+          },
+          "out": {
+            "at": 1795078800000
+          },
+          "from": "wiki",
+          "cites": [
+            "at"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795078799999
+          },
+          "out": {
+            "at": 1795078800000
+          },
+          "from": "wiki",
+          "cites": [
+            "at"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795078800000
+          },
+          "out": {
+            "at": 1795165200000
+          },
+          "from": "wiki",
+          "cites": [
+            "at"
+          ]
+        },
+        {
+          "in": {
+            "now": 1798756200000
+          },
+          "out": {
+            "at": 1798794000000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774688399000
+          },
+          "out": {
+            "at": 1774688400000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774688400000
+          },
+          "out": {
+            "at": 1774771200000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774771199000
+          },
+          "out": {
+            "at": 1774771200000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774771200000
+          },
+          "out": {
+            "at": 1774857600000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1792828800000
+          },
+          "out": {
+            "at": 1792918800000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1792918799000
+          },
+          "out": {
+            "at": 1792918800000
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1792918800000
+          },
+          "out": {
+            "at": 1793005200000
+          },
+          "from": "computed"
+        }
+      ]
+    },
+    {
+      "id": "rashid",
+      "calc": "today",
+      "rule": "home.today.rule.rashid",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Rashid",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Weekly route: Monday Svargrond, Tuesday Liberty Bay, Wednesday Port Hope, Thursday Ankrahmun, Friday Darashia, Saturday Edron, Sunday Carlin. The page banner on Wednesday 2026-11-18 said Rashid is in Port Hope."
+        },
+        {
+          "url": "https://tibiastats.pl/en/tools/",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/rashid-tibiastats.json: the same weekday table, and 'The Tibian day changes at server save (10:00 CEST/CET), not at midnight.'"
+        },
+        {
+          "url": "https://intibia.com/database/npcs/rashid",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/rashid-intibia.json: the same weekly route (Sun Carlin ... Sat Edron)."
+        },
+        {
+          "url": "https://tibiawatch.com/",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/rashid-tibiawatch.json, 2026-11-19 05:26 UTC (06:26 Berlin, Thursday, before the server save): 'Rashid is in Port Hope today', Wednesday's town. TibiaRoute (rashid-tibiaroute.json), Intibia and TibiaStats showed Port Hope at the same time."
+        },
+        {
+          "url": "https://www.etienreseller.com/tibia/server-save/",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "Capture research/calc-tests/serversave-etien.json: Rashid moves to a new city every day at server save; today Port Hope, after the next server save Ankrahmun."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
+      "tests": [
+        {
+          "in": {
+            "now": 1794826800000
+          },
+          "out": {
+            "town": "svargrond"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1794913200000
+          },
+          "out": {
+            "town": "libertybay"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1794999600000
+          },
+          "out": {
+            "town": "porthope"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795065960000
+          },
+          "out": {
+            "town": "porthope"
+          },
+          "from": "calculator:tibiawatch",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795042800000
+          },
+          "out": {
+            "town": "porthope"
+          },
+          "from": "calculator:tibiastats",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795078799999
+          },
+          "out": {
+            "town": "porthope"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1795078800000
+          },
+          "out": {
+            "town": "ankrahmun"
+          },
+          "from": "calculator:etien",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795172400000
+          },
+          "out": {
+            "town": "darashia"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795258800000
+          },
+          "out": {
+            "town": "edron"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795337999000
+          },
+          "out": {
+            "town": "edron"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1795338000000
+          },
+          "out": {
+            "town": "carlin"
+          },
+          "from": "wiki",
+          "cites": [
+            "town"
+          ]
+        },
+        {
+          "in": {
+            "now": 1795424399000
+          },
+          "out": {
+            "town": "carlin"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1795424400000
+          },
+          "out": {
+            "town": "svargrond"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774771199000
+          },
+          "out": {
+            "town": "edron"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1774771200000
+          },
+          "out": {
+            "town": "carlin"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1792918799000
+          },
+          "out": {
+            "town": "edron"
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "now": 1792918800000
+          },
+          "out": {
+            "town": "carlin"
+          },
+          "from": "computed"
+        }
+      ]
     }
   ]
 }

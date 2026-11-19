@@ -858,7 +858,16 @@
       "getApp": "Get the desktop app {version}"
     },
     "today": {
-      "title": "Today in Tibia"
+      "title": "Today in Tibia",
+      "rashid": "Rashid is in",
+      "save": "Next server save",
+      "countdown": "in {hm} h",
+      "local": "{time}, your local time",
+      "maintenance": "On maintenance days the server may come back later.",
+      "rule": {
+        "nextServerSave": "Every game world saves once a day at 10:00 Central European Time: CET in winter, CEST in summer, which is Berlin time. The next server save is the next 10:00 Berlin time; at exactly 10:00:00 a save has just happened, so the next one is the following day's. The countdown is the time until then, and the clock time is shown in your own time zone. On days with extended maintenance the server comes back later; that is not included.",
+        "rashid": "Rashid's town depends on the weekday, and the Tibia day starts at server save (10:00 Berlin time), not at midnight: until 10:00 he is still where he was the day before. Monday Svargrond, Tuesday Liberty Bay, Wednesday Port Hope, Thursday Ankrahmun, Friday Darashia, Saturday Edron, Sunday Carlin. Example: on Sunday at 09:59 Berlin time he is still in Edron; at 10:00 he is in Carlin."
+      }
     },
     "dest": {
       "characters": {

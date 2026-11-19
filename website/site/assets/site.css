@@ -285,6 +285,15 @@ select.input { padding-right: 2em; }
 .today .boost-card { border: 0; border-top: 1px solid var(--border); border-radius: 0; background: transparent; padding: 10px 2px; grid-template-columns: 56px 1fr; }
 .today .boost-img { width: 56px; height: 56px; }
 .today .lead-number { border-top: 1px solid var(--border); padding-top: 10px; margin: 0; font-size: 1rem; }
+.today-server { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 10px; }
+.today-row { margin: 0 0 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 1rem; }
+.today-label { color: var(--text-2); }
+.today-value { font-variant-numeric: tabular-nums; }
+.today-sub { color: var(--text-2); font-size: .925rem; }
+.today-note { margin: 0 0 8px; color: var(--text-2); font-size: .875rem; }
+.today-how { box-shadow: none; }
+.today-how .how-body { padding-inline: 12px; }
+.calc-today { margin-top: 20px; max-width: 34rem; }
 .today-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 @media (min-width: 640px) { .actions .btn { flex: 0 0 auto; } }
 @media (min-width: 1024px) {

@@ -516,6 +516,7 @@ def downloads(ver, checksums, sizes=None):
 
 # ============================================================================ calculators
 SOURCE_NAMES = {"tibia.fandom.com": "TibiaWiki", "tibia.com": "Tibia.com"}
+TODAY_JS_KEYS = {"home.today.countdown", "home.today.local"}   # the texts today.js writes at run time
 
 
 def source_label(url):
@@ -546,6 +547,19 @@ def calc_how_html(tr, fid):
             f'      <ul class="how-sources">{sources}</ul>\n'
             f'      <p class="how-checked"><time datetime="{f["checkedOn"]}">{tr.text("calc.how.checked", checked=checked)}</time></p>\n'
             f'    </div>')
+
+
+def today_server_html(tr):
+    """The server save and Rashid block of the "Today in Tibia" panel (home page and calculators hub); src/js/today.js fills the
+    values. Its rules and sources come from src/formulas.json like a calculator's; the ticking countdown is not a live region."""
+    return (f'<div class="today-server" data-today-server>\n'
+            f'        <p class="today-row"><span class="today-label">{tr.text("home.today.rashid")}</span> <strong class="today-value" data-today-rashid></strong></p>\n'
+            f'        <p class="today-row"><span class="today-label">{tr.text("home.today.save")}</span> <strong class="today-value" data-today-countdown></strong>'
+            f' <span class="today-sub" data-today-clock></span></p>\n'
+            f'        <p class="today-note">{tr.text("home.today.maintenance")}</p>\n'
+            f'        <details class="how today-how"><summary><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>{tr.text("calc.how.title")}</summary>\n'
+            f'        <div class="how-body">{calc_how_html(tr, "nextServerSave")}{calc_how_html(tr, "rashid")}</div></details>\n'
+            f'      </div>')
 
 
 def calc_cards_html(tr, link_to):
@@ -607,7 +621,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
 
     english = translators[DEFAULT]
     calc_page = bool(page.get("calc")) or page["id"] == "calculators"
-    js_keys = [k for k in sorted(english.locales[DEFAULT]) if k.startswith("js.") or (calc_page and k.startswith("calc."))] + ["nav.menuOpen", "nav.menuClose"]
+    today_page = page["id"] in ("home", "calculators")   # the server save and Rashid block (src/js/today.js)
+    js_keys = [k for k in sorted(english.locales[DEFAULT]) if k.startswith("js.") or (calc_page and k.startswith("calc.")) or (today_page and k in TODAY_JS_KEYS)] + ["nav.menuOpen", "nav.menuClose"]
     runtime = {
         "lang": code, "intl": INTL[code], "default": DEFAULT,
         "strings": {k: tr.runtime_text(k) for k in js_keys}, "fallback": {k: english.runtime_text(k) for k in js_keys},
@@ -631,7 +646,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
     scripts = (["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
-               + (["formulas.js", "calc.js"] if calc_page else []))
+               + (["formulas.js"] if calc_page or page["id"] == "home" else []) + (["calc.js"] if calc_page else [])
+               + (["today.js"] if today_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
 
     page_html = layout.replace("{{CONTENT}}", templates[page["template"]])
@@ -681,6 +697,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
     if sorted(shown) != sorted(page.get("calc", [])):
         sys.exit(f"[{code}/{page['id']}] {{{{CALC_HOW:...}}}} must explain exactly the page's formulas {page.get('calc', [])} (template has {shown}).")
     page_html = re.sub(r"\{\{CALC_HOW:([\w-]+)\}\}", lambda m: calc_how_html(tr, m.group(1)), page_html)
+    page_html = page_html.replace("{{TODAY_SERVER}}", today_server_html(tr))
     page_html = re.sub(r"\{\{SHOT:([\w.:-]+)\}\}", lambda m: shot_html(tr, img, m.group(1)), page_html)
     page_html = re.sub(r"\{\{DL:(\w+)(?::(\w+))?\}\}", dl_sub, page_html)
     page_html = re.sub(r"\{\{t:([\w.-]+)\}\}", lambda m: tr.text(m.group(1)), page_html)

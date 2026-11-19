@@ -918,7 +918,16 @@
       "getApp": "Pobierz program {version}"
     },
     "today": {
-      "title": "Dziś w Tibii"
+      "title": "Dziś w Tibii",
+      "rashid": "Rashid jest w",
+      "save": "Następny server save",
+      "countdown": "za {hm} godz.",
+      "local": "{time}, według Twojego czasu",
+      "maintenance": "W dni prac serwisowych serwer może wrócić później.",
+      "rule": {
+        "nextServerSave": "Każdy świat gry zapisuje się raz dziennie o 10:00 czasu środkowoeuropejskiego: CET zimą, CEST latem, czyli czasu berlińskiego. Następny server save to najbliższa 10:00 czasu berlińskiego; dokładnie o 10:00:00 zapis właśnie się odbył, więc następny jest dopiero następnego dnia. Odliczanie pokazuje czas do tej chwili, a godzina jest podana w Twojej strefie czasowej. W dni przedłużonych prac serwisowych serwer wraca później; tego nie uwzględniamy.",
+        "rashid": "Miasto Rashida zależy od dnia tygodnia, a dzień w Tibii zaczyna się o server save (10:00 czasu berlińskiego), nie o północy: do 10:00 stoi jeszcze tam, gdzie poprzedniego dnia. Poniedziałek Svargrond, wtorek Liberty Bay, środa Port Hope, czwartek Ankrahmun, piątek Darashia, sobota Edron, niedziela Carlin. Przykład: w niedzielę o 09:59 czasu berlińskiego jest jeszcze w Edron; o 10:00 jest w Carlin."
+      }
     },
     "dest": {
       "characters": {
