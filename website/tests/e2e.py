@@ -429,6 +429,8 @@ def responsive(c, browser, base):
                       const kids = [...bar.children].filter(e => e.offsetParent !== null).map(e => e.getBoundingClientRect());
                       let overlap = false;
                       for (let i = 1; i < kids.length; i++) if (kids[i].left < kids[i-1].right - 1) overlap = true;
+                      // a squeezed brand or nav lets its text run under its neighbour although the boxes do not overlap
+                      if ([...bar.querySelectorAll('.brand, .main-nav li')].some(e => e.offsetParent !== null && e.scrollWidth > e.clientWidth + 1)) overlap = true;
                       const clipped = [...document.querySelectorAll('h1, h2, .btn, .brand-name')].filter(e => e.offsetParent !== null && !e.classList.contains('sr-only') && e.scrollWidth > e.clientWidth + 2 && getComputedStyle(e).overflow !== 'visible').length;
                       const small = [...document.querySelectorAll('.btn, .icon-btn, .main-nav a, .menu-btn, input.input, select.input, .tab, .data-nav a, .profile')]
                         .filter(e => e.offsetParent !== null).filter(e => { const r = e.getBoundingClientRect(); return r.height < 35.5 || r.width < 35.5; }).map(e => e.className + ':' + Math.round(e.getBoundingClientRect().height));
@@ -649,11 +651,220 @@ def table_sorting(c, browser, base):
     c.note(f"{checked} column sorts checked (worlds in 5 languages, guild members), phone sort bar, {len(contacts)} fansite contact links")
 
 
+# ---------------------------------------------------------------------------------------------------- calculators
+FORMULA_REGISTRY = {f["id"]: f for f in json.load(open(os.path.join(kit.WEBSITE, "src", "formulas.json"), encoding="utf-8"))["formulas"]}
+# How the calculator pages write numbers: the site's own grouping per language (pl and es group with no-break spaces,
+# and only from 10 000 on, like build_site.format_number) - not the browser's Intl rules.
+CALC_GROUP = {"en": ",", "pt-BR": ".", "pl": "\u00a0", "es": "\u00a0", "de": "."}
+CALC_READY = "() => { const f = document.querySelector('form[data-calc]'); return !!f && f.dataset.ready === '1'; }"
+CALC_DEFAULTS = """() => Object.fromEntries([...document.querySelectorAll('form[data-calc] [name]')].map(e =>
+  [e.name, e.tagName === 'SELECT' ? ([...e.options].find(o => o.defaultSelected) || e.options[0]).value : e.defaultValue]))"""
+CALC_CALLS = """() => [...document.querySelectorAll('form[data-calc] [data-formula]')].map(e =>
+  ({id: e.dataset.formula, args: e.dataset.args || '', prefix: e.dataset.prefix || ''}))"""
+# Fills the form the way the e2e contract says (by data-kind: int/number as plain digits, duration as h:mm from minutes,
+# <select> by value; a string is typed as it is) and returns what the page shows.
+CALC_FILL = """(values) => {
+  const form = document.querySelector('form[data-calc]');
+  for (const [name, v] of Object.entries(values)) {
+    const el = form.querySelector('[name="' + name + '"]');
+    if (!el) throw new Error('no input named ' + name);
+    let text = v;
+    if (typeof v === 'number') {
+      if (el.tagName === 'SELECT') text = String(v);
+      else if (el.dataset.kind === 'duration') text = Math.floor(v / 60) + ':' + String(v % 60).padStart(2, '0');
+      else if (Number.isInteger(v) && v >= 0) text = String(v);
+      else throw new Error(name + ': test value ' + v + ' cannot be typed as plain digits');
+    }
+    el.value = text;
+    el.dispatchEvent(new Event('input', {bubbles: true}));
+    if (el.tagName === 'SELECT') el.dispatchEvent(new Event('change', {bubbles: true}));
+  }
+  return window.__calcState(form);
+}"""
+CALC_STATE = """() => { window.__calcState = (form) => ({
+  errors: Object.fromEntries([...form.querySelectorAll('[data-error]')].map(e => [e.dataset.error, e.textContent.trim()])),
+  echoes: Object.fromEntries([...form.querySelectorAll('[data-echo]')].map(e => [e.dataset.echo, e.textContent.trim()])),
+  invalid: [...form.querySelectorAll('[aria-invalid=true]')].map(e => e.name),
+  inputs: Object.fromEntries([...form.querySelectorAll('[name]')].map(e => [e.name, e.value])),
+  outs: Object.fromEntries([...form.querySelectorAll('[data-out]')].map(e => [e.dataset.out,
+    {value: e.getAttribute('data-value') || '', text: e.textContent.trim(), format: e.dataset.format || 'number'}])),
+  search: location.search,
+  overflow: document.documentElement.scrollWidth - window.innerWidth
+}); }"""
+
+
+def shown_number(lang, n):
+    s = f"{n:,}"
+    if lang in ("pl", "es") and abs(n) < 10000:
+        s = str(n)
+    return s.replace(",", CALC_GROUP[lang])
+
+
+def calc_args(spec):
+    """data-args="from,to" (same names) or "level=from" (formula input = page input) -> [(formula key, input name)]."""
+    out = []
+    for part in filter(None, (p.strip() for p in spec.split(","))):
+        key, _, name = part.partition("=")
+        out.append((key, name or key))
+    return out
+
+
+def calc_fill(page, values):
+    page.evaluate(CALC_STATE)
+    return page.evaluate(CALC_FILL, values)
+
+
+def calculators(c, browser, base):
+    """Calculator pages (registry pages with "calc") in all languages at 360 px: every formulas.json test value typed into
+    the page (through its data-formula/data-args/data-prefix mapping) shows exactly the expected value, formatted for the
+    language; invalid input gives an inline error and no result; share links, copy, reset; the hub links every calculator;
+    "How this is calculated" lists every formula's sources."""
+    calc_pages = [p for p in kit.PAGES if p.get("calc")]
+    hub = next((p for p in kit.PAGES if p["id"] == "calculators"), None)
+    if not c.ok(calc_pages and hub, "registry needs the calculators hub and at least one page with \"calc\""):
+        return
+    verified, refused = 0, []
+    for lang in kit.LANGUAGES:
+        code = lang["code"]
+        ctx, page = new_page(browser, base, 360, 780)
+        page.goto(url_of(base, lang, "calculators"))
+        cards = page.evaluate("() => [...document.querySelectorAll('main a[data-calc-card]')].map(a => a.href)")
+        for p in calc_pages:
+            c.ok(base + kit.page_path(lang, p) in cards, f"{code}/calculators: no card linking to {p['id']} ({cards})")
+        for p in calc_pages:
+            where = f"{code}/{p['id']}"
+            page.goto(url_of(base, lang, p["id"]))
+            page.wait_for_function(CALC_READY, timeout=10000)
+            defaults, calls = page.evaluate(CALC_DEFAULTS), page.evaluate(CALC_CALLS)
+            for fid in p["calc"]:
+                f = FORMULA_REGISTRY.get(fid)
+                mine = [x for x in calls if x["id"] == fid]
+                if not c.ok(f and mine, f"{where}: formula {fid} missing in formulas.json or not used by the page (data-formula)"):
+                    continue
+                independent = 0
+                for ti, test in enumerate(f["tests"]):
+                    seen = None
+                    for call in mine:
+                        args = calc_args(call["args"])
+                        if not c.ok({k for k, _ in args} == set(test["in"]), f"{where}: data-args '{call['args']}' do not cover the inputs of {fid}"):
+                            continue
+                        if not all(name in defaults for _, name in args):
+                            continue
+                        values = dict(defaults)
+                        values.update({name: test["in"][k] for k, name in args})
+                        st = calc_fill(page, values)
+                        if any(st["errors"].values()):
+                            # The page refuses this combination (e.g. target level not above current level): no number may be shown.
+                            c.ok(all(not o["value"] and not o["text"] for o in st["outs"].values()), f"{where}: results shown while an input is refused {st['errors']}")
+                            seen = seen or "refused"
+                            continue
+                        before = len(c.failures)
+                        for k, v in test["out"].items():
+                            name = (call["prefix"] + "." if call["prefix"] else "") + k
+                            o = st["outs"].get(name)
+                            if c.ok(o is not None, f"{where}: no output data-out={name}"):
+                                c.ok(o["value"] == str(v), f"{where}: {fid}{test['in']} {name} = {o['value']!r}, expected {v}")
+                                if o["format"] == "number":
+                                    c.ok(o["text"] == shown_number(code, v), f"{where}: {name} shown as {o['text']!r}, expected {shown_number(code, v)!r}")
+                        c.ok(st["overflow"] <= 0, f"{where}: horizontal overflow {st['overflow']}px")
+                        if len(c.failures) == before:
+                            seen = "verified"
+                    if seen == "verified":
+                        verified += 1
+                        independent += test.get("from") != "computed"
+                    elif seen == "refused":
+                        refused.append(f"{fid} {test['in']}")
+                    else:
+                        c.ok(False, f"{where}: {fid} test {ti} cannot be entered on the page")
+                c.ok(independent >= 1, f"{where}: no independent (non-computed) test value of {fid} is shown by the page")
+            # every result sits in one polite live region; every formula explains itself with its sources
+            live = page.evaluate("""() => { const f = document.querySelector('form[data-calc]'); const r = [...f.querySelectorAll('[aria-live]')];
+              return {n: r.length, polite: r.every(e => e.getAttribute('aria-live') === 'polite'), all: [...f.querySelectorAll('[data-out]')].every(o => r[0] && r[0].contains(o))}; }""")
+            c.ok(live["n"] == 1 and live["polite"] and live["all"], f"{where}: results must be in exactly one aria-live=polite region ({live})")
+            for fid in p["calc"]:
+                how = page.locator(f"details.how [data-how='{fid}']")
+                if c.ok(how.count() == 1, f"{where}: no 'How this is calculated' block for {fid}"):
+                    links = how.locator("a[href^='https://']")
+                    c.ok(links.count() == len(FORMULA_REGISTRY[fid]["sources"]), f"{where}: {fid} shows {links.count()} sources")
+                    c.ok(all(links.nth(i).get_attribute("target") == "_blank" and "noopener" in links.nth(i).get_attribute("rel") and "noreferrer" in links.nth(i).get_attribute("rel")
+                             for i in range(links.count())), f"{where}: {fid} source links need target=_blank rel=noopener noreferrer")
+                    checked = how.locator(".how-checked time")
+                    c.ok(checked.get_attribute("datetime") == FORMULA_REGISTRY[fid]["checkedOn"] and FORMULA_REGISTRY[fid]["checkedOn"][:4] in checked.text_content(),
+                         f"{where}: {fid} 'checked on' date missing or not {FORMULA_REGISTRY[fid]['checkedOn']}")
+            c.ok(not page.evaluate("document.querySelector('details.how').open"), f"{where}: 'How this is calculated' should be collapsed on phones")
+            if p["id"] == "calc-experience":
+                # Ruling R2: the share range is shown for both levels.
+                st = calc_fill(page, dict(defaults, **{"from": 100, "to": 200}))
+                for name, v in (("from.min", 66), ("from.max", 151), ("to.min", 133), ("to.max", 301)):
+                    c.ok(st["outs"].get(name, {}).get("value") == str(v), f"{where}: share range {name} = {st['outs'].get(name)}, expected {v}")
+                # Target below current: inline error, no results.
+                st = calc_fill(page, dict(defaults, **{"from": 200, "to": 100}))
+                c.ok(st["errors"].get("to"), f"{where}: no error under the target level for to=100, from=200")
+                c.ok("to" in st["invalid"], f"{where}: target level not marked aria-invalid")
+                c.ok(all(not o["value"] and not o["text"] for o in st["outs"].values()), f"{where}: outputs not emptied for to < from")
+                for name, text in (("hpd", "25"), ("hpd", "0"), ("exph", "0"), ("from", "0"), ("to", "50001"), ("from", "12.5" if code == "en" else "12,5")):
+                    st = calc_fill(page, dict(defaults, **{name: text}))
+                    c.ok(st["errors"].get(name) and all(not o["value"] for o in st["outs"].values()), f"{where}: {name}={text!r} must be refused with an inline error")
+                # The page language decides the number format; every number is echoed.
+                short = "1.5kk" if code == "en" else "1,5kk"
+                st = calc_fill(page, dict(defaults, exph=short))
+                c.ok(shown_number(code, 1500000) in st["echoes"].get("exph", ""), f"{where}: {short} echoed as {st['echoes'].get('exph')!r}")
+                c.ok(st["outs"]["exp"]["value"] == "113695000", f"{where}: exp with exph {short}")
+                if code == "en":
+                    st = calc_fill(page, dict(defaults, exph="1.500.000"))
+                    c.ok(st["errors"].get("exph") and not st["outs"]["exp"]["value"], "en: 1.500.000 must be an error on the English page, not a guess")
+        c.ok(not page.console_errors, f"{code}: console errors {page.console_errors[:3]}")
+        ctx.close()
+    # Share link opened in German, copy, share, typing, reset (desktop: "How" open).
+    de = next(l for l in kit.LANGUAGES if l["code"] == "de")
+    exp_page = next((p for p in calc_pages if p["id"] == "calc-experience"), None)
+    if c.ok(exp_page, "no calc-experience page"):
+        query = "?from=100&to=200&exph=1500000&hpd=24"
+        ctx, page = new_page(browser, base, 1440, 1000, permissions=["clipboard-read", "clipboard-write"])
+        page.goto(url_of(base, de, "calc-experience") + query)
+        page.wait_for_function(CALC_READY, timeout=10000)
+        page.evaluate(CALC_STATE)
+        st = page.evaluate("window.__calcState(document.querySelector('form[data-calc]'))")
+        c.ok(st["inputs"] == {"from": "100", "to": "200", "exph": "1.500.000", "hpd": "24"}, f"de share link fills the form: {st['inputs']}")
+        c.ok(st["outs"]["exp"]["text"] == "113.695.000" and st["outs"]["exp"]["value"] == "113695000", f"de share link: exp {st['outs'].get('exp')}")
+        c.ok(st["outs"]["days"]["value"] == "4" and st["outs"]["minutes"]["value"] == "4547", f"de share link: minutes/days {st['outs'].get('minutes')} {st['outs'].get('days')}")
+        c.ok(page.evaluate("document.querySelector('details.how').open"), "de desktop: 'How this is calculated' should be open")
+        c.ok(query in (page.locator("#lang-menu a[data-lang=en]").get_attribute("href") or ""), "language links keep the calculator's inputs")
+        page.locator("form[data-calc] [data-copy]").click()
+        clip = page.evaluate("navigator.clipboard.readText()")
+        c.ok("113.695.000" in clip, f"copy: clipboard lacks the exp value: {clip!r}")
+        page.locator("form[data-calc] [data-share]").click()
+        clip = page.evaluate("navigator.clipboard.readText()")
+        c.ok(clip.endswith("/de/calculators/experience/" + query), f"share link copied: {clip!r}")
+        page.locator("form[data-calc] [name=from]").fill("150")
+        c.ok("from=150" in page.evaluate("location.search"), f"typing updates the share link: {page.evaluate('location.search')}")
+        page.locator("form[data-calc] [data-reset]").click()
+        st = page.evaluate("window.__calcState(document.querySelector('form[data-calc]'))")
+        c.ok(st["search"] == "", f"reset clears the query string: {st['search']!r}")
+        c.ok(st["inputs"] == {"from": "100", "to": "200", "exph": "1.500.000", "hpd": "4"}, f"reset restores the defaults: {st['inputs']}")
+        c.ok(st["outs"]["exp"]["value"] == "113695000" and st["outs"]["days"]["value"] == "19", "reset recomputes the defaults")
+        # Keyboard: Tab from the first field walks through the fields to the buttons.
+        page.locator("form[data-calc] [name=from]").focus()
+        order = []
+        for _ in range(8):
+            page.keyboard.press("Tab")
+            order.append(page.evaluate("document.activeElement.getAttribute('name') || document.activeElement.hasAttribute('data-copy') && 'copy' || document.activeElement.hasAttribute('data-share') && 'share' || document.activeElement.hasAttribute('data-reset') && 'reset' || document.activeElement.tagName"))
+        c.ok(order[:6] == ["to", "exph", "hpd", "copy", "share", "reset"], f"keyboard order {order}")
+        # /en/<calculator>/ remembers English and opens the page (nested folders).
+        page.goto(base + "en/" + exp_page["path"])
+        page.wait_for_load_state()
+        c.ok(page.url.endswith("/" + exp_page["path"] + "?lang=en") and page.get_attribute("html", "lang") == "en", f"/en/{exp_page['path']} -> {page.url}")
+        c.ok(not page.console_errors, f"de desktop: console errors {page.console_errors[:3]}")
+        ctx.close()
+    c.note(f"{verified} test values shown correctly across {len(kit.LANGUAGES)} languages; refused by the page's validation: {sorted(set(refused))}")
+
+
 CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", creator_links), ("navigation", navigation),
           ("compliance", compliance), ("table-sorting", table_sorting),
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),
-          ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive)]
+          ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive),
+          ("calculators", calculators)]
 
 
 def main():

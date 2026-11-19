@@ -20,6 +20,9 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
 * website/i18n-report.md is the translation completeness report;
 * src/ui-icons.svg (interface icons: a Lucide subset, ISC licence, written by website/art/icons.py) is inlined in every page;
 * src/images/pixel/*.svg (the site's own pixel ornaments, drawn by website/art/pixelart.py) is copied to site/img/pixel/;
+* calculators: a page with "calc" (formula ids of src/formulas.json) loads formulas.js and calc.js and gets the calc.*
+  texts at run time; {{CALC_HOW:<id>}} renders a formula's rule, sources and "checked on" date from src/formulas.json,
+  {{CALC_CARDS}} the hub's card per calculator page and {{FOOTER_CALCS}} the footer's links to them;
 * --checksums also reads the archives' sizes when the files sit next to the checksum file, and the release date is the
   date of the version's heading in CHANGELOG.md (both are shown on the Downloads page when known).
 
@@ -53,6 +56,9 @@ LANGUAGES = [(l["code"], l["folder"], l["name"], l["badge"], l["ogLocale"]) for 
 INTL = {l["code"]: l["intl"] for l in REGISTRY["languages"]}
 DEFAULT = LANGUAGES[0][0]
 PAGES = REGISTRY["pages"]
+# The formula registry of the calculators (sources, dates and test values; checked by check_formulas under --strict).
+FORMULA_REGISTRY = {f["id"]: f for f in json.load(open(os.path.join(SRC, "formulas.json"), encoding="utf-8"))["formulas"]}
+CALC_PAGES = [p for p in PAGES if p.get("calc")]
 
 # Screenshot gallery (Features page): (id, the program's page as keys of its own texts, unused). The page name (alt
 # text) is the program's translation of those keys joined with " → "; the tab label is the last of them. Each id is a
@@ -508,6 +514,48 @@ def downloads(ver, checksums, sizes=None):
     return files, base + dl["checksums"], dl["releasePage"].replace("{version}", ver), dl["allReleases"]
 
 
+# ============================================================================ calculators
+SOURCE_NAMES = {"tibia.fandom.com": "TibiaWiki", "tibia.com": "Tibia.com"}
+
+
+def source_label(url):
+    """A source's link text: the site's name (a TibiaWiki page with its title), else its host name."""
+    parts = urllib.parse.urlparse(url)
+    host = parts.netloc.lower()
+    host = host[4:] if host.startswith("www.") else host
+    name = SOURCE_NAMES.get(host, host)
+    if host == "tibia.fandom.com" and parts.path.startswith("/wiki/"):
+        name += ": " + urllib.parse.unquote(parts.path[len("/wiki/"):]).replace("_", " ")
+    return name
+
+
+def calc_how_html(tr, fid):
+    """"How this is calculated" for one formula: its rule in words, its sources (new tab, with their kind) and the
+    date it was last checked, all from src/formulas.json."""
+    if fid not in FORMULA_REGISTRY:
+        sys.exit(f"{{{{CALC_HOW:{fid}}}}}: '{fid}' is not in src/formulas.json.")
+    f = FORMULA_REGISTRY[fid]
+    sources = "".join(
+        f'<li><a href="{htmllib.escape(s["url"])}" target="_blank" rel="noopener noreferrer" data-source-kind="{s["kind"]}">'
+        f'{htmllib.escape(source_label(s["url"]))}<span class="sr-only"> {tr.attr("js.newTab")}</span></a> '
+        f'<span class="how-kind">({tr.text("calc.how.kind." + s["kind"])})</span></li>' for s in f["sources"])
+    checked = format_date(tr.code, datetime.date.fromisoformat(f["checkedOn"]))
+    return (f'<div class="how-item" data-how="{fid}">\n'
+            f'      <p class="how-rule">{tr.text(f["rule"])}</p>\n'
+            f'      <p class="how-label">{tr.text("calc.how.sources")}</p>\n'
+            f'      <ul class="how-sources">{sources}</ul>\n'
+            f'      <p class="how-checked"><time datetime="{f["checkedOn"]}">{tr.text("calc.how.checked", checked=checked)}</time></p>\n'
+            f'    </div>')
+
+
+def calc_cards_html(tr, link_to):
+    """The hub's cards: one per calculator page; its text is the key next to the page's name (calc.<x>.title -> calc.<x>.card)."""
+    return "\n".join(
+        f'      <li><a class="dest-card" href="{link_to(p["id"])}" data-calc-card="{p["id"]}"><span class="icon-tile">'
+        f'<svg class="ic" aria-hidden="true"><use href="#i-{p["icon"]}"/></svg></span><span class="dest-title">{tr.text(p["nav"])}</span>'
+        f'<span class="dest-text">{tr.text(p["nav"].rsplit(".", 1)[0] + ".card")}</span></a></li>' for p in CALC_PAGES)
+
+
 def page_title(tr, page):
     return tr.text("meta.title") if page["id"] == "home" else tr.text(f"pages.{page['id']}.title") + " – Tibia Foundry"
 
@@ -558,7 +606,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         lang_footer.append(f'          <li><a href="{href}" hreflang="{c}" lang="{c}" data-lang="{c}"{cur}>{name}</a></li>')
 
     english = translators[DEFAULT]
-    js_keys = [k for k in sorted(english.locales[DEFAULT]) if k.startswith("js.")] + ["nav.menuOpen", "nav.menuClose"]
+    calc_page = bool(page.get("calc")) or page["id"] == "calculators"
+    js_keys = [k for k in sorted(english.locales[DEFAULT]) if k.startswith("js.") or (calc_page and k.startswith("calc."))] + ["nav.menuOpen", "nav.menuClose"]
     runtime = {
         "lang": code, "intl": INTL[code], "default": DEFAULT,
         "strings": {k: tr.runtime_text(k) for k in js_keys}, "fallback": {k: english.runtime_text(k) for k in js_keys},
@@ -581,7 +630,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      var base = path.slice(0, path.length - sub.length);\n"
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
-    scripts = ["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
+    scripts = (["site.js"] + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else [])
+               + (["formulas.js", "calc.js"] if calc_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
 
     page_html = layout.replace("{{CONTENT}}", templates[page["template"]])
@@ -614,6 +664,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "STRUCTURED_DATA": structured_data(tr, ver, page, code),
         "UI_ICONS": UI_ICONS,
         "FOOTER_PROFILES": footer_profiles_html(tr, root),
+        "FOOTER_CALCS": "\n".join(f'            <li><a href="{link_to(p["id"])}">{tr.text(p["nav"])}</a></li>' for p in CALC_PAGES),
+        "CALC_CARDS": calc_cards_html(tr, link_to) if "{{CALC_CARDS}}" in page_html else "",
         "DOWNLOAD_NOTICE": download_notice_html(tr, root, link_to("legal"), "h2" if page["id"] == "downloads" else "h3")
                            if "{{DOWNLOAD_NOTICE}}" in page_html else "", "YEAR": str(datetime.date.today().year),
         "RELEASE_DATE": format_date(code, released) if released else tr.text("download.facts.dateUnknown"),
@@ -625,6 +677,10 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
     for name, value in fixed.items():
         page_html = page_html.replace("{{" + name + "}}", value)
     page_html = re.sub(r"\{\{LINK:([\w-]+)\}\}", lambda m: link_to(m.group(1)), page_html)
+    shown = re.findall(r"\{\{CALC_HOW:([\w-]+)\}\}", page_html)
+    if sorted(shown) != sorted(page.get("calc", [])):
+        sys.exit(f"[{code}/{page['id']}] {{{{CALC_HOW:...}}}} must explain exactly the page's formulas {page.get('calc', [])} (template has {shown}).")
+    page_html = re.sub(r"\{\{CALC_HOW:([\w-]+)\}\}", lambda m: calc_how_html(tr, m.group(1)), page_html)
     page_html = re.sub(r"\{\{SHOT:([\w.:-]+)\}\}", lambda m: shot_html(tr, img, m.group(1)), page_html)
     page_html = re.sub(r"\{\{DL:(\w+)(?::(\w+))?\}\}", dl_sub, page_html)
     page_html = re.sub(r"\{\{t:([\w.-]+)\}\}", lambda m: tr.text(m.group(1)), page_html)
@@ -844,7 +900,7 @@ def main():
         sub = page["path"].strip("/")
         d = os.path.join(SITE, "en", sub) if sub else os.path.join(SITE, "en")
         os.makedirs(d, exist_ok=True)
-        target = "../" * (2 if sub else 1) + page["path"]
+        target = "../" * (len(sub.split("/")) + 1 if sub else 1) + page["path"]
         with open(os.path.join(d, "index.html"), "w", encoding="utf-8", newline="\n") as f:
             f.write('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Tibia Foundry</title>\n'
                     f'<link rel="canonical" href="{ORIGIN}{page["path"]}">\n<meta name="robots" content="noindex">\n'

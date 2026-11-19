@@ -49,7 +49,8 @@
       "nav.library",
       "nav.studio",
       "studio.kicker",
-      "home.dest.highscores.title"
+      "home.dest.highscores.title",
+      "calc.how.kind.wiki"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -92,7 +93,8 @@
     "menuClose": "Zamknij menu",
     "download": "Pobierz",
     "legal": "Informacje prawne",
-    "breadcrumb": "Ścieżka nawigacji"
+    "breadcrumb": "Ścieżka nawigacji",
+    "calculators": "Kalkulatory"
   },
   "hero": {
     "lead": "Tibia Foundry odczytuje oficjalne pliki zainstalowanego klienta Tibii i zamienia je w sprite'y, animowane GIF-y outfitów i potworów, obrazki przedmiotów, mapy, dźwięki i dane – a potem przechowuje wszystko w przeszukiwalnej bibliotece i publikuje kompletne galerie dla TibiaWiki lub dowolnej strony społeczności.",
@@ -845,6 +847,14 @@
     "legal": {
       "title": "Informacje prawne i przejrzystość",
       "description": "Prawa autorskie i informacja o CipSoft, odpowiedzialny administrator, bezpieczeństwo pobierania, pieniądze i reklamy, prywatność i statystyki, zasady społeczności oraz źródła treści Tibia Foundry."
+    },
+    "calculators": {
+      "title": "Kalkulatory Tibii",
+      "description": "Darmowe kalkulatory do Tibii: doświadczenie i poziom, czas expienia i zakres dzielenia doświadczenia w drużynie. Każdy wynik pokazuje wzór, źródła i datę sprawdzenia."
+    },
+    "calc-experience": {
+      "title": "Kalkulator doświadczenia i poziomu w Tibii",
+      "description": "Ile doświadczenia brakuje od jednego poziomu w Tibii do drugiego, czas i dni expienia przy Twoim doświadczeniu na godzinę oraz zakres dzielenia doświadczenia dla obu poziomów – ze wzorem i źródłami."
     }
   },
   "credits": {
@@ -915,6 +925,10 @@
       "community": {
         "title": "Wiadomości i fansite'y",
         "text": "Oficjalne wiadomości Tibii, news ticker, archiwum i oficjalna lista fansite'ów."
+      },
+      "calculators": {
+        "title": "Kalkulatory",
+        "text": "Doświadczenie do następnego poziomu, czas expienia i zakres dzielenia doświadczenia – ze wzorami i źródłami."
       }
     },
     "app": {
@@ -1146,6 +1160,73 @@
       "artTitle": "Grafiki innych podmiotów",
       "art": "Obrazy stworzeń, przedmiotów, strojów i domów należą do CipSoft; ikony profili to logotypy ich platform.",
       "unconfirmed": "Informacje niepotwierdzone przez CipSoft byłyby oznaczone: \"Informacja niepotwierdzona. Nie została potwierdzona przez CipSoft.\" Obecnie strona nie publikuje takich informacji."
+    }
+  },
+  "calc": {
+    "hub": {
+      "title": "Kalkulatory Tibii",
+      "lead": "Zaplanuj kolejne poziomy i expienie. Każdy kalkulator pokazuje, jak liczy, skąd pochodzą jego liczby i kiedy ostatnio je sprawdzono.",
+      "all": "Wszystkie kalkulatory",
+      "verified": "Każdy wzór przed publikacją jest sprawdzany z oficjalnym źródłem Tibii lub z TibiaWiki oraz z co najmniej jedną niezależną wartością. Wyniki są liczone w Twojej przeglądarce."
+    },
+    "inputs": "Twoje dane",
+    "results": "Wynik",
+    "readAs": "Odczytano jako {value}",
+    "copy": "Kopiuj wynik",
+    "share": "Kopiuj link",
+    "reset": "Resetuj",
+    "resetDone": "Przywrócono początkowe wartości kalkulatora.",
+    "hint": {
+      "shorthand": "Możesz skracać: 1,5kk = 1 500 000, a 250k = 250 000."
+    },
+    "error": {
+      "empty": "Wpisz liczbę.",
+      "format": "Nie możemy odczytać tej liczby. Wpisz ją np. tak: 1 500 000 albo 1,5kk.",
+      "formatInt": "Wpisz liczbę całkowitą, np. 150.",
+      "integer": "Wpisz liczbę całkowitą (bez części dziesiętnej).",
+      "range": "Ta liczba jest za duża.",
+      "duration": "Wpisz czas jako godziny:minuty, np. 39:00."
+    },
+    "unit": {
+      "hoursMinutes": "{h} godz. {m} min"
+    },
+    "how": {
+      "title": "Jak to jest liczone",
+      "sources": "Źródła",
+      "checked": "Sprawdzono {checked}",
+      "kind": {
+        "official": "oficjalne",
+        "wiki": "wiki",
+        "calculator": "kalkulator"
+      }
+    },
+    "experience": {
+      "title": "Doświadczenie i poziom",
+      "card": "Doświadczenie do docelowego poziomu, czas expienia, przewidywana data i zakres dzielenia doświadczenia.",
+      "lead": "Ile doświadczenia brakuje od Twojego obecnego poziomu do docelowego, ile to potrwa przy Twoim doświadczeniu na godzinę i z kim możesz dzielić doświadczenie w drużynie.",
+      "from": "Obecny poziom",
+      "to": "Docelowy poziom",
+      "exph": "Doświadczenie na godzinę",
+      "hpd": "Godziny expienia dziennie",
+      "exp": "Potrzebne doświadczenie",
+      "minutes": "Czas expienia",
+      "days": "Dni expienia",
+      "finish": "Przewidywana data",
+      "totalFrom": "Łączne doświadczenie na obecnym poziomie",
+      "totalTo": "Łączne doświadczenie na docelowym poziomie",
+      "shareFrom": "Zakres dzielenia doświadczenia dla obecnego poziomu",
+      "shareTo": "Zakres dzielenia doświadczenia dla docelowego poziomu",
+      "error": {
+        "level": "Wpisz poziom od 1 do 50 000.",
+        "toAboveFrom": "Docelowy poziom musi być wyższy niż obecny.",
+        "exph": "Doświadczenie na godzinę musi być większe od 0.",
+        "hpd": "Liczba godzin dziennie musi być liczbą całkowitą od 1 do 24."
+      },
+      "rule": {
+        "levelExp": "Łączne doświadczenie dla poziomu L = 50/3 × (L³ − 6L² + 17L − 12). Nowa postać na poziomie 1 ma 0 doświadczenia; poziom 2 wymaga 100, a poziom 8 – 4200.",
+        "levelPlan": "Potrzebne doświadczenie = łączne doświadczenie docelowego poziomu − łączne doświadczenie obecnego poziomu. Czas expienia = potrzebne doświadczenie ÷ doświadczenie na godzinę, w pełnych minutach (zaokrąglone w dół). Dni = czas expienia ÷ godziny dziennie, zaokrąglone w górę; przewidywana data liczy te dni od dziś.",
+        "shareRange": "Drużyna dzieli doświadczenie tylko wtedy, gdy poziomy są wystarczająco blisko: dla poziomu L zakres wynosi od ⌊2L/3⌋ do ⌊3L/2⌋ + 1 (⌊ ⌋ = zaokrąglenie w dół), czyli wartości z tabeli Party Experience Sharing na TibiaWiki. Przykład: poziom 100 dzieli doświadczenie z poziomami od 66 do 151."
+      }
     }
   }
 }

@@ -106,7 +106,8 @@
     "menuClose": "Menü schließen",
     "download": "Download",
     "legal": "Rechtliches & Transparenz",
-    "breadcrumb": "Brotkrümelnavigation"
+    "breadcrumb": "Brotkrümelnavigation",
+    "calculators": "Rechner"
   },
   "hero": {
     "lead": "Tibia Foundry liest die offiziellen Dateien deines installierten Tibia-Clients und macht daraus Sprites, animierte Outfit- und Kreaturen-GIFs, Item-Bilder, Karten, Sounds und Daten – hält alles in einer durchsuchbaren Bibliothek bereit und veröffentlicht komplette Galerien für das TibiaWiki oder jede Community-Website.",
@@ -855,6 +856,14 @@
     "legal": {
       "title": "Rechtliches & Transparenz",
       "description": "Urheberrecht und CipSoft-Hinweis, verantwortlicher Administrator, Download-Sicherheit, Geld und Werbung, Datenschutz und Statistik, Community-Regeln und Inhaltsquellen von Tibia Foundry."
+    },
+    "calculators": {
+      "title": "Tibia-Rechner",
+      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit und den Party-Share-Bereich. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
+    },
+    "calc-experience": {
+      "title": "Tibia-Rechner für Erfahrung und Level",
+      "description": "Wie viel Erfahrung du von einem Tibia-Level zum anderen brauchst, Jagdzeit und Tage bei deiner Erfahrung pro Stunde und der Party-Share-Bereich beider Level – mit Formel und Quellen."
     }
   },
   "credits": {
@@ -925,6 +934,10 @@
       "community": {
         "title": "News & Fansites",
         "text": "Offizielle Tibia-News, Newsticker und Archiv sowie das offizielle Fansite-Verzeichnis."
+      },
+      "calculators": {
+        "title": "Rechner",
+        "text": "Erfahrung bis zum nächsten Level, Jagdzeit und Party-Share-Bereich – mit Formeln und Quellen."
       }
     },
     "app": {
@@ -1156,6 +1169,73 @@
       "artTitle": "Grafiken Dritter",
       "art": "Bilder von Kreaturen, Gegenständen, Outfits und Häusern gehören CipSoft; die Profil-Icons sind die Logos ihrer Plattformen.",
       "unconfirmed": "Von CipSoft nicht bestätigte Informationen würden als \"Unbestätigte Information. Dies wurde von CipSoft nicht bestätigt.\" gekennzeichnet. Derzeit veröffentlicht die Seite keine solchen Informationen."
+    }
+  },
+  "calc": {
+    "hub": {
+      "title": "Tibia-Rechner",
+      "lead": "Plane deine nächsten Level und Jagden. Jeder Rechner zeigt, wie er rechnet, woher seine Zahlen stammen und wann sie zuletzt geprüft wurden.",
+      "all": "Alle Rechner",
+      "verified": "Jede Formel wird vor der Veröffentlichung mit einer offiziellen Tibia-Quelle oder dem TibiaWiki und mindestens einem unabhängigen Wert geprüft. Die Ergebnisse werden in deinem Browser berechnet."
+    },
+    "inputs": "Deine Werte",
+    "results": "Ergebnis",
+    "readAs": "Gelesen als {value}",
+    "copy": "Ergebnis kopieren",
+    "share": "Link kopieren",
+    "reset": "Zurücksetzen",
+    "resetDone": "Der Rechner ist auf die Startwerte zurückgesetzt.",
+    "hint": {
+      "shorthand": "Kurzschreibweise geht: 1,5kk = 1.500.000 und 250k = 250.000."
+    },
+    "error": {
+      "empty": "Gib eine Zahl ein.",
+      "format": "Diese Zahl können wir nicht lesen. Schreib sie z. B. so: 1.500.000 oder 1,5kk.",
+      "formatInt": "Gib eine ganze Zahl ein, z. B. 150.",
+      "integer": "Gib eine ganze Zahl ein (ohne Nachkommastellen).",
+      "range": "Diese Zahl ist zu groß.",
+      "duration": "Gib eine Zeit als Stunden:Minuten ein, z. B. 39:00."
+    },
+    "unit": {
+      "hoursMinutes": "{h} Std. {m} Min."
+    },
+    "how": {
+      "title": "So wird gerechnet",
+      "sources": "Quellen",
+      "checked": "Geprüft am {checked}",
+      "kind": {
+        "official": "offiziell",
+        "wiki": "Wiki",
+        "calculator": "Rechner"
+      }
+    },
+    "experience": {
+      "title": "Erfahrung und Level",
+      "card": "Erfahrung bis zum Ziel-Level, Jagdzeit, voraussichtliches Datum und Party-Share-Bereich.",
+      "lead": "Wie viel Erfahrung du von deinem aktuellen Level bis zum Ziel-Level brauchst, wie lange das bei deiner Erfahrung pro Stunde dauert und mit wem du in einer Party Erfahrung teilen kannst.",
+      "from": "Aktuelles Level",
+      "to": "Ziel-Level",
+      "exph": "Erfahrung pro Stunde",
+      "hpd": "Jagdstunden pro Tag",
+      "exp": "Benötigte Erfahrung",
+      "minutes": "Jagdzeit",
+      "days": "Jagdtage",
+      "finish": "Voraussichtlich erreicht am",
+      "totalFrom": "Gesamterfahrung beim aktuellen Level",
+      "totalTo": "Gesamterfahrung beim Ziel-Level",
+      "shareFrom": "Party-Share-Bereich beim aktuellen Level",
+      "shareTo": "Party-Share-Bereich beim Ziel-Level",
+      "error": {
+        "level": "Gib ein Level von 1 bis 50.000 ein.",
+        "toAboveFrom": "Das Ziel-Level muss höher sein als das aktuelle Level.",
+        "exph": "Die Erfahrung pro Stunde muss größer als 0 sein.",
+        "hpd": "Die Stunden pro Tag müssen eine ganze Zahl von 1 bis 24 sein."
+      },
+      "rule": {
+        "levelExp": "Gesamterfahrung für Level L = 50/3 × (L³ − 6L² + 17L − 12). Ein neuer Charakter auf Level 1 hat 0 Erfahrung; Level 2 braucht 100 und Level 8 braucht 4.200.",
+        "levelPlan": "Benötigte Erfahrung = Gesamterfahrung des Ziel-Levels − Gesamterfahrung des aktuellen Levels. Jagdzeit = benötigte Erfahrung ÷ Erfahrung pro Stunde, in ganzen Minuten (abgerundet). Tage = Jagdzeit ÷ Stunden pro Tag, aufgerundet; das voraussichtliche Datum zählt diese Tage ab heute.",
+        "shareRange": "Eine Party teilt Erfahrung nur, wenn die Level nah genug beieinander liegen: Für Level L reicht der Share-Bereich von ⌊2L/3⌋ bis ⌊3L/2⌋ + 1 (⌊ ⌋ = abgerundet), die Werte der Tabelle Party Experience Sharing im TibiaWiki. Beispiel: Level 100 teilt Erfahrung mit Level 66 bis 151."
+      }
     }
   }
 }

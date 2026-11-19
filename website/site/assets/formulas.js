@@ -4,6 +4,8 @@
  * - parseNumber: reads a number the way the page language writes it (grouping and decimal separator per language,
  *   shorthand k = 10^3, kk = 10^6, kkk = 10^9); anything it cannot read is an error code, never a guess.
  * - parseDuration: h:mm / hh:mm into minutes.
+ * - formatNumber: writes a number the way parseNumber reads it in that language (the site's grouping, not the browser's
+ *   Intl rules: Intl groups Spanish with "." and leaves out grouping below 10 000 in pl/es); pl/es use no-break spaces.
  * - FORMULAS: id -> pure function (input object -> result object), one per entry of formulas.json.
  *
  * Works in the browser (window.TFFormulas) and in Node for the unit tests (module.exports).
@@ -49,6 +51,14 @@
     return { value: Number(m[1]) * 60 + Number(m[2]) };
   }
 
+  function formatNumber(value, lang) {
+    var group = GROUP[lang] === " " ? "\u00a0" : GROUP[lang] || ",";
+    var parts = String(Math.abs(value)).split(".");
+    var whole = parts[0];
+    if (!(group === "\u00a0" && whole.length <= 4)) whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, group);
+    return (value < 0 ? "-" : "") + whole + (parts[1] ? (lang === "en" ? "." : ",") + parts[1] : "");
+  }
+
   var FORMULAS = {
     // Total experience for a level: 50/3 * (L^3 - 6L^2 + 17L - 12). The product is always divisible by 3 (exact integer).
     levelExp: function (i) {
@@ -67,5 +77,5 @@
     }
   };
 
-  return { parseNumber: parseNumber, parseDuration: parseDuration, FORMULAS: FORMULAS };
+  return { parseNumber: parseNumber, parseDuration: parseDuration, formatNumber: formatNumber, FORMULAS: FORMULAS };
 });

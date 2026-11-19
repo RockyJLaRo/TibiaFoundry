@@ -28,6 +28,9 @@ ICONS = {
     "crown": "bosses", "wand-sparkles": "spells", "newspaper": "news", "archive": "news archive", "flag": "fansites",
     "anvil": "Tibia Foundry (the foundry)", "gem": "boosted", "calendar": "date", "map-pin": "location", "coins": "price",
     "user-round": "creator / contact person", "package": "installer",
+    "calculator": "calculators", "trending-up": "experience and level calculator", "clock": "time (server save, countdowns)",
+    "battery-medium": "stamina calculator", "heart-pulse": "character stats calculator (hit points, mana)", "sparkles": "blessings calculator",
+    "link": "share link",
 }
 
 

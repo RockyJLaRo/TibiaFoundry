@@ -57,7 +57,9 @@
       "publishing.th.extras",
       "studio.kicker",
       "studio.step2.title",
-      "home.dest.highscores.title"
+      "home.dest.highscores.title",
+      "calc.how.kind.wiki",
+      "calc.unit.hoursMinutes"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -100,7 +102,8 @@
     "menuClose": "Fechar menu",
     "download": "Baixar",
     "legal": "Aspectos legais e transparência",
-    "breadcrumb": "Você está aqui"
+    "breadcrumb": "Você está aqui",
+    "calculators": "Calculadoras"
   },
   "hero": {
     "lead": "O Tibia Foundry lê os arquivos oficiais do cliente do Tibia instalado no seu computador e os transforma em sprites, GIFs animados de outfits e criaturas, imagens de itens, mapas, sons e dados – depois guarda tudo em uma biblioteca pesquisável e publica galerias completas para o TibiaWiki ou qualquer site da comunidade.",
@@ -849,6 +852,14 @@
     "legal": {
       "title": "Aspectos legais e transparência",
       "description": "Direitos autorais e atribuição à CipSoft, administrador responsável, segurança dos downloads, dinheiro e publicidade, privacidade e estatísticas, regras da comunidade e fontes do conteúdo do Tibia Foundry."
+    },
+    "calculators": {
+      "title": "Calculadoras de Tibia",
+      "description": "Calculadoras gratuitas de Tibia para experiência e nível, tempo de hunt e faixa de share da party. Cada resultado mostra a fórmula, as fontes e a data da última verificação."
+    },
+    "calc-experience": {
+      "title": "Calculadora de experiência e nível de Tibia",
+      "description": "Quanta experiência falta de um nível de Tibia para outro, o tempo e os dias de hunt com a sua experiência por hora e a faixa de share da party dos dois níveis – com fórmula e fontes."
     }
   },
   "credits": {
@@ -919,6 +930,10 @@
       "community": {
         "title": "Notícias e fansites",
         "text": "Notícias oficiais do Tibia, o news ticker, o arquivo e a lista oficial de fansites."
+      },
+      "calculators": {
+        "title": "Calculadoras",
+        "text": "Experiência até o próximo nível, tempo de hunt e faixa de share da party – com fórmulas e fontes."
       }
     },
     "app": {
@@ -1150,6 +1165,73 @@
       "artTitle": "Gráficos de terceiros",
       "art": "As imagens de criaturas, itens, outfits e casas são da CipSoft; os ícones dos perfis são os logotipos de suas plataformas.",
       "unconfirmed": "Informações não confirmadas pela CipSoft seriam marcadas como \"Informação não confirmada. Isto não foi confirmado pela CipSoft.\" No momento, o site não publica informações desse tipo."
+    }
+  },
+  "calc": {
+    "hub": {
+      "title": "Calculadoras de Tibia",
+      "lead": "Planeje seus próximos níveis e hunts. Cada calculadora mostra como funciona, de onde vêm os números e quando eles foram verificados pela última vez.",
+      "all": "Todas as calculadoras",
+      "verified": "Cada fórmula é conferida com uma fonte oficial de Tibia ou com o TibiaWiki e com pelo menos um valor independente antes de ser publicada. Os resultados são calculados no seu navegador."
+    },
+    "inputs": "Seus valores",
+    "results": "Resultado",
+    "readAs": "Lido como {value}",
+    "copy": "Copiar resultado",
+    "share": "Copiar link",
+    "reset": "Redefinir",
+    "resetDone": "A calculadora voltou aos valores iniciais.",
+    "hint": {
+      "shorthand": "Você pode abreviar: 1,5kk = 1.500.000 e 250k = 250.000."
+    },
+    "error": {
+      "empty": "Digite um número.",
+      "format": "Não conseguimos ler este número. Escreva assim: 1.500.000 ou 1,5kk.",
+      "formatInt": "Digite um número inteiro, como 150.",
+      "integer": "Digite um número inteiro (sem casas decimais).",
+      "range": "Este número é grande demais.",
+      "duration": "Digite um tempo em horas:minutos, como 39:00."
+    },
+    "unit": {
+      "hoursMinutes": "{h} h {m} min"
+    },
+    "how": {
+      "title": "Como isto é calculado",
+      "sources": "Fontes",
+      "checked": "Verificado em {checked}",
+      "kind": {
+        "official": "oficial",
+        "wiki": "wiki",
+        "calculator": "calculadora"
+      }
+    },
+    "experience": {
+      "title": "Experiência e nível",
+      "card": "Experiência até o nível desejado, tempo de hunt, data prevista e faixa de share da party.",
+      "lead": "Quanta experiência falta do seu nível atual até o nível desejado, quanto tempo isso leva com a sua experiência por hora e com quem você pode dividir experiência em party.",
+      "from": "Nível atual",
+      "to": "Nível desejado",
+      "exph": "Experiência por hora",
+      "hpd": "Horas de hunt por dia",
+      "exp": "Experiência necessária",
+      "minutes": "Tempo de hunt",
+      "days": "Dias de hunt",
+      "finish": "Previsão de conclusão",
+      "totalFrom": "Experiência total no nível atual",
+      "totalTo": "Experiência total no nível desejado",
+      "shareFrom": "Faixa de share da party no nível atual",
+      "shareTo": "Faixa de share da party no nível desejado",
+      "error": {
+        "level": "Digite um nível de 1 a 50.000.",
+        "toAboveFrom": "O nível desejado precisa ser maior que o nível atual.",
+        "exph": "A experiência por hora precisa ser maior que 0.",
+        "hpd": "As horas por dia precisam ser um número inteiro de 1 a 24."
+      },
+      "rule": {
+        "levelExp": "Experiência total do nível L = 50/3 × (L³ − 6L² + 17L − 12). Um personagem novo no nível 1 tem 0 de experiência; o nível 2 exige 100 e o nível 8 exige 4.200.",
+        "levelPlan": "Experiência necessária = experiência total do nível desejado − experiência total do nível atual. Tempo de hunt = experiência necessária ÷ experiência por hora, em minutos inteiros (arredondado para baixo). Dias = tempo de hunt ÷ horas por dia, arredondado para cima; a previsão de conclusão conta esses dias a partir de hoje.",
+        "shareRange": "A party só divide experiência quando os níveis estão próximos o bastante: para o nível L, a faixa de share vai de ⌊2L/3⌋ a ⌊3L/2⌋ + 1 (⌊ ⌋ = arredondado para baixo), os valores da tabela Party Experience Sharing do TibiaWiki. Exemplo: o nível 100 divide experiência com os níveis 66 a 151."
+      }
     }
   }
 }

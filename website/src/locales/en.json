@@ -44,7 +44,8 @@
     "menuClose": "Close menu",
     "download": "Download",
     "legal": "Legal & transparency",
-    "breadcrumb": "Breadcrumb"
+    "breadcrumb": "Breadcrumb",
+    "calculators": "Calculators"
   },
   "hero": {
     "lead": "Tibia Foundry reads the official files of your installed Tibia client and turns them into sprites, animated outfit and creature GIFs, item images, maps, sounds and data – then keeps everything in a searchable library and publishes complete galleries for TibiaWiki or any community website.",
@@ -793,6 +794,14 @@
     "legal": {
       "title": "Legal & transparency",
       "description": "Copyright and CipSoft attribution, the responsible administrator, download safety, money and advertising, privacy and statistics, community rules and content sources of Tibia Foundry."
+    },
+    "calculators": {
+      "title": "Tibia calculators",
+      "description": "Free Tibia calculators for experience and level, hunting time and the party share range. Each result shows its formula, its sources and the date it was checked."
+    },
+    "calc-experience": {
+      "title": "Tibia experience and level calculator",
+      "description": "Experience needed from one Tibia level to another, hunting time and days at your experience per hour, and the party share range of both levels – with formula and sources."
     }
   },
   "credits": {
@@ -863,6 +872,10 @@
       "community": {
         "title": "News & fansites",
         "text": "Official Tibia news, the news ticker and archive, and the official fansite directory."
+      },
+      "calculators": {
+        "title": "Calculators",
+        "text": "Experience to your next level, hunting time and party share range – with formulas and sources."
       }
     },
     "app": {
@@ -1094,6 +1107,73 @@
       "artTitle": "Third-party graphics",
       "art": "Creature, item, outfit and house images are CipSoft's; the profile icons are the logos of their platforms.",
       "unconfirmed": "Information not confirmed by CipSoft would be marked \"Unconfirmed information. This has not been confirmed by CipSoft.\" The site currently publishes no such information."
+    }
+  },
+  "calc": {
+    "hub": {
+      "title": "Tibia calculators",
+      "lead": "Plan your next levels and hunts. Every calculator shows how it works, where its numbers come from and when they were last checked.",
+      "all": "All calculators",
+      "verified": "Every formula is checked against an official Tibia source or TibiaWiki and at least one independent value before it is published. Results are calculated in your browser."
+    },
+    "inputs": "Your values",
+    "results": "Result",
+    "readAs": "Read as {value}",
+    "copy": "Copy result",
+    "share": "Copy share link",
+    "reset": "Reset",
+    "resetDone": "The calculator is back to its starting values.",
+    "hint": {
+      "shorthand": "Shorthand works: 1.5kk = 1,500,000 and 250k = 250,000."
+    },
+    "error": {
+      "empty": "Enter a number.",
+      "format": "This is not a number we can read. Write it like 1,500,000 or 1.5kk.",
+      "formatInt": "Enter a whole number, like 150.",
+      "integer": "Enter a whole number (no decimals).",
+      "range": "This number is too large.",
+      "duration": "Enter a time as hours:minutes, like 39:00."
+    },
+    "unit": {
+      "hoursMinutes": "{h} h {m} min"
+    },
+    "how": {
+      "title": "How this is calculated",
+      "sources": "Sources",
+      "checked": "Checked on {checked}",
+      "kind": {
+        "official": "official",
+        "wiki": "wiki",
+        "calculator": "calculator"
+      }
+    },
+    "experience": {
+      "title": "Experience and level",
+      "card": "Experience to your target level, hunting time, finish date and party share range.",
+      "lead": "How much experience you need from your current level to your target level, how long that takes at your experience per hour, and who you can share experience with in a party.",
+      "from": "Current level",
+      "to": "Target level",
+      "exph": "Experience per hour",
+      "hpd": "Hunting hours per day",
+      "exp": "Experience needed",
+      "minutes": "Hunting time",
+      "days": "Days of hunting",
+      "finish": "Estimated finish",
+      "totalFrom": "Total experience at current level",
+      "totalTo": "Total experience at target level",
+      "shareFrom": "Party share range at current level",
+      "shareTo": "Party share range at target level",
+      "error": {
+        "level": "Enter a level from 1 to 50,000.",
+        "toAboveFrom": "The target level must be higher than the current level.",
+        "exph": "Experience per hour must be more than 0.",
+        "hpd": "Hours per day must be a whole number from 1 to 24."
+      },
+      "rule": {
+        "levelExp": "Total experience for level L = 50/3 × (L³ − 6L² + 17L − 12). A new character at level 1 has 0 experience; level 2 needs 100 and level 8 needs 4,200.",
+        "levelPlan": "Experience needed = total experience of the target level − total experience of the current level. Hunting time = experience needed ÷ experience per hour, in whole minutes (rounded down). Days = hunting time ÷ hours per day, rounded up; the estimated finish counts those days from today.",
+        "shareRange": "A party shares experience only when its levels are close enough: for level L the share range runs from ⌊2L/3⌋ to ⌊3L/2⌋ + 1 (⌊ ⌋ = rounded down), the values of TibiaWiki's Party Experience Sharing table. Example: level 100 shares with levels 66 to 151."
+      }
     }
   }
 }
