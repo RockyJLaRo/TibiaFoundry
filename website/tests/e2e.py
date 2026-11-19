@@ -914,6 +914,26 @@ def calculators(c, browser, base):
         c.ok(page.url.endswith("/" + exp_page["path"] + "?lang=en") and page.get_attribute("html", "lang") == "en", f"/en/{exp_page['path']} -> {page.url}")
         c.ok(not page.console_errors, f"de desktop: console errors {page.console_errors[:3]}")
         ctx.close()
+    # Time-dependent results never go stale: the clock time advances without input and Copy carries the current time.
+    st_page = next((p for p in calc_pages if p["id"] == "calc-stamina"), None)
+    if c.ok(st_page, "no calc-stamina page"):
+        ctx, page = new_page(browser, base, 1000, 800)
+        page.clock.install(time=datetime.datetime(2026, 11, 18, 10, 0, 30))
+        page.goto(url_of(base, kit.LANGUAGES[0], "calc-stamina"))
+        page.wait_for_function(CALC_READY, timeout=10000)
+        read = "(() => { const f = document.querySelector('form[data-calc]'); const o = f.querySelector('[data-finish-at]'); return [o.getAttribute('data-value'), o.textContent.trim(), f.querySelector('[data-copy]').getAttribute('data-copy')]; })()"
+        before = page.evaluate(read)
+        c.ok(before[0] == "2026-11-19T04:10", f"stamina clock time at 10:00:30 + 18 h 10 min: {before}")
+        page.locator("form[data-calc] [name=current]").focus()
+        page.clock.run_for(5 * 60 * 1000)
+        after = page.evaluate(read)
+        c.ok(after[0] == "2026-11-19T04:15" and after[1] != before[1] and after[1] in after[2] and before[1] not in after[2],
+             f"clock time must advance with time passing and without input: {before} -> {after}")
+        c.ok(page.evaluate("document.activeElement.name") == "current" and page.locator("form[data-calc] [name=current]").input_value() == "39:00", "the timer must not touch the focused field")
+        page.clock.run_for(60 * 1000)
+        page.locator("form[data-calc] [data-copy]").click()
+        c.ok("04:16" in page.evaluate(read)[0], f"copy text rebuilt: {page.evaluate(read)}")
+        ctx.close()
     c.note(f"{verified} test values shown correctly across {len(kit.LANGUAGES)} languages; refused by the page's validation: {sorted(set(refused))}")
 
 

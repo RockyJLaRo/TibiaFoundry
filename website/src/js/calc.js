@@ -58,7 +58,7 @@
     var copyBtn = form.querySelector("[data-copy]"), shareBtn = form.querySelector("[data-share]"), resetBtn = form.querySelector("[data-reset]");
     var langLinks = document.querySelectorAll("a[data-lang]");
     each(langLinks, function (a) { a.setAttribute("data-base-href", a.getAttribute("href")); });
-    var state = {};
+    var state = {}, lastResults = {}, lastOk = false;
 
     // A field's text in the page language from a plain query or template value (digits, h:mm, option value).
     function display(field, plain) {
@@ -160,6 +160,16 @@
         if (!Object.prototype.hasOwnProperty.call(results, name)) return setOut(o, null);
         setOut(o, v, o.getAttribute("data-format") === "duration" ? duration(v) : num(v));
       });
+      lastResults = results;
+      lastOk = valid && !problem;
+      if (calcError) calcError.textContent = problem ? TF.t(problem) : "";
+      renderTimes();
+    }
+
+    // Outputs that depend on the clock (finish date, clock time) and the copied summary; never touches the inputs.
+    // Runs after every compute(), when the page becomes visible again, every minute, and just before Copy.
+    function renderTimes() {
+      var results = lastResults;
       each(form.querySelectorAll("[data-finish]"), function (o) {
         var date = finishDate(results[o.getAttribute("data-finish")]);
         if (date) setOut(o, date.iso, date.text); else setOut(o, null);
@@ -168,11 +178,9 @@
         var at = finishAt(results[o.getAttribute("data-finish-at")]);
         if (at) setOut(o, at.iso, at.text); else setOut(o, null);
       });
-      if (calcError) calcError.textContent = problem ? TF.t(problem) : "";
       if (copyBtn) {
-        var ok = valid && !problem;
-        copyBtn.disabled = !ok;
-        copyBtn.setAttribute("data-copy", ok ? summary() : "");
+        copyBtn.disabled = !lastOk;
+        copyBtn.setAttribute("data-copy", lastOk ? summary() : "");
       }
     }
 
@@ -226,6 +234,16 @@
 
     form.addEventListener("submit", function (e) { e.preventDefault(); });
     form.addEventListener("input", update);
+    // Time-dependent results stay current: on returning to the tab, at every minute boundary while visible, and before Copy.
+    form.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("[data-copy]")) renderTimes(); }, true);
+    var tick = null;
+    function schedule() {
+      clearTimeout(tick);
+      if (document.hidden) return;
+      tick = setTimeout(function () { renderTimes(); schedule(); }, 60000 - (Date.now() % 60000) + 50);
+    }
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) renderTimes(); schedule(); });
+    schedule();
     form.addEventListener("change", function (e) { if (e.target.tagName === "SELECT") update(); });
     if (shareBtn) shareBtn.addEventListener("click", function () {
       TF.copy(shareUrl()).then(function () { TF.confirmCopy(shareBtn, true); }, function () { TF.confirmCopy(shareBtn, false); });
