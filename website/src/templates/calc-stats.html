@@ -1,0 +1,56 @@
+<div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li><a href="{{LINK:calculators}}">{{t:nav.calculators}}</a></li><li aria-current="page">{{t:calc.stats.title}}</li></ol></nav>
+  <div class="calc-head"><span class="icon-tile" aria-hidden="true"><svg class="ic"><use href="#i-heart-pulse"/></svg></span><h1>{{t:calc.stats.title}}</h1></div>
+  <p class="lead">{{t:calc.stats.lead}}</p>
+</div>
+<div class="wrap calc-page">
+  <!-- Same contract as calc-experience.html (see calc.js). -->
+  <form class="calc" data-calc="calc-stats" novalidate autocomplete="off">
+    <div class="calc-inputs">
+      <h2 class="calc-panel-title">{{t:calc.inputs}}</h2>
+      <div class="field">
+        <label class="field-label" for="calc-level">{{t:calc.stats.level}}</label>
+        <input class="input" id="calc-level" name="level" value="100" data-kind="int" inputmode="numeric" enterkeyhint="done" spellcheck="false" required
+               data-min="1" data-max="20000" data-range-error="calc.stats.error.level" aria-describedby="calc-level-hint calc-level-echo calc-level-error">
+        <p class="field-hint" id="calc-level-hint">{{t:calc.stats.hint}}</p>
+        <p class="echo" data-echo="level" id="calc-level-echo"></p>
+        <p class="field-error" data-error="level" id="calc-level-error"></p>
+      </div>
+      <div class="field">
+        <label class="field-label" for="calc-vocation">{{t:calc.stats.vocation}}</label>
+        <select class="input" id="calc-vocation" name="vocation" aria-describedby="calc-vocation-hint">
+          <option value="knight" selected>{{t:calc.vocation.knight}}</option>
+          <option value="paladin">{{t:calc.vocation.paladin}}</option>
+          <option value="sorcerer">{{t:calc.vocation.sorcerer}}</option>
+          <option value="druid">{{t:calc.vocation.druid}}</option>
+          <option value="monk">{{t:calc.vocation.monk}}</option>
+          <option value="none">{{t:calc.vocation.none}}</option>
+        </select>
+        <p class="field-hint" id="calc-vocation-hint">{{t:calc.stats.vocationHint}}</p>
+      </div>
+    </div>
+    <div class="calc-side">
+      <div class="calc-results framed" aria-live="polite">
+        <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <p class="field-error calc-error" data-calc-error></p>
+        <div data-formula="characterStats" data-args="level,vocation">
+          <div class="calc-main" data-row><span class="calc-label">{{t:calc.stats.hp}}</span><output data-out="hp" data-format="number"></output></div>
+          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stats.mana}}</span><output data-out="mana" data-format="number"></output></div>
+          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stats.cap}}</span><output data-out="cap" data-format="number"></output></div>
+        </div>
+        <p class="field-hint calc-note">{{t:calc.stats.note}}</p>
+      </div>
+      <div class="calc-actions">
+        <button type="button" class="btn btn-primary" data-copy="" disabled><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">{{t:calc.copy}}</span></button>
+        <button type="button" class="btn" data-share><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span class="copy-label">{{t:calc.share}}</span></button>
+        <button type="button" class="btn btn-quiet" data-reset><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>{{t:calc.reset}}</button>
+      </div>
+    </div>
+  </form>
+  <details class="how" data-how-block>
+    <summary><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>{{t:calc.how.title}}</summary>
+    <div class="how-body">
+    {{CALC_HOW:characterStats}}
+    </div>
+  </details>
+</div>

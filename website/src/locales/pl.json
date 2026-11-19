@@ -51,7 +51,13 @@
       "studio.kicker",
       "home.dest.highscores.title",
       "calc.how.kind.wiki",
-      "calc.blessings.twist"
+      "calc.blessings.twist",
+      "calc.stats.mana",
+      "calc.vocation.knight",
+      "calc.vocation.paladin",
+      "calc.vocation.sorcerer",
+      "calc.vocation.druid",
+      "calc.vocation.monk"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -851,7 +857,7 @@
     },
     "calculators": {
       "title": "Kalkulatory Tibii",
-      "description": "Darmowe kalkulatory do Tibii: doświadczenie i poziom, czas expienia, zakres dzielenia doświadczenia w drużynie, regeneracja staminy i ceny blessingów. Każdy wynik pokazuje wzór, źródła i datę sprawdzenia."
+      "description": "Darmowe kalkulatory do Tibii: doświadczenie i poziom, czas expienia, zakres dzielenia doświadczenia w drużynie, regeneracja staminy, ceny blessingów i statystyki postaci. Każdy wynik pokazuje wzór, źródła i datę sprawdzenia."
     },
     "calc-experience": {
       "title": "Kalkulator doświadczenia i poziomu w Tibii",
@@ -864,6 +870,10 @@
     "calc-blessings": {
       "title": "Kalkulator blessingów w Tibii",
       "description": "Ile kosztuje 5 zwykłych blessingów, 2 enhanced, Blessing of the Inquisition i Twist of Fate na Twoim poziomie – ze wzorem i źródłami."
+    },
+    "calc-stats": {
+      "title": "Kalkulator statystyk postaci w Tibii",
+      "description": "Punkty życia, mana i udźwig postaci w Tibii na dowolnym poziomie i w dowolnej profesji, także Monka – ze wzorem i źródłami."
     }
   },
   "credits": {
@@ -1208,7 +1218,8 @@
       "kind": {
         "official": "oficjalne",
         "wiki": "wiki",
-        "calculator": "kalkulator"
+        "calculator": "kalkulator",
+        "news": "wiadomość"
       }
     },
     "experience": {
@@ -1277,6 +1288,33 @@
       "rule": {
         "blessings": "Zwykły blessing (każdy z 5): 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 119; 20 000 + 75 × (poziom − 120) od poziomu 120. Blessing enhanced (każdy z 2): 2 600 gp do poziomu 30; 260 × (poziom − 20) od poziomu 31 do 119; 26 000 + 100 × (poziom − 120) od poziomu 120. Twist of Fate: 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 269; 50 000 gp od poziomu 270. Blessing of the Inquisition (po zadaniu The Inquisition, kupowany u Henricusa) zastępuje 5 zwykłych blessingów i kosztuje o 10% więcej niż one razem, zaokrąglone w dół. Poniżej poziomu 8 obowiązują ceny z poziomów do 30. Przykład, poziom 75: 5 zwykłych blessingów 55 000 gp, Inquisition 60 500 gp, każdy blessing enhanced 14 300 gp, Twist of Fate 11 000 gp."
       }
+    },
+    "stats": {
+      "title": "Statystyki postaci",
+      "card": "Punkty życia, mana i udźwig Twojej profesji na dowolnym poziomie, także Monka.",
+      "lead": "Maksymalne punkty życia, mana i udźwig postaci na Twoim poziomie, dla każdej profesji.",
+      "level": "Twój poziom",
+      "vocation": "Profesja",
+      "hint": "Poziomy od 1 do 20 000.",
+      "vocationHint": "Zakłada, że profesję wybrano na poziomie 8. Poniżej poziomu 8 każda postać ma wartości bez profesji.",
+      "hp": "Punkty życia",
+      "mana": "Mana",
+      "cap": "Udźwig (oz)",
+      "note": "Wartości bazowe bez ekwipunku, Wheel of Destiny i innych bonusów. Opuszczenie Rookgaardu po poziomie 8 daje na stałe niższe statystyki. Udźwig zawiera bazowe +200 oz z aktualizacji 15.12, które gra stosuje dopiero po awansie postaci na kolejny poziom.",
+      "error": {
+        "level": "Wpisz poziom od 1 do 20 000."
+      },
+      "rule": {
+        "characterStats": "Od poziomu 1 każda postać ma 150 punktów życia, 55 many i 600 oz udźwigu, a do poziomu 8 zyskuje na poziom 5 punktów życia, 5 many i 10 oz, czyli 185 / 90 / 670 na poziomie 8. Każdy poziom po ósmym dodaje przyrost profesji (życie / mana / udźwig): bez profesji 5 / 5 / 10, Knight 15 / 5 / 25, Paladin 10 / 15 / 20, Sorcerer i Druid 5 / 30 / 10, Monk 10 / 10 / 25. Zakładamy, że profesję wybrano na poziomie 8. Przykład, Knight na poziomie 100: życie 185 + 15 × 92 = 1565, mana 90 + 5 × 92 = 550, udźwig 670 + 25 × 92 = 2970."
+      }
+    },
+    "vocation": {
+      "none": "Bez profesji (Rookgaard)",
+      "knight": "Knight",
+      "paladin": "Paladin",
+      "sorcerer": "Sorcerer",
+      "druid": "Druid",
+      "monk": "Monk"
     }
   }
 }

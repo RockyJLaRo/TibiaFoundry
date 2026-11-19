@@ -858,6 +858,24 @@ def calculators(c, browser, base):
                 for text in ("0", "20001", "7.5", "abc", ""):
                     st = calc_fill(page, dict(level=text))
                     c.ok(st["errors"].get("level") and all(not o["value"] for o in st["outs"].values()), f"{where}: level={text!r} must be refused with an inline error")
+            if p["id"] == "calc-stats":
+                # Default level 100 knight; the vocation <select> lists the six vocations with the page language's labels.
+                st = calc_fill(page, dict(defaults))
+                c.ok({k: st["outs"][k]["value"] for k in ("hp", "mana", "cap")} == {"hp": "1565", "mana": "550", "cap": "2970"}, f"{where}: level 100 knight gives {st['outs']}")
+                opts = page.evaluate("() => [...document.querySelectorAll('form[data-calc] select[name=vocation] option')].map(o => [o.value, o.textContent.trim()])")
+                c.ok(sorted(v for v, _ in opts) == ["druid", "knight", "monk", "none", "paladin", "sorcerer"] and all(t for _, t in opts), f"{where}: vocation options {opts}")
+                c.ok(len({t for _, t in opts}) == 6, f"{where}: vocation labels must be distinct {opts}")
+                c.ok(page.locator("form[data-calc] .calc-note").count() == 1 and page.locator("#calc-vocation-hint").text_content().strip(), f"{where}: the level-8 note and hint are missing")
+                for voc, want in (("monk", ("1105", "1010", "2970")), ("druid", ("645", "2850", "1590")), ("none", ("645", "550", "1590"))):
+                    st = calc_fill(page, dict(defaults, vocation=voc))
+                    c.ok(tuple(st["outs"][k]["value"] for k in ("hp", "mana", "cap")) == want, f"{where}: level 100 {voc} gives {st['outs']}")
+                st = calc_fill(page, dict(defaults, level="7", vocation="knight"))
+                c.ok(tuple(st["outs"][k]["value"] for k in ("hp", "mana", "cap")) == ("180", "85", "660"), f"{where}: level 7 knight gives {st['outs']}")
+                st = calc_fill(page, dict(defaults, level="20000"))
+                c.ok(st["outs"]["hp"]["value"] == "300065" and not st["errors"].get("level"), f"{where}: level 20,000 gives {st['outs']['hp']}")
+                for text in ("0", "20001", "7.5", "abc", ""):
+                    st = calc_fill(page, dict(defaults, level=text))
+                    c.ok(st["errors"].get("level") and all(not o["value"] for o in st["outs"].values()), f"{where}: level={text!r} must be refused with an inline error")
         c.ok(not page.console_errors, f"{code}: console errors {page.console_errors[:3]}")
         ctx.close()
     # Share link opened in German, copy, share, typing, reset (desktop: "How" open).

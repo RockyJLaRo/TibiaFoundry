@@ -103,6 +103,23 @@
         inquisition: Math.floor((5 * regular * 11) / 10),
         twistOfFate: twist
       };
+    },
+    // Maximum hit points, mana and capacity of a character with no equipment or Wheel of Destiny bonus, assuming the vocation
+    // was chosen at level 8. Below level 8 every character gains 5 hit points, 5 mana and 10 oz per level from 150 / 55 / 600;
+    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data").
+    // Capacity includes the +200 base of the 15.12 update. Monk mana follows from the Monk's +10 per level (not the Formulae page's 5(2L - 9)).
+    characterStats: function (i) {
+      var GAIN = {
+        none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20],
+        sorcerer: [5, 30, 10], druid: [5, 30, 10], monk: [10, 10, 25]
+      };
+      var L = i.level, g = GAIN[i.vocation];
+      var early = Math.min(L, 8) - 1, late = Math.max(L, 8) - 8;
+      return {
+        hp: 150 + 5 * early + g[0] * late,
+        mana: 55 + 5 * early + g[1] * late,
+        cap: 600 + 10 * early + g[2] * late
+      };
     }
   };
 

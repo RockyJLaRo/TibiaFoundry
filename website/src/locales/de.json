@@ -65,7 +65,9 @@
       "home.app.fact.version",
       "legal.admin.name",
       "calc.blessings.title",
-      "calc.blessings.twist"
+      "calc.blessings.twist",
+      "calc.stats.mana",
+      "calc.vocation.paladin"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -861,7 +863,7 @@
     },
     "calculators": {
       "title": "Tibia-Rechner",
-      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit, den Party-Share-Bereich, die Stamina-Regeneration und die Preise der Blessings. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
+      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit, den Party-Share-Bereich, die Stamina-Regeneration, die Preise der Blessings und die Charakterwerte. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
     },
     "calc-experience": {
       "title": "Tibia-Rechner für Erfahrung und Level",
@@ -874,6 +876,10 @@
     "calc-blessings": {
       "title": "Tibia-Blessing-Rechner",
       "description": "Was die 5 normalen Blessings, die 2 Enhanced Blessings, die Blessing of the Inquisition und Twist of Fate auf deinem Level kosten – mit Formel und Quellen."
+    },
+    "calc-stats": {
+      "title": "Tibia-Rechner für Charakterwerte",
+      "description": "Trefferpunkte, Mana und Tragkraft eines Tibia-Charakters auf jedem Level und in jeder Berufung, auch für den Mönch – mit Formel und Quellen."
     }
   },
   "credits": {
@@ -1218,7 +1224,8 @@
       "kind": {
         "official": "offiziell",
         "wiki": "Wiki",
-        "calculator": "Rechner"
+        "calculator": "Rechner",
+        "news": "Nachricht"
       }
     },
     "experience": {
@@ -1287,6 +1294,33 @@
       "rule": {
         "blessings": "Normale Blessing (jede der 5): 2.000 gp bis Level 30; 200 × (Level − 20) von Level 31 bis 119; 20.000 + 75 × (Level − 120) ab Level 120. Enhanced Blessing (jede der 2): 2.600 gp bis Level 30; 260 × (Level − 20) von Level 31 bis 119; 26.000 + 100 × (Level − 120) ab Level 120. Twist of Fate: 2.000 gp bis Level 30; 200 × (Level − 20) von Level 31 bis 269; 50.000 gp ab Level 270. Die Blessing of the Inquisition (nach der Quest The Inquisition, bei Henricus gekauft) ersetzt die 5 normalen Blessings und kostet 10 % mehr als diese zusammen, abgerundet. Unter Level 8 gelten die Preise der Level bis 30. Beispiel, Level 75: 5 normale Blessings 55.000 gp, Inquisition 60.500 gp, jede Enhanced Blessing 14.300 gp, Twist of Fate 11.000 gp."
       }
+    },
+    "stats": {
+      "title": "Charakterwerte",
+      "card": "Trefferpunkte, Mana und Tragkraft deiner Berufung auf jedem Level, auch für den Mönch.",
+      "lead": "Die maximalen Trefferpunkte, das maximale Mana und die Tragkraft eines Charakters auf deinem Level, für jede Berufung.",
+      "level": "Dein Level",
+      "vocation": "Berufung",
+      "hint": "Level 1 bis 20.000.",
+      "vocationHint": "Es wird angenommen, dass du die Berufung auf Level 8 gewählt hast. Unter Level 8 haben alle Charaktere die Werte ohne Berufung.",
+      "hp": "Trefferpunkte",
+      "mana": "Mana",
+      "cap": "Tragkraft (oz)",
+      "note": "Grundwerte ohne Ausrüstung, Wheel of Destiny oder andere Boni. Wer Rookgaard später als mit Level 8 verlässt, hat dauerhaft niedrigere Werte. Die Tragkraft enthält die +200 oz Basis von Update 15.12, die das Spiel erst anwendet, wenn der Charakter ein Level aufgestiegen ist.",
+      "error": {
+        "level": "Gib ein Level von 1 bis 20.000 ein."
+      },
+      "rule": {
+        "characterStats": "Ab Level 1 hat jeder Charakter 150 Trefferpunkte, 55 Mana und 600 oz Tragkraft und gewinnt bis Level 8 pro Level 5 Trefferpunkte, 5 Mana und 10 oz, also 185 / 90 / 670 auf Level 8. Jedes Level nach Level 8 bringt den Gewinn der Berufung (Trefferpunkte / Mana / Tragkraft): ohne Berufung 5 / 5 / 10, Ritter 15 / 5 / 25, Paladin 10 / 15 / 20, Zauberer und Druide 5 / 30 / 10, Mönch 10 / 10 / 25. Vorausgesetzt ist, dass die Berufung auf Level 8 gewählt wurde. Beispiel, Ritter auf Level 100: Trefferpunkte 185 + 15 × 92 = 1.565, Mana 90 + 5 × 92 = 550, Tragkraft 670 + 25 × 92 = 2.970."
+      }
+    },
+    "vocation": {
+      "none": "Keine Berufung (Rookgaard)",
+      "knight": "Ritter",
+      "paladin": "Paladin",
+      "sorcerer": "Zauberer",
+      "druid": "Druide",
+      "monk": "Mönch"
     }
   }
 }

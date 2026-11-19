@@ -757,6 +757,420 @@
           "from": "computed"
         }
       ]
+    },
+    {
+      "id": "characterStats",
+      "calc": "stats",
+      "rule": "calc.stats.rule.characterStats",
+      "sources": [
+        {
+          "url": "https://www.tibia.com/gameguides/?subtopic=manual&section=characters",
+          "kind": "official",
+          "read": "2026-11-19",
+          "note": "Official manual, section 5.1 Characters, table 'Vocation Specific Data': hit points / mana / capacity gained per level - Druid 5/30/10, Knight 15/5/25, Monk 10/10/25, Paladin 10/15/20, Sorcerer 5/30/10; 'characters up to level 8 get a smaller hit and mana point gain for each level advance'."
+        },
+        {
+          "url": "https://tibiaroute.com/news/A-New-Helping-Hand-II-8543-hBGo",
+          "kind": "news",
+          "read": "2026-11-19",
+          "note": "TibiaRoute's copy of CipSoft's news 'A New Helping Hand II' (15 Oct 2025, tibia.com news id 8543, author CipSoft; capture research/calc-tests/capacity-tibiaroute-news-8543.json), about the 15.12 Newhaven update: 'The base capacity for all characters, regardless of vocation, has been increased by 200, raising it to 600. This will only take effect for your character in the game after you have levelled up.' tibia.com itself answered our capture with a bot check, which we did not bypass, so the official page was not read directly."
+        },
+        {
+          "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "TibiaWiki's separate interactive calculator: hit points, mana and capacity of Druid, Knight, Paladin, Sorcerer, Monk and no vocation (Rookstayer) at levels 1, 8, 9, 100, 1000 and 2000. All 36 values equal our rule, including capacity with the +200 base."
+        },
+        {
+          "url": "https://guildstats.eu/character-level?lang=en",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "note": "GuildStats level calculator (capture research/calc-tests/stats-guildstats.json): hit points and mana for no vocation, sorcerer/druid, knight, paladin and monk at levels 1, 8, 9, 10, 100, 1000, 2000. All 35 values equal our hit points and mana. Its capacity is still the one from before the 15.12 update (exactly 200 oz lower at every level) and is not used. Monk mana 90 at level 8 and 1,010 at level 100 settles the Monk mana conflict."
+        },
+        {
+          "url": "https://tibia.fandom.com/wiki/Formulae",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Formulae page totals: matched for every vocation except two entries that are out of date or wrong - capacity is 200 oz lower (pre-15.12, it equals GuildStats' capture) and Monk mana is written 5(2L - 9), which would give 35 mana at level 8, less than the 55 every character has at level 1."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
+      "tests": [
+        {
+          "in": {
+            "level": 1,
+            "vocation": "none"
+          },
+          "out": {
+            "hp": 150,
+            "mana": 55,
+            "cap": 600
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 8,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 185,
+            "mana": 90,
+            "cap": 670
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "none"
+          },
+          "out": {
+            "hp": 190,
+            "mana": 95,
+            "cap": 680
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "none"
+          },
+          "out": {
+            "hp": 645,
+            "mana": 550,
+            "cap": 1590
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "none"
+          },
+          "out": {
+            "hp": 10145,
+            "mana": 10050,
+            "cap": 20590
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 200,
+            "mana": 95,
+            "cap": 695
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 1565,
+            "mana": 550,
+            "cap": 2970
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 30065,
+            "mana": 10050,
+            "cap": 50470
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "paladin"
+          },
+          "out": {
+            "hp": 195,
+            "mana": 105,
+            "cap": 690
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "paladin"
+          },
+          "out": {
+            "hp": 1105,
+            "mana": 1470,
+            "cap": 2510
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "paladin"
+          },
+          "out": {
+            "hp": 20105,
+            "mana": 29970,
+            "cap": 40510
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "sorcerer"
+          },
+          "out": {
+            "hp": 190,
+            "mana": 120,
+            "cap": 680
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "sorcerer"
+          },
+          "out": {
+            "hp": 645,
+            "mana": 2850,
+            "cap": 1590
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "sorcerer"
+          },
+          "out": {
+            "hp": 10145,
+            "mana": 59850,
+            "cap": 20590
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "druid"
+          },
+          "out": {
+            "hp": 190,
+            "mana": 120,
+            "cap": 680
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "druid"
+          },
+          "out": {
+            "hp": 645,
+            "mana": 2850,
+            "cap": 1590
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "druid"
+          },
+          "out": {
+            "hp": 10145,
+            "mana": 59850,
+            "cap": 20590
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 9,
+            "vocation": "monk"
+          },
+          "out": {
+            "hp": 195,
+            "mana": 100,
+            "cap": 695
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 100,
+            "vocation": "monk"
+          },
+          "out": {
+            "hp": 1105,
+            "mana": 1010,
+            "cap": 2970
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 2000,
+            "vocation": "monk"
+          },
+          "out": {
+            "hp": 20105,
+            "mana": 20010,
+            "cap": 50470
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "hp",
+            "mana",
+            "cap"
+          ]
+        },
+        {
+          "in": {
+            "level": 1000,
+            "vocation": "monk"
+          },
+          "out": {
+            "hp": 10105,
+            "mana": 10010,
+            "cap": 25470
+          },
+          "from": "calculator:guildstats",
+          "cites": [
+            "hp",
+            "mana"
+          ]
+        },
+        {
+          "in": {
+            "level": 7,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 180,
+            "mana": 85,
+            "cap": 660
+          },
+          "from": "computed"
+        },
+        {
+          "in": {
+            "level": 20000,
+            "vocation": "knight"
+          },
+          "out": {
+            "hp": 300065,
+            "mana": 100050,
+            "cap": 500470
+          },
+          "from": "computed"
+        }
+      ]
     }
   ]
 }

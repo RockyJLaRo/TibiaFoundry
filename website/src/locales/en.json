@@ -797,7 +797,7 @@
     },
     "calculators": {
       "title": "Tibia calculators",
-      "description": "Free Tibia calculators for experience and level, hunting time, the party share range, stamina regeneration and blessing prices. Each result shows its formula, its sources and the date it was checked."
+      "description": "Free Tibia calculators for experience and level, hunting time, the party share range, stamina regeneration, blessing prices and character stats. Each result shows its formula, its sources and the date it was checked."
     },
     "calc-experience": {
       "title": "Tibia experience and level calculator",
@@ -810,6 +810,10 @@
     "calc-blessings": {
       "title": "Tibia blessings calculator",
       "description": "What the 5 regular blessings, the 2 enhanced blessings, Blessing of the Inquisition and Twist of Fate cost at your Tibia level – with formula and sources."
+    },
+    "calc-stats": {
+      "title": "Tibia character stats calculator",
+      "description": "Hit points, mana and capacity of a Tibia character at any level and vocation, including the Monk – with formula and sources."
     }
   },
   "credits": {
@@ -1154,7 +1158,8 @@
       "kind": {
         "official": "official",
         "wiki": "wiki",
-        "calculator": "calculator"
+        "calculator": "calculator",
+        "news": "news"
       }
     },
     "experience": {
@@ -1223,6 +1228,33 @@
       "rule": {
         "blessings": "Regular blessing (each of 5): 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 119; 20,000 + 75 × (level − 120) from level 120. Enhanced blessing (each of 2): 2,600 gp up to level 30; 260 × (level − 20) from level 31 to 119; 26,000 + 100 × (level − 120) from level 120. Twist of Fate: 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 269; 50,000 gp from level 270. Blessing of the Inquisition (after the Inquisition quest, bought from Henricus) replaces the 5 regular blessings and costs 10% more than they do together, rounded down. Below level 8 the prices of levels up to 30 apply. Example, level 75: 5 regular blessings 55,000 gp, Inquisition 60,500 gp, each enhanced blessing 14,300 gp, Twist of Fate 11,000 gp."
       }
+    },
+    "stats": {
+      "title": "Character stats",
+      "card": "Hit points, mana and capacity of your vocation at any level, including the Monk.",
+      "lead": "The maximum hit points, mana and capacity a character has at your level, for every vocation.",
+      "level": "Your level",
+      "vocation": "Vocation",
+      "hint": "Levels 1 to 20,000.",
+      "vocationHint": "Assumes you chose your vocation at level 8. Below level 8 every character has the no-vocation values.",
+      "hp": "Hit points",
+      "mana": "Mana",
+      "cap": "Capacity (oz)",
+      "note": "Base values without equipment, Wheel of Destiny or other bonuses. Leaving Rookgaard later than level 8 gives permanently lower stats. Capacity includes the +200 oz base of update 15.12, which the game only applies once a character has levelled up.",
+      "error": {
+        "level": "Enter a level from 1 to 20,000."
+      },
+      "rule": {
+        "characterStats": "From level 1 every character has 150 hit points, 55 mana and 600 oz of capacity and gains 5 hit points, 5 mana and 10 oz per level up to level 8, so 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (hit points / mana / capacity): no vocation 5 / 5 / 10, knight 15 / 5 / 25, paladin 10 / 15 / 20, sorcerer and druid 5 / 30 / 10, monk 10 / 10 / 25. This assumes the vocation was chosen at level 8. Example, knight at level 100: hit points 185 + 15 × 92 = 1,565, mana 90 + 5 × 92 = 550, capacity 670 + 25 × 92 = 2,970."
+      }
+    },
+    "vocation": {
+      "none": "No vocation (Rookgaard)",
+      "knight": "Knight",
+      "paladin": "Paladin",
+      "sorcerer": "Sorcerer",
+      "druid": "Druid",
+      "monk": "Monk"
     }
   }
 }

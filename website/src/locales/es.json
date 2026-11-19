@@ -56,7 +56,12 @@
       "calc.how.kind.wiki",
       "calc.unit.hoursMinutes",
       "calc.blessings.title",
-      "calc.blessings.twist"
+      "calc.blessings.twist",
+      "calc.vocation.knight",
+      "calc.vocation.paladin",
+      "calc.vocation.sorcerer",
+      "calc.vocation.druid",
+      "calc.vocation.monk"
     ],
     "programNames": "Names of the program's pages, tabs and tools are written as {app:Key}: the build inserts the program's own translation (src/TibiaFoundry.Core/Localization/Resources/Strings.<code>.xaml), so the site uses the same words as the screenshots. Where grammar needs another form, a translation may write the name itself."
   },
@@ -852,7 +857,7 @@
     },
     "calculators": {
       "title": "Calculadoras de Tibia",
-      "description": "Calculadoras gratuitas de Tibia para experiencia y nivel, tiempo de caza, rango de share en party, regeneración de stamina y precio de las blessings. Cada resultado muestra su fórmula, sus fuentes y la fecha en que se comprobó."
+      "description": "Calculadoras gratuitas de Tibia para experiencia y nivel, tiempo de caza, rango de share en party, regeneración de stamina, precio de las blessings y stats del personaje. Cada resultado muestra su fórmula, sus fuentes y la fecha en que se comprobó."
     },
     "calc-experience": {
       "title": "Calculadora de experiencia y nivel de Tibia",
@@ -865,6 +870,10 @@
     "calc-blessings": {
       "title": "Calculadora de blessings de Tibia",
       "description": "Cuánto cuestan las 5 blessings normales, las 2 enhanced, la Blessing of the Inquisition y la Twist of Fate a tu nivel, con fórmula y fuentes."
+    },
+    "calc-stats": {
+      "title": "Calculadora de stats del personaje de Tibia",
+      "description": "Puntos de vida, maná y capacidad de un personaje de Tibia en cualquier nivel y vocación, incluido el Monk – con fórmula y fuentes."
     }
   },
   "credits": {
@@ -1209,7 +1218,8 @@
       "kind": {
         "official": "oficial",
         "wiki": "wiki",
-        "calculator": "calculadora"
+        "calculator": "calculadora",
+        "news": "noticia"
       }
     },
     "experience": {
@@ -1278,6 +1288,33 @@
       "rule": {
         "blessings": "Blessing normal (cada una de las 5): 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 119; 20 000 + 75 × (nivel − 120) desde el nivel 120. Blessing enhanced (cada una de las 2): 2600 gp hasta el nivel 30; 260 × (nivel − 20) del nivel 31 al 119; 26 000 + 100 × (nivel − 120) desde el nivel 120. Twist of Fate: 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 269; 50 000 gp desde el nivel 270. La Blessing of the Inquisition (tras la quest The Inquisition, comprada a Henricus) sustituye a las 5 blessings normales y cuesta un 10 % más que todas juntas, redondeado hacia abajo. Por debajo del nivel 8 valen los precios de los niveles hasta el 30. Ejemplo, nivel 75: 5 blessings normales 55 000 gp, Inquisition 60 500 gp, cada blessing enhanced 14 300 gp, Twist of Fate 11 000 gp."
       }
+    },
+    "stats": {
+      "title": "Stats del personaje",
+      "card": "Puntos de vida, maná y capacidad de tu vocación en cualquier nivel, incluido el Monk.",
+      "lead": "Los puntos de vida, el maná y la capacidad máximos de un personaje a tu nivel, para cada vocación.",
+      "level": "Tu nivel",
+      "vocation": "Vocación",
+      "hint": "Niveles del 1 al 20 000.",
+      "vocationHint": "Supone que elegiste la vocación en el nivel 8. Por debajo del nivel 8 todos los personajes tienen los valores sin vocación.",
+      "hp": "Puntos de vida",
+      "mana": "Maná",
+      "cap": "Capacidad (oz)",
+      "note": "Valores base sin equipo, Wheel of Destiny ni otros bonos. Salir de Rookgaard después del nivel 8 da stats más bajos de forma permanente. La capacidad incluye la base de +200 oz de la actualización 15.12, que el juego solo aplica cuando el personaje sube de nivel.",
+      "error": {
+        "level": "Escribe un nivel del 1 al 20 000."
+      },
+      "rule": {
+        "characterStats": "Desde el nivel 1 todo personaje tiene 150 puntos de vida, 55 de maná y 600 oz de capacidad, y gana 5 puntos de vida, 5 de maná y 10 oz por nivel hasta el nivel 8, es decir, 185 / 90 / 670 en el nivel 8. Cada nivel después del 8 suma la ganancia de la vocación (vida / maná / capacidad): sin vocación 5 / 5 / 10, Knight 15 / 5 / 25, Paladin 10 / 15 / 20, Sorcerer y Druid 5 / 30 / 10, Monk 10 / 10 / 25. Se supone que la vocación se eligió en el nivel 8. Ejemplo, Knight en el nivel 100: vida 185 + 15 × 92 = 1565, maná 90 + 5 × 92 = 550, capacidad 670 + 25 × 92 = 2970."
+      }
+    },
+    "vocation": {
+      "none": "Sin vocación (Rookgaard)",
+      "knight": "Knight",
+      "paladin": "Paladin",
+      "sorcerer": "Sorcerer",
+      "druid": "Druid",
+      "monk": "Monk"
     }
   }
 }

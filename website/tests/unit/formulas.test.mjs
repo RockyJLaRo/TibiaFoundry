@@ -129,3 +129,34 @@ test("blessings: below level 8 the prices of the level <= 30 bracket apply; the 
   assert.equal(FORMULAS.blessings({ level: 271 }).inquisition, 172287); // 156,625 x 1.1 = 172,287.5
   for (const level of [1, 77, 20000]) for (const v of Object.values(FORMULAS.blessings({ level }))) assert.ok(Number.isSafeInteger(v));
 });
+
+test("characterStats: below level 8 every character is the same; level 8 is 185 / 90 / 670 for every vocation", () => {
+  for (const vocation of ["none", "knight", "paladin", "sorcerer", "druid", "monk"]) {
+    assert.deepEqual(FORMULAS.characterStats({ level: 1, vocation }), { hp: 150, mana: 55, cap: 600 }, vocation);
+    assert.deepEqual(FORMULAS.characterStats({ level: 7, vocation }), { hp: 180, mana: 85, cap: 660 }, vocation);
+    assert.deepEqual(FORMULAS.characterStats({ level: 8, vocation }), { hp: 185, mana: 90, cap: 670 }, vocation);
+  }
+});
+
+test("characterStats: per-level gains after level 8 (official manual), checked at level 9 and 10", () => {
+  const gains = { none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20], sorcerer: [5, 30, 10], druid: [5, 30, 10], monk: [10, 10, 25] };
+  for (const [vocation, [hp, mana, cap]] of Object.entries(gains)) {
+    assert.deepEqual(FORMULAS.characterStats({ level: 9, vocation }), { hp: 185 + hp, mana: 90 + mana, cap: 670 + cap }, vocation);
+    assert.deepEqual(FORMULAS.characterStats({ level: 10, vocation }), { hp: 185 + 2 * hp, mana: 90 + 2 * mana, cap: 670 + 2 * cap }, vocation);
+  }
+});
+
+test("characterStats: Monk mana is 90 + 10 per level above 8 (not the Formulae page's 5(2L - 9)); capacity includes the +200 base", () => {
+  assert.equal(FORMULAS.characterStats({ level: 8, vocation: "monk" }).mana, 90);
+  assert.equal(FORMULAS.characterStats({ level: 100, vocation: "monk" }).mana, 1010);
+  assert.equal(FORMULAS.characterStats({ level: 100, vocation: "knight" }).cap, 2970);
+  assert.equal(FORMULAS.characterStats({ level: 1, vocation: "none" }).cap, 600);
+});
+
+test("characterStats: large levels stay exact integers; sorcerer and druid are the same", () => {
+  assert.deepEqual(FORMULAS.characterStats({ level: 20000, vocation: "knight" }), { hp: 300065, mana: 100050, cap: 500470 });
+  for (const level of [1, 8, 9, 2000, 20000]) {
+    assert.deepEqual(FORMULAS.characterStats({ level, vocation: "druid" }), FORMULAS.characterStats({ level, vocation: "sorcerer" }));
+    for (const v of Object.values(FORMULAS.characterStats({ level, vocation: "monk" }))) assert.ok(Number.isSafeInteger(v));
+  }
+});
