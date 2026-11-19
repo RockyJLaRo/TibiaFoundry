@@ -25,7 +25,6 @@
 .today-value { font-variant-numeric: tabular-nums; }
 .today-sub { color: var(--text-2); font-size: .925rem; }
 .today-note { margin: 0 0 8px; color: var(--text-2); font-size: .875rem; }
-.today-how { box-shadow: none; }
 .today-how .how-body { padding-inline: 12px; }
 .calc-today { margin-top: 20px; max-width: 34rem; }
 .today-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
