@@ -850,11 +850,15 @@
     },
     "calculators": {
       "title": "Kalkulatory Tibii",
-      "description": "Darmowe kalkulatory do Tibii: doświadczenie i poziom, czas expienia i zakres dzielenia doświadczenia w drużynie. Każdy wynik pokazuje wzór, źródła i datę sprawdzenia."
+      "description": "Darmowe kalkulatory do Tibii: doświadczenie i poziom, czas expienia, zakres dzielenia doświadczenia w drużynie i regeneracja staminy. Każdy wynik pokazuje wzór, źródła i datę sprawdzenia."
     },
     "calc-experience": {
       "title": "Kalkulator doświadczenia i poziomu w Tibii",
       "description": "Ile doświadczenia brakuje od jednego poziomu w Tibii do drugiego, czas i dni expienia przy Twoim doświadczeniu na godzinę oraz zakres dzielenia doświadczenia dla obu poziomów – ze wzorem i źródłami."
+    },
+    "calc-stamina": {
+      "title": "Kalkulator staminy w Tibii",
+      "description": "Jak długo postać musi być wylogowana, aby odzyskać staminę z obecnej wartości do docelowej, z 10-minutowym opóźnieniem po wylogowaniu i wolniejszymi godzinami bonusowymi – ze wzorem i źródłami."
     }
   },
   "credits": {
@@ -1228,6 +1232,25 @@
         "levelExp": "Łączne doświadczenie dla poziomu L = 50/3 × (L³ − 6L² + 17L − 12). Nowa postać na poziomie 1 ma 0 doświadczenia; poziom 2 wymaga 100, a poziom 8 – 4200.",
         "levelPlan": "Potrzebne doświadczenie = łączne doświadczenie docelowego poziomu − łączne doświadczenie obecnego poziomu. Czas expienia = potrzebne doświadczenie ÷ doświadczenie na godzinę, w pełnych minutach (zaokrąglone w dół). Dni = czas expienia ÷ godziny dziennie, zaokrąglone w górę; przewidywana data liczy te dni od dziś.",
         "shareRange": "Drużyna dzieli doświadczenie tylko wtedy, gdy poziomy są wystarczająco blisko: dla poziomu L zakres wynosi od ⌊2L/3⌋ do ⌊3L/2⌋ + 1 (⌊ ⌋ = zaokrąglenie w dół), czyli wartości z tabeli Party Experience Sharing na TibiaWiki. Przykład: poziom 100 dzieli doświadczenie z poziomami od 66 do 151."
+      }
+    },
+    "stamina": {
+      "title": "Regeneracja staminy",
+      "card": "Czas offline potrzebny do odzyskania staminy do 42:00 i godzina osiągnięcia celu.",
+      "lead": "Jak długo postać musi być wylogowana, aby przejść od obecnej staminy do docelowej, z wolniejszą regeneracją godzin bonusowych.",
+      "current": "Obecna stamina",
+      "target": "Docelowa stamina",
+      "hint": "Wpisz czas jako godziny:minuty, np. 39:00. Pełna stamina to 42:00.",
+      "minutes": "Potrzebny czas offline",
+      "regen": "W tym regeneracja",
+      "finish": "Cel osiągnięty",
+      "note": "Pierwsze 10 minut po wylogowaniu nie daje staminy; potrzebny czas offline je zawiera.",
+      "error": {
+        "range": "Wpisz staminę od 0:00 do 42:00.",
+        "targetAboveCurrent": "Docelowa stamina musi być wyższa niż obecna."
+      },
+      "rule": {
+        "staminaRest": "Po wylogowaniu odzyskujesz 1 minutę staminy za każde 3 minuty offline poniżej 39:00 oraz 1 minutę za każde 6 minut offline od 39:00 do maksimum 42:00. Czas regeneracji = 3 × (minuty staminy poniżej 39:00) + 6 × (minuty staminy od 39:00 do 42:00). W pierwszych 10 minutach po wylogowaniu nic się nie regeneruje, więc potrzebny czas offline = czas regeneracji + 10 minut. Przykład: od 39:00 do 42:00 to 18 godzin regeneracji, 18 godz. 10 min offline."
       }
     }
   }

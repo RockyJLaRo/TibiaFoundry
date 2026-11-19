@@ -98,3 +98,16 @@ test("registry: ids are unique", () => {
   const ids = registry.formulas.map((f) => f.id);
   assert.deepEqual(ids.filter((id, i) => ids.indexOf(id) !== i), []);
 });
+
+test("staminaRest: 3 offline minutes per stamina minute below 39:00, 6 from 39:00 to 42:00, plus the 10-minute logout delay", () => {
+  assert.deepEqual(FORMULAS.staminaRest({ current: 2340, target: 2520 }), { regen: 1080, minutes: 1090 }); // 39:00 -> 42:00
+  assert.deepEqual(FORMULAS.staminaRest({ current: 0, target: 2520 }), { regen: 8100, minutes: 8110 });
+  assert.deepEqual(FORMULAS.staminaRest({ current: 2280, target: 2400 }), { regen: 540, minutes: 550 }); // crosses 39:00
+  assert.deepEqual(FORMULAS.staminaRest({ current: 2519, target: 2520 }), { regen: 6, minutes: 16 });
+  assert.deepEqual(FORMULAS.staminaRest({ current: 2339, target: 2340 }), { regen: 3, minutes: 13 });
+});
+
+test("staminaRest: a target at or below the current stamina needs no rest (no delay either)", () => {
+  assert.deepEqual(FORMULAS.staminaRest({ current: 1000, target: 1000 }), { regen: 0, minutes: 0 });
+  assert.deepEqual(FORMULAS.staminaRest({ current: 2520, target: 100 }), { regen: 0, minutes: 0 });
+});

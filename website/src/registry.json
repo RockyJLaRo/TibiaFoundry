@@ -15,6 +15,7 @@
     {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia", "icon": "search", "placement": ["header", "menu"]},
     {"id": "calculators", "path": "calculators/", "template": "calculators.html", "nav": "nav.calculators", "icon": "calculator", "placement": ["header", "menu"]},
     {"id": "calc-experience", "path": "calculators/experience/", "template": "calc-experience.html", "nav": "calc.experience.title", "icon": "trending-up", "placement": [], "calc": ["levelExp", "levelPlan", "shareRange"]},
+    {"id": "calc-stamina", "path": "calculators/stamina/", "template": "calc-stamina.html", "nav": "calc.stamina.title", "icon": "battery-medium", "placement": [], "calc": ["staminaRest"]},
     {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features", "icon": "monitor", "placement": ["header", "menu"]},
     {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads", "icon": "download", "placement": ["menu"]},
     {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides", "icon": "book-open", "placement": ["header", "menu"]},

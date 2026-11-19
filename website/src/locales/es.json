@@ -850,11 +850,15 @@
     },
     "calculators": {
       "title": "Calculadoras de Tibia",
-      "description": "Calculadoras gratuitas de Tibia para experiencia y nivel, tiempo de caza y rango de share en party. Cada resultado muestra su fórmula, sus fuentes y la fecha en que se comprobó."
+      "description": "Calculadoras gratuitas de Tibia para experiencia y nivel, tiempo de caza, rango de share en party y regeneración de stamina. Cada resultado muestra su fórmula, sus fuentes y la fecha en que se comprobó."
     },
     "calc-experience": {
       "title": "Calculadora de experiencia y nivel de Tibia",
       "description": "Cuánta experiencia necesitas de un nivel de Tibia a otro, el tiempo y los días de caza con tu experiencia por hora y el rango de share en party de ambos niveles, con fórmula y fuentes."
+    },
+    "calc-stamina": {
+      "title": "Calculadora de stamina de Tibia",
+      "description": "Cuánto tiempo debe estar desconectado tu personaje para recuperar stamina desde un valor actual hasta un valor objetivo, con el retraso de 10 minutos tras salir y las horas de bonificación más lentas – con fórmula y fuentes."
     }
   },
   "credits": {
@@ -1228,6 +1232,25 @@
         "levelExp": "Experiencia total del nivel L = 50/3 × (L³ − 6L² + 17L − 12). Un personaje nuevo de nivel 1 tiene 0 de experiencia; el nivel 2 requiere 100 y el nivel 8, 4200.",
         "levelPlan": "Experiencia necesaria = experiencia total del nivel objetivo − experiencia total del nivel actual. Tiempo de caza = experiencia necesaria ÷ experiencia por hora, en minutos enteros (redondeado hacia abajo). Días = tiempo de caza ÷ horas por día, redondeado hacia arriba; la fecha estimada cuenta esos días desde hoy.",
         "shareRange": "Una party solo comparte experiencia cuando los niveles están lo bastante cerca: para el nivel L, el rango va de ⌊2L/3⌋ a ⌊3L/2⌋ + 1 (⌊ ⌋ = redondeado hacia abajo), los valores de la tabla Party Experience Sharing de TibiaWiki. Ejemplo: el nivel 100 comparte experiencia con los niveles 66 a 151."
+      }
+    },
+    "stamina": {
+      "title": "Regeneración de stamina",
+      "card": "Tiempo desconectado para recuperar stamina hasta 42:00 y la hora en que llegas al objetivo.",
+      "lead": "Cuánto tiempo debe estar desconectado tu personaje para pasar de tu stamina actual a tu stamina objetivo, con la regeneración más lenta de las horas de bonificación.",
+      "current": "Stamina actual",
+      "target": "Stamina objetivo",
+      "hint": "Escribe el tiempo como horas:minutos, como 39:00. La stamina completa es 42:00.",
+      "minutes": "Tiempo desconectado necesario",
+      "regen": "De ello, regeneración",
+      "finish": "Objetivo alcanzado el",
+      "note": "Los primeros 10 minutos tras desconectarte no dan stamina; el tiempo desconectado necesario ya los incluye.",
+      "error": {
+        "range": "Escribe una stamina de 0:00 a 42:00.",
+        "targetAboveCurrent": "La stamina objetivo debe ser mayor que la stamina actual."
+      },
+      "rule": {
+        "staminaRest": "Desconectado, recuperas 1 minuto de stamina por cada 3 minutos sin conexión mientras estés por debajo de 39:00, y 1 minuto por cada 6 minutos sin conexión de 39:00 hasta el máximo de 42:00. Tiempo de regeneración = 3 × (minutos de stamina por debajo de 39:00) + 6 × (minutos de stamina de 39:00 a 42:00). No se recupera nada en los primeros 10 minutos tras desconectarte, así que el tiempo desconectado necesario = tiempo de regeneración + 10 minutos. Ejemplo: de 39:00 a 42:00 son 18 horas de regeneración, 18 h 10 min desconectado."
       }
     }
   }

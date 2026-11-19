@@ -859,11 +859,15 @@
     },
     "calculators": {
       "title": "Tibia-Rechner",
-      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit und den Party-Share-Bereich. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
+      "description": "Kostenlose Tibia-Rechner für Erfahrung und Level, Jagdzeit, den Party-Share-Bereich und die Stamina-Regeneration. Jedes Ergebnis zeigt seine Formel, seine Quellen und das Datum der letzten Prüfung."
     },
     "calc-experience": {
       "title": "Tibia-Rechner für Erfahrung und Level",
       "description": "Wie viel Erfahrung du von einem Tibia-Level zum anderen brauchst, Jagdzeit und Tage bei deiner Erfahrung pro Stunde und der Party-Share-Bereich beider Level – mit Formel und Quellen."
+    },
+    "calc-stamina": {
+      "title": "Tibia-Stamina-Rechner",
+      "description": "Wie lange dein Charakter ausgeloggt sein muss, um Stamina von einem aktuellen auf einen Zielwert zu regenerieren, mit der 10-Minuten-Verzögerung nach dem Logout und den langsameren Bonusstunden – mit Formel und Quellen."
     }
   },
   "credits": {
@@ -1237,6 +1241,25 @@
         "levelExp": "Gesamterfahrung für Level L = 50/3 × (L³ − 6L² + 17L − 12). Ein neuer Charakter auf Level 1 hat 0 Erfahrung; Level 2 braucht 100 und Level 8 braucht 4.200.",
         "levelPlan": "Benötigte Erfahrung = Gesamterfahrung des Ziel-Levels − Gesamterfahrung des aktuellen Levels. Jagdzeit = benötigte Erfahrung ÷ Erfahrung pro Stunde, in ganzen Minuten (abgerundet). Tage = Jagdzeit ÷ Stunden pro Tag, aufgerundet; das voraussichtliche Datum zählt diese Tage ab heute.",
         "shareRange": "Eine Party teilt Erfahrung nur, wenn die Level nah genug beieinander liegen: Für Level L reicht der Share-Bereich von ⌊2L/3⌋ bis ⌊3L/2⌋ + 1 (⌊ ⌋ = abgerundet), die Werte der Tabelle Party Experience Sharing im TibiaWiki. Beispiel: Level 100 teilt Erfahrung mit Level 66 bis 151."
+      }
+    },
+    "stamina": {
+      "title": "Stamina-Regeneration",
+      "card": "Offline-Zeit bis zur vollen Stamina von 42:00 und der Zeitpunkt, zu dem du dein Ziel erreichst.",
+      "lead": "Wie lange dein Charakter ausgeloggt sein muss, um von der aktuellen auf die Ziel-Stamina zu kommen, mit der langsameren Regeneration der Bonusstunden.",
+      "current": "Aktuelle Stamina",
+      "target": "Ziel-Stamina",
+      "hint": "Gib die Zeit als Stunden:Minuten ein, z. B. 39:00. Volle Stamina sind 42:00.",
+      "minutes": "Nötige Offline-Zeit",
+      "regen": "Davon Regeneration",
+      "finish": "Ziel erreicht am",
+      "note": "Die ersten 10 Minuten nach dem Logout bringen keine Stamina; die nötige Offline-Zeit enthält sie.",
+      "error": {
+        "range": "Gib eine Stamina von 0:00 bis 42:00 ein.",
+        "targetAboveCurrent": "Die Ziel-Stamina muss höher sein als die aktuelle Stamina."
+      },
+      "rule": {
+        "staminaRest": "Ausgeloggt erhältst du 1 Minute Stamina pro 3 Minuten Offline-Zeit, solange du unter 39:00 bist, und 1 Minute pro 6 Minuten Offline-Zeit von 39:00 bis zum Maximum von 42:00. Regenerationszeit = 3 × (Stamina-Minuten unter 39:00) + 6 × (Stamina-Minuten von 39:00 bis 42:00). In den ersten 10 Minuten nach dem Logout wird nichts regeneriert, also nötige Offline-Zeit = Regenerationszeit + 10 Minuten. Beispiel: von 39:00 bis 42:00 sind 18 Stunden Regeneration, 18 Std. 10 Min. offline."
       }
     }
   }

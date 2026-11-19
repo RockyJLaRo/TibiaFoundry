@@ -11,6 +11,7 @@
  *            those fields; its outputs go to <output data-out="[prefix.]key" data-format="number|duration">, which
  *            receive the text in the page language and data-value="<raw value>". All outputs are in one aria-live region.
  *   extras   <output data-finish="<out>">: today + that many days, as a date ("–" when no calendar date is that far);
+ *            <output data-finish-at="<out>">: now + that many minutes, as a date and local clock time (same "–" rule);
  *            [data-row] rows make the copied summary; <p data-calc-error> in the results region shows a result that
  *            cannot be shown exactly (beyond Number.MAX_SAFE_INTEGER, not a finite number, or a formula that failed).
  *   errors   every [data-error] line gets data-error-kind="parse|range|gt-field" (what refused the field).
@@ -27,6 +28,7 @@
   if (!F || !TF) return;
   var lang = I18N.lang || "en", intl = I18N.intl || "en-US";
   var dateFormat = window.Intl ? new Intl.DateTimeFormat(intl, { day: "numeric", month: "long", year: "numeric" }) : null;
+  var dateTimeFormat = window.Intl ? new Intl.DateTimeFormat(intl, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) : null;
   var PLAIN = /^\d+(?:\.\d+)?$/;
 
   function num(value) { return F.formatNumber(value, lang); }
@@ -109,6 +111,15 @@
       catch (e) { return null; }
     }
 
+    function finishAt(minutes) {
+      if (!dateTimeFormat || !exact(minutes)) return null;
+      var d = new Date(Date.now() + minutes * 60000);
+      if (isNaN(d.getTime())) return null;
+      var two = function (n) { return ("0" + n).slice(-2); };
+      try { return { iso: d.getFullYear() + "-" + two(d.getMonth() + 1) + "-" + two(d.getDate()) + "T" + two(d.getHours()) + ":" + two(d.getMinutes()), text: dateTimeFormat.format(d) }; }
+      catch (e) { return null; }
+    }
+
     function compute() {
       state = {};
       fields.forEach(function (f) { state[f.name] = read(f); });
@@ -152,6 +163,10 @@
       each(form.querySelectorAll("[data-finish]"), function (o) {
         var date = finishDate(results[o.getAttribute("data-finish")]);
         if (date) setOut(o, date.iso, date.text); else setOut(o, null);
+      });
+      each(form.querySelectorAll("[data-finish-at]"), function (o) {
+        var at = finishAt(results[o.getAttribute("data-finish-at")]);
+        if (at) setOut(o, at.iso, at.text); else setOut(o, null);
       });
       if (calcError) calcError.textContent = problem ? TF.t(problem) : "";
       if (copyBtn) {

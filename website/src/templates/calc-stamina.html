@@ -1,0 +1,53 @@
+<div class="wrap page-head">
+  <nav class="crumbs" aria-label="{{a:nav.breadcrumb}}"><ol><li><a href="{{LINK:home}}">{{t:nav.home}}</a></li><li><a href="{{LINK:calculators}}">{{t:nav.calculators}}</a></li><li aria-current="page">{{t:calc.stamina.title}}</li></ol></nav>
+  <div class="calc-head"><span class="icon-tile" aria-hidden="true"><svg class="ic"><use href="#i-battery-medium"/></svg></span><h1>{{t:calc.stamina.title}}</h1></div>
+  <p class="lead">{{t:calc.stamina.lead}}</p>
+</div>
+<div class="wrap calc-page">
+  <!-- Same contract as calc-experience.html (see calc.js). Stamina times are durations (data-kind="duration", h:mm); the
+       result's clock time is data-finish-at="<out>": now + that many minutes. -->
+  <form class="calc" data-calc="calc-stamina" novalidate autocomplete="off">
+    <div class="calc-inputs">
+      <h2 class="calc-panel-title">{{t:calc.inputs}}</h2>
+      <div class="field">
+        <label class="field-label" for="calc-current">{{t:calc.stamina.current}}</label>
+        <input class="input" id="calc-current" name="current" value="39:00" data-kind="duration" inputmode="text" enterkeyhint="next" spellcheck="false" required
+               data-min="0" data-max="2520" data-range-error="calc.stamina.error.range" aria-describedby="calc-current-hint calc-current-echo calc-current-error">
+        <p class="field-hint" id="calc-current-hint">{{t:calc.stamina.hint}}</p>
+        <p class="echo" data-echo="current" id="calc-current-echo"></p>
+        <p class="field-error" data-error="current" id="calc-current-error"></p>
+      </div>
+      <div class="field">
+        <label class="field-label" for="calc-target">{{t:calc.stamina.target}}</label>
+        <input class="input" id="calc-target" name="target" value="42:00" data-kind="duration" inputmode="text" enterkeyhint="done" spellcheck="false" required
+               data-min="0" data-max="2520" data-range-error="calc.stamina.error.range" data-gt-field="current" data-gt-field-error="calc.stamina.error.targetAboveCurrent"
+               aria-describedby="calc-target-echo calc-target-error">
+        <p class="echo" data-echo="target" id="calc-target-echo"></p>
+        <p class="field-error" data-error="target" id="calc-target-error"></p>
+      </div>
+    </div>
+    <div class="calc-side">
+      <div class="calc-results framed" aria-live="polite">
+        <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <p class="field-error calc-error" data-calc-error></p>
+        <div data-formula="staminaRest" data-args="current,target">
+          <div class="calc-main" data-row><span class="calc-label">{{t:calc.stamina.minutes}}</span><output data-out="minutes" data-format="duration"></output></div>
+          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stamina.regen}}</span><output data-out="regen" data-format="duration"></output></div>
+          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stamina.finish}}</span><output data-finish-at="minutes"></output></div>
+        </div>
+        <p class="field-hint calc-note">{{t:calc.stamina.note}}</p>
+      </div>
+      <div class="calc-actions">
+        <button type="button" class="btn btn-primary" data-copy="" disabled><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">{{t:calc.copy}}</span></button>
+        <button type="button" class="btn" data-share><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span class="copy-label">{{t:calc.share}}</span></button>
+        <button type="button" class="btn btn-quiet" data-reset><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>{{t:calc.reset}}</button>
+      </div>
+    </div>
+  </form>
+  <details class="how" data-how-block>
+    <summary><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>{{t:calc.how.title}}</summary>
+    <div class="how-body">
+    {{CALC_HOW:staminaRest}}
+    </div>
+  </details>
+</div>

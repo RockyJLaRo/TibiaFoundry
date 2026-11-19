@@ -76,6 +76,17 @@
     // Party share range (TibiaWiki "Party Experience Sharing" table): min = floor(2L/3), max = floor(3L/2) + 1.
     shareRange: function (i) {
       return { min: Math.floor((2 * i.level) / 3), max: Math.floor((3 * i.level) / 2) + 1 };
+    },
+    // Offline time to regain stamina (all values in minutes). Logged out: 1 stamina minute per 3 offline minutes below 39:00 (2340),
+    // per 6 from 39:00 to 42:00 (2520, TibiaWiki "Stamina"). regen = regeneration time; minutes = regen + the 10 minutes after
+    // logout in which nothing is regained. A target at or below the current stamina needs neither.
+    staminaRest: function (i) {
+      var BONUS = 2340, FULL = 2520;
+      if (i.target <= i.current) return { regen: 0, minutes: 0 };
+      var normal = Math.max(0, Math.min(i.target, BONUS) - Math.min(i.current, BONUS));
+      var bonus = Math.max(0, Math.min(i.target, FULL) - Math.max(i.current, BONUS));
+      var regen = normal * 3 + bonus * 6;
+      return { regen: regen, minutes: regen + 10 };
     }
   };
 

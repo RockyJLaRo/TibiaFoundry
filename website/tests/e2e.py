@@ -8,6 +8,7 @@ The site is served like GitHub Pages (tests/sitekit.py). TibiaData requests are 
 Prints PASS/FAIL per check and exits 1 when anything fails. Everything comes from src/registry.json and
 src/providers.json: languages, pages, data routes, download names, creator profiles and data providers.
 """
+import datetime
 import json
 import os
 import re
@@ -820,6 +821,27 @@ def calculators(c, browser, base):
                 if code == "en":
                     st = calc_fill(page, dict(defaults, exph="1.500.000"))
                     c.ok(st["errors"].get("exph") and not st["outs"]["exp"]["value"], "en: 1.500.000 must be an error on the English page, not a guess")
+            if p["id"] == "calc-stamina":
+                # Defaults 39:00 -> 42:00: 18 h regeneration, 18 h 10 min offline (wiki), a clock time and the 10-minute note.
+                st = calc_fill(page, dict(defaults))
+                c.ok(st["outs"]["minutes"]["value"] == "1090" and st["outs"]["regen"]["value"] == "1080", f"{where}: 39:00 -> 42:00 gives {st['outs']}")
+                want = page.evaluate("(m) => TF.t('calc.unit.hoursMinutes', {h: String(Math.floor(m / 60)), m: String(m % 60)})", 1090)
+                c.ok(st["outs"]["minutes"]["text"] == want, f"{where}: offline time shown as {st['outs']['minutes']['text']!r}, expected {want!r}")
+                at = page.evaluate("(() => { const o = document.querySelector('[data-finish-at]'); return [o.getAttribute('data-value'), o.textContent.trim()]; })()")
+                now = datetime.datetime.now()
+                c.ok(at[0] and abs((datetime.datetime.strptime(at[0], "%Y-%m-%dT%H:%M") - (now + datetime.timedelta(minutes=1090))).total_seconds()) < 180 and re.search(r"\d", at[1]),
+                     f"{where}: 'reached on' is now + 18 h 10 min, got {at}")
+                c.ok(page.locator("form[data-calc] .calc-note").count() == 1 and "10" in page.locator("form[data-calc] .calc-note").text_content(), f"{where}: the 10-minute note is missing")
+                # target not above current: inline error, no results
+                for cur, tar in (("20:00", "10:00"), ("20:00", "20:00")):
+                    st = calc_fill(page, dict(current=cur, target=tar))
+                    c.ok(st["errors"].get("target") and "target" in st["invalid"] and all(not o["value"] and not o["text"] for o in st["outs"].values()),
+                         f"{where}: target {tar} with current {cur} must be refused with an inline error")
+                for name, text in (("current", "42:01"), ("target", "42:01"), ("target", "43:00"), ("current", "39"), ("current", "39:75"), ("target", "abc"), ("current", "")):
+                    st = calc_fill(page, dict({"current": "10:00", "target": "20:00"}, **{name: text}))
+                    c.ok(st["errors"].get(name) and all(not o["value"] for o in st["outs"].values()), f"{where}: {name}={text!r} must be refused with an inline error")
+                st = calc_fill(page, dict(current="0:00", target="42:00"))
+                c.ok(st["outs"]["regen"]["value"] == "8100" and st["outs"]["minutes"]["value"] == "8110", f"{where}: 0:00 -> 42:00 gives {st['outs']}")
         c.ok(not page.console_errors, f"{code}: console errors {page.console_errors[:3]}")
         ctx.close()
     # Share link opened in German, copy, share, typing, reset (desktop: "How" open).

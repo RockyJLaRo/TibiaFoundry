@@ -797,11 +797,15 @@
     },
     "calculators": {
       "title": "Tibia calculators",
-      "description": "Free Tibia calculators for experience and level, hunting time and the party share range. Each result shows its formula, its sources and the date it was checked."
+      "description": "Free Tibia calculators for experience and level, hunting time, the party share range and stamina regeneration. Each result shows its formula, its sources and the date it was checked."
     },
     "calc-experience": {
       "title": "Tibia experience and level calculator",
       "description": "Experience needed from one Tibia level to another, hunting time and days at your experience per hour, and the party share range of both levels – with formula and sources."
+    },
+    "calc-stamina": {
+      "title": "Tibia stamina calculator",
+      "description": "How long your character must stay logged out to regain stamina from a current value to a target value, with the 10-minute logout delay and the slower bonus hours counted – with formula and sources."
     }
   },
   "credits": {
@@ -1175,6 +1179,25 @@
         "levelExp": "Total experience for level L = 50/3 × (L³ − 6L² + 17L − 12). A new character at level 1 has 0 experience; level 2 needs 100 and level 8 needs 4,200.",
         "levelPlan": "Experience needed = total experience of the target level − total experience of the current level. Hunting time = experience needed ÷ experience per hour, in whole minutes (rounded down). Days = hunting time ÷ hours per day, rounded up; the estimated finish counts those days from today.",
         "shareRange": "A party shares experience only when its levels are close enough: for level L the share range runs from ⌊2L/3⌋ to ⌊3L/2⌋ + 1 (⌊ ⌋ = rounded down), the values of TibiaWiki's Party Experience Sharing table. Example: level 100 shares with levels 66 to 151."
+      }
+    },
+    "stamina": {
+      "title": "Stamina regeneration",
+      "card": "Offline time to regain stamina up to 42:00, and the time you will be back at your target.",
+      "lead": "How long your character has to stay logged out to go from your current stamina to your target stamina, counting the slower regeneration of the bonus hours.",
+      "current": "Current stamina",
+      "target": "Target stamina",
+      "hint": "Write the time as hours:minutes, like 39:00. Full stamina is 42:00.",
+      "minutes": "Offline time needed",
+      "regen": "Of which regeneration",
+      "finish": "Target reached on",
+      "note": "The first 10 minutes after you log out give no stamina; the offline time needed includes them.",
+      "error": {
+        "range": "Enter a stamina from 0:00 to 42:00.",
+        "targetAboveCurrent": "The target stamina must be higher than the current stamina."
+      },
+      "rule": {
+        "staminaRest": "Logged out, you regain 1 minute of stamina for every 3 minutes offline while below 39:00, and 1 minute for every 6 minutes offline from 39:00 up to the maximum of 42:00. Regeneration time = 3 × (minutes of stamina below 39:00) + 6 × (minutes of stamina from 39:00 to 42:00). Nothing is regained during the first 10 minutes after logout, so the offline time needed = regeneration time + 10 minutes. Example: 39:00 to 42:00 takes 18 hours of regeneration, 18 h 10 min offline."
       }
     }
   }

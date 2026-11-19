@@ -234,6 +234,133 @@
           "from": "wiki"
         }
       ]
+    },
+    {
+      "id": "staminaRest",
+      "calc": "stamina",
+      "rule": "calc.stamina.rule.staminaRest",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Stamina",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Full stamina is 42:00. Logged out, 1 minute is regained per 3 minutes, twice as long (6) for the bonus hours 39:00-42:00, and nothing is regained during the first 10 minutes after logout. 39:00 to 42:00 takes 18 hours and 10 minutes offline."
+        },
+        {
+          "url": "https://tibiapal.com/stamina",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "Capture research/calc-tests/stamina-tibiapal.json: 39:00 to 42:00 = 18 hours 0 minutes (regeneration only, without the 10-minute logout delay)."
+        },
+        {
+          "url": "https://www.exevopan.com/calculators/stamina",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "Capture research/calc-tests/stamina-exevopan-cases.json: 14:00 to 39:00 = 3 days 3 hours; 41:59 to 42:00 = 6 minutes; 0:00 to 10:00 = 1 day 6 hours; 38:00 to 40:00 = 9 hours; 0:00 to 42:00 = 5 days 15 hours (regeneration only, without the 10-minute logout delay)."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-18",
+      "checkedOn": "2026-11-18",
+      "tests": [
+        {
+          "in": {
+            "current": 2340,
+            "target": 2520
+          },
+          "out": {
+            "regen": 1080,
+            "minutes": 1090
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "regen"
+          ]
+        },
+        {
+          "in": {
+            "current": 2340,
+            "target": 2520
+          },
+          "out": {
+            "regen": 1080,
+            "minutes": 1090
+          },
+          "from": "wiki",
+          "cites": [
+            "minutes"
+          ]
+        },
+        {
+          "in": {
+            "current": 840,
+            "target": 2340
+          },
+          "out": {
+            "regen": 4500,
+            "minutes": 4510
+          },
+          "from": "calculator:exevopan",
+          "cites": [
+            "regen"
+          ]
+        },
+        {
+          "in": {
+            "current": 2519,
+            "target": 2520
+          },
+          "out": {
+            "regen": 6,
+            "minutes": 16
+          },
+          "from": "calculator:exevopan",
+          "cites": [
+            "regen"
+          ]
+        },
+        {
+          "in": {
+            "current": 0,
+            "target": 600
+          },
+          "out": {
+            "regen": 1800,
+            "minutes": 1810
+          },
+          "from": "calculator:exevopan",
+          "cites": [
+            "regen"
+          ]
+        },
+        {
+          "in": {
+            "current": 2280,
+            "target": 2400
+          },
+          "out": {
+            "regen": 540,
+            "minutes": 550
+          },
+          "from": "calculator:exevopan",
+          "cites": [
+            "regen"
+          ]
+        },
+        {
+          "in": {
+            "current": 0,
+            "target": 2520
+          },
+          "out": {
+            "regen": 8100,
+            "minutes": 8110
+          },
+          "from": "calculator:exevopan",
+          "cites": [
+            "regen"
+          ]
+        }
+      ]
     }
   ]
 }

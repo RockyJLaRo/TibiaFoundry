@@ -855,11 +855,15 @@
     },
     "calculators": {
       "title": "Calculadoras de Tibia",
-      "description": "Calculadoras gratuitas de Tibia para experiência e nível, tempo de hunt e faixa de share da party. Cada resultado mostra a fórmula, as fontes e a data da última verificação."
+      "description": "Calculadoras gratuitas de Tibia para experiência e nível, tempo de hunt, faixa de share da party e regeneração de stamina. Cada resultado mostra a fórmula, as fontes e a data da última verificação."
     },
     "calc-experience": {
       "title": "Calculadora de experiência e nível de Tibia",
       "description": "Quanta experiência falta de um nível de Tibia para outro, o tempo e os dias de hunt com a sua experiência por hora e a faixa de share da party dos dois níveis – com fórmula e fontes."
+    },
+    "calc-stamina": {
+      "title": "Calculadora de stamina de Tibia",
+      "description": "Quanto tempo o personagem precisa ficar deslogado para recuperar stamina de um valor atual até um valor desejado, contando o atraso de 10 minutos após o logout e as horas bônus mais lentas – com fórmula e fontes."
     }
   },
   "credits": {
@@ -1233,6 +1237,25 @@
         "levelExp": "Experiência total do nível L = 50/3 × (L³ − 6L² + 17L − 12). Um personagem novo no nível 1 tem 0 de experiência; o nível 2 exige 100 e o nível 8 exige 4.200.",
         "levelPlan": "Experiência necessária = experiência total do nível desejado − experiência total do nível atual. Tempo de hunt = experiência necessária ÷ experiência por hora, em minutos inteiros (arredondado para baixo). Dias = tempo de hunt ÷ horas por dia, arredondado para cima; a previsão de conclusão conta esses dias a partir de hoje.",
         "shareRange": "A party só divide experiência quando os níveis estão próximos o bastante: para o nível L, a faixa de share vai de ⌊2L/3⌋ a ⌊3L/2⌋ + 1 (⌊ ⌋ = arredondado para baixo), os valores da tabela Party Experience Sharing do TibiaWiki. Exemplo: o nível 100 divide experiência com os níveis 66 a 151."
+      }
+    },
+    "stamina": {
+      "title": "Regeneração de stamina",
+      "card": "Tempo deslogado para recuperar stamina até 42:00 e o horário em que você chega ao valor desejado.",
+      "lead": "Quanto tempo o personagem precisa ficar deslogado para ir da stamina atual até a stamina desejada, contando a regeneração mais lenta das horas bônus.",
+      "current": "Stamina atual",
+      "target": "Stamina desejada",
+      "hint": "Escreva o tempo como horas:minutos, como 39:00. A stamina cheia é 42:00.",
+      "minutes": "Tempo deslogado necessário",
+      "regen": "Desse tempo, regeneração",
+      "finish": "Valor desejado alcançado em",
+      "note": "Os primeiros 10 minutos após o logout não dão stamina; o tempo deslogado necessário já os inclui.",
+      "error": {
+        "range": "Digite uma stamina de 0:00 a 42:00.",
+        "targetAboveCurrent": "A stamina desejada precisa ser maior que a stamina atual."
+      },
+      "rule": {
+        "staminaRest": "Deslogado, você recupera 1 minuto de stamina a cada 3 minutos offline enquanto estiver abaixo de 39:00, e 1 minuto a cada 6 minutos offline de 39:00 até o máximo de 42:00. Tempo de regeneração = 3 × (minutos de stamina abaixo de 39:00) + 6 × (minutos de stamina de 39:00 a 42:00). Nada é recuperado nos primeiros 10 minutos após o logout, então o tempo deslogado necessário = tempo de regeneração + 10 minutos. Exemplo: de 39:00 a 42:00 são 18 horas de regeneração, 18 h 10 min deslogado."
       }
     }
   }
