@@ -956,7 +956,7 @@
       },
       "calculators": {
         "title": "Kalkulatory",
-        "text": "Doświadczenie do następnego poziomu, czas expienia i zakres dzielenia doświadczenia – ze wzorami i źródłami."
+        "text": "Doświadczenie i poziom, stamina, ceny blessingów i statystyki postaci – ze wzorami i źródłami."
       }
     },
     "app": {
@@ -1229,6 +1229,13 @@
         "wiki": "wiki",
         "calculator": "kalkulator",
         "news": "wiadomość"
+      },
+      "label": {
+        "shareTibiapal": "dla poziomu 1 podaje 1 jako najniższy poziom, tabela 0",
+        "staminaTibiapal": "tylko czas regeneracji, bez 10 minut po wylogowaniu",
+        "blessingsTibiapal": "zaokrąglone do tysięcy złota; nieużywane poniżej poziomu 30, gdzie pokazuje ujemne ceny",
+        "statsGuildstats": "tylko punkty życia i mana; jego udźwig pochodzi sprzed aktualizacji z października 2025",
+        "newsTibiaroute": "kopia wiadomości CipSoftu z 15 października 2025 na TibiaRoute"
       }
     },
     "experience": {
@@ -1295,8 +1302,10 @@
         "level": "Wpisz poziom od 1 do 20 000."
       },
       "rule": {
-        "blessings": "Zwykły blessing (każdy z 5): 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 119; 20 000 + 75 × (poziom − 120) od poziomu 120. Blessing enhanced (każdy z 2): 2 600 gp do poziomu 30; 260 × (poziom − 20) od poziomu 31 do 119; 26 000 + 100 × (poziom − 120) od poziomu 120. Twist of Fate: 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 269; 50 000 gp od poziomu 270. Blessing of the Inquisition (po zadaniu The Inquisition, kupowany u Henricusa) zastępuje 5 zwykłych blessingów i kosztuje o 10% więcej niż one razem, zaokrąglone w dół. Poniżej poziomu 8 obowiązują ceny z poziomów do 30. Przykład, poziom 75: 5 zwykłych blessingów 55 000 gp, Inquisition 60 500 gp, każdy blessing enhanced 14 300 gp, Twist of Fate 11 000 gp."
-      }
+        "blessings": "Zwykły blessing (każdy z 5): 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 119; 20 000 + 75 × (poziom − 120) od poziomu 120. Blessing enhanced (każdy z 2): 2 600 gp do poziomu 30; 260 × (poziom − 20) od poziomu 31 do 119; 26 000 + 100 × (poziom − 120) od poziomu 120. Twist of Fate: 2 000 gp do poziomu 30; 200 × (poziom − 20) od poziomu 31 do 269; 50 000 gp od poziomu 270. Blessing of the Inquisition (po zadaniu The Inquisition, kupowany u Henricusa) zastępuje 5 zwykłych blessingów i kosztuje o 10% więcej niż one razem, zaokrąglone w dół. Poniżej poziomu 8 obowiązują ceny z poziomów do 30. Przykład, poziom 75: 5 zwykłych blessingów 55 000 gp, Inquisition 60 500 gp, każdy blessing enhanced 14 300 gp, Twist of Fate 11 000 gp. Wszystkie 7 blessingów = 5 zwykłych + 2 enhanced (poziom 75: 83 600 gp) albo Blessing of the Inquisition + 2 enhanced (poziom 75: 89 100 gp); Twist of Fate kupuje się osobno."
+      },
+      "allSeven": "Wszystkie 7 blessingów: 5 zwykłych + 2 enhanced (gp)",
+      "allSevenInquisition": "Wszystkie 7 z Blessing of the Inquisition (gp)"
     },
     "stats": {
       "title": "Statystyki postaci",
@@ -1309,7 +1318,7 @@
       "hp": "Punkty życia",
       "mana": "Mana",
       "cap": "Udźwig (oz)",
-      "note": "Wartości bazowe bez ekwipunku, Wheel of Destiny i innych bonusów. Opuszczenie Rookgaardu po poziomie 8 daje na stałe niższe statystyki. Udźwig zawiera bazowe +200 oz z aktualizacji z 21 października 2025, które gra stosuje dopiero po awansie postaci na kolejny poziom.",
+      "note": "Wartości bazowe bez ekwipunku, Wheel of Destiny i innych bonusów. Wybór profesji po poziomie 8 daje niższe wartości niż pokazane (na przykład na stałe mniejszy udźwig knightów i paladynów). Udźwig zawiera bazowe +200 oz z aktualizacji z października 2025 (wiadomość CipSoftu z 15 października 2025), które gra stosuje dopiero po awansie postaci na kolejny poziom.",
       "error": {
         "level": "Wpisz poziom od 1 do 20 000."
       },

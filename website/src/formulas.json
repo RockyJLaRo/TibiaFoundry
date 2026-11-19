@@ -178,20 +178,21 @@
           "note": "Table for levels 1-3000: lowest = floor(2L/3), highest = floor(3L/2)+1."
         },
         {
-          "url": "https://codingace.net/general/tibia_share_exp.html",
+          "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
           "kind": "calculator",
           "read": "2026-11-18",
-          "note": "Calculator formulas give 66 / 151 for level 100 (same as the wiki table)."
+          "note": "TibiaWiki's separate interactive calculator (research/sources/tibiawiki-character-stats-calculator.txt): share range at level 8 = 5 to 13."
         },
         {
-          "url": "https://www.tibia.com/support/?subtopic=faq&entryid=91",
-          "kind": "official",
-          "read": "2026-11-18",
-          "note": "Wording 'not less than two-thirds' is approximate; the published table is used for exact edges."
+          "url": "https://tibiapal.com/expshare",
+          "kind": "calculator",
+          "read": "2026-11-19",
+          "label": "calc.how.label.shareTibiapal",
+          "note": "Capture research/calc-tests/share-tibiapal.json (+ share-tibiapal-100.jpg, -3.jpg), 2026-11-19 06:41 UTC, values typed into the page's own field: level 100 -> 66 to 151, 3 -> 2 to 5, 8 -> 5 to 13, 4 -> 2 to 7, 99 -> 66 to 149, 101 -> 67 to 152, 200 -> 133 to 301, 1000 -> 666 to 1501 (all equal the TibiaWiki table); level 1 -> 1 to 2, where the table and our page give 0 to 2."
         }
       ],
-      "tibiaVersion": "current as of 2026-11-18",
-      "checkedOn": "2026-11-18",
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
       "tests": [
         {
           "in": {
@@ -215,13 +216,59 @@
         },
         {
           "in": {
+            "level": 3
+          },
+          "out": {
+            "min": 2,
+            "max": 5
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "min",
+            "max"
+          ]
+        },
+        {
+          "in": {
+            "level": 8
+          },
+          "out": {
+            "min": 5,
+            "max": 13
+          },
+          "from": "calculator:tibiawiki",
+          "cites": [
+            "min",
+            "max"
+          ]
+        },
+        {
+          "in": {
             "level": 100
           },
           "out": {
             "min": 66,
             "max": 151
           },
-          "from": "calculator:codingace"
+          "from": "calculator:tibiapal",
+          "cites": [
+            "min",
+            "max"
+          ]
+        },
+        {
+          "in": {
+            "level": 1000
+          },
+          "out": {
+            "min": 666,
+            "max": 1501
+          },
+          "from": "calculator:tibiapal",
+          "cites": [
+            "min",
+            "max"
+          ]
         },
         {
           "in": {
@@ -249,18 +296,13 @@
         {
           "url": "https://tibiapal.com/stamina",
           "kind": "calculator",
-          "read": "2026-11-18",
-          "note": "Capture research/calc-tests/stamina-tibiapal.json: 39:00 to 42:00 = 18 hours 0 minutes (regeneration only, without the 10-minute logout delay)."
-        },
-        {
-          "url": "https://www.exevopan.com/calculators/stamina",
-          "kind": "calculator",
-          "read": "2026-11-18",
-          "note": "Capture research/calc-tests/stamina-exevopan-cases.json: 14:00 to 39:00 = 3 days 3 hours; 41:59 to 42:00 = 6 minutes; 0:00 to 10:00 = 1 day 6 hours; 38:00 to 40:00 = 9 hours; 0:00 to 42:00 = 5 days 15 hours (regeneration only, without the 10-minute logout delay)."
+          "read": "2026-11-19",
+          "note": "Captures research/calc-tests/stamina-tibiapal.json (2026-11-18) and stamina-tibiapal-cases.json (2026-11-19, values typed into the page's own fields): 39:00 to 42:00 = 18 hours 0 minutes; 14:00 to 39:00 = 3 days 3 hours; 41:59 to 42:00 = 6 minutes; 0:00 to 10:00 = 1 day 6 hours; 38:00 to 40:00 = 9 hours; 0:00 to 42:00 = 5 days 15 hours. Regeneration time only, without the 10-minute logout delay.",
+          "label": "calc.how.label.staminaTibiapal"
         }
       ],
-      "tibiaVersion": "current as of 2026-11-18",
-      "checkedOn": "2026-11-18",
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
       "tests": [
         {
           "in": {
@@ -299,7 +341,7 @@
             "regen": 4500,
             "minutes": 4510
           },
-          "from": "calculator:exevopan",
+          "from": "calculator:tibiapal",
           "cites": [
             "regen"
           ]
@@ -313,7 +355,7 @@
             "regen": 6,
             "minutes": 16
           },
-          "from": "calculator:exevopan",
+          "from": "calculator:tibiapal",
           "cites": [
             "regen"
           ]
@@ -327,7 +369,7 @@
             "regen": 1800,
             "minutes": 1810
           },
-          "from": "calculator:exevopan",
+          "from": "calculator:tibiapal",
           "cites": [
             "regen"
           ]
@@ -341,7 +383,7 @@
             "regen": 540,
             "minutes": 550
           },
-          "from": "calculator:exevopan",
+          "from": "calculator:tibiapal",
           "cites": [
             "regen"
           ]
@@ -355,7 +397,7 @@
             "regen": 8100,
             "minutes": 8110
           },
-          "from": "calculator:exevopan",
+          "from": "calculator:tibiapal",
           "cites": [
             "regen"
           ]
@@ -377,17 +419,18 @@
           "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
           "kind": "calculator",
           "read": "2026-11-18",
-          "note": "TibiaWiki's separate interactive calculator (not the rule page): prices of one regular blessing, one enhanced blessing, all 7 and all 7 using Henricus (the Inquisition blessing for the 5 regular ones) for levels 8, 30, 31, 75, 119, 120, 121, 269, 270, 271, 1000 and 2000. The Inquisition price is the Henricus total minus the two enhanced blessings; at levels 121, 269 and 271 it rounds down (110,412.5 shown as 110,412). It has no Twist of Fate."
+          "note": "TibiaWiki's separate interactive calculator (not the rule page; research/sources/tibiawiki-character-stats-calculator.txt): one regular blessing, one enhanced blessing, 'All 7 Blessings' and 'All 7 Blessings (using Henricus)' (the Inquisition blessing instead of the 5 regular ones) for levels 8, 30, 31, 75, 119, 120, 121, 269, 270, 271, 1000 and 2000. It does not show the Inquisition price by itself (Henricus total minus the two enhanced blessings gives it; at levels 121, 269 and 271 that is the price rounded down, 110,412.5 -> 110,412) and has no Twist of Fate."
         },
         {
           "url": "https://tibiapal.com/bless",
           "kind": "calculator",
           "read": "2026-11-18",
-          "note": "Capture research/calc-tests/blessings-tibiapal.json: cost of the 5 regular blessings (with and without Henricus), 2 enhanced blessings and Twist of Fate, shown in thousands of gold (rounded by the page) for levels 30 to 2000; used only where our exact value is a whole number of thousands. It shows negative prices below level 30, so level 8 is not covered."
+          "note": "Capture research/calc-tests/blessings-tibiapal.json: cost of the 5 regular blessings (with and without Henricus), 2 enhanced blessings and Twist of Fate, shown in thousands of gold (rounded by the page) for levels 30 to 2000; used only where our exact value is a whole number of thousands. It shows negative prices below level 30, so level 8 is not covered.",
+          "label": "calc.how.label.blessingsTibiapal"
         }
       ],
-      "tibiaVersion": "current as of 2026-11-18",
-      "checkedOn": "2026-11-18",
+      "tibiaVersion": "current as of 2026-11-19",
+      "checkedOn": "2026-11-19",
       "tests": [
         {
           "in": {
@@ -399,6 +442,8 @@
             "enhancedEach": 2600,
             "enhancedAll": 5200,
             "inquisition": 11000,
+            "allSeven": 15200,
+            "allSevenInquisition": 16200,
             "twistOfFate": 2000
           },
           "from": "computed"
@@ -413,13 +458,16 @@
             "enhancedEach": 2600,
             "enhancedAll": 5200,
             "inquisition": 11000,
+            "allSeven": 15200,
+            "allSevenInquisition": 16200,
             "twistOfFate": 2000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -432,6 +480,8 @@
             "enhancedEach": 2600,
             "enhancedAll": 5200,
             "inquisition": 11000,
+            "allSeven": 15200,
+            "allSevenInquisition": 16200,
             "twistOfFate": 2000
           },
           "from": "calculator:tibiapal",
@@ -451,13 +501,16 @@
             "enhancedEach": 2600,
             "enhancedAll": 5200,
             "inquisition": 11000,
+            "allSeven": 15200,
+            "allSevenInquisition": 16200,
             "twistOfFate": 2000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -470,13 +523,16 @@
             "enhancedEach": 2860,
             "enhancedAll": 5720,
             "inquisition": 12100,
+            "allSeven": 16720,
+            "allSevenInquisition": 17820,
             "twistOfFate": 2200
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -489,6 +545,8 @@
             "enhancedEach": 14300,
             "enhancedAll": 28600,
             "inquisition": 60500,
+            "allSeven": 83600,
+            "allSevenInquisition": 89100,
             "twistOfFate": 11000
           },
           "from": "calculator:tibiapal",
@@ -507,13 +565,16 @@
             "enhancedEach": 14300,
             "enhancedAll": 28600,
             "inquisition": 60500,
+            "allSeven": 83600,
+            "allSevenInquisition": 89100,
             "twistOfFate": 11000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -526,6 +587,8 @@
             "enhancedEach": 14300,
             "enhancedAll": 28600,
             "inquisition": 60500,
+            "allSeven": 83600,
+            "allSevenInquisition": 89100,
             "twistOfFate": 11000
           },
           "from": "wiki",
@@ -543,13 +606,16 @@
             "enhancedEach": 25740,
             "enhancedAll": 51480,
             "inquisition": 108900,
+            "allSeven": 150480,
+            "allSevenInquisition": 160380,
             "twistOfFate": 19800
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -562,6 +628,8 @@
             "enhancedEach": 26000,
             "enhancedAll": 52000,
             "inquisition": 110000,
+            "allSeven": 152000,
+            "allSevenInquisition": 162000,
             "twistOfFate": 20000
           },
           "from": "calculator:tibiapal",
@@ -582,13 +650,16 @@
             "enhancedEach": 26000,
             "enhancedAll": 52000,
             "inquisition": 110000,
+            "allSeven": 152000,
+            "allSevenInquisition": 162000,
             "twistOfFate": 20000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -601,13 +672,16 @@
             "enhancedEach": 26100,
             "enhancedAll": 52200,
             "inquisition": 110412,
+            "allSeven": 152575,
+            "allSevenInquisition": 162612,
             "twistOfFate": 20200
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -620,13 +694,16 @@
             "enhancedEach": 40900,
             "enhancedAll": 81800,
             "inquisition": 171462,
+            "allSeven": 237675,
+            "allSevenInquisition": 253262,
             "twistOfFate": 49800
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -639,6 +716,8 @@
             "enhancedEach": 41000,
             "enhancedAll": 82000,
             "inquisition": 171875,
+            "allSeven": 238250,
+            "allSevenInquisition": 253875,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiapal",
@@ -656,13 +735,16 @@
             "enhancedEach": 41000,
             "enhancedAll": 82000,
             "inquisition": 171875,
+            "allSeven": 238250,
+            "allSevenInquisition": 253875,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -675,13 +757,16 @@
             "enhancedEach": 41100,
             "enhancedAll": 82200,
             "inquisition": 172287,
+            "allSeven": 238825,
+            "allSevenInquisition": 254487,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -694,6 +779,8 @@
             "enhancedEach": 114000,
             "enhancedAll": 228000,
             "inquisition": 473000,
+            "allSeven": 658000,
+            "allSevenInquisition": 701000,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiapal",
@@ -714,13 +801,16 @@
             "enhancedEach": 114000,
             "enhancedAll": 228000,
             "inquisition": 473000,
+            "allSeven": 658000,
+            "allSevenInquisition": 701000,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -733,13 +823,16 @@
             "enhancedEach": 214000,
             "enhancedAll": 428000,
             "inquisition": 885500,
+            "allSeven": 1233000,
+            "allSevenInquisition": 1313500,
             "twistOfFate": 50000
           },
           "from": "calculator:tibiawiki",
           "cites": [
             "regularEach",
             "enhancedEach",
-            "inquisition"
+            "allSeven",
+            "allSevenInquisition"
           ]
         },
         {
@@ -752,6 +845,8 @@
             "enhancedEach": 2014000,
             "enhancedAll": 4028000,
             "inquisition": 8310500,
+            "allSeven": 11583000,
+            "allSevenInquisition": 12338500,
             "twistOfFate": 50000
           },
           "from": "computed"
@@ -773,7 +868,8 @@
           "url": "https://tibiaroute.com/news/A-New-Helping-Hand-II-8543-hBGo",
           "kind": "news",
           "read": "2026-11-19",
-          "note": "TibiaRoute's copy of CipSoft's news 'A New Helping Hand II' (15 Oct 2025, tibia.com news id 8543, author CipSoft; capture research/calc-tests/capacity-tibiaroute-news-8543.json), about the update released on 21 October 2025: 'The base capacity for all characters, regardless of vocation, has been increased by 200, raising it to 600. This will only take effect for your character in the game after you have levelled up.' tibia.com itself answered our capture with a bot check, which we did not bypass, so the official page was not read directly."
+          "note": "TibiaRoute's copy of CipSoft's news 'A New Helping Hand II' (15 Oct 2025, tibia.com news id 8543, author CipSoft; capture research/calc-tests/capacity-tibiaroute-news-8543.json), about the October 2025 update (the news says 'The release is scheduled for next week, Tuesday, October 21st'): 'The base capacity for all characters, regardless of vocation, has been increased by 200, raising it to 600. This will only take effect for your character in the game after you have levelled up.' tibia.com itself answered our capture with a bot check, which we did not bypass, so the official page was not read directly.",
+          "label": "calc.how.label.newsTibiaroute"
         },
         {
           "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
@@ -785,13 +881,8 @@
           "url": "https://guildstats.eu/character-level?lang=en",
           "kind": "calculator",
           "read": "2026-11-18",
-          "note": "GuildStats level calculator (capture research/calc-tests/stats-guildstats.json): hit points and mana for no vocation, sorcerer/druid, knight, paladin and monk at levels 1, 8, 9, 10, 100, 1000, 2000. All 35 values equal our hit points and mana. Its capacity is still the one from before the 21 October 2025 update (exactly 200 oz lower at every level) and is not used. Monk mana 90 at level 8 and 1,010 at level 100 settles the Monk mana conflict."
-        },
-        {
-          "url": "https://tibia.fandom.com/wiki/Formulae",
-          "kind": "wiki",
-          "read": "2026-11-18",
-          "note": "Formulae page totals: matched for every vocation except two entries that are out of date or wrong - capacity is 200 oz lower (from before the 21 October 2025 update, it equals GuildStats' capture) and Monk mana is written 5(2L - 9), which would give 35 mana at level 8, less than the 55 every character has at level 1."
+          "note": "GuildStats level calculator (capture research/calc-tests/stats-guildstats.json): hit points and mana for no vocation, sorcerer/druid, knight, paladin and monk at levels 1, 8, 9, 10, 100, 1000, 2000. All 35 values equal our hit points and mana. Its capacity is still the one from before the October 2025 update (exactly 200 oz lower at every level) and is not used. Monk mana 90 at level 8 and 1,010 at level 100 settles the Monk mana conflict.",
+          "label": "calc.how.label.statsGuildstats"
         }
       ],
       "tibiaVersion": "current as of 2026-11-19",
@@ -1187,7 +1278,7 @@
           "url": "https://tibiastats.pl/en/tools/",
           "kind": "calculator",
           "read": "2026-11-19",
-          "note": "Capture research/calc-tests/rashid-tibiastats.json (captured 2026-11-19 05:25 UTC): the server save is daily at 10:00 CEST/CET, and the Tibian day changes at server save, not at midnight."
+          "note": "Capture research/calc-tests/rashid-tibiastats.json (captured 2026-11-19 05:26:14 UTC): 'Server save in 03:33:41', 'daily at 10:00 CEST/CET', and the Tibian day changes at server save, not at midnight. 05:26:14 + 3:33:41 = 08:59:55 UTC, within seconds of 09:00 UTC = 10:00 Berlin."
         },
         {
           "url": "https://tibiapal.com/",
@@ -1234,6 +1325,19 @@
           "cites": [
             "at"
           ]
+        },
+        {
+          "in": {
+            "now": 1795065974000
+          },
+          "out": {
+            "at": 1795078800000
+          },
+          "from": "calculator:tibiastats",
+          "cites": [
+            "at"
+          ],
+          "note": "TibiaStats showed 'Server save in 03:33:41' at capture; within seconds of 09:00Z"
         },
         {
           "in": {
@@ -1324,19 +1428,13 @@
           "url": "https://tibiastats.pl/en/tools/",
           "kind": "calculator",
           "read": "2026-11-19",
-          "note": "Capture research/calc-tests/rashid-tibiastats.json: the same weekday table, and 'The Tibian day changes at server save (10:00 CEST/CET), not at midnight.'"
+          "note": "Capture research/calc-tests/rashid-tibiastats.json (2026-11-19 05:26:14 UTC, Thursday 06:26 Berlin, before the server save): 'Rashid is in Port Hope' (Wednesday's town), the same weekday table, and 'The Tibian day changes at server save (10:00 CEST/CET), not at midnight.'"
         },
         {
-          "url": "https://intibia.com/database/npcs/rashid",
+          "url": "https://tibiaroute.com/",
           "kind": "calculator",
           "read": "2026-11-19",
-          "note": "Capture research/calc-tests/rashid-intibia.json: the same weekly route (Sun Carlin ... Sat Edron)."
-        },
-        {
-          "url": "https://tibiawatch.com/",
-          "kind": "calculator",
-          "read": "2026-11-19",
-          "note": "Capture research/calc-tests/rashid-tibiawatch.json, 2026-11-19 05:26 UTC (06:26 Berlin, Thursday, before the server save): 'Rashid is in Port Hope today', Wednesday's town. TibiaRoute (rashid-tibiaroute.json), Intibia and TibiaStats showed Port Hope at the same time."
+          "note": "Capture research/calc-tests/rashid-tibiaroute.json + .jpg (2026-11-19 05:26:04 UTC, Thursday 06:26 Berlin, before the server save): the header tile with Rashid's figure is labelled 'Port Hope' (Wednesday's town; the tile does not write the name Rashid)."
         }
       ],
       "tibiaVersion": "current as of 2026-11-19",
@@ -1380,19 +1478,19 @@
         },
         {
           "in": {
-            "now": 1795065960000
+            "now": 1795065964000
           },
           "out": {
             "town": "porthope"
           },
-          "from": "calculator:tibiawatch",
+          "from": "calculator:tibiaroute",
           "cites": [
             "town"
           ]
         },
         {
           "in": {
-            "now": 1795042800000
+            "now": 1795065974000
           },
           "out": {
             "town": "porthope"

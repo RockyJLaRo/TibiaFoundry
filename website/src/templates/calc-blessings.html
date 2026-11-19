@@ -18,16 +18,20 @@
       </div>
     </div>
     <div class="calc-side">
-      <div class="calc-results framed" aria-live="polite">
+      <div class="calc-results framed">
         <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <div class="calc-live" aria-live="polite">
         <p class="field-error calc-error" data-calc-error></p>
         <div data-formula="blessings" data-args="level">
-          <div class="calc-main" data-row><span class="calc-label">{{t:calc.blessings.regularAll}}</span><output data-out="regularAll" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.blessings.regularEach}}</span><output data-out="regularEach" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.blessings.enhancedAll}}</span><output data-out="enhancedAll" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.blessings.enhancedEach}}</span><output data-out="enhancedEach" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.blessings.inquisition}}</span><output data-out="inquisition" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.blessings.twist}}</span><output data-out="twistOfFate" data-format="number"></output></div>
+          <div class="calc-main" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.regularAll}}</span><span class="calc-value" data-out="regularAll" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.regularEach}}</span><span class="calc-value" data-out="regularEach" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.enhancedAll}}</span><span class="calc-value" data-out="enhancedAll" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.enhancedEach}}</span><span class="calc-value" data-out="enhancedEach" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.inquisition}}</span><span class="calc-value" data-out="inquisition" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.allSeven}}</span><span class="calc-value" data-out="allSeven" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.allSevenInquisition}}</span><span class="calc-value" data-out="allSevenInquisition" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.blessings.twist}}</span><span class="calc-value" data-out="twistOfFate" data-format="number"></span></div>
+        </div>
         </div>
         <p class="field-hint calc-note">{{t:calc.blessings.note}}</p>
       </div>

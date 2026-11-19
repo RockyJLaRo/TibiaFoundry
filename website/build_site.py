@@ -531,15 +531,18 @@ def source_label(url):
 
 
 def calc_how_html(tr, fid):
-    """"How this is calculated" for one formula: its rule in words, its sources (new tab, with their kind) and the
-    date it was last checked, all from src/formulas.json."""
+    """"How this is calculated" for one formula: its rule in words, its sources (new tab, with their kind and, when a source
+    shows something different from our result - another rounding, part of the values only - its localized qualifier, the
+    source's optional "label" key) and the date it was last checked, all from src/formulas.json."""
     if fid not in FORMULA_REGISTRY:
         sys.exit(f"{{{{CALC_HOW:{fid}}}}}: '{fid}' is not in src/formulas.json.")
     f = FORMULA_REGISTRY[fid]
     sources = "".join(
-        f'<li><a href="{htmllib.escape(s["url"])}" target="_blank" rel="noopener noreferrer" data-source-kind="{s["kind"]}">'
+        f'<li><a href="{htmllib.escape(s["url"])}" target="_blank" rel="noopener noreferrer" data-source-kind="{htmllib.escape(s["kind"])}">'
         f'{htmllib.escape(source_label(s["url"]))}<span class="sr-only"> {tr.attr("js.newTab")}</span></a> '
-        f'<span class="how-kind">({tr.text("calc.how.kind." + s["kind"])})</span></li>' for s in f["sources"])
+        f'<span class="how-kind">({tr.text("calc.how.kind." + s["kind"])})</span>'
+        + (f' <span class="how-note" data-source-label>{tr.text(s["label"])}</span>' if s.get("label") else "")
+        + '</li>' for s in f["sources"])
     checked = format_date(tr.code, datetime.date.fromisoformat(f["checkedOn"]))
     return (f'<div class="how-item" data-how="{fid}">\n'
             f'      <p class="how-rule">{tr.text(f["rule"])}</p>\n'
@@ -802,6 +805,10 @@ def not_found_page(assets):
             "</main></body>\n</html>\n")
 
 
+SOURCE_KINDS = {"official", "wiki", "calculator", "news"}
+SOURCE_ALIASES = {"tibiawiki": "tibia.fandom.com", "tibiacom": "tibia.com"}   # a test's "from" name -> the source's host
+
+
 def check_formulas():
     """--strict: every entry of formulas.json is documented and tested, ids are unique, and every formula a page names (page["calc"]) exists."""
     path = os.path.join(SRC, "formulas.json")
@@ -820,6 +827,21 @@ def check_formulas():
             problems.append("%s: needs at least 3 tests (has %d)" % (fid, len(tests)))
         if not any(t.get("from") != "computed" for t in tests):
             problems.append("%s: needs a test taken from an official source, the wiki or another calculator" % fid)
+        hosts = []
+        for s in f.get("sources", []):
+            if s.get("kind") not in SOURCE_KINDS:
+                problems.append("%s: source %s has kind %r (allowed: %s)" % (fid, s.get("url"), s.get("kind"), ", ".join(sorted(SOURCE_KINDS))))
+            host = urllib.parse.urlparse(s.get("url", "")).netloc.lower()
+            hosts.append((s.get("kind"), host[4:] if host.startswith("www.") else host))
+            if s.get("label") is not None and not str(s["label"]).startswith("calc.how.label."):
+                problems.append("%s: source label %r must be a calc.how.label.* text key" % (fid, s["label"]))
+        for t in tests:
+            src = str(t.get("from", ""))
+            if src == "computed":
+                continue
+            kind, _, name = src.partition(":")
+            if not any(k == kind and (not name or h == SOURCE_ALIASES.get(name) or h.split(".")[0] == name) for k, h in hosts):
+                problems.append("%s: test from %r names no listed source (a %s source%s)" % (fid, src, kind, " on " + name if name else ""))
     for page in PAGES:
         for fid in page.get("calc", []):
             if fid not in entries:

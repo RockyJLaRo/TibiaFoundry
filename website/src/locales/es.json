@@ -956,7 +956,7 @@
       },
       "calculators": {
         "title": "Calculadoras",
-        "text": "Experiencia hasta tu próximo nivel, tiempo de caza y rango de share en party, con fórmulas y fuentes."
+        "text": "Experiencia y nivel, stamina, precios de blessings y stats del personaje, con fórmulas y fuentes."
       }
     },
     "app": {
@@ -1229,6 +1229,13 @@
         "wiki": "wiki",
         "calculator": "calculadora",
         "news": "noticia"
+      },
+      "label": {
+        "shareTibiapal": "para el nivel 1 da 1 como nivel más bajo, la tabla 0",
+        "staminaTibiapal": "solo el tiempo de regeneración, sin los 10 minutos tras cerrar sesión",
+        "blessingsTibiapal": "redondeado a miles de oro; no se usa por debajo del nivel 30, donde muestra precios negativos",
+        "statsGuildstats": "solo puntos de vida y maná; su capacidad es de antes de la actualización de octubre de 2025",
+        "newsTibiaroute": "copia de TibiaRoute de la noticia de CipSoft del 15 de octubre de 2025"
       }
     },
     "experience": {
@@ -1295,8 +1302,10 @@
         "level": "Escribe un nivel del 1 al 20 000."
       },
       "rule": {
-        "blessings": "Blessing normal (cada una de las 5): 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 119; 20 000 + 75 × (nivel − 120) desde el nivel 120. Blessing enhanced (cada una de las 2): 2600 gp hasta el nivel 30; 260 × (nivel − 20) del nivel 31 al 119; 26 000 + 100 × (nivel − 120) desde el nivel 120. Twist of Fate: 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 269; 50 000 gp desde el nivel 270. La Blessing of the Inquisition (tras la quest The Inquisition, comprada a Henricus) sustituye a las 5 blessings normales y cuesta un 10 % más que todas juntas, redondeado hacia abajo. Por debajo del nivel 8 valen los precios de los niveles hasta el 30. Ejemplo, nivel 75: 5 blessings normales 55 000 gp, Inquisition 60 500 gp, cada blessing enhanced 14 300 gp, Twist of Fate 11 000 gp."
-      }
+        "blessings": "Blessing normal (cada una de las 5): 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 119; 20 000 + 75 × (nivel − 120) desde el nivel 120. Blessing enhanced (cada una de las 2): 2600 gp hasta el nivel 30; 260 × (nivel − 20) del nivel 31 al 119; 26 000 + 100 × (nivel − 120) desde el nivel 120. Twist of Fate: 2000 gp hasta el nivel 30; 200 × (nivel − 20) del nivel 31 al 269; 50 000 gp desde el nivel 270. La Blessing of the Inquisition (tras la quest The Inquisition, comprada a Henricus) sustituye a las 5 blessings normales y cuesta un 10 % más que todas juntas, redondeado hacia abajo. Por debajo del nivel 8 valen los precios de los niveles hasta el 30. Ejemplo, nivel 75: 5 blessings normales 55 000 gp, Inquisition 60 500 gp, cada blessing enhanced 14 300 gp, Twist of Fate 11 000 gp. Las 7 blessings = las 5 normales + las 2 enhanced (nivel 75: 83 600 gp) o la Blessing of the Inquisition + las 2 enhanced (nivel 75: 89 100 gp); la Twist of Fate se compra aparte."
+      },
+      "allSeven": "Las 7 blessings: 5 normales + 2 enhanced (gp)",
+      "allSevenInquisition": "Las 7 con la Blessing of the Inquisition (gp)"
     },
     "stats": {
       "title": "Stats del personaje",
@@ -1309,7 +1318,7 @@
       "hp": "Puntos de vida",
       "mana": "Maná",
       "cap": "Capacidad (oz)",
-      "note": "Valores base sin equipo, Wheel of Destiny ni otros bonos. Salir de Rookgaard después del nivel 8 da stats más bajos de forma permanente. La capacidad incluye la base de +200 oz de la actualización del 21 de octubre de 2025, que el juego solo aplica cuando el personaje sube de nivel.",
+      "note": "Valores base sin equipo, Wheel of Destiny ni otros bonos. Elegir la vocación después del nivel 8 da valores más bajos que los mostrados (por ejemplo, menos capacidad de forma permanente para knights y paladins). La capacidad incluye la base de +200 oz de la actualización de octubre de 2025 (noticia de CipSoft del 15 de octubre de 2025), que el juego solo aplica cuando el personaje sube de nivel.",
       "error": {
         "level": "Escribe un nivel del 1 al 20 000."
       },

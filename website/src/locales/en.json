@@ -896,7 +896,7 @@
       },
       "calculators": {
         "title": "Calculators",
-        "text": "Experience to your next level, hunting time and party share range – with formulas and sources."
+        "text": "Experience and level, stamina, blessing prices and character stats – with formulas and sources."
       }
     },
     "app": {
@@ -1169,6 +1169,13 @@
         "wiki": "wiki",
         "calculator": "calculator",
         "news": "news"
+      },
+      "label": {
+        "shareTibiapal": "for level 1 it gives 1 as the lowest level, the table 0",
+        "staminaTibiapal": "regeneration time only, without the 10-minute logout delay",
+        "blessingsTibiapal": "rounded to thousands of gold; not used below level 30, where it shows negative prices",
+        "statsGuildstats": "hit points and mana only; its capacity is from before the October 2025 update",
+        "newsTibiaroute": "TibiaRoute's copy of CipSoft's news of 15 October 2025"
       }
     },
     "experience": {
@@ -1235,8 +1242,10 @@
         "level": "Enter a level from 1 to 20,000."
       },
       "rule": {
-        "blessings": "Regular blessing (each of 5): 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 119; 20,000 + 75 × (level − 120) from level 120. Enhanced blessing (each of 2): 2,600 gp up to level 30; 260 × (level − 20) from level 31 to 119; 26,000 + 100 × (level − 120) from level 120. Twist of Fate: 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 269; 50,000 gp from level 270. Blessing of the Inquisition (after the Inquisition quest, bought from Henricus) replaces the 5 regular blessings and costs 10% more than they do together, rounded down. Below level 8 the prices of levels up to 30 apply. Example, level 75: 5 regular blessings 55,000 gp, Inquisition 60,500 gp, each enhanced blessing 14,300 gp, Twist of Fate 11,000 gp."
-      }
+        "blessings": "Regular blessing (each of 5): 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 119; 20,000 + 75 × (level − 120) from level 120. Enhanced blessing (each of 2): 2,600 gp up to level 30; 260 × (level − 20) from level 31 to 119; 26,000 + 100 × (level − 120) from level 120. Twist of Fate: 2,000 gp up to level 30; 200 × (level − 20) from level 31 to 269; 50,000 gp from level 270. Blessing of the Inquisition (after the Inquisition quest, bought from Henricus) replaces the 5 regular blessings and costs 10% more than they do together, rounded down. Below level 8 the prices of levels up to 30 apply. Example, level 75: 5 regular blessings 55,000 gp, Inquisition 60,500 gp, each enhanced blessing 14,300 gp, Twist of Fate 11,000 gp. All 7 blessings = the 5 regular + the 2 enhanced (level 75: 83,600 gp), or Blessing of the Inquisition + the 2 enhanced (level 75: 89,100 gp); Twist of Fate is bought separately."
+      },
+      "allSeven": "All 7 blessings: 5 regular + 2 enhanced (gp)",
+      "allSevenInquisition": "All 7 with Blessing of the Inquisition (gp)"
     },
     "stats": {
       "title": "Character stats",
@@ -1249,7 +1258,7 @@
       "hp": "Hit points",
       "mana": "Mana",
       "cap": "Capacity (oz)",
-      "note": "Base values without equipment, Wheel of Destiny or other bonuses. Leaving Rookgaard later than level 8 gives permanently lower stats. Capacity includes the +200 oz base of the update of 21 October 2025, which the game only applies once a character has levelled up.",
+      "note": "Base values without equipment, Wheel of Destiny or other bonuses. Choosing the vocation after level 8 gives lower values than shown (for example permanently less capacity for knights and paladins). Capacity includes the +200 oz base of the October 2025 update (CipSoft news, 15 October 2025), which the game only applies once a character has levelled up.",
       "error": {
         "level": "Enter a level from 1 to 20,000."
       },
