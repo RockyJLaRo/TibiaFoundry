@@ -1337,12 +1337,6 @@
           "kind": "calculator",
           "read": "2026-11-19",
           "note": "Capture research/calc-tests/rashid-tibiawatch.json, 2026-11-19 05:26 UTC (06:26 Berlin, Thursday, before the server save): 'Rashid is in Port Hope today', Wednesday's town. TibiaRoute (rashid-tibiaroute.json), Intibia and TibiaStats showed Port Hope at the same time."
-        },
-        {
-          "url": "https://www.etienreseller.com/tibia/server-save/",
-          "kind": "calculator",
-          "read": "2026-11-19",
-          "note": "Capture research/calc-tests/serversave-etien.json: Rashid moves to a new city every day at server save; today Port Hope, after the next server save Ankrahmun."
         }
       ],
       "tibiaVersion": "current as of 2026-11-19",
@@ -1424,10 +1418,7 @@
           "out": {
             "town": "ankrahmun"
           },
-          "from": "calculator:etien",
-          "cites": [
-            "town"
-          ]
+          "from": "computed"
         },
         {
           "in": {

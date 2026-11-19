@@ -1000,7 +1000,7 @@ def today_in_tibia(c, browser, base):
             c.ok(st["at"] == str(save_thursday) and "04:00" in st["clock"], f"{where}: save at 04:00 New York time: {st}")
             c.ok(len(st["labels"]) == 2 and all(0 < len(x) <= 30 for x in st["labels"]), f"{where}: row labels are short texts: {st['labels']}")
             c.ok(not st["live"], f"{where}: the ticking countdown must not be in a live region")
-            c.ok(st["how"] == 2 and st["sources"] >= 6, f"{where}: both rules with their sources: {st}")
+            c.ok(st["how"] == 2 and st["sources"] >= 7, f"{where}: both rules with their sources: {st}")
             c.ok(st["overflow"] <= 0, f"{where}: horizontal overflow {st['overflow']}px at 360 px")
             if lang["code"] == "en" and page_id == "calculators":
                 # Thursday 06:26 -> a minute later the countdown is 3:33; the 10:00 switch moves Rashid and the countdown restarts.
