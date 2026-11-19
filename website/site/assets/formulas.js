@@ -106,8 +106,8 @@
     },
     // Maximum hit points, mana and capacity of a character with no equipment or Wheel of Destiny bonus, assuming the vocation
     // was chosen at level 8. Below level 8 every character gains 5 hit points, 5 mana and 10 oz per level from 150 / 55 / 600;
-    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data").
-    // Capacity includes the +200 base of the 15.12 update. Monk mana follows from the Monk's +10 per level (not the Formulae page's 5(2L - 9)).
+    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data", for the five vocations; no vocation: TibiaWiki and GuildStats).
+    // Capacity includes the +200 base of the update of 21 October 2025 (CipSoft news, 15 October 2025). Monk mana follows from the Monk's +10 per level (not the Formulae page's 5(2L - 9)).
     characterStats: function (i) {
       var GAIN = {
         none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20],

@@ -1306,7 +1306,7 @@
       "hp": "Trefferpunkte",
       "mana": "Mana",
       "cap": "Tragkraft (oz)",
-      "note": "Grundwerte ohne Ausrüstung, Wheel of Destiny oder andere Boni. Wer Rookgaard später als mit Level 8 verlässt, hat dauerhaft niedrigere Werte. Die Tragkraft enthält die +200 oz Basis von Update 15.12, die das Spiel erst anwendet, wenn der Charakter ein Level aufgestiegen ist.",
+      "note": "Grundwerte ohne Ausrüstung, Wheel of Destiny oder andere Boni. Wer Rookgaard später als mit Level 8 verlässt, hat dauerhaft niedrigere Werte. Die Tragkraft enthält die +200 oz Basis des Updates vom 21. Oktober 2025, die das Spiel erst anwendet, wenn der Charakter ein Level aufgestiegen ist.",
       "error": {
         "level": "Gib ein Level von 1 bis 20.000 ein."
       },

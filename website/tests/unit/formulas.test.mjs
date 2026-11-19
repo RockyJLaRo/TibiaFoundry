@@ -138,7 +138,7 @@ test("characterStats: below level 8 every character is the same; level 8 is 185 
   }
 });
 
-test("characterStats: per-level gains after level 8 (official manual), checked at level 9 and 10", () => {
+test("characterStats: per-level gains after level 8 (official manual for the five vocations; no vocation: TibiaWiki and GuildStats), checked at level 9 and 10", () => {
   const gains = { none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20], sorcerer: [5, 30, 10], druid: [5, 30, 10], monk: [10, 10, 25] };
   for (const [vocation, [hp, mana, cap]] of Object.entries(gains)) {
     assert.deepEqual(FORMULAS.characterStats({ level: 9, vocation }), { hp: 185 + hp, mana: 90 + mana, cap: 670 + cap }, vocation);

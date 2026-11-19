@@ -1300,7 +1300,7 @@
       "hp": "Punkty życia",
       "mana": "Mana",
       "cap": "Udźwig (oz)",
-      "note": "Wartości bazowe bez ekwipunku, Wheel of Destiny i innych bonusów. Opuszczenie Rookgaardu po poziomie 8 daje na stałe niższe statystyki. Udźwig zawiera bazowe +200 oz z aktualizacji 15.12, które gra stosuje dopiero po awansie postaci na kolejny poziom.",
+      "note": "Wartości bazowe bez ekwipunku, Wheel of Destiny i innych bonusów. Opuszczenie Rookgaardu po poziomie 8 daje na stałe niższe statystyki. Udźwig zawiera bazowe +200 oz z aktualizacji z 21 października 2025, które gra stosuje dopiero po awansie postaci na kolejny poziom.",
       "error": {
         "level": "Wpisz poziom od 1 do 20 000."
       },

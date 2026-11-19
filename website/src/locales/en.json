@@ -1240,7 +1240,7 @@
       "hp": "Hit points",
       "mana": "Mana",
       "cap": "Capacity (oz)",
-      "note": "Base values without equipment, Wheel of Destiny or other bonuses. Leaving Rookgaard later than level 8 gives permanently lower stats. Capacity includes the +200 oz base of update 15.12, which the game only applies once a character has levelled up.",
+      "note": "Base values without equipment, Wheel of Destiny or other bonuses. Leaving Rookgaard later than level 8 gives permanently lower stats. Capacity includes the +200 oz base of the update of 21 October 2025, which the game only applies once a character has levelled up.",
       "error": {
         "level": "Enter a level from 1 to 20,000."
       },

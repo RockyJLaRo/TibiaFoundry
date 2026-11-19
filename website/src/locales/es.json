@@ -1300,7 +1300,7 @@
       "hp": "Puntos de vida",
       "mana": "Maná",
       "cap": "Capacidad (oz)",
-      "note": "Valores base sin equipo, Wheel of Destiny ni otros bonos. Salir de Rookgaard después del nivel 8 da stats más bajos de forma permanente. La capacidad incluye la base de +200 oz de la actualización 15.12, que el juego solo aplica cuando el personaje sube de nivel.",
+      "note": "Valores base sin equipo, Wheel of Destiny ni otros bonos. Salir de Rookgaard después del nivel 8 da stats más bajos de forma permanente. La capacidad incluye la base de +200 oz de la actualización del 21 de octubre de 2025, que el juego solo aplica cuando el personaje sube de nivel.",
       "error": {
         "level": "Escribe un nivel del 1 al 20 000."
       },

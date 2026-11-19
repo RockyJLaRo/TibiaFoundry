@@ -766,14 +766,14 @@
         {
           "url": "https://www.tibia.com/gameguides/?subtopic=manual&section=characters",
           "kind": "official",
-          "read": "2026-11-19",
+          "read": "2026-11-18",
           "note": "Official manual, section 5.1 Characters, table 'Vocation Specific Data': hit points / mana / capacity gained per level - Druid 5/30/10, Knight 15/5/25, Monk 10/10/25, Paladin 10/15/20, Sorcerer 5/30/10; 'characters up to level 8 get a smaller hit and mana point gain for each level advance'."
         },
         {
           "url": "https://tibiaroute.com/news/A-New-Helping-Hand-II-8543-hBGo",
           "kind": "news",
           "read": "2026-11-19",
-          "note": "TibiaRoute's copy of CipSoft's news 'A New Helping Hand II' (15 Oct 2025, tibia.com news id 8543, author CipSoft; capture research/calc-tests/capacity-tibiaroute-news-8543.json), about the 15.12 Newhaven update: 'The base capacity for all characters, regardless of vocation, has been increased by 200, raising it to 600. This will only take effect for your character in the game after you have levelled up.' tibia.com itself answered our capture with a bot check, which we did not bypass, so the official page was not read directly."
+          "note": "TibiaRoute's copy of CipSoft's news 'A New Helping Hand II' (15 Oct 2025, tibia.com news id 8543, author CipSoft; capture research/calc-tests/capacity-tibiaroute-news-8543.json), about the update released on 21 October 2025: 'The base capacity for all characters, regardless of vocation, has been increased by 200, raising it to 600. This will only take effect for your character in the game after you have levelled up.' tibia.com itself answered our capture with a bot check, which we did not bypass, so the official page was not read directly."
         },
         {
           "url": "https://tibia.fandom.com/wiki/Character_Stats_Calculator",
@@ -784,14 +784,14 @@
         {
           "url": "https://guildstats.eu/character-level?lang=en",
           "kind": "calculator",
-          "read": "2026-11-19",
-          "note": "GuildStats level calculator (capture research/calc-tests/stats-guildstats.json): hit points and mana for no vocation, sorcerer/druid, knight, paladin and monk at levels 1, 8, 9, 10, 100, 1000, 2000. All 35 values equal our hit points and mana. Its capacity is still the one from before the 15.12 update (exactly 200 oz lower at every level) and is not used. Monk mana 90 at level 8 and 1,010 at level 100 settles the Monk mana conflict."
+          "read": "2026-11-18",
+          "note": "GuildStats level calculator (capture research/calc-tests/stats-guildstats.json): hit points and mana for no vocation, sorcerer/druid, knight, paladin and monk at levels 1, 8, 9, 10, 100, 1000, 2000. All 35 values equal our hit points and mana. Its capacity is still the one from before the 21 October 2025 update (exactly 200 oz lower at every level) and is not used. Monk mana 90 at level 8 and 1,010 at level 100 settles the Monk mana conflict."
         },
         {
           "url": "https://tibia.fandom.com/wiki/Formulae",
           "kind": "wiki",
           "read": "2026-11-18",
-          "note": "Formulae page totals: matched for every vocation except two entries that are out of date or wrong - capacity is 200 oz lower (pre-15.12, it equals GuildStats' capture) and Monk mana is written 5(2L - 9), which would give 35 mana at level 8, less than the 55 every character has at level 1."
+          "note": "Formulae page totals: matched for every vocation except two entries that are out of date or wrong - capacity is 200 oz lower (from before the 21 October 2025 update, it equals GuildStats' capture) and Monk mana is written 5(2L - 9), which would give 35 mana at level 8, less than the 55 every character has at level 1."
         }
       ],
       "tibiaVersion": "current as of 2026-11-19",
