@@ -25,7 +25,7 @@
     {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact", "icon": "mail"},
     {"id": "legal", "path": "legal/", "template": "legal.html", "nav": "nav.legal", "icon": "scroll-text"}
   ],
-  "_menuComment": "The header menu, the phone drawer and the footer link columns, in this order. A group is a disclosure panel (desktop) and a collapsible section (drawer); an entry without items is a plain link. Items: {page[, hash][, label]}, {route, label[, icon]} (a data view; a pattern's missing :world/:town take the default world and town) or {href, label[, icon]}. Labels are text keys; a page item uses its page's nav key unless it names one. build_site.py --strict fails on an unknown page or route and when a calculator page is missing.",
+  "_menuComment": "The header menu, the phone drawer and the footer link columns, in this order. A group is a disclosure panel (desktop) and a collapsible section (drawer); an entry without items is a plain link (Contact; Fansite Tools is the GitHub link \"Source on GitHub\" until the fansite tool library ships). Items: {page[, hash][, label]}, {route, label[, icon]} (a data view; a pattern's missing :world/:town take the default world and town) or {href, label[, icon]}. Labels are text keys; a page item uses its page's nav key unless it names one. build_site.py --strict fails on an unknown page or route and when a calculator page is missing.",
   "menu": [
     {"id": "application", "label": "nav.group.application", "items": [
       {"page": "downloads"}, {"page": "features", "label": "nav.item.features"}, {"page": "guides"}, {"page": "about"}
@@ -47,9 +47,7 @@
       {"route": "news", "label": "nav.item.news", "icon": "newspaper"},
       {"route": "fansites", "label": "js.toolFansites", "icon": "flag"}
     ]},
-    {"id": "fansite", "label": "nav.group.fansiteTools", "items": [
-      {"href": "https://github.com/RockyJLaRo/TibiaFoundry", "label": "nav.sourceOnGitHub", "icon": "code-xml"}
-    ]},
+    {"href": "https://github.com/RockyJLaRo/TibiaFoundry", "label": "nav.sourceOnGitHub"},
     {"page": "contact"}
   ],
   "dataRoutes": [

@@ -118,8 +118,7 @@
     "group": {
       "application": "Anwendung",
       "onlineTools": "Online-Tools",
-      "communityData": "Community-Daten",
-      "fansiteTools": "Fansite-Tools"
+      "communityData": "Community-Daten"
     },
     "item": {
       "features": "Funktionen",

@@ -694,8 +694,9 @@ def menu_html(tr, link_to, page):
     {{FOOTER_MENU}} (a footer column per group) and {{FOOTER_MENU_LINKS}} (the plain links, in the footer's Project column)."""
     tibia = link_to("tibia")
 
-    def link(item, place, cls=""):
-        """(the <a> of an item, whether it is the current page); place: header, drawer (icons) or top, footer (none)."""
+    def link(item, place, cls="", icons=True):
+        """(the <a> of an item, whether it is the current page); place: header, drawer or footer (data-place of tracked
+        links); icons only inside panels and drawer groups. An href item is external: new tab, rel, the "new tab" text."""
         if "page" in item:
             target = next(p for p in PAGES if p["id"] == item["page"])
             href = link_to(item["page"]) + ("#" + item["hash"] if item.get("hash") else "")
@@ -707,9 +708,12 @@ def menu_html(tr, link_to, page):
             label, icon, current, extra = tr.text(item["label"]), item.get("icon"), False, ""
         else:
             href, label, icon, current = htmllib.escape(item["href"]), tr.text(item["label"]), item.get("icon"), False
-            extra = f' data-track="repository" data-place="{place}"' if item["href"] == REGISTRY["repository"] else ""
+            extra = ' target="_blank" rel="noopener noreferrer"'
+            extra += f' data-track="repository" data-place="{place}"' if item["href"] == REGISTRY["repository"] else ""
         body = (f'<svg class="ic" aria-hidden="true"><use href="#i-{icon}"/></svg><span>{label}</span>'
-                if icon and place in ("header", "drawer") else label)
+                if icon and icons and place != "footer" else (f"<span>{label}</span>" if "href" in item else label))
+        if "href" in item:
+            body += f'<span class="sr-only"> {tr.text("js.newTab")}</span>'
         return (f'<a{cls} href="{href}" data-menu-dest="{htmllib.escape(menu_dest(item))}"{extra}'
                 + (' aria-current="page"' if current else "") + f">{body}</a>"), current
 
@@ -717,8 +721,8 @@ def menu_html(tr, link_to, page):
     chevron = '<svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>'
     for group, items in menu_entries():
         if group is None:
-            nav.append('        <li class="nav-item">' + link(items[0], "top", ' class="nav-link"')[0] + "</li>")
-            drawer.append("        " + link(items[0], "top", ' class="drawer-link"')[0])
+            nav.append('        <li class="nav-item">' + link(items[0], "header", ' class="nav-link"', icons=False)[0] + "</li>")
+            drawer.append("        " + link(items[0], "drawer", ' class="drawer-link"', icons=False)[0])
             footer_links.append(f'            <li>{link(items[0], "footer")[0]}</li>')
             continue
         gid, label = group["id"], tr.text(group["label"])

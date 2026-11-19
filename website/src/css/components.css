@@ -155,10 +155,11 @@ select.input { padding-right: 2em; }
   :root:not(.nav-collapsed) .header-tools { display: flex; gap: 2px; align-items: center; }
   :root:not(.nav-collapsed) .header-download { display: inline-flex; margin-left: 4px; }
   :root:not(.nav-collapsed) .menu-btn, :root:not(.nav-collapsed) .drawer { display: none; }
+  :root:not(.nav-collapsed) .brand-version { display: none; }   /* room for long menu labels; the footer shows the version */
   .no-js .main-nav { display: none; }   /* the panels need JavaScript; the footer lists every destination */
 }
-@media (min-width: 1024px) and (max-width: 1279.98px) {   /* narrow desktops: room for long menu labels */
-  :root:not(.nav-collapsed) .brand-version, :root:not(.nav-collapsed) #lang-btn span { display: none; }
+@media (min-width: 1024px) and (max-width: 1279.98px) {   /* narrow desktops */
+  :root:not(.nav-collapsed) #lang-btn span { display: none; }
   :root:not(.nav-collapsed) .brand { margin-right: var(--space-1); }
   .nav-button, .nav-link { padding: 0 7px; }
 }

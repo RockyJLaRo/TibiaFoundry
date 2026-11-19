@@ -52,8 +52,7 @@
     "group": {
       "application": "Application",
       "onlineTools": "Online Tools",
-      "communityData": "Community Data",
-      "fansiteTools": "Fansite Tools"
+      "communityData": "Community Data"
     },
     "item": {
       "features": "Features",

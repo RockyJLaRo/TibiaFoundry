@@ -243,6 +243,16 @@ def navigation(c, browser, base):
     page.goto(url_of(base, en, "contact"))
     c.ok(page.locator(".main-nav .nav-link[data-menu-dest='page:contact']").get_attribute("aria-current") == "page", "contact: plain link marked current")
     c.ok(page.locator(".main-nav .nav-group[data-nav-group]").count() == len([e for e in kit.REGISTRY["menu"] if "items" in e]), "one disclosure group per registry group")
+    for key, item, group in menu_destinations():
+        if group is None:
+            c.ok(page.locator(f".main-nav .nav-list > .nav-item > a.nav-link[data-menu-dest='{key}']").count() == 1, f"{key}: not a plain top-level link")
+        if key.startswith("href:"):
+            for a in (page.locator(f".main-nav a[data-menu-dest='{key}']"), page.locator(f"#site-menu a[data-menu-dest='{key}']")):
+                c.ok(a.get_attribute("target") == "_blank" and a.get_attribute("rel") == "noopener noreferrer" and a.locator(".sr-only").count() == 1,
+                     f"{key}: external link without new-tab marking")
+    if any(g is None and k.startswith("href:") for k, _, g in menu_destinations()):
+        gh = "href:" + kit.REGISTRY["repository"]
+        c.ok(page.locator(f".main-nav a.nav-link[data-menu-dest='{gh}']").inner_text().strip().startswith("Source on GitHub"), "the GitHub link reads 'Source on GitHub'")
     ctx.close()
     # Drawer: a link navigates and the drawer is closed on the new page.
     ctx, page = new_page(browser, base, 390, 844)
@@ -252,6 +262,9 @@ def navigation(c, browser, base):
     det = page.locator("#site-menu details[data-nav-group='application']")
     if not det.evaluate("d => d.open"):
         det.locator("summary").click()
+    for key, item, group in menu_destinations():
+        if group is None:
+            c.ok(page.locator(f"#site-menu .drawer-nav > a.drawer-link[data-menu-dest='{key}']").count() == 1, f"drawer: {key} is not a plain link")
     page.locator("#site-menu a[data-menu-dest='page:downloads']").click()
     page.wait_for_load_state()
     c.ok("/downloads/" in page.url and not page.locator("#site-menu").is_visible(), "drawer link navigates and the drawer is closed")
@@ -344,9 +357,11 @@ def menu_keyboard(c, browser, base):
 
 
 def menu_overflow(c, browser, base):
-    """Review Focus 1: long German and Polish labels at 1024, 1280 and 1440 px: no page-level overflow, the desktop menu is
-    shown, every group button is one line, and an open panel stays inside the viewport."""
-    count = 0
+    """Review Focus 1: long German and Polish labels at 1024, 1280 and 1440 px never wrap or overflow. Either the desktop menu
+    fits (every top-level entry one line, header bar and page without overflow, open panels inside the viewport) or the
+    header has collapsed to the drawer (html.nav-collapsed: #menu-btn shown, no page overflow). From 1280 px the desktop
+    menu must be shown."""
+    count, collapsed_at = 0, []
     for code in ("de", "pl"):
         lang = next(l for l in kit.LANGUAGES if l["code"] == code)
         for w in (1024, 1280, 1440):
@@ -355,11 +370,12 @@ def menu_overflow(c, browser, base):
                 page.goto(url_of(base, lang, pid))
                 where = f"{code}/{pid}/{w}px"
                 m = page.evaluate("""() => {
-                  const out = {over: document.documentElement.scrollWidth - window.innerWidth, nav: !!document.querySelector('.main-nav') && document.querySelector('.main-nav').offsetParent !== null, lines: []};
+                  const vis = (s) => { const e = document.querySelector(s); return !!e && e.offsetParent !== null; };
+                  const out = {over: document.documentElement.scrollWidth - window.innerWidth, nav: vis('.main-nav'), menuBtn: vis('#menu-btn'),
+                               collapsed: document.documentElement.classList.contains('nav-collapsed'), lines: []};
                   for (const b of document.querySelectorAll('.main-nav .nav-group > button, .main-nav .nav-link')) {
-                    const r = document.createRange(); r.selectNodeContents(b.querySelector('span') || b);   // the label, not the chevron
+                    const r = document.createRange(); r.selectNodeContents(b.querySelector('span:not(.sr-only)') || b);   // the label, not the chevron
                     const tops = new Set([...r.getClientRects()].filter(x => x.width > 0).map(x => Math.round(x.top)));
-                    const lh = parseFloat(getComputedStyle(b).lineHeight) || 20;
                     const box = b.getBoundingClientRect();
                     out.lines.push({text: b.textContent.trim(), lines: tops.size, h: box.height, right: box.right});
                   }
@@ -368,7 +384,13 @@ def menu_overflow(c, browser, base):
                   return out;
                 }""")
                 c.ok(m["over"] <= 0, f"{where}: page overflows by {m['over']}px")
-                c.ok(m["nav"], f"{where}: the desktop menu is not shown")
+                count += 1
+                if m["collapsed"]:
+                    collapsed_at.append(where)
+                    c.ok(w < 1280, f"{where}: the desktop menu must fit from 1280 px (collapsed to the drawer)")
+                    c.ok(m["menuBtn"] and not m["nav"], f"{where}: collapsed header must show #menu-btn and hide the desktop menu: {m}")
+                    continue
+                c.ok(m["nav"], f"{where}: neither the desktop menu nor the collapsed drawer header is shown")
                 c.ok(m["barOver"] <= 0, f"{where}: header bar overflows by {m['barOver']}px")
                 c.ok(len(m["lines"]) == len(kit.REGISTRY["menu"]), f"{where}: {len(m['lines'])} top-level menu entries, registry has {len(kit.REGISTRY['menu'])}")
                 for b in m["lines"]:
@@ -380,9 +402,8 @@ def menu_overflow(c, browser, base):
                     if c.ok(r is not None, f"{where}: panel {i} does not open"):
                         c.ok(r["l"] >= 0 and r["r"] <= w and r["over"] <= 0, f"{where}: panel {i} leaves the viewport {r}")
                 page.keyboard.press("Escape")
-                count += 1
             ctx.close()
-    c.note(f"{count} header layouts (de, pl x 1024/1280/1440 x 3 pages)")
+    c.note(f"{count} header layouts (de, pl x 1024/1280/1440 x 3 pages); collapsed to the drawer: {', '.join(collapsed_at) or 'none'}")
 
 
 def no_js_reachability(c, browser, base):

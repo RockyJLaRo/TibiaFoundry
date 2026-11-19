@@ -43,7 +43,7 @@
   try { var th = localStorage.getItem('tf-theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
 
 </script>
-<link rel="stylesheet" href="../../assets/site.css?v=5e6fea4a85">
+<link rel="stylesheet" href="../../assets/site.css?v=bce9b6343b">
 <!-- Google tag (gtag.js). Visitors can turn statistics off on the Legal page (stored as tf-analytics=off); a browser's
      Global Privacy Control signal turns them off too. Disclosed on the Legal page under "Privacy and statistics". -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
@@ -184,14 +184,7 @@
             </ul>
           </div>
         </li>
-        <li class="nav-group" data-nav-group="fansite">
-          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-fansite"><span>Para fansites</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
-          <div class="nav-panel" id="nav-panel-fansite" hidden>
-            <ul class="nav-panel-list">
-              <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="header"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg><span>Código-fonte no GitHub</span></a></li>
-            </ul>
-          </div>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="header"><span>Código-fonte no GitHub</span><span class="sr-only"> (abre em uma nova aba)</span></a></li>
         <li class="nav-item"><a class="nav-link" href="../../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a></li>
       </ul>
     </nav>
@@ -259,12 +252,7 @@
             <li><a href="../../pt-br/tibia/#/fansites" data-menu-dest="route:fansites"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><span>Fansites</span></a></li>
           </ul>
         </details>
-        <details class="drawer-group" data-nav-group="fansite">
-          <summary class="drawer-summary"><span>Para fansites</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
-          <ul class="drawer-links">
-            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="drawer"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg><span>Código-fonte no GitHub</span></a></li>
-          </ul>
-        </details>
+        <a class="drawer-link" href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="drawer"><span>Código-fonte no GitHub</span><span class="sr-only"> (abre em uma nova aba)</span></a>
         <a class="drawer-link" href="../../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a>
       </nav>
       <div class="menu-group">
@@ -461,15 +449,10 @@
             <li><a href="../../pt-br/tibia/#/fansites" data-menu-dest="route:fansites">Fansites</a></li>
           </ul>
         </div>
-        <div data-footer-group="fansite">
-          <h2>Para fansites</h2>
-          <ul>
-            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">Código-fonte no GitHub</a></li>
-          </ul>
-        </div>
         <div>
           <h2>Projeto</h2>
           <ul>
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="footer"><span>Código-fonte no GitHub</span><span class="sr-only"> (abre em uma nova aba)</span></a></li>
             <li><a href="../../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a></li>
             <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0.5" data-track="releases" data-place="footer">Notas da versão 9.0.5</a></li>
             <li><a href="../../pt-br/legal/">Aspectos legais e transparência</a></li>
