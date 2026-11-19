@@ -407,7 +407,7 @@ def og_name(code):
 CSS_LAYERS = ["tokens", "base", "components", "pages", "utilities"]   # cascade order: later layers win, whatever the specificity
 # The files of each layer, in order. Files of pages/ are added in sorted order. A file that should come first in a layer
 # (for example fonts.css in base) is listed before the others here; --strict fails when a file under src/css is not listed.
-CSS_FILES = {"tokens": ["tokens.css"], "base": ["base.css"], "components": ["components.css"], "pages": [], "utilities": ["utilities.css"]}
+CSS_FILES = {"tokens": ["tokens.css"], "base": ["fonts.css", "base.css"], "components": ["components.css"], "pages": [], "utilities": ["utilities.css"]}
 CSS_TOKEN = re.compile(r"""/\*.*?\*/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|url\(\s*[^"'\s)][^)]*\)|\s+|[{};,]|[^\s{};,"'/(]+|.""", re.S)
 
 
@@ -459,6 +459,18 @@ def asset_files(strict=False):
     for name in sorted(os.listdir(os.path.join(SRC, "js"))):
         if name.endswith(".js"):
             files[name] = open(os.path.join(SRC, "js", name), "rb").read()
+    fonts = os.path.join(SRC, "fonts")
+    for name in sorted(os.listdir(fonts)):
+        if name.endswith(".woff2"):
+            files["fonts/" + name] = open(os.path.join(fonts, name), "rb").read()
+    referenced = set(re.findall(r"url\(\s*fonts/([^)\s]+?)\s*\)", open(os.path.join(SRC, "css", "fonts.css"), encoding="utf-8").read()))
+    absent = sorted(f for f in referenced if "fonts/" + f not in files)
+    if absent:
+        sys.exit(f"fonts.css names font file(s) missing from src/fonts: {', '.join(absent)}")
+    if strict:
+        unused = sorted(f[6:] for f in files if f.startswith("fonts/") and f[6:] not in referenced)
+        if unused:
+            sys.exit(f"--strict: src/fonts file(s) not used by fonts.css: {', '.join(unused)}")
     return files
 
 
@@ -1053,6 +1065,7 @@ def main():
     for name, data in asset_files(strict).items():
         if b"</script" in data.lower() or b"</style" in data.lower():
             sys.exit(f"{name} would close its own element.")
+        os.makedirs(os.path.dirname(os.path.join(SITE, "assets", name)), exist_ok=True)
         open(os.path.join(SITE, "assets", name), "wb").write(data)
         assets["hash"][name] = hashlib.sha256(data).hexdigest()[:10]
     assets["version"] = assets["hash"]["site.css"]

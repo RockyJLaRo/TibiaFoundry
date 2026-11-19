@@ -52,7 +52,7 @@
 /* notices: the download notice is a framed parchment note with a shield */
 .dl-notice { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px 16px; margin: 0 0 16px;
   background: var(--accent-subtle); border: 1px solid var(--border-subtle); border-left: 4px solid var(--accent-primary); border-radius: var(--radius-medium); font-size: .925rem; }
-.dl-notice h2, .dl-notice h3, .dl-notice .dl-notice-title { font: 700 1rem var(--font-body); color: var(--text-primary); margin: 0 0 4px; }
+.dl-notice h2, .dl-notice h3, .dl-notice .dl-notice-title { font: 600 1rem var(--font-body); color: var(--text-primary); margin: 0 0 4px; }
 .dl-notice p { margin: 0 0 .5em; }
 .dl-notice p:last-child { margin: 0; }
 

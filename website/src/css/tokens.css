@@ -32,7 +32,7 @@
   --radius-medium: 4px;
   --radius-large: 6px;
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
-  /* The Barlow font files arrive with the self-hosting task; until then the system fallbacks apply. */
+  /* Barlow and Barlow Semi Condensed are self-hosted (css/fonts.css); the system fonts are the fallback while they load. */
   --font-body: "Barlow", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Roboto", "Helvetica Neue", Arial, sans-serif;
   --font-display: "Barlow Semi Condensed", "Barlow", "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "Roboto", "Helvetica Neue", Arial, sans-serif;
   --mono: "Cascadia Mono", Consolas, ui-monospace, "SF Mono", Menlo, monospace;

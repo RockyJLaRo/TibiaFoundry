@@ -127,7 +127,7 @@ select.input { padding-right: 2em; }
 .drawer-links { list-style: none; margin: 0 0 var(--space-2); padding: 0 0 0 var(--space-2); }
 .drawer-link { min-height: 48px; font-weight: 650; }
 .menu-group { border-top: 1px solid var(--border-subtle); padding-top: 12px; margin-top: 4px; }
-.menu-group h3 { font: 650 .85rem var(--font-body); color: var(--text-secondary); margin: 0 0 6px; }
+.menu-group h3 { font: 600 .85rem var(--font-body); color: var(--text-secondary); margin: 0 0 6px; }
 .menu-langs { list-style: none; margin: 0 0 12px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 4px; }
 .menu-langs a { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-medium); color: var(--text-primary); text-decoration: none; }
 .menu-langs a[aria-current] { font-weight: 700; background: var(--bg-elevated); }

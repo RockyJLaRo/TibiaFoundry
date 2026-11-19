@@ -42,6 +42,16 @@ Things to know:
   `src/styles.css` exists again.
 - The minifier removes comments and collapses whitespace. Strings and `url()` stay as written.
 
+### Fonts
+
+The site uses **Barlow** (body, 400/500/600) and **Barlow Semi Condensed** (headings, 600/700), self-hosted. The WOFF2 files
+are the latin and latin-ext subsets of `@fontsource/barlow` and `@fontsource/barlow-semi-condensed` 5.3.0 (SIL OFL 1.1,
+notice in `website/THIRD-PARTY-NOTICES.md`), kept in `website/src/fonts/`. `css/fonts.css` (first file of the `base` layer)
+declares them with `unicode-range` and `font-display: swap`; `build_site.py` copies them to `assets/fonts/`, where the
+relative `url()`s of `assets/site.css` find them, and fails when fonts.css names a missing file (`--strict` also when a file
+is unused). Pages make no request to Google Fonts or any other CDN. `--font-body` and `--font-display` in `tokens.css` keep
+system fonts as the fallback.
+
 ### How to add a token
 
 1. Add the custom property to `:root` in `tokens.css` (light values).
