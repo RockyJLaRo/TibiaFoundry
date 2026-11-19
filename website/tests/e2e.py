@@ -234,6 +234,18 @@ def language_and_theme(c, browser, base):
     page.reload()
     c.ok(page.get_attribute("html", "data-theme") == "light", "theme persists after reload")
     c.ok(not page.console_errors, f"console errors: {page.console_errors[:3]}")
+    # Early theme script: a stored choice beats the system preference before DOMContentLoaded (the system is dark here).
+    ctx.close()
+    ctx, page = new_page(browser, base, 1440, 1000, theme="dark")
+    page.add_init_script("try { localStorage.setItem('tf-theme', 'light'); } catch (e) {}")
+    page.add_init_script("document.addEventListener('DOMContentLoaded', () => { window.__themeAtDcl = document.documentElement.getAttribute('data-theme'); }, { once: true })")
+    page.goto(url_of(base, en, "features"))
+    c.ok(page.evaluate("window.__themeAtDcl") == "light", "data-theme is light before DOMContentLoaded with a stored light choice under a dark system")
+    c.ok(page.evaluate("getComputedStyle(document.documentElement).colorScheme") == "light", "color-scheme follows the stored light theme")
+    page.locator(".header-tools [data-theme-toggle]").click()
+    c.ok(page.evaluate("getComputedStyle(document.documentElement).colorScheme") == "dark", "color-scheme follows the toggled dark theme")
+    metas = page.evaluate("[...document.querySelectorAll('meta[name=theme-color]')].map(m => [m.media, m.content])")
+    c.ok(metas == [["(prefers-color-scheme: light)", "#f4f3f0"], ["(prefers-color-scheme: dark)", "#111417"]], f"theme-color metas: {metas}")
     ctx.close()
 
 

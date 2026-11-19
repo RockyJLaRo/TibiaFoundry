@@ -51,6 +51,20 @@ Things to know:
    token exists.
 4. Run `python -I website/build_site.py --strict` and check both themes.
 
+### Gilded Inlay tokens
+
+Colours are semantic tokens in `tokens.css`: `--bg-canvas`, `--bg-surface`, `--bg-elevated`, `--bg-input`, `--border-subtle`,
+`--border-strong`, `--text-primary`, `--text-secondary`, `--text-muted`, `--accent-primary`, `--accent-hover`,
+`--accent-subtle`, `--accent-on`, `--inlay`, `--status-*`, `--radius-small|medium|large`, `--space-1` to `--space-8`,
+`--font-body`, `--font-display`. `website/tests/check_contrast.py` reads both palettes and asserts WCAG 2.2 AA pairs
+(text 4.5:1, borders and focus ring 3:1); run it after any colour change.
+
+- Light accent: `#8c6a24` passes on the canvas `#f4f3f0` at 4.50:1, so no 4 % lightness step was needed. It is 5.00:1 on
+  white surfaces. On `--bg-elevated` it is only 4.12:1, so use body text colours, not the accent, for small text there.
+- `--border-strong` is `#8c8576` (light) and `#646d76` (dark), a little darker/lighter than the first design values
+  `#9a9384` and `#4a525b`, which gave only 2.75:1 and 2.33:1 against the canvas.
+- `--font-body` and `--font-display` name Barlow first and fall back to system fonts until the font files are bundled.
+
 ### Why Tailwind was rejected
 
 - It adds a Node or binary (v4 standalone CLI) build step to every site build.
