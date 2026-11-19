@@ -70,3 +70,8 @@ test("registry: every formula is complete and its tests pass", () => {
     for (const t of f.tests) assert.deepEqual(FORMULAS[f.id](t.in), t.out, f.id);
   }
 });
+
+test("registry: ids are unique", () => {
+  const ids = registry.formulas.map((f) => f.id);
+  assert.deepEqual(ids.filter((id, i) => ids.indexOf(id) !== i), []);
+});

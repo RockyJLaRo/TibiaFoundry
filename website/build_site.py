@@ -730,27 +730,30 @@ def not_found_page(assets):
 
 
 def check_formulas():
-    """--strict: every calculator formula a page names (page["calc"]) exists in formulas.json and is documented and tested."""
+    """--strict: every entry of formulas.json is documented and tested, ids are unique, and every formula a page names (page["calc"]) exists."""
     path = os.path.join(SRC, "formulas.json")
-    entries = {f["id"]: f for f in json.load(open(path, encoding="utf-8"))["formulas"]}
-    problems = []
+    problems, entries = [], {}
+    for f in json.load(open(path, encoding="utf-8"))["formulas"]:
+        fid = f.get("id", "?")
+        if fid in entries:
+            problems.append("%s: duplicate id in formulas.json" % fid)
+        entries[fid] = f
+        if not f.get("sources"):
+            problems.append("%s: has no source" % fid)
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(f.get("checkedOn", ""))):
+            problems.append("%s: checkedOn must be YYYY-MM-DD" % fid)
+        tests = f.get("tests", [])
+        if len(tests) < 3:
+            problems.append("%s: needs at least 3 tests (has %d)" % (fid, len(tests)))
+        if not any(t.get("from") != "computed" for t in tests):
+            problems.append("%s: needs a test taken from an official source, the wiki or another calculator" % fid)
     for page in PAGES:
         for fid in page.get("calc", []):
-            f = entries.get(fid)
-            if f is None:
+            if fid not in entries:
                 problems.append("%s: formula '%s' is not in formulas.json" % (page["id"], fid))
-                continue
-            if not f.get("sources"):
-                problems.append("%s: has no source" % fid)
-            if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(f.get("checkedOn", ""))):
-                problems.append("%s: checkedOn must be YYYY-MM-DD" % fid)
-            tests = f.get("tests", [])
-            if len(tests) < 3:
-                problems.append("%s: needs at least 3 tests (has %d)" % (fid, len(tests)))
-            if not any(t.get("from") != "computed" for t in tests):
-                problems.append("%s: needs a test taken from an official source, the wiki or another calculator" % fid)
     if problems:
         sys.exit("--strict: formula registry errors:\n  " + "\n  ".join(problems))
+
 
 
 def main():
@@ -773,6 +776,8 @@ def main():
     problems = validate(locales)
     if problems:
         sys.exit("Translation errors:\n  " + "\n  ".join(problems))
+    if strict:
+        check_formulas()
 
     layout = open(os.path.join(SRC, "templates", "layout.html"), encoding="utf-8").read()
     templates = {p["template"]: open(os.path.join(SRC, "templates", p["template"]), encoding="utf-8").read() for p in PAGES}
