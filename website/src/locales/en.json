@@ -1132,7 +1132,9 @@
       "formatInt": "Enter a whole number, like 150.",
       "integer": "Enter a whole number (no decimals).",
       "range": "This number is too large.",
-      "duration": "Enter a time as hours:minutes, like 39:00."
+      "duration": "Enter a time as hours:minutes, like 39:00.",
+      "tooLarge": "These values give a result too large to show exactly. Use smaller numbers.",
+      "failed": "This result cannot be calculated. Check your values."
     },
     "unit": {
       "hoursMinutes": "{h} h {m} min"
@@ -1164,7 +1166,7 @@
       "shareFrom": "Party share range at current level",
       "shareTo": "Party share range at target level",
       "error": {
-        "level": "Enter a level from 1 to 50,000.",
+        "level": "Enter a level from 1 to 20,000.",
         "toAboveFrom": "The target level must be higher than the current level.",
         "exph": "Experience per hour must be more than 0.",
         "hpd": "Hours per day must be a whole number from 1 to 24."

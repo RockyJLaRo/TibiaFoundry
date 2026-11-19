@@ -1185,7 +1185,9 @@
       "formatInt": "Escribe un número entero, como 150.",
       "integer": "Escribe un número entero (sin decimales).",
       "range": "Este número es demasiado grande.",
-      "duration": "Escribe un tiempo en horas:minutos, como 39:00."
+      "duration": "Escribe un tiempo en horas:minutos, como 39:00.",
+      "tooLarge": "Estos valores dan un resultado demasiado grande para mostrarlo con exactitud. Usa números más pequeños.",
+      "failed": "No se pudo calcular este resultado. Revisa tus valores."
     },
     "unit": {
       "hoursMinutes": "{h} h {m} min"
@@ -1217,7 +1219,7 @@
       "shareFrom": "Rango de share en party del nivel actual",
       "shareTo": "Rango de share en party del nivel objetivo",
       "error": {
-        "level": "Escribe un nivel del 1 al 50 000.",
+        "level": "Escribe un nivel del 1 al 20 000.",
         "toAboveFrom": "El nivel objetivo debe ser mayor que el nivel actual.",
         "exph": "La experiencia por hora debe ser mayor que 0.",
         "hpd": "Las horas por día deben ser un número entero del 1 al 24."

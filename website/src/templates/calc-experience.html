@@ -13,21 +13,21 @@
       <div class="field">
         <label class="field-label" for="calc-from">{{t:calc.experience.from}}</label>
         <input class="input" id="calc-from" name="from" value="100" data-kind="int" inputmode="numeric" enterkeyhint="next" spellcheck="false" required
-               data-min="1" data-max="50000" data-range-error="calc.experience.error.level" aria-describedby="calc-from-echo calc-from-error">
+               data-min="1" data-max="20000" data-range-error="calc.experience.error.level" aria-describedby="calc-from-echo calc-from-error">
         <p class="echo" data-echo="from" id="calc-from-echo"></p>
         <p class="field-error" data-error="from" id="calc-from-error"></p>
       </div>
       <div class="field">
         <label class="field-label" for="calc-to">{{t:calc.experience.to}}</label>
         <input class="input" id="calc-to" name="to" value="200" data-kind="int" inputmode="numeric" enterkeyhint="next" spellcheck="false" required
-               data-min="1" data-max="50000" data-range-error="calc.experience.error.level" data-gt-field="from" data-gt-field-error="calc.experience.error.toAboveFrom"
+               data-min="1" data-max="20000" data-range-error="calc.experience.error.level" data-gt-field="from" data-gt-field-error="calc.experience.error.toAboveFrom"
                aria-describedby="calc-to-echo calc-to-error">
         <p class="echo" data-echo="to" id="calc-to-echo"></p>
         <p class="field-error" data-error="to" id="calc-to-error"></p>
       </div>
       <div class="field">
         <label class="field-label" for="calc-exph">{{t:calc.experience.exph}}</label>
-        <input class="input" id="calc-exph" name="exph" value="1500000" data-kind="number" inputmode="text" enterkeyhint="next" spellcheck="false" required
+        <input class="input" id="calc-exph" name="exph" value="1500000" data-kind="int" inputmode="text" enterkeyhint="next" spellcheck="false" required
                data-gt="0" data-range-error="calc.experience.error.exph" aria-describedby="calc-exph-hint calc-exph-echo calc-exph-error">
         <p class="field-hint" id="calc-exph-hint">{{t:calc.hint.shorthand}}</p>
         <p class="echo" data-echo="exph" id="calc-exph-echo"></p>
@@ -44,6 +44,7 @@
     <div class="calc-side">
       <div class="calc-results framed" aria-live="polite">
         <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <p class="field-error calc-error" data-calc-error></p>
         <div data-formula="levelPlan" data-args="from,to,exph,hpd">
           <div class="calc-main" data-row><span class="calc-label">{{t:calc.experience.exp}}</span><output data-out="exp" data-format="number"></output></div>
           <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.minutes}}</span><output data-out="minutes" data-format="duration"></output></div>

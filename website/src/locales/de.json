@@ -1194,7 +1194,9 @@
       "formatInt": "Gib eine ganze Zahl ein, z. B. 150.",
       "integer": "Gib eine ganze Zahl ein (ohne Nachkommastellen).",
       "range": "Diese Zahl ist zu groß.",
-      "duration": "Gib eine Zeit als Stunden:Minuten ein, z. B. 39:00."
+      "duration": "Gib eine Zeit als Stunden:Minuten ein, z. B. 39:00.",
+      "tooLarge": "Diese Werte ergeben ein Ergebnis, das zu groß ist, um es genau anzuzeigen. Nimm kleinere Zahlen.",
+      "failed": "Dieses Ergebnis lässt sich nicht berechnen. Prüf deine Werte."
     },
     "unit": {
       "hoursMinutes": "{h} Std. {m} Min."
@@ -1226,7 +1228,7 @@
       "shareFrom": "Party-Share-Bereich beim aktuellen Level",
       "shareTo": "Party-Share-Bereich beim Ziel-Level",
       "error": {
-        "level": "Gib ein Level von 1 bis 50.000 ein.",
+        "level": "Gib ein Level von 1 bis 20.000 ein.",
         "toAboveFrom": "Das Ziel-Level muss höher sein als das aktuelle Level.",
         "exph": "Die Erfahrung pro Stunde muss größer als 0 sein.",
         "hpd": "Die Stunden pro Tag müssen eine ganze Zahl von 1 bis 24 sein."

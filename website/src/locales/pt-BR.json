@@ -1190,7 +1190,9 @@
       "formatInt": "Digite um número inteiro, como 150.",
       "integer": "Digite um número inteiro (sem casas decimais).",
       "range": "Este número é grande demais.",
-      "duration": "Digite um tempo em horas:minutos, como 39:00."
+      "duration": "Digite um tempo em horas:minutos, como 39:00.",
+      "tooLarge": "Estes valores dão um resultado grande demais para ser mostrado com exatidão. Use números menores.",
+      "failed": "Não foi possível calcular este resultado. Confira os seus valores."
     },
     "unit": {
       "hoursMinutes": "{h} h {m} min"
@@ -1222,7 +1224,7 @@
       "shareFrom": "Faixa de share da party no nível atual",
       "shareTo": "Faixa de share da party no nível desejado",
       "error": {
-        "level": "Digite um nível de 1 a 50.000.",
+        "level": "Digite um nível de 1 a 20.000.",
         "toAboveFrom": "O nível desejado precisa ser maior que o nível atual.",
         "exph": "A experiência por hora precisa ser maior que 0.",
         "hpd": "As horas por dia precisam ser um número inteiro de 1 a 24."

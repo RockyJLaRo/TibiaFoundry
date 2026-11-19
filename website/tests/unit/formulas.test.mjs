@@ -72,6 +72,10 @@ test("formatNumber: the site's grouping per language, readable again by parseNum
   assert.equal(formatNumber(132933899800, "en"), "132,933,899,800");
   assert.equal(formatNumber(1234.5, "en"), "1,234.5");
   assert.equal(formatNumber(1234.5, "de"), "1.234,5");
+  // never exponent notation (String(1e-5) is "1e-5", String(1e21) is "1e+21")
+  assert.equal(formatNumber(0.00001, "en"), "0.00001");
+  assert.equal(formatNumber(0.00001, "de"), "0,00001");
+  assert.equal(formatNumber(1e21, "en"), "1,000,000,000,000,000,000,000");
   for (const lang of ["en", "pt-BR", "pl", "es", "de"]) {
     for (const n of [0, 7, 999, 1000, 9999, 10000, 1500000, 132933899800, 12.5, 1234.75]) {
       assert.deepEqual(parseNumber(formatNumber(n, lang), lang), { value: n }, lang + " " + n);

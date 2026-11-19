@@ -53,7 +53,9 @@
 
   function formatNumber(value, lang) {
     var group = GROUP[lang] === " " ? "\u00a0" : GROUP[lang] || ",";
-    var parts = String(Math.abs(value)).split(".");
+    // Plain digits, never exponent notation (String(1e-5) is "1e-5"); grouping and separators are added below.
+    var plain = Math.abs(value).toLocaleString("en-US", { useGrouping: false, maximumFractionDigits: 20 });
+    var parts = plain.split(".");
     var whole = parts[0];
     if (!(group === "\u00a0" && whole.length <= 4)) whole = whole.replace(/\B(?=(\d{3})+(?!\d))/g, group);
     return (value < 0 ? "-" : "") + whole + (parts[1] ? (lang === "en" ? "." : ",") + parts[1] : "");

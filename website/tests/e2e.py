@@ -683,6 +683,9 @@ CALC_FILL = """(values) => {
 }"""
 CALC_STATE = """() => { window.__calcState = (form) => ({
   errors: Object.fromEntries([...form.querySelectorAll('[data-error]')].map(e => [e.dataset.error, e.textContent.trim()])),
+  kinds: Object.fromEntries([...form.querySelectorAll('[data-error]')].filter(e => e.textContent.trim()).map(e => [e.dataset.error, e.dataset.errorKind || ''])),
+  calcError: (form.querySelector('[data-calc-error]') || {textContent: ''}).textContent.trim(),
+  copy: (form.querySelector('[data-copy]') || {}).disabled ? null : (form.querySelector('[data-copy]') || {getAttribute: () => ''}).getAttribute('data-copy'),
   echoes: Object.fromEntries([...form.querySelectorAll('[data-echo]')].map(e => [e.dataset.echo, e.textContent.trim()])),
   invalid: [...form.querySelectorAll('[aria-invalid=true]')].map(e => e.name),
   inputs: Object.fromEntries([...form.querySelectorAll('[name]')].map(e => [e.name, e.value])),
@@ -754,10 +757,14 @@ def calculators(c, browser, base):
                         values.update({name: test["in"][k] for k, name in args})
                         st = calc_fill(page, values)
                         if any(st["errors"].values()):
-                            # The page refuses this combination (e.g. target level not above current level): no number may be shown.
+                            # The page refuses this combination: no number may be shown, and only a rule between two fields
+                            # (data-gt-field, e.g. target level not above the current level) may refuse a formulas.json value -
+                            # a refused value of its own (format, range) would be a calculator that cannot show its tested value.
                             c.ok(all(not o["value"] and not o["text"] for o in st["outs"].values()), f"{where}: results shown while an input is refused {st['errors']}")
-                            seen = seen or "refused"
+                            if c.ok(set(st["kinds"].values()) == {"gt-field"}, f"{where}: page refuses the test value {fid}{test['in']} (mapping {call['args']}): {st['errors']} {st['kinds']}"):
+                                seen = seen or "refused"
                             continue
+                        c.ok(not st["calcError"], f"{where}: {fid}{test['in']} shows the result error {st['calcError']!r}")
                         before = len(c.failures)
                         for k, v in test["out"].items():
                             name = (call["prefix"] + "." if call["prefix"] else "") + k
@@ -802,7 +809,7 @@ def calculators(c, browser, base):
                 c.ok(st["errors"].get("to"), f"{where}: no error under the target level for to=100, from=200")
                 c.ok("to" in st["invalid"], f"{where}: target level not marked aria-invalid")
                 c.ok(all(not o["value"] and not o["text"] for o in st["outs"].values()), f"{where}: outputs not emptied for to < from")
-                for name, text in (("hpd", "25"), ("hpd", "0"), ("exph", "0"), ("from", "0"), ("to", "50001"), ("from", "12.5" if code == "en" else "12,5")):
+                for name, text in (("hpd", "25"), ("hpd", "0"), ("exph", "0"), ("from", "0"), ("to", "20001"), ("from", "12.5" if code == "en" else "12,5"), ("exph", "1.5" if code == "en" else "1,5")):
                     st = calc_fill(page, dict(defaults, **{name: text}))
                     c.ok(st["errors"].get(name) and all(not o["value"] for o in st["outs"].values()), f"{where}: {name}={text!r} must be refused with an inline error")
                 # The page language decides the number format; every number is echoed.
@@ -843,6 +850,35 @@ def calculators(c, browser, base):
         c.ok(st["search"] == "", f"reset clears the query string: {st['search']!r}")
         c.ok(st["inputs"] == {"from": "100", "to": "200", "exph": "1.500.000", "hpd": "4"}, f"reset restores the defaults: {st['inputs']}")
         c.ok(st["outs"]["exp"]["value"] == "113695000" and st["outs"]["days"]["value"] == "19", "reset recomputes the defaults")
+        # Review finding: a finish date beyond what a Date can hold must not stop the update (106,347,500 days at 1 exp/h).
+        page.goto(url_of(base, de, "calc-experience") + "?from=100&to=300&exph=1500000&hpd=4")
+        page.wait_for_function(CALC_READY, timeout=10000)
+        page.evaluate(CALC_STATE)
+        before = page.evaluate("document.querySelector('[data-finish]').getAttribute('data-value')")
+        c.ok(bool(before), "finish date shown for 100 -> 300 at 1.500.000 exp/h")
+        exph = page.locator("form[data-calc] [name=exph]")
+        exph.fill("")
+        exph.press_sequentially("1")
+        st = page.evaluate("window.__calcState(document.querySelector('form[data-calc]'))")
+        finish = page.evaluate("(() => { const o = document.querySelector('[data-finish]'); return [o.getAttribute('data-value'), o.textContent]; })()")
+        c.ok(st["outs"]["days"]["value"] == "106347500" and st["outs"]["days"]["text"] == "106.347.500", f"days at 1 exp/h: {st['outs']['days']}")
+        c.ok(finish == [None, ""], f"finish date not representable must show '–', not a stale date: {finish}")
+        c.ok(st["search"] == "?from=100&to=300&exph=1&hpd=4", f"share link follows the input: {st['search']!r}")
+        c.ok(st["copy"] and "106.347.500" in st["copy"] and "exph=1&" in st["copy"], f"copy summary follows the input: {st['copy']!r}")
+        c.ok(not page.console_errors, f"page errors after typing exph=1: {page.console_errors[:3]}")
+        # The result guard: a value beyond Number.MAX_SAFE_INTEGER (or a failing formula) shows an inline error, no numbers.
+        for patch, what in (("() => ({ exp: 2 ** 60, minutes: 1, days: 1 })", "too large"), ("() => { throw new Error('test'); }", "failing")):
+            page.evaluate(f"(() => {{ window.__orig = window.__orig || TFFormulas.FORMULAS.levelPlan; TFFormulas.FORMULAS.levelPlan = {patch}; }})()")
+            st = calc_fill(page, {"hpd": "5"})
+            c.ok(st["calcError"] and all(not o["value"] and not o["text"] for o in st["outs"].values()) and st["copy"] is None,
+                 f"{what} result: inline error and no numbers expected: {st['calcError']!r} {[(k, o['value']) for k, o in st['outs'].items() if o['value']]}")
+            c.ok(st["search"].endswith("hpd=5"), f"{what} result: share link still follows the input ({st['search']})")
+        page.evaluate("() => { TFFormulas.FORMULAS.levelPlan = window.__orig; }")
+        st = calc_fill(page, {"exph": "1500000"})
+        c.ok(not st["calcError"] and st["outs"]["exp"]["value"] == "425390000", f"result error clears with valid input: {st['calcError']!r}")
+        c.ok(not page.console_errors, f"page errors from the result guard: {page.console_errors[:3]}")
+        page.goto(url_of(base, de, "calc-experience"))
+        page.wait_for_function(CALC_READY, timeout=10000)
         # Keyboard: Tab from the first field walks through the fields to the buttons.
         page.locator("form[data-calc] [name=from]").focus()
         order = []

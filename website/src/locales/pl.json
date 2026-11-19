@@ -1185,7 +1185,9 @@
       "formatInt": "Wpisz liczbę całkowitą, np. 150.",
       "integer": "Wpisz liczbę całkowitą (bez części dziesiętnej).",
       "range": "Ta liczba jest za duża.",
-      "duration": "Wpisz czas jako godziny:minuty, np. 39:00."
+      "duration": "Wpisz czas jako godziny:minuty, np. 39:00.",
+      "tooLarge": "Te wartości dają wynik zbyt duży, by pokazać go dokładnie. Użyj mniejszych liczb.",
+      "failed": "Nie udało się obliczyć wyniku. Sprawdź wpisane wartości."
     },
     "unit": {
       "hoursMinutes": "{h} godz. {m} min"
@@ -1217,7 +1219,7 @@
       "shareFrom": "Zakres dzielenia doświadczenia dla obecnego poziomu",
       "shareTo": "Zakres dzielenia doświadczenia dla docelowego poziomu",
       "error": {
-        "level": "Wpisz poziom od 1 do 50 000.",
+        "level": "Wpisz poziom od 1 do 20 000.",
         "toAboveFrom": "Docelowy poziom musi być wyższy niż obecny.",
         "exph": "Doświadczenie na godzinę musi być większe od 0.",
         "hpd": "Liczba godzin dziennie musi być liczbą całkowitą od 1 do 24."

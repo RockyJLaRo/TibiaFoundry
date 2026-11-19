@@ -10,7 +10,10 @@
  *   formulas <el data-formula="<id>" data-args="a,b" or "level=from" data-prefix="from">: calls FORMULAS[id] with
  *            those fields; its outputs go to <output data-out="[prefix.]key" data-format="number|duration">, which
  *            receive the text in the page language and data-value="<raw value>". All outputs are in one aria-live region.
- *   extras   <output data-finish="<out>">: today + that many days, as a date; [data-row] rows make the copied summary.
+ *   extras   <output data-finish="<out>">: today + that many days, as a date ("–" when no calendar date is that far);
+ *            [data-row] rows make the copied summary; <p data-calc-error> in the results region shows a result that
+ *            cannot be shown exactly (beyond Number.MAX_SAFE_INTEGER, not a finite number, or a formula that failed).
+ *   errors   every [data-error] line gets data-error-kind="parse|range|gt-field" (what refused the field).
  *   buttons  [data-copy] (copies the summary; site.js does the copying), [data-share] (copies the share link),
  *            [data-reset] (back to the template's values, no query string).
  *
@@ -41,7 +44,7 @@
     var fields = Array.prototype.slice.call(form.querySelectorAll("input[name][data-kind], select[name]"));
     var calls = Array.prototype.map.call(form.querySelectorAll("[data-formula]"), function (el) {
       return {
-        fn: F.FORMULAS[el.getAttribute("data-formula")],
+        id: el.getAttribute("data-formula"),
         prefix: el.getAttribute("data-prefix") ? el.getAttribute("data-prefix") + "." : "",
         args: (el.getAttribute("data-args") || "").split(",").filter(Boolean).map(function (part) {
           var kv = part.trim().split("=");
@@ -49,6 +52,7 @@
         })
       };
     });
+    var calcError = form.querySelector("[data-calc-error]");
     var copyBtn = form.querySelector("[data-copy]"), shareBtn = form.querySelector("[data-share]"), resetBtn = form.querySelector("[data-reset]");
     var langLinks = document.querySelectorAll("a[data-lang]");
     each(langLinks, function (a) { a.setAttribute("data-base-href", a.getAttribute("href")); });
@@ -78,12 +82,12 @@
       if (r.error) {
         var key = r.error === "empty" ? "calc.error.empty" : r.error === "integer" ? "calc.error.integer" : r.error === "range" ? "calc.error.range"
           : kind === "duration" ? "calc.error.duration" : kind === "int" ? "calc.error.formatInt" : "calc.error.format";
-        return { error: TF.t(key) };
+        return { error: TF.t(key), kind: "parse" };
       }
       var v = r.value, min = field.getAttribute("data-min"), max = field.getAttribute("data-max"), gt = field.getAttribute("data-gt");
       r.plain = kind === "duration" ? hm(v) : String(v);
       r.echo = TF.t("calc.readAs", { value: kind === "duration" ? duration(v) : num(v) });
-      if ((min !== null && v < Number(min)) || (max !== null && v > Number(max)) || (gt !== null && v <= Number(gt))) r.error = TF.t(field.getAttribute("data-range-error"));
+      if ((min !== null && v < Number(min)) || (max !== null && v > Number(max)) || (gt !== null && v <= Number(gt))) { r.error = TF.t(field.getAttribute("data-range-error")); r.kind = "range"; }
       return r;
     }
 
@@ -93,45 +97,73 @@
       el.setAttribute("data-value", String(value));
     }
 
+    // Only numbers that are exact integers or finite decimals within the safe range are ever shown.
+    function exact(v) { return typeof v === "number" && isFinite(v) && Math.abs(v) <= Number.MAX_SAFE_INTEGER; }
+
+    function finishDate(days) {
+      if (!dateFormat || !exact(days)) return null;
+      var d = new Date();
+      d.setDate(d.getDate() + days);
+      if (isNaN(d.getTime())) return null;   // beyond the calendar a Date can hold (about 270,000 years)
+      try { return { iso: d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2), text: dateFormat.format(d) }; }
+      catch (e) { return null; }
+    }
+
     function compute() {
       state = {};
       fields.forEach(function (f) { state[f.name] = read(f); });
       fields.forEach(function (f) {
         var s = state[f.name], other = f.getAttribute("data-gt-field");
-        if (!s.error && other && state[other] && state[other].value !== undefined && !state[other].error && s.value <= state[other].value) s.error = TF.t(f.getAttribute("data-gt-field-error"));
+        if (!s.error && other && state[other] && state[other].value !== undefined && !state[other].error && s.value <= state[other].value) {
+          s.error = TF.t(f.getAttribute("data-gt-field-error"));
+          s.kind = "gt-field";
+        }
       });
       var valid = true;
       fields.forEach(function (f) {
         var s = state[f.name], echo = find(form, "data-echo", f.name), err = find(form, "data-error", f.name);
         if (echo) echo.textContent = s.echo || "";
-        if (err) err.textContent = s.error || "";
+        if (err) { err.textContent = s.error || ""; if (s.error) err.setAttribute("data-error-kind", s.kind); else err.removeAttribute("data-error-kind"); }
         if (s.error) { valid = false; f.setAttribute("aria-invalid", "true"); } else f.removeAttribute("aria-invalid");
       });
-      each(form.querySelectorAll("[data-out]"), function (o) { o._set = false; });
-      if (valid) calls.forEach(function (call) {
-        if (!call.fn || call.args.some(function (a) { return !state[a.field] || state[a.field].value === undefined; })) return;
-        var input = {};
-        call.args.forEach(function (a) { input[a.key] = state[a.field].value; });
-        var result = call.fn(input);
-        Object.keys(result).forEach(function (k) {
-          var o = find(form, "data-out", call.prefix + k);
-          if (!o) return;
-          setOut(o, result[k], o.getAttribute("data-format") === "duration" ? duration(result[k]) : num(result[k]));
-          o._set = true;
-        });
-      });
-      each(form.querySelectorAll("[data-out]"), function (o) { if (!o._set) setOut(o, null); });
-      each(form.querySelectorAll("[data-finish]"), function (o) {
-        var days = find(form, "data-out", o.getAttribute("data-finish")), n = days && days.getAttribute("data-value");
-        if (!n || !dateFormat) return setOut(o, null);
-        var d = new Date();
-        d.setDate(d.getDate() + Number(n));
-        setOut(o, d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2), dateFormat.format(d));
-      });
-      if (copyBtn) {
-        copyBtn.disabled = !valid;
-        copyBtn.setAttribute("data-copy", valid ? summary() : "");
+      // All results first, then the page: one failing formula can never leave other numbers from earlier input.
+      var results = {}, problem = null;
+      if (valid) {
+        try {
+          calls.forEach(function (call) {
+            var fn = F.FORMULAS[call.id];
+            if (!fn || call.args.some(function (a) { return !state[a.field] || state[a.field].value === undefined; })) return;
+            var input = {};
+            call.args.forEach(function (a) { input[a.key] = state[a.field].value; });
+            var result = fn(input);
+            Object.keys(result).forEach(function (k) {
+              if (!exact(result[k])) problem = "calc.error.tooLarge";
+              results[call.prefix + k] = result[k];
+            });
+          });
+        } catch (e) { problem = "calc.error.failed"; }
+        if (problem) results = {};
       }
+      each(form.querySelectorAll("[data-out]"), function (o) {
+        var name = o.getAttribute("data-out"), v = results[name];
+        if (!Object.prototype.hasOwnProperty.call(results, name)) return setOut(o, null);
+        setOut(o, v, o.getAttribute("data-format") === "duration" ? duration(v) : num(v));
+      });
+      each(form.querySelectorAll("[data-finish]"), function (o) {
+        var date = finishDate(results[o.getAttribute("data-finish")]);
+        if (date) setOut(o, date.iso, date.text); else setOut(o, null);
+      });
+      if (calcError) calcError.textContent = problem ? TF.t(problem) : "";
+      if (copyBtn) {
+        var ok = valid && !problem;
+        copyBtn.disabled = !ok;
+        copyBtn.setAttribute("data-copy", ok ? summary() : "");
+      }
+    }
+
+    // Input always ends with the share link and the language links matching what is typed, whatever compute() met.
+    function update() {
+      try { compute(); } finally { setSearch(query()); }
     }
 
     function query() {
@@ -178,8 +210,8 @@
     if (location.search) setSearch(location.search);
 
     form.addEventListener("submit", function (e) { e.preventDefault(); });
-    form.addEventListener("input", function () { compute(); setSearch(query()); });
-    form.addEventListener("change", function (e) { if (e.target.tagName === "SELECT") { compute(); setSearch(query()); } });
+    form.addEventListener("input", update);
+    form.addEventListener("change", function (e) { if (e.target.tagName === "SELECT") update(); });
     if (shareBtn) shareBtn.addEventListener("click", function () {
       TF.copy(shareUrl()).then(function () { TF.confirmCopy(shareBtn, true); }, function () { TF.confirmCopy(shareBtn, false); });
     });
