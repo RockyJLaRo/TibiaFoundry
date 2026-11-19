@@ -49,7 +49,23 @@
     return { value: Number(m[1]) * 60 + Number(m[2]) };
   }
 
-  var FORMULAS = {};
+  var FORMULAS = {
+    // Total experience for a level: 50/3 * (L^3 - 6L^2 + 17L - 12). The product is always divisible by 3 (exact integer).
+    levelExp: function (i) {
+      var L = i.level;
+      return { exp: (50 * (L * L * L - 6 * L * L + 17 * L - 12)) / 3 };
+    },
+    // Experience between two levels, minutes at exph experience per hour, days at hpd hours per day.
+    levelPlan: function (i) {
+      var exp = FORMULAS.levelExp({ level: i.to }).exp - FORMULAS.levelExp({ level: i.from }).exp;
+      var minutes = Math.floor((exp * 60) / i.exph);
+      return { exp: exp, minutes: minutes, days: Math.ceil(minutes / (i.hpd * 60)) };
+    },
+    // Party share range (TibiaWiki "Party Experience Sharing" table): min = floor(2L/3), max = floor(3L/2) + 1.
+    shareRange: function (i) {
+      return { min: Math.floor((2 * i.level) / 3), max: Math.floor((3 * i.level) / 2) + 1 };
+    }
+  };
 
   return { parseNumber: parseNumber, parseDuration: parseDuration, FORMULAS: FORMULAS };
 });

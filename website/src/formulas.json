@@ -1,1 +1,221 @@
-{"formulas": []}
+{
+  "formulas": [
+    {
+      "id": "levelExp",
+      "calc": "experience",
+      "rule": "calc.experience.rule.levelExp",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Experience_Formula",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Experience for level x = 50/3*(x^3-6x^2+17x-12)."
+        },
+        {
+          "url": "https://www.tibia.com/library/?subtopic=experiencetable",
+          "kind": "official",
+          "read": "2026-11-18",
+          "note": "Official experience table: levels 2, 8, 100, 200, 2000 match the formula exactly."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-18",
+      "checkedOn": "2026-11-18",
+      "tests": [
+        {
+          "in": {
+            "level": 1
+          },
+          "out": {
+            "exp": 0
+          },
+          "from": "wiki"
+        },
+        {
+          "in": {
+            "level": 2
+          },
+          "out": {
+            "exp": 100
+          },
+          "from": "official"
+        },
+        {
+          "in": {
+            "level": 8
+          },
+          "out": {
+            "exp": 4200
+          },
+          "from": "official"
+        },
+        {
+          "in": {
+            "level": 100
+          },
+          "out": {
+            "exp": 15694800
+          },
+          "from": "official"
+        },
+        {
+          "in": {
+            "level": 200
+          },
+          "out": {
+            "exp": 129389800
+          },
+          "from": "official"
+        },
+        {
+          "in": {
+            "level": 2000
+          },
+          "out": {
+            "exp": 132933899800
+          },
+          "from": "official"
+        }
+      ]
+    },
+    {
+      "id": "levelPlan",
+      "calc": "experience",
+      "rule": "calc.experience.rule.levelPlan",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Experience_Formula",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Experience for level x = 50/3*(x^3-6x^2+17x-12)."
+        },
+        {
+          "url": "https://www.tibia.com/library/?subtopic=experiencetable",
+          "kind": "official",
+          "read": "2026-11-18",
+          "note": "Official experience table: levels 2, 8, 100, 200, 2000 match the formula exactly."
+        },
+        {
+          "url": "https://tibiaroute.com/calculators/level-calculator",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "TibiaRoute level 100 to 200 = 113,695,000 exp, 75 h 47 min at 1.5kk/h (capture: research/calc-tests/level-tibiaroute.json)."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-18",
+      "checkedOn": "2026-11-18",
+      "tests": [
+        {
+          "in": {
+            "from": 100,
+            "to": 200,
+            "exph": 1500000,
+            "hpd": 24
+          },
+          "out": {
+            "exp": 113695000,
+            "minutes": 4547,
+            "days": 4
+          },
+          "from": "calculator:tibiaroute"
+        },
+        {
+          "in": {
+            "from": 2,
+            "to": 8,
+            "exph": 1000,
+            "hpd": 2
+          },
+          "out": {
+            "exp": 4100,
+            "minutes": 246,
+            "days": 3
+          },
+          "from": "official"
+        },
+        {
+          "in": {
+            "from": 100,
+            "to": 100,
+            "exph": 1000000,
+            "hpd": 8
+          },
+          "out": {
+            "exp": 0,
+            "minutes": 0,
+            "days": 0
+          },
+          "from": "computed"
+        }
+      ]
+    },
+    {
+      "id": "shareRange",
+      "calc": "experience",
+      "rule": "calc.experience.rule.shareRange",
+      "sources": [
+        {
+          "url": "https://tibia.fandom.com/wiki/Party_Experience_Sharing",
+          "kind": "wiki",
+          "read": "2026-11-18",
+          "note": "Table for levels 1-3000: lowest = floor(2L/3), highest = floor(3L/2)+1."
+        },
+        {
+          "url": "https://codingace.net/general/tibia_share_exp.html",
+          "kind": "calculator",
+          "read": "2026-11-18",
+          "note": "Calculator formulas give 66 / 151 for level 100 (same as the wiki table)."
+        },
+        {
+          "url": "https://www.tibia.com/support/?subtopic=faq&entryid=91",
+          "kind": "official",
+          "read": "2026-11-18",
+          "note": "Wording 'not less than two-thirds' is approximate; the published table is used for exact edges."
+        }
+      ],
+      "tibiaVersion": "current as of 2026-11-18",
+      "checkedOn": "2026-11-18",
+      "tests": [
+        {
+          "in": {
+            "level": 1
+          },
+          "out": {
+            "min": 0,
+            "max": 2
+          },
+          "from": "wiki"
+        },
+        {
+          "in": {
+            "level": 4
+          },
+          "out": {
+            "min": 2,
+            "max": 7
+          },
+          "from": "wiki"
+        },
+        {
+          "in": {
+            "level": 100
+          },
+          "out": {
+            "min": 66,
+            "max": 151
+          },
+          "from": "calculator:codingace"
+        },
+        {
+          "in": {
+            "level": 3000
+          },
+          "out": {
+            "min": 2000,
+            "max": 4501
+          },
+          "from": "wiki"
+        }
+      ]
+    }
+  ]
+}
