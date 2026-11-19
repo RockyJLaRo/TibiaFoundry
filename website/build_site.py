@@ -22,7 +22,9 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
 * src/images/pixel/*.svg (the site's own pixel ornaments, drawn by website/art/pixelart.py) is copied to site/img/pixel/;
 * calculators: a page with "calc" (formula ids of src/formulas.json) loads formulas.js and calc.js and gets the calc.*
   texts at run time; {{CALC_HOW:<id>}} renders a formula's rule, sources and "checked on" date from src/formulas.json,
-  {{CALC_CARDS}} the hub's card per calculator page and {{FOOTER_CALCS}} the footer's links to them;
+  {{CALC_CARDS}} the hub's card per calculator page;
+* registry.json "menu" is the header menu (desktop panels, {{NAV}}), the phone drawer ({{MENU_NAV}}) and the footer's link
+  columns ({{FOOTER_MENU}}, {{FOOTER_MENU_LINKS}}); --strict fails on an unknown page or data route in it;
 * --checksums also reads the archives' sizes when the files sit next to the checksum file, and the release date is the
   date of the version's heading in CHANGELOG.md (both are shown on the Downloads page when known).
 
@@ -623,6 +625,120 @@ def calc_cards_html(tr, link_to):
         f'<span class="dest-text">{tr.text(p["nav"].rsplit(".", 1)[0] + ".card")}</span></a></li>' for p in CALC_PAGES)
 
 
+# ============================================================================ menu (header panels, phone drawer, footer columns)
+MENU = REGISTRY["menu"]
+# A menu route that stops before a pattern's :world or :town (e.g. "guilds" for guilds/:world) takes these, as the Tibia
+# page's own sub-navigation does.
+MENU_ROUTE_DEFAULTS = {"world": REGISTRY["fixtures"]["world"], "town": REGISTRY["fixtures"]["house"]["town"]}
+
+
+def resolve_route(route):
+    """A menu route as a data route path: exactly a pattern (literal segments equal, :params filled), or the literal start of
+    a pattern whose remaining :params all have defaults. None when no data route matches."""
+    segs = route.split("/")
+    patterns = [r["pattern"].split("/") for r in REGISTRY["dataRoutes"] if r["pattern"]]
+    for pat in patterns:
+        if len(pat) == len(segs) and all(p.startswith(":") or p == s for p, s in zip(pat, segs)):
+            return route
+    for pat in patterns:
+        rest = pat[len(segs):]
+        if (len(pat) > len(segs) and all(p.startswith(":") or p == s for p, s in zip(pat, segs))
+                and all(p.startswith(":") and p[1:] in MENU_ROUTE_DEFAULTS for p in rest)):
+            return "/".join(segs + [MENU_ROUTE_DEFAULTS[p[1:]] for p in rest])
+    return None
+
+
+def menu_entries():
+    """registry.menu as (group or None, [items]); a plain link is a group-less single item."""
+    return [(e, e["items"]) if "items" in e else (None, [e]) for e in MENU]
+
+
+def menu_dest(item):
+    """The stable key of a menu destination (data-menu-dest): page:<id>[#hash], route:<route> or href:<url>."""
+    if "page" in item:
+        return "page:" + item["page"] + ("#" + item["hash"] if item.get("hash") else "")
+    return ("route:" + item["route"]) if "route" in item else ("href:" + item["href"])
+
+
+def check_menu(strict):
+    """An unknown page always stops the build (no link could be written); --strict also fails on an unknown data route, an
+    item without a label, a malformed group or a calculator page missing from the menu (otherwise they are printed)."""
+    problems, pages, listed = [], {p["id"] for p in PAGES}, set()
+    for group, items in menu_entries():
+        if group is not None and not (group.get("id") and group.get("label") and items):
+            problems.append(f"group {group.get('id')!r} needs an id, a label and items")
+        for item in items:
+            kinds = [k for k in ("page", "route", "href") if k in item]
+            if len(kinds) != 1:
+                problems.append(f"item {item} needs exactly one of page, route or href")
+                continue
+            if "page" in item:
+                if item["page"] not in pages:
+                    sys.exit(f"registry.menu: unknown page '{item['page']}'")
+                listed.add(item["page"])
+            elif "route" in item and resolve_route(item["route"]) is None:
+                problems.append(f"route '{item['route']}' matches no data route")
+            elif "href" in item and not item["href"].startswith("https://"):
+                problems.append(f"href '{item['href']}' must be an https:// address")
+            if ("route" in item or "href" in item) and not item.get("label"):
+                problems.append(f"{menu_dest(item)} needs a label")
+    problems += [f"calculator page '{p['id']}' is not in the menu" for p in CALC_PAGES if p["id"] not in listed]
+    if problems and strict:
+        sys.exit("--strict: registry.menu errors:\n  " + "\n  ".join(problems))
+    for p in problems:
+        print("  registry.menu: " + p)
+
+
+def menu_html(tr, link_to, page):
+    """{{NAV}} (desktop disclosure buttons and panels), {{MENU_NAV}} (the drawer's collapsible groups and plain links),
+    {{FOOTER_MENU}} (a footer column per group) and {{FOOTER_MENU_LINKS}} (the plain links, in the footer's Project column)."""
+    tibia = link_to("tibia")
+
+    def link(item, place, cls=""):
+        """(the <a> of an item, whether it is the current page); place: header, drawer (icons) or top, footer (none)."""
+        if "page" in item:
+            target = next(p for p in PAGES if p["id"] == item["page"])
+            href = link_to(item["page"]) + ("#" + item["hash"] if item.get("hash") else "")
+            label, icon = tr.text(item.get("label") or target["nav"]), item.get("icon") or target["icon"]
+            current = item["page"] == page["id"] and not item.get("hash")
+            extra = "" if item.get("hash") else f' data-page-link="{item["page"]}"'
+        elif "route" in item:
+            href = tibia + "#/" + "/".join(urllib.parse.quote(s, safe="") for s in resolve_route(item["route"]).split("/"))
+            label, icon, current, extra = tr.text(item["label"]), item.get("icon"), False, ""
+        else:
+            href, label, icon, current = htmllib.escape(item["href"]), tr.text(item["label"]), item.get("icon"), False
+            extra = f' data-track="repository" data-place="{place}"' if item["href"] == REGISTRY["repository"] else ""
+        body = (f'<svg class="ic" aria-hidden="true"><use href="#i-{icon}"/></svg><span>{label}</span>'
+                if icon and place in ("header", "drawer") else label)
+        return (f'<a{cls} href="{href}" data-menu-dest="{htmllib.escape(menu_dest(item))}"{extra}'
+                + (' aria-current="page"' if current else "") + f">{body}</a>"), current
+
+    nav, drawer, footer, footer_links = [], [], [], []
+    chevron = '<svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>'
+    for group, items in menu_entries():
+        if group is None:
+            nav.append('        <li class="nav-item">' + link(items[0], "top", ' class="nav-link"')[0] + "</li>")
+            drawer.append("        " + link(items[0], "top", ' class="drawer-link"')[0])
+            footer_links.append(f'            <li>{link(items[0], "footer")[0]}</li>')
+            continue
+        gid, label = group["id"], tr.text(group["label"])
+        links = [link(i, "header") for i in items]
+        here = " data-current" if any(cur for _, cur in links) else ""
+        wide = " nav-panel-wide" if len(items) > 6 else ""
+        nav.append(f'        <li class="nav-group" data-nav-group="{gid}">\n'
+                   f'          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-{gid}"{here}>'
+                   f'<span>{label}</span>{chevron}</button>\n'
+                   f'          <div class="nav-panel{wide}" id="nav-panel-{gid}" hidden>\n            <ul class="nav-panel-list">\n'
+                   + "\n".join(f"              <li>{a}</li>" for a, _ in links) + "\n            </ul>\n          </div>\n        </li>")
+        drawer.append(f'        <details class="drawer-group" data-nav-group="{gid}"' + (" open" if here else "") + ">\n"
+                      f'          <summary class="drawer-summary"{here}><span>{label}</span>{chevron}</summary>\n'
+                      '          <ul class="drawer-links">\n'
+                      + "\n".join(f"            <li>{link(i, 'drawer')[0]}</li>" for i in items) + "\n          </ul>\n        </details>")
+        footer.append(f'        <div data-footer-group="{gid}">\n          <h2>{label}</h2>\n          <ul>\n'
+                      + "\n".join(f"            <li>{link(i, 'footer')[0]}</li>" for i in items) + "\n          </ul>\n        </div>")
+    return "\n".join(nav), "\n".join(drawer), "\n".join(footer), "\n".join(footer_links)
+
+
 def page_title(tr, page):
     return tr.text("meta.title") if page["id"] == "home" else tr.text(f"pages.{page['id']}.title") + " – Tibia Foundry"
 
@@ -657,14 +773,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
 
     alternates = [f'<link rel="alternate" hreflang="{c}" href="{page_url(c, page)}">' for c, *_ in LANGUAGES]
     alternates.append(f'<link rel="alternate" hreflang="x-default" href="{page_url(DEFAULT, page)}">')
-    nav, menu = [], []
-    for p in PAGES:
-        here_attr = ' aria-current="page"' if p["id"] == page["id"] else ""
-        if "header" in p["placement"]:
-            nav.append(f'        <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}>{tr.text(p["nav"])}</a></li>')
-        if "menu" in p["placement"]:
-            menu.append(f'          <li><a href="{link_to(p["id"])}" data-page-link="{p["id"]}"{here_attr}><svg class="ic" aria-hidden="true">'
-                        f'<use href="#i-{p["icon"]}"/></svg>{tr.text(p["nav"])}</a></li>')
+    nav, menu, footer_menu, footer_menu_links = menu_html(tr, link_to, page)
     lang_menu, lang_footer = [], []
     for c, folder, name, badge, _ in LANGUAGES:
         cur = ' aria-current="true"' if c == code else ""
@@ -698,7 +807,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "      var base = path.slice(0, path.length - sub.length);\n"
                     "      location.replace(base + P[l] + sub + (location.protocol === 'file:' ? 'index.html' : '') + location.search + location.hash);\n"
                     "    } } catch (e) {}")
-    scripts = (["site.js"] + (["formulas.js"] if page["id"] in ("home", "tibia") or calc_page else [])
+    scripts = (["site.js", "nav.js"] + (["formulas.js"] if page["id"] in ("home", "tibia") or calc_page else [])
                + (["tibiadata.js", "sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
                + (["today.js"] if today_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
@@ -725,7 +834,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "OG_IMAGE": ORIGIN + og_name(code), "OG_LOCALE": current[4],
         "OG_LOCALE_ALTERNATES": "\n".join(f'<meta property="og:locale:alternate" content="{l[4]}">' for l in LANGUAGES if l[0] != code),
         "LANG_REDIRECT": redirect, "ROOT": root, "VERSION": ver, "PAGE_ID": page["id"],
-        "NAV": "\n".join(nav), "MENU_NAV": "\n".join(menu), "LANG_MENU": "\n".join(lang_menu), "MENU_LANGS": "\n".join(lang_menu),
+        "NAV": nav, "MENU_NAV": menu, "FOOTER_MENU": footer_menu, "FOOTER_MENU_LINKS": footer_menu_links, "LANG_MENU": "\n".join(lang_menu), "MENU_LANGS": "\n".join(lang_menu),
         "LANG_FOOTER": "\n".join(lang_footer), "CREDITS": credits_html(tr), "PROFILES": profiles_html(tr, root),
         "DOCS": docs_html(tr) if "{{DOCS}}" in page_html else "", "GALLERY": gallery_html(tr, img) if "{{GALLERY}}" in page_html else "",
         "EMAIL": REGISTRY["creator"]["email"], "MAIL_SUBJECT": urllib.parse.quote("Tibia Foundry"),
@@ -733,7 +842,6 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "STRUCTURED_DATA": structured_data(tr, ver, page, code),
         "UI_ICONS": UI_ICONS,
         "FOOTER_PROFILES": footer_profiles_html(tr, root),
-        "FOOTER_CALCS": "\n".join(f'            <li><a href="{link_to(p["id"])}">{tr.text(p["nav"])}</a></li>' for p in CALC_PAGES),
         "CALC_CARDS": calc_cards_html(tr, link_to) if "{{CALC_CARDS}}" in page_html else "",
         "DOWNLOAD_NOTICE": download_notice_html(tr, root, link_to("legal"), "h2" if page["id"] == "downloads" else "h3")
                            if "{{DOWNLOAD_NOTICE}}" in page_html else "", "YEAR": str(datetime.date.today().year),
@@ -923,6 +1031,7 @@ def main():
         sys.exit("Translation errors:\n  " + "\n  ".join(problems))
     if strict:
         check_formulas()
+    check_menu(strict)
 
     layout = open(os.path.join(SRC, "templates", "layout.html"), encoding="utf-8").read()
     templates = {p["template"]: open(os.path.join(SRC, "templates", p["template"]), encoding="utf-8").read() for p in PAGES}

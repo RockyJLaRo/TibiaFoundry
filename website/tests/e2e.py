@@ -148,55 +148,273 @@ def creator_links(c, browser, base):
     ctx.close()
 
 
+def menu_destinations():
+    """The registry's menu as (dest key, item, group id or None): the same keys build_site.py writes as data-menu-dest."""
+    out = []
+    for entry in kit.REGISTRY["menu"]:
+        for item in entry.get("items", [entry]):
+            if "page" in item:
+                key = "page:" + item["page"] + ("#" + item["hash"] if item.get("hash") else "")
+            elif "route" in item:
+                key = "route:" + item["route"]
+            else:
+                key = "href:" + item["href"]
+            out.append((key, item, entry.get("id") if "items" in entry else None))
+    return out
+
+
 def navigation(c, browser, base):
-    """Every page is reachable: the header holds the task pages (registry placement "header") and the Download button,
-    the logo leads home, the phone menu holds the "menu" pages, and the footer links every page."""
+    """Every registry.menu destination is a link in the desktop panels and in the phone drawer in all 5 languages, desktop and
+    drawer agree on its address, and each address answers 200 (pages) or opens a data view (routes); the logo leads home,
+    the header Download button works, the current page is marked, and the drawer closes after navigating."""
+    dests = menu_destinations()
+    c.ok(len(dests) >= 20, f"registry.menu has only {len(dests)} destinations")
+    hrefs = {}
+    for lang in kit.LANGUAGES:
+        ctx, page = new_page(browser, base, 1440, 1000)
+        page.goto(url_of(base, lang, "home"))
+        for key, item, group in dests:
+            where = f"{lang['code']}/desktop/{key}"
+            link = page.locator(f".main-nav a[data-menu-dest='{key}']")
+            if not c.ok(link.count() == 1, f"{where}: {link.count()} links in the desktop menu"):
+                continue
+            if group:
+                btn = page.locator(f".main-nav .nav-group[data-nav-group='{group}'] > .nav-button")
+                if btn.get_attribute("aria-expanded") != "true":
+                    btn.click()
+                c.ok(btn.get_attribute("aria-expanded") == "true", f"{where}: group {group} does not open")
+            c.ok(link.is_visible(), f"{where}: not visible after opening its group")
+            c.ok((link.inner_text() or "").strip() != "", f"{where}: link without text")
+            hrefs.setdefault(lang["code"], {})[key] = link.evaluate("a => a.href")
+        page.keyboard.press("Escape")
+        ctx.close()
+        ctx, page = new_page(browser, base, 390, 844)
+        page.goto(url_of(base, lang, "home"))
+        page.locator("#menu-btn").click()
+        c.ok(page.locator("#site-menu").is_visible(), f"{lang['code']}: the drawer does not open")
+        for key, item, group in dests:
+            where = f"{lang['code']}/drawer/{key}"
+            link = page.locator(f"#site-menu a[data-menu-dest='{key}']")
+            if not c.ok(link.count() == 1, f"{where}: {link.count()} links in the drawer"):
+                continue
+            if group:
+                det = page.locator(f"#site-menu details[data-nav-group='{group}']")
+                if not det.evaluate("d => d.open"):
+                    det.locator("summary").click()
+            c.ok(link.is_visible(), f"{where}: not visible after opening its group")
+            c.ok(link.evaluate("a => a.href") == hrefs.get(lang["code"], {}).get(key), f"{where}: drawer and desktop links differ")
+        ctx.close()
+    # Every destination answers: pages 200 (in every language), data routes open a known view, external links are the registry's.
+    ctx, page = new_page(browser, base, 1440, 1000)
+    tibia_urls = {lang["code"]: url_of(base, lang, "tibia") for lang in kit.LANGUAGES}
+    for code, links in hrefs.items():
+        for key, href in links.items():
+            where = f"{code}/{key}"
+            if key.startswith("href:"):
+                c.ok(href == key[5:] and href.startswith("https://"), f"{where}: external link {href}")
+                continue
+            if key.startswith("route:"):
+                c.ok(href.startswith(tibia_urls[code] + "#/" + key[6:].split("/")[0]), f"{where}: route link {href}")
+                page.goto(href)
+                wait_app(page)
+                route = page.evaluate("document.body.dataset.route")
+                c.ok(route not in (None, "", "unknown", "hub"), f"{where}: {href} opens no data view (route {route})")
+                continue
+            resp = page.goto(href)
+            c.ok(resp is not None and resp.status == 200, f"{where}: {href} HTTP {resp.status if resp else None}")
+            if "#" in key:
+                c.ok(page.locator("#" + key.split("#")[1]).count() == 1, f"{where}: anchor #{key.split('#')[1]} missing")
+    ctx.close()
+    # Logo, Download button and the current page marker.
     en = kit.LANGUAGES[0]
     ctx, page = new_page(browser, base, 1440, 1000)
-    page.goto(url_of(base, en, "home"))
-    for pg in kit.PAGES:
-        if "header" in pg["placement"]:
-            link = page.locator(f".main-nav a[data-page-link={pg['id']}]")
-        elif pg["id"] == "downloads":
-            link = page.locator(".header-download")
-        elif pg["id"] == "home":
-            link = page.locator(".site-header .brand")
-        else:
-            link = page.locator(f"footer .footer-grid a[href$='{pg['path']}']").first
-        c.ok(link.count() >= 1 and link.first.is_visible(), f"desktop: no visible link to {pg['id']}")
-        link.first.click()
-        page.wait_for_load_state()
-        c.ok(page.url.rstrip("/").endswith(("/" + pg["path"]).rstrip("/")) or (pg["path"] == "" and page.url == base), f"desktop nav to {pg['id']}: {page.url}")
-        if "header" in pg["placement"]:
-            c.ok(page.locator(f".main-nav a[data-page-link={pg['id']}]").get_attribute("aria-current") == "page", f"aria-current on {pg['id']}")
-    for pg in kit.PAGES:
-        if pg["id"] != "home":
-            c.ok(page.locator(f"footer a[href$='{pg['path']}']").count() >= 1, f"footer lacks a link to {pg['id']}")
-    ctx.close()
-    ctx, page = new_page(browser, base, 390, 844)
-    page.goto(url_of(base, en, "home"))
-    page.locator("#menu-btn").click()
-    for pg in kit.PAGES:
-        if "menu" in pg["placement"]:
-            c.ok(page.locator(f"#site-menu a[data-page-link={pg['id']}]").is_visible(), f"phone menu lacks {pg['id']}")
-    ctx.close()
-    # Mobile menu: opens, keyboard, Escape, closes after navigation.
-    ctx, page = new_page(browser, base, 390, 844)
-    page.goto(url_of(base, en, "home"))
-    c.ok(not page.locator(".main-nav").is_visible(), "desktop nav hidden on phones")
-    btn = page.locator("#menu-btn")
-    c.ok(btn.is_visible() and btn.get_attribute("aria-expanded") == "false", "menu button")
-    btn.click()
-    c.ok(btn.get_attribute("aria-expanded") == "true" and page.locator("#site-menu").is_visible(), "menu opens")
-    c.ok(page.evaluate("document.activeElement && document.getElementById('site-menu').contains(document.activeElement)"), "focus moves into the menu")
-    page.keyboard.press("Escape")
-    c.ok(btn.get_attribute("aria-expanded") == "false" and not page.locator("#site-menu").is_visible(), "Escape closes the menu")
-    c.ok(page.evaluate("document.activeElement === document.getElementById('menu-btn')"), "focus returns to the menu button")
-    btn.click()
-    page.locator("#site-menu a[data-page-link=downloads]").click()
+    page.goto(url_of(base, en, "features"))
+    cur = page.locator(".main-nav a[data-menu-dest='page:features']")
+    c.ok(cur.get_attribute("aria-current") == "page", "features: its menu link lacks aria-current=page")
+    c.ok(page.locator(".main-nav .nav-group[data-nav-group='application'] > .nav-button").get_attribute("data-current") is not None,
+         "features: the Application button is not marked as holding the current page")
+    c.ok(page.locator(".main-nav [aria-current='page']").count() == 1, "exactly one current link in the desktop menu")
+    page.locator(".site-header .brand").click()
     page.wait_for_load_state()
-    c.ok("/downloads/" in page.url and not page.locator("#site-menu").is_visible(), "menu link navigates and the menu is closed")
+    c.ok(page.url == base, f"the logo leads home: {page.url}")
+    page.locator(".header-download").click()
+    page.wait_for_load_state()
+    c.ok(page.url.endswith("/downloads/"), f"the Download button: {page.url}")
+    page.goto(url_of(base, en, "contact"))
+    c.ok(page.locator(".main-nav .nav-link[data-menu-dest='page:contact']").get_attribute("aria-current") == "page", "contact: plain link marked current")
+    c.ok(page.locator(".main-nav .nav-group[data-nav-group]").count() == len([e for e in kit.REGISTRY["menu"] if "items" in e]), "one disclosure group per registry group")
     ctx.close()
+    # Drawer: a link navigates and the drawer is closed on the new page.
+    ctx, page = new_page(browser, base, 390, 844)
+    page.goto(url_of(base, en, "home"))
+    c.ok(not page.locator(".main-nav").is_visible(), "desktop menu hidden on phones")
+    page.locator("#menu-btn").click()
+    det = page.locator("#site-menu details[data-nav-group='application']")
+    if not det.evaluate("d => d.open"):
+        det.locator("summary").click()
+    page.locator("#site-menu a[data-menu-dest='page:downloads']").click()
+    page.wait_for_load_state()
+    c.ok("/downloads/" in page.url and not page.locator("#site-menu").is_visible(), "drawer link navigates and the drawer is closed")
+    c.ok(not page.console_errors, f"console errors: {page.console_errors[:3]}")
+    ctx.close()
+    c.note(f"{len(dests)} menu destinations x {len(kit.LANGUAGES)} languages, desktop panels and drawer")
+
+
+def menu_keyboard(c, browser, base):
+    """Disclosure panels and the drawer by keyboard: Tab to "Community Data", Enter opens it (aria-expanded), Escape closes it
+    and returns focus; one panel at a time; an outside click and focus leaving close it. At 390 px the drawer opens, Tab and
+    Shift+Tab stay inside it, Escape and the backdrop close it, and focus returns to #menu-btn."""
+    en = kit.LANGUAGES[0]
+    label = "Community Data"
+    ctx, page = new_page(browser, base, 1440, 1000)
+    page.goto(url_of(base, en, "about"))
+    found = False
+    for _ in range(40):
+        page.keyboard.press("Tab")
+        if page.evaluate("document.activeElement && document.activeElement.classList.contains('nav-button') ? document.activeElement.textContent.trim() : ''") == label:
+            found = True
+            break
+    if c.ok(found, f"Tab never reaches the '{label}' button"):
+        btn = page.locator(".main-nav .nav-group[data-nav-group='community'] > .nav-button")
+        panel = page.locator("#" + btn.get_attribute("aria-controls"))
+        c.ok(btn.get_attribute("aria-expanded") == "false" and not panel.is_visible(), "panel starts closed")
+        page.keyboard.press("Enter")
+        c.ok(btn.get_attribute("aria-expanded") == "true" and panel.is_visible(), "Enter opens the panel with aria-expanded=true")
+        page.keyboard.press("Tab")
+        c.ok(page.evaluate("document.activeElement.closest('.nav-panel') !== null"), "Tab moves into the open panel")
+        page.keyboard.press("Escape")
+        c.ok(btn.get_attribute("aria-expanded") == "false" and not panel.is_visible(), "Escape closes the panel")
+        c.ok(page.evaluate("(id) => document.activeElement.getAttribute('aria-controls') === id", btn.get_attribute("aria-controls")),
+             "focus is back on the Community Data button")
+        # Only one panel at a time.
+        app = page.locator(".main-nav .nav-group[data-nav-group='application'] > .nav-button")
+        app.click()
+        btn.click()
+        c.ok(app.get_attribute("aria-expanded") == "false" and btn.get_attribute("aria-expanded") == "true", "opening a panel closes the other")
+        c.ok(page.locator(".main-nav .nav-panel:not([hidden])").count() == 1, "exactly one panel open")
+        # Outside click closes.
+        page.mouse.click(700, 700)
+        c.ok(btn.get_attribute("aria-expanded") == "false" and page.locator(".main-nav .nav-panel:not([hidden])").count() == 0, "an outside click closes the panel")
+        # Focus leaving closes: open, Tab through every link and beyond.
+        btn.focus()
+        page.keyboard.press("Enter")
+        n = page.locator("#" + btn.get_attribute("aria-controls") + " a").count()
+        for _ in range(n + 1):
+            page.keyboard.press("Tab")
+        c.ok(btn.get_attribute("aria-expanded") == "false", "focus leaving the group closes the panel")
+        # Panels use disclosure semantics, not an ARIA menu.
+        c.ok(page.locator(".main-nav [role=menu], .main-nav [role=menubar], .main-nav [role=menuitem]").count() == 0, "no ARIA menu roles")
+    c.ok(not page.console_errors, f"desktop console errors: {page.console_errors[:3]}")
+    ctx.close()
+    # Drawer at 390 px.
+    ctx, page = new_page(browser, base, 390, 844)
+    page.goto(url_of(base, en, "about"))
+    btn = page.locator("#menu-btn")
+    drawer = page.locator("#site-menu")
+    c.ok(btn.get_attribute("aria-expanded") == "false" and not drawer.is_visible(), "drawer starts closed")
+    btn.focus()
+    page.keyboard.press("Enter")
+    c.ok(btn.get_attribute("aria-expanded") == "true" and drawer.is_visible(), "Enter on #menu-btn opens the drawer")
+    inside = "document.getElementById('site-menu').contains(document.activeElement)"
+    c.ok(page.evaluate(inside), "focus moves into the drawer")
+    stayed = True
+    for _ in range(60):
+        page.keyboard.press("Tab")
+        stayed &= page.evaluate(inside)
+    c.ok(stayed, "Tab leaves the drawer (no focus trap)")
+    for _ in range(60):
+        page.keyboard.press("Shift+Tab")
+        stayed &= page.evaluate(inside)
+    c.ok(stayed, "Shift+Tab leaves the drawer (no focus trap)")
+    c.ok(page.evaluate("getComputedStyle(document.documentElement).overflow") == "hidden" or page.evaluate("document.documentElement.classList.contains('menu-lock')"), "page scroll is locked while the drawer is open")
+    page.keyboard.press("Escape")
+    c.ok(btn.get_attribute("aria-expanded") == "false" and not drawer.is_visible(), "Escape closes the drawer")
+    c.ok(page.evaluate("document.activeElement === document.getElementById('menu-btn')"), "focus returns to #menu-btn after Escape")
+    btn.click()
+    c.ok(drawer.is_visible(), "drawer opens again")
+    page.mouse.click(10, 400)   # the backdrop (the panel sits on the right)
+    c.ok(not drawer.is_visible() and btn.get_attribute("aria-expanded") == "false", "a backdrop click closes the drawer")
+    c.ok(page.evaluate("document.activeElement === document.getElementById('menu-btn')"), "focus returns to #menu-btn after the backdrop click")
+    btn.click()
+    c.ok(page.locator("#site-menu [data-theme-toggle]").is_visible() and page.locator("#site-menu a[data-lang]").count() == len(kit.LANGUAGES),
+         "the drawer holds the theme toggle and every language")
+    c.ok(page.locator("#site-menu details").count() == len([e for e in kit.REGISTRY["menu"] if "items" in e]), "one collapsible group per registry group")
+    c.ok(not page.console_errors, f"drawer console errors: {page.console_errors[:3]}")
+    ctx.close()
+
+
+def menu_overflow(c, browser, base):
+    """Review Focus 1: long German and Polish labels at 1024, 1280 and 1440 px: no page-level overflow, the desktop menu is
+    shown, every group button is one line, and an open panel stays inside the viewport."""
+    count = 0
+    for code in ("de", "pl"):
+        lang = next(l for l in kit.LANGUAGES if l["code"] == code)
+        for w in (1024, 1280, 1440):
+            ctx, page = new_page(browser, base, w, 800)
+            for pid in ("home", "calculators", "tibia"):
+                page.goto(url_of(base, lang, pid))
+                where = f"{code}/{pid}/{w}px"
+                m = page.evaluate("""() => {
+                  const out = {over: document.documentElement.scrollWidth - window.innerWidth, nav: !!document.querySelector('.main-nav') && document.querySelector('.main-nav').offsetParent !== null, lines: []};
+                  for (const b of document.querySelectorAll('.main-nav .nav-group > button, .main-nav .nav-link')) {
+                    const r = document.createRange(); r.selectNodeContents(b.querySelector('span') || b);   // the label, not the chevron
+                    const tops = new Set([...r.getClientRects()].filter(x => x.width > 0).map(x => Math.round(x.top)));
+                    const lh = parseFloat(getComputedStyle(b).lineHeight) || 20;
+                    const box = b.getBoundingClientRect();
+                    out.lines.push({text: b.textContent.trim(), lines: tops.size, h: box.height, right: box.right});
+                  }
+                  const bar = document.querySelector('.header-bar');
+                  out.barOver = bar.scrollWidth - bar.clientWidth;
+                  return out;
+                }""")
+                c.ok(m["over"] <= 0, f"{where}: page overflows by {m['over']}px")
+                c.ok(m["nav"], f"{where}: the desktop menu is not shown")
+                c.ok(m["barOver"] <= 0, f"{where}: header bar overflows by {m['barOver']}px")
+                c.ok(len(m["lines"]) == len(kit.REGISTRY["menu"]), f"{where}: {len(m['lines'])} top-level menu entries, registry has {len(kit.REGISTRY['menu'])}")
+                for b in m["lines"]:
+                    c.ok(b["lines"] == 1 and b["h"] < 60, f"{where}: '{b['text']}' wraps ({b['lines']} lines, {b['h']:.0f}px)")
+                    c.ok(b["right"] <= w, f"{where}: '{b['text']}' ends at {b['right']:.0f}px")
+                for i in range(page.locator(".main-nav .nav-group > button").count()):
+                    page.locator(".main-nav .nav-group > button").nth(i).click()
+                    r = page.evaluate("() => { const p = document.querySelector('.main-nav .nav-panel:not([hidden])'); if (!p) return null; const b = p.getBoundingClientRect(); return {l: b.left, r: b.right, over: document.documentElement.scrollWidth - window.innerWidth}; }")
+                    if c.ok(r is not None, f"{where}: panel {i} does not open"):
+                        c.ok(r["l"] >= 0 and r["r"] <= w and r["over"] <= 0, f"{where}: panel {i} leaves the viewport {r}")
+                page.keyboard.press("Escape")
+                count += 1
+            ctx.close()
+    c.note(f"{count} header layouts (de, pl x 1024/1280/1440 x 3 pages)")
+
+
+def no_js_reachability(c, browser, base):
+    """Review Focus 2: with JavaScript off every registry.menu destination is a footer link with the same address as in the
+    header menu, and the header search form submits to tibia/."""
+    dests = menu_destinations()
+    ctx = browser.new_context(viewport={"width": 1440, "height": 1000}, java_script_enabled=False)
+    kit.use_fixtures(ctx)
+    page = ctx.new_page()
+    for lang in kit.LANGUAGES:
+        for pid in ("home", "tibia", "calc-experience"):
+            page.goto(url_of(base, lang, pid))
+            where = f"{lang['code']}/{pid}"
+            c.ok("no-js" in (page.get_attribute("html", "class") or ""), f"{where}: JavaScript ran (no-js class removed)")
+            for key, item, group in dests:
+                nav = page.locator(f".main-nav a[data-menu-dest='{key}']")
+                foot = page.locator(f"footer a[data-menu-dest='{key}']")
+                if not c.ok(foot.count() >= 1, f"{where}: footer lacks {key}"):
+                    continue
+                if nav.count():
+                    c.ok(foot.first.get_attribute("href") == nav.first.get_attribute("href"), f"{where}: footer {key} {foot.first.get_attribute('href')} != header {nav.first.get_attribute('href')}")
+            form = page.locator(".site-header form.header-search")
+            c.ok(form.count() == 1 and (form.get_attribute("action") or "").endswith("tibia/"), f"{where}: header search action {form.get_attribute('action') if form.count() else None}")
+            c.ok(form.count() == 1 and form.is_visible(), f"{where}: header search not visible without JavaScript")
+    # Without JavaScript the form still lands on tibia/ with the name (?character=), which data-app.js turns into the view later.
+    page.goto(url_of(base, kit.LANGUAGES[0], "about"))
+    page.fill(".site-header form.header-search input", "Roc ky")
+    page.locator(".site-header form.header-search button[type=submit]").click()
+    page.wait_for_load_state()
+    c.ok("/tibia/?character=Roc+ky" in page.url, f"no-JS search lands on tibia/?character=: {page.url}")
+    ctx.close()
+    c.note(f"{len(dests)} destinations checked in the footer of 3 pages x {len(kit.LANGUAGES)} languages")
 
 
 def language_and_theme(c, browser, base):
@@ -1110,6 +1328,7 @@ def today_in_tibia(c, browser, base):
 
 
 CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", creator_links), ("navigation", navigation),
+          ("menu-keyboard", menu_keyboard), ("menu-overflow", menu_overflow), ("no-js-reachability", no_js_reachability),
           ("compliance", compliance), ("table-sorting", table_sorting),
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),

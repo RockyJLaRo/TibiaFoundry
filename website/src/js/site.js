@@ -1,12 +1,12 @@
 /*
- * Tibia Foundry website shell (every page): texts (TF.t), theme, menu, language selector and offer, header
+ * Tibia Foundry website shell (every page): texts (TF.t), theme, language selector and offer, header
  * character search, copy buttons, screenshot tabs, lightbox and the analytics click events.
  * Texts come from window.TF_I18N (written into each page by build_site.py from src/locales/<lang>.json).
  */
 (function () {
   "use strict";
   var root = document.documentElement;
-  root.classList.remove("no-js");
+  root.classList.remove("no-js");   // also done by the layout's first script, before the first paint
 
   // ---------------------------------------------------------------- texts: this language, else English (never a bare key)
   var I18N = window.TF_I18N || { lang: "en", intl: "en-US", strings: {}, fallback: {}, languages: [] };
@@ -187,27 +187,10 @@
   }
   themeLabel();
 
-  // ---------------------------------------------------------------- menu (below the wide layout)
-  var header = document.querySelector(".site-header");
-  var menuBtn = document.getElementById("menu-btn");
-  var panel = document.getElementById("site-menu");
-  function setMenu(open, focusButton) {
-    if (!header || !menuBtn) return;
-    header.classList.toggle("menu-open", open);
-    menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? t("nav.menuClose") : t("nav.menuOpen"));
-    root.classList.toggle("menu-lock", open);
-    if (open) { var first = panel && panel.querySelector("a, button, input"); if (first) first.focus(); }
-    else if (focusButton) menuBtn.focus();
-  }
-  if (menuBtn) {
-    menuBtn.addEventListener("click", function () { closeLang(); setMenu(!header.classList.contains("menu-open")); });
-    panel.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && header.classList.contains("menu-open")) setMenu(false, true); });
-    window.addEventListener("resize", function () { if (window.innerWidth >= 1024 && header.classList.contains("menu-open")) setMenu(false); });
-  }
+  // The header menu and the phone drawer are src/js/nav.js; it closes the language menu through TF.closeLang.
+  window.TF.closeLang = closeLang;
 
-  // ---------------------------------------------------------------- character search (header, home, menu): opens tibia/#/character/<name>
+  // ---------------------------------------------------------------- character search (header, home): opens tibia/#/character/<name>
   document.querySelectorAll("form[data-character-search]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       var input = form.querySelector("input[name=character]");
@@ -215,7 +198,7 @@
       e.preventDefault();
       if (!name) { input.focus(); return; }
       var target = form.getAttribute("action") + "#/character/" + encodeURIComponent(name);
-      setMenu(false);
+      if (window.TFNav) window.TFNav.closeDrawer();
       if (window.TFApp && form.getAttribute("action") === (SITE.paths && SITE.paths.tibia) && document.body.getAttribute("data-page") === "tibia") location.hash = "#/character/" + encodeURIComponent(name);
       else location.href = target;
     });

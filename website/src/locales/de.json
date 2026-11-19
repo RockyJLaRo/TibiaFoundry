@@ -111,7 +111,22 @@
     "download": "Download",
     "legal": "Rechtliches & Transparenz",
     "breadcrumb": "Brotkrümelnavigation",
-    "calculators": "Rechner"
+    "calculators": "Rechner",
+    "sourceOnGitHub": "Quellcode auf GitHub",
+    "todayInTibia": "Heute in Tibia",
+    "siteMenu": "Seitenmenü",
+    "group": {
+      "application": "Anwendung",
+      "onlineTools": "Online-Tools",
+      "communityData": "Community-Daten",
+      "fansiteTools": "Fansite-Tools"
+    },
+    "item": {
+      "features": "Funktionen",
+      "killStatistics": "Tötungsstatistik",
+      "bosses": "Bosse",
+      "news": "Neuigkeiten"
+    }
   },
   "hero": {
     "lead": "Tibia Foundry liest die offiziellen Dateien deines installierten Tibia-Clients und macht daraus Sprites, animierte Outfit- und Kreaturen-GIFs, Item-Bilder, Karten, Sounds und Daten – hält alles in einer durchsuchbaren Bibliothek bereit und veröffentlicht komplette Galerien für das TibiaWiki oder jede Community-Website.",
@@ -473,14 +488,12 @@
     "a10": "Von TibiaData, einer kostenlosen öffentlichen API auf Grundlage von Tibia.com. Dein Browser fragt TibiaData direkt; diese Website hat keinen eigenen Server und speichert nichts über deine Suchen."
   },
   "footer": {
-    "product": "Desktop-Programm",
     "project": "Projekt",
     "repository": "GitHub-Repository",
     "issues": "Issues und Support",
     "legal": "Tibia wird von der CipSoft GmbH entwickelt und betrieben. Tibia, die Website, Spielgrafiken und Spieldaten sind urheberrechtlich geschützt (© CipSoft GmbH); von CipSoft bereitgestellte Inhalte bleiben deren Eigentum. Tibia Foundry ist ein unabhängiges Fanprojekt und weder mit der CipSoft GmbH noch mit Fandom verbunden oder von ihnen unterstützt.",
     "version": "Version {version} · {date}",
     "made": "Entwickelt von Rocky LaRochelle, Schöpfer und Entwickler von Tibia Foundry.",
-    "data": "Tibia-Tools",
     "releaseNotes": "Versionshinweise {version}",
     "about": "Kostenlose Tibia-Tools im Browser und ein Desktop-Werkzeugkasten für TibiaWiki-Autoren und Fansite-Macher – ein unabhängiges Fanprojekt."
   },

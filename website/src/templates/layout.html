@@ -30,6 +30,7 @@
 <link rel="icon" href="{{ROOT}}favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="{{ROOT}}apple-touch-icon.png">
 <script>
+  document.documentElement.classList.remove('no-js');
   // Theme before the first paint (no flash of the wrong theme): the stored choice, else the system's (CSS).
   try { var th = localStorage.getItem('tf-theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
 {{LANG_REDIRECT}}
@@ -60,21 +61,24 @@
   <div class="wrap"><span class="lang-suggest-text"></span><a class="btn btn-small lang-suggest-go" href="#"></a><button type="button" class="icon-btn lang-suggest-close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
 </div>
 <header class="site-header">
+  <div class="header-search-row">
+    <div class="wrap">
+      <form class="header-search search-row" role="search" action="{{LINK:tibia}}" data-character-search>
+        <input class="input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29">
+        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>{{t:nav.searchButton}}</button>
+      </form>
+    </div>
+  </div>
   <div class="wrap header-bar">
     <a class="brand" href="{{LINK:home}}" aria-label="{{a:a11y.home}}">
-      <img src="{{ROOT}}img/logo.png" alt="" width="32" height="32">
+      <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Tibia Foundry</span><span class="brand-version">{{VERSION}}</span>
     </a>
     <nav class="main-nav" aria-label="{{a:nav.main}}">
-      <ul>
+      <ul class="nav-list">
 {{NAV}}
       </ul>
     </nav>
-    <a class="btn btn-primary btn-small header-download" href="{{LINK:downloads}}" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:nav.download}}</a>
-    <form class="header-search search-row" role="search" action="{{LINK:tibia}}" data-character-search>
-      <input class="input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29">
-      <button class="btn btn-small" type="submit">{{t:nav.searchButton}}</button>
-    </form>
     <div class="header-tools">
       <div class="lang" id="lang">
         <button type="button" class="icon-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="{{a:lang.button}}">
@@ -86,24 +90,23 @@
       </div>
       <button type="button" class="icon-btn" data-theme-toggle aria-label="{{a:a11y.themeToggle}}"><svg class="ic theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ic theme-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
     </div>
-    <a class="icon-btn search-link" href="{{LINK:tibia}}#/character" aria-label="{{a:nav.searchLabel}}"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></a>
+    <a class="btn btn-primary btn-small header-download" href="{{LINK:downloads}}" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:nav.download}}</a>
     <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="{{a:nav.menuOpen}}">
-      <svg class="ic menu-icon-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ic menu-icon-close" aria-hidden="true"><use href="#i-x"/></svg>
+      <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
     </button>
   </div>
-  <div class="menu-panel" id="site-menu">
-    <div class="wrap">
-      <form class="search-row" role="search" action="{{LINK:tibia}}" data-character-search>
-        <input class="input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29">
-        <button class="btn btn-primary" type="submit">{{t:nav.searchButton}}</button>
-      </form>
-      <nav aria-label="{{a:nav.main}}">
-        <ul class="menu-links">
+  <div class="drawer" id="site-menu" hidden>
+    <div class="drawer-backdrop" data-drawer-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-head">
+        <h2 class="drawer-title" id="drawer-title">{{t:nav.siteMenu}}</h2>
+        <button type="button" class="icon-btn drawer-close" data-drawer-close aria-label="{{a:nav.menuClose}}"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <nav class="drawer-nav" aria-label="{{a:nav.main}}">
 {{MENU_NAV}}
-        </ul>
       </nav>
       <div class="menu-group">
-        <h2>{{t:lang.label}}</h2>
+        <h3>{{t:lang.label}}</h3>
         <ul class="menu-langs">
 {{MENU_LANGS}}
         </ul>
@@ -112,6 +115,8 @@
     </div>
   </div>
 </header>
+<script>/* before the first paint: a desktop header that does not fit on one line (long labels) uses the drawer (src/js/nav.js keeps this up to date) */
+  (function () { var b = document.querySelector('.header-bar'); if (b && window.matchMedia && matchMedia('(min-width: 1024px)').matches && b.scrollWidth > b.clientWidth + 1) document.documentElement.classList.add('nav-collapsed'); })();</script>
 <main id="main" tabindex="-1">
 {{CONTENT}}
 </main>
@@ -127,39 +132,12 @@
 {{FOOTER_PROFILES}}
       </div>
       <div class="footer-grid">
-        <div>
-          <h2>{{t:footer.data}}</h2>
-          <ul>
-            <li><a href="{{LINK:tibia}}#/character">{{t:js.toolCharacter}}</a></li>
-            <li><a href="{{LINK:tibia}}#/worlds">{{t:js.toolWorlds}}</a></li>
-            <li><a href="{{LINK:tibia}}#/highscores/all/experience/all/1">{{t:js.toolHighscores}}</a></li>
-            <li><a href="{{LINK:tibia}}#/bosses">{{t:js.toolBosses}}</a></li>
-            <li><a href="{{LINK:tibia}}#/news">{{t:js.toolNews}}</a></li>
-            <li><a href="{{LINK:tibia}}#/fansites">{{t:js.toolFansites}}</a></li>
-          </ul>
-        </div>
-        <div>
-          <h2>{{t:nav.calculators}}</h2>
-          <ul>
-            <li><a href="{{LINK:calculators}}">{{t:calc.hub.all}}</a></li>
-{{FOOTER_CALCS}}
-          </ul>
-        </div>
-        <div>
-          <h2>{{t:footer.product}}</h2>
-          <ul>
-            <li><a href="{{LINK:downloads}}">{{t:nav.downloads}}</a></li>
-            <li><a href="{{LINK:features}}">{{t:nav.features}}</a></li>
-            <li><a href="{{LINK:guides}}">{{t:nav.guides}}</a></li>
-            <li><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="footer">{{t:footer.releaseNotes}}</a></li>
-            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">{{t:footer.repository}}</a></li>
-          </ul>
-        </div>
+{{FOOTER_MENU}}
         <div>
           <h2>{{t:footer.project}}</h2>
           <ul>
-            <li><a href="{{LINK:about}}">{{t:nav.about}}</a></li>
-            <li><a href="{{LINK:contact}}">{{t:nav.contact}}</a></li>
+{{FOOTER_MENU_LINKS}}
+            <li><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="footer">{{t:footer.releaseNotes}}</a></li>
             <li><a href="{{LINK:legal}}">{{t:nav.legal}}</a></li>
             <li><a href="{{LINK:legal}}#privacy">{{t:legal.privacy.title}}</a></li>
             <li><a href="{{LINK:legal}}#community">{{t:legal.community.title}}</a></li>

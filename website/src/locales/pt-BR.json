@@ -111,7 +111,22 @@
     "download": "Baixar",
     "legal": "Aspectos legais e transparência",
     "breadcrumb": "Você está aqui",
-    "calculators": "Calculadoras"
+    "calculators": "Calculadoras",
+    "sourceOnGitHub": "Código-fonte no GitHub",
+    "todayInTibia": "Hoje no Tibia",
+    "siteMenu": "Menu do site",
+    "group": {
+      "application": "Aplicativo",
+      "onlineTools": "Ferramentas online",
+      "communityData": "Dados da comunidade",
+      "fansiteTools": "Para fansites"
+    },
+    "item": {
+      "features": "Recursos",
+      "killStatistics": "Estatísticas de mortes",
+      "bosses": "Chefes",
+      "news": "Notícias"
+    }
   },
   "hero": {
     "lead": "O Tibia Foundry lê os arquivos oficiais do cliente do Tibia instalado no seu computador e os transforma em sprites, GIFs animados de outfits e criaturas, imagens de itens, mapas, sons e dados – depois guarda tudo em uma biblioteca pesquisável e publica galerias completas para o TibiaWiki ou qualquer site da comunidade.",
@@ -473,14 +488,12 @@
     "a10": "Do TibiaData, uma API pública e gratuita baseada no Tibia.com. Seu navegador consulta o TibiaData diretamente; este site não tem servidor próprio e não guarda nada sobre suas buscas."
   },
   "footer": {
-    "product": "Programa para PC",
     "project": "Projeto",
     "repository": "Repositório no GitHub",
     "issues": "Problemas e suporte",
     "legal": "O Tibia é criado e operado pela CipSoft GmbH. O Tibia, seu site, gráficos e dados do jogo são protegidos por direitos autorais da CipSoft GmbH, e o conteúdo fornecido pela CipSoft continua sendo dela. O Tibia Foundry é um projeto independente de fã, sem afiliação ou endosso da CipSoft GmbH ou da Fandom.",
     "version": "Versão {version} · {date}",
     "made": "Feito por Rocky LaRochelle, criador e desenvolvedor do Tibia Foundry.",
-    "data": "Ferramentas Tibia",
     "releaseNotes": "Notas da versão {version}",
     "about": "Ferramentas de Tibia grátis no navegador e um kit para PC para editores da TibiaWiki e criadores de fansites – um projeto independente de fã."
   },

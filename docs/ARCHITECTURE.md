@@ -74,3 +74,17 @@ Colours are semantic tokens in `tokens.css`: `--bg-canvas`, `--bg-surface`, `--b
 
 CSS Modules or a component framework were rejected too: they need a bundler and a framework migration for 13 templates,
 with no benefit to players.
+
+## Menu
+
+- `registry.json` `menu` is the only list of menu destinations. `build_site.py` renders it three times: the desktop
+  disclosure panels (`{{NAV}}`), the phone drawer (`{{MENU_NAV}}`) and the footer link columns (`{{FOOTER_MENU}}`,
+  `{{FOOTER_MENU_LINKS}}`). So every destination is a plain footer link that works without JavaScript.
+- Entries are groups (`id`, `label`, `items`) or a plain page link. Items are `{page[, hash][, label]}`,
+  `{route, label[, icon]}` or `{href, label[, icon]}`. A route that stops before a pattern's `:world` or `:town` gets the
+  default world and town. `--strict` fails on an unknown page or data route, and when a calculator page is missing.
+- Every link carries `data-menu-dest` (`page:<id>[#hash]`, `route:<route>`, `href:<url>`); the tests use it.
+- `src/js/nav.js`: desktop panels are buttons with `aria-expanded` (not an ARIA menu). Below 1024 px the menu button
+  opens a modal drawer with a focus trap. When the desktop header does not fit on one line (long labels in Spanish or
+  Portuguese at 1024 px), `html.nav-collapsed` switches it to the drawer. An inline script right after the header sets
+  that class before the first paint, and `nav.js` keeps it current on resize.

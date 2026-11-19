@@ -26,6 +26,7 @@
   --status-danger: #b42f36; --status-danger-soft: #fae4e3;
   --selection: #e8d9b4;
   --mortar: transparent;
+  --scrim: rgb(29 32 36 / .45);   /* behind the drawer */
   --shadow: 0 1px 2px rgb(29 32 36 / .06), 0 6px 18px -10px rgb(29 32 36 / .22);
   --radius-small: 2px;
   --radius-medium: 4px;
@@ -37,6 +38,7 @@
   --mono: "Cascadia Mono", Consolas, ui-monospace, "SF Mono", Menlo, monospace;
   --gutter: 16px;
   --header-h: 60px;
+  --search-h: 56px;          /* the header search row (scrolls away; the bar below it stays) */
   --edge: 16px;              /* battlement height */
 }
 @media (prefers-color-scheme: dark) {
@@ -49,7 +51,7 @@
     --inlay: rgb(201 163 90 / .4);
     --status-success: #7dcf93; --status-success-soft: #19301f; --status-warning: #e2bb63; --status-warning-soft: #302714;
     --status-danger: #f2878c; --status-danger-soft: #3a1f22;
-    --selection: #4a3d22; --mortar: transparent;
+    --selection: #4a3d22; --mortar: transparent; --scrim: rgb(0 0 0 / .6);
     --shadow: 0 1px 2px rgb(0 0 0 / .45), 0 8px 22px -12px rgb(0 0 0 / .7);
   }
 }
@@ -62,6 +64,6 @@
   --inlay: rgb(201 163 90 / .4);
   --status-success: #7dcf93; --status-success-soft: #19301f; --status-warning: #e2bb63; --status-warning-soft: #302714;
   --status-danger: #f2878c; --status-danger-soft: #3a1f22;
-  --selection: #4a3d22; --mortar: transparent;
+  --selection: #4a3d22; --mortar: transparent; --scrim: rgb(0 0 0 / .6);
   --shadow: 0 1px 2px rgb(0 0 0 / .45), 0 8px 22px -12px rgb(0 0 0 / .7);
 }

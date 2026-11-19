@@ -20,9 +20,10 @@ credits: [ATTRIBUTION.md](ATTRIBUTION.md) · completeness: [i18n-report.md](i18n
 | Contact | `/contact/` | rocky@tibiafoundry.com (mail link and copy button), responsible administrator with Tibia character, GitHub issues – no contact form, nothing is sent from the site |
 | Legal & transparency | `/legal/` | copyright and CipSoft, Fansite Programme status, responsible administrator, downloads and safety, money and advertising, privacy and statistics (opt-out), community rules and spoiler policy, content sources |
 
-Every page has the header (brand, four task links, Download button, language, theme; character search from 1280 px; a menu
-with pixel icons below 1024 px) and breadcrumbs on inner pages. Which page appears where is `placement` in
-`src/registry.json`. The footer has the brand block with the creator's email and six profiles, link groups, **Data &
+Every page has the header (a character search row on top, then the brand, the grouped menu, language, theme and Download;
+below 1024 px, or when the labels do not fit, a drawer) and breadcrumbs on inner pages. The menu is `menu` in
+`src/registry.json`: header panels, drawer and footer link columns all come from it (`src/js/nav.js` runs the panels and
+the drawer). The footer has the brand block with the creator's email and six profiles, link groups, **Data &
 resource credits** (TibiaData thank-you with link, Tibia.com, CipSoft, TibiaWiki, fansites), links to Tibia.com, CipSoft
 and the Tibia Rules, and the copyright year (updated in the browser).
 

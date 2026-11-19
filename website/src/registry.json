@@ -11,19 +11,46 @@
   ],
   "themes": ["light", "dark"],
   "pages": [
-    {"id": "home", "path": "", "template": "home.html", "nav": "nav.home", "icon": "anvil", "placement": ["menu"]},
-    {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia", "icon": "search", "placement": ["header", "menu"]},
-    {"id": "calculators", "path": "calculators/", "template": "calculators.html", "nav": "nav.calculators", "icon": "calculator", "placement": ["header", "menu"]},
-    {"id": "calc-experience", "path": "calculators/experience/", "template": "calc-experience.html", "nav": "calc.experience.title", "icon": "trending-up", "placement": [], "calc": ["levelExp", "levelPlan", "shareRange"]},
-    {"id": "calc-stamina", "path": "calculators/stamina/", "template": "calc-stamina.html", "nav": "calc.stamina.title", "icon": "battery-medium", "placement": [], "calc": ["staminaRest"]},
-    {"id": "calc-blessings", "path": "calculators/blessings/", "template": "calc-blessings.html", "nav": "calc.blessings.title", "icon": "sparkles", "placement": [], "calc": ["blessings"]},
-    {"id": "calc-stats", "path": "calculators/character-stats/", "template": "calc-stats.html", "nav": "calc.stats.title", "icon": "heart-pulse", "placement": [], "calc": ["characterStats"]},
-    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features", "icon": "monitor", "placement": ["header", "menu"]},
-    {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads", "icon": "download", "placement": ["menu"]},
-    {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides", "icon": "book-open", "placement": ["header", "menu"]},
-    {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about", "icon": "user-round", "placement": ["header", "menu"]},
-    {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact", "icon": "mail", "placement": ["menu"]},
-    {"id": "legal", "path": "legal/", "template": "legal.html", "nav": "nav.legal", "icon": "scroll-text", "placement": []}
+    {"id": "home", "path": "", "template": "home.html", "nav": "nav.home", "icon": "anvil"},
+    {"id": "tibia", "path": "tibia/", "template": "tibia.html", "nav": "nav.tibia", "icon": "search"},
+    {"id": "calculators", "path": "calculators/", "template": "calculators.html", "nav": "nav.calculators", "icon": "calculator"},
+    {"id": "calc-experience", "path": "calculators/experience/", "template": "calc-experience.html", "nav": "calc.experience.title", "icon": "trending-up", "calc": ["levelExp", "levelPlan", "shareRange"]},
+    {"id": "calc-stamina", "path": "calculators/stamina/", "template": "calc-stamina.html", "nav": "calc.stamina.title", "icon": "battery-medium", "calc": ["staminaRest"]},
+    {"id": "calc-blessings", "path": "calculators/blessings/", "template": "calc-blessings.html", "nav": "calc.blessings.title", "icon": "sparkles", "calc": ["blessings"]},
+    {"id": "calc-stats", "path": "calculators/character-stats/", "template": "calc-stats.html", "nav": "calc.stats.title", "icon": "heart-pulse", "calc": ["characterStats"]},
+    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features", "icon": "monitor"},
+    {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads", "icon": "download"},
+    {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides", "icon": "book-open"},
+    {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about", "icon": "user-round"},
+    {"id": "contact", "path": "contact/", "template": "contact.html", "nav": "nav.contact", "icon": "mail"},
+    {"id": "legal", "path": "legal/", "template": "legal.html", "nav": "nav.legal", "icon": "scroll-text"}
+  ],
+  "_menuComment": "The header menu, the phone drawer and the footer link columns, in this order. A group is a disclosure panel (desktop) and a collapsible section (drawer); an entry without items is a plain link. Items: {page[, hash][, label]}, {route, label[, icon]} (a data view; a pattern's missing :world/:town take the default world and town) or {href, label[, icon]}. Labels are text keys; a page item uses its page's nav key unless it names one. build_site.py --strict fails on an unknown page or route and when a calculator page is missing.",
+  "menu": [
+    {"id": "application", "label": "nav.group.application", "items": [
+      {"page": "downloads"}, {"page": "features", "label": "nav.item.features"}, {"page": "guides"}, {"page": "about"}
+    ]},
+    {"id": "tools", "label": "nav.group.onlineTools", "items": [
+      {"page": "calculators"}, {"page": "calc-experience"}, {"page": "calc-stamina"}, {"page": "calc-blessings"}, {"page": "calc-stats"},
+      {"page": "calculators", "hash": "today", "label": "nav.todayInTibia", "icon": "calendar"}
+    ]},
+    {"id": "community", "label": "nav.group.communityData", "items": [
+      {"route": "character", "label": "js.toolCharacter", "icon": "user"},
+      {"route": "guilds", "label": "js.toolGuilds", "icon": "users"},
+      {"route": "worlds", "label": "js.toolWorlds", "icon": "globe"},
+      {"route": "highscores/all/experience/all/1", "label": "js.toolHighscores", "icon": "trophy"},
+      {"route": "houses", "label": "js.toolHouses", "icon": "house"},
+      {"route": "creatures", "label": "js.toolCreatures", "icon": "paw-print"},
+      {"route": "spells", "label": "js.toolSpells", "icon": "wand-sparkles"},
+      {"route": "killstatistics", "label": "nav.item.killStatistics", "icon": "skull"},
+      {"route": "bosses", "label": "nav.item.bosses", "icon": "crown"},
+      {"route": "news", "label": "nav.item.news", "icon": "newspaper"},
+      {"route": "fansites", "label": "js.toolFansites", "icon": "flag"}
+    ]},
+    {"id": "fansite", "label": "nav.group.fansiteTools", "items": [
+      {"href": "https://github.com/RockyJLaRo/TibiaFoundry", "label": "nav.sourceOnGitHub", "icon": "code-xml"}
+    ]},
+    {"page": "contact"}
   ],
   "dataRoutes": [
     {"id": "hub", "pattern": "", "sample": ""},

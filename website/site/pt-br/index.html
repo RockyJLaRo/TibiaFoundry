@@ -38,11 +38,12 @@
 <link rel="icon" href="../favicon-192.png" type="image/png" sizes="192x192">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <script>
+  document.documentElement.classList.remove('no-js');
   // Theme before the first paint (no flash of the wrong theme): the stored choice, else the system's (CSS).
   try { var th = localStorage.getItem('tf-theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
 
 </script>
-<link rel="stylesheet" href="../assets/site.css?v=f9a647560c">
+<link rel="stylesheet" href="../assets/site.css?v=5e6fea4a85">
 <!-- Google tag (gtag.js). Visitors can turn statistics off on the Legal page (stored as tf-analytics=off); a browser's
      Global Privacy Control signal turns them off too. Disclosed on the Legal page under "Privacy and statistics". -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
@@ -126,25 +127,74 @@
   <div class="wrap"><span class="lang-suggest-text"></span><a class="btn btn-small lang-suggest-go" href="#"></a><button type="button" class="icon-btn lang-suggest-close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button></div>
 </div>
 <header class="site-header">
+  <div class="header-search-row">
+    <div class="wrap">
+      <form class="header-search search-row" role="search" action="../pt-br/tibia/" data-character-search>
+        <input class="input" type="search" name="character" placeholder="Nome do personagem" aria-label="Buscar um personagem do Tibia" autocomplete="off" spellcheck="false" maxlength="29">
+        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>Buscar</button>
+      </form>
+    </div>
+  </div>
   <div class="wrap header-bar">
     <a class="brand" href="../pt-br/" aria-label="Página inicial do Tibia Foundry">
-      <img src="../img/logo.png" alt="" width="32" height="32">
+      <span class="brand-mark" aria-hidden="true"></span>
       <span class="brand-name">Tibia Foundry</span><span class="brand-version">9.0.5</span>
     </a>
     <nav class="main-nav" aria-label="Principal">
-      <ul>
-        <li><a href="../pt-br/tibia/" data-page-link="tibia">Ferramentas Tibia</a></li>
-        <li><a href="../pt-br/calculators/" data-page-link="calculators">Calculadoras</a></li>
-        <li><a href="../pt-br/features/" data-page-link="features">Programa para PC</a></li>
-        <li><a href="../pt-br/guides/" data-page-link="guides">Guias</a></li>
-        <li><a href="../pt-br/about/" data-page-link="about">Sobre</a></li>
+      <ul class="nav-list">
+        <li class="nav-group" data-nav-group="application">
+          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-application"><span>Aplicativo</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel" id="nav-panel-application" hidden>
+            <ul class="nav-panel-list">
+              <li><a href="../pt-br/downloads/" data-menu-dest="page:downloads" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg><span>Downloads</span></a></li>
+              <li><a href="../pt-br/features/" data-menu-dest="page:features" data-page-link="features"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg><span>Recursos</span></a></li>
+              <li><a href="../pt-br/guides/" data-menu-dest="page:guides" data-page-link="guides"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg><span>Guias</span></a></li>
+              <li><a href="../pt-br/about/" data-menu-dest="page:about" data-page-link="about"><svg class="ic" aria-hidden="true"><use href="#i-user-round"/></svg><span>Sobre</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-group" data-nav-group="tools">
+          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-tools"><span>Ferramentas online</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel" id="nav-panel-tools" hidden>
+            <ul class="nav-panel-list">
+              <li><a href="../pt-br/calculators/" data-menu-dest="page:calculators" data-page-link="calculators"><svg class="ic" aria-hidden="true"><use href="#i-calculator"/></svg><span>Calculadoras</span></a></li>
+              <li><a href="../pt-br/calculators/experience/" data-menu-dest="page:calc-experience" data-page-link="calc-experience"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg><span>Experiência e nível</span></a></li>
+              <li><a href="../pt-br/calculators/stamina/" data-menu-dest="page:calc-stamina" data-page-link="calc-stamina"><svg class="ic" aria-hidden="true"><use href="#i-battery-medium"/></svg><span>Regeneração de stamina</span></a></li>
+              <li><a href="../pt-br/calculators/blessings/" data-menu-dest="page:calc-blessings" data-page-link="calc-blessings"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg><span>Blessings</span></a></li>
+              <li><a href="../pt-br/calculators/character-stats/" data-menu-dest="page:calc-stats" data-page-link="calc-stats"><svg class="ic" aria-hidden="true"><use href="#i-heart-pulse"/></svg><span>Stats do personagem</span></a></li>
+              <li><a href="../pt-br/calculators/#today" data-menu-dest="page:calculators#today"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Hoje no Tibia</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-group" data-nav-group="community">
+          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-community"><span>Dados da comunidade</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel nav-panel-wide" id="nav-panel-community" hidden>
+            <ul class="nav-panel-list">
+              <li><a href="../pt-br/tibia/#/character" data-menu-dest="route:character"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Personagens</span></a></li>
+              <li><a href="../pt-br/tibia/#/guilds/Antica" data-menu-dest="route:guilds"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Guildas</span></a></li>
+              <li><a href="../pt-br/tibia/#/worlds" data-menu-dest="route:worlds"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span>Mundos</span></a></li>
+              <li><a href="../pt-br/tibia/#/highscores/all/experience/all/1" data-menu-dest="route:highscores/all/experience/all/1"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg><span>Highscores</span></a></li>
+              <li><a href="../pt-br/tibia/#/houses/Antica/Thais" data-menu-dest="route:houses"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg><span>Casas</span></a></li>
+              <li><a href="../pt-br/tibia/#/creatures" data-menu-dest="route:creatures"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg><span>Criaturas</span></a></li>
+              <li><a href="../pt-br/tibia/#/spells" data-menu-dest="route:spells"><svg class="ic" aria-hidden="true"><use href="#i-wand-sparkles"/></svg><span>Magias</span></a></li>
+              <li><a href="../pt-br/tibia/#/killstatistics/Antica" data-menu-dest="route:killstatistics"><svg class="ic" aria-hidden="true"><use href="#i-skull"/></svg><span>Estatísticas de mortes</span></a></li>
+              <li><a href="../pt-br/tibia/#/bosses" data-menu-dest="route:bosses"><svg class="ic" aria-hidden="true"><use href="#i-crown"/></svg><span>Chefes</span></a></li>
+              <li><a href="../pt-br/tibia/#/news" data-menu-dest="route:news"><svg class="ic" aria-hidden="true"><use href="#i-newspaper"/></svg><span>Notícias</span></a></li>
+              <li><a href="../pt-br/tibia/#/fansites" data-menu-dest="route:fansites"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><span>Fansites</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-group" data-nav-group="fansite">
+          <button type="button" class="nav-button" aria-expanded="false" aria-controls="nav-panel-fansite"><span>Para fansites</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+          <div class="nav-panel" id="nav-panel-fansite" hidden>
+            <ul class="nav-panel-list">
+              <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="header"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg><span>Código-fonte no GitHub</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary btn-small header-download" href="../pt-br/downloads/" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar</a>
-    <form class="header-search search-row" role="search" action="../pt-br/tibia/" data-character-search>
-      <input class="input" type="search" name="character" placeholder="Nome do personagem" aria-label="Buscar um personagem do Tibia" autocomplete="off" spellcheck="false" maxlength="29">
-      <button class="btn btn-small" type="submit">Buscar</button>
-    </form>
     <div class="header-tools">
       <div class="lang" id="lang">
         <button type="button" class="icon-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu" aria-label="Idioma: Português (Brasil). Escolher outro idioma">
@@ -160,31 +210,65 @@
       </div>
       <button type="button" class="icon-btn" data-theme-toggle aria-label="Alternar entre modo claro e escuro"><svg class="ic theme-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ic theme-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
     </div>
-    <a class="icon-btn search-link" href="../pt-br/tibia/#/character" aria-label="Buscar um personagem do Tibia"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></a>
+    <a class="btn btn-primary btn-small header-download" href="../pt-br/downloads/" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Baixar</a>
     <button type="button" class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menu">
-      <svg class="ic menu-icon-open" aria-hidden="true"><use href="#i-menu"/></svg><svg class="ic menu-icon-close" aria-hidden="true"><use href="#i-x"/></svg>
+      <svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg>
     </button>
   </div>
-  <div class="menu-panel" id="site-menu">
-    <div class="wrap">
-      <form class="search-row" role="search" action="../pt-br/tibia/" data-character-search>
-        <input class="input" type="search" name="character" placeholder="Nome do personagem" aria-label="Buscar um personagem do Tibia" autocomplete="off" spellcheck="false" maxlength="29">
-        <button class="btn btn-primary" type="submit">Buscar</button>
-      </form>
-      <nav aria-label="Principal">
-        <ul class="menu-links">
-          <li><a href="../pt-br/" data-page-link="home" aria-current="page"><svg class="ic" aria-hidden="true"><use href="#i-anvil"/></svg>Início</a></li>
-          <li><a href="../pt-br/tibia/" data-page-link="tibia"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>Ferramentas Tibia</a></li>
-          <li><a href="../pt-br/calculators/" data-page-link="calculators"><svg class="ic" aria-hidden="true"><use href="#i-calculator"/></svg>Calculadoras</a></li>
-          <li><a href="../pt-br/features/" data-page-link="features"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg>Programa para PC</a></li>
-          <li><a href="../pt-br/downloads/" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>Downloads</a></li>
-          <li><a href="../pt-br/guides/" data-page-link="guides"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg>Guias</a></li>
-          <li><a href="../pt-br/about/" data-page-link="about"><svg class="ic" aria-hidden="true"><use href="#i-user-round"/></svg>Sobre</a></li>
-          <li><a href="../pt-br/contact/" data-page-link="contact"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>Contato</a></li>
-        </ul>
+  <div class="drawer" id="site-menu" hidden>
+    <div class="drawer-backdrop" data-drawer-close></div>
+    <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-head">
+        <h2 class="drawer-title" id="drawer-title">Menu do site</h2>
+        <button type="button" class="icon-btn drawer-close" data-drawer-close aria-label="Fechar menu"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
+      </div>
+      <nav class="drawer-nav" aria-label="Principal">
+        <details class="drawer-group" data-nav-group="application">
+          <summary class="drawer-summary"><span>Aplicativo</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+          <ul class="drawer-links">
+            <li><a href="../pt-br/downloads/" data-menu-dest="page:downloads" data-page-link="downloads"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg><span>Downloads</span></a></li>
+            <li><a href="../pt-br/features/" data-menu-dest="page:features" data-page-link="features"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg><span>Recursos</span></a></li>
+            <li><a href="../pt-br/guides/" data-menu-dest="page:guides" data-page-link="guides"><svg class="ic" aria-hidden="true"><use href="#i-book-open"/></svg><span>Guias</span></a></li>
+            <li><a href="../pt-br/about/" data-menu-dest="page:about" data-page-link="about"><svg class="ic" aria-hidden="true"><use href="#i-user-round"/></svg><span>Sobre</span></a></li>
+          </ul>
+        </details>
+        <details class="drawer-group" data-nav-group="tools">
+          <summary class="drawer-summary"><span>Ferramentas online</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+          <ul class="drawer-links">
+            <li><a href="../pt-br/calculators/" data-menu-dest="page:calculators" data-page-link="calculators"><svg class="ic" aria-hidden="true"><use href="#i-calculator"/></svg><span>Calculadoras</span></a></li>
+            <li><a href="../pt-br/calculators/experience/" data-menu-dest="page:calc-experience" data-page-link="calc-experience"><svg class="ic" aria-hidden="true"><use href="#i-trending-up"/></svg><span>Experiência e nível</span></a></li>
+            <li><a href="../pt-br/calculators/stamina/" data-menu-dest="page:calc-stamina" data-page-link="calc-stamina"><svg class="ic" aria-hidden="true"><use href="#i-battery-medium"/></svg><span>Regeneração de stamina</span></a></li>
+            <li><a href="../pt-br/calculators/blessings/" data-menu-dest="page:calc-blessings" data-page-link="calc-blessings"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg><span>Blessings</span></a></li>
+            <li><a href="../pt-br/calculators/character-stats/" data-menu-dest="page:calc-stats" data-page-link="calc-stats"><svg class="ic" aria-hidden="true"><use href="#i-heart-pulse"/></svg><span>Stats do personagem</span></a></li>
+            <li><a href="../pt-br/calculators/#today" data-menu-dest="page:calculators#today"><svg class="ic" aria-hidden="true"><use href="#i-calendar"/></svg><span>Hoje no Tibia</span></a></li>
+          </ul>
+        </details>
+        <details class="drawer-group" data-nav-group="community">
+          <summary class="drawer-summary"><span>Dados da comunidade</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+          <ul class="drawer-links">
+            <li><a href="../pt-br/tibia/#/character" data-menu-dest="route:character"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg><span>Personagens</span></a></li>
+            <li><a href="../pt-br/tibia/#/guilds/Antica" data-menu-dest="route:guilds"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg><span>Guildas</span></a></li>
+            <li><a href="../pt-br/tibia/#/worlds" data-menu-dest="route:worlds"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg><span>Mundos</span></a></li>
+            <li><a href="../pt-br/tibia/#/highscores/all/experience/all/1" data-menu-dest="route:highscores/all/experience/all/1"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg><span>Highscores</span></a></li>
+            <li><a href="../pt-br/tibia/#/houses/Antica/Thais" data-menu-dest="route:houses"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg><span>Casas</span></a></li>
+            <li><a href="../pt-br/tibia/#/creatures" data-menu-dest="route:creatures"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg><span>Criaturas</span></a></li>
+            <li><a href="../pt-br/tibia/#/spells" data-menu-dest="route:spells"><svg class="ic" aria-hidden="true"><use href="#i-wand-sparkles"/></svg><span>Magias</span></a></li>
+            <li><a href="../pt-br/tibia/#/killstatistics/Antica" data-menu-dest="route:killstatistics"><svg class="ic" aria-hidden="true"><use href="#i-skull"/></svg><span>Estatísticas de mortes</span></a></li>
+            <li><a href="../pt-br/tibia/#/bosses" data-menu-dest="route:bosses"><svg class="ic" aria-hidden="true"><use href="#i-crown"/></svg><span>Chefes</span></a></li>
+            <li><a href="../pt-br/tibia/#/news" data-menu-dest="route:news"><svg class="ic" aria-hidden="true"><use href="#i-newspaper"/></svg><span>Notícias</span></a></li>
+            <li><a href="../pt-br/tibia/#/fansites" data-menu-dest="route:fansites"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg><span>Fansites</span></a></li>
+          </ul>
+        </details>
+        <details class="drawer-group" data-nav-group="fansite">
+          <summary class="drawer-summary"><span>Para fansites</span><svg class="ic nav-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+          <ul class="drawer-links">
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="drawer"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg><span>Código-fonte no GitHub</span></a></li>
+          </ul>
+        </details>
+        <a class="drawer-link" href="../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a>
       </nav>
       <div class="menu-group">
-        <h2>Idioma</h2>
+        <h3>Idioma</h3>
         <ul class="menu-langs">
           <li><a href="../" hreflang="en" lang="en" data-lang="en"><span class="lang-badge" aria-hidden="true">EN</span> English</a></li>
           <li><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR" aria-current="true"><span class="lang-badge" aria-hidden="true">PT</span> Português (Brasil)</a></li>
@@ -197,6 +281,8 @@
     </div>
   </div>
 </header>
+<script>/* before the first paint: a desktop header that does not fit on one line (long labels) uses the drawer (src/js/nav.js keeps this up to date) */
+  (function () { var b = document.querySelector('.header-bar'); if (b && window.matchMedia && matchMedia('(min-width: 1024px)').matches && b.scrollWidth > b.clientWidth + 1) document.documentElement.classList.add('nav-collapsed'); })();</script>
 <main id="main" tabindex="-1">
 <section class="hero" aria-labelledby="home-title">
   <div class="wrap hero-grid">
@@ -373,42 +459,53 @@
         </ul>
       </div>
       <div class="footer-grid">
-        <div>
-          <h2>Ferramentas Tibia</h2>
+        <div data-footer-group="application">
+          <h2>Aplicativo</h2>
           <ul>
-            <li><a href="../pt-br/tibia/#/character">Personagens</a></li>
-            <li><a href="../pt-br/tibia/#/worlds">Mundos</a></li>
-            <li><a href="../pt-br/tibia/#/highscores/all/experience/all/1">Highscores</a></li>
-            <li><a href="../pt-br/tibia/#/bosses">Bosses em destaque</a></li>
-            <li><a href="../pt-br/tibia/#/news">Notícias do Tibia</a></li>
-            <li><a href="../pt-br/tibia/#/fansites">Fansites</a></li>
+            <li><a href="../pt-br/downloads/" data-menu-dest="page:downloads" data-page-link="downloads">Downloads</a></li>
+            <li><a href="../pt-br/features/" data-menu-dest="page:features" data-page-link="features">Recursos</a></li>
+            <li><a href="../pt-br/guides/" data-menu-dest="page:guides" data-page-link="guides">Guias</a></li>
+            <li><a href="../pt-br/about/" data-menu-dest="page:about" data-page-link="about">Sobre</a></li>
           </ul>
         </div>
-        <div>
-          <h2>Calculadoras</h2>
+        <div data-footer-group="tools">
+          <h2>Ferramentas online</h2>
           <ul>
-            <li><a href="../pt-br/calculators/">Todas as calculadoras</a></li>
-            <li><a href="../pt-br/calculators/experience/">Experiência e nível</a></li>
-            <li><a href="../pt-br/calculators/stamina/">Regeneração de stamina</a></li>
-            <li><a href="../pt-br/calculators/blessings/">Blessings</a></li>
-            <li><a href="../pt-br/calculators/character-stats/">Stats do personagem</a></li>
+            <li><a href="../pt-br/calculators/" data-menu-dest="page:calculators" data-page-link="calculators">Calculadoras</a></li>
+            <li><a href="../pt-br/calculators/experience/" data-menu-dest="page:calc-experience" data-page-link="calc-experience">Experiência e nível</a></li>
+            <li><a href="../pt-br/calculators/stamina/" data-menu-dest="page:calc-stamina" data-page-link="calc-stamina">Regeneração de stamina</a></li>
+            <li><a href="../pt-br/calculators/blessings/" data-menu-dest="page:calc-blessings" data-page-link="calc-blessings">Blessings</a></li>
+            <li><a href="../pt-br/calculators/character-stats/" data-menu-dest="page:calc-stats" data-page-link="calc-stats">Stats do personagem</a></li>
+            <li><a href="../pt-br/calculators/#today" data-menu-dest="page:calculators#today">Hoje no Tibia</a></li>
           </ul>
         </div>
-        <div>
-          <h2>Programa para PC</h2>
+        <div data-footer-group="community">
+          <h2>Dados da comunidade</h2>
           <ul>
-            <li><a href="../pt-br/downloads/">Downloads</a></li>
-            <li><a href="../pt-br/features/">Programa para PC</a></li>
-            <li><a href="../pt-br/guides/">Guias</a></li>
-            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0.5" data-track="releases" data-place="footer">Notas da versão 9.0.5</a></li>
-            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">Repositório no GitHub</a></li>
+            <li><a href="../pt-br/tibia/#/character" data-menu-dest="route:character">Personagens</a></li>
+            <li><a href="../pt-br/tibia/#/guilds/Antica" data-menu-dest="route:guilds">Guildas</a></li>
+            <li><a href="../pt-br/tibia/#/worlds" data-menu-dest="route:worlds">Mundos</a></li>
+            <li><a href="../pt-br/tibia/#/highscores/all/experience/all/1" data-menu-dest="route:highscores/all/experience/all/1">Highscores</a></li>
+            <li><a href="../pt-br/tibia/#/houses/Antica/Thais" data-menu-dest="route:houses">Casas</a></li>
+            <li><a href="../pt-br/tibia/#/creatures" data-menu-dest="route:creatures">Criaturas</a></li>
+            <li><a href="../pt-br/tibia/#/spells" data-menu-dest="route:spells">Magias</a></li>
+            <li><a href="../pt-br/tibia/#/killstatistics/Antica" data-menu-dest="route:killstatistics">Estatísticas de mortes</a></li>
+            <li><a href="../pt-br/tibia/#/bosses" data-menu-dest="route:bosses">Chefes</a></li>
+            <li><a href="../pt-br/tibia/#/news" data-menu-dest="route:news">Notícias</a></li>
+            <li><a href="../pt-br/tibia/#/fansites" data-menu-dest="route:fansites">Fansites</a></li>
+          </ul>
+        </div>
+        <div data-footer-group="fansite">
+          <h2>Para fansites</h2>
+          <ul>
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="footer">Código-fonte no GitHub</a></li>
           </ul>
         </div>
         <div>
           <h2>Projeto</h2>
           <ul>
-            <li><a href="../pt-br/about/">Sobre</a></li>
-            <li><a href="../pt-br/contact/">Contato</a></li>
+            <li><a href="../pt-br/contact/" data-menu-dest="page:contact" data-page-link="contact">Contato</a></li>
+            <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0.5" data-track="releases" data-place="footer">Notas da versão 9.0.5</a></li>
             <li><a href="../pt-br/legal/">Aspectos legais e transparência</a></li>
             <li><a href="../pt-br/legal/#privacy">Privacidade e estatísticas</a></li>
             <li><a href="../pt-br/legal/#community">Regras da comunidade</a></li>
@@ -455,7 +552,8 @@
 <p class="sr-only" id="live-status" aria-live="polite"></p>
 <script>window.TF_SITE = {"version":"9.0.5","page":"home","api":{"base":"https://api.tibiadata.com/v5/","version":"v5","expireAtServerSave":["creatures","boostablebosses"],"cacheSeconds":{"_comment":"Our client-side cache per endpoint, never shorter than TibiaData's own cache (https://tibiadata.com/faq/).","worlds":120,"world":120,"character":300,"guild":180,"guilds":180,"highscores":900,"killstatistics":900,"houses":300,"house":300,"news":1200,"newsticker":1200,"newsarchive":1800,"newsarticle":1800,"boostablebosses":1200,"creatures":86400,"creature":86400,"spells":86400,"spell":86400,"fansites":86400},"highscoreCategories":["experience","magiclevel","fistfighting","clubfighting","swordfighting","axefighting","distancefighting","shielding","fishing","achievements","loyaltypoints","charmpoints","bosspoints","dromescore","goshnarstaint","bountypoints","weeklytasks","phosphorusrecord"],"highscoreVocations":["all","knights","paladins","sorcerers","druids","monks"],"towns":["Ab'Dendriel","Ankrahmun","Carlin","Darashia","Edron","Farmine","Gray Beach","Issavi","Kazordoon","Liberty Bay","Moonfall","Port Hope","Rathleton","Silvertides","Svargrond","Thais","Venore","Yalahar"]},"dataRoutes":[{"id":"hub","pattern":"","sample":""},{"id":"character-search","pattern":"character","sample":"character"},{"id":"character","pattern":"character/:name","sample":"character/Roc ky"},{"id":"worlds","pattern":"worlds","sample":"worlds"},{"id":"world","pattern":"world/:name","sample":"world/Antica"},{"id":"guilds","pattern":"guilds/:world","sample":"guilds/Antica"},{"id":"guild","pattern":"guild/:name","sample":"guild/Crusaders of Might and Magic"},{"id":"highscores","pattern":"highscores/:world/:category/:vocation/:page","sample":"highscores/Antica/experience/all/1"},{"id":"houses","pattern":"houses/:world/:town","sample":"houses/Antica/Thais"},{"id":"house","pattern":"house/:world/:id","sample":"house/Antica/10301"},{"id":"killstatistics","pattern":"killstatistics/:world","sample":"killstatistics/Antica"},{"id":"creatures","pattern":"creatures","sample":"creatures"},{"id":"creature","pattern":"creature/:race","sample":"creature/demon"},{"id":"spells","pattern":"spells","sample":"spells"},{"id":"spell","pattern":"spell/:id","sample":"spell/lighthealing"},{"id":"bosses","pattern":"bosses","sample":"bosses"},{"id":"fansites","pattern":"fansites","sample":"fansites"},{"id":"news","pattern":"news","sample":"news"},{"id":"news-archive","pattern":"news/archive/:days","sample":"news/archive/90"},{"id":"news-article","pattern":"news/:id","sample":"news/9050"}],"defaultWorld":"Antica","paths":{"tibia":"../pt-br/tibia/","tibiaHash":"../pt-br/tibia/"}};
 window.TF_I18N = {"lang":"pt-BR","intl":"pt-BR","default":"en","strings":{"home.today.countdown":"em {hm} h","home.today.local":"{time}, no seu horário","js.accountInfo":"Informações da conta","js.accountStatus":"Status da conta","js.achievementPoints":"Pontos de conquista","js.achievements":"Conquistas exibidas","js.active":"Ativa","js.activeGuilds":"Guildas ativas ({n})","js.allNews":"Todas as notícias","js.allTools":"Todas as ferramentas","js.allTypes":"Todos os tipos","js.allWorlds":"Todos os mundos","js.amount":"Quantidade","js.analyticsGpc":"As estatísticas estão desativadas: seu navegador envia o sinal Global Privacy Control.","js.analyticsOff":"As estatísticas estão desativadas neste navegador.","js.analyticsOn":"As estatísticas estão ativadas neste navegador.","js.and":"e","js.ascending":"Crescente","js.assistedBy":"com ajuda de","js.auctionEnd":"Fim do leilão","js.auctioned":"em leilão","js.badges":"Insígnias da conta","js.beds":"Camas","js.behaviour":"Comportamento","js.bidder":"Maior lance","js.boostedBoss":"Boss em destaque","js.boostedCreature":"Criatura em destaque","js.boostedTitle":"Em destaque hoje","js.bossesNote":"Todo dia um desses bosses fica em destaque: mais loot e pontos de boss.","js.cat.cipsoft":"CipSoft","js.cat.community":"Comunidade","js.cat.development":"Desenvolvimento","js.cat.other":"Notícias","js.cat.support":"Suporte","js.cat.technical":"Técnico","js.category":"Categoria","js.characterHelp":"Digite o nome exato de qualquer personagem do Tibia para ver nível, vocação, mundo, guilda, casas, conquistas e mortes recentes.","js.characterLabel":"Consultar um personagem","js.characterPlaceholder":"Nome do personagem, ex.: Roc ky","js.city":"Aprendida em","js.comment":"Comentário","js.contact":"Contato","js.content.statistics":"estatísticas","js.content.texts":"textos","js.content.tools":"ferramentas","js.content.wiki":"wiki","js.contentTypes":"Conteúdo","js.convincible":"Convencer","js.cooldown":"Tempo de recarga","js.copied":"Copiado","js.copy":"Copiar","js.copyCsv":"Copiar como CSV","js.copyFailed":"Não foi possível copiar: selecione o texto e copie você mesmo","js.copyFormula":"Copiar fórmula","js.copyId":"Copiar ID","js.copyName":"Copiar nome","js.copyWiki":"Copiar como wikitexto","js.copyWikiHint":"Copia a tabela como tabela do TibiaWiki (wikitexto), filtrada e ordenada como mostrada","js.created":"Criado","js.creature":"Criatura","js.currentBid":"Lance atual","js.currentInfo":"Informações atuais","js.damageType":"Tipo de dano","js.dataBy":"Dados:","js.date":"Data","js.days":"Últimos {n} dias","js.deaths":"Mortes recentes","js.deathsTruncated":"O Tibia.com lista apenas as mortes mais recentes; as anteriores não aparecem.","js.deleted":"excluído","js.deletionDate":"Será excluído","js.descending":"Decrescente","js.description":"Descrição","js.diedAtLevel":"Morreu no nível {level} por","js.disband":"Dissolução","js.empty":"Nada para mostrar.","js.errInvalid":"A solicitação não é válida. Confira o nome ou as opções escolhidas.","js.errMalformed":"O TibiaData enviou uma resposta que esta página não consegue ler. Tente mais tarde.","js.errNetwork":"Não foi possível acessar o TibiaData. Confira sua conexão e tente de novo.","js.errNotFound":"O TibiaData não tem nenhuma entrada com esse nome. Confira a grafia: nomes de personagens, guildas e mundos precisam ser exatos.","js.errNotFoundTitle":"Não encontrado","js.errRateLimit":"Muitas solicitações em pouco tempo. Aguarde um momento e tente de novo.","js.errServer":"O TibiaData ou o Tibia.com não está respondendo agora. Tente de novo em alguns minutos.","js.errTitle":"Não foi possível carregar os dados","js.experience":"Experiência","js.fansiteItem":"Item de fansite","js.fansitesNote":"Sites independentes do programa oficial de fansites do Tibia. Eles não fazem parte do Tibia Foundry.","js.filter":"Filtrar","js.formerNames":"Nomes anteriores","js.formerWorlds":"Mundos anteriores","js.formingGuilds":"Guildas em formação ({n})","js.formula":"Fórmula","js.formulaNote":"As fórmulas das magias são os encantamentos oficiais e nunca são traduzidas.","js.founded":"Fundada","js.free":"livre","js.freeAccount":"Conta gratuita","js.gold":"{n} de ouro","js.grade":"Grau {n}","js.group":"Grupo","js.groupAttack":"ataque","js.groupCooldown":"grupo {n} s","js.groupHealing":"cura","js.groupNews":"Notícias e comunidade","js.groupPlayers":"Jogadores e guildas","js.groupReference":"Criaturas, bosses e magias","js.groupSupport":"suporte","js.groupWorlds":"Mundos, rankings e casas","js.guild":"Guilda","js.guildRank":"{rank} de","js.guildhall":"Guildhall","js.guildhalls":"Guildhalls","js.guildhallsCount":"Guildhalls ({n})","js.guildsOf":"Guildas de {world}","js.headline":"Manchete","js.healed":"Curado por","js.highscoreAge":"O Tibia.com atualiza os highscores; esta lista tem {minutes} minutos.","js.hitpoints":"Pontos de vida","js.homepage":"Site","js.house":"Casa","js.houseId":"ID da casa","js.houseImage":"Mapa de {name}","js.houses":"Casas","js.housesCount":"Casas ({n})","js.housesIn":"Casas em {town}, {world}","js.hs.achievements":"Conquistas","js.hs.axefighting":"Luta com machados","js.hs.bosspoints":"Pontos de boss","js.hs.bountypoints":"Pontos de recompensa","js.hs.charmpoints":"Pontos de charm","js.hs.clubfighting":"Luta com clavas","js.hs.distancefighting":"Luta à distância","js.hs.dromescore":"Pontuação do Drome","js.hs.experience":"Experiência","js.hs.fishing":"Pesca","js.hs.fistfighting":"Luta com punhos","js.hs.goshnarstaint":"Goshnar's Taint","js.hs.loyaltypoints":"Pontos de lealdade","js.hs.magiclevel":"Nível mágico","js.hs.phosphorusrecord":"Recorde de fósforo","js.hs.shielding":"Defesa com escudo","js.hs.swordfighting":"Luta com espadas","js.hs.weeklytasks":"Tarefas semanais","js.hubTitle":"Ferramentas Tibia","js.immune":"Imune a","js.inWar":"Em guerra","js.instant":"instantânea","js.invited":"Convidados","js.invites":"Convites","js.joined":"Entrada","js.killedDay":"Mortas (dia)","js.killedLastDay":"Criaturas mortas por jogadores, último dia","js.killedLastWeek":"Criaturas mortas por jogadores, última semana","js.killedWeek":"Mortas (semana)","js.killsOn":"Estatísticas de mortes de {world}","js.killsPeriod":"Números do último dia e dos últimos sete dias, como publicados pelo Tibia.com.","js.languages":"Idiomas","js.lastLogin":"Último login","js.latestNews":"Últimas notícias","js.level":"Nível","js.levelVocation":"{vocation} de nível {level}","js.loading":"Carregando…","js.loadingNews":"Carregando as últimas notícias…","js.location":"Localização","js.logo":"Logo","js.loot":"Loot","js.loyaltyTitle":"Título de lealdade","js.magicLevel":"Nível mágico","js.main":"personagem principal","js.mana":"Mana","js.manaCost":"{n} de mana","js.marriedTo":"Casado(a) com","js.members":"Membros","js.membersCount":"Membros","js.membersOnline":"{total} ({online} online)","js.moreAboutWorld":"Mais sobre este mundo","js.movingDate":"Mudança","js.name":"Nome","js.newTab":"(abre em uma nova aba)","js.newsTicker":"News ticker","js.newsType.article":"Artigo","js.newsType.news":"Notícia","js.newsType.ticker":"Ticker","js.next":"Próxima","js.no":"não","js.noAchievements":"Nenhuma conquista exibida.","js.noDeaths":"Nenhuma morte recente.","js.noMatches":"Nenhuma entrada corresponde ao filtro.","js.noNews":"Não há notícias neste período.","js.nobodyOnline":"Ninguém está online neste mundo agora.","js.none":"nenhum","js.notes":"Observações","js.offline":"offline","js.online":"online","js.onlineOnly":"Só membros online","js.onlinePlayers":"Jogadores online","js.openApplications":"Aceita candidaturas","js.openTibia":"Abrir no Tibia.com","js.original":"Original no Tibia.com","js.otherCharacters":"Outros personagens da conta","js.owner":"Dono","js.pageOf":"Página {page} de {total}","js.pages":"Páginas","js.paidUntil":"paga até {date}","js.paidUntilLabel":"Paga até","js.paralysable":"Pode ser paralisado","js.period":"Período","js.playersKilledDay":"Jogadores mortos (dia)","js.playersKilledLastDay":"Jogadores mortos, último dia","js.playersKilledLastWeek":"Jogadores mortos, última semana","js.playersKilledWeek":"Jogadores mortos (semana)","js.playersOnline":"Jogadores online","js.playersOnlineAll":"{n} jogadores online em todos os mundos agora","js.points":"Pontos","js.position":"Cargo","js.premium":"Premium","js.previous":"Anterior","js.price":"Preço","js.promoted":"Fansites promoted ({n})","js.pvpType":"Tipo de PvP","js.questTitles":"Títulos de quests do mundo","js.rank":"Cargo","js.read":"Ler","js.readNamed":"Ler: {title}","js.readOriginal":"Ler no Tibia.com","js.record":"Recorde online","js.recordOn":"{n} em {date}","js.rent":"Aluguel","js.rentMonth":"Aluguel mensal","js.rented":"alugada","js.residence":"Residência","js.retry":"Tentar de novo","js.rune":"runa","js.runeInfo":"Runa","js.search":"Buscar","js.seconds":"{n} s","js.secret":"secreta","js.seesInvisible":"Vê invisíveis","js.sex.female":"feminino","js.sex.male":"masculino","js.sexLabel":"Sexo","js.showMore":"Mostrar mais {n}","js.showing":"Mostrando {shown} de {total}","js.since":"desde {date}","js.size":"Tamanho","js.socialMedia":"Redes sociais","js.sortBy":"Ordenar por {column}","js.sortByLabel":"Ordenar por","js.sortNone":"Ordem original","js.sortedAsc":"Ordenado por {column}, crescente","js.sortedDesc":"Ordenado por {column}, decrescente","js.soul":"Pontos de alma","js.specials":"Destaques","js.spell":"Magia","js.spellInfo":"Magia","js.sqm":"{n} sqm","js.stale":"(cópia anterior: o TibiaData não respondeu)","js.status":"Status","js.strong":"Forte contra","js.suggestClose":"Manter o idioma atual","js.suggestGo":"Ver em português","js.suggestText":"O Tibia Foundry também está disponível em português.","js.summonOf":"invocação de {name}","js.summonable":"Invocar","js.supported":"Fansites supported ({n})","js.table":"Tabela","js.themeToDark":"Mudar para o modo escuro","js.themeToLight":"Mudar para o modo claro","js.ticker":"ticker","js.timeLeft":"Tempo restante","js.title":"Título","js.toolArchive":"Arquivo de notícias","js.toolArchiveText":"Todas as notícias dos últimos dias, meses ou do último ano.","js.toolBosses":"Bosses em destaque","js.toolBossesText":"Todos os bosses que podem ficar em destaque e o boss de hoje.","js.toolCharacter":"Personagens","js.toolCharacterText":"Nível, vocação, guilda, casas, conquistas e mortes de qualquer personagem.","js.toolCreatures":"Criaturas","js.toolCreaturesText":"A biblioteca de criaturas com pontos de vida, experiência, loot e a criatura em destaque de hoje.","js.toolFansites":"Fansites","js.toolFansitesText":"Os fansites oficiais promoted e supported do Tibia.","js.toolGuilds":"Guildas","js.toolGuildsText":"As guildas de um mundo, seus membros, cargos e guildhalls.","js.toolHighscores":"Highscores","js.toolHighscoresText":"Experiência, habilidades, conquistas e mais, por mundo e vocação.","js.toolHouses":"Casas","js.toolHousesText":"Casas e guildhalls por cidade, com aluguel, tamanho, dono e leilões.","js.toolKills":"Estatísticas de mortes","js.toolKillsText":"Criaturas e jogadores mortos em um mundo no último dia e na última semana.","js.toolNews":"Notícias do Tibia","js.toolNewsText":"Últimas notícias e news tickers do Tibia.com.","js.toolSpells":"Magias","js.toolSpellsText":"Cada magia e runa com fórmula, nível, mana e preço.","js.toolWorlds":"Mundos","js.toolWorldsText":"Cada mundo com jogadores online, tipo de PvP, localização e quem está online.","js.tournamentWorlds":"Mundos de torneio","js.town":"Cidade","js.traded":"negociado","js.transfer":"Transferência","js.type":"Tipo","js.unknownRoute":"Esta página dos dados do Tibia não existe.","js.unlockedTitles":"Títulos desbloqueados","js.updated":"obtidos às {time}","js.voc.all":"Todas as vocações","js.voc.druids":"Druids","js.voc.knights":"Knights","js.voc.monks":"Monks","js.voc.paladins":"Paladins","js.voc.sorcerers":"Sorcerers","js.vocation":"Vocação","js.weak":"Fraco contra","js.world":"Mundo","js.worldCount":"Mundos","js.worldType":"Tipo de mundo","js.yes":"sim","nav.menuOpen":"Abrir menu","nav.menuClose":"Fechar menu"},"fallback":{"home.today.countdown":"in {hm} h","home.today.local":"{time}, your local time","js.accountInfo":"Account information","js.accountStatus":"Account status","js.achievementPoints":"Achievement points","js.achievements":"Displayed achievements","js.active":"Active","js.activeGuilds":"Active guilds ({n})","js.allNews":"All news","js.allTools":"All Tibia tools","js.allTypes":"All types","js.allWorlds":"All worlds","js.amount":"Amount","js.analyticsGpc":"Statistics are off: your browser sends a Global Privacy Control signal.","js.analyticsOff":"Statistics are off for this browser.","js.analyticsOn":"Statistics are on for this browser.","js.and":"and","js.ascending":"Ascending","js.assistedBy":"assisted by","js.auctionEnd":"Auction ends","js.auctioned":"auctioned","js.badges":"Account badges","js.beds":"Beds","js.behaviour":"Behaviour","js.bidder":"Highest bidder","js.boostedBoss":"Boosted boss","js.boostedCreature":"Boosted creature","js.boostedTitle":"Boosted today","js.bossesNote":"One of these bosses is boosted every day: more loot and boss points.","js.cat.cipsoft":"CipSoft","js.cat.community":"Community","js.cat.development":"Development","js.cat.other":"News","js.cat.support":"Support","js.cat.technical":"Technical","js.category":"Category","js.characterHelp":"Enter the exact name of any Tibia character to see its level, vocation, world, guild, houses, achievements and recent deaths.","js.characterLabel":"Look up a character","js.characterPlaceholder":"Character name, e.g. Roc ky","js.city":"Learnt in","js.comment":"Comment","js.contact":"Contact","js.content.statistics":"statistics","js.content.texts":"texts","js.content.tools":"tools","js.content.wiki":"wiki","js.contentTypes":"Content","js.convincible":"Convince","js.cooldown":"Cooldown","js.copied":"Copied","js.copy":"Copy","js.copyCsv":"Copy as CSV","js.copyFailed":"Copy failed – select the text and copy it yourself","js.copyFormula":"Copy formula","js.copyId":"Copy ID","js.copyName":"Copy name","js.copyWiki":"Copy as wikitext","js.copyWikiHint":"Copies the table as a TibiaWiki table (wikitext), filtered and sorted as shown","js.created":"Created","js.creature":"Creature","js.currentBid":"Current bid","js.currentInfo":"Current information","js.damageType":"Damage type","js.dataBy":"Data:","js.date":"Date","js.days":"Last {n} days","js.deaths":"Recent deaths","js.deathsTruncated":"Tibia.com lists only the most recent deaths; older ones are not shown.","js.deleted":"deleted","js.deletionDate":"To be deleted","js.descending":"Descending","js.description":"Description","js.diedAtLevel":"Died at level {level} by","js.disband":"Disbanding","js.empty":"Nothing to show.","js.errInvalid":"The request is not valid. Check the name or the selected options.","js.errMalformed":"TibiaData sent an answer this page cannot read. Try again later.","js.errNetwork":"TibiaData could not be reached. Check your connection and try again.","js.errNotFound":"TibiaData has no entry with this name. Check the spelling – character, guild and world names must be exact.","js.errNotFoundTitle":"Not found","js.errRateLimit":"Too many requests in a short time. Wait a moment and try again.","js.errServer":"TibiaData or Tibia.com is not answering right now. Try again in a few minutes.","js.errTitle":"The data could not be loaded","js.experience":"Experience","js.fansiteItem":"Fansite item","js.fansitesNote":"Independent websites in Tibia's official fansite programme. They are not part of Tibia Foundry.","js.filter":"Filter","js.formerNames":"Former names","js.formerWorlds":"Former worlds","js.formingGuilds":"Guilds in formation ({n})","js.formula":"Formula","js.formulaNote":"Spell formulas are the official incantations and are never translated.","js.founded":"Founded","js.free":"free","js.freeAccount":"Free account","js.gold":"{n} gold","js.grade":"Grade {n}","js.group":"Group","js.groupAttack":"attack","js.groupCooldown":"group {n} s","js.groupHealing":"healing","js.groupNews":"News and community","js.groupPlayers":"Players and guilds","js.groupReference":"Creatures, bosses and spells","js.groupSupport":"support","js.groupWorlds":"Worlds, rankings and houses","js.guild":"Guild","js.guildRank":"{rank} of","js.guildhall":"Guildhall","js.guildhalls":"Guildhalls","js.guildhallsCount":"Guildhalls ({n})","js.guildsOf":"Guilds of {world}","js.headline":"Headline","js.healed":"Healed by","js.highscoreAge":"Highscores are updated by Tibia.com; this list is {minutes} minutes old.","js.hitpoints":"Hit points","js.homepage":"Homepage","js.house":"House","js.houseId":"House ID","js.houseImage":"Map of {name}","js.houses":"Houses","js.housesCount":"Houses ({n})","js.housesIn":"Houses in {town}, {world}","js.hs.achievements":"Achievements","js.hs.axefighting":"Axe fighting","js.hs.bosspoints":"Boss points","js.hs.bountypoints":"Bounty points","js.hs.charmpoints":"Charm points","js.hs.clubfighting":"Club fighting","js.hs.distancefighting":"Distance fighting","js.hs.dromescore":"Drome score","js.hs.experience":"Experience","js.hs.fishing":"Fishing","js.hs.fistfighting":"Fist fighting","js.hs.goshnarstaint":"Goshnar's Taint","js.hs.loyaltypoints":"Loyalty points","js.hs.magiclevel":"Magic level","js.hs.phosphorusrecord":"Phosphorus record","js.hs.shielding":"Shielding","js.hs.swordfighting":"Sword fighting","js.hs.weeklytasks":"Weekly tasks","js.hubTitle":"Tibia tools","js.immune":"Immune to","js.inWar":"At war","js.instant":"instant","js.invited":"Invited","js.invites":"Invitations","js.joined":"Joined","js.killedDay":"Killed (day)","js.killedLastDay":"Creatures killed by players, last day","js.killedLastWeek":"Creatures killed by players, last week","js.killedWeek":"Killed (week)","js.killsOn":"Kill statistics of {world}","js.killsPeriod":"Counts of the last day and the last seven days, as published by Tibia.com.","js.languages":"Languages","js.lastLogin":"Last login","js.latestNews":"Latest news","js.level":"Level","js.levelVocation":"Level {level} {vocation}","js.loading":"Loading…","js.loadingNews":"Loading the latest news…","js.location":"Location","js.logo":"Logo","js.loot":"Loot","js.loyaltyTitle":"Loyalty title","js.magicLevel":"Magic level","js.main":"main character","js.mana":"Mana","js.manaCost":"{n} mana","js.marriedTo":"Married to","js.members":"Members","js.membersCount":"Members","js.membersOnline":"{total} ({online} online)","js.moreAboutWorld":"More about this world","js.movingDate":"Moving out","js.name":"Name","js.newTab":"(opens in a new tab)","js.newsTicker":"News ticker","js.newsType.article":"Article","js.newsType.news":"News","js.newsType.ticker":"Ticker","js.next":"Next","js.no":"no","js.noAchievements":"No achievements on display.","js.noDeaths":"No recent deaths.","js.noMatches":"No entries match the filter.","js.noNews":"There is no news in this period.","js.nobodyOnline":"Nobody is online on this world right now.","js.none":"none","js.notes":"Notes","js.offline":"offline","js.online":"online","js.onlineOnly":"Online members only","js.onlinePlayers":"Players online","js.openApplications":"Open for applications","js.openTibia":"Open on Tibia.com","js.original":"Original on Tibia.com","js.otherCharacters":"Other characters of the account","js.owner":"Owner","js.pageOf":"Page {page} of {total}","js.pages":"Pages","js.paidUntil":"paid until {date}","js.paidUntilLabel":"Paid until","js.paralysable":"Can be paralysed","js.period":"Period","js.playersKilledDay":"Players killed (day)","js.playersKilledLastDay":"Players killed, last day","js.playersKilledLastWeek":"Players killed, last week","js.playersKilledWeek":"Players killed (week)","js.playersOnline":"Players online","js.playersOnlineAll":"{n} players online in all worlds right now","js.points":"Points","js.position":"Position","js.premium":"Premium","js.previous":"Previous","js.price":"Price","js.promoted":"Promoted fansites ({n})","js.pvpType":"PvP type","js.questTitles":"World quest titles","js.rank":"Rank","js.read":"Read","js.readNamed":"Read: {title}","js.readOriginal":"Read on Tibia.com","js.record":"Online record","js.recordOn":"{n} on {date}","js.rent":"Rent","js.rentMonth":"Rent per month","js.rented":"rented","js.residence":"Residence","js.retry":"Try again","js.rune":"rune","js.runeInfo":"Rune","js.search":"Search","js.seconds":"{n} s","js.secret":"secret","js.seesInvisible":"Sees invisible","js.sex.female":"female","js.sex.male":"male","js.sexLabel":"Sex","js.showMore":"Show {n} more","js.showing":"Showing {shown} of {total}","js.since":"since {date}","js.size":"Size","js.socialMedia":"Social media","js.sortBy":"Sort by {column}","js.sortByLabel":"Sort by","js.sortNone":"Original order","js.sortedAsc":"Sorted by {column}, ascending","js.sortedDesc":"Sorted by {column}, descending","js.soul":"Soul points","js.specials":"Specials","js.spell":"Spell","js.spellInfo":"Spell","js.sqm":"{n} sqm","js.stale":"(older copy – TibiaData could not be reached)","js.status":"Status","js.strong":"Strong against","js.suggestClose":"Keep the current language","js.suggestGo":"Show in English","js.suggestText":"Tibia Foundry is also available in English.","js.summonOf":"summon of {name}","js.summonable":"Summon","js.supported":"Supported fansites ({n})","js.table":"Table","js.themeToDark":"Switch to dark mode","js.themeToLight":"Switch to light mode","js.ticker":"ticker","js.timeLeft":"Time left","js.title":"Title","js.toolArchive":"News archive","js.toolArchiveText":"Every news item of the last days, months or year.","js.toolBosses":"Boostable bosses","js.toolBossesText":"All bosses that can be boosted and today's boosted boss.","js.toolCharacter":"Characters","js.toolCharacterText":"Level, vocation, guild, houses, achievements and deaths of any character.","js.toolCreatures":"Creatures","js.toolCreaturesText":"The creature library with hit points, experience, loot and today's boosted creature.","js.toolFansites":"Fansites","js.toolFansitesText":"Tibia's official promoted and supported fansites.","js.toolGuilds":"Guilds","js.toolGuildsText":"Guilds of a world, their members, ranks and guildhalls.","js.toolHighscores":"Highscores","js.toolHighscoresText":"Experience, skills, achievements and more, by world and vocation.","js.toolHouses":"Houses","js.toolHousesText":"Houses and guildhalls by town, with rent, size, owner and auctions.","js.toolKills":"Kill statistics","js.toolKillsText":"Creatures and players killed on a world in the last day and week.","js.toolNews":"Tibia news","js.toolNewsText":"Latest news and news tickers from Tibia.com.","js.toolSpells":"Spells","js.toolSpellsText":"Every spell and rune with formula, level, mana and price.","js.toolWorlds":"Worlds","js.toolWorldsText":"Every game world with players online, PvP type, location and who is online.","js.tournamentWorlds":"Tournament worlds","js.town":"Town","js.traded":"traded","js.transfer":"Transfer","js.type":"Type","js.unknownRoute":"This page of the Tibia data does not exist.","js.unlockedTitles":"Unlocked titles","js.updated":"fetched at {time}","js.voc.all":"All vocations","js.voc.druids":"Druids","js.voc.knights":"Knights","js.voc.monks":"Monks","js.voc.paladins":"Paladins","js.voc.sorcerers":"Sorcerers","js.vocation":"Vocation","js.weak":"Weak against","js.world":"World","js.worldCount":"Worlds","js.worldType":"World type","js.yes":"yes","nav.menuOpen":"Open menu","nav.menuClose":"Close menu"},"languages":[{"code":"en","name":"English","offer":{"text":"Tibia Foundry is also available in English.","go":"Show in English","close":"Keep the current language"}},{"code":"pt-BR","name":"Português (Brasil)","offer":{"text":"O Tibia Foundry também está disponível em português.","go":"Ver em português","close":"Manter o idioma atual"}},{"code":"pl","name":"Polski","offer":{"text":"Tibia Foundry jest dostępny także po polsku.","go":"Pokaż po polsku","close":"Zostaw obecny język"}},{"code":"es","name":"Español","offer":{"text":"Tibia Foundry también está disponible en español.","go":"Ver en español","close":"Mantener el idioma actual"}},{"code":"de","name":"Deutsch","offer":{"text":"Tibia Foundry gibt es auch auf Deutsch.","go":"Auf Deutsch anzeigen","close":"Aktuelle Sprache behalten"}}]};</script>
-<script src="../assets/site.js?v=d912bdae17" defer></script>
+<script src="../assets/site.js?v=17d52310bd" defer></script>
+<script src="../assets/nav.js?v=0fd099cc56" defer></script>
 <script src="../assets/formulas.js?v=4ce80a6e85" defer></script>
 <script src="../assets/tibiadata.js?v=42dc14457a" defer></script>
 <script src="../assets/sanitize.js?v=7a7ed7e2a6" defer></script>

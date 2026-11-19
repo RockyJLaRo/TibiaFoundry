@@ -105,7 +105,22 @@
     "download": "Descargar",
     "legal": "Aviso legal y transparencia",
     "breadcrumb": "Ruta de navegación",
-    "calculators": "Calculadoras"
+    "calculators": "Calculadoras",
+    "sourceOnGitHub": "Código fuente en GitHub",
+    "todayInTibia": "Hoy en Tibia",
+    "siteMenu": "Menú del sitio",
+    "group": {
+      "application": "Aplicación",
+      "onlineTools": "Herramientas online",
+      "communityData": "Datos de la comunidad",
+      "fansiteTools": "Para fansites"
+    },
+    "item": {
+      "features": "Funciones",
+      "killStatistics": "Estadísticas de muertes",
+      "bosses": "Jefes",
+      "news": "Noticias"
+    }
   },
   "hero": {
     "lead": "Tibia Foundry lee los archivos oficiales del cliente de Tibia que tienes instalado y los convierte en sprites, GIF animados de outfits y criaturas, imágenes de objetos, mapas, sonidos y datos; luego guarda todo en una biblioteca con búsqueda y publica galerías completas para TibiaWiki o cualquier sitio de la comunidad.",
@@ -467,14 +482,12 @@
     "a10": "De TibiaData, una API pública y gratuita basada en Tibia.com. Tu navegador consulta TibiaData directamente; este sitio no tiene servidor propio y no guarda nada sobre tus búsquedas."
   },
   "footer": {
-    "product": "Programa de escritorio",
     "project": "Proyecto",
     "repository": "Repositorio en GitHub",
     "issues": "Problemas y soporte",
     "legal": "Tibia es creado y operado por CipSoft GmbH. Tibia, su sitio web, los gráficos y los datos del juego tienen copyright de CipSoft GmbH, y el contenido proporcionado por CipSoft sigue siendo de su propiedad. Tibia Foundry es un proyecto independiente de fans y no está afiliado ni respaldado por CipSoft GmbH ni por Fandom.",
     "version": "Versión {version} · {date}",
     "made": "Hecho por Rocky LaRochelle, creador y desarrollador de Tibia Foundry.",
-    "data": "Herramientas de Tibia",
     "releaseNotes": "Notas de la versión {version}",
     "about": "Herramientas de Tibia gratis en tu navegador y un kit de escritorio para editores de TibiaWiki y creadores de fansites: un proyecto independiente de fans."
   },

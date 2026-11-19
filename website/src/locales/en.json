@@ -45,7 +45,22 @@
     "download": "Download",
     "legal": "Legal & transparency",
     "breadcrumb": "Breadcrumb",
-    "calculators": "Calculators"
+    "calculators": "Calculators",
+    "sourceOnGitHub": "Source on GitHub",
+    "todayInTibia": "Today in Tibia",
+    "siteMenu": "Site Menu",
+    "group": {
+      "application": "Application",
+      "onlineTools": "Online Tools",
+      "communityData": "Community Data",
+      "fansiteTools": "Fansite Tools"
+    },
+    "item": {
+      "features": "Features",
+      "killStatistics": "Kill Statistics",
+      "bosses": "Bosses",
+      "news": "News"
+    }
   },
   "hero": {
     "lead": "Tibia Foundry reads the official files of your installed Tibia client and turns them into sprites, animated outfit and creature GIFs, item images, maps, sounds and data – then keeps everything in a searchable library and publishes complete galleries for TibiaWiki or any community website.",
@@ -407,14 +422,12 @@
     "a10": "From TibiaData, a free public API built on Tibia.com. Your browser asks TibiaData directly; this website has no server of its own and keeps nothing about your searches."
   },
   "footer": {
-    "product": "Desktop app",
     "project": "Project",
     "repository": "GitHub repository",
     "issues": "Issues and support",
     "legal": "Tibia is made and operated by CipSoft GmbH. Tibia, its website, game graphics and data are copyrighted by CipSoft GmbH, and content provided by CipSoft remains its property. Tibia Foundry is an independent fan project and is not affiliated with or endorsed by CipSoft GmbH or Fandom.",
     "version": "Version {version} · {date}",
     "made": "Made by Rocky LaRochelle, creator and developer of Tibia Foundry.",
-    "data": "Tibia tools",
     "releaseNotes": "Release notes {version}",
     "about": "Free Tibia tools in your browser and a desktop toolkit for TibiaWiki editors and fansite creators – an independent fan project."
   },

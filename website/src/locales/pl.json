@@ -101,7 +101,22 @@
     "download": "Pobierz",
     "legal": "Informacje prawne",
     "breadcrumb": "Ścieżka nawigacji",
-    "calculators": "Kalkulatory"
+    "calculators": "Kalkulatory",
+    "sourceOnGitHub": "Kod źródłowy na GitHubie",
+    "todayInTibia": "Dziś w Tibii",
+    "siteMenu": "Menu strony",
+    "group": {
+      "application": "Aplikacja",
+      "onlineTools": "Narzędzia online",
+      "communityData": "Dane społeczności",
+      "fansiteTools": "Dla fansite’ów"
+    },
+    "item": {
+      "features": "Funkcje",
+      "killStatistics": "Statystyki zabójstw",
+      "bosses": "Bossowie",
+      "news": "Wiadomości"
+    }
   },
   "hero": {
     "lead": "Tibia Foundry odczytuje oficjalne pliki zainstalowanego klienta Tibii i zamienia je w sprite'y, animowane GIF-y outfitów i potworów, obrazki przedmiotów, mapy, dźwięki i dane – a potem przechowuje wszystko w przeszukiwalnej bibliotece i publikuje kompletne galerie dla TibiaWiki lub dowolnej strony społeczności.",
@@ -463,14 +478,12 @@
     "a10": "Z TibiaData, darmowego publicznego API opartego na Tibia.com. Twoja przeglądarka pyta TibiaData bezpośrednio; ta strona nie ma własnego serwera i nie zapisuje niczego o Twoich wyszukiwaniach."
   },
   "footer": {
-    "product": "Program na PC",
     "project": "Projekt",
     "repository": "Repozytorium na GitHubie",
     "issues": "Zgłoszenia i pomoc",
     "legal": "Tibię tworzy i prowadzi CipSoft GmbH. Tibia, jej strona, grafiki i dane z gry są chronione prawem autorskim CipSoft GmbH, a materiały udostępnione przez CipSoft pozostają jej własnością. Tibia Foundry to niezależny projekt fanowski, niepowiązany z CipSoft GmbH ani Fandom i przez nie niepopierany.",
     "version": "Wersja {version} · {date}",
     "made": "Stworzone przez Rocky’ego LaRochelle, twórcę i programistę Tibia Foundry.",
-    "data": "Narzędzia Tibii",
     "releaseNotes": "Informacje o wersji {version}",
     "about": "Darmowe narzędzia do Tibii w przeglądarce i program dla edytorów TibiaWiki oraz twórców fansite'ów – niezależny projekt fanowski."
   },
