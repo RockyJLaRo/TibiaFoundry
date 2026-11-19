@@ -98,12 +98,30 @@
           "url": "https://tibiaroute.com/calculators/level-calculator",
           "kind": "calculator",
           "read": "2026-11-18",
-          "note": "TibiaRoute level 100 to 200 = 113,695,000 exp, 75 h 47 min at 1.5kk/h (capture: research/calc-tests/level-tibiaroute.json)."
+          "note": "Capture research/calc-tests/level-tibiaroute.json (start 100, target 200, 1.5 kk/h, 4 h/day): total exp 113 695 000 and 75 h 47 min (= 4547 min). Only exp and minutes are attributed to TibiaRoute; it shows a date, not a day count, so days is computed by our rule."
         }
       ],
       "tibiaVersion": "current as of 2026-11-18",
       "checkedOn": "2026-11-18",
       "tests": [
+        {
+          "in": {
+            "from": 100,
+            "to": 200,
+            "exph": 1500000,
+            "hpd": 4
+          },
+          "out": {
+            "exp": 113695000,
+            "minutes": 4547,
+            "days": 19
+          },
+          "from": "calculator:tibiaroute",
+          "cites": [
+            "exp",
+            "minutes"
+          ]
+        },
         {
           "in": {
             "from": 100,
@@ -116,7 +134,7 @@
             "minutes": 4547,
             "days": 4
           },
-          "from": "calculator:tibiaroute"
+          "from": "computed"
         },
         {
           "in": {
@@ -130,7 +148,7 @@
             "minutes": 246,
             "days": 3
           },
-          "from": "official"
+          "from": "computed"
         },
         {
           "in": {
