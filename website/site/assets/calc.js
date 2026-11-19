@@ -7,11 +7,15 @@
  *            data-min / data-max (inclusive), data-gt (strictly above) with data-range-error="<text key>";
  *            data-gt-field="<other field>" with data-gt-field-error="<text key>" (must be above that field);
  *            each followed by <p data-echo="<field>"> ("read as ...") and <p data-error="<field>"> (inline error).
+ *            data-shorthand on a number field that offers "1.5kk" (an unreadable value then shows calc.error.format).
  *   formulas <el data-formula="<id>" data-args="a,b" or "level=from" data-prefix="from">: calls FORMULAS[id] with
- *            those fields; its outputs go to <output data-out="[prefix.]key" data-format="number|duration">, which
- *            receive the text in the page language and data-value="<raw value>". All outputs are in one aria-live region.
- *   extras   <output data-finish="<out>">: today + that many days, as a date ("–" when no calendar date is that far);
- *            <output data-finish-at="<out>">: now + that many minutes, as a date and local clock time (same "–" rule);
+ *            those fields; its outputs go to <span data-out="[prefix.]key" data-format="number|duration">, which
+ *            receive the text in the page language and data-value="<raw value>". These sit in one aria-live="polite"
+ *            region (.calc-live); every [data-row] is aria-atomic, so a change reads the row's label with its value,
+ *            and a value is only written when its text changes.
+ *   extras   <span data-finish="<out>">: today + that many days, as a date ("–" when no calendar date is that far);
+ *            <span data-finish-at="<out>">: now + that many minutes, as a date and local clock time (same "–" rule).
+ *            Both depend on the clock and sit OUTSIDE the live region: the minute timer never writes inside it.
  *            [data-row] rows make the copied summary; <p data-calc-error> in the results region shows a result that
  *            cannot be shown exactly (beyond Number.MAX_SAFE_INTEGER, not a finite number, or a formula that failed).
  *   errors   every [data-error] line gets data-error-kind="parse|range|gt-field" (what refused the field).
@@ -20,7 +24,9 @@
  *
  * Numbers are read and written in the page language (TF_I18N.lang), never the browser's. A field that cannot be read
  * shows an inline error and no result is shown until every field is valid. The query string holds the inputs only, as
- * plain digits (?from=100&to=200&exph=1500000&hpd=4), and is kept up to date with history.replaceState as you type.
+ * plain digits (?from=100&to=200&exph=1500000&hpd=4). The address bar follows the input once typing pauses for a second
+ * (history.replaceState): Google Analytics' enhanced measurement can count a page view per browser-history change, so it
+ * is not rewritten on every keystroke. The language links, Copy and Share always use the current input at once.
  */
 (function () {
   "use strict";
@@ -30,6 +36,7 @@
   var dateFormat = window.Intl ? new Intl.DateTimeFormat(intl, { day: "numeric", month: "long", year: "numeric" }) : null;
   var dateTimeFormat = window.Intl ? new Intl.DateTimeFormat(intl, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }) : null;
   var PLAIN = /^\d+(?:\.\d+)?$/;
+  var URL_DELAY = 1000;   // ms without typing before the address bar is updated
 
   function num(value) { return F.formatNumber(value, lang); }
   function duration(minutes) { return TF.t("calc.unit.hoursMinutes", { h: num(Math.floor(minutes / 60)), m: num(minutes % 60) }); }
@@ -83,7 +90,7 @@
       if (r.error === "empty" && !field.required) return { absent: true };
       if (r.error) {
         var key = r.error === "empty" ? "calc.error.empty" : r.error === "integer" ? "calc.error.integer" : r.error === "range" ? "calc.error.range"
-          : kind === "duration" ? "calc.error.duration" : kind === "int" ? "calc.error.formatInt" : "calc.error.format";
+          : kind === "duration" ? "calc.error.duration" : kind === "int" && !field.hasAttribute("data-shorthand") ? "calc.error.formatInt" : "calc.error.format";
         return { error: TF.t(key), kind: "parse" };
       }
       var v = r.value, min = field.getAttribute("data-min"), max = field.getAttribute("data-max"), gt = field.getAttribute("data-gt");
@@ -93,10 +100,11 @@
       return r;
     }
 
+    // Writes only what changed: an unchanged value is never rewritten, so the live region announces real changes only.
     function setOut(el, value, text) {
-      if (value === null) { el.textContent = ""; el.removeAttribute("data-value"); return; }
-      el.textContent = text;
-      el.setAttribute("data-value", String(value));
+      if (value === null) { if (el.textContent !== "") el.textContent = ""; el.removeAttribute("data-value"); return; }
+      if (el.textContent !== text) el.textContent = text;
+      if (el.getAttribute("data-value") !== String(value)) el.setAttribute("data-value", String(value));
     }
 
     // Only numbers that are exact integers or finite decimals within the safe range are ever shown.
@@ -184,9 +192,10 @@
       }
     }
 
-    // Input always ends with the share link and the language links matching what is typed, whatever compute() met.
+    // Input always ends with the share link and the language links matching what is typed, whatever compute() met;
+    // the address bar follows after a pause in typing.
     function update() {
-      try { compute(); } finally { setSearch(query()); }
+      try { compute(); } finally { setSearch(query(), true); }
     }
 
     function query() {
@@ -198,10 +207,18 @@
       return parts.length ? "?" + parts.join("&") : "";
     }
     function shareUrl() { return location.origin + location.pathname + query(); }
-    function setSearch(search) {
+    var urlTimer = null;
+    function setAddress(search) {
+      urlTimer = null;
+      if (location.search === search) return;   // no history change, so no extra page view
       try { history.replaceState(history.state, "", location.pathname + search + location.hash); } catch (e) { /* file: or blocked */ }
-      // The language links open this calculator with the same inputs.
+    }
+    function setSearch(search, later) {
+      // The language links open this calculator with the same inputs, at once.
       each(langLinks, function (a) { a.setAttribute("href", a.getAttribute("data-base-href") + search); });
+      if (urlTimer) clearTimeout(urlTimer);
+      if (later) urlTimer = setTimeout(function () { setAddress(search); }, URL_DELAY);
+      else setAddress(search);
     }
 
     function summary() {
@@ -217,7 +234,8 @@
         if (text && /\d/.test(text)) lines.push((label ? label.textContent.trim() + ": " : "") + text);
       });
       lines.push(shareUrl());
-      return lines.join("\n");
+      // Plain characters for game chat: a hyphen instead of a dash, normal spaces instead of no-break or narrow spaces.
+      return lines.join("\n").replace(/[  ]*[–—][  ]*/g, " - ").replace(/[    ]/g, " ");
     }
 
     // Opening a share link: plain values from the query string (anything else is shown as typed, with its error).

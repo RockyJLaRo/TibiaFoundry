@@ -114,17 +114,22 @@
     },
     // Death blessing prices in gold (TibiaWiki "Blessings"; levels below 8 follow the level <= 30 bracket). One regular blessing,
     // one enhanced blessing and Twist of Fate each have three brackets; Blessing of the Inquisition costs the 5 regular blessings
-    // plus 10%, rounded down (TibiaWiki's calculator: 110,412.5 -> 110,412). All integer arithmetic.
+    // plus 10%, rounded down (TibiaWiki's calculator: 110,412.5 -> 110,412). All 7 = the 5 regular + the 2 enhanced blessings, or
+    // the Inquisition blessing + the 2 enhanced ones (TibiaWiki's calculator, "All 7 Blessings (using Henricus)"); Twist of Fate is
+    // not part of the 7. All integer arithmetic.
     blessings: function (i) {
       var L = i.level, regular, enhanced, twist;
       if (L <= 30) { regular = 2000; enhanced = 2600; }
       else if (L < 120) { regular = 200 * (L - 20); enhanced = 260 * (L - 20); }
       else { regular = 20000 + 75 * (L - 120); enhanced = 26000 + 100 * (L - 120); }
       twist = L <= 30 ? 2000 : L < 270 ? 200 * (L - 20) : 50000;
+      var inquisition = Math.floor((5 * regular * 11) / 10);
       return {
         regularEach: regular, regularAll: 5 * regular,
         enhancedEach: enhanced, enhancedAll: 2 * enhanced,
-        inquisition: Math.floor((5 * regular * 11) / 10),
+        inquisition: inquisition,
+        allSeven: 5 * regular + 2 * enhanced,
+        allSevenInquisition: inquisition + 2 * enhanced,
         twistOfFate: twist
       };
     },
@@ -146,8 +151,10 @@
     },
     // Maximum hit points, mana and capacity of a character with no equipment or Wheel of Destiny bonus, assuming the vocation
     // was chosen at level 8. Below level 8 every character gains 5 hit points, 5 mana and 10 oz per level from 150 / 55 / 600;
-    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data", for the five vocations; no vocation: TibiaWiki and GuildStats).
-    // Capacity includes the +200 base of the update of 21 October 2025 (CipSoft news, 15 October 2025). Monk mana follows from the Monk's +10 per level (not the Formulae page's 5(2L - 9)).
+    // that gives 185 / 90 / 670 at level 8. Each level after 8 adds the vocation's gain (official manual, "Vocation Specific Data", for the
+    // five vocations; no vocation: TibiaWiki's calculator and GuildStats' hit points and mana). Capacity includes the +200 base of the
+    // October 2025 update (CipSoft news of 15 October 2025: release "scheduled for ... Tuesday, October 21st"). Monk mana follows from the
+    // Monk's +10 per level (official manual), not from TibiaWiki's Formulae page, whose 5(2L - 9) disagrees with every other source.
     characterStats: function (i) {
       var GAIN = {
         none: [5, 5, 10], knight: [15, 5, 25], paladin: [10, 15, 20],
