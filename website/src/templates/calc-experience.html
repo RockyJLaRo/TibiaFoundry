@@ -6,7 +6,9 @@
 <div class="wrap calc-page">
   <!-- Calculator contract (calc.js): inputs name + data-kind (int|number|duration) with an echo and an error line each;
        data-formula + data-args (formula input or input=page field) + data-prefix bind a formula to the fields and to
-       data-out="<prefix>.<output>"; every output sits in the one aria-live region. -->
+       <span data-out="<prefix>.<key>">; those values sit in the one aria-live region (.calc-live), each [data-row] is
+       aria-atomic so its label is read with its value. Rows that depend on the clock (data-finish, data-finish-at) sit
+       outside the live region: the minute timer never writes inside it. -->
   <form class="calc" data-calc="calc-experience" novalidate autocomplete="off">
     <div class="calc-inputs">
       <h2 class="calc-panel-title">{{t:calc.inputs}}</h2>
@@ -27,7 +29,7 @@
       </div>
       <div class="field">
         <label class="field-label" for="calc-exph">{{t:calc.experience.exph}}</label>
-        <input class="input" id="calc-exph" name="exph" value="1500000" data-kind="int" inputmode="text" enterkeyhint="next" spellcheck="false" required
+        <input class="input" id="calc-exph" name="exph" value="1500000" data-kind="int" data-shorthand inputmode="text" enterkeyhint="next" spellcheck="false" required
                data-gt="0" data-range-error="calc.experience.error.exph" aria-describedby="calc-exph-hint calc-exph-echo calc-exph-error">
         <p class="field-hint" id="calc-exph-hint">{{t:calc.hint.shorthand}}</p>
         <p class="echo" data-echo="exph" id="calc-exph-echo"></p>
@@ -42,27 +44,29 @@
       </div>
     </div>
     <div class="calc-side">
-      <div class="calc-results framed" aria-live="polite">
+      <div class="calc-results framed">
         <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <div class="calc-live" aria-live="polite">
         <p class="field-error calc-error" data-calc-error></p>
         <div data-formula="levelPlan" data-args="from,to,exph,hpd">
-          <div class="calc-main" data-row><span class="calc-label">{{t:calc.experience.exp}}</span><output data-out="exp" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.minutes}}</span><output data-out="minutes" data-format="duration"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.days}}</span><output data-out="days" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.finish}}</span><output data-finish="days"></output></div>
+          <div class="calc-main" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.exp}}</span><span class="calc-value" data-out="exp" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.minutes}}</span><span class="calc-value" data-out="minutes" data-format="duration"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.days}}</span><span class="calc-value" data-out="days" data-format="number"></span></div>
         </div>
         <div data-formula="levelExp" data-args="level=from" data-prefix="from">
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.totalFrom}}</span><output data-out="from.exp" data-format="number"></output></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.totalFrom}}</span><span class="calc-value" data-out="from.exp" data-format="number"></span></div>
         </div>
         <div data-formula="levelExp" data-args="level=to" data-prefix="to">
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.totalTo}}</span><output data-out="to.exp" data-format="number"></output></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.totalTo}}</span><span class="calc-value" data-out="to.exp" data-format="number"></span></div>
         </div>
         <div data-formula="shareRange" data-args="level=from" data-prefix="from">
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.shareFrom}}</span><span class="calc-range"><output data-out="from.min" data-format="number"></output><span class="calc-sep"> – </span><output data-out="from.max" data-format="number"></output></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.shareFrom}}</span><span class="calc-range"><span class="calc-value" data-out="from.min" data-format="number"></span><span class="calc-sep"> – </span><span class="calc-value" data-out="from.max" data-format="number"></span></span></div>
         </div>
         <div data-formula="shareRange" data-args="level=to" data-prefix="to">
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.experience.shareTo}}</span><span class="calc-range"><output data-out="to.min" data-format="number"></output><span class="calc-sep"> – </span><output data-out="to.max" data-format="number"></output></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.experience.shareTo}}</span><span class="calc-range"><span class="calc-value" data-out="to.min" data-format="number"></span><span class="calc-sep"> – </span><span class="calc-value" data-out="to.max" data-format="number"></span></span></div>
         </div>
+        </div>
+        <div class="calc-row calc-clock" data-row><span class="calc-label">{{t:calc.experience.finish}}</span><span class="calc-value" data-finish="days"></span></div>
       </div>
       <div class="calc-actions">
         <button type="button" class="btn btn-primary" data-copy="" disabled><svg class="ic" aria-hidden="true"><use href="#i-copy"/></svg><span class="copy-label">{{t:calc.copy}}</span></button>

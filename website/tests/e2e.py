@@ -728,6 +728,14 @@ def calculators(c, browser, base):
     if not c.ok(calc_pages and hub, "registry needs the calculators hub and at least one page with \"calc\""):
         return
     verified, refused = 0, []
+    # No coin-seller / gambling-promo source (removed in the final review) and no uncaptured calculator on any built page.
+    banned = []
+    for folder, _, files in os.walk(os.path.join(kit.WEBSITE, "site")):
+        for name in files:
+            if name.endswith((".html", ".js")):
+                text = open(os.path.join(folder, name), encoding="utf-8", errors="replace").read()
+                banned += [os.path.relpath(os.path.join(folder, name), kit.WEBSITE) + ":" + m for m in set(re.findall(r"tibiawatch|intibia|exevopan|etienreseller|codingace", text, re.I))]
+    c.ok(not banned, f"built site names removed sources: {banned[:5]}")
     for lang in kit.LANGUAGES:
         code = lang["code"]
         ctx, page = new_page(browser, base, 360, 780)
@@ -785,15 +793,32 @@ def calculators(c, browser, base):
                     else:
                         c.ok(False, f"{where}: {fid} test {ti} cannot be entered on the page")
                 c.ok(independent >= 1, f"{where}: no independent (non-computed) test value of {fid} is shown by the page")
-            # every result sits in one polite live region; every formula explains itself with its sources
+            # every result sits in one polite live region, read row by row (label + value, aria-atomic); no <output> (itself a
+            # status live region, which would announce twice); rows that depend on the clock stay outside the live region
             live = page.evaluate("""() => { const f = document.querySelector('form[data-calc]'); const r = [...f.querySelectorAll('[aria-live]')];
-              return {n: r.length, polite: r.every(e => e.getAttribute('aria-live') === 'polite'), all: [...f.querySelectorAll('[data-out]')].every(o => r[0] && r[0].contains(o))}; }""")
+              const inLive = (e) => !!e.closest('[aria-live]');
+              return {n: r.length, polite: r.every(e => e.getAttribute('aria-live') === 'polite'), all: [...f.querySelectorAll('[data-out]')].every(o => r[0] && r[0].contains(o)),
+                      outputs: f.querySelectorAll('output, [role=status]').length,
+                      atomic: [...f.querySelectorAll('[data-row]')].filter(inLive).every(e => e.getAttribute('aria-atomic') === 'true'),
+                      clockInLive: [...f.querySelectorAll('[data-finish], [data-finish-at]')].filter(inLive).length}; }""")
             c.ok(live["n"] == 1 and live["polite"] and live["all"], f"{where}: results must be in exactly one aria-live=polite region ({live})")
+            c.ok(live["outputs"] == 0 and live["atomic"] and live["clockInLive"] == 0, f"{where}: no <output>/role=status, atomic rows, clock rows outside the live region ({live})")
+            # Copy text for game chat: hyphens and normal spaces only.
+            st = calc_fill(page, dict(defaults))
+            c.ok(st["copy"] and not re.search("[–—    ]", st["copy"]), f"{where}: copy text must use '-' and normal spaces: {st['copy']!r}")
+            # Source links are touch targets on phones: at least 44 px tall (spec), and therefore >= 24 px apart.
+            page.evaluate("document.querySelectorAll('details.how').forEach(d => d.open = true)")
+            heights = page.evaluate("() => [...document.querySelectorAll('details.how .how-sources a')].map(a => Math.round(a.getBoundingClientRect().height))")
+            c.ok(heights and min(heights) >= 44, f"{where}: source links must be >= 44 px tall at 360 px: {heights}")
+            page.evaluate("document.querySelectorAll('details.how').forEach(d => d.open = false)")
             for fid in p["calc"]:
                 how = page.locator(f"details.how [data-how='{fid}']")
                 if c.ok(how.count() == 1, f"{where}: no 'How this is calculated' block for {fid}"):
                     links = how.locator("a[href^='https://']")
                     c.ok(links.count() == len(FORMULA_REGISTRY[fid]["sources"]), f"{where}: {fid} shows {links.count()} sources")
+                    labelled = sum(1 for s in FORMULA_REGISTRY[fid]["sources"] if s.get("label"))
+                    c.ok(how.locator("[data-source-label]").count() == labelled, f"{where}: {fid} shows {how.locator('[data-source-label]').count()} source qualifiers, expected {labelled}")
+                    c.ok(not re.search(r"tibiawatch|intibia|exevopan|etienreseller|codingace", how.inner_html(), re.I), f"{where}: {fid} links a removed promo/uncaptured source")
                     c.ok(all(links.nth(i).get_attribute("target") == "_blank" and "noopener" in links.nth(i).get_attribute("rel") and "noreferrer" in links.nth(i).get_attribute("rel")
                              for i in range(links.count())), f"{where}: {fid} source links need target=_blank rel=noopener noreferrer")
                     checked = how.locator(".how-checked time")
@@ -821,6 +846,12 @@ def calculators(c, browser, base):
                 if code == "en":
                     st = calc_fill(page, dict(defaults, exph="1.500.000"))
                     c.ok(st["errors"].get("exph") and not st["outs"]["exp"]["value"], "en: 1.500.000 must be an error on the English page, not a guess")
+                    # A field that offers the shorthand explains the format, not "Enter a whole number".
+                    fmt = page.evaluate("TF.t('calc.error.format')")
+                    st = calc_fill(page, dict(defaults, exph="1,5kk"))
+                    c.ok(st["errors"].get("exph") == fmt, f"en: exph '1,5kk' must show the format message {fmt!r}, got {st['errors'].get('exph')!r}")
+                    st = calc_fill(page, dict(defaults, hpd="4h"))
+                    c.ok(st["errors"].get("hpd") == page.evaluate("TF.t('calc.error.formatInt')"), f"en: hpd '4h' keeps the whole-number message: {st['errors'].get('hpd')!r}")
             if p["id"] == "calc-stamina":
                 # Defaults 39:00 -> 42:00: 18 h regeneration, 18 h 10 min offline (wiki), a clock time and the 10-minute note.
                 st = calc_fill(page, dict(defaults))
@@ -840,12 +871,16 @@ def calculators(c, browser, base):
                 for name, text in (("current", "42:01"), ("target", "42:01"), ("target", "43:00"), ("current", "39"), ("current", "39:75"), ("target", "abc"), ("current", "")):
                     st = calc_fill(page, dict({"current": "10:00", "target": "20:00"}, **{name: text}))
                     c.ok(st["errors"].get(name) and all(not o["value"] for o in st["outs"].values()), f"{where}: {name}={text!r} must be refused with an inline error")
+                # An empty clock time shows "–" like every other empty result.
+                dash = page.evaluate("() => { const o = document.querySelector('[data-finish-at]'); return [o.textContent, getComputedStyle(o, '::before').content]; }")
+                c.ok(dash == ["", '"–"'], f"{where}: empty 'reached on' must show '–': {dash}")
                 st = calc_fill(page, dict(current="0:00", target="42:00"))
                 c.ok(st["outs"]["regen"]["value"] == "8100" and st["outs"]["minutes"]["value"] == "8110", f"{where}: 0:00 -> 42:00 gives {st['outs']}")
             if p["id"] == "calc-blessings":
                 # Default level 100 (200 x 80 = 16,000 each regular), Inquisition +10%, the note about discounts and skulls.
                 st = calc_fill(page, dict(defaults))
-                want = {"regularAll": "80000", "regularEach": "16000", "enhancedAll": "41600", "enhancedEach": "20800", "inquisition": "88000", "twistOfFate": "16000"}
+                want = {"regularAll": "80000", "regularEach": "16000", "enhancedAll": "41600", "enhancedEach": "20800", "inquisition": "88000",
+                        "allSeven": "121600", "allSevenInquisition": "129600", "twistOfFate": "16000"}
                 c.ok({k: st["outs"][k]["value"] for k in want} == want, f"{where}: level 100 gives {st['outs']}")
                 c.ok(page.locator("form[data-calc] .calc-note").count() == 1, f"{where}: the note about discounts and skulls is missing")
                 for level, tof in (("269", "49800"), ("270", "50000"), ("271", "50000"), ("1", "2000")):
@@ -899,8 +934,17 @@ def calculators(c, browser, base):
         page.locator("form[data-calc] [data-share]").click()
         clip = page.evaluate("navigator.clipboard.readText()")
         c.ok(clip.endswith("/de/calculators/experience/" + query), f"share link copied: {clip!r}")
-        page.locator("form[data-calc] [name=from]").fill("150")
-        c.ok("from=150" in page.evaluate("location.search"), f"typing updates the share link: {page.evaluate('location.search')}")
+        # Typing does not rewrite the address bar per keystroke (each history change can be a Google Analytics page view):
+        # the language links and Share follow at once, the address bar once typing pauses (about 1 s), with one replaceState.
+        page.evaluate("() => { window.__rs = 0; const o = history.replaceState.bind(history); history.replaceState = (...a) => { window.__rs++; return o(...a); }; }")
+        field = page.locator("form[data-calc] [name=from]")
+        field.fill("")
+        field.press_sequentially("150", delay=80)
+        early = page.evaluate("[location.search, window.__rs, document.querySelector('#lang-menu a[data-lang=en]').getAttribute('href')]")
+        c.ok(early[1] == 0 and "from=150" not in early[0] and "from=150" in (early[2] or ""), f"typing: no history change per keystroke, language links at once: {early}")
+        page.wait_for_function("location.search.includes('from=150')", timeout=5000)
+        page.wait_for_timeout(300)
+        c.ok(page.evaluate("window.__rs") == 1, f"typing updates the address bar once after the pause: {page.evaluate('[location.search, window.__rs]')}")
         page.locator("form[data-calc] [data-reset]").click()
         st = page.evaluate("window.__calcState(document.querySelector('form[data-calc]'))")
         c.ok(st["search"] == "", f"reset clears the query string: {st['search']!r}")
@@ -919,7 +963,9 @@ def calculators(c, browser, base):
         finish = page.evaluate("(() => { const o = document.querySelector('[data-finish]'); return [o.getAttribute('data-value'), o.textContent]; })()")
         c.ok(st["outs"]["days"]["value"] == "106347500" and st["outs"]["days"]["text"] == "106.347.500", f"days at 1 exp/h: {st['outs']['days']}")
         c.ok(finish == [None, ""], f"finish date not representable must show '–', not a stale date: {finish}")
-        c.ok(st["search"] == "?from=100&to=300&exph=1&hpd=4", f"share link follows the input: {st['search']!r}")
+        page.wait_for_timeout(1300)   # the address bar follows after a pause in typing
+        search = page.evaluate("location.search")
+        c.ok(search == "?from=100&to=300&exph=1&hpd=4", f"share link follows the input: {search!r}")
         c.ok(st["copy"] and "106.347.500" in st["copy"] and "exph=1&" in st["copy"], f"copy summary follows the input: {st['copy']!r}")
         c.ok(not page.console_errors, f"page errors after typing exph=1: {page.console_errors[:3]}")
         # The result guard: a value beyond Number.MAX_SAFE_INTEGER (or a failing formula) shows an inline error, no numbers.
@@ -928,7 +974,9 @@ def calculators(c, browser, base):
             st = calc_fill(page, {"hpd": "5"})
             c.ok(st["calcError"] and all(not o["value"] and not o["text"] for o in st["outs"].values()) and st["copy"] is None,
                  f"{what} result: inline error and no numbers expected: {st['calcError']!r} {[(k, o['value']) for k, o in st['outs'].items() if o['value']]}")
-            c.ok(st["search"].endswith("hpd=5"), f"{what} result: share link still follows the input ({st['search']})")
+            page.wait_for_timeout(1300)
+            search = page.evaluate("location.search")
+            c.ok(search.endswith("hpd=5"), f"{what} result: share link still follows the input ({search})")
         page.evaluate("() => { TFFormulas.FORMULAS.levelPlan = window.__orig; }")
         st = calc_fill(page, {"exph": "1500000"})
         c.ok(not st["calcError"] and st["outs"]["exp"]["value"] == "425390000", f"result error clears with valid input: {st['calcError']!r}")
@@ -959,14 +1007,29 @@ def calculators(c, browser, base):
         before = page.evaluate(read)
         c.ok(before[0] == "2026-11-19T04:10", f"stamina clock time at 10:00:30 + 18 h 10 min: {before}")
         page.locator("form[data-calc] [name=current]").focus()
+        # The minute timer changes nothing inside the live region (no announcement every minute).
+        watch = """() => { window.__liveMut = 0; document.querySelectorAll('[aria-live]').forEach(r => new MutationObserver(m => { window.__liveMut += m.length; })
+          .observe(r, {subtree: true, childList: true, characterData: true, attributes: true})); }"""
+        page.evaluate(watch)
         page.clock.run_for(5 * 60 * 1000)
         after = page.evaluate(read)
-        c.ok(after[0] == "2026-11-19T04:15" and after[1] != before[1] and after[1] in after[2] and before[1] not in after[2],
+        plain = lambda s: re.sub("[    ]", " ", s or "")
+        c.ok(after[0] == "2026-11-19T04:15" and after[1] != before[1] and plain(after[1]) in after[2] and plain(before[1]) not in after[2],
              f"clock time must advance with time passing and without input: {before} -> {after}")
+        c.ok(page.evaluate("window.__liveMut") == 0, f"stamina: minute ticks changed the live region {page.evaluate('window.__liveMut')} times")
         c.ok(page.evaluate("document.activeElement.name") == "current" and page.locator("form[data-calc] [name=current]").input_value() == "39:00", "the timer must not touch the focused field")
         page.clock.run_for(60 * 1000)
         page.locator("form[data-calc] [data-copy]").click()
-        c.ok("04:16" in page.evaluate(read)[0], f"copy text rebuilt: {page.evaluate(read)}")
+        c.ok("04:16" in (page.evaluate(read)[2] or ""), f"copy text rebuilt at click time: {page.evaluate(read)}")
+        # Experience: the finish date (today + days) is outside the live region; ticks across midnight do not touch it either.
+        page.goto(url_of(base, kit.LANGUAGES[0], "calc-experience"))
+        page.wait_for_function(CALC_READY, timeout=10000)
+        page.evaluate(watch)
+        first = page.evaluate("document.querySelector('[data-finish]').getAttribute('data-value')")
+        page.clock.run_for(24 * 60 * 60 * 1000)
+        second = page.evaluate("document.querySelector('[data-finish]').getAttribute('data-value')")
+        c.ok(first and second and first != second, f"experience: the finish date follows the calendar day: {first} -> {second}")
+        c.ok(page.evaluate("window.__liveMut") == 0, f"experience: minute ticks changed the live region {page.evaluate('window.__liveMut')} times")
         ctx.close()
     c.note(f"{verified} test values shown correctly across {len(kit.LANGUAGES)} languages; refused by the page's validation: {sorted(set(refused))}")
 
@@ -1000,7 +1063,8 @@ def today_in_tibia(c, browser, base):
             c.ok(st["at"] == str(save_thursday) and "04:00" in st["clock"], f"{where}: save at 04:00 New York time: {st}")
             c.ok(len(st["labels"]) == 2 and all(0 < len(x) <= 30 for x in st["labels"]), f"{where}: row labels are short texts: {st['labels']}")
             c.ok(not st["live"], f"{where}: the ticking countdown must not be in a live region")
-            c.ok(st["how"] == 2 and st["sources"] >= 7, f"{where}: both rules with their sources: {st}")
+            want_sources = len(FORMULA_REGISTRY["nextServerSave"]["sources"]) + len(FORMULA_REGISTRY["rashid"]["sources"])
+            c.ok(st["how"] == 2 and st["sources"] == want_sources, f"{where}: both rules with their {want_sources} sources: {st}")
             c.ok(st["overflow"] <= 0, f"{where}: horizontal overflow {st['overflow']}px at 360 px")
             if lang["code"] == "en" and page_id == "calculators":
                 # Thursday 06:26 -> a minute later the countdown is 3:33; the 10:00 switch moves Rashid and the countdown restarts.

@@ -670,13 +670,13 @@ a[target="_blank"]:not(.btn):not(.profile):not([data-profile]):not(.shot):not(.b
 .calc-results { min-width: 0; }
 .calc-main { display: grid; gap: 2px; padding: 4px 0 12px; }
 .calc-main .calc-label { color: var(--text-2); font-weight: 600; }
-.calc-main output { font: 700 clamp(1.7rem, 1.35rem + 1.6vw, 2.4rem)/1.15 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.calc-main .calc-value { font: 700 clamp(1.7rem, 1.35rem + 1.6vw, 2.4rem)/1.15 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .calc-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; padding: 9px 0; border-top: 1px solid var(--border); }
 .calc-label { color: var(--text-2); }
-.calc-row output, .calc-range { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; margin-left: auto; }
-.calc-range output { margin: 0; }
-output[data-out]:empty::before, output[data-finish]:empty::before { content: "–"; color: var(--text-2); font-weight: 400; }
-.calc-range:has(output:empty) .calc-sep, .calc-range:has(output:empty) output + .calc-sep + output { display: none; }
+.calc-row .calc-value, .calc-range { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; margin-left: auto; }
+.calc-range .calc-value { margin: 0; }
+[data-out]:empty::before, [data-finish]:empty::before, [data-finish-at]:empty::before { content: "–"; color: var(--text-2); font-weight: 400; }
+.calc-range:has(.calc-value:empty) .calc-sep, .calc-range:has(.calc-value:empty) .calc-value + .calc-sep + .calc-value { display: none; }
 .calc-actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .calc-actions .btn { flex: 1 1 auto; }
 .how { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); box-shadow: var(--shadow); min-width: 0; }
@@ -687,9 +687,12 @@ output[data-out]:empty::before, output[data-finish]:empty::before { content: "�
 .how-item p { margin: 0 0 .4em; }
 .how-rule { max-width: 60rem; }
 .how-label { font-size: .875rem; font-weight: 650; color: var(--text-2); }
-.how-sources { list-style: none; margin: 0 0 .4em; padding: 0; display: grid; gap: 2px; font-size: .925rem; }
-.how-sources a { overflow-wrap: anywhere; }
-.how-kind, .how-checked { color: var(--text-2); font-size: .875rem; }
+/* source links: at least 24 px apart (WCAG 2.5.8) and 44 px tall touch targets on phones */
+.how-sources { list-style: none; margin: 0 0 .4em; padding: 0; display: grid; gap: 4px; font-size: .925rem; }
+.how-sources li { padding-block: 3px; }
+.how-sources a { display: inline-block; min-height: 24px; padding-block: 2px; overflow-wrap: anywhere; }
+.how-kind, .how-note, .how-checked { color: var(--text-2); font-size: .875rem; }
+@media (max-width: 767px) { .how-sources a { min-height: 44px; display: inline-flex; align-items: center; } }
 .calc-trust { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 0; color: var(--text-2); max-width: 46rem; }
 .calc-trust .ic { color: var(--gold); margin-top: 3px; }
 .calc-hub { padding-block: 8px 40px; }

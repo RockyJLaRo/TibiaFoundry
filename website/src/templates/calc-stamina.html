@@ -27,14 +27,16 @@
       </div>
     </div>
     <div class="calc-side">
-      <div class="calc-results framed" aria-live="polite">
+      <div class="calc-results framed">
         <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <div class="calc-live" aria-live="polite">
         <p class="field-error calc-error" data-calc-error></p>
         <div data-formula="staminaRest" data-args="current,target">
-          <div class="calc-main" data-row><span class="calc-label">{{t:calc.stamina.minutes}}</span><output data-out="minutes" data-format="duration"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stamina.regen}}</span><output data-out="regen" data-format="duration"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stamina.finish}}</span><output data-finish-at="minutes"></output></div>
+          <div class="calc-main" data-row aria-atomic="true"><span class="calc-label">{{t:calc.stamina.minutes}}</span><span class="calc-value" data-out="minutes" data-format="duration"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.stamina.regen}}</span><span class="calc-value" data-out="regen" data-format="duration"></span></div>
         </div>
+        </div>
+        <div class="calc-row calc-clock" data-row><span class="calc-label">{{t:calc.stamina.finish}}</span><span class="calc-value" data-finish-at="minutes"></span></div>
         <p class="field-hint calc-note">{{t:calc.stamina.note}}</p>
       </div>
       <div class="calc-actions">

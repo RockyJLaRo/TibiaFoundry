@@ -30,13 +30,15 @@
       </div>
     </div>
     <div class="calc-side">
-      <div class="calc-results framed" aria-live="polite">
+      <div class="calc-results framed">
         <h2 class="calc-panel-title">{{t:calc.results}}</h2>
+        <div class="calc-live" aria-live="polite">
         <p class="field-error calc-error" data-calc-error></p>
         <div data-formula="characterStats" data-args="level,vocation">
-          <div class="calc-main" data-row><span class="calc-label">{{t:calc.stats.hp}}</span><output data-out="hp" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stats.mana}}</span><output data-out="mana" data-format="number"></output></div>
-          <div class="calc-row" data-row><span class="calc-label">{{t:calc.stats.cap}}</span><output data-out="cap" data-format="number"></output></div>
+          <div class="calc-main" data-row aria-atomic="true"><span class="calc-label">{{t:calc.stats.hp}}</span><span class="calc-value" data-out="hp" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.stats.mana}}</span><span class="calc-value" data-out="mana" data-format="number"></span></div>
+          <div class="calc-row" data-row aria-atomic="true"><span class="calc-label">{{t:calc.stats.cap}}</span><span class="calc-value" data-out="cap" data-format="number"></span></div>
+        </div>
         </div>
         <p class="field-hint calc-note">{{t:calc.stats.note}}</p>
       </div>
