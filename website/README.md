@@ -35,7 +35,7 @@ and the Tibia Rules, and the copyright year (updated in the browser).
 | `src/providers.json` | attribution registry of every external data or content provider |
 | `src/templates/` | `layout.html` (head, header, footer) and one template per page; texts only as keys |
 | `src/locales/*.json` | the texts (`en.json` is the source) |
-| `src/styles.css` | mobile-first design system (tokens, components; WCAG AA contrast checked) |
+| `src/css/` | mobile-first design system in cascade layers (tokens, base, components, pages, utilities); bundled into `site.css` |
 | `src/images/pixel/` | the site's original pixel art: `icons.svg` (19 icons, themed by CSS variables) and ornament masks; drawn by `art/pixelart.py` |
 | `src/js/` | `site.js` (texts, theme, menu, language, search, copy, tabs, lightbox), `tibiadata.js` (API client), `sanitize.js` (news HTML), `data-app.js` (router, views, home news) |
 | `src/images/` | logo, real Content Studio output, and `screens/<code>/<id>-<code>-<theme>.png`: the program screenshot library (1280×800, 20 pages × 5 languages × 2 themes) |

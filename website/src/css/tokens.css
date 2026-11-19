@@ -1,0 +1,76 @@
+/* Design tokens: colours (light and dark palettes), radii, fonts, spacing. Layer: tokens. */
+/* Tibia Foundry website – design system (concept A + C, refined in stage 2; docs/redesign/design-system-and-concepts.md).
+   Mobile-first: base rules are for phones; min-width queries add room. Modern layout, type and components carry the
+   content on warm ivory surfaces; a slate header with an antique-gold rule, a footer with the pixel battlement, gold
+   corner pieces on featured panels and Lucide line icons give the site its character. Colours are semantic tokens with
+   a separate dark palette; decoration never sits on top of text and never moves. */
+
+/* ------------------------------------------------------------------ tokens */
+:root {
+  color-scheme: light;
+  /* "Ivory & Sapphire" (stage 2, chosen in docs/redesign/stage2/palette-lab): warm ivory surfaces, slate chrome,
+     sapphire actions from the logo's blue, antique gold only as an accent, the logo's red for errors. */
+  --bg: #f5f2eb;             /* page: warm ivory */
+  --surface: #fffdf8;        /* cards, panels, tables */
+  --surface-2: #f0ebe1;      /* bands, inputs' neighbours */
+  --surface-3: #e9e2d5;      /* table heads */
+  --row: #faf7f1;            /* zebra rows */
+  --border: #e1d9ca;
+  --border-strong: #8d8170;  /* inputs, buttons (>= 3:1) */
+  --text: #24221e;
+  --text-2: #5a554c;
+  --link: #1d5a8e;
+  --accent: #1f5b8f;         /* primary actions: sapphire */
+  --accent-hover: #184a75;
+  --accent-text: #ffffff;
+  --accent-soft: #e6eef7;
+  --gold: #7d5a1c;           /* antique gold as text (labels, icons) */
+  --gold-bright: #b6893a;    /* antique gold ornaments, rules, corners */
+  --gold-soft: #f5ead3;      /* icon tiles, notices */
+  --info: #1f5b8f; --info-soft: #e6eef7;
+  --success: #2b7a3f; --success-soft: #e3f2e6;
+  --warning: #8a5a00; --warning-soft: #fbf0d6;
+  --danger: #b42f36; --danger-soft: #fae4e3;
+  --focus: #1f5b8f;
+  --selection: #d6e4f2;
+  /* chrome: header and footer */
+  --stone: #262b33;
+  --stone-2: #1d2128;
+  --stone-line: #3a414c;
+  --stone-text: #f2eee6;
+  --stone-text-2: #b9bfc9;
+  --stone-link: #e7c47c;
+  --mortar: rgb(255 255 255 / .035);
+  --tile: #f5ead3;
+  --shadow: 0 1px 2px rgb(40 32 20 / .06), 0 6px 18px -10px rgb(40 32 20 / .22);
+  --radius: 8px;
+  --radius-card: 12px;
+  --font: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", P052, "Noto Serif", Georgia, serif;
+  --mono: "Cascadia Mono", Consolas, ui-monospace, "SF Mono", Menlo, monospace;
+  --gutter: 16px;
+  --header-h: 60px;
+  --edge: 16px;              /* battlement height */
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #14171c; --surface: #1c2027; --surface-2: #232832; --surface-3: #2a303b; --row: #20252e; --border: #323946; --border-strong: #6b7686;
+    --text: #ebe7df; --text-2: #a8b0bc; --link: #86bdf0; --accent: #5f9fdb; --accent-hover: #78b0e4; --accent-text: #0b1520; --accent-soft: #1a2a3a;
+    --gold: #d9b56b; --gold-bright: #d3ad62; --gold-soft: #2a2416; --info: #86bdf0; --info-soft: #1a2a3a; --success: #7dcf93; --success-soft: #19301f;
+    --warning: #e2bb63; --warning-soft: #302714; --danger: #f2878c; --danger-soft: #3a1f22; --focus: #86bdf0; --selection: #2b4a6b;
+    --stone: #0f1216; --stone-2: #0b0d10; --stone-line: #262c35; --stone-text: #ebe7df; --stone-text-2: #9aa3af; --stone-link: #e2bf72;
+    --mortar: rgb(255 255 255 / .03); --tile: #2a2416;
+    --shadow: 0 1px 2px rgb(0 0 0 / .45), 0 8px 22px -12px rgb(0 0 0 / .7);
+}
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #14171c; --surface: #1c2027; --surface-2: #232832; --surface-3: #2a303b; --row: #20252e; --border: #323946; --border-strong: #6b7686;
+  --text: #ebe7df; --text-2: #a8b0bc; --link: #86bdf0; --accent: #5f9fdb; --accent-hover: #78b0e4; --accent-text: #0b1520; --accent-soft: #1a2a3a;
+  --gold: #d9b56b; --gold-bright: #d3ad62; --gold-soft: #2a2416; --info: #86bdf0; --info-soft: #1a2a3a; --success: #7dcf93; --success-soft: #19301f;
+  --warning: #e2bb63; --warning-soft: #302714; --danger: #f2878c; --danger-soft: #3a1f22; --focus: #86bdf0; --selection: #2b4a6b;
+  --stone: #0f1216; --stone-2: #0b0d10; --stone-line: #262c35; --stone-text: #ebe7df; --stone-text-2: #9aa3af; --stone-link: #e2bf72;
+  --mortar: rgb(255 255 255 / .03); --tile: #2a2416;
+  --shadow: 0 1px 2px rgb(0 0 0 / .45), 0 8px 22px -12px rgb(0 0 0 / .7);
+}

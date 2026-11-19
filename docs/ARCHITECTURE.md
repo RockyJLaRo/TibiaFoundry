@@ -1,0 +1,62 @@
+# Architecture
+
+This file records decisions about how the website and the tools are built. The program's own architecture is in
+`05_Architecture.md`.
+
+## Styling
+
+### Decision
+
+The site uses **modern plain CSS with design tokens**, split into **cascade layers**. There is no CSS framework and no
+extra toolchain. `website/build_site.py` concatenates and minifies the files of `website/src/css/` into one stylesheet,
+published as `assets/site.css` with a content hash in its URL.
+
+Why this fits:
+
+- The site is built by Python only. Plain CSS adds no Node or binary build step.
+- Theming already runs on tokens (custom properties), so light and dark are a change of values, not of rules.
+- The CSS that ships stays readable. Fansite owners can restyle the downloadable tools (sub-project 3) by editing a few
+  variables.
+
+### Layer order
+
+`build_site.py` writes `@layer tokens, base, components, pages, utilities;` first and wraps each file in its layer. A
+later layer wins over an earlier one whatever the selector specificity, so a page rule never needs a longer selector to
+beat a component.
+
+| Layer | Files in `website/src/css/` | Holds |
+|---|---|---|
+| `tokens` | `tokens.css` | Custom properties: colours (light, dark, forced themes), radii, fonts, spacing |
+| `base` | `base.css` | Element defaults, headings, links, focus ring, `.wrap`, `.muted`, `.lead` |
+| `components` | `components.css` | Buttons and fields, header, breadcrumbs, page layout, cards, framed panels, footer, icons |
+| `pages` | `pages/*.css` (sorted by name) | Rules that belong to one page or one family of pages: home, data, calculators, content |
+| `utilities` | `utilities.css` | `.sr-only`, `.pre`, reduced motion, print |
+
+Things to know:
+
+- Unlayered CSS beats all layered CSS. The site has none, so keep it that way.
+- `!important` inverts the order: an important rule in an earlier layer beats an important rule in a later one.
+- The bundle lists its files in `CSS_LAYERS` and `CSS_FILES` in `build_site.py`. Files of `pages/` are picked up
+  automatically. Any other new file must be listed there, in the position where it should sit in its layer.
+- `build_site.py --strict` fails when a file under `src/css/` is not in the bundle, or when the old
+  `src/styles.css` exists again.
+- The minifier removes comments and collapses whitespace. Strings and `url()` stay as written.
+
+### How to add a token
+
+1. Add the custom property to `:root` in `tokens.css` (light values).
+2. Add the dark value to both dark blocks of `tokens.css`: the `prefers-color-scheme: dark` block (without a forced light
+   theme) and the `:root[data-theme="dark"]` block.
+3. Use it as `var(--name)` in `base`, `components`, `pages` or `utilities`. Do not write a literal colour or size where a
+   token exists.
+4. Run `python -I website/build_site.py --strict` and check both themes.
+
+### Why Tailwind was rejected
+
+- It adds a Node or binary (v4 standalone CLI) build step to every site build.
+- `data-app.js` builds about 1,000 lines of markup at run time with class strings, so those classes would need safelists.
+- Most importantly, downloadable tool packages would carry either a utility blob or a Tailwind dependency. That works
+  against "easy to customise without our toolchain".
+
+CSS Modules or a component framework were rejected too: they need a bundler and a framework migration for 13 templates,
+with no benefit to players.

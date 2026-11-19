@@ -9,7 +9,7 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
   src/providers.json lists every external data provider (rendered as the footer's "Data & resource credits");
 * every page of src/registry.json "pages" is rendered from src/templates/<page>.html inside src/templates/layout.html,
   once per language with the texts of src/locales/<lang>.json: English at /<page>/, the others at /<lang>/<page>/;
-* src/styles.css and src/js/*.js are published under site/assets/ with a content hash in their URL (cache busting);
+* src/css/ (cascade layers, bundled and minified into one site.css) and src/js/*.js are published under site/assets/ with a content hash in their URL (cache busting);
 * screenshots come from the library src/images/screens/<code>/<id>-<code>-<theme>.png (website/screenshots/
   screenshots.py captures them from the running program) and are written as WebP to site/img/screens/; every language
   shows its own screenshots, a missing one stops the build;
@@ -402,11 +402,61 @@ def og_name(code):
     return f"og-image-{folder}.png" if folder else "og-image.png"
 
 
-def asset_files():
-    files = {"site.css": os.path.join(SRC, "styles.css")}
+CSS_LAYERS = ["tokens", "base", "components", "pages", "utilities"]   # cascade order: later layers win, whatever the specificity
+# The files of each layer, in order. Files of pages/ are added in sorted order. A file that should come first in a layer
+# (for example fonts.css in base) is listed before the others here; --strict fails when a file under src/css is not listed.
+CSS_FILES = {"tokens": ["tokens.css"], "base": ["base.css"], "components": ["components.css"], "pages": [], "utilities": ["utilities.css"]}
+CSS_TOKEN = re.compile(r"""/\*.*?\*/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|url\(\s*[^"'\s)][^)]*\)|\s+|[{};,]|[^\s{};,"'/(]+|.""", re.S)
+
+
+def minify_css(css):
+    """Removes comments and collapses whitespace (none around { } ; ,); strings and url() stay exactly as written."""
+    tokens = []
+    for m in CSS_TOKEN.finditer(css):
+        t = m.group(0)
+        tokens.append(" " if t.startswith("/*") or t.isspace() else t)
+    out = []
+    for i, t in enumerate(tokens):
+        if t == " ":
+            before = out[-1] if out else "{"
+            after = tokens[i + 1] if i + 1 < len(tokens) else "}"
+            if before in ("{", "}", ";", ",", " ") or after in ("{", "}", ";", ",", " "):
+                continue
+        if t == "}" and out and out[-1] == ";":
+            out.pop()
+        out.append(t)
+    return "".join(out).strip()
+
+
+def css_bundle(strict=False):
+    """site.css: every file of src/css wrapped in its @layer (CSS_LAYERS order), minified. --strict: no file may be left out."""
+    root = os.path.join(SRC, "css")
+    on_disk = sorted(os.path.relpath(os.path.join(d, f), root).replace(os.sep, "/") for d, _, fs in os.walk(root) for f in fs if f.endswith(".css"))
+    pages = sorted(f for f in on_disk if f.startswith("pages/"))
+    order = {layer: [f for f in CSS_FILES[layer]] + (pages if layer == "pages" else []) for layer in CSS_LAYERS}
+    listed = [f for files in order.values() for f in files]
+    missing = [f for f in listed if f not in on_disk]
+    if missing:
+        sys.exit(f"css_bundle: file(s) of the bundle not found in src/css: {', '.join(missing)}")
+    if strict:
+        left_out = [f for f in on_disk if f not in listed]
+        if left_out:
+            sys.exit(f"--strict: src/css file(s) not in the bundle: {', '.join(left_out)}")
+        if os.path.exists(os.path.join(SRC, "styles.css")):
+            sys.exit("--strict: src/styles.css still exists; its rules live in src/css/ now.")
+    parts = ["@layer " + ",".join(CSS_LAYERS) + ";"]
+    for layer in CSS_LAYERS:
+        body = "".join(minify_css(open(os.path.join(root, f), encoding="utf-8").read()) for f in order[layer])
+        parts.append("@layer " + layer + "{" + body + "}")
+    return "\n".join(parts) + "\n"
+
+
+def asset_files(strict=False):
+    """name -> bytes of everything published under assets/."""
+    files = {"site.css": css_bundle(strict).encode("utf-8")}
     for name in sorted(os.listdir(os.path.join(SRC, "js"))):
         if name.endswith(".js"):
-            files[name] = os.path.join(SRC, "js", name)
+            files[name] = open(os.path.join(SRC, "js", name), "rb").read()
     return files
 
 
@@ -887,8 +937,7 @@ def main():
 
     os.makedirs(os.path.join(SITE, "assets"), exist_ok=True)
     assets = {"hash": {}}
-    for name, path in asset_files().items():
-        data = open(path, "rb").read()
+    for name, data in asset_files(strict).items():
         if b"</script" in data.lower() or b"</style" in data.lower():
             sys.exit(f"{name} would close its own element.")
         open(os.path.join(SITE, "assets", name), "wb").write(data)

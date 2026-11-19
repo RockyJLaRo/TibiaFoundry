@@ -80,7 +80,7 @@ def main():
     args = sys.argv[1:]
     out = os.path.abspath(args[args.index("--out") + 1]) if "--out" in args else os.path.join(ROOT, "Release", VERSION, "qa-screenshots")
     want_routes, want_langs = arg(args, "--routes"), arg(args, "--languages")
-    want_themes, want_views = arg(args, "--themes"), arg(args, "--viewports")
+    want_themes, want_views = arg(args, "--themes"), arg(args, "--viewports") or arg(args, "--views")
     fmt = "png" if "--png" in args else "webp"
     all_routes = routes()
     selected = [(rid, pid, h) for rid, pid, h in all_routes if not want_routes or rid in want_routes]
