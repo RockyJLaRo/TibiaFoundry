@@ -729,6 +729,30 @@ def not_found_page(assets):
             "</main></body>\n</html>\n")
 
 
+def check_formulas():
+    """--strict: every calculator formula a page names (page["calc"]) exists in formulas.json and is documented and tested."""
+    path = os.path.join(SRC, "formulas.json")
+    entries = {f["id"]: f for f in json.load(open(path, encoding="utf-8"))["formulas"]}
+    problems = []
+    for page in PAGES:
+        for fid in page.get("calc", []):
+            f = entries.get(fid)
+            if f is None:
+                problems.append("%s: formula '%s' is not in formulas.json" % (page["id"], fid))
+                continue
+            if not f.get("sources"):
+                problems.append("%s: has no source" % fid)
+            if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(f.get("checkedOn", ""))):
+                problems.append("%s: checkedOn must be YYYY-MM-DD" % fid)
+            tests = f.get("tests", [])
+            if len(tests) < 3:
+                problems.append("%s: needs at least 3 tests (has %d)" % (fid, len(tests)))
+            if not any(t.get("from") != "computed" for t in tests):
+                problems.append("%s: needs a test taken from an official source, the wiki or another calculator" % fid)
+    if problems:
+        sys.exit("--strict: formula registry errors:\n  " + "\n  ".join(problems))
+
+
 def main():
     args = sys.argv[1:]
     strict = "--strict" in args

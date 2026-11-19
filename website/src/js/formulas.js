@@ -1,0 +1,55 @@
+/*
+ * Calculator formulas and number input (the formula registry is src/formulas.json; build_site.py --strict checks it).
+ *
+ * - parseNumber: reads a number the way the page language writes it (grouping and decimal separator per language,
+ *   shorthand k = 10^3, kk = 10^6, kkk = 10^9); anything it cannot read is an error code, never a guess.
+ * - parseDuration: h:mm / hh:mm into minutes.
+ * - FORMULAS: id -> pure function (input object -> result object), one per entry of formulas.json.
+ *
+ * Works in the browser (window.TFFormulas) and in Node for the unit tests (module.exports).
+ */
+(function (root, factory) {
+  if (typeof module === "object" && module.exports) module.exports = factory();
+  else root.TFFormulas = factory();
+})(typeof self !== "undefined" ? self : this, function () {
+  "use strict";
+
+  // Group separator per language (same values as GROUP in build_site.py). Intl formats pl and es with no-break
+  // spaces, so a space group accepts a regular space, U+00A0 and U+202F.
+  var GROUP = { "en": ",", "pt-BR": ".", "de": ".", "pl": " ", "es": " " };
+  var GROUP_CLASS = { ",": ",", ".": "\\.", " ": "[ \u00a0\u202f]" };
+  var MULTIPLIER = { k: 1e3, kk: 1e6, kkk: 1e9 };
+  var patterns = {};
+
+  function pattern(lang) {
+    if (!patterns[lang]) {
+      var g = GROUP_CLASS[GROUP[lang]];
+      var d = lang === "en" ? "\\." : ",";
+      patterns[lang] = new RegExp("^(\\d{1,3}(?:" + g + "\\d{3})+|\\d+)(?:" + d + "(\\d+))?(k{1,3})?$");
+    }
+    return patterns[lang];
+  }
+
+  function parseNumber(text, lang, opts) {
+    if (!Object.prototype.hasOwnProperty.call(GROUP, lang)) return { error: "format" };
+    var s = String(text == null ? "" : text).trim().toLowerCase();
+    if (s === "") return { error: "empty" };
+    var m = pattern(lang).exec(s);
+    if (!m) return { error: "format" };
+    var value = Number(m[1].replace(/\D/g, "") + (m[2] ? "." + m[2] : ""));
+    if (m[3]) value = Math.round(value * MULTIPLIER[m[3]] * 1e6) / 1e6;
+    if (!isFinite(value) || value > Number.MAX_SAFE_INTEGER) return { error: "range" };
+    if (opts && opts.integer && value !== Math.floor(value)) return { error: "integer" };
+    return { value: value };
+  }
+
+  function parseDuration(text) {
+    var m = /^(\d{1,3}):([0-5]\d)$/.exec(String(text == null ? "" : text).trim());
+    if (!m) return { error: "format" };
+    return { value: Number(m[1]) * 60 + Number(m[2]) };
+  }
+
+  var FORMULAS = {};
+
+  return { parseNumber: parseNumber, parseDuration: parseDuration, FORMULAS: FORMULAS };
+});
