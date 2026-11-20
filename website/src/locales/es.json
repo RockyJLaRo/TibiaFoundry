@@ -472,14 +472,16 @@
     "a10": "De TibiaData, una API pública y gratuita basada en Tibia.com. Tu navegador consulta TibiaData directamente; este sitio no tiene servidor propio y no guarda nada sobre tus búsquedas."
   },
   "footer": {
-    "project": "Proyecto",
     "repository": "Repositorio en GitHub",
     "issues": "Problemas y soporte",
     "legal": "Tibia es creado y operado por CipSoft GmbH. Tibia, su sitio web, los gráficos y los datos del juego tienen copyright de CipSoft GmbH, y el contenido proporcionado por CipSoft sigue siendo de su propiedad. Tibia Foundry es un proyecto independiente de fans y no está afiliado ni respaldado por CipSoft GmbH ni por Fandom.",
     "version": "Versión {version} · {date}",
     "made": "Hecho por Rocky LaRochelle, creador y desarrollador de Tibia Foundry.",
     "releaseNotes": "Notas de la versión {version}",
-    "about": "Herramientas de Tibia gratis en tu navegador y un kit de escritorio para editores de TibiaWiki y creadores de fansites: un proyecto independiente de fans."
+    "about": "Herramientas de Tibia gratis en tu navegador y un kit de escritorio para editores de TibiaWiki y creadores de fansites: un proyecto independiente de fans.",
+    "notice": {
+      "trademark": "Tibia es una marca registrada de CipSoft GmbH. © CipSoft GmbH."
+    }
   },
   "lightbox": {
     "label": "Captura ampliada",
@@ -1104,7 +1106,17 @@
       "title": "Perfiles en la comunidad",
       "text": "Rocky también está en TibiaWiki, YouTube, Instagram, GitHub y Reddit, y juega a Tibia como Roc ky."
     },
-    "privacy": "Este sitio no tiene formulario de contacto. Tus búsquedas recientes se quedan solo en tu navegador y las búsquedas de personajes solo van a TibiaData para obtener los datos."
+    "privacy": "Este sitio no tiene formulario de contacto. Tus búsquedas recientes se quedan solo en tu navegador y las búsquedas de personajes solo van a TibiaData para obtener los datos.",
+    "reasons": {
+      "title": "Motivos de contacto",
+      "lead": "Elige un tema y tu programa de correo se abrirá con el asunto ya escrito.",
+      "general": "Consulta general",
+      "bug": "Informe de error",
+      "formula": "Corrección de una fórmula de las calculadoras",
+      "fansite": "Integración con un fansite",
+      "app": "Ayuda con el programa",
+      "dev": "Pregunta de desarrollo"
+    }
   },
   "tibia": {
     "title": "Herramientas de Tibia",

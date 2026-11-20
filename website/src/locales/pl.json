@@ -468,14 +468,16 @@
     "a10": "Z TibiaData, darmowego publicznego API opartego na Tibia.com. Twoja przeglądarka pyta TibiaData bezpośrednio; ta strona nie ma własnego serwera i nie zapisuje niczego o Twoich wyszukiwaniach."
   },
   "footer": {
-    "project": "Projekt",
     "repository": "Repozytorium na GitHubie",
     "issues": "Zgłoszenia i pomoc",
     "legal": "Tibię tworzy i prowadzi CipSoft GmbH. Tibia, jej strona, grafiki i dane z gry są chronione prawem autorskim CipSoft GmbH, a materiały udostępnione przez CipSoft pozostają jej własnością. Tibia Foundry to niezależny projekt fanowski, niepowiązany z CipSoft GmbH ani Fandom i przez nie niepopierany.",
     "version": "Wersja {version} · {date}",
     "made": "Stworzone przez Rocky’ego LaRochelle, twórcę i programistę Tibia Foundry.",
     "releaseNotes": "Informacje o wersji {version}",
-    "about": "Darmowe narzędzia do Tibii w przeglądarce i program dla edytorów TibiaWiki oraz twórców fansite'ów – niezależny projekt fanowski."
+    "about": "Darmowe narzędzia do Tibii w przeglądarce i program dla edytorów TibiaWiki oraz twórców fansite'ów – niezależny projekt fanowski.",
+    "notice": {
+      "trademark": "Tibia jest znakiem towarowym CipSoft GmbH. © CipSoft GmbH."
+    }
   },
   "lightbox": {
     "label": "Powiększony zrzut ekranu",
@@ -1104,7 +1106,17 @@
       "title": "Profile w społeczności",
       "text": "Rocky jest też na TibiaWiki, YouTube, Instagramie, GitHubie i Reddicie, a w Tibię gra jako Roc ky."
     },
-    "privacy": "Ta strona nie ma formularza kontaktowego. Twoje ostatnie wyszukiwania zostają tylko w Twojej przeglądarce, a wyszukiwania postaci trafiają tylko do TibiaData, aby pobrać dane."
+    "privacy": "Ta strona nie ma formularza kontaktowego. Twoje ostatnie wyszukiwania zostają tylko w Twojej przeglądarce, a wyszukiwania postaci trafiają tylko do TibiaData, aby pobrać dane.",
+    "reasons": {
+      "title": "Powody kontaktu",
+      "lead": "Wybierz temat – Twój program pocztowy otworzy się z uzupełnionym tematem wiadomości.",
+      "general": "Pytanie ogólne",
+      "bug": "Zgłoszenie błędu",
+      "formula": "Poprawka wzoru kalkulatora",
+      "fansite": "Integracja z fansite'em",
+      "app": "Pomoc z programem",
+      "dev": "Pytanie dla programistów"
+    }
   },
   "tibia": {
     "title": "Narzędzia Tibii",

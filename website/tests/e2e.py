@@ -90,16 +90,22 @@ def pages_and_attribution(c, browser, base):
                 c.ok(page.locator("h1").count() == 1, f"{where}: h1 count {page.locator('h1').count()}")
                 c.ok(page.get_attribute("html", "lang") == lang["code"], f"{where}: html lang")
                 c.ok(page.evaluate("getComputedStyle(document.documentElement).colorScheme").startswith(theme), f"{where}: theme {theme} not applied")
-                credits = page.locator("footer [data-credits]")
-                c.ok(credits.is_visible(), f"{where}: credits not visible")
-                td = page.locator("footer a[data-provider=tibiadata]")
+                # Compact footer notice on every page; the full provider list lives only in Legal's #attribution.
+                notice = page.locator("footer [data-notice]")
+                c.ok(notice.count() == 1 and notice.is_visible(), f"{where}: footer notice not visible")
+                c.ok("CipSoft" in notice.inner_text(), f"{where}: footer notice does not mention CipSoft")
+                td = notice.locator("a[data-provider=tibiadata]")
                 c.ok(td.count() == 1 and td.get_attribute("href") == "https://tibiadata.com/", f"{where}: TibiaData link")
                 c.ok(td.is_visible(), f"{where}: TibiaData link not visible")
-                c.ok("TibiaData" in page.locator("footer [data-credit=tibiadata]").inner_text(), f"{where}: TibiaData thank-you text")
-                for pid, p in providers.items():
-                    a = page.locator(f"footer a[data-provider={pid}]")
-                    c.ok(a.count() == 1 and a.get_attribute("href") == p["url"], f"{where}: provider {pid} link")
-                    c.ok("noopener" in (a.get_attribute("rel") or "") and "noreferrer" in (a.get_attribute("rel") or ""), f"{where}: provider {pid} rel")
+                c.ok("TibiaData" in notice.locator("[data-credit=tibiadata]").inner_text(), f"{where}: TibiaData thank-you text")
+                c.ok(notice.locator("a[href$='legal/#attribution']").count() == 1, f"{where}: notice lacks the link to legal/#attribution")
+                c.ok(page.locator("[data-credits]").count() == (1 if pg["id"] == "legal" else 0), f"{where}: data-credits count {page.locator('[data-credits]').count()}")
+                if pg["id"] == "legal":
+                    c.ok(page.locator("section#attribution [data-credits]").count() == 1, f"{where}: credits not inside #attribution")
+                    for pid, p in providers.items():
+                        a = page.locator(f"#attribution a[data-provider={pid}]")
+                        c.ok(a.count() == 1 and a.get_attribute("href") == p["url"], f"{where}: provider {pid} link")
+                        c.ok("noopener" in (a.get_attribute("rel") or "") and "noreferrer" in (a.get_attribute("rel") or ""), f"{where}: provider {pid} rel")
                 bad = page.evaluate("""() => [...document.querySelectorAll('a[target=_blank]')].filter(a => !/noopener/.test(a.rel) || !/noreferrer/.test(a.rel)).map(a => a.href)""")
                 c.ok(not bad, f"{where}: new-tab links without noopener noreferrer: {bad[:3]}")
                 # Earlier versions may only appear in the release history ("Earlier in the 9.0 series").
@@ -595,7 +601,7 @@ def news(c, browser, base):
     page.goto(base)
     page.wait_for_selector("[data-live-news] .notice-error", timeout=20000)
     c.ok("not answering" in page.locator("[data-live-news] .notice-error").inner_text(), "503 shows the server error message")
-    c.ok(page.locator("#online-tools").is_visible() and page.locator("footer [data-credits]").count() == 1, "layout kept when the API is down")
+    c.ok(page.locator("#online-tools").is_visible() and page.locator("footer [data-notice]").count() == 1, "layout kept when the API is down")
     state["down"] = False
     ctx.unroute("https://api.tibiadata.com/**")
     kit.use_fixtures(ctx)
@@ -624,6 +630,14 @@ def contact_and_downloads(c, browser, base):
         page.goto(url_of(base, lang, "contact"))
         hrefs = page.evaluate("[...document.querySelectorAll('main a[href^=mailto]')].map(a => a.href)")
         c.ok(len(hrefs) >= 2 and all(h.startswith(f"mailto:{email}") for h in hrefs), f"{lang['code']}: mailto links {hrefs}")
+        loc = json.load(open(os.path.join(kit.WEBSITE, "src", "locales", lang["code"] + ".json"), encoding="utf-8"))["contact"]["reasons"]
+        reasons = page.locator("[data-contact-reasons] a")
+        c.ok(reasons.count() == 6, f"{lang['code']}: contact reasons {reasons.count()}")
+        for i, key in enumerate(("general", "bug", "formula", "fansite", "app", "dev")):
+            want = f"mailto:{email}?subject=" + urllib.parse.quote("Tibia Foundry: " + loc[key], safe="!'()*~")
+            got = reasons.nth(i).get_attribute("href") if i < reasons.count() else None
+            c.ok(got == want, f"{lang['code']}: reason {key} href {got} != {want}")
+            c.ok(got is not None and "body=" not in got and "+" not in got, f"{lang['code']}: reason {key} body/plus")
         page.locator(f"main button[data-copy='{email}']").click()
         c.ok(page.evaluate("navigator.clipboard.readText()") == email, f"{lang['code']}: copy email")
         c.ok(page.locator(f"main button[data-copy='{email}'].copied").count() == 1, f"{lang['code']}: copy confirmation shown")
@@ -798,7 +812,7 @@ def compliance(c, browser, base):
                 c.ok("CipSoft" in notice.inner_text(), f"{where}: notice does not name CipSoft")
         page.goto(url_of(base, lang, "legal"))
         where = f"{lang['code']}/legal"
-        for sid in ("copyright", "status", "administrator", "downloads", "money", "privacy", "community", "sources"):
+        for sid in ("copyright", "status", "administrator", "downloads", "money", "privacy", "community", "sources", "attribution"):
             c.ok(page.locator(f"section#{sid} h2").count() == 1, f"{where}: section {sid}")
         c.ok(page.locator("#administrator a[href='https://www.tibia.com/community/?name=Roc+ky']").count() == 1, f"{where}: administrator's character link")
         c.ok(page.locator("#administrator a[href='mailto:rocky@tibiafoundry.com']").count() == 1, f"{where}: administrator's email")

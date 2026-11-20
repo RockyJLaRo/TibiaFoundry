@@ -43,7 +43,7 @@
   try { var th = localStorage.getItem('tf-theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
 
 </script>
-<link rel="stylesheet" href="../../assets/site.css?v=12cde288b1">
+<link rel="stylesheet" href="../../assets/site.css?v=d45ddd7851">
 <!-- Google tag (gtag.js). Visitors can turn statistics off on the Legal page (stored as tf-analytics=off); a browser's
      Global Privacy Control signal turns them off too. Disclosed on the Legal page under "Privacy and statistics". -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
@@ -298,6 +298,8 @@
 
 <section class="band" aria-labelledby="email-title">
   <div class="wrap">
+   <div class="contact-card">
+   <div class="contact-main">
     <h2 id="email-title">E-mail</h2>
     <div class="email-box">
       <a class="email-address" id="contact-email" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry">rocky@tibiafoundry.com</a>
@@ -310,6 +312,20 @@
       <div><dt>Postać w Tibii</dt><dd><a href="https://www.tibia.com/community/?name=Roc+ky" rel="noopener noreferrer" target="_blank">Roc ky<span class="sr-only"> (otwiera się w nowej karcie)</span></a></dd></div>
       <div><dt>Lokalizacja</dt><dd>Północna część stanu Nowy Jork, USA</dd></div>
     </dl>
+   </div>
+   <div class="contact-reasons">
+    <h2 id="reasons-title">Powody kontaktu</h2>
+    <p class="muted">Wybierz temat – Twój program pocztowy otworzy się z uzupełnionym tematem wiadomości.</p>
+    <ul data-contact-reasons aria-labelledby="reasons-title">
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Pytanie%20og%C3%B3lne" data-reason="general"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Pytanie ogólne</span></a></li>
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Zg%C5%82oszenie%20b%C5%82%C4%99du" data-reason="bug"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Zgłoszenie błędu</span></a></li>
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Poprawka%20wzoru%20kalkulatora" data-reason="formula"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Poprawka wzoru kalkulatora</span></a></li>
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Integracja%20z%20fansite'em" data-reason="fansite"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Integracja z fansite'em</span></a></li>
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Pomoc%20z%20programem" data-reason="app"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Pomoc z programem</span></a></li>
+      <li><a class="reason" href="mailto:rocky@tibiafoundry.com?subject=Tibia%20Foundry%3A%20Pytanie%20dla%20programist%C3%B3w" data-reason="dev"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>Pytanie dla programistów</span></a></li>
+    </ul>
+   </div>
+   </div>
   </div>
 </section>
 
@@ -381,14 +397,11 @@
           </ul>
         </div>
         <div>
-          <h2>Projekt</h2>
+          <h2>Kontakt</h2>
           <ul>
             <li><a href="https://github.com/RockyJLaRo/TibiaFoundry" data-menu-dest="href:https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="footer"><span>Kod źródłowy na GitHubie</span><span class="sr-only"> (otwiera się w nowej karcie)</span></a></li>
             <li><a href="../../pl/contact/" data-menu-dest="page:contact" data-page-link="contact" aria-current="page">Kontakt</a></li>
             <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/releases/tag/v9.0.5" data-track="releases" data-place="footer">Informacje o wersji 9.0.5</a></li>
-            <li><a href="../../pl/legal/">Informacje prawne</a></li>
-            <li><a href="../../pl/legal/#privacy">Prywatność i statystyki</a></li>
-            <li><a href="../../pl/legal/#community">Zasady społeczności</a></li>
             <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">Zgłoszenia i pomoc</a></li>
           </ul>
         </div>
@@ -405,24 +418,15 @@
       </div>
     </div>
     <hr class="footer-rule">
-    <section class="credits" aria-labelledby="credits-title" data-credits>
-      <h2 id="credits-title">Źródła danych i zasobów</h2>
-      <p class="credits-thanks" data-credit="tibiadata">Dziękujemy <a href="https://tibiadata.com/" rel="noopener noreferrer" target="_blank" data-provider="tibiadata">TibiaData<span class="sr-only"> (otwiera się w nowej karcie)</span></a> za udostępnianie danych z Tibii używanych na tej stronie.</p>
-      <ul>
-        <li data-credit="tibiacom"><a href="https://www.tibia.com/" rel="noopener noreferrer" target="_blank" data-provider="tibiacom">Tibia.com<span class="sr-only"> (otwiera się w nowej karcie)</span></a> – oficjalna strona Tibii, pierwotne źródło wiadomości, informacji o postaciach, światach, gildiach, domach, stworach i czarach oraz towarzyszących im obrazów.</li>
-        <li data-credit="cipsoft"><a href="https://www.cipsoft.com/en/" rel="noopener noreferrer" target="_blank" data-provider="cipsoft">CipSoft GmbH<span class="sr-only"> (otwiera się w nowej karcie)</span></a> – Tibia, jej grafiki i dane są © CipSoft GmbH; pojawiają się na zrzutach ekranu programu i w widokach danych.</li>
-        <li data-credit="tibiawiki"><a href="https://tibia.fandom.com/wiki/Main_Page" rel="noopener noreferrer" target="_blank" data-provider="tibiawiki">TibiaWiki<span class="sr-only"> (otwiera się w nowej karcie)</span></a> – wiki społeczności, dla której powstał Tibia Foundry (żadne treści z wiki nie są kopiowane na tę stronę).</li>
-        <li data-credit="fansites"><a href="https://www.tibia.com/community/?subtopic=fansites" rel="noopener noreferrer" target="_blank" data-provider="fansites">Tibia fansites<span class="sr-only"> (otwiera się w nowej karcie)</span></a> – katalog fansite’ów pokazuje oficjalne fansite’y promoted i supported Tibii, tak jak publikuje je Tibia.com.</li>
-        <li data-credit="lucide"><a href="https://lucide.dev/" rel="noopener noreferrer" target="_blank" data-provider="lucide">Lucide<span class="sr-only"> (otwiera się w nowej karcie)</span></a> – otwarty zestaw ikon (licencja ISC) użyty w ikonach interfejsu tej strony.</li>
-      </ul>
-      <p class="muted">Tibia Foundry to niezależny projekt fanowski. Żaden z tych dostawców go nie sponsoruje, nie popiera ani nie jest z nim powiązany.</p>
-    </section>
+    <p class="footer-notice" data-notice>Tibia jest znakiem towarowym CipSoft GmbH. © CipSoft GmbH. <span data-credit="tibiadata">Dziękujemy <a href="https://tibiadata.com/" rel="noopener noreferrer" target="_blank" data-provider="tibiadata">TibiaData<span class="sr-only"> (otwiera się w nowej karcie)</span></a> za udostępnianie danych z Tibii używanych na tej stronie.</span> Tibia Foundry to niezależny projekt fanowski. Żaden z tych dostawców go nie sponsoruje, nie popiera ani nie jest z nim powiązany. <a href="../../pl/legal/#attribution">Źródła danych i zasobów</a></p>
     <div class="legal">
       <ul class="legal-links">
         <li><a href="https://www.tibia.com/" rel="noopener noreferrer" target="_blank">Tibia.com<span class="sr-only"> (otwiera się w nowej karcie)</span></a></li>
         <li><a href="https://www.cipsoft.com/" rel="noopener noreferrer" target="_blank">CipSoft GmbH<span class="sr-only"> (otwiera się w nowej karcie)</span></a></li>
         <li><a href="https://www.tibia.com/support/?subtopic=tibiarules" rel="noopener noreferrer" target="_blank">Zasady Tibii<span class="sr-only"> (otwiera się w nowej karcie)</span></a></li>
         <li><a href="../../pl/legal/">Informacje prawne</a></li>
+        <li><a href="../../pl/legal/#privacy">Prywatność i statystyki</a></li>
+        <li><a href="../../pl/legal/#community">Zasady społeczności</a></li>
       </ul>
       <p>© <span data-year>2026</span> Tibia Foundry · Rocky LaRochelle. Tibię tworzy i prowadzi CipSoft GmbH. Tibia, jej strona, grafiki i dane z gry są chronione prawem autorskim CipSoft GmbH, a materiały udostępnione przez CipSoft pozostają jej własnością. Tibia Foundry to niezależny projekt fanowski, niepowiązany z CipSoft GmbH ani Fandom i przez nie niepopierany.</p>
       <p>Wersja 9.0.5 · 19 listopada 2026</p>

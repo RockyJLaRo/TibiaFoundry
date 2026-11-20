@@ -478,14 +478,16 @@
     "a10": "Von TibiaData, einer kostenlosen öffentlichen API auf Grundlage von Tibia.com. Dein Browser fragt TibiaData direkt; diese Website hat keinen eigenen Server und speichert nichts über deine Suchen."
   },
   "footer": {
-    "project": "Projekt",
     "repository": "GitHub-Repository",
     "issues": "Issues und Support",
     "legal": "Tibia wird von der CipSoft GmbH entwickelt und betrieben. Tibia, die Website, Spielgrafiken und Spieldaten sind urheberrechtlich geschützt (© CipSoft GmbH); von CipSoft bereitgestellte Inhalte bleiben deren Eigentum. Tibia Foundry ist ein unabhängiges Fanprojekt und weder mit der CipSoft GmbH noch mit Fandom verbunden oder von ihnen unterstützt.",
     "version": "Version {version} · {date}",
     "made": "Entwickelt von Rocky LaRochelle, Schöpfer und Entwickler von Tibia Foundry.",
     "releaseNotes": "Versionshinweise {version}",
-    "about": "Kostenlose Tibia-Tools im Browser und ein Desktop-Werkzeugkasten für TibiaWiki-Autoren und Fansite-Macher – ein unabhängiges Fanprojekt."
+    "about": "Kostenlose Tibia-Tools im Browser und ein Desktop-Werkzeugkasten für TibiaWiki-Autoren und Fansite-Macher – ein unabhängiges Fanprojekt.",
+    "notice": {
+      "trademark": "Tibia ist eine Marke der CipSoft GmbH. © CipSoft GmbH."
+    }
   },
   "lightbox": {
     "label": "Vergrößerter Screenshot",
@@ -1110,7 +1112,17 @@
       "title": "Community-Profile",
       "text": "Rocky ist auch auf TibiaWiki, YouTube, Instagram, GitHub und Reddit zu finden und spielt Tibia als Roc ky."
     },
-    "privacy": "Diese Website hat kein Kontaktformular. Deine letzten Suchen bleiben nur in deinem Browser, und Charaktersuchen gehen nur an TibiaData, um die Daten abzurufen."
+    "privacy": "Diese Website hat kein Kontaktformular. Deine letzten Suchen bleiben nur in deinem Browser, und Charaktersuchen gehen nur an TibiaData, um die Daten abzurufen.",
+    "reasons": {
+      "title": "Kontaktgründe",
+      "lead": "Wähle ein Thema – dein Mailprogramm öffnet sich mit ausgefülltem Betreff.",
+      "general": "Allgemeine Anfrage",
+      "bug": "Fehlermeldung",
+      "formula": "Korrektur einer Rechnerformel",
+      "fansite": "Fansite-Anbindung",
+      "app": "Hilfe zum Programm",
+      "dev": "Frage von Entwicklern"
+    }
   },
   "tibia": {
     "title": "Tibia-Tools",

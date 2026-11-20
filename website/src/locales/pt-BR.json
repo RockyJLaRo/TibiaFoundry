@@ -478,14 +478,16 @@
     "a10": "Do TibiaData, uma API pública e gratuita baseada no Tibia.com. Seu navegador consulta o TibiaData diretamente; este site não tem servidor próprio e não guarda nada sobre suas buscas."
   },
   "footer": {
-    "project": "Projeto",
     "repository": "Repositório no GitHub",
     "issues": "Problemas e suporte",
     "legal": "O Tibia é criado e operado pela CipSoft GmbH. O Tibia, seu site, gráficos e dados do jogo são protegidos por direitos autorais da CipSoft GmbH, e o conteúdo fornecido pela CipSoft continua sendo dela. O Tibia Foundry é um projeto independente de fã, sem afiliação ou endosso da CipSoft GmbH ou da Fandom.",
     "version": "Versão {version} · {date}",
     "made": "Feito por Rocky LaRochelle, criador e desenvolvedor do Tibia Foundry.",
     "releaseNotes": "Notas da versão {version}",
-    "about": "Ferramentas de Tibia grátis no navegador e um kit para PC para editores da TibiaWiki e criadores de fansites – um projeto independente de fã."
+    "about": "Ferramentas de Tibia grátis no navegador e um kit para PC para editores da TibiaWiki e criadores de fansites – um projeto independente de fã.",
+    "notice": {
+      "trademark": "Tibia é uma marca registrada da CipSoft GmbH. © CipSoft GmbH."
+    }
   },
   "lightbox": {
     "label": "Captura de tela ampliada",
@@ -1110,7 +1112,17 @@
       "title": "Perfis na comunidade",
       "text": "Rocky também está no TibiaWiki, YouTube, Instagram, GitHub e Reddit, e joga Tibia como Roc ky."
     },
-    "privacy": "Este site não tem formulário de contato. Suas buscas recentes ficam apenas no seu navegador, e as buscas de personagens vão apenas para o TibiaData, para obter os dados."
+    "privacy": "Este site não tem formulário de contato. Suas buscas recentes ficam apenas no seu navegador, e as buscas de personagens vão apenas para o TibiaData, para obter os dados.",
+    "reasons": {
+      "title": "Motivos de contato",
+      "lead": "Escolha um assunto e seu programa de e-mail abre com o assunto já preenchido.",
+      "general": "Dúvida geral",
+      "bug": "Relato de erro",
+      "formula": "Correção de fórmula de calculadora",
+      "fansite": "Integração com fansite",
+      "app": "Suporte do programa",
+      "dev": "Pergunta de desenvolvimento"
+    }
   },
   "tibia": {
     "title": "Ferramentas Tibia",

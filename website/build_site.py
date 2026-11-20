@@ -478,8 +478,7 @@ def credits_html(tr):
     """The footer's (and About page's) data and resource credits from providers.json; TibiaData first, with its own thank-you."""
     out = []
     for p in PROVIDERS:
-        link = (f'<a href="{htmllib.escape(p["url"])}" rel="noopener noreferrer" target="_blank" data-provider="{p["id"]}">'
-                f'{htmllib.escape(p["name"])}<span class="sr-only"> {tr.attr("js.newTab")}</span></a>')
+        link = provider_link(tr, p)
         raw = tr.raw(f"credits.{p['id']}")[0]
         if "{link}" not in raw:
             sys.exit(f"[{tr.code}] credits.{p['id']} needs {{link}} (the provider's name, linked)")
@@ -488,6 +487,35 @@ def credits_html(tr):
     items = "\n".join(f'        <li data-credit="{i}">{t}</li>' for i, t in out if i != "tibiadata")
     return (f'      <p class="credits-thanks" data-credit="tibiadata">{first}</p>\n      <ul>\n{items}\n      </ul>\n'
             f'      <p class="muted">{tr.text("credits.independent")}</p>')
+
+
+def provider_link(tr, p):
+    """A provider's name as a new-tab link (data-provider marks it for the tests)."""
+    return (f'<a href="{htmllib.escape(p["url"])}" rel="noopener noreferrer" target="_blank" data-provider="{p["id"]}">'
+            f'{htmllib.escape(p["name"])}<span class="sr-only"> {tr.attr("js.newTab")}</span></a>')
+
+
+def footer_notice_html(tr, legal_href):
+    """The footer's compact notice: the CipSoft trademark line, the TibiaData thank-you (linked), the independent-project
+    sentence and a link to the full credits on the Legal page (#attribution). The full list is credits_html, Legal only."""
+    tibiadata = next(p for p in PROVIDERS if p["id"] == "tibiadata")
+    thanks = tr.text("credits.tibiadata").replace("{link}", provider_link(tr, tibiadata))
+    return (f'{tr.text("footer.notice.trademark")} <span data-credit="tibiadata">{thanks}</span> {tr.text("credits.independent")} '
+            f'<a href="{legal_href}#attribution">{tr.text("credits.title")}</a>')
+
+
+# The Contact page's reasons (contact.reasons.<key>); each is a mailto: link whose subject is "Tibia Foundry: <reason>" in the page language.
+CONTACT_REASONS = ("general", "bug", "formula", "fansite", "app", "dev")
+
+
+def contact_reasons_html(tr):
+    items = []
+    for key in CONTACT_REASONS:
+        reason = TAG.sub("", tr.text(f"contact.reasons.{key}"))
+        subject = urllib.parse.quote("Tibia Foundry: " + reason, safe="!'()*~")   # encodeURIComponent: %20, never +
+        items.append(f'      <li><a class="reason" href="mailto:{REGISTRY["creator"]["email"]}?subject={subject}" data-reason="{key}">'
+                     f'<svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><span>{tr.text("contact.reasons." + key)}</span></a></li>')
+    return "\n".join(items)
 
 
 def profiles_html(tr, root):
@@ -962,7 +990,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         "OG_LOCALE_ALTERNATES": "\n".join(f'<meta property="og:locale:alternate" content="{l[4]}">' for l in LANGUAGES if l[0] != code),
         "LANG_REDIRECT": redirect, "ROOT": root, "VERSION": ver, "PAGE_ID": page["id"],
         "NAV": nav, "MENU_NAV": menu, "FOOTER_MENU": footer_menu, "FOOTER_MENU_LINKS": footer_menu_links, "LANG_MENU": "\n".join(lang_menu), "MENU_LANGS": "\n".join(lang_menu),
-        "LANG_FOOTER": "\n".join(lang_footer), "CREDITS": credits_html(tr), "PROFILES": profiles_html(tr, root),
+        "LANG_FOOTER": "\n".join(lang_footer), "CREDITS": credits_html(tr) if "{{CREDITS}}" in page_html else "",
+        "FOOTER_NOTICE": footer_notice_html(tr, link_to("legal")), "CONTACT_REASONS": contact_reasons_html(tr) if "{{CONTACT_REASONS}}" in page_html else "", "PROFILES": profiles_html(tr, root),
         "DOCS": docs_html(tr) if "{{DOCS}}" in page_html else "", "GALLERY": gallery_html(tr, img) if "{{GALLERY}}" in page_html else "",
         "EMAIL": REGISTRY["creator"]["email"], "MAIL_SUBJECT": urllib.parse.quote("Tibia Foundry"),
         "RELEASE_PAGE": release_page, "ALL_RELEASES": all_releases, "ASSET_VERSION": assets["version"],
@@ -1006,7 +1035,7 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
     return page_html
 
 
-def check_page(where, page):
+def check_page(where, page, is_legal=False, strict=False):
     left = re.findall(r"\{\{[^}]+\}\}", page)
     if left:
         sys.exit(f"[{where}] Unreplaced placeholders: " + ", ".join(sorted(set(left))))
@@ -1021,9 +1050,14 @@ def check_page(where, page):
         sys.exit(f"[{where}] A page needs exactly one <h1>.")
     if 'href="https://tibiadata.com/"' not in page or 'data-credit="tibiadata"' not in page:
         sys.exit(f"[{where}] The footer credit to TibiaData is missing.")
-    for p in PROVIDERS:
-        if f'data-provider="{p["id"]}"' not in page:
-            sys.exit(f"[{where}] The footer credit to {p['name']} is missing.")
+    if "data-notice" not in page or "#attribution" not in page or "CipSoft" not in page.split("data-notice", 1)[1].split("</p>", 1)[0]:
+        sys.exit(f"[{where}] The footer notice (data-notice: CipSoft, TibiaData, link to legal #attribution) is missing.")
+    if is_legal:
+        for p in PROVIDERS:
+            if f'data-provider="{p["id"]}"' not in page:
+                sys.exit(f"[{where}] The credit to {p['name']} is missing from the Legal page's #attribution.")
+    elif strict and "data-credits" in page:
+        sys.exit(f"--strict: [{where}] only the Legal page may render the full credits (data-credits).")
     for needle, what in (('href="https://www.tibia.com/"', "the link to Tibia.com"), ('href="https://www.cipsoft.com/"', "the link to CipSoft"),
                          ("data-year", "the copyright year"), ("data-footer-profiles", "the creator's profiles")):
         if needle not in page:
@@ -1209,7 +1243,7 @@ def main():
                 return root + files[key][0]
 
             html = render(layout, templates, code, page, translators[code], translators, img, ver, assets, dlinfo)
-            check_page(f"{code}/{page['id']}", html)
+            check_page(f"{code}/{page['id']}", html, page["id"] == "legal", strict)
             out = os.path.join(SITE, here) if here else SITE
             os.makedirs(out, exist_ok=True)
             with open(os.path.join(out, "index.html"), "w", encoding="utf-8", newline="\n") as f:

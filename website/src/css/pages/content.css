@@ -36,6 +36,14 @@ a.boost-card:hover .boost-name { text-decoration: underline; }
 .profile-handle { font-size: .875rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .email-box { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-large); }
 .email-address { font-size: 1.15rem; font-weight: 650; word-break: break-all; margin-right: auto; }
+.contact-card { display: grid; gap: 24px; padding: 20px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-large); }
+.contact-card .email-box { padding: 0; border: 0; background: none; border-radius: 0; }
+.contact-main, .contact-reasons { min-width: 0; }
+.contact-reasons ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.reason { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 14px; background: var(--bg-canvas); border: 1px solid var(--border-subtle); border-radius: var(--radius-medium); color: var(--text-primary); font-weight: 600; text-decoration: none; }
+.reason:hover { border-color: var(--accent-primary); color: var(--accent-primary); }
+.reason .ic { flex: none; color: var(--accent-primary); }
+@media (min-width: 860px) { .contact-card { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; padding: 28px; } .contact-reasons { border-left: 1px solid var(--border-subtle); padding-left: 40px; } }
 .admin { display: grid; gap: 4px 16px; margin: 0; }
 .admin > div { display: grid; grid-template-columns: minmax(8rem, 34%) 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid var(--border-subtle); }
 .admin dt { color: var(--text-secondary); }

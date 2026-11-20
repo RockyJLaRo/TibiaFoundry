@@ -147,13 +147,10 @@
       <div class="footer-grid">
 {{FOOTER_MENU}}
         <div>
-          <h2>{{t:footer.project}}</h2>
+          <h2>{{t:nav.contact}}</h2>
           <ul>
 {{FOOTER_MENU_LINKS}}
             <li><a href="{{RELEASE_PAGE}}" data-track="releases" data-place="footer">{{t:footer.releaseNotes}}</a></li>
-            <li><a href="{{LINK:legal}}">{{t:nav.legal}}</a></li>
-            <li><a href="{{LINK:legal}}#privacy">{{t:legal.privacy.title}}</a></li>
-            <li><a href="{{LINK:legal}}#community">{{t:legal.community.title}}</a></li>
             <li><a href="https://github.com/RockyJLaRo/TibiaFoundry/issues" data-track="issues" data-place="footer">{{t:footer.issues}}</a></li>
           </ul>
         </div>
@@ -166,16 +163,15 @@
       </div>
     </div>
     <hr class="footer-rule">
-    <section class="credits" aria-labelledby="credits-title" data-credits>
-      <h2 id="credits-title">{{t:credits.title}}</h2>
-{{CREDITS}}
-    </section>
+    <p class="footer-notice" data-notice>{{FOOTER_NOTICE}}</p>
     <div class="legal">
       <ul class="legal-links">
         <li><a href="https://www.tibia.com/" rel="noopener noreferrer" target="_blank">Tibia.com<span class="sr-only"> {{t:js.newTab}}</span></a></li>
         <li><a href="https://www.cipsoft.com/" rel="noopener noreferrer" target="_blank">CipSoft GmbH<span class="sr-only"> {{t:js.newTab}}</span></a></li>
         <li><a href="https://www.tibia.com/support/?subtopic=tibiarules" rel="noopener noreferrer" target="_blank">{{t:legal.rulesLink}}<span class="sr-only"> {{t:js.newTab}}</span></a></li>
         <li><a href="{{LINK:legal}}">{{t:nav.legal}}</a></li>
+        <li><a href="{{LINK:legal}}#privacy">{{t:legal.privacy.title}}</a></li>
+        <li><a href="{{LINK:legal}}#community">{{t:legal.community.title}}</a></li>
       </ul>
       <p>© <span data-year>{{YEAR}}</span> Tibia Foundry · Rocky LaRochelle. {{t:footer.legal}}</p>
       <p>{{t:footer.version}}</p>

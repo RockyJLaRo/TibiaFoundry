@@ -413,14 +413,16 @@
     "a10": "From TibiaData, a free public API built on Tibia.com. Your browser asks TibiaData directly; this website has no server of its own and keeps nothing about your searches."
   },
   "footer": {
-    "project": "Project",
     "repository": "GitHub repository",
     "issues": "Issues and support",
     "legal": "Tibia is made and operated by CipSoft GmbH. Tibia, its website, game graphics and data are copyrighted by CipSoft GmbH, and content provided by CipSoft remains its property. Tibia Foundry is an independent fan project and is not affiliated with or endorsed by CipSoft GmbH or Fandom.",
     "version": "Version {version} · {date}",
     "made": "Made by Rocky LaRochelle, creator and developer of Tibia Foundry.",
     "releaseNotes": "Release notes {version}",
-    "about": "Free Tibia tools in your browser and a desktop toolkit for TibiaWiki editors and fansite creators – an independent fan project."
+    "about": "Free Tibia tools in your browser and a desktop toolkit for TibiaWiki editors and fansite creators – an independent fan project.",
+    "notice": {
+      "trademark": "Tibia is a trademark of CipSoft GmbH. © CipSoft GmbH."
+    }
   },
   "lightbox": {
     "label": "Enlarged screenshot",
@@ -846,7 +848,7 @@
     }
   },
   "credits": {
-    "title": "Data & resource credits",
+    "title": "Data & Resource Credits",
     "tibiadata": "Thanks to {link} for providing the Tibia data used on this site.",
     "tibiacom": "{link} – the official Tibia website, original source of the news, character, world, guild, house, creature and spell information and of the images shown with it.",
     "cipsoft": "{link} – Tibia, its game graphics and its data are © CipSoft GmbH; they appear in the program screenshots and the data views.",
@@ -1045,7 +1047,17 @@
       "title": "Community profiles",
       "text": "Rocky is also on TibiaWiki, YouTube, Instagram, GitHub and Reddit, and plays Tibia as Roc ky."
     },
-    "privacy": "This site has no contact form. Your recent searches stay only in your browser, and character searches go only to TibiaData, to fetch the data."
+    "privacy": "This site has no contact form. Your recent searches stay only in your browser, and character searches go only to TibiaData, to fetch the data.",
+    "reasons": {
+      "title": "Contact Reasons",
+      "lead": "Pick a topic and your mail program opens with the subject filled in.",
+      "general": "General Inquiry",
+      "bug": "Bug Report",
+      "formula": "Calculator Formula Correction",
+      "fansite": "Fansite Integration",
+      "app": "Application Support",
+      "dev": "Developer Question"
+    }
   },
   "tibia": {
     "title": "Tibia tools",

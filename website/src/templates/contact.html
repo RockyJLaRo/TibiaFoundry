@@ -6,6 +6,8 @@
 
 <section class="band" aria-labelledby="email-title">
   <div class="wrap">
+   <div class="contact-card">
+   <div class="contact-main">
     <h2 id="email-title">{{t:contact.email.title}}</h2>
     <div class="email-box">
       <a class="email-address" id="contact-email" href="mailto:{{EMAIL}}?subject={{MAIL_SUBJECT}}">{{EMAIL}}</a>
@@ -18,6 +20,15 @@
       <div><dt>{{t:legal.admin.character}}</dt><dd><a href="https://www.tibia.com/community/?name=Roc+ky" rel="noopener noreferrer" target="_blank">Roc ky<span class="sr-only"> {{t:js.newTab}}</span></a></dd></div>
       <div><dt>{{t:legal.admin.place}}</dt><dd>{{t:about.location}}</dd></div>
     </dl>
+   </div>
+   <div class="contact-reasons">
+    <h2 id="reasons-title">{{t:contact.reasons.title}}</h2>
+    <p class="muted">{{t:contact.reasons.lead}}</p>
+    <ul data-contact-reasons aria-labelledby="reasons-title">
+{{CONTACT_REASONS}}
+    </ul>
+   </div>
+   </div>
   </div>
 </section>
 
