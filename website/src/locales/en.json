@@ -26,7 +26,7 @@
   },
   "lang": {
     "label": "Language",
-    "button": "Language: English. Choose Another Language"
+    "button": "Language: English. Choose another language"
   },
   "nav": {
     "main": "Main",
@@ -36,7 +36,7 @@
     "guides": "Guides",
     "about": "About",
     "contact": "Contact",
-    "searchLabel": "Search for a Tibia Character",
+    "searchLabel": "Search for a Tibia character",
     "searchPlaceholder": "Character name",
     "searchButton": "Search",
     "menuOpen": "Open Menu",
@@ -389,25 +389,25 @@
   },
   "faq": {
     "title": "Questions and Answers",
-    "q1": "Is Tibia Foundry Free?",
+    "q1": "Is Tibia Foundry free?",
     "a1": "Yes. It is a free, independent community project with no account, no advertising and no paid features.",
-    "q2": "Does It Change My Tibia Client or My Characters?",
+    "q2": "Does it change my Tibia client or my characters?",
     "a2": "No. Tibia Foundry only reads the client's files. It never writes into a client folder, never touches your character, hotkeys or account, and does not interact with the game while it runs.",
-    "q3": "Where Do the Images Come From, and May I Publish Them?",
+    "q3": "Where do the images come from, and may I publish them?",
     "a3": "From the official client installed on your computer. Tibia's graphics and data are © CipSoft GmbH; Tibia Foundry writes that notice and your name as creator into every exported image. Follow CipSoft's rules for fansites and your website's own image policy.",
-    "q4": "Is the Asset Library Uploaded Anywhere?",
+    "q4": "Is the Asset Library uploaded anywhere?",
     "a4": "No. The library is a SQLite database on your computer; your files stay where they are and are only read. Removing an asset from the library never deletes a file. Back it up or restore it from the library's Folders and storage tab.",
-    "q5": "Will It Delete My Duplicate Images?",
+    "q5": "Will it delete my duplicate images?",
     "a5": "No. Find duplicates lists identical files, the same graphic at another size and look-alike images so you can decide what to keep. Nothing is deleted, moved or merged by the program.",
-    "q6": "Can I Use It for My Own Fansite Rather Than TibiaWiki?",
+    "q6": "Can I use it for my own fansite rather than TibiaWiki?",
     "a6": "Yes – that is what publishing profiles are for. Create a profile with your sizes, formats, file names, folders, credit line and HTML or BBCode snippet; the TibiaWiki profile is just one example.",
-    "q7": "What Happens After a Tibia Update?",
+    "q7": "What happens after a Tibia update?",
     "a7": "When it starts, Tibia Foundry checks the installed client in the background and offers to archive the new version. The Compatibility page reports how well the new files are understood, and an update-resources project renders everything new or changed since the previous version.",
-    "q8": "Which Edition Should I Choose?",
+    "q8": "Which edition should I choose?",
     "a8": "The installer for a normal installation with a Start-menu entry and uninstall; the portable edition to run it from any folder or USB stick without installing. Both are the same program.",
-    "q9": "Is Tibia Foundry Affiliated with CipSoft or Fandom?",
+    "q9": "Is Tibia Foundry affiliated with CipSoft or Fandom?",
     "a9": "No. It is an independent community project and is not affiliated with or endorsed by CipSoft GmbH or Fandom. It is not part of CipSoft's Fansite Programme.",
-    "q10": "Where Does the Online Tibia Data Come From?",
+    "q10": "Where does the online Tibia data come from?",
     "a10": "From TibiaData, a free public API built on Tibia.com. Your browser asks TibiaData directly; this website has no server of its own and keeps nothing about your searches."
   },
   "footer": {

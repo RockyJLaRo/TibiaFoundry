@@ -38,7 +38,7 @@ a.boost-card:hover .boost-name { text-decoration: underline; text-decoration-col
 .profile-handle { font-size: .875rem; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .email-box { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 16px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-medium); }
 .email-address { font-size: 1.15rem; font-weight: 600; word-break: break-all; margin-right: auto; }
-.contact-card { display: grid; gap: 24px; padding: 20px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top-color: var(--inlay); border-radius: var(--radius-medium); box-shadow: inset 0 1px 0 var(--inlay); }
+.contact-card { display: grid; gap: 24px; padding: 20px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top-color: var(--inlay); border-radius: var(--radius-medium); }
 .contact-card .email-box { padding: 0; border: 0; background: none; border-radius: 0; }
 .contact-main, .contact-reasons { min-width: 0; }
 .contact-reasons ul { list-style: none; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
@@ -65,6 +65,10 @@ a.boost-card:hover .boost-name { text-decoration: underline; text-decoration-col
 .release-facts > div:first-child { border-top: 0; }
 .release-facts dt { color: var(--text-secondary); font-size: .925rem; }
 .release-facts dd { margin: 0; min-width: 0; }
+/* phones: the label above its value, so values keep whole words (release facts, administrator) */
+@media (max-width: 479.98px) {
+  .release-facts > div, .admin > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
 .steps { list-style: none; counter-reset: s; padding: 0; margin: 0; display: grid; gap: 14px; }
 .steps li { counter-increment: s; position: relative; padding-left: 2.8em; }
 .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 2em; height: 2em; border-radius: var(--radius-small); background: var(--bg-surface); border: 1px solid var(--inlay); color: var(--text-primary); font: 600 1rem/1 var(--font-display); display: grid; place-items: center; }

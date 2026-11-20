@@ -50,8 +50,9 @@ TITLE_CASE_ALLOW = ["Tibia Foundry", "TibiaData", "Tibia.com", "GitHub", "TibiaW
                     "tibiaroute.com", "SHA256SUMS.txt", "e.g."]
 # Keys by name: nav.*, *.title, *.heading, *.button, calc.*.title and home.paths.* (the brief's list).
 TITLE_CASE_KEY = re.compile(r"^(nav\..+|.+\.title|.+\.heading|.+\.button|home\.paths\..+)$")
-# Keys that are not titles: running text, a placeholder and the screen-reader note "(opens in a new tab)" inside .btn links.
-TITLE_CASE_EXEMPT = re.compile(r"^(home\.paths\.\w+\.text|nav\.searchPlaceholder|js\.newTab)$")
+# Keys that are not titles: running text, a placeholder, the screen-reader note "(opens in a new tab)" inside .btn links,
+# the FAQ questions (questions that open answers, kept in sentence case) and aria/label-only texts.
+TITLE_CASE_EXEMPT = re.compile(r"^(home\.paths\.\w+\.text|nav\.searchPlaceholder|js\.newTab|faq\.q\d+|lang\.button|nav\.searchLabel)$")
 # Headings, buttons and tool names rendered by build_site.py or by scripts from variables (not found by the scans).
 TITLE_CASE_EXTRA = {
     "js.groupPlayers", "js.groupWorlds", "js.groupReference", "js.groupNews",      # hub section headings

@@ -225,7 +225,7 @@ select.input { padding-right: 2em; }
 
 /* framed: a featured panel (calculator results, Today in Tibia) - a 1 px gold inlay line along the top, no ornaments */
 .framed { position: relative; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top-color: var(--inlay);
-  border-radius: var(--radius-medium); padding: 20px; box-shadow: inset 0 1px 0 var(--inlay); }
+  border-radius: var(--radius-medium); padding: 20px; }
 
 /* ------------------------------------------------------------------ footer: a 1 px gold inlay line on top */
 .site-footer { position: relative; background: var(--bg-surface); color: var(--text-primary); margin-top: var(--space-6);

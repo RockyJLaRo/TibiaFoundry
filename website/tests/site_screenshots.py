@@ -15,7 +15,9 @@ A layout scan runs on every capture and its findings are stored in the entry's "
   * overflow: the page is wider than the viewport (scrollWidth > innerWidth);
   * offscreen: visible elements whose right edge passes the viewport (not inside a scrolling or clipping box);
   * clipped: text elements cut off by overflow hidden/clip (scrollWidth > clientWidth), not deliberate ellipses;
-  * ellipsis: text shortened on purpose with text-overflow: ellipsis (listed, not a failure).
+  * ellipsis: text shortened on purpose with text-overflow: ellipsis (listed, not a failure);
+  * midword: words of 6+ characters broken across lines inside main (a warning: long URLs and names from the API may
+    have to break on phones; check the listed ones).
 overflow, offscreen and clipped make the capture fail. The 404 page is captured in English only (404.html is English).
 The summary lists expected, captured, failed, skipped and missing combinations. Exit code 1 when any capture fails.
 """
@@ -95,8 +97,8 @@ def validate(page, lang, theme, width):
     }""", [lang["code"], theme, width])
 
 
-SCAN = """() => {
-  const vw = window.innerWidth, out = { overflow: 0, offscreen: [], clipped: [], ellipsis: [] };
+SCAN = r"""() => {
+  const vw = window.innerWidth, out = { overflow: 0, offscreen: [], clipped: [], ellipsis: [], midword: [] };
   out.overflow = Math.max(0, document.documentElement.scrollWidth - vw);
   const name = e => {
     let s = e.tagName.toLowerCase();
@@ -123,6 +125,17 @@ SCAN = """() => {
     if (t && e.clientWidth > 0 && e.scrollWidth > e.clientWidth + 1 && !['SELECT', 'INPUT', 'TEXTAREA'].includes(e.tagName)) {
       if (cs.overflowX === 'visible') continue;
       (cs.textOverflow === 'ellipsis' ? out.ellipsis : out.clipped).push(name(e) + ' "' + t.slice(0, 40) + '" ' + e.scrollWidth + '>' + e.clientWidth);
+    }
+  }
+  // Words of 6+ letters that the browser broke across two lines (overflow-wrap), e.g. "SHA256SUMS.t|xt" in a narrow column.
+  const walker = document.createTreeWalker(document.querySelector('main') || document.body, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  for (let n = walker.nextNode(); n && out.midword.length < 12; n = walker.nextNode()) {
+    if (skip(n.parentElement) || !n.parentElement.getClientRects().length) continue;
+    for (const m of n.textContent.matchAll(/[^\s–—\-/]{6,}/g)) {
+      range.setStart(n, m.index); range.setEnd(n, m.index + m[0].length);
+      const tops = new Set([...range.getClientRects()].filter(r => r.width > 0).map(r => Math.round(r.top)));
+      if (tops.size > 1) { out.midword.push(name(n.parentElement) + ' "' + m[0].slice(0, 40) + '"'); break; }
     }
   }
   out.offscreen = out.offscreen.slice(0, 12); out.clipped = out.clipped.slice(0, 12); out.ellipsis = out.ellipsis.slice(0, 12);
@@ -230,7 +243,8 @@ def main():
                "scan": {"overflow": sum(1 for e in scanned if e["scan"]["overflow"] > 0),
                         "offscreen": sum(1 for e in scanned if e["scan"]["offscreen"]),
                         "clipped": sum(1 for e in scanned if e["scan"]["clipped"]),
-                        "ellipsis_only": sum(1 for e in scanned if e["scan"]["ellipsis"])},
+                        "ellipsis_only": sum(1 for e in scanned if e["scan"]["ellipsis"]),
+                        "midword_warning": sum(1 for e in scanned if e["scan"].get("midword"))},
                "skipped": 0, "missing": missing, "this_run": {"expected": expected, "captured": len(entries), "failed": failed,
                "seconds": round(time.time() - started)}}
     json.dump({"version": VERSION, "generated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
@@ -239,7 +253,8 @@ def main():
                "summary": summary, "shots": sorted(all_entries, key=lambda e: (e["viewport"], e["locale"], e["theme"], e["route"]))},
               open(manifest_path, "w", encoding="utf-8"), indent=1)
     print(f"\nScan (captures): overflow {summary['scan']['overflow']}, offscreen {summary['scan']['offscreen']}, "
-          f"clipped {summary['scan']['clipped']}, deliberate ellipsis {summary['scan']['ellipsis_only']}")
+          f"clipped {summary['scan']['clipped']}, deliberate ellipsis {summary['scan']['ellipsis_only']}, "
+          f"words broken mid-word (warning) {summary['scan']['midword_warning']}")
     print(f"Expected {summary['expected']}, captured {summary['captured_ok']}, failed {summary['failed']}, skipped 0, missing {len(missing)}"
           f"  (this run: {len(entries)} in {summary['this_run']['seconds']}s)\nManifest: {manifest_path}")
     sys.exit(1 if failed or missing else 0)

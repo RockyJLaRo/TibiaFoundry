@@ -24,6 +24,9 @@
 .facts > div:first-child { border-top: 0; }
 .facts dt { color: var(--text-secondary); font-size: .9rem; }
 .facts dd { margin: 0; min-width: 0; }
+@media (max-width: 479.98px) {   /* phones: the label above its value, so values keep whole words */
+  .facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
 .plain { list-style: none; padding: 0; margin: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0 0 12px; }
 .chip { display: inline-flex; align-items: center; gap: 4px; min-height: 36px; padding: 0 10px; border: 1px solid var(--border-subtle); border-radius: var(--radius-medium); background: var(--bg-surface); color: var(--text-primary); text-decoration: none; font-size: .9rem; }
@@ -140,3 +143,4 @@ a.mini-card:hover { background: var(--bg-elevated); }
 }
 .data-table td > .badge { justify-self: start; }      /* phone cards: the status badge keeps its own width */
 @media (min-width: 640px) { .data-table code { white-space: nowrap; } }   /* tables (not phone cards): formulas stay on one line */
+@media (max-width: 479.98px) { .fansite .facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }   /* after the fansite rule above */
