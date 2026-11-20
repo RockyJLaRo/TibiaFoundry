@@ -147,6 +147,23 @@ test("recent searches ignore broken or foreign stored data", () => {
   assert.equal(S.recents.read().length, 8);
 });
 
+test("prototype keys are not search types (untrusted stored recents)", () => {
+  const storage = memoryStorage();
+  const S = search(storage);
+  const evil = ["constructor", "__proto__", "toString", "hasOwnProperty"];
+  for (const type of evil) {
+    assert.equal(S.routeFor(type, "x"), "", `routeFor(${type}) is empty`);
+    assert.equal(S.routeFor(type, { q: "x", id: "y" }), "", `routeFor(${type}, item) is empty`);
+    assert.deepEqual(S.recents.add({ type, q: "x" }), [], `add(${type}) is ignored`);
+  }
+  storage.setItem("tf-recent-searches", JSON.stringify(evil.map((type) => ({ type, q: "x" })).concat([{ type: "world", q: "Antica" }])));
+  assert.deepEqual(S.recents.read(), [{ type: "world", q: "Antica" }], "only real types are read back");
+  // A raw "__proto__" key from JSON.parse is an own property, not the prototype.
+  storage.setItem("tf-recent-searches", '[{"type":"__proto__","q":"x"},{"__proto__":{"type":"world"},"q":"y"}]');
+  assert.deepEqual(S.recents.read(), []);
+  assert.deepEqual(S.types, ["character", "guild", "world", "creature", "spell", "house"]);
+});
+
 test("blocked storage: nothing throws, recents live in memory for the page", () => {
   const S = search(memoryStorage(true));
   assert.deepEqual(S.recents.read(), []);

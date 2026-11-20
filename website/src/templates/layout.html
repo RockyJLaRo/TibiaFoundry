@@ -71,13 +71,14 @@
 {{SEARCH_TYPES}}
         </select>
         <input class="input search-input" id="tf-search-input" type="search" name="character" placeholder="{{a:nav.searchPlaceholder}}" aria-label="{{a:nav.searchLabel}}" autocomplete="off" spellcheck="false" maxlength="29" data-search-input>
-        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>{{t:nav.searchButton}}</button>
+        <!-- the popup follows the field in the DOM, so Tab from the field reaches its buttons -->
         <div class="search-popup" data-search-popup hidden>
           <p class="search-popup-title" data-search-title hidden>{{t:js.searchBox.recent}}</p>
           <ul class="search-options" id="tf-search-listbox" role="listbox" aria-label="{{a:js.searchBox.suggestions}}" hidden></ul>
           <p class="search-status" data-search-status hidden></p>
           <button type="button" class="btn search-clear" data-search-clear hidden>{{t:js.searchBox.clearRecent}}</button>
         </div>
+        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>{{t:nav.searchButton}}</button>
       </form>
     </div>
   </div>

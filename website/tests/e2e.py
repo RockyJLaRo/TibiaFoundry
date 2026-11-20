@@ -1459,18 +1459,36 @@ def global_search(c, browser, base):
     c.ok(len(shown) == 8 and shown[0].startswith("Name 9") and shown[-1].startswith("Name 2"), f"recent searches shown: {shown}")
     clear = page.get_by_role("button", name="Clear Recent Searches")
     c.ok(clear.count() == 1, "a 'Clear Recent Searches' button")
-    clear.click()
-    c.ok(page.evaluate("localStorage.getItem('tf-recent-searches')") in (None, "[]"), "clearing removes the stored searches")
+    # WCAG 2.1.1: from the empty, focused field, Tab reaches "Clear Recent Searches" (the popup stays open) and Enter clears.
+    page.keyboard.press("Tab")
+    c.ok(page.evaluate("document.activeElement && document.activeElement.textContent.trim()") == "Clear Recent Searches",
+         f"Tab from the field reaches the Clear button: {page.evaluate('document.activeElement && document.activeElement.outerHTML.slice(0, 80)')}")
+    c.ok(page.get_attribute(INPUT, "aria-expanded") == "true", "the popup stays open while its button has focus")
+    page.keyboard.press("Enter")
+    c.ok(page.evaluate("localStorage.getItem('tf-recent-searches')") in (None, "[]"), "Enter on Clear removes the stored searches")
     c.ok(page.locator(options).count() == 0, "no recent searches shown after clearing")
+    c.ok(page.evaluate(f"document.activeElement === document.querySelector('{INPUT}')"), "focus returns to the field after clearing")
     # A recent entry opens again from another page.
     search(page, "world", "Antica")
     page.wait_for_function("() => location.hash === '#/world/Antica'", timeout=10000)
     page.goto(url_of(base, en, "about"))
     page.click(INPUT)
     page.wait_for_selector(options)
+    # Safari and Firefox do not focus a button on click: a mousedown anywhere in the popup must not blur the field
+    # (that would close the popup before the click). The popup cancels it; the field keeps focus.
+    md = page.evaluate(f"""() => {{ const b = document.querySelector('[data-search-clear]'), e = new MouseEvent('mousedown', {{ bubbles: true, cancelable: true }});
+      b.dispatchEvent(e); return {{ prevented: e.defaultPrevented, focused: document.activeElement === document.querySelector('{INPUT}') }}; }}""")
+    c.ok(md["prevented"] and md["focused"], f"mousedown in the popup keeps the field focused: {md}")
     page.keyboard.press("ArrowDown")
     page.keyboard.press("Enter")
     page.wait_for_url("**/tibia/#/world/Antica")
+    # A mouse click on Clear works too.
+    wait_app(page)
+    page.fill(INPUT, "")
+    page.click(INPUT)
+    page.wait_for_selector(options)
+    page.get_by_role("button", name="Clear Recent Searches").click()
+    c.ok(page.evaluate("localStorage.getItem('tf-recent-searches')") in (None, "[]") and page.locator(options).count() == 0, "a click on Clear clears")
     c.ok(not page.console_errors, f"console errors (recents): {page.console_errors[:3]}")
     ctx.close()
 
@@ -1510,6 +1528,9 @@ def global_search(c, browser, base):
       return {{ over: document.documentElement.scrollWidth - document.documentElement.clientWidth, l: r.left, r: r.right, w: innerWidth, small }}; }}""")
     c.ok(m["over"] <= 0 and m["l"] >= 0 and m["r"] <= m["w"], f"320 px: suggestions fit {m}")
     c.ok(m["small"] == 0, f"320 px: options under 44 px tall: {m['small']}")
+    # iOS Safari zooms into fields under 16 px on focus.
+    fs = page.evaluate(f"[parseFloat(getComputedStyle(document.querySelector('{TYPE}')).fontSize), parseFloat(getComputedStyle(document.querySelector('{INPUT}')).fontSize)]")
+    c.ok(fs[0] >= 16 and fs[1] >= 16, f"320 px: type picker and field are at least 16 px: {fs}")
     c.ok(not page.console_errors, f"console errors (320): {page.console_errors[:3]}")
     ctx.close()
 

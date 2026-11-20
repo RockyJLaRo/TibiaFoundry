@@ -28,8 +28,10 @@
   "use strict";
   var KEY = "tf-recent-searches", WORLD_KEY = "tf-world", MAX = 8;
   var entries = env.search || [];
-  var byType = {};
-  entries.forEach(function (e) { byType[e.type] = e; });
+  // A null-prototype map: a type read from storage ("constructor", "__proto__", "toString") is never a search type.
+  var byType = Object.create(null);
+  entries.forEach(function (e) { if (e && typeof e.type === "string") byType[e.type] = e; });
+  function known(type) { return typeof type === "string" && Object.prototype.hasOwnProperty.call(byType, type); }
   var defaultWorld = env.defaultWorld || "Antica", defaultTown = env.defaultTown || "Thais";
 
   // ------------------------------------------------------------------ storage (every access guarded: it may be blocked)
@@ -104,8 +106,8 @@
    * (a creature typed but not picked) opens the type's list page (browse), or "" when there is none (an empty name).
    */
   function routeFor(type, item) {
+    if (!known(type)) return "";
     var entry = byType[type];
-    if (!entry) return "";
     if (item == null || typeof item !== "object") item = { q: item };
     var q = clean(item.q != null ? item.q : item.name);
     var values = { q: q, name: q, race: item.race || item.id, id: item.id, world: clean(item.world) || q || rememberedWorld(), town: clean(item.town) || defaultTown };
@@ -124,7 +126,7 @@
   // ------------------------------------------------------------------ recent searches
   var memory = null;   // set when storage cannot be written: the recent searches then last for this page only
   function valid(r) {
-    return !!r && typeof r === "object" && !!byType[r.type] && typeof r.q === "string" && clean(r.q) !== "" && r.q.length <= 100 &&
+    return !!r && typeof r === "object" && known(r.type) && typeof r.q === "string" && clean(r.q) !== "" && r.q.length <= 100 &&
       (r.id == null || typeof r.id === "string" || typeof r.id === "number");
   }
   function tidy(r) {
@@ -195,7 +197,7 @@
     input.setAttribute("aria-expanded", "false");
     input.setAttribute("aria-controls", listbox.id);
 
-    function entry() { return byType[select.value] || entries[0]; }
+    function entry() { return known(select.value) ? byType[select.value] : entries[0]; }
     function typeLabel(type) { return t("js.searchBox.type." + type); }
     function updateType() {
       var text = t("js.searchBox.placeholder." + entry().type);
@@ -277,7 +279,7 @@
           if (!shown.length) statusText = t("js.searchBox.noMatches");
           announce(shown.length ? t("js.searchBox.count", { n: shown.length }) : statusText);
         } else if (L && L.error) {
-          statusText = t(ERR[L.error.kind] || "js.errNetwork");
+          statusText = t(Object.prototype.hasOwnProperty.call(ERR, L.error.kind) ? ERR[L.error.kind] : "js.errNetwork");
           retry = e.list;
           announce(statusText);
         } else if (L && L.promise) statusText = t("js.loading");
@@ -313,7 +315,7 @@
     function finish(type, item) {
       var hash = routeFor(type, item);
       if (!hash) { input.focus(); return; }
-      if (byType[type].browse !== hash.slice(2)) remember(type, item);
+      if (byType[type].browse !== hash.slice(2)) remember(type, item);   // routeFor returned a route: type is known
       close();
       go(hash);
     }
@@ -349,10 +351,22 @@
       } else if (ev.key === "Escape") {
         if (open) { ev.preventDefault(); ev.stopPropagation(); close(); }
         else if (input.value) { ev.preventDefault(); input.value = ""; }
-      } else if (ev.key === "Tab") close();
+      } else if (ev.key === "Tab") {
+        // Tab moves into an open popup's buttons ("Clear Recent Searches", "Try again"; they follow the field in the
+        // DOM), so they are reachable by keyboard; otherwise Tab closes the popup.
+        if (!(open && !ev.shiftKey && popupButtons().length)) close();
+      }
     });
-    // A click on an option keeps the focus in the field (aria-activedescendant pattern), then opens it.
-    listbox.addEventListener("mousedown", function (ev) { ev.preventDefault(); });
+    function popupButtons() {
+      return Array.prototype.filter.call(popup.querySelectorAll("button"), function (b) { return !b.disabled && b.getClientRects().length > 0; });
+    }
+    // Escape on a popup button closes the popup and returns to the field.
+    popup.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape") { ev.preventDefault(); ev.stopPropagation(); input.focus(); close(); }
+    });
+    // A press anywhere in the popup keeps the focus in the field (aria-activedescendant pattern). Safari and Firefox do not
+    // focus a clicked button, so without this the field would blur and close the popup before the click arrives.
+    popup.addEventListener("mousedown", function (ev) { ev.preventDefault(); });
     listbox.addEventListener("click", function (ev) {
       var li = ev.target.closest && ev.target.closest("[role=option]");
       if (li) choose(Array.prototype.indexOf.call(listbox.children, li));
@@ -374,7 +388,7 @@
     function syncFromRoute() {
       if (doc.activeElement === input) return;
       var m = /^#\/(character|guild)\/([^/]+)\/?$/.exec(win.location.hash);
-      if (!m || !byType[m[1]]) return;
+      if (!m || !known(m[1])) return;
       try { input.value = decodeURIComponent(m[2]); } catch (e) { return; }
       select.value = m[1];
       updateType();

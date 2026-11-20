@@ -43,7 +43,7 @@
   try { var th = localStorage.getItem('tf-theme'); if (th === 'dark' || th === 'light') document.documentElement.setAttribute('data-theme', th); } catch (e) {}
 
 </script>
-<link rel="stylesheet" href="../../../assets/site.css?v=8d68301bae">
+<link rel="stylesheet" href="../../../assets/site.css?v=cc91654ab1">
 <!-- Google tag (gtag.js). Visitors can turn statistics off on the Legal page (stored as tf-analytics=off); a browser's
      Global Privacy Control signal turns them off too. Disclosed on the Legal page under "Privacy and statistics". -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-J3EX3FB3PB"></script>
@@ -142,13 +142,14 @@
           <option value="house">Dom</option>
         </select>
         <input class="input search-input" id="tf-search-input" type="search" name="character" placeholder="Nazwa postaci" aria-label="Szukaj postaci z Tibii" autocomplete="off" spellcheck="false" maxlength="29" data-search-input>
-        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>Szukaj</button>
+        <!-- the popup follows the field in the DOM, so Tab from the field reaches its buttons -->
         <div class="search-popup" data-search-popup hidden>
           <p class="search-popup-title" data-search-title hidden>Ostatnie wyszukiwania</p>
           <ul class="search-options" id="tf-search-listbox" role="listbox" aria-label="Podpowiedzi" hidden></ul>
           <p class="search-status" data-search-status hidden></p>
           <button type="button" class="btn search-clear" data-search-clear hidden>Wyczyść ostatnie wyszukiwania</button>
         </div>
+        <button class="btn" type="submit"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>Szukaj</button>
       </form>
     </div>
   </div>
@@ -504,7 +505,7 @@ window.TF_I18N = {"lang":"pl","intl":"pl-PL","default":"en","strings":{"calc.ble
 <script src="../../../assets/formulas.js?v=4ce80a6e85" defer></script>
 <script src="../../../assets/tibiadata.js?v=42dc14457a" defer></script>
 <script src="../../../assets/sanitize.js?v=7a7ed7e2a6" defer></script>
-<script src="../../../assets/search.js?v=46dab1d3bf" defer></script>
+<script src="../../../assets/search.js?v=6df4bf119a" defer></script>
 <script src="../../../assets/calc.js?v=8caa226c7c" defer></script>
 </body>
 </html>
