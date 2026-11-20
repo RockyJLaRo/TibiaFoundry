@@ -114,6 +114,14 @@ def pages_and_attribution(c, browser, base):
                 c.ok(not re.search(r"partner|endorsed by TibiaData|official site of", text, re.I) or "not affiliated" in text or True, f"{where}: partnership wording")
         c.ok(not page.console_errors, f"{theme}: console errors: {page.console_errors[:3]}")
         ctx.close()
+    # Phone touch targets: every footer link is at least 44 px tall at 375 px.
+    ctx, page = new_page(browser, base, 375, 812)
+    for lang in kit.LANGUAGES:
+        for pid in ("home", "contact", "legal"):
+            page.goto(url_of(base, lang, pid))
+            small = page.evaluate("""() => [...document.querySelectorAll('footer a')].filter(a => a.offsetParent !== null).map(a => [a.textContent.trim().slice(0, 24), a.getBoundingClientRect().height]).filter(x => x[1] < 43.5)""")
+            c.ok(not small, f"{lang['code']}/{pid}: footer links under 44 px at 375 px: {small[:4]}")
+    ctx.close()
     c.note(f"{len(kit.LANGUAGES) * len(kit.PAGES) * len(kit.THEMES)} page loads; providers: {', '.join(providers)}")
 
 

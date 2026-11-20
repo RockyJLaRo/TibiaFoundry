@@ -250,13 +250,14 @@ select.input { padding-right: 2em; }
 .footer-grid > div:last-child { grid-column: 1 / -1; }
 .footer-grid > div:last-child ul { display: flex; flex-wrap: wrap; gap: 0 20px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
-.footer-grid a { display: inline-flex; align-items: center; min-height: 40px; color: var(--text-primary); text-decoration: none; }
+.footer-grid a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-primary); text-decoration: none; }
 .footer-grid a:hover { color: var(--accent-primary); text-decoration: underline; }
 .footer-people { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; }
 .footer-people a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-medium); background: color-mix(in srgb, var(--text-primary) 6%, transparent); border: 1px solid var(--border-subtle); }
 .footer-people a:hover { background: color-mix(in srgb, var(--text-primary) 14%, transparent); }
 .footer-people svg, .footer-people img { width: 24px; height: 24px; }
 .footer-contact { margin: 10px 0 0; color: var(--text-secondary); }
+.footer-contact a { display: inline-flex; align-items: center; min-height: 44px; }
 .footer-rule { border: 0; height: 16px; margin: 24px 0 18px; background: linear-gradient(var(--border-subtle), var(--border-subtle)) center / 100% 2px no-repeat; position: relative; overflow: visible; }
 .credits h2 { margin-bottom: 8px; }
 .credits-thanks { font-weight: 650; font-size: 1rem; color: var(--text-primary); }
@@ -264,11 +265,11 @@ select.input { padding-right: 2em; }
 .credits li { margin-bottom: 4px; }
 .credits .muted { color: var(--text-secondary); }
 .footer-notice { margin: 0 0 4px; color: var(--text-secondary); font-size: .875rem; line-height: 1.55; max-width: 62rem; }
-.footer-notice a { display: inline-block; padding-block: 11px; margin-block: -11px; }
+.footer-notice a { display: inline-block; padding-block: 12px; margin-block: -12px; }
 .legal { color: var(--text-secondary); font-size: .85rem; border-top: 1px solid var(--border-subtle); margin-top: 18px; padding-top: 14px; }
 .legal p { margin-bottom: .5em; }
 .legal-links { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 0 0 10px; padding: 0; }
-.legal-links a { display: inline-flex; min-height: 36px; align-items: center; }
+.legal-links a { display: inline-flex; min-height: 44px; align-items: center; }
 @media (min-width: 1024px) { .footer-top { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 40px; } }
 /* the About page shows the credits on parchment */
 main .credits, main .credits .muted { color: var(--text-secondary); }
