@@ -3,13 +3,14 @@
     <div class="home-hero-text">
       <h1 id="home-title">{{t:home.hero.title}}</h1>
       <p class="lead">{{t:home.hero.lead}}</p>
+      <p class="home-disclaimer" data-download-disclaimer><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><span>{{t:notice.text1}} <a href="{{LINK:legal}}#downloads">{{t:notice.more}}</a></span></p>
       <div class="home-downloads">
         <a class="btn btn-primary" href="{{DL:msi:url}}" data-download-link data-track="download" data-place="home-hero-msi"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:home.download.installer}}</a>
         <a class="btn" href="{{DL:portable:url}}" data-download-link data-track="download" data-place="home-hero-portable">{{t:home.download.portable}}</a>
         <a class="btn" href="{{DL:source:url}}" data-download-link data-track="download" data-place="home-hero-source">{{t:home.download.source}}</a>
       </div>
-      <p class="home-release"><span>{{t:home.app.fact.version}}</span><span>{{t:home.hero.released}} {{RELEASE_DATE}}</span><span><a href="{{DL:checksums}}" data-track="releases" data-place="home-hero-checksums">{{t:home.hero.checksums}}</a></span><span><a href="#desktop-app">{{t:home.hero.notice}}</a></span></p>
-      <p class="home-trust"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><span>{{t:home.hero.trust}}</span></p>
+      <p class="home-release"><span>{{t:home.app.fact.version}}</span><span>{{t:home.hero.released}} {{RELEASE_DATE}}</span><span><a href="{{DL:checksums}}" data-track="releases" data-place="home-hero-checksums">{{t:home.hero.checksums}}</a></span></p>
+      <p class="home-trust"><svg class="ic" aria-hidden="true"><use href="#i-circle-check"/></svg><span>{{t:home.hero.trust}}</span></p>
     </div>
     <div class="home-hero-shot">{{HOME_SHOT}}</div>
   </div>

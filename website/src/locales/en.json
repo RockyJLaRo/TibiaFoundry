@@ -875,7 +875,6 @@
       "lead": "A free desktop toolkit that turns your installed Tibia client into sprites, outfit GIFs, maps, sounds and complete wiki galleries.",
       "released": "Released",
       "checksums": "SHA-256 checksums",
-      "notice": "Download notice",
       "trust": "Windows 10/11, free, no account, works offline",
       "shotAlt": "{app:Tool.asset-library.Name} page of Tibia Foundry: categories, collections, a grid of item and creature thumbnails, and the details of the selected asset"
     },

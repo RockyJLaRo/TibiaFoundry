@@ -940,7 +940,6 @@
       "lead": "Ein kostenloser Desktop-Werkzeugkasten, der deinen installierten Tibia-Client in Sprites, Outfit-GIFs, Karten, Sounds und komplette Wiki-Galerien verwandelt.",
       "released": "Veröffentlicht am",
       "checksums": "SHA-256-Prüfsummen",
-      "notice": "Download-Hinweis",
       "trust": "Windows 10/11, kostenlos, ohne Konto, funktioniert offline",
       "shotAlt": "Die Seite {app:Tool.asset-library.Name} von Tibia Foundry: Kategorien, Sammlungen, ein Raster aus Gegenstands- und Kreatur-Vorschaubildern und die Details des ausgewählten Assets"
     },

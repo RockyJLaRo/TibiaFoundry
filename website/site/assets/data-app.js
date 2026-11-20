@@ -371,13 +371,22 @@
     var x = r && r.data ? BOOSTED[kind].pick(r.data) : null;
     return x && typeof x.name === "string" && x.name.trim() !== "" && BOOSTED[kind].valid(x) ? x : null;
   }
+  // A stale answer (TibiaData failed, the last cached one is handed out) is still today's only while no server save has passed
+  // since it was fetched: the boosted creature and boss change at server save. Without the formula, any stale answer counts as old.
+  function fromEarlierDay(r) {
+    if (!r || !r.stale) return false;
+    var F = window.TFFormulas;
+    if (!F || !F.FORMULAS || typeof r.fetchedAt !== "number") return true;
+    try { return F.FORMULAS.nextServerSave({ now: r.fetchedAt }).at <= Date.now(); } catch (e) { return true; }
+  }
   function boostCard(kind, x, size) {
     return h("a", { class: "boost-card", href: (SITE.paths && SITE.paths.tibiaHash || "") + route(BOOSTED[kind].path(x)) },
       img(x.image_url, "", "boost-img", size), h("span", { class: "boost-kind", text: t(BOOSTED[kind].label) }), h("span", { class: "boost-name", text: x.name }));
   }
 
   // target: the tibia/ hub's box (both cards and the source line, or an error with Retry), or the home page's Today strip, whose
-  // .today-cell[data-boosted] cells are filled one by one; a cell whose answer fails or is empty is hidden, never guessed.
+  // .today-cell[data-boosted] cells are filled one by one; a cell whose answer fails, is empty or is a stale answer from before the
+  // last server save (yesterday's boosted) is hidden, never guessed.
   function renderBoosted(target, signal) {
     var cells = target.querySelectorAll(".today-cell[data-boosted]");
     if (cells.length) {
@@ -386,7 +395,7 @@
         function hide() { cell.hidden = true; cell.removeAttribute("aria-busy"); }
         if (!BOOSTED.hasOwnProperty(kind)) return hide();
         API.get(BOOSTED[kind].endpoint, [], { signal: signal }).then(function (r) {
-          var x = boostedOf(kind, r);
+          var x = fromEarlierDay(r) ? null : boostedOf(kind, r);
           if (!x) return hide();
           cell.textContent = "";
           cell.appendChild(boostCard(kind, x, 48));

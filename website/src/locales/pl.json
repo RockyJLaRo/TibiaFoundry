@@ -934,7 +934,6 @@
       "lead": "Darmowy zestaw narzędzi na komputer, który zamienia zainstalowanego klienta Tibii w sprite'y, GIF-y strojów, mapy, dźwięki i kompletne galerie do wiki.",
       "released": "Wydano",
       "checksums": "Sumy kontrolne SHA-256",
-      "notice": "Informacja o pobieraniu",
       "trust": "Windows 10/11, za darmo, bez konta, działa offline",
       "shotAlt": "Strona {app:Tool.asset-library.Name} w Tibia Foundry: kategorie, kolekcje, siatka miniatur przedmiotów i stworów oraz szczegóły wybranego zasobu"
     },

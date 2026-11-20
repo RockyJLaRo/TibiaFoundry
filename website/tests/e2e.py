@@ -1462,6 +1462,70 @@ def homepage(c, browser, base):
     text = page.locator("main").inner_text()
     c.ok(not re.search(r"\bundefined\b|\bnull\b", text), "TibiaData down: 'undefined' or 'null' in main")
     ctx.close()
+    # Stale answers (review r1, finding 1): TibiaData down, the last cached boosted answers handed out as stale. Cached before the
+    # last server save they are yesterday's -> both cells hidden; cached after it they are still today's -> shown. Clock pinned to
+    # Thursday 2026-11-19 12:00 Berlin (11:00Z); that day's save is 09:00Z.
+    settled = "[...document.querySelectorAll('[data-today-strip] [data-boosted]')].every(c => c.hidden || !c.hasAttribute('aria-busy'))"
+    api = kit.REGISTRY["api"]["base"]
+    now_ms, save_ms = 1795086000000, 1795078800000
+    seeds = {}
+    for ep, path in (("creatures", ("creatures", "boosted")), ("boostablebosses", ("boostable_bosses", "boosted"))):
+        body = json.load(open(os.path.join(kit.FIXTURES, ep + ".json"), encoding="utf-8"))
+        body[path[0]][path[1]]["name"] = "Yesterday " + ep
+        seeds[ep] = body
+    for when, fetched, shown in (("before the save", save_ms - 21 * 3600 * 1000, False), ("after the save", save_ms + 5 * 60 * 1000, True)):
+        ctx, page = new_page(browser, base, 1280, 800, overrides={"": lambda route: route.abort("internetdisconnected")})
+        page.clock.install(time=datetime.datetime.fromtimestamp(now_ms / 1000, tz=datetime.timezone.utc))
+        entries = {"tf-api:" + api + ep: {"t": fetched, "data": body} for ep, body in seeds.items()}
+        page.add_init_script("(() => { const e = " + json.dumps(entries) + "; for (const k in e) sessionStorage.setItem(k, JSON.stringify(e[k])); })()")
+        page.goto(url_of(base, en, "home"))
+        page.wait_for_selector("[data-today-strip] [data-today-rashid]:not(:empty)", timeout=10000)
+        page.wait_for_function(settled, timeout=30000)
+        hidden = page.locator("[data-today-strip] [data-boosted][hidden]").count()
+        names = page.locator("[data-today-strip] .boost-name").all_inner_texts()
+        if shown:
+            c.ok(hidden == 0 and len(names) == 2, f"stale answer cached {when}: both boosted cells shown (still today's): {names}")
+        else:
+            c.ok(hidden == 2 and not names, f"stale answer cached {when}: both boosted cells hidden, not yesterday's {names}")
+            c.ok("Yesterday" not in page.locator("main").inner_text(), f"stale answer cached {when}: yesterday's names in main")
+        c.ok(page.locator("[data-today-strip] [data-today-rashid]").is_visible() and page.locator("[data-today-strip] [data-today-countdown]").is_visible(),
+             f"stale answer cached {when}: Rashid and server save visible")
+        ctx.close()
+    # Empty answers (200, but no boosted entry or an empty name) hide the cells too.
+    empty_c = json.dumps({"creatures": {"boosted": {"name": "", "race": "", "image_url": "", "featured": False}, "creature_list": []}})
+    empty_b = json.dumps({"boostable_bosses": {"boostable_boss_list": []}})
+    ctx, page = new_page(browser, base, 1280, 800, overrides={"creatures": (200, empty_c), "boostablebosses": (200, empty_b)})
+    page.goto(url_of(base, en, "home"))
+    page.wait_for_selector("[data-today-strip] [data-today-rashid]:not(:empty)", timeout=10000)
+    page.wait_for_function(settled, timeout=30000)
+    c.ok(page.locator("[data-today-strip] [data-boosted][hidden]").count() == 2, "empty boosted answers: both cells hidden")
+    c.ok(not re.search(r"\bundefined\b|\bnull\b", page.locator("main").inner_text()), "empty boosted answers: 'undefined' or 'null' in main")
+    ctx.close()
+    # Review r1, finding 2 (Fansite Agreement): a CipSoft disclaimer comes before the hero's download buttons and the full notice
+    # before the download section's buttons, in every language; still exactly one [data-download-notice].
+    ctx, page = new_page(browser, base, 1440, 1000)
+    for lang in kit.LANGUAGES:
+        page.goto(url_of(base, lang, "home"))
+        where = f"{lang['code']}/home"
+        first = page.locator("main section").first
+        disc = first.locator("[data-download-disclaimer]")
+        if not c.ok(disc.count() == 1, f"{where}: hero download disclaimer missing"):
+            continue
+        c.ok("CipSoft" in disc.inner_text(), f"{where}: hero disclaimer does not name CipSoft")
+        c.ok((disc.locator("a").get_attribute("href") or "").endswith("legal/#downloads"), f"{where}: hero disclaimer links to the Legal page's download section")
+        order = page.evaluate("""() => {
+          const before = (a, b) => !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
+          const hero = document.querySelector('main section'), disc = hero.querySelector('[data-download-disclaimer]');
+          const notice = document.querySelector('[data-download-notice]');
+          const heroLinks = [...hero.querySelectorAll('a[data-download-link]')];
+          const rest = [...document.querySelectorAll('main a[data-download-link]')].filter(a => !hero.contains(a));
+          return {hero: heroLinks.length > 0 && heroLinks.every(a => before(disc, a) && disc.getBoundingClientRect().bottom <= a.getBoundingClientRect().top),
+                  rest: rest.length > 0 && rest.every(a => before(notice, a)), notices: document.querySelectorAll('[data-download-notice]').length};
+        }""")
+        c.ok(order["hero"], f"{where}: the disclaimer must come before (and above) every hero download button")
+        c.ok(order["rest"], f"{where}: the download notice must come before the download section's buttons")
+        c.ok(order["notices"] == 1, f"{where}: {order['notices']} download notices (want 1)")
+    ctx.close()
 
 
 def global_search(c, browser, base):

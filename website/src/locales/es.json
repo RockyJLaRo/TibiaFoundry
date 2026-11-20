@@ -934,7 +934,6 @@
       "lead": "Un kit de herramientas de escritorio gratuito que convierte tu cliente de Tibia instalado en sprites, GIF de outfits, mapas, sonidos y galerías completas para la wiki.",
       "released": "Publicada el",
       "checksums": "Sumas de verificación SHA-256",
-      "notice": "Aviso de descarga",
       "trust": "Windows 10/11, gratis, sin cuenta, funciona sin conexión",
       "shotAlt": "La página {app:Tool.asset-library.Name} de Tibia Foundry: categorías, colecciones, una cuadrícula de miniaturas de objetos y criaturas y los detalles del recurso seleccionado"
     },

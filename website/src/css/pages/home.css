@@ -88,6 +88,10 @@ figcaption { color: var(--text-secondary); font-size: .9rem; margin-top: 8px; }
 .home-hero-grid { display: grid; gap: var(--space-6); align-items: center; }
 .home-hero h1 { font-size: clamp(2.05rem, 1.3rem + 3.2vw, 3.5rem); font-weight: 600; line-height: 1.06; letter-spacing: -.01em; margin-bottom: .4em; max-width: 13em; }
 .home-hero .lead { margin-bottom: var(--space-5); max-width: 36rem; }
+/* the download disclaimer right before the hero buttons (Fansite Agreement); the full notice is in the download section */
+.home-disclaimer { display: flex; gap: var(--space-2); align-items: flex-start; max-width: 36rem; margin: 0 0 var(--space-3); font-size: .875rem; color: var(--text-secondary); }
+.home-disclaimer .ic { width: 18px; height: 18px; margin-top: 2px; color: var(--text-secondary); }
+.home-disclaimer a { display: inline-block; padding-block: 12px; margin-block: -12px; }
 .home-downloads { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-4); }
 .home-downloads .btn { flex: 1 1 auto; }
 .home-downloads .btn-primary { flex-basis: 100%; }
