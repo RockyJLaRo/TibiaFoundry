@@ -359,14 +359,47 @@
     }, function () { target.textContent = ""; });
   }
 
+  // Today's boosted creature and boss (creatures and boostablebosses answers). An entry counts only with a non-empty name (and,
+  // for the creature, the race its page is named by); anything else is treated as "TibiaData cannot tell".
+  var BOOSTED = {
+    creature: { endpoint: "creatures", label: "js.boostedCreature", pick: function (d) { return d.creatures && d.creatures.boosted; },
+                path: function (x) { return "creature/" + x.race; }, valid: function (x) { return typeof x.race === "string" && x.race !== ""; } },
+    boss: { endpoint: "boostablebosses", label: "js.boostedBoss", pick: function (d) { return d.boostable_bosses && d.boostable_bosses.boosted; },
+            path: function () { return "bosses"; }, valid: function () { return true; } }
+  };
+  function boostedOf(kind, r) {
+    var x = r && r.data ? BOOSTED[kind].pick(r.data) : null;
+    return x && typeof x.name === "string" && x.name.trim() !== "" && BOOSTED[kind].valid(x) ? x : null;
+  }
+  function boostCard(kind, x, size) {
+    return h("a", { class: "boost-card", href: (SITE.paths && SITE.paths.tibiaHash || "") + route(BOOSTED[kind].path(x)) },
+      img(x.image_url, "", "boost-img", size), h("span", { class: "boost-kind", text: t(BOOSTED[kind].label) }), h("span", { class: "boost-name", text: x.name }));
+  }
+
+  // target: the tibia/ hub's box (both cards and the source line, or an error with Retry), or the home page's Today strip, whose
+  // .today-cell[data-boosted] cells are filled one by one; a cell whose answer fails or is empty is hidden, never guessed.
   function renderBoosted(target, signal) {
+    var cells = target.querySelectorAll(".today-cell[data-boosted]");
+    if (cells.length) {
+      Array.prototype.forEach.call(cells, function (cell) {
+        var kind = cell.getAttribute("data-boosted");
+        function hide() { cell.hidden = true; cell.removeAttribute("aria-busy"); }
+        if (!BOOSTED.hasOwnProperty(kind)) return hide();
+        API.get(BOOSTED[kind].endpoint, [], { signal: signal }).then(function (r) {
+          var x = boostedOf(kind, r);
+          if (!x) return hide();
+          cell.textContent = "";
+          cell.appendChild(boostCard(kind, x, 48));
+          cell.removeAttribute("aria-busy");
+        }, function (e) { if (e.kind !== "aborted") hide(); });
+      });
+      return;
+    }
     Promise.all([API.get("creatures", [], { signal: signal }), API.get("boostablebosses", [], { signal: signal })]).then(function (res) {
-      var c = res[0].data.creatures.boosted, b = res[1].data.boostable_bosses.boosted;
+      var c = boostedOf("creature", res[0]), b = boostedOf("boss", res[1]);
       target.textContent = "";
-      if (c && c.name) target.appendChild(h("a", { class: "boost-card", href: (SITE.paths && SITE.paths.tibiaHash || "") + route("creature/" + c.race) },
-        img(c.image_url, "", "boost-img", 64), h("span", { class: "boost-kind", text: t("js.boostedCreature") }), h("span", { class: "boost-name", text: c.name })));
-      if (b && b.name) target.appendChild(h("a", { class: "boost-card", href: (SITE.paths && SITE.paths.tibiaHash || "") + route("bosses") },
-        img(b.image_url, "", "boost-img", 64), h("span", { class: "boost-kind", text: t("js.boostedBoss") }), h("span", { class: "boost-name", text: b.name })));
+      if (c) target.appendChild(boostCard("creature", c, 64));
+      if (b) target.appendChild(boostCard("boss", b, 64));
       target.appendChild(sourceLine(res[0], "https://www.tibia.com/library/?subtopic=boostablebosses"));
     }, function (e) { if (e.kind !== "aborted") { target.textContent = ""; target.appendChild(errorBox(e, function () { renderBoosted(target, signal); })); } });
   }
@@ -989,7 +1022,7 @@
     load(false);
   }
   document.querySelectorAll("[data-live-news]").forEach(mountNews);
-  document.querySelectorAll("[data-live-boosted]").forEach(function (el) { renderBoosted(el, null); });
+  document.querySelectorAll("[data-live-boosted], [data-today-strip]").forEach(function (el) { renderBoosted(el, null); });
   document.querySelectorAll("[data-live-online]").forEach(function (el) { renderOnline(el, null); });
 
   window.TFApp = { match: match, views: Object.keys(V), table: table };

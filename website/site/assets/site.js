@@ -178,6 +178,7 @@
       root.setAttribute("data-theme", next);
       store(THEME_KEY, next);
       themeLabel();
+      themePictures();
       document.dispatchEvent(new CustomEvent("tf-theme", { detail: next }));
     });
   });
@@ -186,6 +187,16 @@
     if (mq.addEventListener) mq.addEventListener("change", themeLabel);
   }
   themeLabel();
+  // Screenshots as <picture>: the dark <source> answers prefers-color-scheme; a visitor's own choice (data-theme) overrides it, so
+  // the media query is switched to "all" (dark chosen) or "not all" (light chosen) and the browser picks the matching file.
+  function themePictures() {
+    var chosen = root.getAttribute("data-theme");
+    document.querySelectorAll("picture source[data-theme-source=dark]").forEach(function (s) {
+      var media = chosen === "dark" ? "all" : chosen === "light" ? "not all" : "(prefers-color-scheme: dark)";
+      if (s.getAttribute("media") !== media) s.setAttribute("media", media);
+    });
+  }
+  themePictures();
 
   // The header menu and the phone drawer are src/js/nav.js; it closes the language menu through TF.closeLang.
   window.TF.closeLang = closeLang;

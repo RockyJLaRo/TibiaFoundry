@@ -1,115 +1,105 @@
-<section class="hero" aria-labelledby="home-title">
-  <div class="wrap hero-grid">
-    <div>
+<section class="home-hero" aria-labelledby="home-title">
+  <div class="wrap home-hero-grid">
+    <div class="home-hero-text">
       <h1 id="home-title">{{t:home.hero.title}}</h1>
       <p class="lead">{{t:home.hero.lead}}</p>
-      <form class="hero-search" role="search" action="{{LINK:tibia}}" data-search-form="character">
-        <label for="hero-character">{{t:home.searchLabel}}</label>
-        <div class="search-row">
-          <input class="input input-large" id="hero-character" type="search" name="character" placeholder="{{a:home.hero.searchPlaceholder}}" autocomplete="off" spellcheck="false" maxlength="29">
-          <button class="btn btn-primary" type="submit">{{t:nav.searchButton}}</button>
-        </div>
-      </form>
-      <p class="quick"><span>{{t:home.hero.popular}}</span>
-        <a href="{{LINK:tibia}}#/worlds">{{t:js.toolWorlds}}</a>
-        <a href="{{LINK:tibia}}#/highscores/all/experience/all/1">{{t:js.toolHighscores}}</a>
-        <a href="{{LINK:tibia}}#/bosses">{{t:js.toolBosses}}</a>
-        <a href="{{LINK:tibia}}#/news">{{t:js.toolNews}}</a>
-      </p>
-      <p class="quick"><span>{{t:home.hero.creators}}</span> <a href="{{LINK:downloads}}" data-download-link>{{t:home.hero.getApp}}</a></p>
-    </div>
-    <aside class="framed today" aria-labelledby="today-title">
-      <h2 id="today-title">{{t:home.today.title}}</h2>
-      <div class="boosted" data-live-boosted aria-live="polite"></div>
-      <p class="lead-number" data-live-online></p>
-      {{TODAY_SERVER}}
-      <div class="today-links">
-        <a class="btn btn-small" href="{{LINK:tibia}}#/creatures">{{t:js.toolCreatures}}</a>
-        <a class="btn btn-small" href="{{LINK:tibia}}#/bosses">{{t:js.toolBosses}}</a>
+      <div class="home-downloads">
+        <a class="btn btn-primary" href="{{DL:msi:url}}" data-download-link data-track="download" data-place="home-hero-msi"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:home.download.installer}}</a>
+        <a class="btn" href="{{DL:portable:url}}" data-download-link data-track="download" data-place="home-hero-portable">{{t:home.download.portable}}</a>
+        <a class="btn" href="{{DL:source:url}}" data-download-link data-track="download" data-place="home-hero-source">{{t:home.download.source}}</a>
       </div>
-    </aside>
+      <p class="home-release"><span>{{t:home.app.fact.version}}</span><span>{{t:home.hero.released}} {{RELEASE_DATE}}</span><span><a href="{{DL:checksums}}" data-track="releases" data-place="home-hero-checksums">{{t:home.hero.checksums}}</a></span><span><a href="#desktop-app">{{t:home.hero.notice}}</a></span></p>
+      <p class="home-trust"><svg class="ic" aria-hidden="true"><use href="#i-shield-check"/></svg><span>{{t:home.hero.trust}}</span></p>
+    </div>
+    <div class="home-hero-shot">{{HOME_SHOT}}</div>
   </div>
 </section>
 
-<section class="band band-alt" id="tools" aria-labelledby="tools-title">
+<section class="home-today" aria-labelledby="today-title">
   <div class="wrap">
-    <div class="section-head">
-      <div>
-        <h2 id="tools-title">{{t:home.tools.title}}</h2>
-        <p>{{t:home.tools.lead}}</p>
-      </div>
-      <a class="btn btn-small" href="{{LINK:tibia}}">{{t:home.tools.all}}</a>
-    </div>
-    <ul class="dest">
-      <li><a class="dest-card" href="{{LINK:tibia}}#/character"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-user"/></svg></span><span class="dest-title">{{t:home.dest.characters.title}}</span><span class="dest-text">{{t:home.dest.characters.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:tibia}}#/worlds"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-globe"/></svg></span><span class="dest-title">{{t:home.dest.worlds.title}}</span><span class="dest-text">{{t:home.dest.worlds.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:tibia}}#/highscores/all/experience/all/1"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg></span><span class="dest-title">{{t:home.dest.highscores.title}}</span><span class="dest-text">{{t:home.dest.highscores.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:tibia}}#/creatures"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-paw-print"/></svg></span><span class="dest-title">{{t:home.dest.reference.title}}</span><span class="dest-text">{{t:home.dest.reference.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:tibia}}#/houses/Antica/Thais"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-house"/></svg></span><span class="dest-title">{{t:home.dest.houses.title}}</span><span class="dest-text">{{t:home.dest.houses.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:tibia}}#/fansites"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="dest-title">{{t:home.dest.community.title}}</span><span class="dest-text">{{t:home.dest.community.text}}</span></a></li>
-      <li><a class="dest-card" href="{{LINK:calculators}}" data-page-link="calculators"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-calculator"/></svg></span><span class="dest-title">{{t:home.dest.calculators.title}}</span><span class="dest-text">{{t:home.dest.calculators.text}}</span></a></li>
+    <h2 id="today-title">{{t:home.today.title}}</h2>
+    {{TODAY_STRIP}}
+  </div>
+</section>
+
+<section class="home-paths" aria-labelledby="paths-title">
+  <div class="wrap">
+    <h2 id="paths-title" class="sr-only">{{t:home.paths.title}}</h2>
+    <ul class="path-list">
+      <li class="path-card"><svg class="ic path-icon" aria-hidden="true"><use href="#i-monitor"/></svg>
+        <h3><a href="{{LINK:downloads}}">{{t:home.paths.app.title}}</a></h3>
+        <p>{{t:home.paths.app.text}}</p></li>
+      <li class="path-card"><svg class="ic path-icon" aria-hidden="true"><use href="#i-calculator"/></svg>
+        <h3><a href="{{LINK:calculators}}">{{t:home.paths.online.title}}</a></h3>
+        <p>{{t:home.paths.online.text}}</p></li>
+      <li class="path-card"><svg class="ic path-icon" aria-hidden="true"><use href="#i-code-xml"/></svg>
+        <h3><a href="https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="home-paths">{{t:home.paths.fansite.title}}<span class="sr-only"> {{t:js.newTab}}</span></a></h3>
+        <p>{{t:home.paths.fansite.text}}</p></li>
     </ul>
   </div>
 </section>
 
-<section class="band" id="desktop-app" aria-labelledby="app-title">
-  <div class="wrap app-band">
-    <div>
-      <div class="card-head"><span class="icon-tile"><svg class="ic" aria-hidden="true"><use href="#i-monitor"/></svg></span><h2 id="app-title">{{t:home.app.title}}</h2></div>
-      <p class="lead">{{t:hero.lead}}</p>
-      <ul class="app-facts">
-        <li>{{t:home.app.fact.version}}</li>
-        <li>{{t:home.app.fact.os}}</li>
-        <li>{{t:home.app.fact.free}}</li>
-      </ul>
-      <div class="actions">
-        <a class="btn btn-primary" href="{{LINK:downloads}}" data-download-link><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:hero.download}}</a>
-        <a class="btn" href="{{LINK:features}}">{{t:home.features.all}}</a>
-        <a class="btn btn-quiet" href="https://github.com/RockyJLaRo/TibiaFoundry" data-track="repository" data-place="home-app">{{t:home.app.source}}</a>
-      </div>
-{{DOWNLOAD_NOTICE}}
-      <ul class="trust">
-        <li>{{t:hero.trust1}}</li>
-        <li>{{t:hero.trust2}}</li>
-        <li>{{t:hero.trust3}}</li>
-        <li>{{t:hero.trust4}}</li>
-      </ul>
-    </div>
-    <figure>
-      {{SHOT:asset-library:hero.altDark:hero.altLight:hero.zoom}}
-      <figcaption>{{t:hero.zoom}}</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="band band-alt" id="features" aria-labelledby="features-title">
+<section class="band home-features" id="features" aria-labelledby="features-title">
   <div class="wrap">
     <div class="section-head">
       <div>
-        <h2 id="features-title">{{t:features.title}}</h2>
+        <h2 id="features-title">{{t:home.features.title}}</h2>
         <p>{{t:features.lead}}</p>
       </div>
-      <a class="btn btn-small" href="{{LINK:features}}">{{t:home.features.all}}</a>
+      <a class="btn" href="{{LINK:features}}">{{t:home.features.all}}</a>
     </div>
-    <div class="grid grid-3">
-      <article class="card"><h3>{{t:features.library.title}}</h3><p>{{t:features.library.text}}</p><p class="tools-line">{{t:features.library.tools}}</p></article>
-      <article class="card"><h3>{{t:infobox.title}}</h3><p>{{t:home.features.infobox}}</p><p class="tools-line">{{t:infobox.window}}</p></article>
-      <article class="card"><h3>{{t:features.extraction.title}}</h3><p>{{t:features.extraction.text}}</p><p class="tools-line">{{t:features.extraction.tools}}</p></article>
+    <ul class="feature-tiles">
+      <li class="feature-tile"><h3>{{t:features.library.title}}</h3><p>{{t:features.library.text}}</p><p class="tools-line">{{t:features.library.tools}}</p></li>
+      <li class="feature-tile"><h3>{{t:features.extraction.title}}</h3><p>{{t:features.extraction.text}}</p><p class="tools-line">{{t:features.extraction.tools}}</p></li>
+      <li class="feature-tile"><h3>{{t:features.graphics.title}}</h3><p>{{t:features.graphics.text}}</p><p class="tools-line">{{t:features.graphics.tools}}</p></li>
+      <li class="feature-tile"><h3>{{t:features.maps.title}}</h3><p>{{t:features.maps.text}}</p><p class="tools-line">{{t:features.maps.tools}}</p></li>
+      <li class="feature-tile"><h3>{{t:features.workflows.title}}</h3><p>{{t:features.workflows.text}}</p><p class="tools-line">{{t:features.workflows.tools}}</p></li>
+      <li class="feature-tile"><h3>{{t:features.publishing.title}}</h3><p>{{t:features.publishing.text}}</p><p class="tools-line">{{t:features.publishing.tools}}</p></li>
+    </ul>
+    <h3 class="showcase-title">{{t:home.showcase.title}}</h3>
+    <div class="showcase" data-showcase>
+{{HOME_SHOWCASE}}
     </div>
   </div>
 </section>
 
-<section class="band" id="news" aria-labelledby="news-title" data-live-news>
+<section class="band home-online" id="online-tools" aria-labelledby="online-title">
   <div class="wrap">
-    <div class="ornament" aria-hidden="true"></div>
+    <div class="section-head">
+      <div>
+        <h2 id="online-title">{{t:home.online.title}}</h2>
+        <p>{{t:home.online.lead}}</p>
+      </div>
+    </div>
+    <div class="online-grid">
+      <div class="online-block">
+        <h3>{{t:nav.calculators}}</h3>
+        <ul class="tool-links">
+{{HOME_CALCS}}
+        </ul>
+        <a class="btn" href="{{LINK:calculators}}">{{t:home.online.allCalcs}}</a>
+      </div>
+      <div class="online-block">
+        <h3>{{t:nav.group.communityData}}</h3>
+        <ul class="chip-links">
+{{HOME_COMMUNITY}}
+        </ul>
+        <a class="btn" href="{{LINK:tibia}}">{{t:home.tools.all}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band home-news" id="news" aria-labelledby="news-title" data-live-news>
+  <div class="wrap">
     <div class="section-head">
       <div>
         <h2 id="news-title">{{t:home.news.title}}</h2>
         <p>{{t:home.news.lead}}</p>
       </div>
       <div class="news-toolbar">
-        <button type="button" class="btn btn-small" data-news-refresh><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>{{t:home.news.refresh}}</button>
-        <a class="btn btn-small" href="{{LINK:tibia}}#/news/archive/90">{{t:home.news.archive}}</a>
+        <button type="button" class="btn" data-news-refresh><svg class="ic" aria-hidden="true"><use href="#i-refresh-cw"/></svg>{{t:home.news.refresh}}</button>
+        <a class="btn" href="{{LINK:tibia}}#/news/archive/90">{{t:home.news.archive}}</a>
       </div>
     </div>
     <div data-news-list aria-live="polite"><noscript><p class="notice">{{t:home.news.noscript}}</p></noscript></div>
@@ -117,15 +107,38 @@
   </div>
 </section>
 
-<section class="band band-alt" id="creator" aria-labelledby="creator-title">
-  <div class="wrap creator">
-    <div>
-      <h2 id="creator-title">{{t:home.creator.title}}</h2>
-      <p class="creator-role">Rocky LaRochelle – {{t:about.role}}</p>
-      <p class="creator-place">{{t:about.location}}</p>
-      <p>{{t:home.creator.text}}</p>
-      <div class="actions"><a class="btn" href="{{LINK:about}}">{{t:home.creator.more}}</a><a class="btn" href="{{LINK:contact}}">{{t:nav.contact}}</a></div>
+<section class="band home-builders" aria-labelledby="builders-title">
+  <div class="wrap">
+    <div class="builders-card">
+      <div>
+        <h2 id="builders-title">{{t:home.builders.title}}</h2>
+        <p>{{t:home.builders.text}}</p>
+      </div>
+      <a class="btn" href="https://github.com/RockyJLaRo/TibiaFoundry" target="_blank" rel="noopener noreferrer" data-track="repository" data-place="home-builders"><svg class="ic" aria-hidden="true"><use href="#i-code-xml"/></svg>{{t:nav.sourceOnGitHub}}<span class="sr-only"> {{t:js.newTab}}</span></a>
     </div>
-    {{PROFILES}}
+  </div>
+</section>
+
+<section class="band home-download" id="desktop-app" aria-labelledby="download-title">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2 id="download-title">{{t:download.title}}</h2>
+        <p>{{t:download.lead}}</p>
+      </div>
+      <a class="btn" href="{{LINK:downloads}}">{{t:home.download.more}}</a>
+    </div>
+{{DOWNLOAD_NOTICE}}
+    <ul class="download-row">
+      <li class="download-item"><h3>{{t:download.installer.title}}</h3><p>{{t:download.installer.tagline}}</p>
+        <a class="btn btn-primary" href="{{DL:msi:url}}" data-download-link data-track="download" data-place="home-msi"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.msi.button}}</a>
+        <p class="file"><span>{{DL:msi:file}}</span><span class="size">{{DL:msi:size}}</span></p></li>
+      <li class="download-item"><h3>{{t:download.portable.title}}</h3><p>{{t:download.portable.tagline}}</p>
+        <a class="btn" href="{{DL:portable:url}}" data-download-link data-track="download" data-place="home-portable"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.portable.button}}</a>
+        <p class="file"><span>{{DL:portable:file}}</span><span class="size">{{DL:portable:size}}</span></p></li>
+      <li class="download-item"><h3>{{t:download.source.title}}</h3><p>{{t:download.source.tagline}}</p>
+        <a class="btn" href="{{DL:source:url}}" data-download-link data-track="download" data-place="home-source"><svg class="ic" aria-hidden="true"><use href="#i-download"/></svg>{{t:download.source.button}}</a>
+        <p class="file"><span>{{DL:source:file}}</span><span class="size">{{DL:source:size}}</span></p></li>
+    </ul>
   </div>
 </section>

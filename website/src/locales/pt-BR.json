@@ -57,7 +57,6 @@
       "publishing.th.extras",
       "studio.kicker",
       "studio.step2.title",
-      "home.dest.highscores.title",
       "calc.how.kind.wiki",
       "calc.unit.hoursMinutes",
       "calc.blessings.title",
@@ -128,15 +127,7 @@
     }
   },
   "hero": {
-    "lead": "O Tibia Foundry lê os arquivos oficiais do cliente do Tibia instalado no seu computador e os transforma em sprites, GIFs animados de outfits e criaturas, imagens de itens, mapas, sons e dados – depois guarda tudo em uma biblioteca pesquisável e publica galerias completas para o TibiaWiki ou qualquer site da comunidade.",
-    "download": "Baixar o Tibia Foundry {version}",
-    "trust1": "Grátis, sem cadastro",
-    "trust2": "Funciona offline – nada é enviado",
-    "trust3": "Nunca altera o seu cliente do Tibia",
-    "trust4": "Seu nome creditado em cada imagem",
-    "zoom": "A {app:Tool.asset-library.Name}: assets reais do cliente, miniaturas, coleções e detalhes",
-    "altDark": "A página {app:Tool.asset-library.Name} no tema escuro: categorias, coleções, uma grade de miniaturas de itens e criaturas e os detalhes do asset selecionado",
-    "altLight": "A página {app:Tool.asset-library.Name} no tema claro"
+    "download": "Baixar o Tibia Foundry {version}"
   },
   "audience": {
     "title": "Feito para quem mantém a comunidade de Tibia informada",
@@ -930,7 +921,6 @@
     "lucide": "{link} – o conjunto de ícones de código aberto (licença ISC) usado nos ícones da interface deste site."
   },
   "home": {
-    "searchLabel": "Consulte um personagem do Tibia",
     "news": {
       "title": "Tibia News & Updates",
       "lead": "As últimas notícias do Tibia.com, atualizadas automaticamente.",
@@ -939,26 +929,20 @@
       "noscript": "Ative o JavaScript para ver aqui as últimas notícias do Tibia, ou leia-as no Tibia.com."
     },
     "tools": {
-      "title": "Encontre o que você procura",
-      "lead": "Todas as ferramentas funcionam no navegador com dados ao vivo do Tibia.com via TibiaData – sem download e sem conta.",
       "all": "Todas as ferramentas"
     },
     "features": {
       "all": "Todos os recursos",
-      "infobox": "Escolha qualquer objeto e receba o <code class=\"code\">&#123;&#123;Infobox Object&#125;&#125;</code> do TibiaWiki preenchido a partir do cliente oficial, cada valor com sua origem."
-    },
-    "creator": {
-      "title": "Feito por um editor do TibiaWiki",
-      "text": "Rocky criou o Tibia Foundry para dar à comunidade do Tibia softwares, ferramentas e recursos úteis, principalmente para quem escreve o TibiaWiki e outros sites de Tibia.",
-      "more": "Sobre o criador"
+      "title": "O que o programa para PC faz"
     },
     "hero": {
-      "title": "Ferramentas de Tibia, dados ao vivo do jogo e um kit para criadores de fansites",
-      "lead": "Consulte personagens, mundos, highscores, casas e bosses com dados ao vivo – grátis, direto no navegador. Tem um fansite ou edita a TibiaWiki? O programa gratuito para Windows transforma o seu próprio cliente do Tibia em imagens e dados prontos para a wiki.",
-      "searchPlaceholder": "Nome do personagem, ex.: Roc ky",
-      "popular": "Mais usados:",
-      "creators": "Para criadores de fansites:",
-      "getApp": "Baixe o programa {version}"
+      "title": "Tudo o que você precisa para criar conteúdo sobre o Tibia.",
+      "lead": "Um kit de ferramentas gratuito para PC que transforma o seu cliente do Tibia instalado em sprites, GIFs de outfits, mapas, sons e galerias completas para a wiki.",
+      "released": "Lançada em",
+      "checksums": "Somas de verificação SHA-256",
+      "notice": "Aviso sobre o download",
+      "trust": "Windows 10/11, grátis, sem cadastro, funciona offline",
+      "shotAlt": "A página {app:Tool.asset-library.Name} do Tibia Foundry: categorias, coleções, uma grade de miniaturas de itens e criaturas e os detalhes do recurso selecionado"
     },
     "today": {
       "title": "Hoje no Tibia",
@@ -972,44 +956,48 @@
         "rashid": "A cidade do Rashid depende do dia da semana, e o dia do Tibia começa no server save (10:00 de Berlim), não à meia-noite: até as 10:00 ele ainda está onde estava no dia anterior. Segunda Svargrond, terça Liberty Bay, quarta Port Hope, quinta Ankrahmun, sexta Darashia, sábado Edron, domingo Carlin. Exemplo: no domingo às 09:59 de Berlim ele ainda está em Edron; às 10:00 ele está em Carlin."
       }
     },
-    "dest": {
-      "characters": {
-        "title": "Personagens e guildas",
-        "text": "Level, vocação, mortes, conquistas e membros da guilda de qualquer tibiano."
-      },
-      "worlds": {
-        "title": "Mundos",
-        "text": "Quem está online, tipo de PvP, localização e recorde de jogadores de cada mundo."
-      },
-      "highscores": {
-        "title": "Highscores",
-        "text": "Experiência, skills, conquistas e mais – por mundo e vocação."
-      },
-      "reference": {
-        "title": "Criaturas, bosses e magias",
-        "text": "A criatura e o boss em destaque de hoje, além da biblioteca de criaturas e magias."
-      },
-      "houses": {
-        "title": "Casas",
-        "text": "Casas e guildhalls de cada cidade: tamanho, aluguel, dono e leilões."
-      },
-      "community": {
-        "title": "Notícias e fansites",
-        "text": "Notícias oficiais do Tibia, o news ticker, o arquivo e a lista oficial de fansites."
-      },
-      "calculators": {
-        "title": "Calculadoras",
-        "text": "Experiência e nível, stamina, preços de blessings e stats do personagem – com fórmulas e fontes."
+    "app": {
+      "fact": {
+        "version": "Versão {version}"
       }
     },
-    "app": {
-      "title": "O programa para criadores de fansites",
-      "fact": {
-        "version": "Versão {version}",
-        "os": "Windows 10 e 11",
-        "free": "Gratuito e de código aberto"
+    "download": {
+      "installer": "Baixar instalador {version}",
+      "portable": "Portátil",
+      "source": "Código-fonte",
+      "more": "Todos os detalhes do download"
+    },
+    "paths": {
+      "title": "Escolha o seu caminho",
+      "app": {
+        "title": "Baixe o programa para PC",
+        "text": "Instalador, edição portátil e código-fonte da versão {version} – grátis para Windows 10 e 11."
       },
-      "source": "Código-fonte no GitHub"
+      "online": {
+        "title": "Use as ferramentas online",
+        "text": "Calculadoras com fontes, além de personagens, mundos, highscores e mais com dados ao vivo – direto no navegador."
+      },
+      "fansite": {
+        "title": "Crie o seu fansite",
+        "text": "Código aberto no GitHub desde já; em breve, o código de cada ferramenta sob a licença MIT."
+      }
+    },
+    "showcase": {
+      "title": "Capturas de tela reais da versão {version}",
+      "alt": "Página {page} do Tibia Foundry",
+      "asset-library": "Todos os recursos do cliente, pesquisáveis, com coleções e tags.",
+      "extract-sprites": "Todas as folhas de sprites, salvas como PNGs transparentes.",
+      "map-tools": "Áreas, NPCs, mapas em alta resolução e blocos do minimapa.",
+      "content-studio": "Galerias renderizadas, dimensionadas e nomeadas para o seu site."
+    },
+    "online": {
+      "title": "Ferramentas online grátis",
+      "lead": "Calculadoras com fórmulas e fontes, e dados da comunidade ao vivo do Tibia.com via TibiaData – sem download e sem cadastro.",
+      "allCalcs": "Todas as calculadoras"
+    },
+    "builders": {
+      "title": "Para criadores de fansites",
+      "text": "Em breve: o código por trás de cada ferramenta deste site, livre para usar no seu próprio fansite sob a licença MIT. O código-fonte completo já está no GitHub."
     }
   },
   "new905": {

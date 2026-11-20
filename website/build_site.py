@@ -624,9 +624,35 @@ def today_server_html(tr):
             f'        <p class="today-row"><span class="today-label">{tr.text("home.today.save")}</span> <strong class="today-value" data-today-countdown></strong>'
             f' <span class="today-sub" data-today-clock></span></p>\n'
             f'        <p class="today-note">{tr.text("home.today.maintenance")}</p>\n'
-            f'        <details class="how today-how"><summary><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>{tr.text("calc.how.title")}</summary>\n'
-            f'        <div class="how-body">{calc_how_html(tr, "nextServerSave")}{calc_how_html(tr, "rashid")}</div></details>\n'
+            f'        {today_how_html(tr)}\n'
             f'      </div>')
+
+
+def today_how_html(tr):
+    """"How this is calculated" for the server save and Rashid (rules and sources from src/formulas.json)."""
+    return (f'<details class="how today-how"><summary><svg class="ic" aria-hidden="true"><use href="#i-info"/></svg>{tr.text("calc.how.title")}</summary>\n'
+            f'        <div class="how-body">{calc_how_html(tr, "nextServerSave")}{calc_how_html(tr, "rashid")}</div></details>')
+
+
+def today_strip_html(tr):
+    """{{TODAY_STRIP}} (home page): four cells. Boosted creature and boss (src/js/data-app.js renderBoosted) start as skeletons and
+    are hidden when TibiaData cannot tell; Rashid and the server save come from src/js/today.js (the [data-today-server] root).
+    No live region: the countdown ticks, and the boosted cells only appear or disappear."""
+    def boosted(kind, label):
+        return (f'          <li class="today-cell today-cell-live" data-boosted="{kind}" aria-busy="true">'
+                f'<span class="today-kind">{tr.text(label)}</span>'
+                f'<span class="today-skeleton" aria-hidden="true"><span></span><span></span></span></li>\n')
+    return ('<div class="today-strip" data-today-server data-today-strip>\n'
+            '        <ul class="today-cells">\n'
+            + boosted("creature", "js.boostedCreature") + boosted("boss", "js.boostedBoss")
+            + f'          <li class="today-cell"><span class="today-label">{tr.text("home.today.rashid")}</span> '
+            f'<strong class="today-value" data-today-rashid></strong></li>\n'
+            f'          <li class="today-cell"><span class="today-label">{tr.text("home.today.save")}</span> '
+            f'<strong class="today-value" data-today-countdown></strong> <span class="today-sub" data-today-clock></span></li>\n'
+            '        </ul>\n'
+            f'        <div class="today-foot"><p class="today-note">{tr.text("home.today.maintenance")}</p>\n'
+            f'        {today_how_html(tr)}</div>\n'
+            '      </div>')
 
 
 def calc_cards_html(tr, link_to):
@@ -790,6 +816,54 @@ def menu_html(tr, link_to, page):
     return "\n".join(nav), "\n".join(drawer), "\n".join(footer), "\n".join(footer_links)
 
 
+# ============================================================================ home page (app hero, showcase, tool shortcuts)
+HOME_SHOWCASE = ("asset-library", "extract-sprites", "map-tools", "content-studio")   # screens of SCREENS, in this order
+# The community shortcuts: these routes of the registry.menu "community" group, in the menu's order.
+HOME_COMMUNITY = ("character", "guilds", "worlds", "highscores/all/experience/all/1", "bosses", "killstatistics")
+
+
+def picture_html(img, sid, alt, eager=False):
+    """A screenshot as <picture>: the dark variant for prefers-color-scheme: dark, else the light one. src/js/site.js points the
+    dark <source> at the visitor's own choice (data-theme) when there is one. Only the hero loads eagerly."""
+    w, h = SCREEN_SIZE
+    load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<picture data-theme-picture><source srcset="{img(sid + "-dark")}" media="(prefers-color-scheme: dark)" data-theme-source="dark" '
+            f'width="{w}" height="{h}"><img src="{img(sid + "-light")}" alt="{alt}" width="{w}" height="{h}" {load} decoding="async"></picture>')
+
+
+def home_showcase_html(tr, img):
+    """{{HOME_SHOWCASE}}: four screenshots of the visitor's language with the program's own name of the page and a short caption."""
+    names = {sid: keys for sid, keys, _ in SCREENS}
+    out = []
+    for sid in HOME_SHOWCASE:
+        name = " → ".join(tr.app(k) for k in names[sid])
+        out.append(f'      <figure class="showcase-item">\n        <div class="showcase-frame">'
+                   f'{picture_html(img, sid, tr.attr("home.showcase.alt", page=name))}</div>\n'
+                   f'        <figcaption><strong>{htmllib.escape(name, quote=False)}</strong> {tr.text("home.showcase." + sid)}</figcaption>\n'
+                   f'      </figure>')
+    return "\n".join(out)
+
+
+def home_tools_html(tr, link_to):
+    """{{HOME_CALCS}} (the calculator pages of the registry.menu "tools" group) and {{HOME_COMMUNITY}} (HOME_COMMUNITY's routes of
+    the "community" group): plain links, so they work without JavaScript; labels and icons are the menu's."""
+    groups = {e["id"]: e["items"] for e in MENU if "items" in e}
+    calc_ids = {p["id"]: p for p in CALC_PAGES}
+    calcs = [calc_ids[i["page"]] for i in groups.get("tools", []) if i.get("page") in calc_ids and not i.get("hash")]
+    community = [i for i in groups.get("community", []) if i.get("route") in HOME_COMMUNITY]
+    if len(community) != len(HOME_COMMUNITY):
+        sys.exit("HOME_COMMUNITY: every route must be an item of the registry.menu \"community\" group.")
+    tibia = link_to("tibia")
+    calc_html = "\n".join(
+        f'        <li><a class="tool-link" href="{link_to(p["id"])}"><span class="icon-tile icon-tile-sm"><svg class="ic" aria-hidden="true">'
+        f'<use href="#i-{p["icon"]}"/></svg></span><span class="tool-link-text"><span class="tool-link-title">{tr.text(p["nav"])}</span>'
+        f'<span class="tool-link-sub">{tr.text(p["nav"].rsplit(".", 1)[0] + ".card")}</span></span></a></li>' for p in calcs)
+    comm_html = "\n".join(
+        f'        <li><a class="chip-link" href="{tibia}#/' + "/".join(urllib.parse.quote(s, safe="") for s in resolve_route(i["route"]).split("/"))
+        + f'"><svg class="ic" aria-hidden="true"><use href="#i-{i["icon"]}"/></svg><span>{tr.text(i["label"])}</span></a></li>' for i in community)
+    return calc_html, comm_html
+
+
 def page_title(tr, page):
     return tr.text("meta.title") if page["id"] == "home" else tr.text(f"pages.{page['id']}.title") + " – Tibia Foundry"
 
@@ -912,6 +986,13 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
         sys.exit(f"[{code}/{page['id']}] {{{{CALC_HOW:...}}}} must explain exactly the page's formulas {page.get('calc', [])} (template has {shown}).")
     page_html = re.sub(r"\{\{CALC_HOW:([\w-]+)\}\}", lambda m: calc_how_html(tr, m.group(1)), page_html)
     page_html = page_html.replace("{{TODAY_SERVER}}", today_server_html(tr))
+    if "{{TODAY_STRIP}}" in page_html:
+        page_html = page_html.replace("{{TODAY_STRIP}}", today_strip_html(tr))
+    if "{{HOME_SHOWCASE}}" in page_html:
+        calcs, community = home_tools_html(tr, link_to)
+        page_html = (page_html.replace("{{HOME_SHOT}}", picture_html(img, "asset-library", tr.attr("home.hero.shotAlt"), eager=True))
+                     .replace("{{HOME_SHOWCASE}}", home_showcase_html(tr, img))
+                     .replace("{{HOME_CALCS}}", calcs).replace("{{HOME_COMMUNITY}}", community))
     page_html = re.sub(r"\{\{SHOT:([\w.:-]+)\}\}", lambda m: shot_html(tr, img, m.group(1)), page_html)
     page_html = re.sub(r"\{\{DL:(\w+)(?::(\w+))?\}\}", dl_sub, page_html)
     page_html = re.sub(r"\{\{t:([\w.-]+)\}\}", lambda m: tr.text(m.group(1)), page_html)

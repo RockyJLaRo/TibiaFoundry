@@ -1,24 +1,19 @@
-/* Home page and the blocks that live on it: hero, destinations, app band, notices, screenshots, news. Layer: pages. */
+/* The app-first home page (hero, Today strip, paths, features and showcase, tool shortcuts, builders teaser, downloads) and
+   blocks shared with other pages: hero grid, destinations, notices, screenshots, news. Layer: pages.
+   Gilded Inlay: gold only as 1 px inlay lines, card left edges, focus and the primary button. */
 
-/* ------------------------------------------------------------------ home */
-.hero { padding-block: 28px 32px; }
+/* ------------------------------------------------------------------ shared: actions, trust list, hero grid (About, Features) */
 .hero-grid { display: grid; gap: 24px; }
-.hero h1 { margin-bottom: .35em; max-width: 18em; }
-.hero .lead { margin-bottom: 1.25em; }
-.hero-search { margin: 0 0 12px; }
-.hero-search label { display: block; font-weight: 700; margin-bottom: 8px; }
-.quick { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; margin: 0 0 18px; font-size: .925rem; color: var(--text-secondary); }
-.quick a { white-space: nowrap; }
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 1.2em; }
 .actions .btn { flex: 1 1 auto; }
 .trust { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--text-secondary); font-size: .9rem; }
 .trust li { position: relative; padding-left: 1.35em; }
 .trust li::before { content: ""; position: absolute; left: .15em; top: .5em; width: .7em; height: .38em; border-left: 2px solid var(--status-success); border-bottom: 2px solid var(--status-success); transform: rotate(-45deg); }
+@media (min-width: 640px) { .actions .btn { flex: 0 0 auto; } }
+@media (min-width: 1024px) { .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: 48px; } }
+
+/* "Today in Tibia" panel of the calculators hub (build_site.today_server_html) */
 .today h2 { font-size: 1.3rem; margin: 2px 0 10px 18px; }
-.today .boosted { grid-template-columns: 1fr; gap: 0; }
-.today .boost-card { border: 0; border-top: 1px solid var(--border-subtle); border-radius: 0; background: transparent; padding: 10px 2px; grid-template-columns: 56px 1fr; }
-.today .boost-img { width: 56px; height: 56px; }
-.today .lead-number { border-top: 1px solid var(--border-subtle); padding-top: 10px; margin: 0; font-size: 1rem; }
 .today-server { border-top: 1px solid var(--border-subtle); margin-top: 10px; padding-top: 10px; }
 .today-row { margin: 0 0 6px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; font-size: 1rem; }
 .today-label { color: var(--text-secondary); }
@@ -27,12 +22,6 @@
 .today-note { margin: 0 0 8px; color: var(--text-secondary); font-size: .875rem; }
 .today-how .how-body { padding-inline: 12px; }
 .calc-today { margin-top: 20px; max-width: 34rem; }
-.today-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-@media (min-width: 640px) { .actions .btn { flex: 0 0 auto; } }
-@media (min-width: 1024px) {
-  .hero { padding-block: 52px 56px; }
-  .hero-grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: center; gap: 48px; }
-}
 
 /* destinations: task cards with an icon tile */
 .dest { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); }
@@ -43,11 +32,6 @@
 .dest-title { font: 700 1.1rem/1.25 var(--font-display); color: var(--accent-primary); }
 .dest-text { font-size: .925rem; color: var(--text-secondary); }
 .dest-card:hover .dest-title { text-decoration: underline; }
-
-/* the desktop app band */
-.app-band { display: grid; gap: 24px; }
-.app-facts { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .9rem; color: var(--text-secondary); margin: 0 0 14px; padding: 0; list-style: none; }
-@media (min-width: 1024px) { .app-band { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: center; gap: 48px; } }
 
 /* notices: the download notice is a framed parchment note with a shield */
 .dl-notice { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; padding: 14px 16px; margin: 0 0 16px;
@@ -98,3 +82,131 @@ figcaption { color: var(--text-secondary); font-size: .9rem; margin-top: 8px; }
 .news-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .source-line { font-size: .85rem; color: var(--text-secondary); margin: 12px 0 0; }
 .source-line .stale { color: var(--accent-primary); }
+
+/* ------------------------------------------------------------------ home: app hero */
+.home-hero { padding-block: var(--space-6); border-bottom: 1px solid var(--inlay); }
+.home-hero-grid { display: grid; gap: var(--space-6); align-items: center; }
+.home-hero h1 { font-size: clamp(2.05rem, 1.3rem + 3.2vw, 3.5rem); font-weight: 600; line-height: 1.06; letter-spacing: -.01em; margin-bottom: .4em; max-width: 13em; }
+.home-hero .lead { margin-bottom: var(--space-5); max-width: 36rem; }
+.home-downloads { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); margin-bottom: var(--space-4); }
+.home-downloads .btn { flex: 1 1 auto; }
+.home-downloads .btn-primary { flex-basis: 100%; }
+.home-release { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 1.25em; margin: 0 0 var(--space-3); font-size: .9rem; color: var(--text-secondary); }
+/* inline links in the release line: a 44 px tall hit area without changing the line height */
+.home-release a { display: inline-block; padding-block: 12px; margin-block: -12px; }
+.home-trust { display: flex; gap: var(--space-2); align-items: center; margin: 0; font-size: .9rem; color: var(--text-secondary); }
+.home-trust .ic { width: 18px; height: 18px; color: var(--status-success); }
+/* the screenshot in a thin gold frame with a second inlay line around it */
+.home-hero-shot { min-width: 0; padding: 5px; border: 1px solid var(--inlay); border-radius: var(--radius-medium); background: var(--bg-surface);
+  outline: 1px solid var(--inlay); outline-offset: 4px; box-shadow: var(--shadow); }
+.home-hero-shot img { display: block; width: 100%; height: auto; border-radius: var(--radius-small); }
+@media (min-width: 640px) { .home-downloads .btn, .home-downloads .btn-primary { flex: 0 0 auto; } }
+@media (min-width: 1024px) {
+  .home-hero { padding-block: var(--space-8) var(--space-7); }
+  .home-hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: var(--space-7); }
+}
+
+/* ------------------------------------------------------------------ home: Today in Tibia strip (build_site.today_strip_html) */
+.home-today { padding-block: var(--space-5); border-bottom: 1px solid var(--inlay); }
+.home-today h2 { font-size: 1.1rem; font-weight: 600; letter-spacing: .02em; color: var(--text-secondary); margin: 0 0 var(--space-3); }
+.no-js .home-today { display: none; }   /* every value of the strip is calculated or loaded in the browser */
+/* 1 px gold lines between the cells: the inlay background of the list shows through the gaps */
+.today-cells { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 1px; background: var(--inlay); border: 1px solid var(--inlay); border-radius: var(--radius-small); }
+.today-cell { flex: 1 1 calc(50% - 1px); min-width: 0; min-height: 80px; display: flex; flex-direction: column; justify-content: center; gap: 2px;
+  padding: var(--space-3) var(--space-4); background: var(--bg-surface); }
+.today-cell .today-label, .today-cell .today-kind { font-size: .875rem; color: var(--text-secondary); }
+.today-cell .today-value { font: 600 1.3rem/1.2 var(--font-display); color: var(--text-primary); }
+.today-cell .today-sub { font-size: .85rem; }
+.today-cell-live:not([aria-busy]) { padding: 0; }
+.today-cell .boost-card { flex: 1; min-height: 80px; grid-template-columns: 48px minmax(0, 1fr); column-gap: var(--space-3); padding: var(--space-3) var(--space-4);
+  border: 0; border-radius: 0; background: transparent; color: var(--text-primary); }
+.today-cell .boost-card:focus-visible { outline-offset: -3px; }
+.today-cell a.boost-card:hover { background: var(--bg-elevated); }
+.today-cell .boost-img { width: 48px; height: 48px; }
+.today-cell .boost-kind { font-size: .875rem; font-weight: 400; color: var(--text-secondary); }
+.today-cell .boost-name { font: 600 1.3rem/1.2 var(--font-display); color: var(--text-primary); overflow-wrap: break-word; }
+/* phones (two cells a row): the picture above the texts, so a name keeps its words whole */
+@media (max-width: 639px) {
+  .today-cell .boost-card { grid-template-columns: minmax(0, 1fr); row-gap: 2px; align-content: center; }
+  .today-cell .boost-img { grid-row: auto; width: 40px; height: 40px; }
+  .today-cell .boost-name, .today-cell .today-value { font-size: 1.15rem; }
+}
+.today-skeleton { display: grid; gap: 6px; padding-top: 4px; }
+.today-skeleton span { display: block; height: 14px; width: 70%; border-radius: var(--radius-small);
+  background: linear-gradient(90deg, var(--bg-elevated), var(--border-subtle), var(--bg-elevated)); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
+.today-skeleton span + span { width: 45%; }
+.today-foot { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-2) var(--space-4); margin-top: var(--space-3); }
+.today-foot .today-note { margin: 0; padding-top: 11px; }
+.today-foot .today-how { flex: 0 1 34rem; min-width: min(100%, 16rem); }
+@media (min-width: 900px) { .today-cell { flex-basis: 0; } }
+
+/* ------------------------------------------------------------------ home: three paths */
+.home-paths { padding-block: var(--space-6); }
+.path-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+.path-card { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: var(--space-3); align-content: start;
+  padding: var(--space-4) var(--space-5) var(--space-4) var(--space-4); background: var(--bg-surface); border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--accent-primary); border-radius: var(--radius-small); transition: background-color .12s; }
+.path-icon { grid-row: span 2; width: 24px; height: 24px; margin-top: 2px; color: var(--text-secondary); }
+.path-card h3 { margin: 0 0 4px; font-size: 1.3rem; font-weight: 600; }
+.path-card h3 a { color: var(--text-primary); text-decoration: none; }
+.path-card h3 a::before { content: ""; position: absolute; inset: 0; }   /* the whole card is the hit area of its link */
+.path-card h3 a:focus-visible { outline: none; }
+.path-card:focus-within { outline: 3px solid var(--accent-primary); outline-offset: 2px; }
+.path-card:hover { background: var(--bg-elevated); }
+.path-card:hover h3 a { text-decoration: underline; }
+.path-card p { margin: 0; color: var(--text-secondary); font-size: .95rem; }
+@media (min-width: 900px) { .path-list { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* ------------------------------------------------------------------ home: sections below the paths, divided by inlay lines */
+.home-features, .home-online, .home-news, .home-builders, .home-download { border-top: 1px solid var(--inlay); }
+@media (min-width: 1024px) { .home-features, .home-online, .home-news, .home-builders, .home-download { padding-block: var(--space-7); } }
+.section-head .btn { flex: none; }
+
+/* features in six tiles and the four-screen showcase */
+.feature-tiles { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); }
+.feature-tile { padding: var(--space-4) var(--space-5); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-small); }
+.feature-tile h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .3em; }
+.feature-tile p { margin: 0; color: var(--text-secondary); font-size: .95rem; }
+.feature-tile .tools-line { margin-top: var(--space-2); font-size: .85rem; }
+.showcase-title { font-size: 1.3rem; font-weight: 600; margin: 0 0 var(--space-3); }
+.showcase { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); }
+.showcase-item { margin: 0; min-width: 0; }
+.showcase-frame { padding: 4px; border: 1px solid var(--inlay); border-radius: var(--radius-small); background: var(--bg-surface); }
+.showcase-frame img { display: block; width: 100%; height: auto; }
+.showcase-item figcaption { margin-top: var(--space-2); font-size: .9rem; color: var(--text-secondary); }
+.showcase-item figcaption strong { display: block; color: var(--text-primary); font-weight: 600; }
+
+/* calculators (registry.menu) and community shortcuts */
+.online-grid { display: grid; gap: var(--space-6); }
+.online-block { min-width: 0; }
+.online-block h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: var(--space-3); }
+.tool-links, .chip-links { list-style: none; margin: 0 0 var(--space-4); padding: 0; display: grid; gap: var(--space-2); }
+.chip-links { grid-template-columns: repeat(auto-fill, minmax(min(100%, 11rem), 1fr)); }
+.tool-link { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-3); align-items: center; min-height: 44px; padding: var(--space-3) var(--space-4);
+  background: var(--bg-surface); border: 1px solid var(--border-subtle); border-left: 2px solid var(--accent-primary); border-radius: var(--radius-small);
+  color: var(--text-primary); text-decoration: none; }
+.tool-link-title { display: block; font-weight: 600; }
+.tool-link-sub { display: block; font-size: .875rem; color: var(--text-secondary); }
+.chip-link { display: flex; align-items: center; gap: var(--space-2); min-height: 48px; padding: 0 var(--space-4); background: var(--bg-surface);
+  border: 1px solid var(--border-subtle); border-radius: var(--radius-small); color: var(--text-primary); text-decoration: none; font-weight: 600; }
+.chip-link .ic { color: var(--text-secondary); }
+.tool-link:hover, .chip-link:hover { background: var(--bg-elevated); border-color: var(--border-strong); }
+.tool-link:hover { border-left-color: var(--accent-primary); }
+.tool-link:hover .tool-link-title, .chip-link:hover span { text-decoration: underline; }
+@media (min-width: 1024px) { .online-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-7); } }
+
+/* "For Fansite Builders" teaser: no download button, GitHub only */
+.builders-card { display: grid; gap: var(--space-4); align-items: center; padding: var(--space-5); background: var(--bg-surface); border: 1px solid var(--border-subtle);
+  border-left: 2px solid var(--accent-primary); border-radius: var(--radius-small); }
+.builders-card h2 { margin-bottom: .35em; }
+.builders-card p { margin: 0; color: var(--text-secondary); max-width: 46rem; }
+@media (min-width: 768px) { .builders-card { grid-template-columns: minmax(0, 1fr) auto; } }
+
+/* the three downloads again, after the notice */
+.download-row { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr)); }
+.download-item { display: grid; gap: var(--space-2); align-content: start; padding: var(--space-4); background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-small); }
+.download-item h3, .download-item p { margin: 0; }
+.download-item > p:not(.file) { color: var(--text-secondary); }
+.download-item .btn { width: 100%; }
+.download-item .file { display: flex; flex-wrap: wrap; gap: 0 .75em; font-family: var(--mono); font-size: .8rem; color: var(--text-secondary); word-break: break-all; }
+.download-item .size:empty { display: none; }

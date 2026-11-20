@@ -112,12 +112,17 @@ def pages_and_attribution(c, browser, base):
 
 
 def creator_links(c, browser, base):
-    """6/6 creator profiles: platform name, icon, accessible name and destination match the registry exactly."""
+    """6/6 creator profiles: platform name, icon, accessible name and destination match the registry exactly (About page; the
+    home page has no creator band since the app-first redesign, its profiles are the footer's, checked at the end)."""
     expected = kit.REGISTRY["creator"]["links"]
     passed = 0
     ctx, page = new_page(browser, base)
     for lang in kit.LANGUAGES:
-        for pid in ("about", "home"):
+        page.goto(url_of(base, lang, "home"))
+        for link in expected:
+            a = page.locator(f"footer [data-footer-profiles] a[data-profile={link['id']}]")
+            c.ok(a.count() == 1 and a.get_attribute("href") == link["url"], f"{lang['code']}/home footer profile {link['id']}")
+        for pid in ("about",):
             page.goto(url_of(base, lang, pid))
             for link in expected:
                 a = page.locator(f"[data-profiles] a[data-profile={link['id']}]")
@@ -590,7 +595,7 @@ def news(c, browser, base):
     page.goto(base)
     page.wait_for_selector("[data-live-news] .notice-error", timeout=20000)
     c.ok("not answering" in page.locator("[data-live-news] .notice-error").inner_text(), "503 shows the server error message")
-    c.ok(page.locator("#tools").is_visible() and page.locator("footer [data-credits]").count() == 1, "layout kept when the API is down")
+    c.ok(page.locator("#online-tools").is_visible() and page.locator("footer [data-credits]").count() == 1, "layout kept when the API is down")
     state["down"] = False
     ctx.unroute("https://api.tibiadata.com/**")
     kit.use_fixtures(ctx)
@@ -1348,6 +1353,117 @@ def today_in_tibia(c, browser, base):
         ctx.close()
 
 
+HOME_TITLE = "Everything You Need to Create for Tibia."
+HOME_SHOWCASE = ("asset-library", "extract-sprites", "map-tools", "content-studio")
+SHOT_VARIANTS = """(theme) => [...document.querySelectorAll('main picture img')].map(i => ({src: i.currentSrc, ok: new RegExp('-' + theme + '\\\\.[a-z]+$').test(i.currentSrc)}))"""
+
+
+def _load_pictures(page):
+    """Scrolls every screenshot of main into view (they load lazily) and waits until each has a current source."""
+    for i in range(page.locator("main picture img").count()):
+        page.locator("main picture img").nth(i).scroll_into_view_if_needed()
+    page.wait_for_function("[...document.querySelectorAll('main picture img')].every(i => i.complete && i.currentSrc)", timeout=15000)
+
+
+def homepage(c, browser, base):
+    """The app-first homepage (spec §5 "Homepage"): the exact hero title, the hero's downloads (same addresses as the Downloads page),
+    the four-cell Today strip (Rashid from the formula, boosted creature and boss from TibiaData), "Build Your Fansite" to GitHub,
+    the screenshots in the theme's variant (system theme and toggle), no overflow at 320 px, and Review Focus 4: TibiaData down hides
+    both boosted cells, keeps Rashid and the server save, and writes no "undefined" or "null"."""
+    en = kit.LANGUAGES[0]
+    fx_creatures = json.load(open(os.path.join(kit.FIXTURES, "creatures.json"), encoding="utf-8"))["creatures"]["boosted"]
+    fx_boss = json.load(open(os.path.join(kit.FIXTURES, "boostablebosses.json"), encoding="utf-8"))["boostable_bosses"]["boosted"]
+    ctx, page = new_page(browser, base, 1440, 1000)
+    page.goto(url_of(base, en, "downloads"))
+    want = {f["id"]: page.locator(f"[data-download={f['id']}] a.btn").get_attribute("href") for f in kit.REGISTRY["downloads"]["files"]}
+    checksums = kit.REGISTRY["downloads"]["base"].replace("{version}", VERSION) + kit.REGISTRY["downloads"]["checksums"]
+    page.goto(url_of(base, en, "home"))
+    h1 = page.locator("h1")
+    c.ok(h1.count() == 1 and h1.inner_text().strip() == HOME_TITLE, f"en hero title: {h1.all_inner_texts()}")
+    first = page.locator("main section").first
+    hrefs = first.locator("a").evaluate_all("as => as.map(a => a.getAttribute('href'))")
+    c.ok(want["msi"] in hrefs, f"the first section has the Installer download {want['msi']}: {hrefs}")
+    primary = first.locator("a.btn-primary")
+    c.ok(primary.count() == 1 and primary.get_attribute("href") == want["msi"], f"the Installer is the primary button: {primary.count()}")
+    order = [h for h in hrefs if h in want.values()]
+    c.ok(order[:3] == [want["msi"], want["portable"], want["source"]], f"hero downloads in order Installer, Portable, Source: {order}")
+    c.ok(checksums in hrefs, f"hero checksums link {checksums}")
+    c.ok(VERSION in first.inner_text(), f"hero shows the version {VERSION}")
+    hero_img = first.locator("picture img")
+    c.ok(hero_img.count() == 1 and hero_img.get_attribute("loading") != "lazy", "one hero screenshot, not lazy")
+    # Today strip: four cells, Rashid from the formula, boosted creature and boss from TibiaData (fixtures).
+    page.wait_for_selector("[data-today-strip] [data-today-rashid]:not(:empty)", timeout=10000)
+    cells = page.locator("[data-today-strip] .today-cell")
+    c.ok(cells.count() == 4, f"today strip has 4 cells ({cells.count()})")
+    r = page.evaluate("() => ({shown: document.querySelector('[data-today-strip] [data-today-rashid]').textContent.trim(), want: TFFormulas.FORMULAS.rashid({now: Date.now()}).town})")
+    c.ok(r["shown"].lower().replace(" ", "") == r["want"], f"Rashid matches TFFormulas rashid: {r}")
+    page.wait_for_selector("[data-today-strip] [data-boosted=creature] .boost-name", timeout=10000)
+    page.wait_for_selector("[data-today-strip] [data-boosted=boss] .boost-name", timeout=10000)
+    cr, bo = page.locator("[data-boosted=creature]"), page.locator("[data-boosted=boss]")
+    c.ok(cr.locator(".boost-name").inner_text().strip() == fx_creatures["name"] and cr.is_visible(), "boosted creature cell shows the fixture's creature")
+    c.ok(bo.locator(".boost-name").inner_text().strip() == fx_boss["name"] and bo.is_visible(), "boosted boss cell shows the fixture's boss")
+    c.ok((cr.locator("a").get_attribute("href") or "").endswith("#/creature/" + fx_creatures["race"]), "boosted creature links to its creature page")
+    c.ok((bo.locator("a").get_attribute("href") or "").endswith("#/bosses"), "boosted boss links to the bosses page")
+    # The three paths; "Build Your Fansite" goes to GitHub until the library ships.
+    fansite = page.locator("main a:has-text('Build Your Fansite')")
+    c.ok(fansite.count() == 1 and fansite.get_attribute("href") == "https://github.com/RockyJLaRo/TibiaFoundry", f"Build Your Fansite link: {fansite.count()}")
+    for text in ("Get the Desktop App", "Use Online Tools", "For Fansite Builders"):
+        c.ok(page.locator(f"main :text-is('{text}')").count() >= 1, f"homepage text '{text}'")
+    # Showcase: 4 screenshots of the language, lazy, with explicit sizes.
+    shots = page.locator("main [data-showcase] picture img")
+    c.ok(shots.count() == 4, f"showcase has 4 screenshots ({shots.count()})")
+    attrs = page.evaluate("[...document.querySelectorAll('main [data-showcase] picture')].map(p => ({img: p.querySelector('img').getAttribute('src'), lazy: p.querySelector('img').getAttribute('loading'), w: p.querySelector('img').getAttribute('width'), h: p.querySelector('img').getAttribute('height'), dark: (p.querySelector('source') || {}).srcset || ''}))")
+    for sid, a in zip(HOME_SHOWCASE, attrs):
+        c.ok(f"{sid}-en-light" in a["img"] and f"{sid}-en-dark" in a["dark"], f"showcase {sid}: {a}")
+        c.ok(a["lazy"] == "lazy" and a["w"] and a["h"], f"showcase {sid} lazy with size: {a}")
+    # Download section at the end repeats the three downloads.
+    last = page.locator("main section").last
+    last_hrefs = last.locator("a").evaluate_all("as => as.map(a => a.getAttribute('href'))")
+    c.ok(all(v in last_hrefs for v in want.values()), f"the last section repeats the three downloads: {last_hrefs}")
+    c.ok(not page.console_errors, f"console errors: {page.console_errors[:3]}")
+    ctx.close()
+    # Screenshots follow the theme: the system's, and the toggle (data-theme) both ways.
+    for theme in ("dark", "light"):
+        ctx, page = new_page(browser, base, 1440, 1000, theme=theme)
+        page.goto(url_of(base, en, "home"))
+        _load_pictures(page)
+        v = page.evaluate(SHOT_VARIANTS, theme)
+        c.ok(len(v) == 5 and all(x["ok"] for x in v), f"system {theme}: screenshots {[x['src'].rsplit('/', 1)[-1] for x in v]}")
+        other = "light" if theme == "dark" else "dark"
+        page.locator(".header-tools [data-theme-toggle]").click()
+        page.wait_for_function("(t) => [...document.querySelectorAll('main picture img')].every(i => i.complete && new RegExp('-' + t + '\\\\.[a-z]+$').test(i.currentSrc))", arg=other, timeout=15000)
+        v = page.evaluate(SHOT_VARIANTS, other)
+        c.ok(all(x["ok"] for x in v), f"toggled {other} on a {theme} system: {[x['src'].rsplit('/', 1)[-1] for x in v]}")
+        ctx.close()
+    # A stored choice opposite the system applies from the start.
+    ctx, page = new_page(browser, base, 1440, 1000, theme="dark")
+    page.add_init_script("try { localStorage.setItem('tf-theme', 'light'); } catch (e) {}")
+    page.goto(url_of(base, en, "home"))
+    _load_pictures(page)
+    c.ok(all(x["ok"] for x in page.evaluate(SHOT_VARIANTS, "light")), "stored light choice on a dark system shows the light screenshots")
+    ctx.close()
+    # 320 px: no horizontal overflow in any language.
+    ctx, page = new_page(browser, base, 320, 800)
+    for lang in kit.LANGUAGES:
+        page.goto(url_of(base, lang, "home"))
+        page.wait_for_selector("[data-today-strip] [data-today-rashid]:not(:empty)", timeout=10000)
+        over = page.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+        c.ok(over <= 0, f"{lang['code']}: horizontal overflow {over}px at 320 px")
+    ctx.close()
+    # Review Focus 4: TibiaData unreachable.
+    ctx, page = new_page(browser, base, 1280, 800, overrides={"": lambda route: route.abort("internetdisconnected")})
+    page.goto(url_of(base, en, "home"))
+    page.wait_for_selector("[data-today-strip] [data-today-rashid]:not(:empty)", timeout=10000)
+    page.wait_for_function("document.querySelectorAll('[data-today-strip] [data-boosted][hidden]').length === 2", timeout=30000)
+    page.wait_for_selector("[data-live-news] .notice-error", timeout=30000)
+    c.ok(page.locator("[data-today-strip] [data-today-rashid]").is_visible(), "TibiaData down: Rashid visible")
+    c.ok(page.locator("[data-today-strip] [data-today-countdown]").is_visible() and page.locator("[data-today-strip] [data-today-countdown]").inner_text().strip(), "TibiaData down: server save visible")
+    c.ok(page.locator("[data-today-strip] .today-cell:visible").count() == 2, "TibiaData down: exactly the two formula cells shown")
+    text = page.locator("main").inner_text()
+    c.ok(not re.search(r"\bundefined\b|\bnull\b", text), "TibiaData down: 'undefined' or 'null' in main")
+    ctx.close()
+
+
 def global_search(c, browser, base):
     """The header's global Tibia search (src/js/search.js): type picker, combobox suggestions from the full lists, exact-name
     routes, recent searches (tf-recent-searches) and a blocked localStorage (Review Focus 3 and 5)."""
@@ -1541,7 +1657,8 @@ CHECKS = [("pages-and-attribution", pages_and_attribution), ("creator-links", cr
           ("language-and-theme", language_and_theme), ("tibia-data", tibia_data), ("news-and-api-failures", news),
           ("contact-and-downloads", contact_and_downloads), ("deep-links-and-routing", deep_links), ("sanitizer", sanitizer),
           ("accessibility", accessibility), ("no-fixture-leak", no_fixture_leak), ("responsive", responsive),
-          ("calculators", calculators), ("today-in-tibia", today_in_tibia), ("global-search", global_search)]
+          ("calculators", calculators), ("today-in-tibia", today_in_tibia), ("global-search", global_search),
+          ("homepage", homepage)]
 
 
 def main():
