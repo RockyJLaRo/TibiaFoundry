@@ -26,7 +26,7 @@ DATA_ROUTES = REGISTRY["dataRoutes"]
 THEMES = REGISTRY["themes"]
 API_BASE = REGISTRY["api"]["base"]
 WIDTHS = [(320, 800), (360, 800), (390, 844), (430, 932), (768, 1024), (1024, 768), (1280, 800), (1440, 1000), (1920, 1080)]
-SCREENSHOT_VIEWPORTS = {"small-mobile": (360, 780), "mobile": (390, 844), "tablet": (768, 1024), "laptop": (1280, 800), "desktop": (1440, 1000)}
+SCREENSHOT_VIEWPORTS = {"narrow-mobile": (320, 812), "mobile": (375, 812), "large-mobile": (430, 932), "tablet": (768, 1024), "laptop": (1280, 800), "desktop": (1440, 900), "wide": (1920, 1080)}
 
 
 class _Handler(http.server.SimpleHTTPRequestHandler):

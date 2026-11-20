@@ -592,7 +592,7 @@ def gallery_html(tr, img):
 
 def docs_html(tr):
     return "\n".join(f'      <li><a class="tool-card" href="{d["url"]}" target="_blank" rel="noopener noreferrer">'
-                     f'<span class="tool-title">{tr.text("guides.docs." + d["id"] + ".title")}</span>'
+                     f'<span class="tool-title">{tr.text("guides.docs." + d["id"] + ".title")}<span class="sr-only"> {tr.text("js.newTab")}</span></span>'
                      f'<span class="tool-text">{tr.text("guides.docs." + d["id"] + ".text")}</span></a></li>' for d in REGISTRY["docs"])
 
 
@@ -852,11 +852,15 @@ HOME_COMMUNITY = ("character", "guilds", "worlds", "highscores/all/experience/al
 
 def picture_html(img, sid, alt, eager=False):
     """A screenshot as <picture>: the dark variant for prefers-color-scheme: dark, else the light one. src/js/site.js points the
-    dark <source> at the visitor's own choice (data-theme) when there is one. Only the hero loads eagerly."""
+    dark <source> at the visitor's own choice (data-theme) when there is one. Only the hero loads eagerly; a tiny script right
+    after it applies a stored theme at once, so the hero does not first load the system theme's variant."""
     w, h = SCREEN_SIZE
     load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    fix = ("<script>(function(){var t=document.documentElement.getAttribute('data-theme'),"
+           "p=document.currentScript.previousElementSibling,s=p&&p.querySelector('source[data-theme-source=dark]');"
+           "if(s&&t)s.setAttribute('media',t==='dark'?'all':'not all');})();</script>") if eager else ""
     return (f'<picture data-theme-picture><source srcset="{img(sid + "-dark")}" media="(prefers-color-scheme: dark)" data-theme-source="dark" '
-            f'width="{w}" height="{h}"><img src="{img(sid + "-light")}" alt="{alt}" width="{w}" height="{h}" {load} decoding="async"></picture>')
+            f'width="{w}" height="{h}"><img src="{img(sid + "-light")}" alt="{alt}" width="{w}" height="{h}" {load} decoding="async"></picture>{fix}')
 
 
 def home_showcase_html(tr, img):

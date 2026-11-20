@@ -71,6 +71,17 @@ Colours are semantic tokens in `tokens.css`: `--bg-canvas`, `--bg-surface`, `--b
 
 - Light accent: `#8c6a24` passes on the canvas `#f4f3f0` at 4.50:1, so no 4 % lightness step was needed. It is 5.00:1 on
   white surfaces. On `--bg-elevated` it is only 4.12:1, so use body text colours, not the accent, for small text there.
+- Gold is never the colour of text. It marks: 1 px inlay lines (`--inlay`: header and footer edges, section dividers, the
+  top of featured panels such as `.framed` and the contact card), link underlines (links are body-coloured text with a
+  1 px gold underline, 2 px on hover), the focus ring, active states (current menu item, data tab, screenshot tab, chosen
+  language: a 2 px gold underline or left bar), the primary button, and the 2 px left edge of cards that are a link as a
+  whole (`.tool-card`, `.dest-card`, `a.boost-card`, `a.mini-card`, `.profile`, `.reason`, `.path-card`, `.tool-link`;
+  each sets it in its own rule). Cards that only contain links have no gold edge. Icons use `--text-secondary`.
+- Surfaces are flat: cards, tables and panels have 1 px borders and no shadow; `--shadow` is for floating layers only
+  (menu panels, search popup, drawer, language menu). Radii stay within `--radius-small|medium|large` (2-6 px).
+- `--bg-table-head` (table heads) and `--skeleton-shine` (the moving band of loading placeholders) are their own tokens;
+  `check_contrast.py` covers every text/background pair the pages use, including table heads, fields, zebra rows,
+  error notices and badges.
 - `--border-strong` is `#8c8576` (light) and `#646d76` (dark), a little darker/lighter than the first design values
   `#9a9384` and `#4a525b`, which gave only 2.75:1 and 2.33:1 against the canvas.
 - `--font-body` and `--font-display` name Barlow first and fall back to system fonts until the font files are bundled.

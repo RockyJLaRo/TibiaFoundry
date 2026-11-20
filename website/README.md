@@ -59,19 +59,20 @@ not exactly one `<h1>`, a missing or unlinked data credit, or a new-tab link wit
 ## Tests
 
 ```bash
-python -I website/tests/check_i18n.py                  # locale key parity (5 × all keys)
+python -I website/tests/check_i18n.py                  # locale key parity (5 × all keys) and English Title Case
 node --test website/tests/unit/tibiadata.test.mjs      # API client: cache, de-duplication, cancellation, errors, schemas
 pip install playwright==1.55.0 && python -m playwright install chromium
 python website/tests/e2e.py --report e2e.json          # pages, attribution, 6/6 profiles, navigation, language/theme,
                                                        # Tibia data, news + failures, contact, downloads, deep links,
                                                        # sanitizer, accessibility, fixture leak, responsive (9 widths)
 python website/tests/e2e.py --only tibia-data --live   # plus a smoke test against the real API
-python website/tests/site_screenshots.py               # 26 routes × 5 languages × 2 themes × 3 viewports
+python website/tests/site_screenshots.py               # 33 routes (404 in English only) × 5 languages × 2 themes × 7 viewports
 python -I website/tests/record_fixtures.py             # re-record the TibiaData fixtures
 ```
 
 `site_screenshots.py` writes full-page screenshots and `manifest.json` to `Release/<version>/qa-screenshots/` (never
-committed). Routes, languages, themes and samples come from `src/registry.json`, so new pages are picked up automatically.
+committed; `--out <folder>` for another place). The manifest lists page, language, theme, viewport and status (ok / failed)
+of every image, plus a layout scan: page overflow, elements past the right edge and text clipped by `overflow: hidden`. Routes, languages, themes and samples come from `src/registry.json`, so new pages are picked up automatically.
 
 ## Hosting and routing
 

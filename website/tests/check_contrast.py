@@ -29,6 +29,20 @@ PAIRS = [
     ("status-success", "bg-surface", 4.5, "success text"),
     ("status-warning", "bg-surface", 4.5, "warning text"),
     ("status-danger", "bg-surface", 4.5, "danger text"),
+    # Task 8 re-skin: every text/background combination the pages use
+    ("text-secondary", "bg-elevated", 4.5, "secondary text on bands, hovers and tabs"),
+    ("text-muted", "bg-surface", 4.5, "muted text on cards"),
+    ("text-primary", "bg-table-head", 4.5, "table head text"),
+    ("text-secondary", "bg-table-head", 4.5, "secondary text in table heads"),
+    ("text-primary", "bg-input", 4.5, "text in fields"),
+    ("text-secondary", "bg-input", 4.5, "placeholders"),
+    ("border-strong", "bg-input", 3.0, "field borders"),
+    ("text-primary", "bg-row", 4.5, "text in zebra rows"),
+    ("text-primary", "status-danger-soft", 4.5, "error notice text"),
+    ("status-success", "status-success-soft", 4.5, "online badge"),
+    ("text-secondary", "status-danger-soft", 4.5, "secondary text in error notices"),
+    ("accent-primary", "bg-elevated", 3.0, "focus ring, active underline and link underline on raised panels"),
+    ("accent-primary", "bg-table-head", 3.0, "sorted-column icon"),
 ]
 
 

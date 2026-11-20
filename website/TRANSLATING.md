@@ -79,6 +79,9 @@ The four translations were written by Claude (an AI). They have not yet been rev
   duplicate keys, the same markup and placeholders as English, every data-provider credit keeps its `{link}`, and texts
   identical to English are listed in `_meta.sameAsEnglish` (names and official terms: Highscores, Premium, vocation names,
   the section title *Tibia News & Updates*...).
+- English only: page titles, menu items, section headings, tool names and buttons are in Title Case (small words such as
+  *and*, *of*, *the* stay lowercase unless first or last). `check_i18n.py` checks it (`--no-title-case` skips it); other
+  languages keep their own capitalisation.
 - `python -I website/build_site.py --strict` fails on a missing translation or an unused text.
 - Official Tibia terms are never translated: character, world, guild, creature and boss names, spell formulas
   (`exura`), API data (vocations, PvP types, news headlines - marked `lang="en"` on the page).

@@ -422,7 +422,6 @@
       "button": "Instalador (MSI em um .zip)",
       "unzip": "Descompacte e execute o arquivo .msi que está dentro"
     },
-    "verify": "Confira seu download com",
     "notes": "Notas da versão",
     "all": "Todas as versões",
     "startTitle": "Primeiros passos",

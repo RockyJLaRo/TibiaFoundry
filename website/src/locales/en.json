@@ -357,7 +357,6 @@
       "button": "Installer (MSI in a .zip)",
       "unzip": "Unzip it, then run the .msi file inside"
     },
-    "verify": "Check your download with",
     "notes": "Release notes",
     "all": "All releases",
     "startTitle": "First Steps",

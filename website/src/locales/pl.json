@@ -412,7 +412,6 @@
       "button": "Instalator (MSI w pliku .zip)",
       "unzip": "Rozpakuj go i uruchom plik .msi ze środka"
     },
-    "verify": "Sprawdź pobrany plik za pomocą",
     "notes": "Informacje o wersji",
     "all": "Wszystkie wersje",
     "startTitle": "Pierwsze kroki",

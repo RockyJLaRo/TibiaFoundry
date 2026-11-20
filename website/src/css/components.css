@@ -1,10 +1,7 @@
-/* Shared components: ornament, buttons and fields, header, breadcrumbs, page layout, cards, framed panels, footer, icons,
-   external-link marker. Layer: components. */
-
-/* ornament: a gold rule with a pixel gem in the middle (divides major sections) */
-.ornament { position: relative; height: 16px; max-width: 20rem; margin: 0 auto 20px; background: linear-gradient(var(--accent-primary), var(--accent-primary)) center / 100% 2px no-repeat; }
-.ornament::after { content: ""; position: absolute; left: 50%; top: 0; width: 16px; height: 16px; margin-left: -8px; background: var(--accent-primary);
-  -webkit-mask: url(../img/pixel/gem.svg) 0 0 / 16px 16px no-repeat; mask: url(../img/pixel/gem.svg) 0 0 / 16px 16px no-repeat; }
+/* Shared components: buttons and fields, header, breadcrumbs, page layout, cards, featured panels, footer, icons,
+   external-link marker. Layer: components.
+   Gilded Inlay: flat surfaces with 1 px borders; gold only as 1 px inlay lines, link underlines, the focus ring, active
+   states, the primary button and the 2 px left edge of cards that are links (.link-card and the cards listed with it). */
 
 /* ------------------------------------------------------------------ buttons and fields */
 .btn {
@@ -15,16 +12,17 @@
 }
 .btn:hover { background: var(--bg-elevated); border-color: var(--text-secondary); }
 .btn:active { transform: translateY(1px); }
-.btn-primary { background: var(--accent-primary); border-color: var(--accent-primary); color: var(--accent-on); box-shadow: 0 1px 2px rgb(0 0 0 / .12); }
+.btn-primary { background: var(--accent-primary); border-color: var(--accent-primary); color: var(--accent-on); }
 .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: var(--accent-on); }
 .btn-small { min-height: 36px; padding: .35em .8em; font-size: .875rem; }
+@media (max-width: 639.98px) { .btn-small { min-height: 44px; } }   /* phones: 44 px touch targets */
 .btn-quiet { background: transparent; border-color: transparent; box-shadow: none; }
 .btn-quiet:hover { background: var(--bg-elevated); border-color: var(--border-subtle); }
 .btn[disabled], .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none; }
 .btn.copied { border-color: var(--status-success); color: var(--status-success); }
 .input {
   width: 100%; min-height: 44px; padding: .5em .75em; border: 1px solid var(--border-strong); border-radius: var(--radius-medium);
-  background: var(--bg-surface); color: var(--text-primary); font: 400 1rem/1.3 var(--font-body);
+  background: var(--bg-input); color: var(--text-primary); font: 400 1rem/1.3 var(--font-body);
   transition: border-color .12s, box-shadow .12s;
 }
 .input:hover { border-color: var(--text-secondary); }
@@ -44,10 +42,6 @@ select.input { padding-right: 2em; }
    and when nav.js finds that the desktop header does not fit (html.nav-collapsed), the menu button opens the drawer. */
 .site-header { position: sticky; top: calc(-1 * var(--search-h)); z-index: 50; background: var(--bg-surface); color: var(--text-primary);
   padding-top: env(safe-area-inset-top); border-bottom: 1px solid var(--inlay); }
-.site-footer::before, .stone::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--mortar);
-  -webkit-mask: url(../img/pixel/bricks.svg) 0 0 / 64px 32px; mask: url(../img/pixel/bricks.svg) 0 0 / 64px 32px;
-}
 .site-header > * { position: relative; }
 .header-search-row { display: flex; align-items: center; height: var(--search-h); border-bottom: 1px solid var(--border-subtle); background: var(--bg-canvas); }
 /* While the search field has focus ("/" or a click), the whole header stays on screen, search row included. */
@@ -86,7 +80,7 @@ select.input { padding-right: 2em; }
 /* brand mark: a small gold-outlined diamond */
 .brand-mark { width: 13px; height: 13px; flex: none; margin: 0 3px; border: 2px solid var(--accent-primary); border-radius: var(--radius-small); transform: rotate(45deg); }
 .brand-name { font: 700 1.15rem/1 var(--font-display); white-space: nowrap; letter-spacing: .01em; }
-.brand-version { font-size: .75rem; font-weight: 600; color: var(--accent-primary); border: 1px solid var(--border-subtle); border-radius: 999px; padding: .1em .55em; white-space: nowrap; }
+.brand-version { font-size: .75rem; font-weight: 600; color: var(--text-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-small); padding: .1em .45em; white-space: nowrap; }
 @media (max-width: 359.98px) { .brand-version { display: none; } }   /* 320 px: the badge would crowd the menu button */
 .site-header .icon-btn { color: var(--text-primary); }
 .icon-btn {
@@ -123,8 +117,8 @@ select.input { padding-right: 2em; }
 }
 .nav-panel a { white-space: nowrap; }
 .nav-panel a:hover, .drawer-links a:hover, .drawer-link:hover { background: color-mix(in srgb, var(--text-primary) 8%, transparent); }
-.nav-panel .ic, .drawer-links .ic, .drawer-link .ic { width: 18px; height: 18px; color: var(--accent-primary); }
-.nav-panel a[aria-current="page"], .drawer-links a[aria-current="page"], .drawer-link[aria-current="page"] { font-weight: 650; }
+.nav-panel .ic, .drawer-links .ic, .drawer-link .ic { width: 18px; height: 18px; color: var(--text-secondary); }
+.nav-panel a[aria-current="page"], .drawer-links a[aria-current="page"], .drawer-link[aria-current="page"] { font-weight: 600; }
 .nav-panel a[aria-current="page"] span, .drawer-links a[aria-current="page"] span, .drawer-link[aria-current="page"] {
   text-decoration: underline 2px var(--accent-primary); text-underline-offset: .3em; }
 
@@ -142,18 +136,18 @@ select.input { padding-right: 2em; }
 .drawer-nav { display: grid; gap: 2px; }
 .drawer-group { border-bottom: 1px solid var(--border-subtle); }
 .drawer-summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); min-height: 48px; padding: 0 10px;
-  border-radius: var(--radius-medium); font-weight: 650; cursor: pointer; list-style: none; }
+  border-radius: var(--radius-medium); font-weight: 600; cursor: pointer; list-style: none; }
 .drawer-summary::-webkit-details-marker { display: none; }
 .drawer-summary:hover { background: color-mix(in srgb, var(--text-primary) 8%, transparent); }
 .drawer-summary[data-current] span { text-decoration: underline 2px var(--accent-primary); text-underline-offset: .3em; }
 .drawer-links { list-style: none; margin: 0 0 var(--space-2); padding: 0 0 0 var(--space-2); }
-.drawer-link { min-height: 48px; font-weight: 650; }
+.drawer-link { min-height: 48px; font-weight: 600; }
 .menu-group { border-top: 1px solid var(--border-subtle); padding-top: 12px; margin-top: 4px; }
 .menu-group h3 { font: 600 .85rem var(--font-body); color: var(--text-secondary); margin: 0 0 6px; }
 .menu-langs { list-style: none; margin: 0 0 12px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 4px; }
 .menu-langs a { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 10px; border-radius: var(--radius-medium); color: var(--text-primary); text-decoration: none; }
-.menu-langs a[aria-current] { font-weight: 700; background: var(--bg-elevated); }
-.lang-badge { font-size: .72rem; font-weight: 700; border: 1px solid var(--border-strong); border-radius: 4px; padding: 0 .35em; color: var(--text-secondary); }
+.menu-langs a[aria-current] { font-weight: 600; background: var(--bg-elevated); box-shadow: inset 2px 0 0 var(--accent-primary); }
+.lang-badge { font-size: .72rem; font-weight: 600; border: 1px solid var(--border-strong); border-radius: var(--radius-small); padding: 0 .35em; color: var(--text-secondary); }
 .drawer .theme-btn { color: var(--text-primary); }
 @media (prefers-reduced-motion: reduce) {
   .drawer-backdrop, .drawer-panel { animation: none; }
@@ -162,10 +156,10 @@ select.input { padding-right: 2em; }
 
 .lang { position: relative; }
 .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 13rem; list-style: none; margin: 0; padding: 6px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-large); box-shadow: var(--shadow); }
-.lang-menu a { display: flex; gap: 8px; align-items: center; min-height: 40px; padding: 0 10px; border-radius: var(--radius-medium); color: var(--text-primary); text-decoration: none; }
+.lang-menu a { display: flex; gap: 8px; align-items: center; min-height: 44px; padding: 0 10px; border-radius: var(--radius-medium); color: var(--text-primary); text-decoration: none; }
 .lang-menu a:hover, .lang-menu a:focus-visible { background: var(--bg-elevated); }
-.lang-menu a[aria-current] { font-weight: 700; }
-.lang-suggest { background: var(--accent-subtle); border-bottom: 1px solid var(--border-subtle); font-size: .925rem; }
+.lang-menu a[aria-current] { font-weight: 600; box-shadow: inset 2px 0 0 var(--accent-primary); }
+.lang-suggest { background: var(--bg-elevated); border-bottom: 1px solid var(--inlay); font-size: .925rem; }
 .lang-suggest .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-block: 6px; }
 .lang-suggest-text { flex: 1 1 14rem; }
 
@@ -180,7 +174,7 @@ select.input { padding-right: 2em; }
   :root:not(.nav-collapsed) .brand-version { display: none; }   /* room for long menu labels; the footer shows the version */
   .no-js .main-nav { display: none; }   /* the panels need JavaScript; the footer lists every destination */
 }
-@media (min-width: 1024px) and (max-width: 1279.98px) {   /* narrow desktops */
+@media (min-width: 1024px) and (max-width: 1279.98px) {   /* 1024-1279 px: shorter language button and tighter menu buttons */
   :root:not(.nav-collapsed) #lang-btn span { display: none; }
   :root:not(.nav-collapsed) .brand { margin-right: var(--space-1); }
   .nav-button, .nav-link { padding: 0 7px; }
@@ -202,7 +196,10 @@ select.input { padding-right: 2em; }
 .section-head h2 { margin: 0; }
 .section-head p { margin: 4px 0 0; color: var(--text-secondary); max-width: 44rem; }
 .grid { display: grid; gap: 14px; }
-.card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-large); padding: 18px; box-shadow: var(--shadow); }
+.card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-medium); padding: 18px; }
+/* Cards that are a link as a whole (.tool-card, .dest-card, a.boost-card, a.mini-card, .profile, .reason, .path-card,
+   .tool-link) have a 2 px gold left edge (in each card's own rule) and a raised background on hover. Cards that only
+   contain links have no gold edge. */
 .card h3 { margin-bottom: .35em; }
 .card p:last-child { margin-bottom: 0; }
 .card-head { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
@@ -210,7 +207,7 @@ select.input { padding-right: 2em; }
 .tools-line { color: var(--text-secondary); font-size: .9rem; margin: .4em 0 0; }
 .checks { list-style: none; padding: 0; margin: 0 0 1em; display: grid; gap: 6px; }
 .checks li { padding-left: 1.6em; position: relative; }
-.checks li::before { content: ""; position: absolute; left: .2em; top: .5em; width: .75em; height: .4em; border-left: 2px solid var(--status-success); border-bottom: 2px solid var(--status-success); transform: rotate(-45deg); }
+.checks li::before { content: ""; position: absolute; left: .2em; top: .5em; width: .75em; height: .4em; border-left: 2px solid var(--text-secondary); border-bottom: 2px solid var(--text-secondary); transform: rotate(-45deg); }
 .points { padding-left: 1.2em; margin: 0 0 1em; }
 .points li { margin-bottom: .5em; }
 @media (min-width: 640px) {
@@ -226,24 +223,17 @@ select.input { padding-right: 2em; }
   .page-head { padding-block: 40px 12px; }
 }
 
-/* framed: a featured parchment panel with gold pixel corners (used sparingly: today panel, download card, notices) */
-.framed { position: relative; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-large); padding: 20px;
-  box-shadow: inset 0 0 0 5px var(--bg-surface), inset 0 0 0 6px var(--accent-subtle), var(--shadow); }
-.framed::before, .framed::after { content: ""; position: absolute; width: 20px; height: 20px; top: 9px; background: var(--accent-primary); pointer-events: none;
-  -webkit-mask: url(../img/pixel/corner.svg) 0 0 / 20px 20px no-repeat; mask: url(../img/pixel/corner.svg) 0 0 / 20px 20px no-repeat; }
-.framed::before { left: 9px; }
-.framed::after { right: 9px; transform: scaleX(-1); }
+/* framed: a featured panel (calculator results, Today in Tibia) - a 1 px gold inlay line along the top, no ornaments */
+.framed { position: relative; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top-color: var(--inlay);
+  border-radius: var(--radius-medium); padding: 20px; box-shadow: inset 0 1px 0 var(--inlay); }
 
-/* ------------------------------------------------------------------ footer: the castle wall */
-.site-footer { position: relative; background: var(--bg-surface); color: var(--text-primary); margin-top: calc(32px + var(--edge));
-  padding-block: 32px calc(22px + env(safe-area-inset-bottom)); font-size: .925rem; }
+/* ------------------------------------------------------------------ footer: a 1 px gold inlay line on top */
+.site-footer { position: relative; background: var(--bg-surface); color: var(--text-primary); margin-top: var(--space-6);
+  border-top: 1px solid var(--inlay); padding-block: 32px calc(22px + env(safe-area-inset-bottom)); font-size: .925rem; }
 .site-footer > .wrap { position: relative; }
-.site-footer::after { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: var(--edge); background: var(--bg-surface);
-  -webkit-mask: url(../img/pixel/battlement.svg) repeat-x 0 0 / 48px 16px; mask: url(../img/pixel/battlement.svg) repeat-x 0 0 / 48px 16px; }
-.site-footer a { color: var(--accent-primary); }
-.site-footer h2 { font: 700 1rem var(--font-display); color: var(--accent-primary); margin: 0 0 8px; }
+.site-footer h2 { font: 600 .95rem var(--font-display); color: var(--text-secondary); letter-spacing: .02em; margin: 0 0 8px; }
 .footer-top { display: grid; gap: 24px; }
-.footer-brand .brand { margin: 0 0 10px; color: var(--text-primary); }
+.footer-brand .brand { min-height: 44px; margin: 0 0 6px; color: var(--text-primary); }   /* 44 px hit area now that the mark is a 13 px diamond */
 .footer-brand p { color: var(--text-secondary); margin: 0 0 .6em; max-width: 30rem; }
 .footer-tagline { font: 600 1.02rem/1.4 var(--font-display); color: var(--text-primary) !important; }
 .footer-grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); }
@@ -251,16 +241,16 @@ select.input { padding-right: 2em; }
 .footer-grid > div:last-child ul { display: flex; flex-wrap: wrap; gap: 0 20px; }
 .footer-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
 .footer-grid a { display: inline-flex; align-items: center; min-height: 44px; color: var(--text-primary); text-decoration: none; }
-.footer-grid a:hover { color: var(--accent-primary); text-decoration: underline; }
+.footer-grid a:hover { text-decoration: underline; text-decoration-color: var(--accent-primary); }
 .footer-people { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; }
 .footer-people a { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-medium); background: color-mix(in srgb, var(--text-primary) 6%, transparent); border: 1px solid var(--border-subtle); }
 .footer-people a:hover { background: color-mix(in srgb, var(--text-primary) 14%, transparent); }
 .footer-people svg, .footer-people img { width: 24px; height: 24px; }
 .footer-contact { margin: 10px 0 0; color: var(--text-secondary); }
 .footer-contact a { display: inline-flex; align-items: center; min-height: 44px; }
-.footer-rule { border: 0; height: 16px; margin: 24px 0 18px; background: linear-gradient(var(--border-subtle), var(--border-subtle)) center / 100% 2px no-repeat; position: relative; overflow: visible; }
+.footer-rule { border: 0; height: 1px; margin: 24px 0 18px; background: var(--inlay); }
 .credits h2 { margin-bottom: 8px; }
-.credits-thanks { font-weight: 650; font-size: 1rem; color: var(--text-primary); }
+.credits-thanks { font-weight: 600; font-size: 1rem; color: var(--text-primary); }
 .credits ul { padding-left: 1.1em; margin: 0 0 10px; color: var(--text-secondary); }
 .credits li { margin-bottom: 4px; }
 .credits .muted { color: var(--text-secondary); }
@@ -271,29 +261,33 @@ select.input { padding-right: 2em; }
 .legal-links { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; margin: 0 0 10px; padding: 0; }
 .legal-links a { display: inline-flex; min-height: 44px; align-items: center; }
 @media (min-width: 1024px) { .footer-top { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 40px; } }
-/* the About page shows the credits on parchment */
+/* the credits on the Legal page (#attribution) */
 main .credits, main .credits .muted { color: var(--text-secondary); }
 main .credits-thanks { color: var(--text-primary); }
 
-/* ------------------------------------------------------------------ stage 2: icon system (Lucide, art/icons.py) and sortable tables */
+/* ------------------------------------------------------------------ icons (Lucide, art/icons.py) */
 .ic { width: 20px; height: 20px; flex: none; vertical-align: middle; }
 .btn .ic { width: 18px; height: 18px; }
 .icon-btn .ic { width: 22px; height: 22px; }
-.icon-tile { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: 10px; background: var(--accent-subtle); color: var(--accent-primary); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent-primary) 28%, transparent); }
+.icon-tile { display: grid; place-items: center; width: 44px; height: 44px; flex: none; border-radius: var(--radius-medium); background: var(--bg-elevated); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
 .icon-tile .ic { width: 22px; height: 22px; }
 .icon-tile-sm { width: 36px; height: 36px; } .icon-tile-sm .ic { width: 20px; height: 20px; }
 .tool-card > .icon-tile { grid-row: span 2; width: 40px; height: 40px; }
 .dest-card .icon-tile { grid-row: span 2; }
-.dl-notice > .ic { width: 22px; height: 22px; color: var(--accent-primary); margin-top: 2px; }
+.dl-notice > .ic { width: 22px; height: 22px; color: var(--text-secondary); margin-top: 2px; }
 .theme-sun { display: none; }
 :root[data-theme="dark"] .theme-sun { display: inline; } :root[data-theme="dark"] .theme-moon { display: none; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme-sun { display: inline; } :root:not([data-theme="light"]) .theme-moon { display: none; } }
 
 
-/* external links (new tab): Lucide external-link as a mask, so it takes the link colour; not on buttons, cards or icon links */
-a[target="_blank"]:not(.btn):not(.profile):not([data-profile]):not(.shot):not(.boost-card)::after {
+/* external links (new tab): Lucide external-link as a mask, so it takes the link colour; not on buttons, cards or icon links.
+   A card that opens a new tab shows it after its title. */
+:root { --icon-external: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E"); }
+a[target="_blank"]:not(.btn):not(.profile):not([data-profile]):not(.shot):not(.boost-card):not(.tool-card)::after,
+a.tool-card[target="_blank"] .tool-title::after {
   content: ""; display: inline-block; width: .78em; height: .78em; margin-left: .22em; vertical-align: -.04em; background: currentColor; opacity: .7;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center / contain no-repeat;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center / contain no-repeat;
+  -webkit-mask: var(--icon-external) center / contain no-repeat; mask: var(--icon-external) center / contain no-repeat;
 }
 .footer-people a::after { content: none !important; }
+/* the 404 page: the brand bar only */
+.not-found-header { position: static; }

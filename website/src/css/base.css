@@ -11,18 +11,18 @@ body {
 }
 main { flex: 1 0 auto; }
 img { max-width: 100%; height: auto; }
-a { color: var(--accent-primary); text-underline-offset: .18em; text-decoration-thickness: from-font; }
+/* links: body-coloured text with a 1 px gold underline (gold is never the colour of text) */
+a { color: var(--text-primary); text-decoration-line: underline; text-decoration-color: var(--accent-primary); text-underline-offset: .2em; text-decoration-thickness: 1px; }
 a:hover { text-decoration-thickness: 2px; }
+strong, b { font-weight: 600; }   /* Barlow ships 400/500/600 */
 ::selection { background: var(--selection); }
 :focus-visible { outline: 3px solid var(--accent-primary); outline-offset: 2px; border-radius: 3px; }
-/* on the stone header and footer the ring is gold (the blue would be too dark there); the drawer too */
-.site-header :focus-visible, .site-footer :focus-visible { outline-color: var(--accent-primary); }
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.18; margin: 0 0 .5em; text-wrap: balance; color: var(--text-primary); }
 h1 { font-size: clamp(1.85rem, 1.3rem + 2.5vw, 3rem); font-weight: 700; letter-spacing: -.005em; }
 h2 { font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.95rem); font-weight: 700; }
 h3 { font-size: 1.15rem; font-weight: 700; }
 p { margin: 0 0 1em; }
-code, .code { font-family: var(--mono); font-size: .92em; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: 4px; padding: .05em .35em; }
+code, .code { font-family: var(--mono); font-size: .92em; background: var(--bg-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-small); padding: .05em .35em; }
 [hidden] { display: none !important; }   /* the hidden attribute always wins over component display rules */
 
 .skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--accent-primary); color: var(--accent-on); padding: 10px 14px; border-radius: var(--radius-medium); }
