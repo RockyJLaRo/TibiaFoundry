@@ -47,7 +47,8 @@ def load_checked(path, problems, code):
 # case, "9.0.5" has digits); so are file extensions (".zip"), {placeholders} and the brand or literal strings below.
 SMALL_WORDS = {"a", "an", "and", "as", "at", "but", "by", "for", "in", "of", "on", "or", "the", "to", "vs", "vs.", "with"}
 TITLE_CASE_ALLOW = ["Tibia Foundry", "TibiaData", "Tibia.com", "GitHub", "TibiaWiki", "CipSoft GmbH", "tibia.com",
-                    "tibiaroute.com", "SHA256SUMS.txt", "e.g."]
+                    "tibiaroute.com", "SHA256SUMS.txt", "e.g.",
+                    "Tibia Foundry - All your Tibia-Tools for TibiaWiki"]   # the owner's own tagline (footer), not a heading
 # Keys by name: nav.*, *.title, *.heading, *.button, calc.*.title and home.paths.* (the brief's list).
 TITLE_CASE_KEY = re.compile(r"^(nav\..+|.+\.title|.+\.heading|.+\.button|home\.paths\..+)$")
 # Keys that are not titles: running text, a placeholder, the screen-reader note "(opens in a new tab)" inside .btn links,

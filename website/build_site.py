@@ -19,7 +19,6 @@ Builds tibiafoundry.com (version from src/Directory.Build.props) into website/si
   (e.g. /tibia/character/Name) to their view; CNAME and robots.txt are never written when they exist;
 * website/i18n-report.md is the translation completeness report;
 * src/ui-icons.svg (interface icons: a Lucide subset, ISC licence, written by website/art/icons.py) is inlined in every page;
-* src/images/pixel/*.svg (the site's own pixel ornaments, drawn by website/art/pixelart.py) is copied to site/img/pixel/;
 * calculators: a page with "calc" (formula ids of src/formulas.json) loads formulas.js and calc.js and gets the calc.*
   texts at run time; {{CALC_HOW:<id>}} renders a formula's rule, sources and "checked on" date from src/formulas.json,
   {{CALC_CARDS}} the hub's card per calculator page;
@@ -966,8 +965,8 @@ def render(layout, templates, code, page, tr, translators, img, ver, assets, dli
                     "    } } catch (e) {}")
     # Every page: the header search (search.js) needs the API client (tibiadata.js), which needs formulas.js loaded before it
     # (server-save expiry of the creature list).
-    scripts = (["site.js", "nav.js", "formulas.js", "tibiadata.js", "sanitize.js", "search.js"]
-               + (["data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
+    scripts = (["site.js", "nav.js", "formulas.js", "tibiadata.js", "search.js"]
+               + (["sanitize.js", "data-app.js"] if page["id"] in ("home", "tibia") else []) + (["calc.js"] if calc_page else [])
                + (["today.js"] if today_page else []))
     files, checksums_url, release_page, all_releases, released = dlinfo
 
@@ -1264,13 +1263,6 @@ def main():
         ext, data = encode(load("logo"), "logo")
         files["img/logo"] = ("img/logo.png", data)
         open(os.path.join(SITE, "img", "logo.png"), "wb").write(data)
-
-    # The site's own pixel art (icons sprite and ornament masks).
-    pixel = os.path.join(SRC, "images", "pixel")
-    os.makedirs(os.path.join(SITE, "img", "pixel"), exist_ok=True)
-    for name in sorted(os.listdir(pixel)):
-        if name.endswith(".svg"):
-            shutil.copyfile(os.path.join(pixel, name), os.path.join(SITE, "img", "pixel", name))
 
     # /en/<page>/ remembers the choice of English and opens the English page.
     for page in PAGES:

@@ -572,6 +572,28 @@ def tibia_data(c, browser, base):
     c.ok(not ctx.unknown_api, f"requests without fixture: {ctx.unknown_api}")
     c.ok(not page.console_errors, f"console errors: {page.console_errors[:3]}")
     ctx.close()
+    # Hub, stale answers (final review, finding 1): TibiaData down; the creature answer was cached after the last server save (still
+    # today's), the boss answer before it (yesterday's). The boss card must be hidden, never yesterday's, and the source line marked.
+    # Clock pinned to Thursday 2026-11-19 12:00 Berlin (11:00Z); that day's save is 09:00Z.
+    api = kit.REGISTRY["api"]["base"]
+    now_ms, save_ms = 1795086000000, 1795078800000
+    cached = {}
+    for ep, path, when in (("creatures", ("creatures", "boosted"), save_ms + 5 * 60 * 1000), ("boostablebosses", ("boostable_bosses", "boosted"), save_ms - 21 * 3600 * 1000)):
+        body = json.load(open(os.path.join(kit.FIXTURES, ep + ".json"), encoding="utf-8"))
+        name = "Yesterday " + ep if ep == "boostablebosses" else body[path[0]][path[1]]["name"]
+        body[path[0]][path[1]]["name"] = name
+        cached["tf-api:" + api + ep] = {"t": when, "data": body}
+    ctx, page = new_page(browser, base, 1280, 800, overrides={"": lambda route: route.abort("internetdisconnected")})
+    page.clock.install(time=datetime.datetime.fromtimestamp(now_ms / 1000, tz=datetime.timezone.utc))
+    page.add_init_script("(() => { const e = " + json.dumps(cached) + "; for (const k in e) sessionStorage.setItem(k, JSON.stringify(e[k])); })()")
+    page.goto(url_of(base, en, "tibia"))
+    wait_app(page)
+    page.wait_for_selector("#app .boosted .source-line", timeout=15000)
+    boosted_text = page.locator("#app .boosted").inner_text()
+    c.ok(page.locator("#app .boosted .boost-card").count() == 1, f"hub stale boss: only the creature card shown: {boosted_text!r}")
+    c.ok("Yesterday" not in page.locator("#app").inner_text(), "hub stale boss: yesterday's boss name shown")
+    c.ok(page.locator("#app .boosted .source-line .stale").count() == 1, "hub stale boss: source line marked as an older copy")
+    ctx.close()
 
 
 def news(c, browser, base):

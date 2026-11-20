@@ -84,7 +84,7 @@ Colours are semantic tokens in `tokens.css`: `--bg-canvas`, `--bg-surface`, `--b
   error notices and badges.
 - `--border-strong` is `#8c8576` (light) and `#646d76` (dark), a little darker/lighter than the first design values
   `#9a9384` and `#4a525b`, which gave only 2.75:1 and 2.33:1 against the canvas.
-- `--font-body` and `--font-display` name Barlow first and fall back to system fonts until the font files are bundled.
+- `--font-body` and `--font-display` name Barlow first and fall back to system fonts while the WOFF2 files load.
 
 ### Why Tailwind was rejected
 

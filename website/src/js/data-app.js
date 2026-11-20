@@ -399,11 +399,12 @@
       return;
     }
     Promise.all([API.get("creatures", [], { signal: signal }), API.get("boostablebosses", [], { signal: signal })]).then(function (res) {
-      var c = boostedOf("creature", res[0]), b = boostedOf("boss", res[1]);
+      // Per card, an answer from before the last server save is hidden, never guessed; the source line is marked stale when either is.
+      var c = fromEarlierDay(res[0]) ? null : boostedOf("creature", res[0]), b = fromEarlierDay(res[1]) ? null : boostedOf("boss", res[1]);
       target.textContent = "";
       if (c) target.appendChild(boostCard("creature", c, 64));
       if (b) target.appendChild(boostCard("boss", b, 64));
-      target.appendChild(sourceLine(res[0], "https://www.tibia.com/library/?subtopic=boostablebosses"));
+      target.appendChild(sourceLine({ fetchedAt: Math.min(res[0].fetchedAt, res[1].fetchedAt), stale: !!(res[0].stale || res[1].stale) }, "https://www.tibia.com/library/?subtopic=boostablebosses"));
     }, function (e) { if (e.kind !== "aborted") { target.textContent = ""; target.appendChild(errorBox(e, function () { renderBoosted(target, signal); })); } });
   }
 

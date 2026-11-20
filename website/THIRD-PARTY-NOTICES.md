@@ -7,7 +7,7 @@ are written for this project (it does ship the third-party fonts and icons liste
 (https://lucide.dev), copied unchanged into `art/lucide/` and inlined into every page by `art/icons.py`. Lucide is
 licensed under the ISC License (portions from Feather, MIT); its licence text follows. The profile icons in the footer
 and on the About page are the platforms' own logos (YouTube, Instagram, GitHub, Reddit, TibiaWiki, Tibia.com), used only
-to link to those profiles. The pixel ornaments (battlement, bricks, corners, gem) are original work for Tibia Foundry.
+to link to those profiles.
 
 <details><summary>Lucide licence</summary>
 
