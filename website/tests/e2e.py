@@ -527,7 +527,7 @@ def tibia_data(c, browser, base):
     # Unknown character.
     page.goto(url_of(base, en, "tibia", kit.data_hash("character/" + fx["missingCharacter"])))
     wait_app(page)
-    c.ok(page.locator("#app .notice-error").count() == 1 and "Not found" in page.locator("#app .notice-error").inner_text(), "unknown character shows 'Not found'")
+    c.ok(page.locator("#app .notice-error").count() == 1 and "Not Found" in page.locator("#app .notice-error").inner_text(), "unknown character shows 'Not found'")
     c.ok(page.locator("#app .notice-error button").count() == 0, "no retry button for a name that does not exist")
     # Worlds: table rows, filter, sort.
     worlds = json.load(open(os.path.join(kit.FIXTURES, "worlds.json"), encoding="utf-8"))["worlds"]["regular_worlds"]
@@ -677,7 +677,7 @@ def deep_links(c, browser, base):
     wait_app(page)
     c.ok(page.url.endswith("/tibia/#/character/Roc%20ky"), f"?character= opens the view: {page.url}")
     resp = page.goto(base + "no-such-page/")
-    c.ok(resp.status == 404 and page.locator("h1").inner_text() == "Page not found", "unknown page: 404 page")
+    c.ok(resp.status == 404 and page.locator("h1").inner_text() == "Page Not Found", "unknown page: 404 page")
     for r in kit.DATA_ROUTES:
         page.goto(url_of(base, kit.LANGUAGES[0], "tibia", kit.data_hash(r["sample"])))
         wait_app(page)

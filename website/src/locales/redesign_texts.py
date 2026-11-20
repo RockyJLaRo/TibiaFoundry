@@ -3,7 +3,8 @@
     python -I website/src/locales/redesign_texts.py      (writes the five locale files; run once, then edit the JSON files)
 
 Kept as a record of the redesign's copy; the JSON files remain the source the build reads. Later edits (e.g. the
-Tibia tools page title, js.allTools, js.hubTitle and the _meta.sameAsEnglish entries) were made in the JSON files directly.
+Tibia tools page title, js.allTools, js.hubTitle, the _meta.sameAsEnglish entries and the English Title Case of 2026-11-19)
+were made in the JSON files directly, so do not run this again. Entries of keys the site no longer has were removed.
 """
 import json
 import os
@@ -15,7 +16,6 @@ T = {
 "nav.legal": {"en": "Legal & transparency", "pt-BR": "Aspectos legais e transparência", "pl": "Informacje prawne", "es": "Aviso legal y transparencia", "de": "Rechtliches & Transparenz"},
 "nav.breadcrumb": {"en": "Breadcrumb", "pt-BR": "Você está aqui", "pl": "Ścieżka nawigacji", "es": "Ruta de navegación", "de": "Brotkrümelnavigation"},
 "nav.tibia": {"en": "Tibia tools", "pt-BR": "Ferramentas Tibia", "pl": "Narzędzia Tibii", "es": "Herramientas de Tibia", "de": "Tibia-Tools"},
-"nav.features": {"en": "Desktop app", "pt-BR": "Programa para PC", "pl": "Program na PC", "es": "Programa de escritorio", "de": "Desktop-Programm"},
 
 "home.hero.title": {
   "en": "Tibia tools, live game data and a desktop toolkit for fansite creators",
@@ -29,66 +29,9 @@ T = {
   "pl": "Sprawdzaj postacie, światy, highscores, domy i bossów na aktualnych danych – za darmo, w przeglądarce. Prowadzisz fansite albo edytujesz TibiaWiki? Darmowy program na Windows zamienia Twojego klienta Tibii w gotowe do wiki grafiki i dane.",
   "es": "Consulta personajes, mundos, highscores, casas y jefes con datos en vivo, gratis y en tu navegador. ¿Tienes un fansite o editas TibiaWiki? El programa gratuito para Windows convierte tu propio cliente de Tibia en imágenes y datos listos para la wiki.",
   "de": "Charaktere, Welten, Highscores, Häuser und Bosse mit aktuellen Daten nachschlagen – kostenlos, direkt im Browser. Du baust eine Fansite oder schreibst im TibiaWiki? Das kostenlose Windows-Programm macht aus deinem eigenen Tibia-Client wikifertige Bilder und Daten."},
-"home.hero.searchPlaceholder": {"en": "Character name, e.g. Roc ky", "pt-BR": "Nome do personagem, ex.: Roc ky", "pl": "Nazwa postaci, np. Roc ky", "es": "Nombre del personaje, p. ej. Roc ky", "de": "Charaktername, z. B. Roc ky"},
-"home.hero.popular": {"en": "Popular:", "pt-BR": "Mais usados:", "pl": "Popularne:", "es": "Lo más usado:", "de": "Beliebt:"},
-"home.hero.creators": {"en": "For fansite creators:", "pt-BR": "Para criadores de fansites:", "pl": "Dla twórców fansite'ów:", "es": "Para creadores de fansites:", "de": "Für Fansite-Macher:"},
-"home.hero.getApp": {"en": "Get the desktop app {version}", "pt-BR": "Baixe o programa {version}", "pl": "Pobierz program {version}", "es": "Descarga el programa {version}", "de": "Desktop-Programm {version} holen"},
 "home.today.title": {"en": "Today in Tibia", "pt-BR": "Hoje no Tibia", "pl": "Dziś w Tibii", "es": "Hoy en Tibia", "de": "Heute in Tibia"},
-"home.tools.title": {"en": "Find what you need", "pt-BR": "Encontre o que você procura", "pl": "Znajdź to, czego szukasz", "es": "Encuentra lo que buscas", "de": "Finde, was du suchst"},
-"home.tools.lead": {
-  "en": "Every tool works in your browser with live data from Tibia.com via TibiaData – no download, no account.",
-  "pt-BR": "Todas as ferramentas funcionam no navegador com dados ao vivo do Tibia.com via TibiaData – sem download e sem conta.",
-  "pl": "Każde narzędzie działa w przeglądarce na aktualnych danych z Tibia.com przez TibiaData – bez pobierania i bez konta.",
-  "es": "Todas las herramientas funcionan en tu navegador con datos en vivo de Tibia.com a través de TibiaData, sin descargas ni cuentas.",
-  "de": "Alle Tools laufen im Browser mit aktuellen Daten von Tibia.com über TibiaData – ohne Download, ohne Konto."},
 "home.tools.all": {"en": "All Tibia tools", "pt-BR": "Todas as ferramentas", "pl": "Wszystkie narzędzia", "es": "Todas las herramientas", "de": "Alle Tibia-Tools"},
-"home.dest.characters.title": {"en": "Characters & guilds", "pt-BR": "Personagens e guildas", "pl": "Postacie i gildie", "es": "Personajes y guilds", "de": "Charaktere & Gilden"},
-"home.dest.characters.text": {
-  "en": "Level, vocation, deaths, achievements and guild members of any Tibian.",
-  "pt-BR": "Level, vocação, mortes, conquistas e membros da guilda de qualquer tibiano.",
-  "pl": "Poziom, profesja, śmierci, osiągnięcia i członkowie gildii dowolnej postaci.",
-  "es": "Nivel, vocación, muertes, logros y miembros de la guild de cualquier tibiano.",
-  "de": "Level, Beruf, Tode, Errungenschaften und Gildenmitglieder jedes Tibianers."},
-"home.dest.worlds.title": {"en": "Worlds", "pt-BR": "Mundos", "pl": "Światy", "es": "Mundos", "de": "Welten"},
-"home.dest.worlds.text": {
-  "en": "Who is online, PvP type, location and online record of every game world.",
-  "pt-BR": "Quem está online, tipo de PvP, localização e recorde de jogadores de cada mundo.",
-  "pl": "Kto jest online, typ PvP, lokalizacja i rekord graczy każdego świata.",
-  "es": "Quién está en línea, tipo de PvP, ubicación y récord de jugadores de cada mundo.",
-  "de": "Wer online ist, PvP-Typ, Standort und Spielerrekord jeder Spielwelt."},
-"home.dest.highscores.title": {"en": "Highscores", "pt-BR": "Highscores", "pl": "Highscores", "es": "Highscores", "de": "Highscores"},
-"home.dest.highscores.text": {
-  "en": "Experience, skills, achievements and more – per world and vocation.",
-  "pt-BR": "Experiência, skills, conquistas e mais – por mundo e vocação.",
-  "pl": "Doświadczenie, umiejętności, osiągnięcia i więcej – według świata i profesji.",
-  "es": "Experiencia, skills, logros y más, por mundo y vocación.",
-  "de": "Erfahrung, Skills, Errungenschaften und mehr – pro Welt und Beruf."},
-"home.dest.reference.title": {"en": "Creatures, bosses & spells", "pt-BR": "Criaturas, bosses e magias", "pl": "Stworzenia, bossowie i czary", "es": "Criaturas, jefes y hechizos", "de": "Kreaturen, Bosse & Zauber"},
-"home.dest.reference.text": {
-  "en": "Today's boosted creature and boss, plus the creature and spell library.",
-  "pt-BR": "A criatura e o boss em destaque de hoje, além da biblioteca de criaturas e magias.",
-  "pl": "Dzisiejsze wzmocnione stworzenie i boss oraz biblioteka stworzeń i czarów.",
-  "es": "La criatura y el jefe potenciados de hoy, más la biblioteca de criaturas y hechizos.",
-  "de": "Die heute geboostete Kreatur und der Boss, dazu die Kreaturen- und Zauberbibliothek."},
-"home.dest.houses.title": {"en": "Houses", "pt-BR": "Casas", "pl": "Domy", "es": "Casas", "de": "Häuser"},
-"home.dest.houses.text": {
-  "en": "Houses and guildhalls of every town: size, rent, owner and auctions.",
-  "pt-BR": "Casas e guildhalls de cada cidade: tamanho, aluguel, dono e leilões.",
-  "pl": "Domy i siedziby gildii w każdym mieście: rozmiar, czynsz, właściciel i aukcje.",
-  "es": "Casas y guildhalls de cada ciudad: tamaño, alquiler, dueño y subastas.",
-  "de": "Häuser und Gildenhallen jeder Stadt: Größe, Miete, Besitzer und Auktionen."},
-"home.dest.community.title": {"en": "News & fansites", "pt-BR": "Notícias e fansites", "pl": "Wiadomości i fansite'y", "es": "Noticias y fansites", "de": "News & Fansites"},
-"home.dest.community.text": {
-  "en": "Official Tibia news, the news ticker and archive, and the official fansite directory.",
-  "pt-BR": "Notícias oficiais do Tibia, o news ticker, o arquivo e a lista oficial de fansites.",
-  "pl": "Oficjalne wiadomości Tibii, news ticker, archiwum i oficjalna lista fansite'ów.",
-  "es": "Noticias oficiales de Tibia, el news ticker, el archivo y el directorio oficial de fansites.",
-  "de": "Offizielle Tibia-News, Newsticker und Archiv sowie das offizielle Fansite-Verzeichnis."},
-"home.app.title": {"en": "The desktop app for fansite creators", "pt-BR": "O programa para criadores de fansites", "pl": "Program dla twórców fansite'ów", "es": "El programa para creadores de fansites", "de": "Das Desktop-Programm für Fansite-Macher"},
 "home.app.fact.version": {"en": "Version {version}", "pt-BR": "Versão {version}", "pl": "Wersja {version}", "es": "Versión {version}", "de": "Version {version}"},
-"home.app.fact.os": {"en": "Windows 10 and 11", "pt-BR": "Windows 10 e 11", "pl": "Windows 10 i 11", "es": "Windows 10 y 11", "de": "Windows 10 und 11"},
-"home.app.fact.free": {"en": "Free and open source", "pt-BR": "Gratuito e de código aberto", "pl": "Darmowy i open source", "es": "Gratis y de código abierto", "de": "Kostenlos und quelloffen"},
-"home.app.source": {"en": "Source code on GitHub", "pt-BR": "Código-fonte no GitHub", "pl": "Kod źródłowy na GitHubie", "es": "Código fuente en GitHub", "de": "Quellcode auf GitHub"},
 
 "notice.title": {"en": "Important download notice", "pt-BR": "Aviso importante sobre o download", "pl": "Ważna informacja o pobieraniu", "es": "Aviso importante sobre la descarga", "de": "Wichtiger Hinweis zum Download"},
 "notice.text1": {
@@ -174,8 +117,6 @@ T = {
   "pl": "Darmowe narzędzia do Tibii w przeglądarce i program dla edytorów TibiaWiki oraz twórców fansite'ów – niezależny projekt fanowski.",
   "es": "Herramientas de Tibia gratis en tu navegador y un kit de escritorio para editores de TibiaWiki y creadores de fansites: un proyecto independiente de fans.",
   "de": "Kostenlose Tibia-Tools im Browser und ein Desktop-Werkzeugkasten für TibiaWiki-Autoren und Fansite-Macher – ein unabhängiges Fanprojekt."},
-"footer.data": {"en": "Tibia tools", "pt-BR": "Ferramentas Tibia", "pl": "Narzędzia Tibii", "es": "Herramientas de Tibia", "de": "Tibia-Tools"},
-"footer.product": {"en": "Desktop app", "pt-BR": "Programa para PC", "pl": "Program na PC", "es": "Programa de escritorio", "de": "Desktop-Programm"},
 "footer.legal": {
   "en": "Tibia is made and operated by CipSoft GmbH. Tibia, its website, game graphics and data are copyrighted by CipSoft GmbH, and content provided by CipSoft remains its property. Tibia Foundry is an independent fan project and is not affiliated with or endorsed by CipSoft GmbH or Fandom.",
   "pt-BR": "O Tibia é criado e operado pela CipSoft GmbH. O Tibia, seu site, gráficos e dados do jogo são protegidos por direitos autorais da CipSoft GmbH, e o conteúdo fornecido pela CipSoft continua sendo dela. O Tibia Foundry é um projeto independente de fã, sem afiliação ou endosso da CipSoft GmbH ou da Fandom.",

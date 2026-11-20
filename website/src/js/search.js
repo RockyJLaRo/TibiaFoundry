@@ -170,7 +170,7 @@
       if (q) addRecent({ type: type, q: q, id: item.race || item.id });
     }
 
-    // Other search forms (the home hero): data-search-form="<type>", the same routes and recent searches.
+    // Any other search form a page may add: data-search-form="<type>", the same routes and recent searches (no page has one now).
     Array.prototype.forEach.call(doc.querySelectorAll("form[data-search-form]"), function (f) {
       f.addEventListener("submit", function (e) {
         e.preventDefault();

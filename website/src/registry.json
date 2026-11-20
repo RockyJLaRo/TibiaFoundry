@@ -18,7 +18,7 @@
     {"id": "calc-stamina", "path": "calculators/stamina/", "template": "calc-stamina.html", "nav": "calc.stamina.title", "icon": "battery-medium", "calc": ["staminaRest"]},
     {"id": "calc-blessings", "path": "calculators/blessings/", "template": "calc-blessings.html", "nav": "calc.blessings.title", "icon": "sparkles", "calc": ["blessings"]},
     {"id": "calc-stats", "path": "calculators/character-stats/", "template": "calc-stats.html", "nav": "calc.stats.title", "icon": "heart-pulse", "calc": ["characterStats"]},
-    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.features", "icon": "monitor"},
+    {"id": "features", "path": "features/", "template": "features.html", "nav": "nav.item.features", "icon": "monitor"},
     {"id": "downloads", "path": "downloads/", "template": "downloads.html", "nav": "nav.downloads", "icon": "download"},
     {"id": "guides", "path": "guides/", "template": "guides.html", "nav": "nav.guides", "icon": "book-open"},
     {"id": "about", "path": "about/", "template": "about.html", "nav": "nav.about", "icon": "user-round"},

@@ -353,12 +353,6 @@
     return tile;
   }
 
-  function renderOnline(target, signal) {
-    API.get("worlds", [], { signal: signal }).then(function (r) {
-      target.textContent = t("js.playersOnlineAll", { n: r.data.worlds.players_online });
-    }, function () { target.textContent = ""; });
-  }
-
   // Today's boosted creature and boss (creatures and boostablebosses answers). An entry counts only with a non-empty name (and,
   // for the creature, the race its page is named by); anything else is treated as "TibiaData cannot tell".
   var BOOSTED = {
@@ -1032,7 +1026,6 @@
   }
   document.querySelectorAll("[data-live-news]").forEach(mountNews);
   document.querySelectorAll("[data-live-boosted], [data-today-strip]").forEach(function (el) { renderBoosted(el, null); });
-  document.querySelectorAll("[data-live-online]").forEach(function (el) { renderOnline(el, null); });
 
   window.TFApp = { match: match, views: Object.keys(V), table: table };
 })();
