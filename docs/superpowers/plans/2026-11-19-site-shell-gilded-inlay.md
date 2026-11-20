@@ -325,3 +325,20 @@ It also fixes the stale boosted-creature cache, and nothing that works today bre
   Record the counts in `docs/superpowers/plans/2026-11-19-site-shell-gilded-inlay.md` under a "Results" heading. Report failures as they are, never claim a pass that didn't run.
 - [ ] **Step 2: Start the local preview** with the `site-preview` launch configuration on port 8765. Spot-check home, a calculator, a data route, Contact and Legal in both themes at 375 and 1440 px.
 - [ ] **Step 3: Send the owner** a representative screenshot set: home, menu open, drawer open, search with suggestions, Contact and footer, at 375 and 1440 px, in en/de and both themes. Ask for approval before any commit to Pages or deploy.
+
+## Results
+
+Release check on 2026-11-20, branch `site-shell` at 44a19f34, clean strict build (output identical to the committed `website/site`).
+
+| Check | Result |
+|---|---|
+| `build_site.py --strict --checksums …` | Pass: 65 pages × 5 languages, 204 images, SHA-256 for 5 archives |
+| `node --test "website/tests/unit/*.test.mjs"` | 54 / 54 pass |
+| `check_i18n.py` | Pass: 5 locales, 964 keys each; English Title Case check passes |
+| `check_contrast.py` | All pairs pass, both themes |
+| `e2e.py` (full) | 21 / 21 pass on the first run, no reruns |
+| `site_screenshots.py` (full matrix) | 2254 / 2254 captured, 0 failed. Scan: overflow 0, offscreen 0, clipped 0. 122 mid-word warnings, all expected: SHA-256 hashes on Downloads (70 × 3), long fixture names on the Tibia data views (50), the `User:RockyLaRo` API comment (10); plus 4 on German Features at 320 px ("Kleinbuchstaben," in a table cell) |
+
+Notes:
+- Before the build, 83 folders under `website/site` carried the Windows read-only attribute, which made the build's clean step fail with WinError 5. Only that attribute was cleared; no content changed.
+- Not pushed, merged or deployed. Deploying needs the owner's yes.
