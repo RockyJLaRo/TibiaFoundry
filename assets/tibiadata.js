@@ -4,7 +4,7 @@
  * - one request per URL at a time (callers asking for the same URL share it);
  * - every caller can cancel (AbortSignal); the network request is cancelled when nobody waits for it any more;
  * - responses are cached per endpoint for at least TibiaData's own cache time (registry.json api.cacheSeconds),
- *   in memory and in sessionStorage; after a failure the last good response is returned marked as stale;
+ *   in memory and in sessionStorage; the boosted creature and boss (config.expireAtServerSave) also expire at the next server save; after a failure the last good response is returned marked as stale;
  * - one retry for network errors, 429 and 5xx (Retry-After respected, at most 5 s); never for 4xx;
  * - every response is checked against the fields the site uses before it is handed out (schema check);
  * - errors are TFDataError objects with a kind: notfound, invalid, network, server, ratelimit, malformed, aborted.
@@ -13,7 +13,8 @@
  */
 (function (root, factory) {
   if (typeof module === "object" && module.exports) module.exports = factory;
-  else root.TFData = factory({ config: root.TF_SITE && root.TF_SITE.api, fetch: root.fetch.bind(root), storage: safeStorage(root) });
+  else root.TFData = factory({ config: root.TF_SITE && root.TF_SITE.api, fetch: root.fetch.bind(root), storage: safeStorage(root),
+    nextServerSave: root.TFFormulas ? function (ms) { return root.TFFormulas.FORMULAS.nextServerSave({ now: ms }).at; } : null });
 
   function safeStorage(w) {
     try { var s = w.sessionStorage, k = "__tf"; s.setItem(k, "1"); s.removeItem(k); return s; } catch (e) { return null; }
@@ -25,6 +26,8 @@
   var ttl = config.cacheSeconds || {};
   var fetchFn = env.fetch;
   var storage = env.storage || null;
+  var expireAtSave = config.expireAtServerSave || [];
+  var nextServerSave = env.nextServerSave || null;
   var now = env.now || function () { return Date.now(); };
   var sleep = env.sleep || function (ms, signal) {
     return new Promise(function (resolve, reject) {
@@ -174,6 +177,13 @@
     });
   }
 
+  /** Within its TTL and, for data that changes at server save, still before the first save after it was fetched. */
+  function fresh(entry, kind, maxAge) {
+    var t = now();
+    if (t - entry.t >= maxAge) return false;
+    return !(nextServerSave && expireAtSave.indexOf(kind) !== -1 && t >= nextServerSave(entry.t));
+  }
+
   /**
    * get(name, args, {signal, force}) -> Promise<{data, fetchedAt, fromCache, stale, error}>
    * Rejects with a TFDataError when there is no usable data (stale data is returned instead of failing).
@@ -186,7 +196,7 @@
     var url = base + parts[0], kind = parts[1];
     var maxAge = (ttl[kind] || 300) * 1000;
     var cached = readCache(url);
-    if (!options.force && cached && now() - cached.t < maxAge) {
+    if (!options.force && cached && fresh(cached, kind, maxAge)) {
       stats.cache++;
       return Promise.resolve({ data: cached.data, fetchedAt: cached.t, fromCache: true, stale: false, url: url });
     }
